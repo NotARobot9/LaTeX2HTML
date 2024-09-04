@@ -5,7 +5,7 @@
 - Semana del 5: Quedamos en aprender a programar en Python y HTML por separado y traer un convertidor funcional minimal dentro de dos semanas.
 - Semana del 12: Nos reunimos nuevamente porque no sentimos que ayudaran las cosas que aprendimos de Python en el diseño del convertidor.
 - Semana del 19: Vimos cómo leer y escribir datos en un .txt desde Python, con el objeto file.
-- Semana del 23: Acordamos vernos lunes, miércoles y viernes para estar en sintonía y avanzar más rápido.
+- Semana del 23: Acordamos vernos lunes, miércoles y viernes para estar en sintonía y avanzar más rápido. Martes y jueves trabajaremos por nuestra cuenta en nuestras habilidades de programación.
   - Lunes: Investigamos sobre la programación orientada a objetos, los principios SOLID y su relevancia para un convertidor mantenible.
   - Miércoles: Vimos definiciones y ejemplos de clases y objetos, y discutimos cómo modelaríamos nosotros esos ejemplos.
   - Viernes: Discutimos cómo modelar con objetos el convertidor. Quedamos en hacer pruebas con el .tex de Pablo y escribir archivos .tex de prueba minimales.
