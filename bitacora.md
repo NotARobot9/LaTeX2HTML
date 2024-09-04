@@ -22,5 +22,5 @@
     - Vimos la definición de tipo abstracto de dato y sus ventajas [Necaise].
     - Acordamos que el primer paso para diseñar el convertidor es definir el árbol intermedio.
     - Podemos ver el árbol intermedio como dos estructuras distintas, un objeto "árbol ordenado" que tenga sus nodos ordenados, y cada nodo contiene objetos capítulo, sección, etc.
-    - Discutimos si los párrafos deben ser nodos del árbol o información contenida en otros nodos, y no sabemos. Vamos a experimentar.
+    - Discutimos si los párrafos deben ser nodos del árbol (como en el DOM) o información contenida en otros nodos, y no sabemos. Vamos a experimentar.
     - Revisamos el árbol de Ulam-Harris y las sucesiones de Prüfer como maneras, quizá complementarias, de identificar y ordenar los nodos.
