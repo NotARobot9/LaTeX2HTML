@@ -25,3 +25,10 @@
     - Podemos ver el árbol intermedio como dos estructuras distintas, un objeto "árbol ordenado" que tenga sus nodos ordenados, y cada nodo contiene objetos capítulo, sección, etc.
     - Discutimos si los párrafos deben ser nodos del árbol (como en el DOM) o información contenida en otros nodos, y no sabemos. Vamos a experimentar.
     - Revisamos el árbol de Ulam-Harris y las sucesiones de Prüfer como maneras, quizá complementarias, de identificar y ordenar los nodos.
+  - Viernes:
+    - Seguimos discutiendo la forma del árbol intermedio.
+    - Tratamos de construir el árbol abstracto para un documento que teníamos.
+    - Ese documento tenía inputs y no supimos qué hacer con ellos.
+    - Pensamos que podíamos aplanar el árbol y convertirlo en una lista porque cada input no era necesariemente un árbol independiente.
+    - También discutimos si los encabezados deberían tener la misma jerarquía que los párrafos, y al parecer si.
+    - Una alternativa a la estructura final es una lista de listas.
