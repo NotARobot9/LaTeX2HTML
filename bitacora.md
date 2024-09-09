@@ -32,3 +32,6 @@
     - Pensamos que podíamos aplanar el árbol y convertirlo en una lista porque cada input no era necesariemente un árbol independiente.
     - También discutimos si los encabezados deberían tener la misma jerarquía que los párrafos, y al parecer si.
     - Una alternativa a la estructura final es una lista de listas.
+- Semana del 9:
+  - Lunes:
+    - Quedamos en que una buena forma de tener un documento abstracto es tomar pares ordenados (texto, formato), y una lista de ellos. También pueden tener forma ((texto, formato), formato) o ((texto, texto, ...), formato), o combinaciones. Esto representa los ambientes definidos por el usuario. El formato podría ser un objeto cuyos atributos sean los parámetros del ambiente.
