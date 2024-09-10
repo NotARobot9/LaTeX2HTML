@@ -35,3 +35,7 @@
 - Semana del 9:
   - Lunes:
     - Quedamos en que una buena forma de tener un documento abstracto es tomar pares ordenados (texto, formato), y una lista de ellos. También pueden tener forma ((texto, formato), formato) o ((texto, texto, ...), formato), o combinaciones. Esto representa los ambientes definidos por el usuario. El formato podría ser un objeto cuyos atributos sean los parámetros del ambiente.
+    - Martes:
+      - Escribimos un cachito de prueba.tex en formato abstracto. A partir de ahora ya podremos trabajar por separado: una parte del equipo se encarga de convertir el .tex a un documento abstracto y la otra parte se encarga de convertir el documento abstracto a html.
+      - TeX2AbsDoc: Un párrafo de texto debe estar escrito en una sola línea. Esta se dividirá en varios objetos de texto con formato, divididos al usar comandos dentro de la línea o texto plano. Los ambientes se dividirán en varias líneas. Queda la duda de cómo representar comandos dentro de comandos.
+      - AbsDoc2HTML: Se definen funciones tales que cada una realice realice: lean el archivo en texto plano, identifiquen y asignen el formato correcto, iteren los formatos de ser necesario, excluyan los textos que no indican formato y los mande a <p>. Queda pendiente plantear las clases a utilizar y un archivo CSS que contenga los formatos.
