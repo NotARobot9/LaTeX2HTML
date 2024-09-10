@@ -1,9 +1,11 @@
-("Un título", chapter)
+["Un título", chapter]
 
-(("
+[[
+["
 El porcentaje \% no se debe quitar. % Este sí.
 
 Y tenemos que $x<\epsilon$ o $y>2$.
-", ("sdflgk", boldfont)), paragraph)
+", plain],
+["sdflgk", boldfont]], paragraph]
 
-("Una sección", section)
+["Una sección", section]
