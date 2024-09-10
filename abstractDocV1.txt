@@ -1,0 +1,9 @@
+("Un título", chapter)
+
+(("
+El porcentaje \% no se debe quitar. % Este sí.
+
+Y tenemos que $x<\epsilon$ o $y>2$.
+", ("sdflgk", boldfont)), paragraph)
+
+("Una sección", section)
