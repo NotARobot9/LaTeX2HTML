@@ -41,4 +41,4 @@
       - AbsDoc2HTML: Se definen funciones tales que cada una realice realice: lean el archivo en texto plano, identifiquen y asignen el formato correcto, iteren los formatos de ser necesario, excluyan los textos que no indican formato y los mande a <p>. Queda pendiente plantear las clases a utilizar y un archivo CSS que contenga los formatos.
     - Miércoles:
       - TeX2AbsDoc: Hoy básicamente leí todo lo que pude. Para poder analizar una línea de texto se usarán expresiones regulares para identificar partes del texto formateadas y separarlas de las que tienen formato plano. Usé un rato la página https://regexcrossword.com/. También leí lo básico de cómo abrir, leer, escribir y cerrar archivos en python.
-      - AbsDoc2HTML: 
+      - AbsDoc2HTML: Se modificó el código para que pueda leer tuplas dentro del texto. Aún quedan detalles por afinar. También se trabajó en el archivo CSS que va a leer el html.
