@@ -1,52 +1,102 @@
 import re
 
-def leer_tuples(input_file):
-    with open(input_file, 'r', encoding='utf-8') as file:
-        contenido = file.read()
-        return eval(contenido) 
+# Diccionario con los formatos y equivalencias
+formatos_disponibles = {
+    "chapter": "<h1 id='{id}'>{}</h1>",
+    "section": "<h2 id='{id}'>{}</h2>",
+    "subsection": "<h3 id='{id}'>{}</h3>",
+    "paragraph": "<p>{}</p>",
+    "italics": "<i>{}</i>",
+    "boldfont": "<b>{}</b>"
+}
 
-def aplicar_formato(texto, formatos):
+# Diccionario para almacenar referencias cruzadas
+cross_references = {}
+
+# Extraer etiquetas y referenciarlas
+def obtener_etiqueta(item):
+    """Extrae y devuelve la etiqueta de un item si existe."""
+    if isinstance(item, str) and item.startswith("label:"):
+        return item.split("label:")[1]
+    return None
+
+# Función para aplicar los formatos desde las tuplas más internas hacia las externas
+def aplicar_formato(contenido, formatos, label=None):
+    ##Aplica los formatos desde el más interno hasta el más externo.
     for formato in formatos:
-        if formato == "chapter":
-            texto = f"<h1>{texto}</h1>\n"
-        elif formato == "section":
-            texto = f"<h2>{texto}</h2>\n"
-        elif formato == "teorema":
-            texto = f"<div><strong>Teorema:</strong> {texto}</div>\n"
-        elif formato == "paragraph":
-            texto = f"<p>{texto}</p>\n"
-    return texto
+        if formato in formatos_disponibles:
+            if label:  # Si hay una etiqueta, se inserta en el id del elemento
+                contenido = formatos_disponibles[formato].format(contenido, id=label)
+            else:
+                contenido = formatos_disponibles[formato].format(contenido, id="")
+    return contenido
 
-def analizar_tupla(t, formatos_ac=None):
-    if formatos_ac is None:
-        formatos_ac = []
+# Función recursiva para transformar la lista de tuplas a HTML
+def tuple_2_html(data):
+    if isinstance(data, str): 
+        return data
+    elif isinstance(data, tuple):
+        text_parts = []
+        formatos = []
+        label = None
+        for item in data:
+            if isinstance(item, str) and item in formatos_disponibles:  # Identifica formato
+                formatos.append(item)
+            elif isinstance(item, tuple):  # Recursión
+                text_parts.append(tuple_2_html(item))
+            else:
+                # Si es una etiqueta, la almacenamos
+                possible_label = obtener_etiqueta(item)
+                if possible_label:
+                    label = possible_label
+                    cross_references[label] = item  # Guarda la referencia
+                else:
+                    text_parts.append(str(item))
+        contenido = "".join(text_parts)
+        return aplicar_formato(contenido, formatos, label)
+    elif isinstance(data, list):
+        html_parts = []
+        for item in data:
+            html_parts.append(tuple_2_html(item))
+        return "".join(html_parts)
 
-    if isinstance(t[0], str):
-        texto = t[0]
-        formato = t[1]
-        formatos_ac.append(formato)
-        texto_con_formatos = aplicar_formato(texto, reversed(formatos_ac))
-        return texto_con_formatos
-    elif isinstance(t[0], tuple):
-        formato = t[1]
-        formatos_ac.append(formato)
-        return analizar_tupla(t[0], formatos_ac)
-    else:
-        raise ValueError("No válido")
+# Leer la lista de tuplas desde un archivo .txt
+def leer_tuplas(filename):
+    """Lee una lista de tuplas desde un archivo de texto y la evalúa como una lista."""
+    with open("prueba.txt", "r", encoding="utf-8") as file:
+        contenido = file.read()
+        # Convertir la cadena leída en una lista de tuplas usando eval
+        return eval(contenido)
 
-def tuplas_2_html(input_file, output_file):
-    tuplas = leer_tuples(input_file)
-    resultado = ''.join(analizar_tupla(tupla) for tupla in tuplas) 
-    with open(output_file, 'w', encoding='utf-8') as file:
-        file.write('<!DOCTYPE html>\n<html>\n<head>\n')
-        file.write('<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>\n')
-        file.write('</head>\n<body>\n')
-        file.write(resultado)
-        file.write('\n</body>\n</html>')
+# Generar índice analítico
+def generar_index():
+    """Genera un índice analítico con las referencias cruzadas."""
+    index_html = "<h2>Índice Analítico</h2><ul>"
+    for label, ref in cross_references.items():
+        index_html += f"<li><a href='#{label}'>{label}</a></li>"
+    index_html += "</ul>"
+    return index_html
 
-if __name__ == '__main__':
-    input_file = 'prueba.txt'  
-    output_file = 'prueba.html' 
+# Archivo de entrada
+input_filename = "prueba.txt"
 
-    tuplas_2_html(input_file, output_file)
-    print("El archivo ha sido convertido a prueba.html.")
+# Leer la lista de tuplas
+data = leer_tuplas(input_filename)
+
+# Convertir la lista a HTML
+html_output = tuple_2_html(data)
+
+# Generar el índice analítico y agregarlo al HTML
+index_html = generar_index()
+html_output += index_html
+
+# Guardar el HTML en un archivo
+with open("prueba.html", "w", encoding="utf-8") as file:
+    file.write('<!DOCTYPE html>\n<html>\n<head>\n')
+    #file.write('<link rel="stylesheet" href="hoja_de_estilo_de_Joseph.css"')
+    file.write('<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>\n')
+    file.write('</head>\n<body>\n')
+    file.write(html_output)
+    file.write('\n</body>\n</html>')
+
+print('El archivo ha sido convertido a "prueba.html"')
