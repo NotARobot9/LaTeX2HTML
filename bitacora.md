@@ -42,3 +42,5 @@
     - Miércoles:
       - TeX2AbsDoc: Hoy básicamente leí todo lo que pude. Para poder analizar una línea de texto se usarán expresiones regulares para identificar partes del texto formateadas y separarlas de las que tienen formato plano. Usé un rato la página https://regexcrossword.com/. También leí lo básico de cómo abrir, leer, escribir y cerrar archivos en python.
       - AbsDoc2HTML: Se modificó el código para que pueda leer tuplas dentro del texto. Aún quedan detalles por afinar. También se trabajó en el archivo CSS que va a leer el html.
+    - Viernes:
+      - AbsDoc2HTML: Replanteé el convertidor y decidí cambiar las clases por diccionarios pues no funcionaba de manera adecuada usando las primeras. Ya se integró una función para leer etiquetas, aplicarlas al HTML y generar un índice analítico, solo basta darle formato. 
