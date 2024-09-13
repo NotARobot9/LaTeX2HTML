@@ -1,19 +1,5 @@
-___ANTES:___
-["Un título", chapter]
-
-[[
-["
-El porcentaje \% no se debe quitar. % Este sí.
-
-Y tenemos que $x<\epsilon$ o $y>2$.
-", plain],
-["sdflgk", boldfont]], paragraph]
-
-["Una sección", section]
-
-___DESPUÉS:___
 [
-    ("Un título", "chapter"),
-    ((("El porcentaje \% no se debe quitar. % Este sí. Y tenemos que $x<\epsilon$ o $y>2$.", "plain"), "sdflgk", "boldfont"), "paragraph"),
-    ("Una sección", "section")
+    ("Un título", "chapter", "label:1_título"),
+    ("El porcentaje \\% no se debe quitar. % Este sí. Y tenemos que $x<\\epsilon$ o $y>2$. ", ("sdflgk", "boldfont"), " más texto aún",  "paragraph"),
+    (("Una sección", "italics"), "section")
 ]
