@@ -1,0 +1,2420 @@
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/13.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\sop}{\mathop{\rm sop}} $ 
+    $ \newcommand{\vol}{\mathop{\rm vol}\nolimits} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\graf}{\mathop{\rm graf}} $ 
+    $ \newcommand{\loc}{\mathop{\rm loc}} $ 
+    $ \newcommand{\undercbrace}{\underbrace} $ 
+    $ \newcommand{\menorque}{\mathrel{<}}$ 
+    $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 12;
+              }
+              </style>
+<h2 id="Cap-13">Teoremas fundamentales de la teoría de integración</h2>
+<p class="noj">
+En este capítulo expondremos los teoremas fundamentales de la
+teoría de integración de Lebesgue.
+</p>
+<p>
+El cálculo efectivo de integrales múltiples depende en gran
+medida de la posibilidad de reducirlo al cálculo sucesivo de
+integrales en dimensiones menores. El teorema de Fubini afirma que la
+integral de una función integrable $f\colon \mathbb{R}^{n}\rightarrow
+\mathbb{R}$ se puede obtener integrando coordenada a coordenada, es
+decir, si $1\leq m\menorque n$ entonces
+\begin{equation*}
+  \int_{\mathbb{R}^{n}}f=\int_{\mathbb{R}^{n-m}}\biggl( \int_{\mathbb{R}^{m}}f(x,y)dx\biggr) dy.
+\end{equation*}
+Este resultado requiere de ciertas precauciones ya que la función
+$x\mapsto f(x,y)$ puede no ser integrable para ciertas $y\in
+\mathbb{R}^{n-m}$. El teorema de Fubini afirma que el conjunto de
+tales $y$&rsquo;s tiene medida $0$.
+</p>
+<p>
+Los conjuntos integrables de medida $0$ se llaman conjuntos
+nulos. Veremos que si dos funciones coinciden fuera de un conjunto
+nulo y una de ellas es integrable, entonces la otra lo es y las
+integrales de ambas coinciden. Es decir, podemos sustituir de manera
+arbitraria los valores de una función en un conjunto nulo sin que
+esto altere ni la integrabilidad de la función ni el valor de su
+integral.
+</p>
+<p>
+Estudiaremos también la posibilidad de intercambiar al límite
+por la integral, es decir, de obtener la integral del límite
+puntual de una sucesión de funciones integrables como el
+límite de las integrales de dichas funciones. Este es un asunto
+de gran relevancia en el análisis matemático y tiene
+múltiples aplicaciones. La ausencia de buenas condiciones que
+permitan este intercambio es el motivo que llevó a sustituir la
+integral de Riemann por la integral de Lebesgue. Para la integral de
+Riemann la posibilidad de intercambiar al límite por la integral
+está estrechamente ligada a la convergencia uniforme mientras que,
+para la integral de Lebesgue, los teoremas que permiten este
+intercambio contienen hipótesis considerablemente más
+débiles.
+</p>
+<p>
+Los dos teoremas fundamentales sobre convergencia en la teoría de
+integración de Lebesgue son el teorema de convergencia
+monótona de Levi y el teorema de convergencia dominada de
+Lebesgue. El primero afirma que, si la sucesión de funciones
+integrables $(f_{k})$ es no decreciente y el supremo de sus integrales
+está acotado, entonces su límite puntual $f$ es integrable y
+\begin{equation}
+  \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}.
+\label{inter}
+\end{equation}
+El segundo afirma que, si una sucesión $(f_{k})$ de funciones
+integrables converge puntualmente a una función $f$ y si tales
+funciones están dominadas puntualmente por una función
+integrable $g$, es decir, si $\left\vert f_{k}\right\vert \leq g$ para
+todo $k$, entonces $f$ es integrable y se cumple (\ref{inter}). Un
+tercer resultado importante, que se obtiene a partir del teorema de
+convergencia monótona y se usa para probar el teorema de
+convergencia dominada, es el lema de Fatou, que da condiciones para la
+integrabilidad del límite inferior de una sucesión de
+funciones.
+</p>
+<p>
+Usando estos resultados de convergencia, demostraremos el teorema de
+cambio de variable para funciones integrables a partir del resultado
+correspondiente para funciones continuas con soporte compacto.
+</p>
+
+<h3 id="sec13-1">Conjuntos nulos</h3>
+<p class="noj">
+Por simplicidad, escribiremos $\left\vert X\right\vert $ en vez de
+vol$_{n}(X)$.
+</p>
+<p>
+<div class="definition">
+  Se dice que un subconjunto $Z$ de $\mathbb{R}^{n}$ es <em class="textbf">nulo</em>
+  si es $Z$ integrable y $\left\vert Z\right\vert
+  =0$.
+</div>
+</p>
+<p>
+<div id="nulintsup" class="obs">
+Observa que $Z$ es nulo si y sólo si
+  $\int^{\ast }1_{Z}=0$, ya que en ese caso
+  \begin{equation*}
+    0\leq \int_{\ast }1_{Z}\leq \int^{\ast }1_{Z}=0
+  \end{equation*}
+  y, en consecuencia, $1_{Z}$ es integrable y $\left\vert Z\right\vert
+  =\int_{\mathbb{R}^{n}}1_{Z}=0$.
+</div>
+</p>
+<p>
+Si $f_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\infty \right\}$ y
+$f_{k}\geq 0$, la sucesión de sumas parciales
+$\sum_{k=1}^{m}f_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\infty
+\right\}$ es no decreciente. Denotamos al supremo puntual de esta
+sucesión de funciones por
+\begin{equation*}
+  \sum_{k=1}^{\infty }f_{k}:=\sup_{m\in \mathbb{N}}\left(
+    \sum_{k=1}^{m}f_{k}\right) \colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\infty \right\}.
+\end{equation*}
+El siguiente lema juega un papel importante en el estudio de las
+propiedades de los conjuntos nulos.
+</p>
+<p>
+<div id="subadintsup" class="lemma">
+Sean $f_{k}\colon \mathbb{R}^{n}\rightarrow
+  \mathbb{R}\cup \left\{\infty \right\}$ tales que $f_{k}\geq 0$. Entonces
+  \begin{equation*}
+    \int^{\ast }\sum_{k=1}^{\infty }f_{k}\leq \sum_{k=1}^{\infty
+    }\int^{\ast }f_{k}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $\int^{\ast }f_{k}=\infty $ para algún $k\in \mathbb{N}$, el
+  resultado es trivialmente cierto. Así pues, supongamos que
+  $\int^{\ast }f\in \mathbb{R}$ para todo $k\in \mathbb{N}$. Dada
+  $\varepsilon >0$, escogemos $g_{k}\in \mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$ tal que $g_{k}\geq f_{k}$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}g_{k}\leq \int^{\ast }f_{k}+\frac{\varepsilon }{2^{k}}.
+  \end{equation*}
+  Entonces $\sum_{k=1}^{\infty }g_{k}\geq \sum_{k=1}^{\infty }f_{k}$.
+  De la Proposición <a href="tul/P_T_02/12.html#cmsci">12.17</a> se sigue que $\sum_{k=1}^{\infty
+  }g_{k}\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ y
+  \begin{align*}
+    \int^{\ast }\sum_{k=1}^{\infty }f_{k}\leq
+    \int_{\mathbb{R}^{n}}\sum_{k=1}^{\infty }g_{k}&=\lim_{m\rightarrow
+                                                    \infty
+                                                    }\int_{\mathbb{R}^{n}}\sum_{k=1}^{m}g_{k}\\
+&=\lim_{m\rightarrow \infty
+    }\sum_{k=1}^{m}\int_{\mathbb{R}^{n}}g_{k}=\sum_{k=1}^{\infty
+    }\int_{\mathbb{R}^{n}}g_{k}\leq \left(\sum_{k=1}^{\infty }\int^{\ast
+    }f_{k}\right)+\varepsilon ,
+  \end{align*}
+  para toda $\varepsilon >0$. En consecuencia,
+  \begin{equation*}
+    \int^{\ast }\sum_{k=1}^{\infty }f_{k}\leq \sum_{k=1}^{\infty
+    }\int^{\ast }f_{k},
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Una primera consecuencia de este lema es la siguiente.
+</p>
+<p>
+<div id="nulos" class="proposition">
+</p>
+<p>
+<ol class="alfa">
+  <li> Si $Z$ es nulo y $Y\subset Z$, entonces $Y$ es nulo.
+</p>
+<p>
+  <li> Si $\left\{Z_{k}:k\in \mathbb{N}\right\}$ es una familia numerable
+    de subconjuntos nulos de $\mathbb{R}^{n}$, entonces $Z:=\cup
+   _{k=1}^{\infty }Z_{k}$ es un subconjunto nulo de $\mathbb{R}^{n}$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a)</em> es consecuencia inmediata de la monotonía de la
+  integral superior.
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Observa que $1_{Z}\leq \sum_{k=1}^{\infty }1_{Z_{k}}$.
+  Aplicando la monotonía de la integral superior, el
+  Lema <a href="tul/P_T_02/13.html#subadintsup">13.3</a> y la Observación <a href="tul/P_T_02/13.html#nulintsup">13.2</a> obtenemos
+  \begin{equation*}
+    0\leq \int^{\ast }1_{Z}\leq \int^{\ast }\sum_{k=1}^{\infty }1_{Z_{k}}\leq
+    \sum_{k=1}^{\infty }\int^{\ast }1_{Z_{k}}=0.
+  \end{equation*}
+  En consecuencia, $Z$ es nulo.
+</div>
+</p>
+<p>
+En particular, se cumple lo siguiente.
+</p>
+<p>
+<div id="numerable" class="example">
+Todo subconjunto numerable $N$ de $\mathbb{R}^{n}$
+  es nulo, pues cada punto de $N$ lo es.
+</div>
+</p>
+<p>
+Veamos otros ejemplos.
+</p>
+<p>
+<div class="example">
+  Si $1\leq m\menorque n$, $K$ es un subconjunto compacto de $\mathbb{R}^{m}$ y
+  $f\colon K\rightarrow \mathbb{R}^{n-m}$ es una función continua,
+  entonces la gráfica de $f$,
+  \begin{equation*}
+    \graf(f):=\left\{(x,y)\in \mathbb{R}^{n}:x\in K\text{, }y=f(x)\right\},
+  \end{equation*}
+  es un subconjunto nulo de $\mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Como $\graf(f)$ es la imagen de $K$ bajo la función continua
+  $g\colon K\rightarrow \mathbb{R}^{n}$ dada por $g(x):=(x,f(x))$, se tiene
+  que graf$(f)$ es compacto. Por tanto, graf$(f)$ es un subconjunto
+  integrable de $\mathbb{R}^{n}$.
+</p>
+<p>
+  Dado que
+  \begin{equation*}
+    1_{\text{graf}(f)}(x,y)=
+      \begin{cases}
+        1_{\left\{f(x)\right\}}(y) & \text{si $x\in K$,} \\
+        0 & \text{si $x\notin K$,}
+      \end{cases}
+  \end{equation*}
+  para cada $x\in \mathbb{R}^{m}$ se tiene que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n-m}}1_{\text{graf}(f)}(x,y)dy=0.
+  \end{equation*}
+  Del teorema de Fubini para funciones semicontinuas (ver
+  Proposición <a href="tul/P_T_02/12.html#propfub">12.16</a>) se sigue que
+  \begin{equation*}
+    \left\vert \text{graf}(f)\right\vert =\int_{\mathbb{R}^{n}}1_{\text{graf}(f)}=\int_{\mathbb{R}^{m}}\biggl( \int_{\mathbb{R}^{n-m}}1_{\text{graf}(f)}(x,y)dy\biggr) dx=0,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Del ejemplo anterior y el teorema de la función implícita se
+deduce que las subvariedades de $\mathbb{R}^{n}$ son subconjuntos
+nulos [Ejercicio <a href="tul/P_T_02/13.html#varnulo">13.47</a>]. Veamos un caso particular.
+</p>
+<p>
+<div id="volesfera" class="example">
+La esfera $S^{n-1}(0,r):=\left\{x\in
+  \mathbb{R}^{n}:\left\Vert x\right\Vert =r\right\}$, $r\geq 0$, es un
+  subconjunto nulo de $\mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div class="proof">
+   Sea $f\colon \bar{B}^{n-1}(0,r)\rightarrow
+  \mathbb{R}$ la función dada por $f(x):=\sqrt{r^{2}-\Vert x\Vert
+   ^{2}}$, donde $\bar{B}^{n-1}(0,r):=\{x\in
+  \mathbb{R}^{n-1}:\Vert x\Vert \leq r\}$. Como
+  $S^{n-1}(0,r)=S^{+}\cup S^{-}$ con $S^{\pm }:=\graf(\pm f)$, del
+  ejemplo anterior y la Proposición <a href="tul/P_T_02/13.html#nulos">13.4</a> se sigue que
+  $S^{n-1}(0,r)$ es nulo.
+</div>
+</p>
+<p>
+<div id="aproxnulo" class="proposition">
+$Z$ es un subconjunto nulo de $\mathbb{R}^{n}$ si y
+  sólo si para cada $\varepsilon >0$ existe un subconjunto abierto
+  $\Omega $ de $\mathbb{R}^{n}$ tal que $Z\subset \Omega $ y
+  $\left\vert \Omega \right\vert \menorque\varepsilon $.
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$: &nbsp;Si $Z$ es un subconjunto nulo de $\mathbb{R}^{n}$
+  entonces $\int^{\ast }1_{Z}=0$. Por tanto, dado $\varepsilon >0$,
+  existe $g\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ tal que $g\geq
+  1_{Z}$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}g\menorque\frac{\varepsilon }{2}.
+  \end{equation*}
+  Como $g$ es s.c.i., $\Omega :=g^{-1}(\frac{1}{2},\infty )$ es un
+  subconjunto abierto de $\mathbb{R}^{n}$ (ver
+  Ejercicio <a href="tul/P_T_02/4.html#subnivelsci">4.46</a>) y, puesto que $g\geq 1_{Z}$, se tiene
+  que $Z\subset \Omega $. Finalmente, dado que $2g\geq 1_{\Omega }$,
+  se cumple que
+  \begin{equation*}
+    \left\vert \Omega \right\vert =\int_{\mathbb{R}^{n}}1_{\Omega }\leq \int_{\mathbb{R}^{n}}2g\menorque\varepsilon .
+  \end{equation*}
+</p>
+<p>
+  $\Leftarrow )$: &nbsp;Inversamente, si para cada $\varepsilon >0$ existe
+  un subconjunto abierto $\Omega $ de $\mathbb{R}^{n}$ tal que
+  $Z\subset \Omega $ y $\left\vert \Omega \right\vert \menorque\varepsilon $,
+  entonces
+  \begin{equation*}
+    0\leq \int^{\ast }1_{Z}\leq \int_{\mathbb{R}^{n}}1_{\Omega }\menorque\varepsilon
+    \qquad \forall \varepsilon >0.
+  \end{equation*}
+  En consecuencia, $Z$ es nulo.
+</div>
+</p>
+<p>
+<div class="definition">
+  Sea $X$ un subconjunto de $\mathbb{R}^{n}$. Decimos que una
+  propiedad $P(x)$ se cumple <em class="textbf">casi dondequiera (c.d.) en </em>$X$,
+  o bien que se cumple <em class="textbf">para
+    casi todo (p.c.t.)</em><em class="textbf">&nbsp;</em>$x\in
+  X$, si el conjunto
+  \begin{equation*}
+    \left\{x\in X:P(x)\text{ no se cumple}\right\}
+  \end{equation*}
+  es nulo.
+</div>
+</p>
+<p>
+La siguiente proposición asegura que, si modificamos una
+función integrable sobre un subconjunto nulo de $\mathbb{R}^{n}$,
+la función obtenida sigue siendo integrable y su integral es la
+misma.
+</p>
+<p>
+<div id="igualint" class="proposition">
+Sean $f,g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$ tales que $f(x)=g(x)$ p.c.t. $x\in \mathbb{R}^{n}$.
+  Si $f$ es integrable, entonces $g$ es integrable y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\int_{\mathbb{R}^{n}}g.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $Z:=\left\{x\in \mathbb{R}^{n}:f(x)\neq g(x)\right\}$, $h_{k}:=1_{Z}$ y
+  $h:=\sum_{k=1}^{\infty }h_{k}$, es decir, $h(x)=\infty $ si $x\in Z$
+  y $h(x)=0 $ si $x\notin Z$. Aplicando el Lema <a href="tul/P_T_02/13.html#subadintsup">13.3</a>,\
+  obtenemos que
+  \begin{equation*}
+    \int^{\ast }h\leq \sum_{k=1}^{\infty }\int^{\ast }h_{k}=0.
+  \end{equation*}
+  Por otra parte, la Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a>&nbsp;asegura que
+  existe una sucesión $(\varphi_{k})$ en
+  $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int^{\ast }\left\vert f-\varphi_{k}\right\vert
+    =0.
+  \end{equation*}
+  Nota que $\left\vert g-\varphi_{k}\right\vert \leq h+\left\vert
+    f-\varphi_{k}\right\vert $. Por tanto,
+  \begin{equation*}
+    \int^{\ast }\left\vert g-\varphi_{k}\right\vert \leq \int^{\ast
+    }h+\int^{\ast }\left\vert f-\varphi_{k}\right\vert =\int^{\ast }\left\vert
+      f-\varphi_{k}\right\vert
+  \end{equation*}
+  y, en consecuencia,
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int^{\ast }\left\vert g-\varphi_{k}\right\vert
+    =0.
+  \end{equation*}
+  La Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a> asegura entonces que $g$ es
+  integrable y que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}g=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}\varphi_{k}=\int_{\mathbb{R}^{n}}f,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Además, una función integrable toma los valores $\pm \infty $
+únicamente en un conjunto nulo. De hecho, se cumple lo siguiente.
+</p>
+<p>
+<div id="funcfinita" class="proposition">
+Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$ satisface $\int^{\ast }\left\vert f\right\vert
+  \menorque\infty $, entonces $f(x)\in \mathbb{R}$ p.c.t. $x\in
+  \mathbb{R}^{n}$. En particular, si $f$ es integrable, entonces
+  $f(x)\in \mathbb{R}$ p.c.t. $x\in \mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $Z:=\left\{x\in \mathbb{R}^{n}:f(x)=\pm \infty \right\}$. Como $1_{Z}\leq
+  \varepsilon \left\vert f\right\vert $ para todo $\varepsilon >0$, se
+  tiene que
+  \begin{equation*}
+    \int^{\ast }1_{Z}\leq \varepsilon \int^{\ast }\left\vert f\right\vert \text{\qquad }\forall \varepsilon >0.
+  \end{equation*}
+  En consecuencia, $\int^{\ast }1_{Z}=0$ y, por tanto, $Z$ es
+  nulo. Esto prueba que $f(x)\in \mathbb{R}$ p.c.t. $x\in
+  \mathbb{R}^{n}$.
+</p>
+<p>
+  Si $f$ es integrable, entonces $\left\vert f\right\vert $ es
+  integrable (ver Proposición <a href="tul/P_T_02/12.html#valabsint">12.32</a>) y, por tanto,
+  $\int^{\ast }\left\vert f\right\vert \menorque\infty $. De la afirmación
+  anterior se sigue que $f(x)\in \mathbb{R}$ p.c.t. $x\in
+  \mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+Las proposiciones anteriores nos permiten concluir lo siguiente.
+<div id="corfuncfinita" class="corollary">
+Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$ es integrable, entonces la función
+  $\widetilde{f}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    \widetilde{f}(x):=
+      \begin{cases}
+        f(x) & \text{si $f(x)\menorque\infty$,} \\
+        0 & \text{si $f(x)=\pm \infty$,}
+      \end{cases}
+  \end{equation*}
+  es integrable, $\widetilde{f}(x)=f(x)$ p.c.t. $x\in \mathbb{R}^{n}$
+  y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\widetilde{f}=\int_{\mathbb{R}^{n}}f.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  La Proposición <a href="tul/P_T_02/13.html#funcfinita">13.11</a>&nbsp;asegura que
+  $\widetilde{f}(x)=f(x)$ p.c.t. $x\in \mathbb{R}^{n}$. De la
+  Proposición <a href="tul/P_T_02/13.html#igualint">13.10</a>&nbsp;se sigue entonces que
+  $\widetilde{f}$ es integrable y que las integrales de $f$ y
+  $\widetilde{f}$ coinciden.
+</div>
+</p>
+<p>
+<div id="funnula" class="proposition">
+Sea $f_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$ una sucesión de funciones tales que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int^{\ast }\left\vert f_{k}\right\vert =0.
+  \end{equation*}
+  Entonces existe una subsucesión $(f_{k_{j}})$ de $(f_{k})$ tal
+  que $f_{k_{j}}(x)\rightarrow 0$ p.c.t. $x\in \mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Tomemos $k_{1}\menorque\cdots \menorque k_{j}\menorque k_{j+1}\menorque\cdots $ tales que
+  \begin{equation*}
+    \int^{\ast }|f_{k_{j}}|\text{ }\menorque\frac{1}{2^{j}}.
+  \end{equation*}
+  Por el Lema <a href="tul/P_T_02/13.html#subadintsup">13.3</a>, se tiene que
+  \begin{equation*}
+    \int^{\ast }\sum_{j=1}^{\infty }|f_{k_{j}}|\text{ }\leq
+    \sum_{j=1}^{\infty }\int^{\ast }|f_{k_{j}}|\text{ }\leq 1.
+  \end{equation*}
+  La Proposición <a href="tul/P_T_02/13.html#funcfinita">13.11</a>&nbsp;asegura entonces que existe un
+  subconjunto nulo $Z$ de $\mathbb{R}^{n}$ tal que
+  \begin{equation*}
+    \sum_{j=1}^{\infty }|f_{k_{j}}(x)|\text{ }\menorque\infty \text{\qquad }\forall x\in \mathbb{R}^{n}\smallsetminus Z.
+  \end{equation*}
+  En consecuencia, $f_{k_{j}}(x)\rightarrow 0$ para todo $x\in
+  \mathbb{R}^{n}\smallsetminus Z$.
+</div>
+</p>
+<p>
+<div class="obs">
+  En la proposición anterior no es posible concluir que la sucesión
+  $(f_{k})$ converge puntualmente a $0$ c.d. en $\mathbb{R}^{n}$:
+  existen ejemplos de sucesiones tales que
+  $\lim_{k\rightarrow \infty }\int^{\ast }\left\vert f_{k}\right\vert
+  =0$\
+  pero $\left( f_{k}(x)\right) $ no converge para ningún $x$ en un
+  conjunto de medida positiva <em class="emph">[Ejercicio <a href="tul/P_T_02/13.html#noconvpunt">13.51</a>]</em>.
+</div>
+</p>
+<p>
+Una consecuencia importante de la proposición anterior es la
+siguiente.
+</p>
+<p>
+<div id="corfunnula" class="corollary">
+Sea $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$. Entonces, $\int^{\ast }\left\vert f\right\vert =0$
+  si y sólo si $f(x)=0$ p.c.t. $x\in \mathbb{R}^{n}$. En
+  particular, si $f$&nbsp;es integrable y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left\vert f\right\vert =0,
+  \end{equation*}
+  entonces $f(x)=0$ p.c.t. $x\in \mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Leftarrow )$: &nbsp;Si $f(x)=0$ p.c.t. $x\in \mathbb{R}^{n}$, la
+  Proposición <a href="tul/P_T_02/13.html#igualint">13.10</a>&nbsp;asegura que $\left\vert f\right\vert
+  $ es integrable y $\int_{\mathbb{R}^{n}}\left\vert f\right\vert =0$.
+</p>
+<p>
+  $\Rightarrow )$: &nbsp;Inversamente, si $\int^{\ast }\left\vert
+    f\right\vert =0$, aplicando la Proposición <a href="tul/P_T_02/13.html#funnula">13.13</a>&nbsp;a la
+  sucesión $f_{k}:=f$, obtenemos que $f(x)=0$ p.c.t. $x\in
+  \mathbb{R}^{n}$.
+</div>
+</p>
+
+<h3 id="sec13-2">El teorema de Fubini</h3>
+
+<p class="noj">
+Ahora queremos investigar si es posible calcular la integral de una
+función integrable $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+\left\{\pm \infty \right\} $ integrando coordenada a coordenada. El primer
+problema con el que nos topamos es que, si $f$ es integrable, $1\leq
+m\menorque n$, y $y\in \mathbb{R}^{n-m}$, la función
+$f^{y}\colon \mathbb{R}^{m}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$ dada
+por
+\begin{equation*}
+  f^{y}(x):=f(x,y)
+\end{equation*}
+no necesariamente es integrable. Veamos un ejemplo.
+</p>
+<p>
+<div class="example">
+  Sea $1\leq m\menorque n$. Puesto que $\mathbb{R}^{m}\times \left\{0\right\}$
+  es un subconjunto nulo de $\mathbb{R}^{n}$
+  <em class="emph">[Ejercicio <a href="tul/P_T_02/13.html#ejgrafnulo">13.46</a>]</em>, la función
+  $1_{\mathbb{R}^{m}\times \left\{0\right\}}$ es integrable en
+  $\mathbb{R}^{n}$. Sin embargo,
+  $(1_{\mathbb{R}^{m}\times \left\{0\right\}})^{0}$
+  $=1_{\mathbb{R}^{m}}$ no es integrable en $\mathbb{R}^{m}$
+  <em class="emph">(ver Corolario <a href="tul/P_T_02/12.html#volRn">12.23</a>)</em>.
+</div>
+</p>
+<p>
+El teorema de Fubini afirma que este mal
+comportamiento ocurre únicamente en un subconjunto nulo de
+$\mathbb{R}^{n-m}$ y que la integral de una función integrable $f$
+se puede calcular usando integrando sucesivamente respecto a cada
+variable.
+
+<div id="foto:fubini" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Fubini.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Guido Fubini
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Guido Fubini (1879-1943) nació en
+  Venecia. Estudió en la Scuola Normale Superiore de Pisa, donde
+  fue alumno de Ulisse Dini y Luigi Bianchi.  Fue profesor en el
+  Politécnico y la Universidad de Turín.
+  </div>
+</div>
+
+</p>
+<p>
+<div class="theorem">[Fubini]
+\label{teofub}Sean
+  $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$ una
+  función integrable y $1\leq m\menorque n$. Entonces existe un subconjunto
+  nulo $Z$ de $\mathbb{R}^{n-m}$ tal que, para todo $y\in
+  \mathbb{R}^{n-m}\smallsetminus Z$, la función
+  $f^{y}\colon \mathbb{R}^{m}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$
+  dada por
+  \begin{equation*}
+    f^{y}(x):=f(x,y)
+  \end{equation*}
+  es integrable. La función $F\colon \mathbb{R}^{n-m}\rightarrow
+  \mathbb{R}$ dada por
+  \begin{equation*}
+    F(y):=
+      \begin{cases}
+        \int_{\mathbb{R}^{m}}f^{y} & 
+        \text{si $y\in \mathbb{R}^{n-m}\smallsetminus Z$,} \\
+        0 & \text{si $y\in Z$,}
+      \end{cases}
+  \end{equation*}
+  también es integrable y
+  \begin{equation}
+    \int_{\mathbb{R}^{n-m}}F=\int_{\mathbb{R}^{n}}f.\label{fub}
+  \end{equation}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $h\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$ y
+  $g\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ tales que
+  $h\leq f\leq g$. El teorema de Fubini para funciones semicontinuas
+  (ver Proposición <a href="tul/P_T_02/12.html#propfub">12.16</a>) asegura que
+  $h^{y}\in \mathcal{S}^{\ast }(\mathbb{R}^{m})$ y
+  $g^{y}\in \mathcal{S}_{\ast }(\mathbb{R}^{m})$ para todo
+  $y\in \mathbb{R}^{n-m}$ y que las funciones
+  \begin{equation*}
+    H(y):=\int_{\mathbb{R}^{m}}h^{y}\text{\qquad y\qquad }G(y):=\int_{\mathbb{R}^{m}}g^{y}
+  \end{equation*}
+  cumplen que $H\in \mathcal{S}^{\ast }(\mathbb{R}^{n-m})$, $G\in
+  \mathcal{S}_{\ast }(\mathbb{R}^{n-m})$,
+  \begin{equation*}
+    \int_{\mathbb{R}^{n-m}}H=\int_{\mathbb{R}^{n}}h\text{\qquad y\qquad }\int_{\mathbb{R}^{n-m}}G=\int_{\mathbb{R}^{n}}g.
+  \end{equation*}
+  Para cada $y\in \mathbb{R}^{n-m}$ denotamos por
+  \begin{equation*}
+    F_{1}(y):=\int_{\ast }f^{y}\text{\qquad y\qquad }F_{2}(y):=\int^{\ast }f^{y}.
+  \end{equation*}
+  Como $h^{y}\leq f^{y}\leq g^{y}$, se tiene que $H\leq F_{1}\leq
+  F_{2}\leq G$ (ver Lema <a href="tul/P_T_02/12.html#intsupinf">12.27</a>). En consecuencia,
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}h=\int_{\mathbb{R}^{n-m}}H\leq \int_{\ast }F_{i}\leq
+    \int^{\ast }F_{i}\leq \int_{\mathbb{R}^{n-m}}G=\int_{\mathbb{R}^{n}}g\text{,\qquad }i=1,2.
+  \end{equation*}
+  Dado que $f$ es integrable en $\mathbb{R}^{n}$, tomando el
+  ínfimo sobre las funciones $g\in \mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$ tales que $g\geq f$ y el supremo sobre las
+  funciones $h\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$ tales que
+  $h\leq f$, obtenemos
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f\leq \int_{\ast }F_{i}\leq \int^{\ast }F_{i}\leq \int_{\mathbb{R}^{n}}f,\text{\qquad }i=1,2.
+  \end{equation*}
+  En consecuencia, $F_{1}$ y $F_{2}$ son integrables en
+  $\mathbb{R}^{n-m}$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n-m}}F_{1}=\int_{\mathbb{R}^{n-m}}F_{2}=\int_{\mathbb{R}^{n}}f.
+  \end{equation*}
+  Por el Corolario <a href="tul/P_T_02/13.html#corfuncfinita">13.12</a>,
+  $Z_i:=\left\{y\in\mathbb{R}^{n-m} : F_i(y)=\pm\infty\right\}$ es un
+  subconjunto nulo de $\mathbb{R}^{n-m}$,
+  la función
+  $\widetilde{F}_{i}\colon \mathbb{R}^{n-m}\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    \widetilde{F}_{i}(y):=
+      \begin{cases}
+        F_{i}(y) & \text{si
+          $y\in\mathbb{R}^{n-m}\smallsetminus(Z_1\cup Z_2)$,} \\[3pt] 
+        0 & \text{si $y\in Z_1\cup Z_2$,}
+      \end{cases}
+  \end{equation*}
+  es integrable y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\widetilde{F}_{i}=\int_{\mathbb{R}^{n}}F_{i}=\int_{\mathbb{R}^{n}}f,\text{\qquad }i=1,2.
+  \end{equation*}
+  Como $\widetilde{F}_{i}$ toma valores en $\mathbb{R}$ tiene sentido
+  considerar $\widetilde{F}_{2}-\widetilde{F}_{1}$ y, dado que
+  $\widetilde{F}_{2}-\widetilde{F}_{1}\geq 0$ y
+  $\int_{\mathbb{R}^{n-m}}(\widetilde{F}_{2}-\widetilde{F}_{1})=0$, el
+  Corolario <a href="tul/P_T_02/13.html#corfunnula">13.15</a> asegura que 
+  \begin{equation*}
+    Z_{0}:=\left\{y\in
+      \mathbb{R}^{n-m}:\widetilde{F}_{1}(y)\neq
+      \widetilde{F}_{2}(y)\right\}
+  \end{equation*}
+  es nulo en $\mathbb{R}^{n-m}$.&nbsp;Entonces $Z:=Z_{0}\cup Z_{1}\cup Z_{2}$
+  es nulo en $\mathbb{R}^{n-m}$ y, como
+  \begin{equation*}
+    \widetilde{F}_{i}(y)=F_{i}(y)\text{\qquad y\qquad }-\infty \menorque\widetilde{F}_{1}(y)=\widetilde{F}_{2}(y)\menorque\infty \text{\qquad }\forall y\in \mathbb{R}^{n-m}\smallsetminus Z,
+  \end{equation*}
+  de la definición de $F_{1}$ y $F_{2}$ se sigue que
+  \begin{equation*}
+    -\infty \menorque\int_{\ast }f^{y}=\int^{\ast }f^{y}\menorque\infty \text{\qquad }\forall
+    y\in \mathbb{R}^{n-m}\smallsetminus Z.
+  \end{equation*}
+  Por tanto, $f^{y}$ es integrable y
+  \begin{equation*}
+    \int_{\mathbb{R}^{m}}f^{y}=F_{1}(y)=F_{2}(y)\text{\qquad }\forall y\in 
+    \mathbb{R}^{n-m}\smallsetminus Z.
+  \end{equation*}
+  Finalmente, como $F_{1}=F$ c.d. en $\mathbb{R}^{n-m}$ y $F_{1}$ es
+  integrable en $\mathbb{R}^{n-m}$, la Proposición <a href="tul/P_T_02/13.html#igualint">13.10</a>
+  asegura que $F$ es integrable en $\mathbb{R}^{n-m}$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n-m}}F=\int_{\mathbb{R}^{n-m}}F_{1}=\int_{\mathbb{R}^{n}}f.
+  \end{equation*}
+  Esto concluye la demostración.
+</div>
+</p>
+<p>
+<div class="notation">
+  La identidad <em class="emph">(\ref{fub})</em> suele escribirse como
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f(y,z)\,dy\,dz=\int_{\mathbb{R}^{n-m}}\biggl( \int_{\mathbb{R}^{m}}f(y,z)dy\biggr) dz.
+  \end{equation*}
+  Dado que el intercambio de variables $(y,z)\mapsto (z,y)$ es una
+  transformación ortogonal, el <em class="emph">Teorema <a href="tul/P_T_02/12.html#cvlinleb">12.34</a></em>
+  asegura que también
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f(y,z)\,dy\,dz=\int_{\mathbb{R}^{m}}\biggl( \int_{\mathbb{R}^{n-m}}f(y,z)dz\biggr) dy.
+  \end{equation*}
+</div>
+</p>
+
+<h3 id="sec13-3">Teoremas de convergencia</h3>
+
+<p class="noj">
+Daremos a continuación varios criterios importantes que garantizan
+la integrabilidad del límite puntual de funciones integrables y
+la posibilidad de expresar a la integral de dicho límite como el
+límite de las correspondientes integrales.
+</p>
+<p>
+El siguiente ejemplo muestra que no es cierto, en general, que el
+supremo puntual de una sucesión no decreciente de funciones
+integrables sea integrable.
+</p>
+<p>
+<div id="supnoint" class="example">
+Si $f_{k}:=1_{B^{n}(0,k)}$ es la función
+  característica de la bola de radio $k$ con centro en el origen
+  en $\mathbb{R}^{n}$, entonces $f_{k}$ es integrable y $f_{k}\leq
+  f_{k+1}$ para todo $k\in \mathbb{N}$. Sin embargo,
+  $1_{\mathbb{R}^{n}}=\sup_{k\in \mathbb{N}}f_{k}$ no es integrable.
+</div>
+</p>
+<p>
+Si el supremo puntual $f:=\sup_{k\in \mathbb{N}}f_{k}$ de una
+sucesión no decreciente $(f_{k})$ de funciones integrables es
+integrable, entonces
+\begin{equation*}
+  \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}\leq \int_{\mathbb{R}^{n}}f\menorque\infty .
+\end{equation*}
+El teorema que enunciaremos a continuación, afirma que basta con
+que este límite sea finito para garantizar la integrabilidad de
+$f$.
+</p>
+<p>
+Nota que, si $(t_{k})$ es una sucesión no decreciente de
+números reales entonces, para cualesquiera $k,i\in \mathbb{N}$, se
+tiene que
+\begin{equation*}
+  t_{k+i}-t_{k}=\sum_{j=k+1}^{k+i}\left( t_{j}-t_{j-1}\right) .
+\end{equation*}
+Tomando el límite cuando $i\rightarrow \infty $ concluimos que
+\begin{equation}
+  \lim_{i\rightarrow \infty }t_{i}-t_{k}=\sum_{j=k+1}^{\infty }\left(
+    t_{j}-t_{j-1}\right) .\label{t-tk}
+\end{equation}
+Usaremos esta fórmula en la demostración del siguiente
+resultado de Beppo Levi.
+
+<div id="foto:levi" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Levi.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Beppo Levi
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Beppo Levi (1875-1961) nació en
+  Turín, Italia y obtuvo el doctorado en la Universidad de
+  Turín. En 1939 emigró a Argentina donde fue profesor de la
+  Universidad Nacional del Litoral (hoy Universidad Nacional de
+  Rosario).
+  </div>
+</div>
+
+<div class="theorem" id="teocm">[de convergencia monótona]
+Si
+  $f_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$ es
+  integrable, $f_{k}\leq f_{k+1}$ para todo $k\in \mathbb{N}$ y
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}\menorque\infty ,
+  \end{equation*}
+  entonces $f:=\sup_{k\in \mathbb{N}}f_{k}$ es integrable y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Como $f_{k}$ es integrable, la Proposición <a href="tul/P_T_02/13.html#funcfinita">13.11</a>
+  asegura que el conjunto
+  \begin{equation*}
+    Z_{k}:=\left\{x\in \mathbb{R}^{n}:f_{k}(x)=\pm \infty \right\}
+  \end{equation*}
+  es nulo para todo $k\in \mathbb{N}$. Por tanto, $Z:=\cup
+ _{k=1}^{\infty }Z_{k}$ es un subconjunto nulo de $\mathbb{R}^{n}$
+  (ver Proposición <a href="tul/P_T_02/13.html#nulos">13.4</a>). Reemplazando los valores de
+  $f_{k}$ en $Z$ por $0$ obtenemos funciones cuyo supremo puntual
+  coincide con $f$ fuera de $Z$. Estas nuevas funciones también
+  son integrables y la integral de cada una de ellas coincide con la
+  de la función original (ver Proposición <a href="tul/P_T_02/13.html#igualint">13.10</a>). Por
+  tanto, podemos suponer, sin perder generalidad, que $f_{k}$ toma
+  valores en $\mathbb{R}$.
+</p>
+<p>
+  De la fórmula (\ref{t-tk}) se sigue que
+  \begin{equation*}
+    f-f_{k}=\sum_{j=k+1}^{\infty }\left( f_{j}-f_{j-1}\right) .
+  \end{equation*}
+  Por tanto, usando el Lema <a href="tul/P_T_02/13.html#subadintsup">13.3</a> y la fórmula
+  (\ref{t-tk}), obtenemos
+  \begin{align*}
+    \int^{\ast }\left( f-f_{k}\right) &\leq \sum_{j=k+1}^{\infty
+    }\int^{\ast }(f_{j}-f_{j-1}) \\
+    &=\sum_{j=k+1}^{\infty }\biggl( \int_{\mathbb{R}^{n}}f_{j}-\int_{\mathbb{R}^{n}}f_{j-1}\biggr) =\left( \lim_{i\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{i}\right) -\int_{\mathbb{R}^{n}}f_{k}.
+  \end{align*}
+  Como $\lim_{i\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{i}\menorque\infty$,
+  se tiene que
+  $\lim_{k\rightarrow \infty }\left( \left( \lim_{i\rightarrow \infty
+      }\int_{\mathbb{R}^{n}}f_{i}\right)
+    -\int_{\mathbb{R}^{n}}f_{k}\right) =0$ y, en consecuencia,
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int^{\ast }\left( f-f_{k}\right) =0.
+  \end{equation*}
+  Por otra parte, la Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a> asegura que
+  existe $\varphi_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que
+  \begin{equation}
+    \int^{\ast }\left\vert f_{k}-\varphi_{k}\right\vert \menorque\frac{1}{k}.\label{eqcm1}
+  \end{equation}
+  Por tanto,
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int^{\ast }\left\vert f-\varphi_{k}\right\vert
+    \leq \lim_{k\rightarrow \infty }\int^{\ast }\left\vert f-f_{k}\right\vert
+    +\lim_{k\rightarrow \infty }\int^{\ast }\left\vert f_{k}-\varphi
+     _{k}\right\vert =0.
+  \end{equation*}
+  Esto prueba que $f$ es integrable y que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}\varphi_{k}.
+  \end{equation*}
+</p>
+<p class="noj">
+  De la desigualdad (\ref{eqcm1}) se sigue que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}\left( f_{k}-\varphi
+     _{k}\right) =0,
+  \end{equation*}
+  lo que nos permite concluir que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}=\lim_{k\rightarrow
+      \infty }\left[ \int_{\mathbb{R}^{n}}\left( f_{k}-\varphi_{k}\right) +\int_{\mathbb{R}^{n}}\varphi_{k}\right] =\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}\varphi_{k}=\int_{\mathbb{R}^{n}}f,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+El análogo para sucesiones decrecientes de funciones también
+es válido.
+</p>
+<p>
+<div id="corcm" class="corollary">
+Si $f_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$ es integrable y $f_{k}\geq f_{k+1}$ para todo $k\in
+  \mathbb{N}$, y
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}>-\infty ,
+  \end{equation*}
+  entonces $f:=\inf_{k\in \mathbb{N}}f_{k}$ es integrable y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Este resultado se obtiene aplicando el Teorema <a href="tul/P_T_02/13.html#teocm">13.20</a> a la
+  sucesión $(-f_{k})$.
+</div>
+</p>
+<p>
+<div id="cmunion" class="corollary">
+Sea $X_{1}\subset \cdots \subset X_{k}\subset \cdots
+  $ una sucesión no decreciente de subconjuntos integrables de
+  $\mathbb{R}^{n}$. Si la sucesión $(\left\vert X_{k}\right\vert
+  )$ de sus medidas de Lebesgue en $\mathbb{R}^{n}$ está acotada,
+  entonces $\cup_{k=1}^{\infty }X_{k}$ es integrable y
+  \begin{equation*}
+    \left\vert \bigcup_{k=1}^{\infty }X_{k}\right\vert
+    =\lim_{k\rightarrow \infty }\left\vert X_{k}\right\vert .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Este resultado es consecuencia del Teorema <a href="tul/P_T_02/13.html#teocm">13.20</a> aplicado a la
+  sucesión de funciones características $1_{X_{k}}$, ya que
+  $\sup_{k\in \mathbb{N}}1_{X_{k}}=1_{\cup_{k=1}^{\infty }X_{k}}$.
+</div>
+</p>
+<p>
+<div id="cminterseccion" class="corollary">
+Sea $X_{1}\supset \cdots \supset X_{k}\supset
+  \cdots $ una sucesión no creciente de subconjuntos integrables
+  de $\mathbb{R}^{n}$. Entonces $\cap_{k=1}^{\infty }X_{k}$ es
+  integrable y
+  \begin{equation*}
+    \left\vert \bigcap_{k=1}^{\infty }X_{k}\right\vert
+    =\lim_{k\rightarrow \infty }\left\vert X_{k}\right\vert .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Este resultado es consecuencia del Corolario <a href="tul/P_T_02/13.html#corcm">13.21</a>&nbsp;aplicado a
+  la sucesión de funciones características $1_{X_{k}}$, ya
+  que $\inf_{k\in \mathbb{N}}1_{X_{k}}=1_{\cap_{k=1}^{\infty
+    }X_{k}}$. Nota que $\int_{\mathbb{R}^{n}}1_{X_{k}}\geq 0$.
+</div>
+</p>
+<p>
+Dadas funciones $f_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+\infty \right\}$, denotamos por $\liminf_{k\rightarrow \infty
+}f_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$&nbsp;y
+por $\limsup_{k\rightarrow \infty }f_{k}\colon \mathbb{R}^{n}\rightarrow
+\mathbb{R}\cup \left\{\pm \infty \right\}$ a las funciones
+\begin{equation*}
+  \Bigl( \liminf_{k\rightarrow \infty }f_{k}\Bigr) (x):=\liminf_{k\rightarrow
+    \infty }f_{k}(x),\text{\qquad }\Bigl( \limsup_{k\rightarrow \infty
+    }f_{k}\Bigr) (x):=\limsup_{k\rightarrow \infty }f_{k}(x)
+\end{equation*}
+(ver Definición <a href="tul/P_T_02/4.html#defliminfsup">4.26</a>).&nbsp;El siguiente resultado,
+debido a Fatou, da condiciones para la
+integrabilidad de $\liminf_{k\rightarrow \infty }f_{k}$.
+
+<div id="foto:fatou" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Fatou.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Pierre Fatou
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Pierre Joseph Louis Fatou (1878-1929)
+  nació en Lorient, Francia. Estudió matemáticas en la
+  École Normale Supérieure de Paris y trabajó como
+  astrónomo en el observatorio de París.
+  </div>
+</div>
+
+</p>
+<p>
+<div class="theorem" id="fatou">[Lema de Fatou]
+Sea
+  $f_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$ una
+  sucesión de funciones integrables con las siguientes
+  propiedades:
+</p>
+<p>
+  <ol class="roman">
+  <li> existe una función integrable
+    $g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$ tal
+    que $f_{k}\geq g$ para todo $k\in \mathbb{N}$,
+</p>
+<p>
+  <li> existe $M\in \mathbb{R}$ tal que
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}f_{k}\leq M\text{\qquad }\forall k\in \mathbb{N}.
+    \end{equation*}
+  </ol>
+</p>
+<p>
+  Entonces $\liminf_{k\rightarrow \infty }f_{k}$ es integrable y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\liminf_{k\rightarrow \infty }f_{k}\leq
+    \liminf_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Fijemos $k\!\in\!\mathbb{N}$. Para cada $j\!\geq\! k$ definimos
+  $f_{j,k}\!:=\!\min \left\{f_{i}:k\leq i\leq j\right\}$. Entonces, $f_{j,k}$ es
+  integrable (ver Ejercicio <a href="tul/P_T_02/13.html#minmaxint">12.61</a>), $f_{j,k}\geq f_{j+1,k}$
+  y $f_{j,k}\geq g$ para todo $j\in \mathbb{N}$. Por tanto,
+  \begin{equation*}
+    \lim_{j\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{j,k}\geq \int_{\mathbb{R}^{n}}g>-\infty .
+  \end{equation*}
+  Por el Corolario <a href="tul/P_T_02/13.html#corcm">13.21</a>, se tiene que $g_{k}:=\inf_{j\geq
+    k}f_{j,k}$ es integrable y
+  \begin{equation}
+    \int_{\mathbb{R}^{n}}g_{k}=\inf_{j\geq k}\int_{\mathbb{R}^{n}}f_{j,k}\leq
+    \inf_{j\geq k}\int_{\mathbb{R}^{n}}f_{j}\leq M,\label{fat}
+  \end{equation}
+  ya que $f_{j}\geq f_{j,k}$. Observa que $g_{k}=\inf_{j\geq
+    k}f_{j}$. Como $g_{k}\leq g_{k+1}$ para todo $k\in \mathbb{N}$, el
+  Teorema <a href="tul/P_T_02/13.html#teocm">13.20</a> asegura que $\sup_{k\in \mathbb{N}}g_{k}$ es
+  integrable y, usando la desigualdad (\ref{fat}), obtenemos que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\sup_{k\in \mathbb{N}}\inf_{j\geq k}f_{j}=\int_{\mathbb{R}^{n}}\sup_{k\in \mathbb{N}}g_{k}=\sup_{k\in \mathbb{N}}\int_{\mathbb{R}^{n}}g_{k}\leq \sup_{k\in \mathbb{N}}\inf_{j\geq k}\int_{\mathbb{R}^{n}}f_{j},
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+El siguiente ejemplo muestra que, en general, no se cumple la igualdad
+en el lema de Fatou, ni siquiera cuando la sucesión $(f_{k})$
+converge puntualmente.
+</p>
+<p>
+<div id="ejemfat" class="example">
+Existen sucesiones $(f_{k})$ que satisfacen las
+  hipótesis del lema de Fatou para las cuales se cumple la
+  desigualdad estricta
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\liminf_{k\rightarrow \infty
+    }f_{k}\menorque\liminf_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}.
+  \end{equation*}
+</div>
+</p>
+
+<div class="proof">
+  Sea $f_{k}\colon \mathbb{R}\rightarrow \mathbb{R}$ la función
+  $f_{k}(x):=\max \left\{k-k^{2}\left\vert x-\frac{1}{k}\right\vert ,0\right\}$.
+
+<div id="fig:13-1" class="figure">
+  <img src="tul/P_T_02/figuras/Cap13-ejemplo-25.svg" height="240">
+  <div class="caption">
+  </div>                
+</div>
+
+<p class="noj">
+  Entonces $f_{k}$ es integrable, $f_{k}\geq 0$ y
+  \begin{equation*}
+    \int_{\mathbb{R}}f_{k}=1\text{\qquad }\forall k\in \mathbb{N}\text{.}
+  \end{equation*}
+  Como $\lim_{k\rightarrow \infty }f_{k}(x)=0$ para todo $x\in
+  \mathbb{R}$, se tiene que
+  \begin{equation*}
+    \int_{\mathbb{R}}\lim_{k\rightarrow \infty }f_{k}=0\menorque 1=\lim_{k\rightarrow
+      \infty }\int_{\mathbb{R}}f_{k}.
+  \end{equation*}
+  Es decir, en este caso no se da la igualdad.
+</div>
+</p>
+<p>
+Uno de los teoremas más importantes de la teoría de
+integración es el teorema de convergencia dominada de
+Lebesgue. Este teorema da una condición suficiente para la
+integrabilidad del límite puntual de una sucesión de
+funciones integrables: basta que la sucesión $(f_{k}) $ esté
+dominada por una función integrable $g$, es decir, que $\left\vert
+  f_{k}(x)\right\vert \leq g(x)$ p.c.t. $x\in \mathbb{R}^{n}$, para
+que $\lim_{k\rightarrow \infty }f_{k}$ sea integrable. Dicha
+condición asegura además que podemos intercambiar al
+límite por la integral.
+</p>
+<p>
+<div class="theorem" id="teocd">[de convergencia dominada]
+Sean
+  $f,f_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$
+  funciones con las siguientes propiedades:
+</p>
+<p>
+  <ol class="roman">
+  <li> $f_{k}$ es integrable,
+</p>
+<p>
+  <li> $f_{k}(x)\rightarrow f(x)$ p.c.t. $x\in \mathbb{R}^{n}$,
+</p>
+<p>
+  <li> existe una función integrable
+    $g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$ tal
+    que, para cada $k\in \mathbb{N}$, se cumple que $\left\vert
+      f_{k}(x)\right\vert \leq g(x)$ p.c.t. $x\in \mathbb{R}^{n}$.
+  </ol>
+</p>
+<p>
+  Entonces $f$ es integrable y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Los conjuntos
+  \begin{align*}
+    Z_{-1} &:=\left\{x\in \mathbb{R}^{n}:g(x)=\pm \infty \right\}, \\
+    Z_{0} &:=\left\{x\in \mathbb{R}^{n}:\left( f_{k}(x)\right) 
+    \text{ no converge a }f(x)\right\}, \\
+    Z_{k} &:=\left\{x\in \mathbb{R}^{n}:\left\vert f_{k}(x)\right\vert >g(x)\right\},
+  \end{align*}
+  son nulos. Por tanto, $Z:=\cup_{k=-1}^{\infty }Z_{k}$ es nulo. Nota
+  que $\left\vert f(x)\right\vert \leq g(x)\menorque\infty $ para todo $x\in
+  \mathbb{R}^{n}\smallsetminus Z$. Reemplazando $f_{k}(x)$, $f(x)$ y
+  $g(x)$ por $0$ para todo $x\in Z$, podemos suponer sin perder
+  generalidad que $f_{k}$, $f$ y $g$ toman valores en $\mathbb{R}$, y
+  que
+  \begin{equation}
+    \lim_{k\rightarrow \infty }f_{k}(x)=f(x)\text{\qquad y\qquad }\left\vert
+      f_{k}(x)\right\vert \leq g(x)\text{\qquad }\forall k\in \mathbb{N}\text{, &nbsp;}\forall x\in \mathbb{R}^{n}\text{.}\label{fat2}
+  \end{equation}
+  Como $f_{k}\geq -g$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f_{k}\leq \int_{\mathbb{R}^{n}}g=:M\text{\qquad }\forall k\in \mathbb{N},
+  \end{equation*}
+  el lema de Fatou (ver Teorema <a href="tul/P_T_02/13.html#fatou">13.24</a>) asegura que $f$ es
+  integrable y que
+  \begin{equation}
+    \int_{\mathbb{R}^{n}}f\leq \liminf_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}.\label{cd2}
+  \end{equation}
+  Observa que las funciones $-f_{k}$ y $-f$ también satisfacen
+  (\ref{fat2}). Por tanto,
+  \begin{equation}
+    -\int_{\mathbb{R}^{n}}f=\int_{\mathbb{R}^{n}}-f\leq \liminf_{k\rightarrow
+      \infty }\int_{\mathbb{R}^{n}}-f_{k}=-\limsup_{k\rightarrow \infty
+    }\int_{\mathbb{R}^{n}}f_{k}.\label{cd3}
+  \end{equation}
+  De (\ref{cd2}) y (\ref{cd3}) se sigue que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f\leq \liminf_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}\leq \limsup_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}\leq \int_{\mathbb{R}^{n}}f.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}
+  \end{equation*}
+  (ver Ejercicio <a href="tul/P_T_02/4.html#liminflim">4.45</a>). Esto concluye la demostración.
+</div>
+</p>
+<p>
+Observa que las sucesiones de funciones de los Ejemplos
+<a href="tul/P_T_02/11.html#ejeminvtras">11.8</a>, <a href="tul/P_T_02/11.html#ejemintnoconv">11.12</a>, 
+<a href="tul/P_T_02/13.html#supnoint">13.19</a> y <a href="tul/P_T_02/13.html#ejemfat">13.25</a>
+no están dominadas por ninguna función integrable $g$
+[Ejercicio <a href="tul/P_T_02/13.html#ejnodomi">13.58</a>].
+</p>
+<p>
+La importancia del teorema de convergencia dominada quedará de
+manifiesto en las múltiples aplicaciones que veremos en el resto
+de estas notas. Concluimos esta sección con dos corolarios
+interesantes de los teoremas de convergencia monóntona y
+convergencia dominada. En las secciones siguientes daremos algunas
+aplicaciones de ellos.
+</p>
+<p>
+<div id="intrest" class="corollary">
+Sean $X_{1}\subset \cdots \subset X_{k}\subset \cdots
+  $ subconjuntos de $\mathbb{R}^{n}$, $X:=\bigcup_{k=1}^{\infty
+  }X_{k}$ y $f\colon X\rightarrow \mathbb{R}$ una función tal que $f\mid
+ _{X_{k}}\in \mathfrak{L}(X_{k})$ para todo $k\in \mathbb{N}$ y
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{X_{k}}\left\vert f\right\vert \menorque\infty .
+  \end{equation*}
+  Entonces $f\in \mathfrak{L}(X)$, $f\in \mathfrak{L}(X\smallsetminus
+  X_{k})$ para todo $k\in \mathbb{N}$,
+  \begin{equation*}
+    \int_{X}f=\lim_{k\rightarrow \infty }\int_{X_{k}}f\text{\qquad y\qquad }\lim_{k\rightarrow \infty }\int_{X\smallsetminus X_{k}}\left\vert
+      f\right\vert =0.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Como hemos convenido (ver Notación <a href="tul/P_T_02/12.html#notint">12.44</a>), identificamos
+  a $f$ con su extensión trivial a $\mathbb{R}^{n}$. Denotamos por
+  $f_{k}:=f1_{X_{k}}$. Por hipótesis $f_{k}\in
+  \mathfrak{L}(\mathbb{R}^{n})$. En consecuencia, $\left\vert
+    f_{k}\right\vert \in \mathfrak{L}(\mathbb{R}^{n})$ y, como
+  $\left\vert f_{k}\right\vert \leq \left\vert f_{k+1}\right\vert $ y
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}\left\vert f_{k}\right\vert
+    =\lim_{k\rightarrow \infty }\int_{X_{k}}\left\vert f\right\vert \menorque\infty ,
+  \end{equation*}
+  el teorema de convergencia monótona (ver Teorema <a href="tul/P_T_02/13.html#teocm">13.20</a>)
+  asegura que $\vert f\vert\! =\!\sup_{k\in
+    \mathbb{N}}\vert f_{k}\vert $ es integrable.
+</p>
+<p>
+  Ahora, como $f_{k}(x)\rightarrow f(x)$ para todo
+  $x\in \mathbb{R}^{n}$ y
+  $\left\vert f_{k}(x)\right\vert \leq \left\vert f(x)\right\vert $
+  para todo $x\in \mathbb{R}^{n}$ y $k\in \mathbb{N}$, el teorema de
+  convergencia dominada (ver Teorema <a href="tul/P_T_02/13.html#teocd">13.26</a>) asegura que $f$ es
+  integrable y que
+  \begin{equation*}
+    \int_{X}f=\lim_{k\rightarrow \infty }\int_{X_{k}}f
+  \end{equation*}
+  Entonces $f-f_{k}=f1_{X\smallsetminus X_{k}}$ es integrable y, en
+  consecuencia, $\left\vert f-f_{k}\right\vert $ también lo
+  es. Puesto que $\left\vert f(x)-f_{k}(x)\right\vert \rightarrow 0$
+  para todo $x\in \mathbb{R}^{n}$ y $\left\vert
+    f(x)-f_{k}(x)\right\vert \leq 2\left\vert f(x)\right\vert $ para
+  todo $x\in \mathbb{R}^{n}$ y $k\in \mathbb{N}$, el teorema de
+  convergencia dominada asegura que
+  \begin{equation*}
+    0=\lim_{k\rightarrow \infty }\int_{X}\left\vert f-f_{k}\right\vert
+    =\lim_{k\rightarrow \infty }\int_{X\smallsetminus X_{k}}\left\vert
+      f\right\vert ,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+<div id="convseriecd" class="corollary">
+Sea $f_{j}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$
+  una sucesión de funciones integrables tales que
+  \begin{equation*}
+    \sum_{j=1}^{\infty }\int_{\mathbb{R}^{n}}\left\vert f_{j}\right\vert
+    \menorque\infty .
+  \end{equation*}
+  Entonces la serie $\sum_{j=1}^{\infty }f_{j}$ converge c.d. en
+  $\mathbb{R}^{n}$ a una función integrable
+  $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ y
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}\biggl\vert
+      f-\sum_{j=1}^{k}f_{j}\biggr\vert =0.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Denotemos por
+  \begin{equation*}
+    g_{k}:=\sum_{j=1}^{k}\left\vert f_{j}\right\vert \text{\qquad
+      y\qquad }g:=\sum_{j=1}^{\infty }\left\vert f_{j}\right\vert
+    =\sup_{k\in \mathbb{N}}g_{k}.
+  \end{equation*}
+  Como $g_{k}$ es integrable, $g_{k}\leq g_{k+1}$ y
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}g_{k}=\sum_{j=1}^{\infty }\int_{\mathbb{R}^{n}}\left\vert f_{j}\right\vert \menorque\infty ,
+  \end{equation*}
+  el teorema de convergencia monótona asegura que $g$ es
+  integrable. En consecuencia, por la Proposición <a href="tul/P_T_02/13.html#funcfinita">13.11</a>,
+  existe un subconjunto nulo $Z$ de $\mathbb{R}^{n}$ tal que
+  \begin{equation*}
+    g(x):=\sum_{j=1}^{\infty }\left\vert f_{j}(x)\right\vert \menorque\infty 
+    \text{\qquad }\forall x\in \mathbb{R}^{n}\smallsetminus Z.
+  \end{equation*}
+  Esto implica que la serie $\sum_{j=1}^{\infty }f_{j}(x)$ converge
+  para todo $x\in \mathbb{R}^{n}\smallsetminus Z$.
+</p>
+<p>
+  Definimos $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ como
+  \begin{equation*}
+    f(x):=
+      \begin{cases}
+        \sum_{j=1}^{\infty }f_{j}(x) & \text{si $x\in \mathbb{R}^{n}\smallsetminus Z$,} \\
+        0 & \text{si $x\in Z$.}
+      \end{cases}
+  \end{equation*}
+  Entonces $\sum_{j=1}^{k}f_{j}(x)\rightarrow f(x)$ p.c.t. $x\in
+  \mathbb{R}^{n}$ y
+  \begin{equation*}
+    \biggl\vert \sum_{j=1}^{k}f_{j}(x)\biggr\vert \leq g(x)\text{\qquad }\forall x\in \mathbb{R}^{n},\text{ }\forall k\in \mathbb{N}\text{.}
+  \end{equation*}
+  El teorema de convergencia dominada asegura entonces que $f$ es
+  integrable.  En consecuencia, $f-\sum_{j=1}^{k}f_{j}$ es integrable
+  y, como
+  \begin{equation*}
+    f(x)-\sum_{j=1}^{k}f_{j}(x)\rightarrow 0\text{ \qquad }\forall x\in 
+    \mathbb{R}^{n}\smallsetminus Z
+  \end{equation*}
+  y
+  \begin{equation*}
+    \biggl\vert f(x)-\sum_{j=1}^{k}f_{j}(x)\biggr\vert \leq \left\vert
+      f(x)\right\vert +\biggl\vert \sum_{j=1}^{k}f_{j}(x)\biggr\vert \leq
+    \left\vert f(x)\right\vert +g(x)\text{\qquad }\forall x\in \mathbb{R}^{n},\text{ }\forall k\in \mathbb{N}\text{,}
+  \end{equation*}
+  el teorema de convergencia dominada asegura que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}\biggl\vert
+      f-\sum_{j=1}^{k}f_{j}\biggr\vert =0,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+
+<h3 id="sec13-4">La integral de funciones radiales</h3>
+<p class="noj">
+
+Sean $0\menorque a\menorque b\menorque\infty $. Considera el conjunto
+\begin{equation*}
+  A^{n}(a,b):=\left\{x\in \mathbb{R}^{n}:a\leq \left\Vert x\right\Vert \leq b\right\}.
+\end{equation*}
+Observa que $A^{n}(a,b)=\left[ \bar{B}^{n}(0,b)\smallsetminus
+  \bar{B}^{n}(0,a)\right] \cup S^{n-1}(0,a)$. De la Proposición
+  <a href="tul/P_T_02/12.html#vol">12.38</a>
+  y los Ejemplos <a href="tul/P_T_02/12.html#volbola">12.25</a> y <a href="tul/P_T_02/13.html#volesfera">13.7</a> se sigue
+entonces que
+\begin{equation*}
+  \vol_{n}(A^{n}(a,b))=(b^{n}-a^{n})\omega_{n},
+\end{equation*}
+donde $\omega_{n}$ es el volumen de la bola unitaria en
+$\mathbb{R}^{n}$.
+</p>
+<p>
+Se dice que una función $g\colon A^{n}(a,b)\rightarrow \mathbb{R}$ es
+<em class="textbf">radial</em>  si su valor depende
+únicamente de $\left\Vert x\right\Vert $, es decir, si
+$g(x)=f(\left\Vert x\right\Vert )$ donde $f\colon [a,b]\rightarrow
+\mathbb{R}$. El siguiente resultado afirma que, si $f$ es continua, la
+integral de $g$ se puede calcular en términos de la integral de
+Riemann de $f$.
+</p>
+<p>
+<div class="theorem">[Integral de una función radial]
+  Si $f\colon [a,b]\rightarrow
+  \mathbb{R}$ es una función continua, entonces
+  \begin{equation*}
+    \int_{A^{n}(a,b)}f(\left\Vert x\right\Vert )dx=n\omega
+   _{n}\int_{a}^{b}f(t)t^{n-1}dt.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Para cada $k\in \mathbb{N}$ consideramos la partición
+  $a=a_{0}\menorque a_{1}\menorque\cdots \menorque a_{k}=b$ del intervalo $[a,b]$ tal que
+  $a_{j}-a_{j-1}=\frac{1}{k}(b-a)$. Por simplicidad denotamos por
+  $A:=A^{n}(a,b)$ y $A_{j}:=A^{n}(a_{j-1},a_{j})$. Entonces
+  $A=A_{1}\cup \cdots \cup A_{k}$ y $A_{i}\cap A_{j}$ es nulo si
+  $i\neq j$ (ver Ejemplo <a href="tul/P_T_02/13.html#volesfera">13.7</a>). Por tanto,
+  \begin{equation*}
+    \left\vert A\right\vert =\left\vert A_{1}\right\vert +\cdots +\left\vert
+      A_{k}\right\vert .
+  \end{equation*}
+  El teorema del valor medio aplicado a la función $t\mapsto
+  t^{n}$ asegura que existe $\xi_{j}\in (a_{j-1},a_{j})$ tal que
+  \begin{equation*}
+    a_{j}^{n}-a_{j-1}^{n}=n\xi_{j}^{n-1}(a_{j}-a_{j-1}).
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \left\vert A_{j}\right\vert =(a_{j}^{n}-a_{j-1}^{n})\omega_{n}=n\xi
+   _{j}^{n-1}(a_{j}-a_{j-1})\omega_{n}.
+  \end{equation*}
+</p>
+<p>
+  Considera la función
+  \begin{equation*}
+    g_{k}:=\sum_{j=1}^{k}f(\xi_{j})1_{A_{j}}.
+  \end{equation*}
+  Se tiene que
+  \begin{equation*}
+    \int_{A}g_{k}=\sum_{j=1}^{k}f(\xi_{j})\left\vert A_{j}\right\vert
+    =n\omega_{n}\sum_{j=1}^{k}f(\xi_{j})\xi_{j}^{n-1}(a_{j}-a_{j-1}).
+  \end{equation*}
+  La suma que aparece en el término de la derecha es una suma de
+  Riemann para la integral de la función $t\mapsto f(t)t^{n-1}$ en
+  $[a,b]$. Por tanto, haciendo tender $k\rightarrow \infty $ obtenemos
+  \begin{equation}
+    \lim_{k\rightarrow \infty }\int_{A}g_{k}=n\omega
+   _{n}\int_{a}^{b}f(t)t^{n-1}dt.\label{rad2}
+  \end{equation}
+  Demostraremos a continuación que
+  \begin{equation}
+    \int_{A}f(\left\Vert x\right\Vert )dx=\lim_{k\rightarrow \infty
+    }\int_{A}g_{k}(x)dx.\label{rad3}
+  \end{equation}
+</p>
+<p>
+  Como $f$ es uniformemente continua en $[a,b]$, para cada
+  $\varepsilon >0$ existe $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \left\vert f(t)-f(s)\right\vert \menorque\frac{\varepsilon }{\left\vert A\right\vert 
+    }\text{\qquad si }\left\vert s-t\right\vert \menorque\frac{b-a}{k}\text{ con }k\geq
+    k_{0}.
+  \end{equation*}
+  En consecuencia, dado que $\left\vert f(\left\Vert x\right\Vert
+    )-g_{k}(x)\right\vert =\sum_{j=1}^{k}\left\vert f(\left\Vert
+      x\right\Vert )-f(\xi_{j})\right\vert 1_{A_{j}}(x)$ p.c.t. $x\in
+  A$, se tiene que
+  \begin{align*}
+    \int_{A}\left\vert f(\left\Vert x\right\Vert )-g_{k}(x)\right\vert dx
+    &=\sum_{j=1}^{k}\int_{A_{j}}\left\vert f(\left\Vert x\right\Vert )-f(\xi
+     _{j})\right\vert dx \\
+    &\leq \sum_{j=1}^{k}\frac{\varepsilon }{\left\vert A\right\vert }\left\vert
+      A_{j}\right\vert =\varepsilon \text{\qquad }\forall k\geq k_{0}.
+  \end{align*}
+  Esto demuestra (\ref{rad3}). Combinando las identidades (\ref{rad2})
+  y (\ref{rad3}) se obtiene la identidad deseada.
+</div>
+</p>
+<p>
+<div id="anillo" class="example">
+Si $\gamma \in \mathbb{R}$ y $0\menorque a\menorque b\menorque\infty $, entonces
+  \begin{equation*}
+    \int_{A^{n}(a,b)}\left\Vert x\right\Vert^{\gamma }dx=
+      \begin{cases}
+        \frac{n}{n+\gamma }\omega_{n}\left( b^{n+\gamma }-a^{n+\gamma }\right) & 
+        \text{si $\gamma +n\neq 0$,} \\
+        n\omega_{n}\left( \ln b-\ln a\right) & \text{si $\gamma +n=0$.}
+      \end{cases}
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Por el teorema anterior,
+  \begin{equation*}
+    \int_{A^{n}(a,b)}\left\Vert x\right\Vert^{\gamma }dx=n\omega
+   _{n}\int_{a}^{b}t^{\gamma +n-1}dt.
+  \end{equation*}
+  Calculando la integral de la derecha se obtiene el resultado.
+</div>
+</p>
+<p>
+Si $\gamma <0$ la función $x\mapsto \left\Vert x\right\Vert
+^{\gamma }$ no está definida en $0$. Sin embargo, como $\left\{0\right\}$ es
+un conjunto nulo, podemos extender esta función a una función
+$\mathbb{R}^{n}\rightarrow \mathbb{R}$ dándole cualquier valor en
+$0$, por ejemplo $0$.
+</p>
+<p>
+<div id="pot" class="proposition">
+Si $\gamma \in \mathbb{R}$ y $r>0$, entonces
+</p>
+<p>
+  <ol class="alfa">
+  <li> la función $x\mapsto \left\Vert x\right\Vert^{\gamma
+    }$ es integrable en $\bar{B}^{n}(0,r)$ si y sólo si $\gamma
+    +n>0$ y, en ese caso,
+    \begin{equation*}
+      \int_{\left\Vert x\right\Vert \leq r}\left\Vert x\right\Vert^{\gamma }dx=\frac{n\omega_{n}}{n+\gamma }r^{n+\gamma }\text{.}
+    \end{equation*}
+</p>
+<p>
+  <li> la función $x\mapsto \left\Vert x\right\Vert^{\gamma
+    }$ es integrable en $\mathbb{R}^{n}\smallsetminus B^{n}(0,r)$ si y
+    sólo si $\gamma +n<0$ y, en ese caso,
+    \begin{equation*}
+      \int_{\left\Vert x\right\Vert \geq r}\left\Vert x\right\Vert^{\gamma }dx=-\frac{n\omega_{n}}{n+\gamma }r^{n+\gamma }\text{.}
+    \end{equation*}
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Sea $\varepsilon >0$. Del Ejemplo <a href="tul/P_T_02/13.html#anillo">13.30</a> se
+  sigue que
+  \begin{equation*}
+    \lim_{\varepsilon \rightarrow 0}\int_{A^{n}(\varepsilon ,r)}\left\Vert
+      x\right\Vert^{\gamma }dx=
+      \begin{cases}
+        \frac{n}{n+\gamma }\omega_{n}r^{n+\gamma } & \text{si $n+\gamma >0$,} \\
+        \infty & \text{si $n+\gamma \leq 0$.}
+      \end{cases}
+  \end{equation*}
+  Si $n+\gamma >0$,&nbsp;el Corolario <a href="tul/P_T_02/13.html#intrest">13.27</a> asegura que $x\mapsto
+  \left\Vert x\right\Vert^{\gamma }$ es integrable en
+  $\bar{B}^{n}(0,r)$ y que
+  \begin{equation*}
+    \int_{\left\Vert x\right\Vert \leq r}\left\Vert x\right\Vert^{\gamma
+    }dx=\lim_{k\rightarrow \infty }\int_{A^{n}(\frac{1}{k},r)}\left\Vert
+      x\right\Vert^{\gamma }dx=\frac{n}{n+\gamma }\omega_{n}r^{n+\gamma }\text{.}
+  \end{equation*}
+  Supongamos ahora que $\gamma +n\leq 0$. Si $x\mapsto \left\Vert
+    x\right\Vert^{\gamma }$ fuera integrable en $\bar{B}^{n}(0,r)$,\
+  se tendría que
+  \begin{equation*}
+    \int_{A^{n}(\varepsilon ,r)}\left\Vert x\right\Vert^{\gamma }dx\leq
+    \int_{\left\Vert x\right\Vert \leq r}\left\Vert x\right\Vert^{\gamma
+    }dx\menorque\infty \text{\qquad }\forall \varepsilon \in (0,r).
+  \end{equation*}
+  Esto es una contradicción.
+</p>
+<p>
+  La demostración de <em class="emph">(b)</em> es análoga [Ejercicio <a href="tul/P_T_02/13.html#ejpot">13.68</a>].
+</div>
+</p>
+<p>
+Anteriormente probamos que el producto de dos funciones integrables es
+integrable si una de ellas es acotada (ver Lema <a href="tul/P_T_02/12.html#lemprod">12.37</a>). El
+siguiente ejemplo muestra que esta última hipótesis es
+importante.
+</p>
+<p>
+<div id="prodnoint" class="example">
+El producto de funciones integrables no es
+  necesariamente integrable.
+</div>
+</p>
+<p>
+<div class="proof">
+  La función $f(x):=\left\Vert x\right\Vert^{-n/2}$ es integrable
+  en $\bar{B}^{n}(0,r)$, pero $f^{2}(x)=\left\Vert x\right\Vert^{-n}$
+  no lo es.
+</div>
+</p>
+<p>
+La Proposición <a href="tul/P_T_02/13.html#pot">13.31</a> nos permite dar un criterio muy útil
+de integrabilidad para funciones $f\colon \mathbb{R}^{n}\rightarrow
+\mathbb{R}$ en términos de su comportamiento al $\infty
+$. Empezamos introduciendo el siguiente concepto.
+</p>
+<p>
+<div id="deflocint" class="definition">
+Sea $\Omega $ un subconjunto abierto de
+  $\mathbb{R}^{n}$. Una función $f\colon \Omega \rightarrow \mathbb{R}$
+  es <em class="textbf">localmente integrable en </em>$\Omega $
+  si, para todo subconjunto
+  compacto $K$ de $\Omega $, la función $f\mid_{K}\colon K\rightarrow
+  \mathbb{R}$ es integrable en $K$.
+</div>
+</p>
+<p>
+Observa que cualquier función continua
+$f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es localmente integrable (ver
+Ejemplo <a href="tul/P_T_02/13.html#intsobrecomp">12.42</a>).  Denotamos por
+\begin{equation}
+  \mathfrak{L}_{\loc}(\Omega ):=\left\{f:\Omega \rightarrow \mathbb{R}:f\text{ es localmente integrable en }\Omega \right\}.\label{Lloc}
+\end{equation}
+Una consecuencia del Corolario <a href="tul/P_T_02/13.html#intrest">13.27</a> es la siguiente.
+</p>
+<p>
+<div id="corlocint" class="proposition">
+Sea $\Omega $ un subconjunto abierto de
+  $\mathbb{R}^{n}$. Entonces $f\in \mathfrak{L}(\Omega )$ si y
+  sólo si $f\in \mathfrak{L}_{\loc}(\Omega )$ y $\int^{\ast
+  }\left\vert f\right\vert \menorque\infty $.
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$: &nbsp;Claramente, si $f\in \mathfrak{L}(\Omega )$,
+  entonces $f\in \mathfrak{L}_{\loc}(\Omega )$ y $\int^{\ast
+  }\left\vert f\right\vert \menorque\infty $.
+</p>
+<p>
+  $\Leftarrow )$: &nbsp;Inversamente, supongamos que $f\in
+  \mathfrak{L}_{\loc}(\Omega )$ y $\int^{\ast }\left\vert f\right\vert
+  \menorque\infty $. Para cada $k\in \mathbb{N}$ definimos
+  \begin{equation*}
+    \Omega_{k}:=\left\{x\in \Omega :\left\Vert x\right\Vert \menorque k,&nbsp;\text{&nbsp;dist}(x,\partial \Omega )>\tfrac{1}{k}\right\}.
+  \end{equation*}
+  Entonces $\overline{\Omega }_{k}\subset \overline{\Omega }_{k+1}$ y
+  $\Omega =\cup_{k=1}^{\infty }\overline{\Omega }_{k}$, donde
+  $\overline{\Omega }_{k}$ es la cerradura de $\Omega_{k}$ en
+  $\mathbb{R}^{n}$. Como $\overline{\Omega }_{k}$ es compacto, se
+  tiene que $f\mid_{\overline{\Omega }_{k}}\in
+  \mathfrak{L}(\overline{\Omega }_{k})$ y
+  \begin{equation*}
+    \int_{\overline{\Omega }_{k}}\left\vert f\right\vert \leq \int^{\ast
+    }\left\vert f\right\vert \menorque\infty \text{\qquad }\forall k\in \mathbb{N}.
+  \end{equation*}
+  Por el Corolario <a href="tul/P_T_02/13.html#intrest">13.27</a>, $f\in \mathfrak{L}(\Omega )$.
+</div>
+</p>
+<p>
+<div class="corollary">[Criterio de integrabilidad]
+  Si $f\in \mathfrak{L}_{\loc}(\mathbb{R}^{n})$ y existen $\varepsilon
+  >0$, $M\geq 0$ y $r>0$ tales que
+  \begin{equation*}
+    \left\vert f(x)\right\vert \leq \frac{M}{\left\Vert x\right\Vert
+     ^{n+\varepsilon }}\text{\qquad }\forall x\in \mathbb{R}^{n}\smallsetminus
+    B^{n}(0,r),
+  \end{equation*}
+  entonces $f\in \mathfrak{L}(\mathbb{R}^{n})$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Como $\left\vert f\right\vert =\left\vert f\right\vert
+  1_{\bar{B}^{n}(0,r)}+\left\vert f\right\vert
+  1_{\mathbb{R}^{n}\smallsetminus \bar{B}^{n}(0,r)}$, se tiene que
+  \begin{align*}
+    \int^{\ast }\left\vert f\right\vert &\leq \int^{\ast }\left\vert
+      f\right\vert 1_{\bar{B}^{n}(0,r)}+\int^{\ast }\left\vert f\right\vert 1_{\mathbb{R}^{n}\smallsetminus \bar{B}^{n}(0,r)} \\
+    &\leq \int_{\left\Vert x\right\Vert \leq r}\left\vert f\right\vert
+    +M\int_{\left\Vert x\right\Vert \geq r}\frac{1}{\left\Vert x\right\Vert
+     ^{n+\varepsilon }}dx\menorque\infty .
+  \end{align*}
+  La existencia de las dos últimas integrales se sigue de que
+  $f\in \mathfrak{L}_{\loc}(\mathbb{R}^{n})$ y de la
+  Proposición <a href="tul/P_T_02/13.html#pot">13.31</a>, respectivamente. La
+  Proposición <a href="tul/P_T_02/13.html#corlocint">13.34</a>&nbsp;asegura que
+  $f\in \mathfrak{L}(\mathbb{R}^{n})$.
+</div>
+</p>
+
+<h3 id="sec13-5">El teorema de cambio de variable</h3>
+
+<p class="noj">
+El teorema de cambio de variable para funciones continuas con soporte
+compacto (ver Teorema <a href="tul/P_T_02/11.html#cv">11.25</a>) se generaliza a funciones integrables
+como sigue.
+</p>
+<p>
+<div class="theorem" id="teocv">[de cambio de variable]
+Sean $\Omega $ y
+  $\Omega^{\prime }$ subconjuntos abiertos de $\mathbb{R}^{n}$ y
+  $\varphi \colon \Omega \rightarrow \Omega^{\prime }$ un difeomorfismo de
+  clase $\mathcal{C}^{1}$. Entonces, $f\in \mathfrak{L}(\Omega
+ ^{\prime })$ si y sólo si $(f\circ \varphi )\left\vert \det
+    \varphi^{\prime }\right\vert \in \mathfrak{L}(\Omega )$ y, en tal
+  caso, se cumple que
+  \begin{equation*}
+    \int_{\Omega }f(\varphi (x))\left\vert \det \varphi^{\prime }(x)\right\vert
+    dx=\int_{\Omega^{\prime }}f(y)dy.
+  \end{equation*}
+</div>
+</p>
+<p>
+Reduciremos la demostración de este teorema al caso en el que
+$f\in \mathcal{C}_{c}^{0}(\Omega^{\prime })$. Para ello requerimos el
+siguiente resultado.
+</p>
+<p>
+<div class="proposition" id="aprox">[Aproximación por funciones en
+  $\mathcal{C}_{c}^{0}(\Omega )$]
+Si $\Omega $ es abierto en $\mathbb{R}^{n}$ y $f\in
+  \mathfrak{L}(\Omega )$ entonces existe una sucesión $f_{k}\in
+  \mathcal{C}_{c}^{0}(\Omega )$ tal que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\Omega }\left\vert f-f_{k}\right\vert =0.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\varepsilon >0$. Basta probar que existe $f_{\varepsilon }\in
+  \mathcal{C}_{c}^{0}(\Omega )$ tal que
+  \begin{equation*}
+    \int_{\Omega }\left\vert f-f_{\varepsilon }\right\vert \menorque\varepsilon .
+  \end{equation*}
+  Como convenimos (ver Notación <a href="tul/P_T_02/12.html#notint">12.44</a>), identificamos a $f$
+  con su extensión trivial a $\mathbb{R}^{n}$. Por la
+  Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a>&nbsp;existe $g\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que
+  \begin{equation}
+    \int_{\mathbb{R}^{n}}\left\vert f-g\right\vert \menorque\frac{\varepsilon }{3}.\label{apro1}
+  \end{equation}
+  Considera la sucesión no decreciente de subconjuntos abiertos y
+  acotados de $\Omega $,
+  \begin{equation*}
+    \Omega_{k}:=\left\{x\in \Omega :\left\Vert x\right\Vert \menorque k,&nbsp;\text{&nbsp;dist}(x,\partial \Omega )>\tfrac{1}{k}\right\}.
+  \end{equation*}
+  Nota que $&nbsp;\Omega =\cup_{k=1}^{\infty }\Omega_{k}$. Como $\Omega
+ _{k}$ es integrable se tiene que$&nbsp;g\mid_{\Omega_{k}}\in
+  \mathfrak{L}(\Omega_{k})$ (ver Proposición <a href="tul/P_T_02/12.html#restrint">12.43</a>),&nbsp;y
+  como además
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\Omega_{k}}\left\vert g\right\vert \leq
+    \int_{\mathbb{R}^{n}}\left\vert g\right\vert \menorque\infty ,
+  \end{equation*}
+  el Corolario <a href="tul/P_T_02/13.html#intrest">13.27</a> asegura que $g\in \mathfrak{L}(\Omega
+  \smallsetminus \Omega_{k})$ y que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\Omega \smallsetminus \Omega
+     _{k}}\left\vert g\right\vert =0.
+  \end{equation*}
+  Escogemos $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation}
+    \int_{\Omega \smallsetminus \Omega_{k_{0}}}\left\vert g\right\vert \menorque\frac{\varepsilon }{3}.\label{apro2}
+  \end{equation}
+  Por simplicidad escribimos $\Omega_{0}:=\Omega_{k_{0}}$. Sea
+  $M:=\max_{x\in \overline{\Omega }_{0}}\left\vert g(x)\right\vert $.
+  Como $1_{\Omega_{0}}\in S_{\ast }(\mathbb{R}^{n})$, existe $h\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que $h\leq 1_{\Omega_{0}}$
+  y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left( 1_{\Omega_{0}}-h\right) \menorque\frac{\varepsilon }{3M}.
+  \end{equation*}
+  Reemplazando $h$ por $\max \left\{0,h\right\}$, podemos suponer
+  además que $h\geq 0$. Entonces $h(x)=0$ para todo
+  $x\in \mathbb{R}^{n}\smallsetminus \Omega_{0}$ y, en consecuencia,
+  $gh\in \mathcal{C}_{c}^{0}(\Omega )$. Más aún, usando el
+  Ejercicio <a href="tul/P_T_02/13.html#adfinita">13.50</a> obtenemos
+  \begin{align*}
+    \int_{\Omega }\left\vert f-gh\right\vert &\leq \int_{\Omega }\left\vert
+      f-g\right\vert +\int_{\Omega \smallsetminus \Omega_{0}}\left\vert
+      g-gh\right\vert +\int_{\Omega_{0}}\left\vert g-gh\right\vert \\
+    &\leq \int_{\mathbb{R}^{n}}\left\vert f-g\right\vert +\int_{\Omega
+      \smallsetminus \Omega_{0}}\left\vert g\right\vert +M\int_{\mathbb{R}^{n}}\left( 1_{\Omega_{0}}-h\right) \menorque\varepsilon .
+  \end{align*}
+  Esto concluye la demostración.
+</div>
+</p>
+<p>
+Requerimos también información sobre la imagen de un conjunto
+nulo bajo una función de clase $\mathcal{C}^{1}$. Se cumple lo
+siguiente.
+</p>
+<p>
+<div id="imC1nulo" class="lemma">
+Si $\Omega $ es un subconjunto abierto de
+  $\mathbb{R}^{n}$ y $\varphi \colon \Omega \rightarrow \mathbb{R}^{n}$ es
+  de clase $\mathcal{C}^{1}$ entonces, para todo subconjunto nulo $Z$
+  de $\Omega ,&nbsp;$el conjunto $\varphi (Z):=\left\{\varphi (z):z\in Z\right\}$ es
+  nulo.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\Omega_{k}:=\left\{x\in \Omega :\left\Vert x\right\Vert \menorque k,\:
+    \dist(x,\partial \Omega )>\frac{1}{k}\right\}$. Dado que la unión
+  numerable de conjuntos nulos es un conjunto nulo, basta probar que
+  $\varphi (Z\cap \Omega_{k})$ es nulo para cada $k\in \mathbb{N}$.
+</p>
+<p>
+  Fijemos $k\in \mathbb{N}$ y $\varepsilon >0$. Tomemos una familia
+  numerable de cubos $Q_{j}$, $j\in \mathbb{N}$, tales que
+  \begin{equation*}
+    Z\cap \Omega_{k}\subset \bigcup_{j\in \mathbb{N}}Q_{j}\subset
+    \Omega_{k}\qquad \text{y}\qquad \sum_{j=1}^{\infty }\left\vert
+      Q_{j}\right\vert \menorque\varepsilon .
+  \end{equation*}
+  Ésta se obtiene escogiendo un abierto $U$ tal que
+  $Z\cap \Omega _{k}\subset U\subset \Omega_{k}$ y
+  $\left\vert U\right\vert \menorque\varepsilon $ (ver
+  Proposición <a href="tul/P_T_02/13.html#aproxnulo">13.8</a>) y expresándolo como una unión de cubos,
+  $U=\bigcup_{j\in \mathbb{N}}Q_{j}$, tales que
+  int$\left( Q_{i}\right) \cap $ int$\left( Q_{j}\right) =\emptyset $
+  si $i\neq j$ (ver Ejercicio <a href="tul/P_T_02/13.html#uninumrect">13.45</a>).
+</p>
+<p>
+  Como $\overline{\Omega }_{k}$ es compacto y $\varphi^{\prime
+  }\colon \Omega \rightarrow \mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{n})$ es
+  continua, se tiene que
+  \begin{equation*}
+    M_{k}:=\sup_{x\in \overline{\Omega }_{k}}\left\Vert \varphi^{\prime
+      }(x)\right\Vert_{\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{n})}\menorque\infty .
+  \end{equation*}
+  Del teorema del valor medio (ver Corolario <a href="tul/P_T_02/9z.html#cortvm0">9.17</a>) y las
+  desigualdades (\ref{compnormas}) se sigue entonces que, para
+  cualesquiera $x,y\in Q_j$,
+  \begin{equation*}
+    \left\Vert \varphi (x)-\varphi (y)\right\Vert_{\infty }\leq \left\Vert
+      \varphi (x)-\varphi (y)\right\Vert \leq M_{k}\left\Vert x-y\right\Vert \leq
+    M_{k}\sqrt{n}\left\Vert x-y\right\Vert_{\infty }.
+  \end{equation*}
+  Esto implica que, si $Q_{j}$ es un cubo de semilado $\delta $,
+  entonces $\varphi (Q_{j})$ está contenido en un cubo de semilado
+  $M_{k}\sqrt{n}\delta $. Por tanto,
+  \begin{equation*}
+    \left\vert \varphi (Q_{j})\right\vert \leq M_{k}^{n}n^{n/2}\left\vert
+      Q_{j}\right\vert \qquad \forall j\in \mathbb{N}.
+  \end{equation*}
+  Nota que $\varphi (Q_{j})$ es compacto y, por tanto, integrable. Se
+  tiene entonces que
+  \begin{equation*}
+    \Biggl\vert \bigcup_{j=1}^{m}\varphi (Q_{j})\Biggr\vert \leq
+    \sum_{j=1}^{m}\left\vert \varphi (Q_{j})\right\vert \leq
+    M_{k}^{n}n^{n/2}\sum_{j=1}^{m}\left\vert Q_{j}\right\vert \leq
+    M_{k}^{n}n^{n/2}\varepsilon \qquad \forall m\in \mathbb{N}.
+  \end{equation*}
+  El Corolario <a href="tul/P_T_02/13.html#cmunion">13.22</a>&nbsp;asegura que $\bigcup_{j=1}^{\infty
+  }\varphi (Q_{j})$&nbsp;es integrable y que
+  \begin{equation*}
+    \Biggl\vert \bigcup_{j=1}^{\infty }\varphi (Q_{j})\Biggr\vert
+    =\lim_{m\rightarrow \infty }\Biggl\vert \bigcup_{j=1}^{m}\varphi
+      (Q_{j})\Biggr\vert \leq M_{k}^{n}n^{n/2}\varepsilon .
+  \end{equation*}
+  Como $\varphi (Z\cap \Omega_{k})\subset \bigcup_{j=1}^{\infty
+  }\varphi (Q_{j})$, concluimos que
+  \begin{equation*}
+    \int^{\ast }1_{\varphi (Z\cap \Omega_{k})}\leq M_{k}^{n}n^{n/2}\varepsilon
+    \qquad \forall \varepsilon >0.
+  \end{equation*}
+  Esto prueba que $\varphi (Z\cap \Omega_{k})$ es nulo.
+</div>
+</p>
+<p>
+Estamos listos para demostrar el teorema de cambio de variable.
+</p>
+<p>
+<div class="proof">[Demostración del Teorema <a href="tul/P_T_02/13.html#teocv">13.36</a>.] Sea $f\in
+\mathfrak{L}(\Omega^{\prime })$. Por la Proposición <a href="tul/P_T_02/13.html#aprox">13.37</a>
+existe una sucesión $\left( f_{k}\right) $ en
+$\mathcal{C}_{c}^{0}(\Omega^{\prime })$ tal que
+\begin{equation}
+  \lim_{k\rightarrow \infty }\int_{\Omega^{\prime }}\left\vert
+    f-f_{k}\right\vert =0.\label{tcv1}
+\end{equation}
+Reemplazando a $(f_{k})$ por una subsucesión, podemos suponer
+además que existe un subconjunto nulo $Z$ de $\mathbb{R}^{n}$ tal
+que
+\begin{equation*}
+  f_{k}(y)\rightarrow f(y)\qquad \forall y\in \Omega^{\prime }\smallsetminus Z
+\end{equation*}
+(ver Proposición <a href="tul/P_T_02/13.html#funnula">13.13</a>). Denotemos por
+\begin{equation*}
+  g_{k}:=(f_{k}\circ \varphi )\left\vert \det \varphi^{\prime }\right\vert
+  \qquad \text{y}\qquad g:=(f\circ \varphi )\left\vert \det \varphi^{\prime
+    }\right\vert .
+\end{equation*}
+Entonces, $g_{k}\in \mathcal{C}_{c}^{0}(\Omega )$,
+\begin{equation*}
+  g_{k}(x)\rightarrow g(x)\qquad \forall x\in \Omega \smallsetminus \varphi
+ ^{-1}(Z)
+\end{equation*}
+y $\varphi^{-1}(Z)$ es nulo (ver Lema <a href="tul/P_T_02/13.html#imC1nulo">13.38</a>). El Teorema
+<a href="tul/P_T_02/11.html#cv">11.25</a> asegura que
+\begin{equation}
+  \int_{\Omega }g_{k}=\int_{\Omega }(f_{k}\circ \varphi )\left\vert \det
+    \varphi^{\prime }\right\vert =\int_{\Omega^{\prime }}f_{k},\label{tcv2}
+\end{equation}
+y que
+\begin{align*}
+  \int_{\Omega }\left\vert g_{k}-g_{j}\right\vert &=\int_{\Omega }\left(
+    \left\vert f_{k}-f_{j}\right\vert \circ \varphi \right) \left\vert \det
+    \varphi^{\prime }\right\vert =\int_{\Omega^{\prime }}\left\vert
+    f_{k}-f_{j}\right\vert \\
+  &\leq \int_{\Omega^{\prime }}\left\vert f_{k}-f\right\vert +\int_{\Omega
+   ^{\prime }}\left\vert f-f_{j}\right\vert .
+\end{align*}
+De esta última desigualdad y la afirmación (\ref{tcv1}) se
+sigue que existen $k_{1}\menorque\cdots \menorque k_{j}\menorque k_{j+1}\menorque\cdots $ tales que
+\begin{equation*}
+  \int_{\Omega }\left\vert g_{k_{j+1}}-g_{k_{j}}\right\vert \menorque\frac{1}{2^{j}}.
+\end{equation*}
+En consecuencia, definiendo $g_{k_{0}}:=0$, concluimos que
+\begin{equation*}
+  \sum_{j=0}^{\infty }\int_{\Omega }\left\vert
+    g_{k_{j+1}}-g_{k_{j}}\right\vert \menorque\infty ,
+\end{equation*}
+Observa que
+\begin{equation*}
+  g_{k_{m}}=\sum_{j=0}^{m-1}(g_{k_{j+1}}-g_{k_{j}})
+\end{equation*}
+y que
+\begin{equation*}
+  g(x)=\sum_{j=0}^{\infty }(g_{k_{j+1}}(x)-g_{k_{j}}(x))\text{\qquad }\forall x\in \Omega \smallsetminus \varphi^{-1}(Z).
+\end{equation*}
+El Corolario <a href="tul/P_T_02/13.html#convseriecd">13.28</a> asegura entonces que $g$ es integrable
+y que
+\begin{equation*}
+  \lim_{m\rightarrow \infty }\int_{\Omega }\left\vert g-g_{k_{m}}\right\vert
+  =0.
+\end{equation*}
+Por tanto, usando las identidades (\ref{tcv1}) y (\ref{tcv2}),
+concluimos que
+\begin{equation*}
+  \int_{\Omega }g=\lim_{m\rightarrow \infty }\int_{\Omega
+  }g_{k_{m}}=\lim_{m\rightarrow \infty }\int_{\Omega^{\prime
+    }}f_{k_{m}}=\int_{\Omega^{\prime }}f,
+\end{equation*}
+que es la identidad deseada.
+</p>
+<p>
+Finalmente observa que, si $g:=(f\circ \varphi )\left\vert \det
+  \varphi^{\prime }\right\vert $, entonces
+\begin{equation*}
+  f=(g\circ \varphi^{-1})\left\vert \det \left( \varphi^{-1}\right)^{\prime
+    }\right\vert .
+\end{equation*}
+En consecuencia, $f\in \mathfrak{L}(\Omega^{\prime })$ si $g\in
+\mathfrak{L}(\Omega )$. Esto concluye la demostración.
+</div>
+</p>
+<p>
+Veamos una aplicación del teorema anterior.
+</p>
+<p>
+<div class="example">[Coordenadas polares]
+  $f\in \mathfrak{L}(\mathbb{R}^{2})$ si y sólo si la función
+  $(r,\theta )\mapsto rf(r\cos \theta ,r\sen \theta )$ es integrable
+  en $[0,\infty )\times [0,2\pi ]$ y, en ese caso,
+  \begin{equation*}
+    \int_{\mathbb{R}^{2}}f=\int_{0}^{2\pi }\int_{0}^{\infty }rf(r\cos \theta
+    ,r\sen \theta )\,dr\,d\theta .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $\Omega :=(0,\infty )\times (0,2\pi )$ y $\Omega^{\prime
+  }:=\mathbb{R}^{2}\smallsetminus \left\{(x,0):x\geq 0\right\}$. La función
+  $\varphi \colon \Omega \rightarrow \Omega^{\prime }$ dada por $\varphi
+  (r,\theta ):=(r\cos \theta ,r\sen \theta )$ es un difeomorfismo de
+  clase $\mathcal{C}^{1}$ y $\left\vert \det \varphi^{\prime
+    }(r,\theta )\right\vert =r$. Por el Teorema <a href="tul/P_T_02/13.html#teocv">13.36</a>, $f\in
+  \mathfrak{L}(\Omega^{\prime })$ si y sólo si $(r,\theta
+  )\mapsto rf(\varphi (r,\theta ))$ es integrable en $\Omega $, y
+  \begin{equation*}
+    \int_{\Omega^{\prime }}f=\int_{\Omega }rf(\varphi (r,\theta ))\,dr\,d\theta
+    .
+  \end{equation*}
+  Como $\left( [0,\infty )\times [0,2\pi ]\right)
+  \smallsetminus \Omega $ &nbsp;y $&nbsp;\mathbb{R}^{2}\smallsetminus \Omega
+ ^{\prime }$ son subconjuntos nulos de $\mathbb{R}^{2}$, concluimos
+  que $f\in \mathfrak{L}(\mathbb{R}^{2})$ si y sólo si $(r,\theta
+  )\mapsto rf(r\cos \theta ,r\sen \theta )$ es integrable en
+  $[0,\infty )\times [0,2\pi ]$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{2}}f=\int_{\Omega^{\prime }}f=\int_{\Omega }rf(\varphi
+    (r,\theta ))\,dr\,d\theta =\int_{0}^{2\pi }\int_{0}^{\infty }rf(r\cos \theta
+    ,r\sen \theta )\,dr\,d\theta ,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<h3 id="sec13-6">Ejercicios</h3>
+
+<div class="exercise">
+  Prueba que $[0,1]\smallsetminus \mathbb{Q}$ es integrable y calcula
+  su medida en $\mathbb{R}$.
+</div>
+<div class="exercise">
+  El objetivo de este ejercicio es mostrar la existencia de
+  subconjuntos nulos no numerables de $[0,1]$. El <em class="textbf">conjunto de
+    Cantor</em> $\mathfrak{C}$ se construye como
+  sigue: Al intervalo $[0,1]$ le quitamos su <em class="emph">tercio medio</em>
+  $(\frac{1}{3},\frac{2}{3})$ y denotamos al conjunto restante por
+  \begin{equation*}
+    \mathfrak{C}_{1}:=[0,1]\smallsetminus \left( \tfrac{1}{3},\tfrac{2}{3}\right) .
+  \end{equation*}
+  A cada uno de los dos subintervalos cerrados de $\mathfrak{C}_{1}$
+  le quitamos su tercio medio y denotamos al conjunto restante por
+  \begin{equation*}
+    \mathfrak{C}_{2}:=\mathfrak{C}_{1}\smallsetminus \left( \left( \tfrac{1}{9},\tfrac{2}{9}\right) \cup \left( \tfrac{7}{9},\tfrac{8}{9}\right) \right) .
+  \end{equation*}
+  Continuando de esta manera, a cada uno de los $2^{k}$ subintervalos
+  cerrados de $\mathfrak{C}_{k}$ le quitamos su tercio medio y
+  denotamos al conjunto restante por $\mathfrak{C}_{k+1}$. Definimos
+  \begin{equation*}
+    \mathfrak{C}:=\bigcap_{k=1}^{\infty }\mathfrak{C}_{k}.
+  \end{equation*}
+  Prueba que $\mathfrak{C}$ es nulo y no es numerable.
+</div>
+<div class="exercise">
+  Para cada $\varepsilon >0$, define de manera explícita un
+  subconjunto abierto integrable $\Omega $ de $\mathbb{R}^{n}$ tal que
+  $\mathbb{Q}^{n}\subset \Omega $ y $\left\vert \Omega \right\vert
+  \menorque\varepsilon $.
+</div>
+<div class="exercise">
+  <ol class="alfa">
+  <li> Prueba que, si $Z$ es un subconjunto nulo de
+    $\mathbb{R}^{n}$, entonces $\mathbb{R}^{n}\smallsetminus Z$ es
+    denso en $\mathbb{R}^{n}$.
+  <li> ¿Es cierto que, si un subconjunto
+    integrable $X$ de $\mathbb{R}^{n}$&nbsp;tiene medida positiva entonces
+    <em class="emph">int</em>$(X)\neq \emptyset $?
+  </ol>
+</div>
+<div class="exercise">
+  Prueba que $Z$ es un subconjunto nulo de $\mathbb{R}^{n}$ si y
+  sólo si $Z\cap Q$ es un subconjunto nulo de $\mathbb{R}^{n}$\
+  para todo rectángulo $Q\subset \mathbb{R}^{n}$.
+</div>
+<div id="uninumrect" class="exercise">
+Un <em class="textbf">cubo</em> es un rectángulo
+  $[a_{1},b_{1}]\times \cdots \times [a_{N},b_{N}]$ tal que
+  $b_{i}-a_{i}=b_{1}-a_{1}\neq 0$ para todo $i=2,\dots,N$.
+  <ol class="alfa">
+  <li> Prueba que todo subconjunto abierto $\Omega $ de
+    $\mathbb{R}^{n}$ es la unión de una familia numerable de cubos
+    $Q_{k}$, $k\in \mathbb{N}$, tales que <em class="emph">int</em>$\left(
+      Q_{j}\right) \cap $ <em class="emph">int</em>$\left( Q_{k}\right) =\emptyset $
+    si $j\neq k$.
+  <li> Sean $\Omega $ un subconjunto abierto de $\mathbb{R}^{n}$
+    y $Z\subset \Omega $. Prueba que $Z$ es un subconjunto nulo de
+    $\mathbb{R}^{n}$ si y sólo si para cada $\varepsilon >0$
+    existe una familia numerable de cubos $Q_{k}$, $k\in \mathbb{N}$,
+    tales que
+    \begin{equation*}
+      Z\subset \bigcup_{k\in \mathbb{N}}Q_{k}\subset \Omega \text{\qquad
+        y\qquad }\sum_{k=1}^{\infty }\left\vert Q_{k}\right\vert
+      \menorque\varepsilon .
+    \end{equation*}
+    <em class="emph">(Sugerencia: Usa la Proposición <a href="tul/P_T_02/13.html#aproxnulo">13.8</a> y el
+      inciso (a).)</em>
+  </ol>
+</div>
+<div id="ejgrafnulo" class="exercise">
+  <ol class="alfa">
+  <li> Prueba que, si $1\leq m\menorque n$, $&nbsp;X$ es una unión
+    numerable de subconjuntos compactos de $\mathbb{R}^{m}$ y $\
+    f\colon X\rightarrow \mathbb{R}^{n-m}$ es una función continua,
+    entonces la gráfica de $f$,
+    \begin{equation*}
+      \graf(f):=\left\{(x,y)\in \mathbb{R}^{n}:x\in X\text{, }y=f(x)\right\},
+    \end{equation*}
+    es un subconjunto nulo de $\mathbb{R}^{n}$.
+  <li> Prueba que, si $\Omega $ es abierto en $\mathbb{R}^{m}$ y
+    $f\colon \Omega \rightarrow \mathbb{R}^{n-m}$ es continua, entonces la
+    gráfica de $f$ es un subconjunto nulo de $\mathbb{R}^{n}$.
+  <li> Prueba que todo subespacio vectorial propio de
+    $\mathbb{R}^{n}$ es nulo.
+  </ol>
+</div>
+<div id="varnulo" class="exercise">
+Prueba que toda subvariedad $M$ de $\mathbb{R}^{n}$
+  <em class="emph">(ver Definición <a href="tul/P_T_02/10.html#defvar">10.10</a>)</em> es un subconjunto nulo de
+  $\mathbb{R}^{n}$. <em class="emph">(Sugerencia: Usa el Teorema <a href="tul/P_T_02/10.html#teofi">10.7</a>.)</em>
+</div>
+<div class="exercise">
+  Prueba que, si $\Omega $ es un subconjunto abierto de
+  $\mathbb{R}^{n}$, $\varphi \colon \Omega \rightarrow \mathbb{R}^{m}$ es de
+  clase $\mathcal{C}^{1}$ y $m>n$, entonces $\varphi (\Omega )$ es un
+  subconjunto nulo de $\mathbb{R}^{m}$.
+</div>
+<div class="exercise">[Lema de Sard]
+  Sean $\Omega $ un subconjunto abierto de
+  $\mathbb{R}^{n}$ y $\varphi \colon \Omega \rightarrow \mathbb{R}^{n}$ una
+  función de clase $\mathcal{C}^{1}$. El conjunto
+  \begin{equation*}
+    K:=\left\{x\in \Omega :\det \varphi^{\prime }(x)=0\right\}
+  \end{equation*}
+  se llama el <em class="textbf">conjunto de puntos críticos de</em> $\varphi $,
+  su imagen $\varphi (K)$ se llama el <em class="textbf">conjunto de valores
+    críticos de</em> $\varphi $, y $\mathbb{R}^{n}\smallsetminus
+  \varphi (K)$ se llama el <em class="textbf">conjunto de valores regulares de
+  </em>$\varphi $. Demuestra las siguientes afirmaciones:
+  <ol class="alfa">
+  <li> El conjunto de valores críticos de $\varphi $ es un
+    subconjunto nulo de $\mathbb{R}^{n}$.
+  <li> El conjunto de valores regulares de $\varphi $ es denso
+    en $\mathbb{R}^{n}$.
+  </ol>
+</div>
+<div id="adfinita" class="exercise">
+Sean $X_{1},X_{2}$ subconjuntos integrables de
+  $\mathbb{R}^{n}$ tales que $X_{1}\cap X_{2}$ es nulo. Denotamos por
+  $X:=X_{1}\cup X_{2}$. Prueba que $f\colon X\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$ es integrable en $X$ si y sólo si $f\mid
+ _{X_{1}}$ es integrable en $X_{1}$ y $f\mid_{X_{2}}$ es integrable
+  en $X_{2}$ y que, en ese caso,
+  \begin{equation*}
+    \int_{X}f=\int_{X_{1}}f+\int_{X_{2}}f.
+  \end{equation*}
+</div>
+<div id="noconvpunt" class="exercise">
+Considera la familia numerable de intervalos
+  cerrados
+  \begin{equation*}
+    \left[ 0,\tfrac{1}{2}\right] ,\text{ }\left[ \tfrac{1}{2},1\right] ,\text{ }\left[ 0,\tfrac{1}{3}\right] ,\text{ }\left[ \tfrac{1}{3},\tfrac{2}{3}\right] ,\text{ }\left[ \tfrac{2}{3},1\right] ,\text{ }\left[ 0,\tfrac{1}{4}\right] ,\text{ }\left[ \tfrac{1}{4},\tfrac{1}{2}\right] ,\text{ }\left[ \tfrac{1}{2},\tfrac{3}{4}\right] ,\text{ }\left[ \tfrac{3}{4},1\right] ,\text{ }\ldots
+  \end{equation*}
+  Sea $f_{k}$ la función característica del $k$-ésimo
+  intervalo de la lista.
+  <ol class="alfa">
+  <li> Prueba que
+    \begin{equation*}
+      \lim_{k\rightarrow \infty }\int_{\mathbb{R}}\left\vert f_{k}\right\vert =0.
+    \end{equation*}
+  <li> Prueba que $(f_{k}(x))$ no converge para ningún $x\in
+    [0,1]$.
+  <li> Exhibe una subsucesión $(f_{k_{j}})$ que converge a
+    $0$ c.d.  en $\mathbb{R}$.
+  </ol>
+</div>
+<div class="exercise">
+  Prueba que si $Z$ es un subconjunto nulo de $\mathbb{R}^{m}$
+  entonces, para cualquier subconjunto integrable $X$ de
+  $\mathbb{R}^{n}$, el conjunto $Z\times X$ es un subconjunto nulo de
+  $\mathbb{R}^{m}\times \mathbb{R}^{n}$.
+</div>
+<div class="exercise">
+  Considera la función $f\colon \mathbb{R}^{2}\rightarrow \mathbb{R}$
+  dada por
+  \begin{equation*}
+    f(x,y):=
+      \begin{cases}
+        \frac{x^{2}-y^{2}}{\left( x^{2}+y^{2}\right)^{2}} & \text{si $(x,y)\in
+        (0,1)^{2}$,} \\
+        0 & \text{si $(x,y)\in \mathbb{R}^{2}\smallsetminus (0,1)^{2}$.}
+      \end{cases}
+  \end{equation*}
+  <ol class="alfa">
+  <li> Prueba que la función $x\mapsto f(x,y)$ es integrable
+    en $\mathbb{R}$ para todo $y\in \mathbb{R}$, la función
+    $y\mapsto f(x,y)$ es integrable en $\mathbb{R}$ para todo $x\in
+    \mathbb{R}$, y que las integrales
+    \begin{equation*}
+      \int_{\mathbb{R}}\biggl( \int_{\mathbb{R}}f(x,y)dx\biggr) dy,\text{\qquad }\int_{\mathbb{R}}\biggl( \int_{\mathbb{R}}f(x,y)dy\biggr) dx,
+    \end{equation*}
+    existen y son distintas.
+  <li> ¿Es $f$ una función integrable en
+    $\mathbb{R}^{2}$?
+  </ol>
+</div>
+<div class="exercise">
+  Considera la función $f\colon \mathbb{R}^{2}\rightarrow \mathbb{R}$
+  dada por
+  \begin{equation*}
+    f(x,y):=
+      \begin{cases}
+        y^{-2} & \text{si $0\menorque x\menorque y\menorque 1$,} \\
+        -x^{-2} & \text{si $0\menorque y\menorque x\menorque 1$,} \\
+        0 & \text{en los otros casos},
+      \end{cases}
+  \end{equation*}
+  y realiza un análisis análogo al del ejercicio anterior.
+</div>
+<div class="exercise">
+  Usando el <em class="emph">Ejercicio <a href="tul/P_T_02/12.html#riemannintervalo">12.62</a></em> y el teorema de
+  Fubini prueba que, si $Q$ es un rectángulo en $\mathbb{R}^{n}$ y
+  $f\colon Q\rightarrow \mathbb{R}$ es continua, entonces la integral de
+  Lebesgue de $f$ <em class="emph">(Definición <a href="tul/P_T_02/12.html#intenX">12.41</a>)</em> coincide con la
+  integral dada por la <em class="emph">Definición <a href="tul/P_T_02/11.html#defintrectangulo">11.3</a></em>.
+</div>
+<div id="ejmedext" class="exercise">
+Prueba que, si $X_{k}$ es un subconjunto integrable
+  de $\mathbb{R}^{n}$ y
+  \begin{equation*}
+    \sum_{k=1}^{\infty }\left\vert X_{k}\right\vert \menorque\infty ,
+  \end{equation*}
+  entonces $\bigcup_{k=1}^{\infty }X_{k}$ es un subconjunto integrable
+  de $\mathbb{R}^{n}$ y
+  \begin{equation*}
+    \left\vert \bigcup_{k=1}^{\infty }X_{k}\right\vert \leq
+    \sum_{k=1}^{\infty }\left\vert X_{k}\right\vert .
+  \end{equation*}
+</div>
+<div class="exercise">
+  Prueba que, si $f_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+  \infty \right\}$ es integrable, $f_{k}\geq 0$ para todo $k\in \mathbb{N}$,
+  y
+  \begin{equation*}
+    \sum_{k=1}^{\infty }\int_{\mathbb{R}^{n}}f_{k}\menorque\infty ,
+  \end{equation*}
+  entonces $\sum_{k=1}^{\infty }f_{k}$ es integrable y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\sum_{k=1}^{\infty
+    }f_{k}=\sum_{k=1}^{\infty }\int_{\mathbb{R}^{n}}f_{k}.
+  \end{equation*}
+</div>
+<div id="ejnodomi" class="exercise">
+Prueba, sin usar el teorema de convergencia
+  dominada, que para las sucesiones de funciones $(f_{k})$ de los
+  <em class="emph">Ejemplos <a href="tul/P_T_02/11.html#ejeminvtras">11.8</a>, <a href="tul/P_T_02/11.html#ejemintnoconv">11.12</a>, <a href="tul/P_T_02/13.html#supnoint">13.19</a>,y <a href="tul/P_T_02/13.html#ejemfat">13.25</a></em>
+  no existe ninguna función integrable
+  $g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty
+  \right\}$
+  tal que $\left\vert f_{k}\right\vert \leq g$ c.d. en
+  $\mathbb{R}^{n}$ para todo $k\in \mathbb{N}$.
+</div>
+<div class="exercise">
+  Prueba que, si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es
+  integrable, entonces
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}\smallsetminus B^{n}(0,k)}f=0.
+  \end{equation*}
+</div>
+<div class="exercise">[Dependencia continua de un parámetro]
+\label{dcp}Sean $Y\subset \mathbb{R}^{m}$, $y_{0}\in Y$ y
+  $f\colon \mathbb{R}^{n}\times Y\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$
+  con las siguientes propiedades:
+</p>
+<p>
+  <ol class="roman">
+  <li> Para cada $y\in Y$, la función $x\mapsto f(x,y)$ es
+    integrable en $\mathbb{R}^{n}$.
+</p>
+<p>
+  <li> P.c.t. $x\in \mathbb{R}^{n}$, la función $y\mapsto
+    f(x,y)$ es continua en $y_{0}$.
+</p>
+<p>
+  <li> Existe una función integrable
+    $g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\infty \right\}$ tal que,
+    para todo $y\in Y$,
+    \begin{equation*}
+      \left\vert f(x,y)\right\vert \leq g(x)\text{\qquad c.d. en }\mathbb{R}^{n}.
+    \end{equation*}
+  </ol>
+</p>
+<p>
+  Prueba que la función $F\colon Y\rightarrow \mathbb{R}$, dada por
+  \begin{equation*}
+    F(y):=\int_{\mathbb{R}^{n}}f(x,y)dx,
+  \end{equation*}
+  es continua en $y_{0}$.
+</div>
+</p>
+<p>
+<div class="exercise">[Derivación bajo el signo de integral]
+\label{dbi}Sea $f\colon \mathbb{R}^{n}\times (a,b)\rightarrow
+  \mathbb{R}\cup \left\{\pm \infty \right\}$ una función con las siguientes
+  propiedades:
+</p>
+<p>
+  <ol class="roman">
+  <li> Para cada $t\in (a,b)$, la función $x\mapsto f(x,t)$
+    es integrable en $\mathbb{R}^{n}$.
+</p>
+<p>
+  <li> P.c.t. $x\in \mathbb{R}^{n}$, la función $t\mapsto
+    f(x,t)$ toma valores en $\mathbb{R}$&nbsp;y es diferenciable en
+    $(a,b)$.
+</p>
+<p>
+  <li> Existe una función integrable
+    $g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\infty \right\}$ tal que,
+    para todo $t\in (a,b)$,
+    \begin{equation*}
+      \left\vert \frac{\partial f}{\partial t}(x,t)\right\vert \leq g(x)\text{\qquad c.d. en }\mathbb{R}^{n}.
+    \end{equation*}
+  </ol>
+</p>
+<p>
+  Prueba que la función $F\colon (a,b)\rightarrow \mathbb{R}$, dada por
+  \begin{equation*}
+    F(t):=\int_{\mathbb{R}^{n}}f(x,t)dx,
+  \end{equation*}
+  es diferenciable en $(a,b)$ y que
+  \begin{equation*}
+    F^{\prime }(t)=\int_{\mathbb{R}^{n}}\frac{\partial f}{\partial t}(x,t)dx.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $f\in
+  \mathcal{C}_{c}^{1}(\mathbb{R}^{3}):=\mathcal{C}^{1}(\mathbb{R}^{3})\cap
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{3})$. Prueba que la función
+  $F\colon \mathbb{R}^{3}\rightarrow \mathbb{R}$, dada por
+  \begin{equation*}
+    F(x):=\int_{\mathbb{R}^{3}}\frac{f(y)}{\left\Vert y-x\right\Vert }dy,
+  \end{equation*}
+  es de clase $\mathcal{C}^{1}$ y que sus derivadas parciales
+  están dadas por
+  \begin{equation*}
+    \frac{\partial F}{\partial x_{i}}(x):=\int_{\mathbb{R}^{3}}\frac{1}{\left\Vert y-x\right\Vert }\frac{\partial f}{\partial y_{i}}(y)dy,\text{\qquad }i=1,2,3.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\left\{X_{k}:k\in \mathbb{N}\right\}$ una familia de subconjuntos
+  integrables de $\mathbb{R}^{n}$ tales que $X_{j}\cap X_{i}$ es nulo
+  si $i\neq j$. Denotamos por $X:=\cup_{k=1}^{\infty }X_{k}$. Si
+  $f\colon X\rightarrow \mathbb{R}$ es&nbsp;una función tal que $f\mid
+ _{X_{k}}\in \mathfrak{L}(X_{k})$ para todo $k\in \mathbb{N}$ y
+  existe $M\in \mathbb{R}$ tal que
+  \begin{equation*}
+    \sum_{j=1}^{k}\int_{X_{j}}\left\vert f\right\vert \leq M\text{\qquad 
+    }\forall k\in \mathbb{N},
+  \end{equation*}
+  prueba que $f\in \mathfrak{L}(X)$ y
+  \begin{equation*}
+    \int_{X}f=\sum_{j=1}^{\infty }\int_{X_{j}}f.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que, si $f\colon \mathbb{R}^n\to\mathbb{R}$ es integrable,
+  $X_k$ es un subconjunto integrable de $\mathbb{R}^n$ y
+  $\lim_{k\to\infty}\vert X_k\vert=0$, entonces
+  \begin{equation*}
+    \lim_{k\to\infty} \int_{X_k} f=0.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que, para todo $r>0$, $1\leq i\leq n$,
+  \begin{equation*}
+    \int_{\bar{B}^{n}(0,r)}x_{i}^{2}\text{ }dx=\frac{\omega_{n}}{n+2}r^{n+2}.
+  \end{equation*}
+  <em class="emph">(Sugerencia: Observa que, por la invariancia de la integral
+    bajo transformaciones ortogonales,</em>
+  \begin{equation*}
+    \int_{\bar{B}^{n}(0,r)}x_{i}^{2}\text{ }dx=\int_{\bar{B}^{n}(0,r)}x_{j}^{2}\text{ }dx,
+  \end{equation*}
+  <em class="emph">y calcula</em>
+  \begin{equation*}
+    \sum_{i=1}^{n}\int_{\bar{B}^{n}(0,r)}x_{i}^{2}\text{ }dx.\text{)}
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Para $0\leq a\menorque b\menorque\infty $ y $n$ par, calcula la integral
+  \begin{equation*}
+    \int_{A^{n}(a,b)}\exp (-\left\Vert x\right\Vert^{2})dx.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Para $0\menorque a\menorque b\menorque\infty $, calcula la integral
+  \begin{equation*}
+    \int_{A^{n}(a,b)}\ln (\left\Vert x\right\Vert )dx.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="ejpot" class="exercise">
+Sea $r>0$. Prueba que la función $x\mapsto
+  \left\Vert x\right\Vert^{\gamma }$ es integrable en
+  $\mathbb{R}^{n}\smallsetminus B^{n}(0,r)$ si y sólo si $\gamma
+  +n<0$ y, en ese caso,
+  \begin{equation*}
+    \int_{\left\Vert x\right\Vert \geq r}\left\Vert x\right\Vert^{\gamma }dx=-\frac{n\omega_{n}}{n+\gamma }r^{n+\gamma }\text{.}
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que la función $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$,
+  $&nbsp;f(x):=\exp (-\left\Vert x\right\Vert^{2})$, es integrable en
+  $\mathbb{R}^{n} $ y que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\exp (-\left\Vert x\right\Vert^{2})dx=\pi^{n/2}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  ¿Para qué números $\gamma >0$ es $x\mapsto
+  \left( \frac{1}{1-\left\Vert x\right\Vert^{2}}\right)^{\gamma }$
+  integrable en $B^{n}(0,1)$? Calcula la integral
+  \begin{equation*}
+    \int_{\left\Vert x\right\Vert \menorque 1}\left( \frac{1}{1-\left\Vert x\right\Vert
+       ^{2}}\right)^{\gamma }dx
+  \end{equation*}
+  para tales $\gamma $.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $a_{1},\dots,a_{m}$ puntos distintos en $\mathbb{R}^{n}$,
+  $m>n>1$, y sea $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$, \
+  \begin{equation*}
+    f(x):=\prod_{i=1}^{m}\frac{1}{\left\Vert x-a_{i}\right\Vert }.
+  \end{equation*}
+  Prueba que $f$ es integrable en $\mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div id="prodloc" class="exercise">
+Prueba que, si $f\in
+  \mathfrak{L}_{\loc}(\mathbb{R}^{m})$ y $g\in
+  \mathfrak{L}_{\loc}(\mathbb{R}^{n-m})$ con $1\leq m\menorque n$, entonces
+  $f\odot g\in \mathfrak{L}_{\loc}(\mathbb{R}^{n})$, donde $(f\odot
+  g)(x,y):=f(x)g(y)$ si $(x,y)\in \mathbb{R}^{m}\times
+  \mathbb{R}^{n-m}\equiv \mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div class="exercise">[Coordenadas esféricas]
+  Sea $\varphi \colon [0,\infty )\times [0,\pi ]\times [0,2\pi
+  ]\rightarrow \mathbb{R}^{3}$ la función $\varphi (r,\theta ,\phi
+  ):=(r\sen \theta \cos \phi ,r\sen \theta \sen \phi ,r\cos \theta )$.
+  Entonces $f\in \mathfrak{L}(\mathbb{R}^{3})$ si y sólo si la
+  función $(r,\theta ,\phi )\mapsto f(\varphi (r,\theta ,\phi
+  ))r^{2}\sen \theta $ es integrable en $[0,\infty )\times [0,\pi ]\times [0,2\pi ]$ y, en ese caso,
+  \begin{equation*}
+    \int_{\mathbb{R}^{3}}f=\int_{0}^{2\pi }\int_{0}^{\pi }\int_{0}^{\infty
+    }f(r\sen \theta \cos \phi ,r\sen \theta \sen \phi ,r\cos \theta )r^{2}\sen
+    \theta \,dr\,d\theta \,d\phi \text{.}
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">[Coordenadas cilíndricas]
+  Enuncia y demuestra el teorema de cambio de variable para el cambio
+  de coordenadas $(r,\theta ,z)\mapsto (r\cos \theta ,r\sen \theta
+  ,z)$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Usando coordenadas esféricas calcula el volumen de la bola\break
+  $\bar{B}_{3}(0,r):=\left\{x\in \mathbb{R}^{3}:\left\Vert x\right\Vert
+  \leq r\right\}$.
+</div>
+</p>
+
+
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>

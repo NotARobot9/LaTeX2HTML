@@ -1,0 +1,960 @@
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/8.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 7;
+              }
+              </style>
+<h2 id="Cap-8">Teoremas de aproximación</h2>
+<p>
+Cuando hacemos cálculos con números reales usamos siempre una
+aproximación decimal de éstos, es decir, usamos algún
+número racional suficientemente cercano al número real que nos
+interesa. Por motivos análogos, es conveniente aproximar funciones
+por otras más sencillas.
+</p>
+<p>
+En este capítulo probaremos que toda función continua
+$f\colon[a,b] \rightarrow \mathbb{R}$ se puede aproximar uniformemente por
+una función polinomial. Este resultado se conoce como el teorema
+de aproximación de Weierstrass y tiene relevancia desde el punto
+de vista teórico y práctico, ya que los polinomios son
+funciones sencillas y fáciles de calcular. De hecho, exhibiremos
+una sucesión explícita de polinomios que converge
+uniformemente a $f$ en $[a,b]$: los <em class="emph">polinomios de Bernstein</em>.
+</p>
+<p>
+La versión original del teorema de aproximación fue formulada
+por Weierstrass en 1885. En 1937 Stone generalizó
+considerablemente este resultado, y simplificó su
+demostración. El resultado de Stone se conoce como el teorema de
+Stone-Weierstrass, y extiende el resultado original de Weierstrass en
+dos sentidos: permite reemplazar al intervalo $[a,b]$ por cualquier
+espacio métrico compacto $K$, y permite reemplazar a los
+polinomios por subconjuntos más generales del espacio de funciones
+continuas $\mathcal{C}^{0}(K,\mathbb{R})$. En este capítulo
+expondremos también este resultado.
+</p>
+<p>
+<h3 id="sec8-1">El teorema de aproximación de Weierstrass</h3>
+</p>
+<p>
+El objetivo de esta sección es demostrar que toda función
+continua $f\colon\left[ a,b\right] \rightarrow \mathbb{R}$ se puede
+aproximar uniformemente por polinomios, es decir, por funciones de la
+forma
+\begin{equation*}
+  p\left( t\right) =a_{0}+a_{1}t+\cdots +a_{n}t^{n},\text{\qquad }a_{k}\in 
+  \mathbb{R},\text{\quad }n\in \mathbb{N}\cup \left\{0\right\}\text{.}
+\end{equation*}
+Este resultado se conoce como el teorema de aproximación de
+Weierstrass.  Más aún, exhibiremos una sucesión
+explícita de polinomios que converge uniformemente a la
+función $f$ en $[a,b]$.
+</p>
+<p>
+Para $0\leq k\leq n$ consideremos los polinomios
+\begin{equation*}
+  \gamma_{n,k}(t)=\binom{n}{k} t^{k}(1-t)^{n-k},
+\end{equation*}
+donde
+\begin{equation*}
+\binom{n}{k} =\frac{n!}{k!(n-k)!}
+\end{equation*}
+es el coeficiente binomial. De la conocida fórmula binomial
+\begin{equation*}
+  (a+b)^{n}=\sum_{k=0}^{n}\binom{n}{k} a^{k}b^{n-k}
+\end{equation*}
+se sigue que
+\begin{equation}
+  \sum_{k=0}^{n}\gamma_{n,k}(t)=1.\label{for1}
+\end{equation}
+Multiplicando por $t$ la igualdad (\ref{for1}) para $n-1$ en vez de
+$n$, obtenemos
+\begin{align*}
+  t &=t\sum_{j=0}^{n-1}\gamma_{n-1,j}(t) \\
+  &=\sum_{j=0}^{n-1}
+      \binom{n-1}{j}
+  t^{j+1}(1-t)^{n-1-j} \\
+  &=\sum_{j=0}^{n-1}\tfrac{j+1}{n}
+      \binom{n}{j+1}
+      t^{j+1}(1-t)^{n-(j+1)} \\
+  &=\sum_{k=1}^{n}\tfrac{k}{n}\gamma_{n,k}(t) \\
+  &=\sum_{k=0}^{n}\tfrac{k}{n}\gamma_{n,k}(t).
+\end{align*}
+En consecuencia,
+\begin{equation}
+  nt=\sum_{k=0}^{n}k\gamma_{n,k}(t).\label{for2}
+\end{equation}
+De manera análoga, multiplicando por $t^{2}$ la igualdad
+(\ref{for1}) para $n-2$ en vez de $n$, es sencillo probar que
+\begin{equation}
+  (n^{2}-n)t^{2}=\sum_{k=0}^{n}(k^{2}-k)\gamma_{n,k}(t)\label{for3}
+\end{equation}
+Proponemos la demostración de esta fórmula como ejercicio
+[Ejercicio~\ref{ejfor3}].
+</p>
+<p>
+\begin{figure}[H]
+  \centering
+  \input{./figuras-tikz/gama3-3.tikz}\qquad\qquad
+  \input{./figuras-tikz/gama3-2.tikz}\\[10pt]
+  \input{./figuras-tikz/gama3-1.tikz}\qquad\qquad
+  \input{./figuras-tikz/gama3-0.tikz}
+   \caption{}\label{fig:8.1}
+\end{figure} 
+</p>
+<p>
+<div id="3.3" class="definition">
+Sea $f\colon[0,1]\rightarrow \mathbb{R}$ una función
+  continua. El $n$<em class="textbf">-ésimo polinomio de
+    Bernstein</em>\footnote{Sergei Natanovich Bernstein (1880-1968)
+    nació en Odessa, entonces parte del Imperio Ruso. Estudió
+    en Göttingen bajo la supervisión de David Hilbert. En su
+    tesis doctoral, presentada en 1904 en la Sorbonne de Paris,
+    resolvió el 19º problema de Hilbert sobre la solución
+    analítica de ecuaciones diferenciales
+    elípticas.}<em class="textbf">&nbsp;de</em> $f$ \index{polinomio!de Bernstein}es
+  el polinomio
+  \begin{equation*}
+    \beta_{n}(t)=\beta_{f,n}(t):=\sum_{k=0}^{n} f\bigl( 
+      \tfrac{k}{n}\bigr) \gamma_{n,k}(t).
+  \end{equation*}
+</div>
+</p>
+<p>
+\begin{bio}[H]
+\centering
+\includegraphics[width=.3\textwidth]{./fotos/calcasdos/Snbernstein.jpg}\\[5pt]
+\includegraphics[width=.27\textwidth]{./fotos/calcasdos/Snbernstein.pdf}\\[5pt]
+ \bfseries Sergei Bernstein
+\end{bio}
+</p>
+<p>
+Se tiene el siguiente resultado.
+<div class="theorem">[Bernstein]
+\label{teoaproxb}\index{teorema!de aproximación de Bernstein}Sea
+  $f\colon[0,1]\rightarrow \mathbb{R}$ una función continua. La
+  sucesión de polinomios de Bernstein $(\beta_{f,n})$ converge
+  uniformemente a $f$ en $[0,1]$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\varepsilon >0$. Como $f$ es uniformemente continua, existe
+  $\delta >0$ tal que
+  \begin{equation}
+    \left\vert f(s)-f(t)\right\vert <\tfrac{\varepsilon }{2}\text{\qquad si }\left\vert s-t\right\vert <\delta .
+  \label{conu}
+  \end{equation}
+  Fijemos $t\in [0,1]$. Multiplicando la igualdad (\ref{for1})
+  por $f(t) $ obtenemos que
+  \begin{equation*}
+    f(t)=\sum_{k=0}^{n}f(t)\gamma_{n,k}(t)\text{\qquad }\forall n\in 
+    \mathbb{N}.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation}
+    \left\vert f(t)-\beta_{f,n}(t)\right\vert =\left\vert
+      \sum_{k=0}^{n}\bigl(f(t)-f\bigl( \tfrac{k}{n}\bigr)\bigr)\gamma
+     _{n,k}(t)\right\vert \leq \sum_{k=0}^{n}\left\vert f(t)-f\bigl( \tfrac{k}{n}\bigr) \right\vert \gamma_{n,k}(t).\label{for9}
+  \end{equation}
+  Probaremos que el lado derecho de esta desigualdad es menor que
+  $\varepsilon $ si $n$ satisface
+  \begin{equation}
+    n\geq \max \left\{ \frac{1}{\delta^{4}},\frac{\left\Vert f\right\Vert
+       _{\infty }^{2}}{\varepsilon^{2}}\right\} .\label{for5}
+  \end{equation}
+</p>
+<p>
+  Para ello consideremos los conjuntos
+  \begin{align*}
+    I_{1} &:=\Bigl\{ k\in \mathbb{N}\cup \left\{0\right\}:0\leq k\leq n,\text{ &nbsp;}\left\vert \tfrac{k}{n}-t\right\vert <\left( \tfrac{1}{n}\right)^{\frac{1}{4}}\Bigr\} , \\
+    I_{2} &:=\bigl\{k\in \mathbb{N}\cup \left\{0\right\}:0\leq k\leq n,\text{ }k\notin
+    I_{1}\bigr\},
+  \end{align*}
+  y tomemos una $n$ que cumpla (\ref{for5}). Entonces $\left(
+    \frac{1}{n}\right)^{\frac{1}{4}}\leq \delta $, y se sigue de
+  (\ref{conu}) y de (\ref{for1}) que
+  \begin{equation}
+    \sum_{k\in I_{1}}\left\vert f(t)-f\bigl( \tfrac{k}{n}\bigr) \right\vert
+    \gamma_{n,k}(t)<\sum_{k\in I_{1}}\frac{\varepsilon }{2}\gamma_{n,k}(t)\leq 
+    \frac{\varepsilon }{2}\sum_{k=0}^{n}\gamma_{n,k}(t)=\frac{\varepsilon }{2}.\label{for8}
+  \end{equation}
+  Por otra parte, si $k\in I_{2}$ entonces $\bigl(t-\frac{k}{n}\bigr)^{-2}\leq
+  \sqrt{n}$ &nbsp;y, en consecuencia,
+  \begin{align}
+    \sum_{k\in I_{2}}\left\vert f(t)-f\bigl( \tfrac{k}{n}\bigr) \right\vert
+    \gamma_{n,k}(t) &\leq \sum_{k\in I_{2}}2\left\Vert f\right\Vert_{\infty
+    }\gamma_{n,k}(t)  \notag \\
+    &=2\left\Vert f\right\Vert_{\infty }\sum_{k\in I_{2}}\frac{\bigl(t-\frac{k}{n}\bigr)^{2}}{\bigl(t-\frac{k}{n}\bigr)^{2}}\gamma_{n,k}(t)  \notag \\
+    &\leq 2\left\Vert f\right\Vert_{\infty }\sqrt{n}\sum_{k\in I_{2}}\bigl( t-\tfrac{k}{n}\bigr)^{2}\gamma_{n,k}(t).\label{for7}
+  \end{align}
+  Probaremos ahora que
+  \begin{equation}
+    \sum_{k=0}^{n}\bigl( t-\tfrac{k}{n}\bigr)^{2}\gamma_{n,k}(t)\leq 
+    \frac{1}{4n}\text{\qquad }\forall n\in \mathbb{N}.\label{for4}
+  \end{equation}
+  Multiplicando la igualdad (\ref{for1}) por $t^{2}$, la igualdad
+  (\ref{for2}) por $-\frac{2}{n}t$, y la suma de las igualdades
+  (\ref{for2}) y (\ref{for3}) por $\frac{1}{n^{2}}$ obtenemos,
+  respectivamente,
+  \begin{align*}
+    t^{2} &=\sum_{k=0}^{n}t^{2}\gamma_{n,k}(t), \\
+    -2t^{2} &=\sum_{k=0}^{n}-2\tfrac{k}{n}t\gamma_{n,k}(t), \\
+    \left( 1-\tfrac{1}{n}\right) t^{2}+\tfrac{1}{n}t &=\sum_{k=0}^{n}\tfrac{k^{2}}{n^{2}}\gamma_{n,k}(t).
+  \end{align*}
+  Sumando estas tres igualdades obtenemos
+  \begin{equation}
+    \frac{1}{n}(t-t^{2})=\sum_{k=0}^{n}\bigl( t-\tfrac{k}{n}\bigr)^{2}\gamma
+   _{n,k}(t).\label{for6}
+  \end{equation}
+  Observa que $\max_{t\in [0,1]}(t-t^{2})=\frac{1}{4}$. En
+  consecuencia, (\ref{for6}) implica (\ref{for4}).
+</p>
+<p>
+  Si $n$ satisface (\ref{for5}) entonces $\frac{\left\Vert
+      f\right\Vert_{\infty }}{\sqrt{n}}\leq \varepsilon $. Por tanto,
+  (\ref{for7}) y (\ref{for4}) implican que
+  \begin{equation}
+    \sum_{k\in I_{2}}\left\vert f(t)-f\bigl( \tfrac{k}{n}\bigr) \right\vert
+    \gamma_{n,k}(t)\leq \frac{\varepsilon }{2}.\label{for11}
+  \end{equation}
+  De las desigualdades (\ref{for9}), (\ref{for8}) y (\ref{for11})
+  obtenemos que, si $n$ satisface (\ref{for5}), entonces
+  \begin{align*}
+    \left\vert f(t)-\beta_{f,n}(t)\right\vert &\leq \sum_{k=0}^{n}\left\vert
+      f(t)-f\bigl( \tfrac{k}{n}\bigr) \right\vert \gamma_{n,k}(t) \\
+    &=\sum_{k\in I_{1}}\left\vert f(t)-f\bigl( \tfrac{k}{n}\bigr) \right\vert
+    \gamma_{n,k}(t)+\sum_{k\in I_{2}}\left\vert f(t)-f\bigl( \tfrac{k}{n}\bigr)
+    \right\vert \gamma_{n,k}(t)<\varepsilon
+  \end{align*}
+  para toda $t\in [0,1]$. Es decir,
+  \begin{equation}
+    \left\Vert f-\beta_{f,n}\right\Vert_{\infty }<\varepsilon \text{\qquad si
+      &nbsp;}n\geq \max \left\{ \frac{1}{\delta^{4}},\frac{\left\Vert f\right\Vert
+       _{\infty }^{2}}{\varepsilon^{2}}\right\} .\label{for10}
+  \end{equation}
+  Esto concluye la demostración.
+</div>
+</p>
+<p>
+Observa que la fórmula (\ref{for10}) nos da una estimación del
+error, en términos de $f$, en cada paso de la aproximación.
+</p>
+<p>
+El siguiente resultado es consecuencia inmediata del teorema anterior.
+</p>
+<p>
+<div class="theorem">[de aproximación de Weierstrass]
+\label{teoaproxw}\index{teorema!de aproximación de
+    Weierstrass}Sea $f\colon[a,b]\rightarrow
+  \mathbb{R}$ una función continua. Entonces existe una
+  sucesión de polinomios $(p_{n})$ que converge uniformemente a
+  $f$ en $[a,b]$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Este resultado se obtiene del anterior mediante un cambio de
+  variable. Específicamente, sea $\rho \colon[0,1]\rightarrow [a,b]$ la función dada por $\rho (t):=(1-t)a+tb$. Aplicando el
+  Teorema~\ref{teoaproxb} a la función $g:=f\circ \rho $ obtenemos
+  que
+  \begin{equation*}
+    \beta_{g,n}\rightarrow g\text{\qquad en &nbsp;}\mathcal{C}^{0}[0,1].
+  \end{equation*}
+  La función $p_{n}:=\beta_{g,n}\circ \rho^{-1}$ es un polinomio
+  y cumple que
+  \begin{equation*}
+    \left\Vert p_{n}-f\right\Vert_{\infty }=\max_{s\in [a,b]}\left\vert
+      p_{n}(s)-f(s)\right\vert =\max_{t\in [0,1]}\left\vert \beta
+     _{g,n}(t)-g(t)\right\vert =\left\Vert \beta_{g,n}-g\right\Vert_{\infty }.
+  \end{equation*}
+  En consecuencia, $p_{n}\rightarrow f$ en $\mathcal{C}^{0}[a,b]$.
+</div>
+</p>
+<p>
+La compacidad del dominio de $f$ jugó un papel importante en la
+demostración del Teorema~\ref{teoaproxb} para asegurar la
+continuidad uniforme de $f$. El siguiente ejemplo muestra que el
+Teorema~\ref{teoaproxw} no es válido, en general, si el dominio no
+es compacto.
+</p>
+<p>
+<div class="example">
+  Sea $f(t)=\sen\frac{1}{t}$, $t\in (0,1]$. Ninguna sucesión
+  de polinomios converge uniformemente a $f$ en $(0,1]$.
+\begin{figure}[htb]
+  \centering
+  \input{./figuras-tikz/sen-1-entre-t.tikz}
+   \caption{}\label{fig:8.2}
+\end{figure}
+</div>
+</p>
+<p>
+<div class="proof">
+  Argumentando por contradicción, supongamos que existe una
+  sucesión de polinomios $(p_{k})$ que converge uniformemente a
+  $f$ en $(0,1]$. Entonces $(p_{k})$ converge a $f$ en
+  $\mathcal{B}((0,1],\mathbb{R})$ (ver Proposición~\ref{convB=cu})
+  y, por tanto, es de Cauchy en $\mathcal{B}((0,1],\mathbb{R})$. Es
+  decir, dada $\varepsilon >0$ existe $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \left\vert p_{k}(t)-p_{j}(t)\right\vert <\varepsilon \text{\qquad }\forall
+    t\in \left( 0,1\right] \text{, &nbsp;}\forall k,j\geq k_{0}.
+  \end{equation*}
+  Como la función $t\mapsto \left\vert
+    p_{k}(t)-p_{j}(t)\right\vert $ es continua en todo $\mathbb{R}$,
+  la desigualdad anterior implica que
+  \begin{equation*}
+    \left\vert p_{k}(0)-p_{j}(0)\right\vert \leq \varepsilon \text{\qquad }\forall k,j\geq k_{0}.
+  \end{equation*}
+  Esto demuestra que $(p_{k})$ es de Cauchy en $\mathcal{C}^{0}[0,1]$.
+  Por tanto, como $\mathcal{C}^{0}[0,1]$ es completo (ver
+  Teorema~\ref{funcacotcompl}), existe $g\in \mathcal{C}^{0}[0,1]$ tal
+  que
+  \begin{equation*}
+    p_{k}\rightarrow g\text{\qquad en &nbsp;}\mathcal{C}^{0}[0,1].
+  \end{equation*}
+  En particular, se cumple que
+  \begin{equation*}
+    g(t)=\lim_{k\rightarrow \infty }p_{k}(t)=\sen\tfrac{1}{t}\text{\qquad }\forall t\in (0,1].
+  \end{equation*}
+  Como $g$ es continua en $[0,1]$, se tiene entonces que
+  \begin{equation*}
+    \lim_{n\rightarrow \infty }\sen\tfrac{n\pi }{2}=\lim_{n\rightarrow
+      \infty }g\left( \tfrac{2}{n\pi }\right) =g(0),
+  \end{equation*}
+  lo cual es una contradicción, ya que la sucesión $\left(
+    \sen\frac{n\pi }{2}\right) $ no converge.
+</div>
+</p>
+<p>
+<h3 id="sec8-2">El teorema de Stone-Weierstrass</h3>
+</p>
+<p>
+Sea $X$ un espacio métrico.
+</p>
+<p>
+<div class="definition">
+  Un subconjunto $A$ de $X$ es <em class="textbf">denso en</em> $X$ si $\
+  \overline{A}=X$, \index{conjunto!denso}es decir, si para todo $x\in
+  X$ existe una sucesión $(a_{k})$ en $A$ tal que
+  $a_{k}\rightarrow x$ en $X$.
+</div>
+</p>
+<p>
+Por ejemplo, el conjunto $\mathbb{Q}$ de los números racionales es
+denso en $\mathbb{R}$.
+</p>
+<p>
+Denotemos por $\mathbb{R}[t]$ al conjunto de todos los
+polinomios
+\begin{equation*}
+  p\left( t\right) =\alpha_{0}+\alpha_{1}t+\cdots +\alpha_{n}t^{n},\text{\qquad }n\in \mathbb{N}\cup \left\{0\right\},\text{ &nbsp;}\alpha_{i}\in 
+  \mathbb{R}\text{,}
+\end{equation*}
+con coeficientes reales. El Teorema~\ref{teoaproxw} afirma que el
+conjunto de funciones polinomiales en $[a,b]$,
+\begin{equation*}
+  \mathcal{P}\left[ a,b\right] :=\left\{p\mid_{[a.b]}\,:p\in \mathbb{R}\!\left[ t\right] \right\},
+\end{equation*}
+es denso en $\mathcal{C}^{0}[a,b]$. En esta sección probaremos una
+generalización de este resultado, conocido como el teorema de
+Stone\footnote{Marshall Harvey Stone (1903-1989) nació en Nueva
+  York. Estudió en la Universidad de Harvard, donde obtuvo el
+  doctorado bajo la supervisión de George David Birkhoff. Fue
+  profesor en esa universidad.}-Weierstrass.
+\begin{bio}[H]
+\centering
+\includegraphics[width=.3\textwidth]{./fotos/calcasdos/Frechet.png}\\[5pt]
+\includegraphics[width=.3\textwidth]{./fotos/calcasdos/Stone_3.pdf}\\[5pt]
+ \bfseries Marshall Stone
+\end{bio}
+</p>
+<p>
+Supondremos de aquí en adelante que $K$ es un espacio métrico
+compacto y, por simplicidad, denotaremos por 
+\index{espacio!C ala0K@$\mathcal{C}^{0}(K)$}
+\begin{equation*}
+  \mathcal{C}^{0}(K):=\mathcal{C}^{0}(K,\mathbb{R})
+\end{equation*}
+al espacio de funciones continuas $f\colon K\rightarrow \mathbb{R}$ con la
+norma uniforme
+\begin{equation*}
+  \left\Vert f\right\Vert_{\infty }=\max_{x\in K}\left\vert f(x)\right\vert .
+\end{equation*}
+Observa que $\mathcal{C}^{0}(K)$ no sólo es un espacio vectorial
+sino que cuenta además con un producto, definido como sigue:
+\begin{equation*}
+  fg\colon K\rightarrow \mathbb{R},\text{\qquad }(fg)(x):=f(x)g(x).
+\end{equation*}
+Este producto le da al espacio vectorial $\mathcal{C}^{0}(K)$ la
+estructura de una $\mathbb{R}$-álgebra con unidad [Ejercicio
+\ref{algebra}]. La unidad es la función constante igual a $1$, a
+la que denotamos por $1$.
+</p>
+<p>
+El siguiente resultado da condiciones suficientes para que un
+subconjunto $\mathcal{A}$ de $\mathcal{C}^{0}(K)$ sea denso en
+$\mathcal{C}^{0}(K)$.
+</p>
+<p>
+<div class="theorem">[Stone-Weierstrass]
+\label{teosw}\index{teorema!de Stone-Weierstrass}Sea $K$ un espacio
+  métrico compacto y sea $\mathcal{A}$ un subconjunto de
+  $\mathcal{C}^{0}(K)$&nbsp;con las siguientes propiedades:
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] $\lambda \varphi +\mu \psi \in \mathcal{A}$\quad para
+    cualesquiera $&nbsp;\varphi ,\psi \in \mathcal{A}$ y $\lambda ,\mu \in
+    \mathbb{R} $.
+</p>
+<p>
+  \item[(b)] $\varphi \psi \in \mathcal{A}$\quad para cualesquiera
+    $\varphi ,\psi \in \mathcal{A}$.
+</p>
+<p>
+  \item[(c)] $1\in \mathcal{A}$.
+</p>
+<p>
+  \item[(d)] Dados $x_{1}\neq x_{2}$ en $K$, existe $\varphi \in
+    \mathcal{A}$ tal que $\varphi (x_{1})\neq \varphi (x_{2})$.
+  \end{enumerate}
+</p>
+<p>
+  Entonces $\mathcal{A}$ es denso en $\mathcal{C}^{0}(K)$, es decir,
+  dada una función continua $f\colon K\rightarrow \mathbb{R}$ existe una
+  sucesión $(\varphi_{k})$ de funciones en $\mathcal{A}$ que
+  converge uniformemente a $f $ en $K$.
+</div>
+</p>
+<p>
+En términos algebraicos, las primeras tres condiciones <em class="emph">(a),
+  (b)</em> y <em class="emph">(c)</em> se expresan diciendo que $\mathcal{A}$ <em class="emph">es
+  una</em> $\mathbb{R}$<em class="emph">-subálgebra con unidad de la
+</em>$\mathbb{R}$<em class="emph">-álgebra de funciones continuas</em>
+$\mathcal{C}^{0}(K)$. La propiedad <em class="emph">(d)</em> suele expresarse
+diciendo que $\mathcal{A}$ <em class="emph">separa puntos</em>.
+</p>
+<p>
+Para demostrar el teorema de Stone-Weierstrass usaremos los siguientes
+cuatro lemas.
+</p>
+<p>
+<div id="lemsw1" class="lemma">
+Dados $x_{1}\neq x_{2}$ en $K$ &nbsp;y&nbsp;$&nbsp;c_{1},c_{2}\in
+  \mathbb{R}$, existe $\psi \in \mathcal{A}$ tal que $\psi
+  (x_{1})=c_{1}$ y $\psi (x_{2})=c_{2}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\varphi \in \mathcal{A}$ tal que $\varphi (x_{1})\neq \varphi
+  (x_{2})$. Como el determinante
+  \begin{equation*}
+      \begin{vmatrix}
+        \varphi (x_{1}) & 1 \\
+        \varphi (x_{2}) & 1
+      \end{vmatrix}
+      \neq 0,
+  \end{equation*}
+  existen $\lambda ,\mu \in \mathbb{R}$ tales que
+  \begin{align}
+    \lambda \varphi (x_{1})+\mu &=c_{1}\label{c1} \\
+    \lambda \varphi (x_{2})+\mu &=c_{2}\label{c2}
+  \end{align}
+  De las propiedades <em class="emph">(a)</em> y <em class="emph">(c)</em> se sigue que la
+  función $\psi :=\lambda \varphi +\mu 1\in \mathcal{A}$. Las
+  igualdades (\ref{c1}) y (\ref{c2}) afirman que $\psi (x_{1})=c_{1}$
+  y $\psi (x_{2})=c_{2}$.
+</div>
+</p>
+<p>
+<div id="lemsw2" class="lemma">
+La cerradura $\overline{\mathcal{A}}$&nbsp;de
+  $\mathcal{A}$&nbsp;en $\mathcal{C}^{0}(K)$ también tiene las
+  propiedades (a), (b) y&nbsp;(c).
+</div>
+</p>
+<p>
+<div class="proof">
+  Es sencillo comprobar que $\overline{\mathcal{A}}$ tiene la
+  propiedad <em class="emph">(a)</em> [Ejercicio~\ref{cerrev}]. La propiedad
+  <em class="emph">(c)</em> es inmediata.  Probemos <em class="emph">(b)</em>\textsl{. }Dadas
+  $\varphi ,\psi \in \overline{\mathcal{A}} $ existen $\varphi
+ _{k},\psi_{k}\in \mathcal{A}$ tales que $\varphi_{k}\rightarrow
+  \varphi $ y $\psi_{k}\rightarrow \psi $ en $\mathcal{C}^{0}(K)$
+  (ver Proposición~\ref{cerrsuc}). Como toda sucesión
+  convergente está acotada, existe $C>0$ tal que $\left\Vert \psi
+   _{k}\right\Vert_{\infty }\leq C$ para toda $k$. En consecuencia,
+  \begin{align*}
+    \left\Vert \varphi \psi -\varphi_{k}\psi_{k}\right\Vert_{\infty } &\leq
+    \left\Vert \varphi (\psi -\psi_{k})\right\Vert_{\infty }+\left\Vert
+      (\varphi -\varphi_{k})\psi_{k}\right\Vert_{\infty } \\[5pt]
+    &\leq \left\Vert \varphi \right\Vert_{\infty }\left\Vert (\psi -\psi
+     _{k})\right\Vert_{\infty }+\left\Vert (\varphi -\varphi_{k})\right\Vert
+   _{\infty }\left\Vert \psi_{k}\right\Vert_{\infty } \\[5pt]
+    &\leq \left\Vert \varphi \right\Vert_{\infty }\left\Vert (\psi -\psi
+     _{k})\right\Vert_{\infty }+C\left\Vert (\varphi -\varphi_{k})\right\Vert
+   _{\infty }
+  \end{align*}
+  Tomando el límite cuando $k\rightarrow \infty $ en ambos lados
+  de la desigualdad obtenemos que $\varphi_{k}\psi_{k}\rightarrow
+  \varphi \psi $.  Dado que $\varphi_{k}\psi_{k}\in \mathcal{A}$,
+  concluimos que $\varphi \psi \in \overline{\mathcal{A}}$ (ver
+  Proposición~\ref{cerrsuc}).
+</div>
+</p>
+<p>
+<div id="lemsw3" class="lemma">
+Si $\varphi \in \overline{\mathcal{A}}$, entonces
+  $\left\vert \varphi \right\vert \in \overline{\mathcal{A}}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Como $\varphi $ es continua y $K$ es compacto, se tiene que
+  $\varphi (K)$ es acotado en $\mathbb{R}$ (ver
+  Corolario~\ref{contencomp}). Por tanto, $\varphi (K)$ está contenido
+  en algún intervalo $[a,b]$. Por el Teorema~\ref{teoaproxw} existe
+  una sucesión de polinomios $p_{k}$ que converge uniformemente a la
+  función valor absoluto $\left\vert \cdot \right\vert $ en el
+  intervalo $[a,b]$, es decir, dada $\varepsilon >0$ existe
+  $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \left\vert p_{k}(t)-\left\vert t\right\vert \right\vert <\varepsilon \text{\qquad }\forall k\geq k_{0}\text{ &nbsp;}\forall t\in [a,b].
+  \end{equation*}
+  Esta desigualdad se cumple, en particular, para $t=\varphi (x)$ con
+  $x\in K$. Por tanto,
+  \begin{equation*}
+    \left\Vert p_{k}\circ \varphi -\left\vert \varphi \right\vert \right\Vert
+   _{\infty }=\max_{x\in K}\left\vert p_{k}(\varphi (x))-\left\vert \varphi
+        (x)\right\vert \right\vert <\varepsilon \text{\qquad }\forall k\geq k_{0},
+  \end{equation*}
+  es decir, $p_{k}\circ \varphi \rightarrow \left\vert \varphi
+  \right\vert $ en $\mathcal{C}^{0}(K)$.
+</p>
+<p>
+  Por otra parte, el Lema~\ref{lemsw2} asegura que, para cualquier
+  polinomio $p(t)=\alpha_{0}+\alpha_{1}t+\cdots +\alpha_{m}t^{m}$,
+  se cumple que
+  \begin{equation*}
+    p\circ \varphi =\alpha_{0}+\alpha_{1}\varphi +\cdots +\alpha_{m}\varphi
+   ^{m}\in \overline{\mathcal{A}}.
+  \end{equation*}
+  Por tanto, $\left\vert \varphi \right\vert \in
+  \overline{\mathcal{A}}$.
+</div>
+</p>
+<p>
+Dadas dos funciones $f,g\colon K\rightarrow \mathbb{R}$ denotamos por $\max
+\left\{f,g\right\}$, $\min \left\{f,g\right\}\colon K\rightarrow \mathbb{R}$ a las funciones
+\begin{equation*}
+  (\max \left\{f,g\right\})(x):=\max \left\{f(x),g(x)\right\},\text{\qquad }(\min \left\{f,g\right\})(x):=\min
+  \left\{f(x),g(x)\right\}.
+\end{equation*}
+<div id="lemsw4" class="lemma">
+Si $\varphi ,\psi \in \overline{\mathcal{A}}$.
+  entonces $&nbsp;\max \left\{\varphi ,\psi \right\},\min \left\{\varphi ,\psi \right\}\in
+  \overline{\mathcal{A}}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Basta observar que
+  \begin{align}
+    \max \left\{\varphi ,\psi \right\} &=\frac{1}{2}\left( \varphi +\psi +\left\vert
+        \varphi -\psi \right\vert \right)\label{idmax} \\
+    \min \left\{\varphi ,\psi \right\} &=\frac{1}{2}\left( \varphi +\psi -\left\vert
+        \varphi -\psi \right\vert \right)\label{idmin}
+  \end{align}
+  Como $\overline{\mathcal{A}}$ satisface la propiedad <em class="emph">(a)</em>, el
+  lema anterior implica que $\max \left\{\varphi ,\psi \right\},\min \left\{\varphi
+  ,\psi \right\}\in \overline{\mathcal{A}}$.
+</div>
+</p>
+<p>
+\medskip
+</p>
+<p>
+<div class="proof">[Demostración del Teorema~\ref{teosw}.]
+<em class="textbf">Demostración del Teorema~\ref{teosw</em>.\qquad }
+Sea
+$f\colon K\rightarrow \mathbb{R}$ una función continua y sea
+$\varepsilon >0$. El Lema~\ref{lemsw1} asegura que, para cada par de
+puntos $x,y\in K$, podemos escoger $\varphi_{x,y}\in \mathcal{A}$ tal
+que $\varphi_{x,y}(x)=f(x)$ y $\varphi_{x,y}(y)=f(y)$.
+</p>
+<p>
+Fijemos $x\in K$. Como $\varphi_{x,y}-f$ es continua y $\varphi
+_{x,y}(y)-f(y)=0$, existe $\delta_{y}>0$ tal que
+\begin{equation}
+  \left\vert \varphi_{x,y}(z)-f(z)\right\vert <\varepsilon \text{\qquad }\forall z\in B_{K}(y,\delta_{y})\label{sw0}
+\end{equation}
+y, como $K$ es compacto, existen $y_{1},\dots,y_{m}\in K$ tales que
+\begin{equation*}
+  K\subset B_{K}(y_{1},\delta_{y_{1}})\cup \cdots \cup B_{K}(y_{m},\delta
+ _{y_{m}}).
+\end{equation*}
+Sea $\varphi_{x}:=\max \left\{\varphi_{x,y_{1}},\dots,\varphi
+_{x,y_{m}}\right\}$. El Lema~\ref{lemsw4} asegura que $\varphi_{x}\in
+\overline{\mathcal{A}}$. Puesto que cada $z\in K$ pertenece a alguna
+$B(y_{i},\delta_{y_{i}})$, la desigualdad (\ref{sw0}) implica que
+\begin{equation}
+  \varphi_{x}(z)-f(z)>-\varepsilon \text{\qquad }\forall z\in K.\label{sw1}
+\end{equation}
+</p>
+<p>
+Por otra parte, dado que $\varphi_{x,y}(x)=f(x)$ para todo $y\in K$,
+se tiene que $\varphi_{x}(x)=f(x)$ y, como $\varphi_{x}-f$ es
+continua, existe $\gamma_{x}>0$ tal que
+\begin{equation}
+  \left\vert \varphi_{x}(z)-f(z)\right\vert <\varepsilon \text{\qquad }\forall z\in B_{K}(x,\gamma_{x}).\label{sw00}
+\end{equation}
+De la compacidad de $K$ se sigue que existen $x_{1},\dots,x_{n}\in K$
+tales que
+\begin{equation*}
+  K\subset B_{K}(x_{1},\gamma_{x_{1}})\cup \cdots \cup B_{K}(x_{n},\gamma
+ _{x_{n}}).
+\end{equation*}
+Sea $\varphi :=\min \left\{\varphi_{x_{1}},\dots,\varphi_{x_{n}}\right\}$. El
+Lema~\ref{lemsw4} asegura que $\varphi \in \overline{\mathcal{A}}$.
+Puesto que cada $z\in K$ pertenece a alguna $B(x_{i},\gamma
+_{x_{i}})$, usando la desigualdad (\ref{sw00}) obtenemos que
+\begin{equation}
+  \varphi (z)-f(z)<\varepsilon \text{\qquad }\forall z\in K.\label{sw2}
+\end{equation}
+Y, como la desigualdad (\ref{sw1}) vale para toda $x\in K$, se tiene
+además que
+\begin{equation}
+  \varphi (z)-f(z)>-\varepsilon \text{\qquad }\forall z\in K.\label{sw3}
+\end{equation}
+Las desigualdades (\ref{sw2}) y (\ref{sw3}) implican que $\left\Vert
+  \varphi -f\right\Vert_{\infty }<\varepsilon $. Por consiguiente,
+dado que $\varphi \in \overline{\mathcal{A}}$, concluimos que $f\in
+\overline{\mathcal{A}}$.
+</div>
+\medskip
+</p>
+<p>
+Denotemos por $\mathbb{R}[ x_{1},\dots,x_{n}] $ al conjunto
+de polinomios
+\begin{equation*}
+  p(x_{1},\dots,x_{n})=\sum_{i=1}^{m}\alpha_{i}x_{1}^{k_{i,1}}\cdots
+  x_{n}^{k_{i,n}},\text{\qquad }a_{i}\in \mathbb{R},\text{\quad }k_{i,j}\in 
+  \mathbb{N}\cup \left\{0\right\},
+\end{equation*}
+en $n$ variables con coeficientes reales. Una consecuencia interesante
+del teorema de Stone-Weierstrass es la siguiente.
+</p>
+<p>
+<div id="aproxpoli" class="corollary">
+Sea $K$ un subconjunto compacto de
+  $\mathbb{R}^{n}$. Entonces, dada una función continua
+  $f\colon K\rightarrow \mathbb{R}$, existe una sucesión de polinomios
+  $\left( p_{k}\right) $ en $\mathbb{R}[ x_{1},\dots,x_{n}] $
+  que converge uniformemente a $f$ en $K$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Obviamente el conjunto
+  \begin{equation*}
+    \mathcal{P}(K):=\left\{p\mid_{K}\,:p\in \mathbb{R}[ x_{1},\dots,x_{n}]
+    \right\}
+  \end{equation*}
+  satisface las condiciones <em class="emph">(a), (b) </em>y <em class="emph">(c)</em> del
+  Teorema~\ref{teosw}.
+</p>
+<p>
+  Consideremos los polinomios $\pi_{i}(x_{1},\dots,x_{n})=x_{i}$,
+  $i=1,\dots,n$. Si $\xi ,\eta \in K$ son puntos distintos, entonces al
+  menos una de sus coordenadas es distinta, digamos que $\xi_{i}\neq
+  \eta_{i}$. Entonces, $\pi_{i}(\xi )=\xi_{i}\neq \eta_{i}=\pi
+ _{i}(\eta )$. Esto prueba que $\mathcal{P}(K)$ satisface la
+  condición <em class="emph">(d). </em>
+</p>
+<p>
+  El Teorema~\ref{teosw} asegura entonces que existe una sucesión
+  de polinomios $\left( p_{k}\right) $ en $\mathbb{R}[
+    x_{1},\dots,x_{n}]$ que converge uniformemente a $f$ en $K$.
+</div>
+</p>
+<p>
+<h3 id="sec8-3">Ejercicios</h3>
+</p>
+<p>
+<div id="ejfor3" class="exercise">
+Demuestra la igualdad <em class="emph">(\ref{for3})</em>.
+</div>
+</p>
+<p>
+<div id="trans" class="exercise">
+Sea $X$ un espacio métrico. Prueba que, si
+  $Z\subset Y\subset X$ y $Z$ es denso en $X$, entonces $Y$ es denso
+  en $X$.
+</div>
+</p>
+<p>
+<div id="imdens" class="exercise">
+Prueba que, si $\phi \colon X\rightarrow Y$ es continua y
+  suprayectiva y $A$ es denso en $X$, entonces $\phi (A)$ es denso en
+  $Y$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que el conjunto
+  \begin{equation*}
+    \mathbb{Q}^{n}:=\left\{(q_{1},\dots,q_{n})\in \mathbb{R}^{n}:q_{k}\in \mathbb{Q}\text{ &nbsp;}\forall k=1,\dots,n\right\}
+  \end{equation*}
+  es denso en $\mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\mathbb{Q}^{\infty }$ el conjunto de todas las sucesiones
+  $(q_{1},\dots,q_{k},0,0,\dots)$ de números racionales tales que
+  sólo un número finito de sus términos es distinto de
+  cero.
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Prueba que $\mathbb{Q}^{\infty }$ es denso en $\ell_{p}$
+    para todo $p\in [1,\infty )$.
+</p>
+<p>
+  \item[(b)] ¿Es $\mathbb{Q}^{\infty }$ denso en
+    $\ell_{\infty }$?
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\mathbb{Q}[ t]$ el conjunto de todos los polinomios
+  \begin{equation*}
+    q\left( t\right) =q_{0}+q_{1}t+\cdots +q_{n}t^{n},\text{ &nbsp;}n\in \mathbb{N}\cup \left\{0\right\},\text{ }q_{i}\in \mathbb{Q}\text{,}
+  \end{equation*}
+  con coeficientes racionales. Prueba que
+  \begin{equation*}
+    \mathcal{P}_{\mathbb{Q}}[ a,b] :=\left\{q\mid_{[a.b]}\,:q\in 
+    \mathbb{Q}[ t] \right\}
+  \end{equation*}
+  es denso en $\mathcal{C}^{0}[a,b]$.
+</div>
+</p>
+<p>
+<div id="nonum" class="exercise">
+Se dice que un conjunto $A$ es <em class="textbf">a lo más
+    numerable</em> \index{conjunto!a lo más numerable}si existe una
+  función inyectiva $i\colon A\rightarrow \mathbb{N}$. Demuestra las
+  siguientes afirmaciones:
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] El conjunto $\mathbb{Q}$ de los números racionales es
+    a lo más numerable.
+</p>
+<p>
+  \item[(b)] El conjunto de todas las sucesiones $(b_{k})$&nbsp;tales que
+    $b_{k}\in \left\{0,1\right\}$&nbsp;no es a lo más numerable.
+</p>
+<p>
+  \item[(c)] Prueba que $\mathbb{R}$ no es a lo más
+    numerable. <em class="emph">(Sugerencia: Usa el hecho de que todo número
+      real tiene una representación binaria.)</em>
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Un espacio métrico $X$ se llama <em class="textbf">separable</em>
+  \index{espacio!separable}si contiene un subconjunto a lo más
+  numerable que es denso en $X$. Demuestra las siguientes
+  afirmaciones:
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Ningún subconjunto propio de un espacio métrico
+    discreto $X_{\disc}$ es denso en $X_{\disc}$.
+</p>
+<p>
+  \item[(b)] Un espacio métrico discreto $X_{\disc}$ es separable
+    si y sólo si $X_{\disc}$ es a lo más numerable.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Investiga si los siguientes espacios métricos son o no
+  separables.
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] $\mathbb{R}_{p}^{n}$ &nbsp;con $p\in [1,\infty ]$.
+</p>
+<p>
+  \item[(b)] $\ell_{p}$ &nbsp;con $p\in [1,\infty ]$.
+</p>
+<p>
+  \item[(c)] $\mathcal{C}_{p}^{0}[a,b]$ &nbsp;con $p\in [1,\infty
+    ]$.
+</p>
+<p>
+  \item[(d)] $\mathcal{C}_{b}^{0}(\mathbb{R},\mathbb{R})$.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que todo espacio métrico compacto $X$ es
+  separable. <em class="emph">(Sugerencia: Para cada </em>$k\in \mathbb{N}$,
+  <em class="emph">toma un conjunto finito de bolas de radio
+  </em>$\frac{1}{k}$<em class="emph">&nbsp;cuya unión es </em>$X$.<em class="emph">&nbsp;Considera el
+    conjunto de centros de todas esas bolas.)</em>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\Omega $ un subconjunto abierto y acotado de $\mathbb{R}^{n}$.
+  Denotemos por $\mathcal{C}^{\infty }(\overline{\Omega })$ al
+  conjunto de todas las funciones
+  $f\colon\Omega \rightarrow \mathbb{R}$ que tienen derivadas
+  parciales de todos los órdenes en $\Omega $ y dichas derivadas
+  tienen una extensión continua a la cerradura de $\Omega $. Prueba
+  que $\mathcal{C}^{\infty }(\overline{\Omega })$ es denso en
+  $\mathcal{C}^{0}(\overline{\Omega })$.  <em class="emph">(Sugerencia: Usa el
+    Corolario~\ref{aproxpoli} y el Ejercicio~\ref{trans}.)</em>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $f\in \mathcal{C}^{0}[0,1]$ tal que
+  \begin{equation*}
+    \int_{0}^{1}f(x)x^{n}dx=0\text{\qquad }\forall n\in \mathbb{N}\cup \left\{0\right\}.
+  \end{equation*}
+  Prueba que
+  \begin{equation*}
+    \int_{0}^{1}f^{2}(x)dx=0
+  \end{equation*}
+  y concluye que $f(x)=0$ para todo $x\in [0,1]$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\mathbb{S}^{1}=\left\{(\cos \theta ,\sen \theta )\in
+  \mathbb{R}^{2}:0\leq \theta \leq 2\pi \right\}$ el círculo unitario
+  en $\mathbb{R}^{2}$. Prueba que cualquier función continua
+  $f\colon\mathbb{S}^{1}\rightarrow \mathbb{R}$ es el límite uniforme
+  de funciones de la forma
+  \begin{equation*}
+    \varphi (\cos \theta ,\sen \theta )=a_{0}+a_{1}\cos \theta +b_{1}\sen \theta
+    +\cdots +a_{n}\cos n\theta +b_{n}\sen n\theta
+  \end{equation*}
+  con $a_{i},b_{i}\in \mathbb{R}$, $n\in \mathbb{N}\cup \left\{0\right\}$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $X$ y $Y$ espacios métricos compactos. Prueba que cualquier
+  función continua $f\colon X\times Y\rightarrow \mathbb{R}$ es el
+  límite uniforme de funciones de la forma
+  \begin{equation*}
+    \varphi (x,y)=f_{1}(x)g_{1}(y)+\cdots +f_{n}(x)g_{n}(y),
+  \end{equation*}
+  con $f_{1},\dots,f_{n}\in \mathcal{C}^{0}(X)$, $g_{1},\dots,g_{n}\in
+  \mathcal{C}^{0}(Y)$ y $n\in \mathbb{N}$.
+</div>
+</p>
+<p>
+<div id="algebra" class="exercise">
+Investiga lo que es una $\mathbb{R}$-álgebra con
+  unidad&nbsp;y prueba que, para cualquier espacio métrico $X$, el
+  espacio $\mathcal{C}^{0}(X)$ es una $\mathbb{R}$-álgebra con
+  unidad.
+</div>
+</p>
+<p>
+<div id="cerrev" class="exercise">
+Sea $\mathcal{A}$ un subespacio vectorial de
+  $\mathcal{C}^{0}(X)$.&nbsp;Prueba que $\overline{\mathcal{A}}$ es un
+  subespacio vectorial de $\mathcal{C}^{0}(X)$. <em class="emph">(Sugerencia: Usa
+    el Ejercicio~\ref{contopev})</em>
+</div>
+</p>
+
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>
+
+

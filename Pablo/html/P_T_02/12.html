@@ -1,0 +1,2580 @@
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/12.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\sop}{\mathop{\rm sop}} $ 
+    $ \newcommand{\vol}{\mathop{\rm vol}\nolimits} $ 
+    $ \newcommand{\undercbrace}{\underbrace} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\menorque}{\mathrel{<}}$ 
+    $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 11;
+              }
+              </style>
+<h2 id="Cap-12">Funciones Lebesgue-integrables</h2>
+
+<p class="noj">
+En el capítulo anterior definimos la integral de una función
+continua con soporte compacto. Nuestro objetivo es extender la
+noción de integrabilidad a una clase más amplia de funciones.
+</p>
+<p>
+Empezaremos considerando aquellas funciones
+$g\colon \mathbb{R}^{n}\rightarrow \mathbb{R\cup \left\{\infty \right\}}$ que son
+supremos puntuales de sucesiones no decrecientes de funciones
+$g_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$. Denotaremos por
+$\mathcal{S}_{\ast }(\mathbb{R}^{n})$&nbsp;al conjunto de tales
+funciones. En virtud de la monotonía de la integral es razonable
+definir
+\begin{equation*}
+  \int_{\mathbb{R}^{n}}g:=\sup_{k\in \mathbb{N}}\int_{\mathbb{R}^{n}}g_{k}. 
+\end{equation*}
+Un resultado debido a Dini (ver Teorema <a href="tul/P_T_02/12.html#dini">12.2</a>) garantiza que esta
+integral está bien definida. Análogamente consideraremos el
+conjunto $\mathcal{S}^{\ast }(\mathbb{R}^{n})$ de aquellas funciones
+$h\colon \mathbb{R}^{n}\rightarrow \mathbb{R\cup \left\{-\infty \right\}}$ que son
+ínfimos puntuales de sucesiones no crecientes de funciones
+$h_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y definiremos
+\begin{equation*}
+  \int_{\mathbb{R}^{n}}h:=\inf_{k\in \mathbb{N}}\int_{\mathbb{R}^{n}}h_{k}.
+\end{equation*}
+Para aquellas funciones que pertenecen a
+$\mathcal{C}_{c}^{0}(\mathbb{R}^{n})=\mathcal{S}_{\ast
+}(\mathbb{R}^{n})\cap \mathcal{S}^{\ast }(\mathbb{R}^{n})$ ambas
+integrales coinciden con la integral definida en el capítulo
+anterior.
+</p>
+<p>
+En general, estas integrales no tienen por qué ser
+finitas. Más aún, el conjunto $\mathcal{S}_{\ast
+}(\mathbb{R}^{n})\cup \mathcal{S}^{\ast }(\mathbb{R}^{n})$ no es un
+espacio vectorial. Estos inconvenientes se resuelven del siguiente
+modo: considera el conjunto $\mathfrak{L}(\mathbb{R}^{n})$ de todas
+aquellas funciones $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ para las
+cuales
+\begin{align*}
+  -\infty &\menorque\sup \left\{ \int_{\mathbb{R}^{n}}h:h\in \mathcal{S}^{\ast }(\mathbb{R}^{n}),\text{ }h\leq f\right\}\\&{}=\inf \left\{ \int_{\mathbb{R}^{n}}g:g\in \mathcal{S}_{\ast }(\mathbb{R}^{n}),\text{ }g\geq f\right\}
+  \menorque\infty .
+\end{align*}
+Estas funciones se llaman Lebesgue-integrables y su integral se
+define como
+\begin{align*}
+  \int_{\mathbb{R}^{n}}f:={}&\sup \left\{ \int_{\mathbb{R}^{n}}h:h\in
+    \mathcal{S}^{\ast }(\mathbb{R}^{n}),\text{ }h\leq f\right\}\\
+{}={}&\inf \left\{ \int_{\mathbb{R}^{n}}g:g\in \mathcal{S}_{\ast }(\mathbb{R}^{n}),\text{ }g\geq f\right\} .
+\end{align*}
+</p>
+<p>
+Esta definición resulta complicada de manejar. Demostraremos que
+una función es Lebesgue-integrable si se puede aproximar, en un
+sentido adecuado, por una sucesión de funciones continuas con
+soporte compacto, y que su integral de Lebesgue es el límite de
+las integrales de dicha sucesión. Esta caracterización permite
+extender de manera sencilla las propiedades que demostramos en el
+capítulo anterior a este contexto más general. Probaremos que
+el conjunto $\mathfrak{L}(\mathbb{R}^{n})$ es un espacio vectorial,
+que la integral es lineal y monótona y que continúa
+satisfaciendo la fórmula de cambio lineal de variable. Los
+teoremas fundamentales de la teoría de integración de
+Lebesgue se demostrarán en el siguiente capítulo.
+</p>
+
+<h3 id="sec12-1">La integral de una función semicontinua</h3>
+
+<p class="noj">
+Considera el siguiente ejemplo.
+</p>
+
+<div id="volcubab" class="example">
+Sea $f_{k}\colon \mathbb{R}\rightarrow \mathbb{R}$ la
+  función
+  \begin{equation*}
+    f_{k}(t):=
+      \begin{cases}
+        kt & \text{si $t\in \left[ 0,\frac{1}{k}\right]$,}\\
+        1 & \text{si $t\in \left[ \frac{1}{k},1-\frac{1}{k}\right]$,}\\
+        k(1-t) & \text{si $t\in \left[ 1-\frac{1}{k},1\right]$},\\
+          0 & \text{si $t\notin[0,1]$.}
+      \end{cases}
+  \end{equation*}
+
+  <div id="fig:12-1" class="figure">
+  <img src="tul/P_T_02/figuras/Cap12-ejemplo-1.svg" height="200">
+  <div class="caption">
+  </div>                
+</div>
+
+<p class="noj">
+    Nota que $f_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R})$, que $f_{k}\leq
+  f_{k+1}$ para todo $k\in \mathbb{N}$ y que, para cada $t\in
+  \mathbb{R}$,
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }f_{k}(t)=
+      \begin{cases}
+        1 & \text{si $t\in (0,1)$,} \\
+        0 & \text{si $t\notin (0,1)$.}
+      \end{cases}
+  \end{equation*}
+   Además, como
+  \begin{equation*}
+    \int_{\mathbb{R}}f_{k}=1-\tfrac{1}{k},
+  \end{equation*}
+  se tiene que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}}f_{k}=1.
+  \end{equation*}
+</div>
+</p>
+<p>
+El ejemplo anterior sugiere la posibilidad de extender la integral a
+aquellas funciones $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+\left\{\infty \right\}$ que son el límite puntual de una sucesión
+creciente de funciones continuas con soporte compacto,
+definiéndola como el límite de las integrales de una tal
+sucesión. Para ello requerimos probar que dicho límite no
+depende de la sucesión elegida. El siguiente resultado nos
+permitirá obtener esa conclusión.
+</p>
+<p>
+En general, no es cierto que, si una sucesión de funciones
+continuas converge puntualmente a una función continua en un
+espacio compacto, entonces converge uniformemente (ver Ejemplo
+ <a href="tul/P_T_02/5.html#puntnounif">5.13</a>). Sin embargo, Dini
+demostró que esta afirmación sí es cierta si la
+sucesión es no decreciente.
+</p>
+
+<div id="foto:dini" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Dini.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Ulisse Dini
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Ulisse Dini (1845-1918)
+  nació en Pisa, Italia. Estudió en la Scuola Normale
+  Superiore, donde fue alumno de Enrico Betti, y en París, donde
+  fue alumno de Charles Hermite y Joseph Bertrand. Fue profesor de la
+  Universidad de Pisa y rector de la Scuola Normale Superiore.
+  </div>
+</div>
+
+<div class="theorem" id="dini">[Dini]
+Sea $K$ un espacio métrico
+  compacto y sean $f,f_{k}\in \mathcal{C}^{0}(K)$ tales que
+  \begin{equation*}
+    f_{1}\leq f_{2}\leq \cdots \leq f_{k}\leq f_{k+1}\leq \cdots
+  \end{equation*}
+  y
+  \begin{equation*}
+    f_{k}(x)\rightarrow f(x)\text{ &nbsp;para cada }x\in K.
+  \end{equation*}
+  Entonces $f_{k}\rightarrow f$ uniformemente en $K$.
+</div>
+<div class="proof">
+  Definimos $g_{k}:=f-f_{k}$. Entonces $g_{k}\geq g_{k+1}\geq 0$ para
+  todo $k\in \mathbb{N}$ y
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }g_{k}(x)=0\qquad \forall x\in K.
+  \end{equation*}
+  Sea $\varepsilon >0$. Para cada $x\in K$ elegimos $k_{x}\in
+  \mathbb{N}$ tal que
+  \begin{equation*}
+    g_{k}(x)\menorque\frac{\varepsilon }{2}\qquad \forall k\geq k_{x}.
+  \end{equation*}
+  Además, como $g_{k_{x}}$ es continua, existe $\delta_{x}>0$ tal
+  que
+  \begin{equation*}
+    \left\vert g_{k_{x}}(y)-g_{k_{x}}(x)\right\vert \menorque\frac{\varepsilon }{2}\qquad\text{si }d_{K}(y,x)\menorque\delta_{x}.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    g_{k}(y)\leq g_{k_{x}}(y)\leq \left\vert
+      g_{k_{x}}(y)-g_{k_{x}}(x)\right\vert +g_{k_{x}}(x)\menorque\varepsilon \text{\qquad
+      si &nbsp;}k\geq k_{x}\text{ &nbsp;y }d_{K}(y,x)\menorque\delta_{x}.
+  \end{equation*}
+  Como $K$ es compacto, existen $x_{1},\dots,x_{n}\in K$ tales que
+  \begin{equation*}
+    K\subset B_{K}(x_{1},\delta_{x_{1}})\cup \cdots \cup B_{K}(x_{n},\delta
+   _{x_{n}}).
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    g_{k}(y)\menorque\varepsilon \qquad \forall k\geq \max
+    \left\{k_{x_{1}},\dots,k_{x_{n}}\right\},\text{ }\forall y\in K.
+  \end{equation*}
+  Esto prueba que $f_{k}\rightarrow f$ uniformemente en $K$.
+</div>
+
+<p>
+Una consecuencia importante del teorema de Dini es la siguiente.
+</p>
+<p>
+<div id="cordini" class="corollary">
+Sean $f,f_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$
+  tales que
+  \begin{equation*}
+    f_{1}\leq f_{2}\leq \cdots \leq f_{k}\leq f_{k+1}\leq \cdots
+  \end{equation*}
+  y
+  \begin{equation*}
+    f_{k}(x)\rightarrow f(x)\text{ &nbsp;para cada }x\in \mathbb{R}^{n}.
+  \end{equation*}
+  Entonces
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}=\int_{\mathbb{R}^{n}}f.
+  \end{equation*}
+</div>
+<div class="proof">
+  Observa que, si $f(x)=0=f_{1}(x)$, entonces $f_{k}(x)=0$ para todo
+  $k\in \mathbb{N}$. En consecuencia, &nbsp;$\sop(f_{k})\subset$ $\sop(f)$
+  $\cup $$\sop(f_{1})=:K$ para todo $k\in \mathbb{N}$. Por el
+  Teorema <a href="tul/P_T_02/12.html#dini">12.2</a>, $f_{k}\rightarrow f$ uniformemente en $K$ y, por
+  tanto, en $\mathbb{R}^{n}$. Aplicando el Lema <a href="tul/P_T_02/11.html#lemhaar1">11.11</a>,
+  concluimos que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}=\int_{\mathbb{R}^{n}}f,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Si $f_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y $f_{k}\leq
+f_{k+1}$, por la monotonía de la integral se tiene que
+$\int_{\mathbb{R}^{n}}f_{k}\leq \int_{\mathbb{R}^{n}}f_{k+1}$. De modo
+que
+\begin{equation*}
+  \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}=\sup_{k\in \mathbb{N}}\int_{\mathbb{R}^{n}}f_{k}\in \mathbb{R}\cup \left\{\infty \right\}.
+\end{equation*}
+El siguiente resultado es consecuencia del Corolario <a href="tul/P_T_02/12.html#cordini">12.3</a>.
+</p>
+<p>
+<div id="indepsuc" class="corollary">
+Si $f_{k},g_{k}\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ cumplen que $f_{k}\leq f_{k+1}$
+  y $g_{k}\leq g_{k+1}$ para todo $k\in \mathbb{N}$ y $\sup_{k\in
+    \mathbb{N}}f_{k}(x)=\sup_{k\in \mathbb{N}}g_{k}(x)$ para cada
+  $x\in \mathbb{R}^{n}$, entonces
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}=\lim_{k\rightarrow
+      \infty }\int_{\mathbb{R}^{n}}g_{k}.
+  \end{equation*}
+</div>
+<div class="proof">
+  Fija $k\in \mathbb{N}$ y, para cada $j\in \mathbb{N}$, considera la
+  función $h_{j}:=\min \left\{f_{k},g_{j}\right\}$. Entonces
+  $h_{j}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ (ver
+  Ejercicio <a href="tul/P_T_02/11.html#minmaxenCc">11.34</a>), $&nbsp;h_{j}\leq h_{j+1}$,
+  $&nbsp;f_{k}(x)=\sup_{j\in \mathbb{N}}h_{j}(x)=\lim_{k\rightarrow \infty
+  }h_{j}(x)$
+  para cada $x\in \mathbb{R}^{n}$ &nbsp;y $&nbsp;h_{j}\leq g_{j}$. Aplicando
+  el Corolario <a href="tul/P_T_02/12.html#cordini">12.3</a> obtenemos
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f_{k}=\lim_{j\rightarrow \infty }\int_{\mathbb{R}^{n}}h_{j}\leq \lim_{j\rightarrow \infty }\int_{\mathbb{R}^{n}}g_{j}\qquad \forall k\in \mathbb{N}\text{.}
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}\leq \lim_{j\rightarrow
+      \infty }\int_{\mathbb{R}^{n}}g_{j}.
+  \end{equation*}
+  Intercambiando $f_{k}$ y $g_{k}$ obtenemos el resultado.
+</div>
+</p>
+<p>
+Denotamos por $\mathcal{S}_{\ast }(\mathbb{R}^{n})$ al conjunto de
+todas las funciones $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+\left\{\infty \right\}$ tales que existe una sucesión de funciones $(f_{k})$
+en $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ que cumple que $f_{k}\leq
+f_{k+1}$ para todo $k\in \mathbb{N}$ y$&nbsp;\sup_{k\in
+  \mathbb{N}}f_{k}=f$.
+</p>
+<p>
+<div id="defintsci" class="definition">
+Si $f\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$
+  definimos <em class="textbf">la integral de </em>$f$<em class="textbf">&nbsp;en</em> $\mathbb{R}^{n}$
+  como
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f:=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}\in \mathbb{R}\cup \left\{\infty \right\},
+  \end{equation*}
+  donde $(f_{k})$ es una sucesión de funciones en
+  $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tales que $f_{k}\leq f_{k+1}$
+  para todo $k\in \mathbb{N}$ &nbsp;y $&nbsp;\sup_{k\in \mathbb{N}}f_{k}=f$.
+</div>
+</p>
+<p>
+El Corolario <a href="tul/P_T_02/12.html#indepsuc">12.4</a>&nbsp;asegura que la integral de $f$ en
+$\mathbb{R}^{n}$ no depende de la sucesión elegida. En particular,
+si $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\subset \mathcal{S}_{\ast
+}(\mathbb{R}^{n})$, podemos tomar $f_{k}=f$. Esto prueba que, para
+funciones en $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, la integral dada
+por la Definición <a href="tul/P_T_02/12.html#defintsci">12.5</a> coincide con la introducida en
+el capítulo precedente.
+</p>
+<p>
+A continuación daremos una descripción más accesible del
+conjunto $\mathcal{S}_{\ast }(\mathbb{R}^{n})$. El siguiente lema
+muestra que las funciones que pertenecen a $\mathcal{S}_{\ast
+}(\mathbb{R}^{n})$ son semicontinuas inferiormente (ver Definición
+ <a href="tul/P_T_02/4.html#defsci">4.22</a>).
+</p>
+<p>
+Sea $X$ un espacio métrico. El <em class="textbf">supremo puntual</em>
+de un conjunto de funciones $f_{i}\colon X\rightarrow
+\mathbb{R\cup \left\{\infty \right\}}$, $i\in \mathcal{I}$, es la función
+\begin{equation*}
+  \sup_{i\in \mathcal{I}}f_{i}\colon X\rightarrow \mathbb{R\cup \left\{\infty \right\}}
+\end{equation*}
+definida como
+\begin{equation*}
+  \bigl( \sup_{i\in \mathcal{I}}f_{i}\bigr) (x):=\sup_{i\in \mathcal{I}}f_{i}(x)\text{.}
+\end{equation*}
+</p>
+<p>
+<div id="supsci" class="lemma">
+Si $X$ es un espacio métrico y $f_{i}\colon X\rightarrow
+  \mathbb{R\cup \left\{\infty \right\}}$ es s.c.i. para todo $i\in \mathcal{I}$,
+  entonces $\sup_{i\in \mathcal{I}}f_{i}$ es s.c.i.
+</div>
+<div class="proof">
+  Sean $x_{0}\in X$ y $c\menorque\left( \sup_{i\in \mathcal{I}}f_{i}\right)
+  (x_{0})$. Escogemos $i_{0}\in \mathcal{I}$ tal que
+  $c\menorque f_{i_{0}}(x_{0})$. Como $f_{i_{0}}$ es s.c.i., existe $\delta \mayorque 0$
+  tal que
+  \begin{equation*}
+    c\menorque f_{i_{0}}(x)\qquad\text{si &nbsp;}d_{X}(x,x_{0})\menorque\delta .
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    c\menorque f_{i_{0}}(x)\leq \bigl( \sup_{i\in \mathcal{I}}f_{i}\bigr) (x)\qquad\text{si &nbsp;}d_{X}(x,x_{0})\menorque\delta .
+  \end{equation*}
+  Esto prueba que $\sup_{i\in \mathcal{I}}f_{i}$ es s.c.i.
+</div>
+</p>
+<p>
+El siguiente resultado caracteriza a los elementos de
+$\mathcal{S}_{\ast }(\mathbb{R}^{n})$.
+</p>
+<p>
+<div id="existsci" class="proposition">
+Sea $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R\cup
+    \left\{\infty \right\}}$. Son equivalentes las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> $f$ es s.c.i. y existe un compacto $K\subset
+    \mathbb{R}^{n}$ tal que
+    \begin{equation*}
+      f(x)\geq 0\qquad \forall x\in \mathbb{R}^{n}\smallsetminus K.
+    \end{equation*}
+</p>
+<p>
+  <li> Existen funciones $f_{k}\in
+    \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tales que $f_{k}\leq f_{k+1}$
+    para todo $k\in \mathbb{N}$ y
+    \begin{equation*}
+      f=\sup_{k\in \mathbb{N}}f_{k}.
+    \end{equation*}
+  </ol>
+</div>
+<div class="proof">
+  <em class="emph">(b)</em>$\Rightarrow $<em class="emph">(a):</em> &nbsp;Sean $f_{k}\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tales que $f_{k}\leq f_{k+1}$
+  para todo $k\in \mathbb{N}$ y $f=\sup_{k\in \mathbb{N}}f_{k}$. El
+  Lema <a href="tul/P_T_02/12.html#supsci">12.6</a> asegura que $f$ es s.c.i. Por otra parte, como
+  $f\geq f_{1}$, se tiene que
+  \begin{equation*}
+    f(x)\geq 0\qquad \forall x\in \mathbb{R}^{n}\smallsetminus \sop(f_{1}).
+  \end{equation*}
+  Esto prueba que $f$ cumple <em class="emph">(a)</em>.
+</p>
+<p>
+  <em class="emph">(a)</em>$\Rightarrow $<em class="emph">(b):</em> &nbsp;Sea $f$ s.c.i. y tal que
+  $f(x)\geq 0$ para todo $x\in \mathbb{R}^{n}\smallsetminus K$, con
+  $K\neq \emptyset $ compacto. Por el Teorema <a href="tul/P_T_02/4.html#sci">4.29</a>,&nbsp;$f$ alcanza
+  su mínimo en $K$. Por tanto, existe $M\in \mathbb{N}$ tal que
+  </p>
+  \begin{equation*}
+    f(x)>-M\qquad \forall x\in \mathbb{R}^{n}.
+  \end{equation*}
+  Sea
+  \begin{equation*}
+    \mathcal{N}:=\left\{(\xi ,\varepsilon ,q)\in \mathbb{Q}^{n}\times \mathbb{Q}\times \mathbb{Q}:\quad \varepsilon >0,\quad q>-M,\quad f(x)>q\text{ }\forall x\in B(\xi ,\varepsilon )\right\},
+  \end{equation*}
+  donde $B(\xi ,\varepsilon ):=\left\{x\in \mathbb{R}^{n}:\left\Vert x-\xi
+  \right\Vert \menorque\varepsilon \right\}$. Para cada $\nu =(\xi ,\varepsilon
+  ,q)\in \mathcal{N}$ escogemos $r_{\nu }\in (\varepsilon ,\infty )$
+  tal que $K\subset B(\xi ,r_{\nu })$ y definimos $g_{\nu }\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ como
+  \begin{equation*}
+    g_{\nu }(x):=
+      \begin{cases}
+        q & \text{si }\left\Vert x-\xi \right\Vert \leq \frac{\varepsilon }{2}, \\
+        -\frac{2(q+M)}{\varepsilon }\left\Vert x-\xi \right\Vert +2q+M & \text{si }\frac{\varepsilon }{2}\leq \left\Vert x-\xi \right\Vert \leq \varepsilon ,
+        \\
+        -M & \text{si }\varepsilon \leq \left\Vert x-\xi \right\Vert \leq r_{\nu },
+        \\
+        -M(r_{\nu }+1-\left\Vert x-\xi \right\Vert ) & \text{si }r_{\nu }\leq
+        \left\Vert x-\xi \right\Vert \leq r_{\nu }+1, \\
+        0 & \text{si }r_{\nu }+1\leq \left\Vert x-\xi \right\Vert .
+      \end{cases}
+  \end{equation*}
+<div id="fig:12-2" class="figure">
+  <img src="tul/P_T_02/figuras/Cap12-g-nu.svg" height="240">
+  <div class="caption">
+  </div>                
+</div>
+
+<p class="noj">
+  Por construcción, $g_{\nu }\leq f$. Probemos que $\sup_{\nu \in
+    \mathcal{N}}g_{\nu }=f$.
+</p>
+<p>
+  En efecto, como $f$ es s.c.i., dados $x\in \mathbb{R}^{n}$ y $q\in
+  \mathbb{Q} $ con $-M<q<f(x)$, existe $\delta >0$ tal que
+  \begin{equation*}
+    q<f(y)\qquad \forall y\in B(x,\delta ).
+  \end{equation*}
+  Tomando $\varepsilon \in \mathbb{Q}\cap (0,\frac{\delta }{2})$ y
+  $\xi \in \mathbb{Q}^{n}\cap B(x,\frac{\varepsilon }{2})$, tenemos
+  que $B(\xi ,\varepsilon )\subset B(x,\delta )$. Por tanto,
+  \begin{equation*}
+    q<f(y)\qquad \forall y\in B(\xi ,\varepsilon )
+  \end{equation*}
+  y, en consecuencia, $\nu =(\xi ,\varepsilon ,q)\in \mathcal{N}$ y
+  $g_{\nu }(x)=q$. Esto prueba que $\sup_{\nu \in \mathcal{N}}g_{\nu
+  }=f$.
+</p>
+<p>
+  El conjunto $\mathcal{N}$&nbsp;es numerable. Numeramos sus elementos
+  $\mathcal{N}=\left\{\nu_{1},\nu_{2},\dots\right\}$ y definimos
+  \begin{equation*}
+    f_{k}:=\sup \left\{g_{\nu_{1}},\dots,g_{\nu_{k}}\right\}.
+  \end{equation*}
+  Entonces $f_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ (ver
+  Ejercicio <a href="tul/P_T_02/11.html#minmaxenCc">11.34</a>), $f_{k}\leq f_{k+1}$ para todo $k\in
+  \mathbb{N}$ y $f=\sup_{k\in \mathbb{N}}f_{k}$.
+</div>
+</p>
+<p>
+Como consecuencia de la proposición anterior se tiene
+que
+\begin{align*}
+  \mathcal{S}_{\ast
+  }(\mathbb{R}^{n})=\bigl\{f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\infty \right\}: &f\text{ es s.c.i. y }\exists K\text{
+                            compacto}\\
+        &\text{tal que }f(x)\geq 0\text{ }\forall x\in \mathbb{R}^{n}\smallsetminus K\bigr\}.
+\end{align*}
+</p>
+<p>
+Procediendo de manera análoga, definiremos la integral de
+funciones $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{-\infty \right\}$
+que son el límite puntual de una sucesión decreciente de
+funciones continuas con soporte compacto.
+</p>
+<p>
+El <em class="textbf">ínfimo puntual</em> de un
+conjunto de funciones $f_{i}\colon X\rightarrow \mathbb{R\cup \left\{-\infty
+  \right\}}$, $i\in \mathcal{I}$, definidas en un espacio métrico $X$ es
+la función
+\begin{equation*}
+  \inf_{i\in \mathcal{I}}f_{i}\colon X\rightarrow \mathbb{R\cup \left\{-\infty \right\}}
+\end{equation*}
+dada por
+\begin{equation*}
+  \left( \inf_{i\in \mathcal{I}}f_{i}\right) (x):=\inf_{i\in \mathcal{I}}f_{i}(x)\text{.}
+\end{equation*}
+</p>
+<p>
+Nota que, si definimos $-(-\infty ):=\infty $, las funciones
+semicontinuas inferior y superiormente (ver Definición
+ <a href="tul/P_T_02/4.html#defscs">4.23</a>) se relacionan como sigue:
+\begin{equation}
+  f\colon X\rightarrow \mathbb{R}\cup \left\{-\infty \right\}\text{ es s.c.s. }\quad
+  \Longleftrightarrow \quad -f\colon X\rightarrow \mathbb{R}\cup \left\{\infty \right\}\text{
+    es s.c.i.}\label{sci-scs}
+\end{equation}
+Esta relación, junto con el Lema <a href="tul/P_T_02/12.html#supsci">12.6</a>, implica que el
+ínfimo puntual de una familia de funciones semicontinuas
+superiormente es semicontinuo superiormente. Además, se tienen los
+siguientes resultados.
+</p>
+<p>
+<div id="indepsuc2" class="corollary">
+Si $f_{k},g_{k}\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ son tales que $f_{k}\geq
+  f_{k+1}$ y $g_{k}\geq g_{k+1}$ para todo $k\in \mathbb{N}$ y
+  $\inf_{k\in \mathbb{N}}f_{k}=\inf_{k\in \mathbb{N}}g_{k}$, entonces
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}=\lim_{k\rightarrow
+      \infty }\int_{\mathbb{R}^{n}}g_{k}.
+  \end{equation*}
+</div>
+<div class="proof">
+  Esta afirmación es consecuencia inmediata del
+  Corolario <a href="tul/P_T_02/12.html#indepsuc">12.4</a>, aplicado a las sucesiones $(-f_{k})$ y
+  $(-g_{k})$, y la relación (\ref{sci-scs}).
+</div>
+<div id="existscs" class="proposition">
+Sea $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{-\infty \right\}$. Son equivalentes las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> $f$ es s.c.s. y existe un compacto $K\subset
+    \mathbb{R}^{n}$ tal que
+    \begin{equation*}
+      f(x)\leq 0\qquad \forall x\in \mathbb{R}^{n}\smallsetminus K.
+    \end{equation*}
+</p>
+<p>
+  <li> Existen funciones $f_{k}\in
+    \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tales que $f_{k}\geq f_{k+1}$
+    para todo $k\in \mathbb{N}$ y
+    \begin{equation*}
+      f=\inf_{k\in \mathbb{N}}f_{k}.
+    \end{equation*}
+  </ol>
+</div>
+<div class="proof">
+  De la relación (\ref{sci-scs}) y la Proposición <a href="tul/P_T_02/12.html#existsci">12.7</a> se
+  sigue inmediatamente este resultado.
+</div>
+</p>
+<p>
+Denotamos por
+\begin{align*}
+  \mathcal{S}^{\ast
+  }(\mathbb{R}^{n}):=\bigl\{f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{-\infty \right\}: &f\text{ es s.c.s. y }\exists K\text{
+  compacto}\\
+  &\text{tal que }f(x)\leq 0\text{ }\forall x\in \mathbb{R}^{n}\smallsetminus K\bigr\}.
+\end{align*}
+</p>
+<p>
+<div id="defintscs" class="definition">
+Sea $f\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$.
+  Definimos <em class="textbf">la integral de </em>$f$<em class="textbf">&nbsp;en</em> $\mathbb{R}^{n}$
+  como
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f:=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}\in \mathbb{R}\cup \left\{-\infty \right\},
+  \end{equation*}
+  donde $(f_{k})$ es una sucesión de funciones en
+  $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tales que $f_{k}\geq f_{k+1}$
+  para todo $k\in \mathbb{N}$ &nbsp;y $\inf_{k\in \mathbb{N}}f_{k}=f$.
+</div>
+</p>
+<p>
+La Proposición <a href="tul/P_T_02/12.html#existscs">12.9</a>&nbsp;asegura que tal sucesión
+$(f_{k})$ existe y el Corolario <a href="tul/P_T_02/12.html#indepsuc2">12.8</a>&nbsp;asegura que la
+integral de $f$ en $\mathbb{R}^{n}$ no depende de la sucesión
+elegida. En particular, si $f\in
+\mathcal{C}_{c}^{0}(\mathbb{R}^{n})\subset \mathcal{S}^{\ast
+}(\mathbb{R}^{n})$, podemos tomar $f_{k}=f$. Esto prueba que, para
+funciones en $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, la integral dada
+por la Definición <a href="tul/P_T_02/12.html#defintscs">12.10</a> coincide que la introducida en
+el capítulo precedente. Más aún, como
+\begin{equation*}
+  \mathcal{S}^{\ast }(\mathbb{R}^{n})\cap \mathcal{S}_{\ast }(\mathbb{R}^{n})=\mathcal{C}_{c}^{0}(\mathbb{R}^{n}),
+\end{equation*}
+las integrales dadas por las Definiciones <a href="tul/P_T_02/12.html#defintsci">12.5</a> y
+ <a href="tul/P_T_02/12.html#defintscs">12.10</a> coinciden en $\mathcal{S}^{\ast }(\mathbb{R}^{n})\cap
+\mathcal{S}_{\ast }(\mathbb{R}^{n})$.
+</p>
+<h3 id="sec12-2">Propiedades de la integral de funciones semicontinuas</h3>
+<p class="noj">
+Probaremos algunas propiedades importantes de la integral. Empezamos
+con la siguiente observación sencilla. Como antes, convenimos que
+$-(-\infty ):=\infty $.
+</p>
+<p>
+<div id="rel" class="lemma">
+$f\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ si y sólo
+  si $-f\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$. En este caso,
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=-\int_{\mathbb{R}^{n}}\left( -f\right) .
+  \end{equation*}
+</div>
+<div class="proof">
+  Observa que $f_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$,
+  $f_{k}\leq f_{k+1}$ y $\sup_{k\in \mathbb{N}}f_{k}=f$ si y sólo si
+  $-f_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$,
+  $-f_{k}\geq -f_{k+1}$ y $\inf_{k\in \mathbb{N}}(-f_{k})=-f$. Por el
+  Teorema <a href="tul/P_T_02/11.html#haar">11.7</a>,
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f_{k}=-\int_{\mathbb{R}^{n}}\left( -f_{k}\right) .
+  \end{equation*}
+  Pasando al límite obtenemos la identidad deseada.
+</div>
+</p>
+<p>
+Si $f,g\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ o $f,g\in
+\mathcal{S}^{\ast }(\mathbb{R}^{n})$ y $\lambda \in [0,\infty
+)$, definimos
+\begin{equation*}
+  \left( f+g\right) (x):=f(x)+g(x),\qquad \left( \lambda f\right) (x):=\lambda f(x),
+\end{equation*}
+donde
+  \begin{alignat*}{4}
+    a+\infty &:=\infty &\quad&\text{y}& \infty +a&:=\infty &\quad&\forall
+    a\in \mathbb{R}\cup \left\{\infty \right\}, \\
+    a+\left( -\infty \right) &:=-\infty &&\text{y} &\quad\left( -\infty
+    \right) +a&:=-\infty &&\forall a\in \mathbb{R}\cup \left\{-\infty \right\}, \\
+    \lambda \left( \infty \right) &:=\infty &&\text{y}&\lambda
+    \left( -\infty \right)&:=-\infty &&\forall \lambda \in (0,\infty ), \\
+    0\left( \pm \infty \right) &:=0. &&  &&  && 
+  \end{alignat*}
+Estas definiciones no son arbitrarias: $\infty $ es, por
+definición, el supremo de cualquier sucesión no decreciente y
+no acotada de números reales. Si a una sucesión de este tipo
+le sumamos un número real, o si la multiplicamos por un número
+positivo, obtenemos nuevamente una sucesión de este tipo. Mientras
+que, si la multiplicamos por $0$, obtenemos la sucesión constante
+igual a $0$. Las otras definiciones se obtienen de manera
+análoga. Nota, en cambio, que &ldquo;$\infty -\infty$&rdquo; no está
+definido.
+</p>
+<p>
+Ni $\mathcal{S}^{\ast }(\mathbb{R}^{n})$ ni $\mathcal{S}_{\ast
+}(\mathbb{R}^{n})$ son espacios vectoriales. Sin embargo, se cumple lo
+siguiente.
+</p>
+<p>
+<div id="linmonsc" class="proposition">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $f,g\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ y
+    $\lambda \in [0,\infty )$, entonces $f+g\in
+    \mathcal{S}_{\ast }(\mathbb{R}^{n})$, $\lambda f\in
+    \mathcal{S}_{\ast }(\mathbb{R}^{n})$,
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}\left( f+g\right) =\int_{\mathbb{R}^{n}}f+\int_{\mathbb{R}^{n}}g\qquad\text{y}\qquad \int_{\mathbb{R}^{n}}\left( \lambda f\right)
+      =\lambda \int_{\mathbb{R}^{n}}f.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $f,g\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ y $f\leq
+    g$, entonces
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}f\leq \int_{\mathbb{R}^{n}}g.
+    \end{equation*}
+  </ol>
+</p>
+<p>
+  Ambas afirmaciones también son ciertas si reemplazamos
+  $\mathcal{S}_{\ast }(\mathbb{R}^{n})$ por $\mathcal{S}^{\ast
+  }(\mathbb{R}^{n})$.
+</div>
+<div class="proof">
+  Demostraremos ambas afirmaciones para $\mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$. El resultado para $\mathcal{S}^{\ast
+  }(\mathbb{R}^{n})$ se obtiene aplicando el Lema <a href="tul/P_T_02/12.html#rel">12.11</a>.
+</p>
+<p>
+  <em class="emph">(a):</em> &nbsp;Si $f_{k},g_{k}\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ son tales que $f_{k}\leq
+  f_{k+1}$, $g_{k}\leq g_{k+1}$, $\sup_{k\in \mathbb{N}}f_{k}=f$ &nbsp;y
+  $&nbsp;\sup_{k\in \mathbb{N}}g_{k}=g$, entonces
+  \begin{equation*}
+    f_{k}+g_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n}),\qquad f_{k}+g_{k}\leq f_{k+1}+g_{k+1},\qquad \sup_{k\in \mathbb{N}}\left(
+      f_{k}+g_{k}\right) =f+g,
+  \end{equation*}
+  y para $\lambda \in [0,\infty )$
+  \begin{equation*}
+    \lambda f_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n}),\qquad \lambda
+    f_{k}\leq \lambda f_{k+1},\qquad \sup_{k\in \mathbb{N}}\left( \lambda
+      f_{k}\right) =\lambda f.
+  \end{equation*}
+  Del Teorema <a href="tul/P_T_02/12.html#existsci">12.7</a> se sigue que $f+g\in \mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$ y $\lambda f\in \mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$, y las identidades
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left( f+g\right) =\int_{\mathbb{R}^{n}}f+\int_{\mathbb{R}^{n}}g\qquad\text{y}\qquad \int_{\mathbb{R}^{n}}\lambda f=\lambda \int_{\mathbb{R}^{n}}f
+  \end{equation*}
+  son consecuencia de las correspondientes identidades para las
+  funciones $f_{k},g_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ (ver
+  Teorema <a href="tul/P_T_02/11.html#haar">11.7</a>).
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Si $f,g\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$,
+  $f\leq g$, y $f_{k},g_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$
+  son tales que $f_{k}\leq f_{k+1}$, $g_{k}\leq g_{k+1}$, $\sup_{k\in
+    \mathbb{N}}f_{k}=f$ y $\sup_{k\in \mathbb{N}}g_{k}=g$, definimos
+  \begin{equation*}
+    h_{k}:=\min \left\{f_{k},g_{k}\right\}.
+  \end{equation*}
+  Entonces $h_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, $\
+  h_{k}\leq h_{k+1} $, $&nbsp;\sup_{k\in \mathbb{N}}h_{k}=f$ &nbsp;y $\
+  h_{k}\leq g_{k}$. De la monotonía de la integral para funciones
+  en $\mathcal{C}_{c}^{0}(\mathbb{R}^{n}) $ (ver Teorema <a href="tul/P_T_02/11.html#haar">11.7</a>)
+  se sigue que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f:=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}h_{k}\leq \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}g_{k}=:\int_{\mathbb{R}^{n}}g.
+  \end{equation*}
+  Esto concluye la demostración.
+</div>
+</p>
+<p>
+Una consecuencia que nos será de utilidad más adelante es la
+siguiente.
+</p>
+<p>
+<div id="correl" class="corollary">
+Si $f\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ y $g\in
+  \mathcal{S}^{\ast }(\mathbb{R}^{n})$, entonces $f-g\in
+  \mathcal{S}_{\ast }(\mathbb{R}^{n})$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}(f-g)=\int_{\mathbb{R}^{n}}f-\int_{\mathbb{R}^{n}}g.
+  \end{equation*}
+</div>
+<div class="proof">
+  El Lema <a href="tul/P_T_02/12.html#rel">12.11</a>&nbsp;y la Proposición <a href="tul/P_T_02/12.html#linmonsc">12.12</a>&nbsp;implican que
+  $-g\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$, $f-g\in
+  \mathcal{S}_{\ast }(\mathbb{R}^{n})$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}(f-g)=\int_{\mathbb{R}^{n}}f+\int_{\mathbb{R}^{n}}\left( -g\right) =\int_{\mathbb{R}^{n}}f-\int_{\mathbb{R}^{n}}g,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Se cumple además lo siguiente.
+</p>
+<p>
+<div id="cvsc" class="proposition">
+Si $A\in GL(n,\mathbb{R})$, $\zeta \in \mathbb{R}^{n}$ y
+  $f\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$, entonces la función
+  $x\mapsto f(Ax+\zeta )$ pertenece a $\mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f(Ax+\zeta )\left\vert \det A\right\vert dx=\int_{\mathbb{R}^{n}}f(y)dy.
+  \end{equation*}
+  La afirmación también es cierta si reemplazamos
+  $\mathcal{S}_{\ast }(\mathbb{R}^{n})$ por $\mathcal{S}^{\ast
+  }(\mathbb{R}^{n})$.
+</div>
+<div class="proof">
+  Si $f=\sup_{k\in \mathbb{N}}f_{k}$ con $f_{k}\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y $f_{k}\leq f_{k+1}$, y si
+  denotamos por $\varphi (x):=Ax+\zeta $, entonces $f_{k}\circ \varphi
+  \in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, $&nbsp;f_{k}\circ \varphi \leq
+  f_{k+1}\circ \varphi $ &nbsp;y $&nbsp;f\circ \varphi =\sup_{k\in
+    \mathbb{N}}\left( f_{k}\circ \varphi \right) $. Así que
+  $f\circ \varphi \in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ y el
+  resultado es consecuencia inmediata del Teorema <a href="tul/P_T_02/11.html#cvlin">11.19</a>.
+</div>
+</p>
+<p>
+Para $1\leq m\menorque n$, identificamos a $\mathbb{R}^{n}$ con
+$\mathbb{R}^{m}\times \mathbb{R}^{n-m}$ y denotamos a un punto $x\in
+\mathbb{R}^{n}$ como $x=(y,z)$ con $y\in \mathbb{R}^{m}$ y $z\in
+\mathbb{R}^{n-m}$.
+</p>
+<p>
+Si $g\colon \mathbb{R}^{m}\rightarrow \mathbb{R\cup \left\{\infty \right\}}$,
+$h\colon \mathbb{R}^{n-m}\rightarrow \mathbb{R\cup \left\{\infty \right\}}$, $g\geq 0$
+y $h\geq 0$, definimos $g\odot h\colon \mathbb{R}^{n}\rightarrow
+\mathbb{R\cup \left\{\infty \right\}}$ como
+\begin{equation*}
+  \left( g\odot h\right) (y,z):=g(y)h(z),
+\end{equation*}
+donde $(\mathbb{\infty )(\infty )}:=\mathbb{\infty }$.
+</p>
+<p>
+<div id="propprodtens" class="proposition">
+Sean $g\in \mathcal{S}_{\ast }(\mathbb{R}^{m})$
+  y $h\in \mathcal{S}_{\ast }(\mathbb{R}^{n-m})$ tales que $g\geq 0$ y
+  $h\geq 0$. Entonces $g\odot h\in \mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left( g\odot h\right) =\biggl( \int_{\mathbb{R}^{m}}g\biggr) \biggl( \int_{\mathbb{R}^{n-m}}h\biggr) .
+  \end{equation*}
+  La afirmación también es cierta si reemplazamos
+  $\mathcal{S}_{\ast }$ por $\mathcal{S}^{\ast }$.
+</div>
+<div class="proof">
+  Demostraremos el resultado para $\mathcal{S}_{\ast }$. La
+  demostración para $\mathcal{S}^{\ast }$ es más sencilla.
+</p>
+<p>
+  Sean $g_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{m})$ y $h_{k}\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n-m})$ tales que $g_{k}\leq
+  g_{k+1}$, $h_{k}\leq h_{k+1} $, $&nbsp;g=\sup_{k\in \mathbb{N}}g_{k}$ y
+  $h=\sup_{k\in \mathbb{N}}h_{k}$. Sustituyendo, de ser necesario,
+  $g_{k}$ por $\max \left\{g_{k},0\right\}$ y $h_{k}$ por $\max \left\{h_{k},0\right\}$,
+  podemos suponer que $g_{k}\geq 0$ y $h_{k}\geq 0$. Se tiene entonces
+  que $g_{k}\odot h_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, $\
+  g_{k}\odot h_{k}\leq g_{k+1}\odot h_{k+1}$ &nbsp;y $g\odot h=\sup_{k\in
+    \mathbb{N}}(g_{k}\odot h_{k})$. Usando el Ejercicio <a href="tul/P_T_02/11.html#intprodtens">11.37</a> obtenemos
+  \begin{align*}
+    \int_{\mathbb{R}^{n}}\left( g\odot h\right) &=\lim_{k\rightarrow \infty
+    }\int_{\mathbb{R}^{n}}\left( g_{k}\odot h_{k}\right) \\
+    &=\lim_{k\rightarrow \infty }\left[ \biggl( \int_{\mathbb{R}^{m}}g_{k}\biggr) \biggl( \int_{\mathbb{R}^{n-m}}h_{k}\biggr) \right] =\biggl(
+      \int_{\mathbb{R}^{m}}g\biggr) \biggl( \int_{\mathbb{R}^{n-m}}h\biggr) ,
+  \end{align*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+El siguiente resultado asegura que la integral se obtiene integrando
+sucesivamente respecto a cada variable.
+</p>
+<p>
+Dada una función $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+\infty \right\}$ y un punto $z\in \mathbb{R}^{n-m}$, denotamos por
+$f^{z}\colon \mathbb{R}^{m}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$ a la
+función
+\begin{equation*}
+  f^{z}(y):=f(y,z).
+\end{equation*}
+</p>
+<p>
+<div class="proposition" id="propfub">[Teorema de Fubini para funciones semicontinuas]
+  Sean $1\leq m\menorque n$ y $f\in \mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$. Entonces, para cada $z\in \mathbb{R}^{n-m}$, la
+  función $f^{z}$ pertenece a $\mathcal{S}_{\ast
+  }(\mathbb{R}^{m})$, la función $F\colon \mathbb{R}^{n-m}\rightarrow
+  \mathbb{R}\cup \left\{\infty \right\}$ dada por
+  \begin{equation*}
+    F(z):=\int_{\mathbb{R}^{m}}f^{z}
+  \end{equation*}
+  pertenece a $\mathcal{S}_{\ast }(\mathbb{R}^{n-m})$ y
+  \begin{equation}
+    \int_{\mathbb{R}^{n-m}}F=\int_{\mathbb{R}^{n}}f.\label{fub0}
+  \end{equation}
+  La afirmación también es cierta si reemplazamos
+  $\mathcal{S}_{\ast }$ por $\mathcal{S}^{\ast }$ y $\infty $ por
+  $-\infty $.
+</div>
+<div class="proof">
+  Probaremos la afirmación para $f\in \mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$. La afirmación para $f\in \mathcal{S}^{\ast
+  }(\mathbb{R}^{n})$ se obtiene aplicando el Lema <a href="tul/P_T_02/12.html#rel">12.11</a>.
+</p>
+<p>
+  Sea $(f_{k})$ una sucesión en
+  $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que $f_{k}\leq f_{k+1}$ \
+  y $&nbsp;f=\sup_{k\in \mathbb{N}}f_{k}$. Entonces, para cada $z\in
+  \mathbb{R}^{n-m}$, se cumple que $f_{k}^{z}\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{m})$, $f_{k}^{z}\leq f_{k+1}^{z}$ \
+  y $&nbsp;f^{z}=\sup_{k\in \mathbb{N}}f_{k}^{z}$. En consecuencia,
+  $f^{z}\in \mathcal{S}_{\ast }(\mathbb{R}^{m})$ y
+  \begin{equation}
+    F(z):=\int_{\mathbb{R}^{m}}f^{z}=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{m}}f_{k}^{z}=\lim_{k\rightarrow \infty }F_{k}(z),\label{Flim}
+  \end{equation}
+  donde $F_{k}\colon \mathbb{R}^{n-m}\rightarrow \mathbb{R}$ es la
+  función dada por
+  \begin{equation*}
+    F_{k}(z):=\int_{\mathbb{R}^{m}}f_{k}^{z}.
+  \end{equation*}
+  Esta función es continua (ver Lema <a href="tul/P_T_02/11.html#basico">11.2</a>). Además, si
+  $\sop(f_{k})\subset [a_{1},b_{1}]\times \cdots \times [a_{n},b_{n}]$ y $z\notin [a_{m+1},b_{m+1}]\times \cdots
+  \times [a_{n},b_{n}]$, entonces $f_{k}^{z}=0$ y, en
+  consecuencia, $F_{k}(z)=0$. Por tanto, $F_{k}\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n-m})$. De la monotonía de la
+  integral se sigue que $F_{k}\leq F_{k+1}$ y la igualdad (\ref{Flim})
+  afirma que $F=\sup_{k\in \mathbb{N}}F_{k}$. Esto implica que $F\in
+  \mathcal{S}_{\ast }(\mathbb{R}^{n-m})$ y
+  \begin{equation}
+    \int_{\mathbb{R}^{n-m}}F=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n-m}}F_{k}.\label{fub1}
+  \end{equation}
+  Por otra parte, de la definición de la integral en
+  $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ se sigue que
+  \begin{align}
+    \int_{\mathbb{R}^{n-m}}F_{k}(z)dz &=\int_{\mathbb{R}^{n-m}}\biggl( \int_{\mathbb{R}^{m}}f_{k}^{z}(y)dy\biggr) dz  \notag \\
+    &=\int_{\mathbb{R}^{n-m}}\biggl( \int_{\mathbb{R}^{m}}f_{k}(y,z)dy\biggr) dz
+    \notag \\
+    &=\int_{\mathbb{R}^{n}}f_{k}(x_{1},\dots,x_{n})dx_{1}\cdots dx_{n}.
+\label{fub2}
+  \end{align}
+  De las identidades (\ref{fub1}) y (\ref{fub2}) se obtiene
+  \begin{equation*}
+    \int_{\mathbb{R}^{n-m}}F=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}=\int_{\mathbb{R}^{n}}f,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Nota que, por la invariancia de la integral bajo isometrías
+(Proposición <a href="tul/P_T_02/12.html#cvsc">12.14</a>), podemos intercambiar el orden de las
+integrales en la proposición anterior, es decir, integrar primero
+respecto a $z$ y después respecto a $y$. Las identidades
+correspondientes (\ref{fub0}) suelen escribirse como
+\begin{align}
+  \int_{\mathbb{R}^{n-m}}\biggl( \int_{\mathbb{R}^{m}}f(y,z)dy\biggr)
+  dz &=\int_{\mathbb{R}^{n}}f(y,z)dy\,dz \notag \\
+  &=\int_{\mathbb{R}^{m}}\biggl( \int_{\mathbb{R}^{n-m}}f(y,z)dz\biggr) dy.\label{idfub}
+\end{align}
+</p>
+<p>
+Un primer resultado que permite el intercambio del límite puntual
+de funciones con la integral es el siguiente.
+</p>
+<p>
+<div class="proposition">[Convergencia monótona para funciones
+  semicontinuas]
+\label{cmsci}Sea $(f_{k})$ una sucesión en $\mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$ tal que $f_{k}\leq f_{k+1}$ para todo $k\in
+  \mathbb{N}$ y $f:=\sup_{k\in \mathbb{N}}f_{k}$. Entonces $f\in
+  \mathcal{S}_{\ast }(\mathbb{R}^{n})$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}.
+  \end{equation*}
+</div>
+<div class="proof">
+  Para cada $k\in \mathbb{N}$, tomemos una sucesión $(f_{k,j})$ en
+  $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que $f_{k,j}\leq
+  f_{k,j+1}$ para todo $j\in \mathbb{N}$ y $f_{k}:=\sup_{j\in
+    \mathbb{N}}f_{k,j}$. Observa que
+  \begin{equation*}
+    f_{i,j}\leq f_{i}\leq f_{k}\qquad \forall j\in \mathbb{N}\text{, }\forall i\leq k.
+  \end{equation*}
+  Definimos
+  \begin{equation*}
+    g_{k}:=\max_{i\leq k,\text{ }j\leq k}f_{i,j}.
+  \end{equation*}
+  Entonces $g_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, $g_{k}\leq
+  g_{k+1}$ y $g_{k}\leq f_{k}$ para todo $k\in \mathbb{N}$, y
+  \begin{equation*}
+    f=\sup_{k\in \mathbb{N}}f_{k}=\sup_{i,j\in \mathbb{N}}f_{i,j}=\sup_{k\in 
+      \mathbb{N}}g_{k}.
+  \end{equation*}
+  En consecuencia, $f\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ y de la
+  monotonía de la integral (Proposición <a href="tul/P_T_02/12.html#linmonsc">12.12</a>) se
+  sigue que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f_{k}\leq \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow
+      \infty }\int_{\mathbb{R}^{n}}g_{k}\leq \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}.
+  \end{equation*}
+  Pasando al límite obtenemos que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k},
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<h3 id="sec12-3">El volumen de un conjunto</h3>
+<p class="noj">
+Aplicaremos las propiedades de la integral para calcular el volumen de
+algunos subconjuntos de $\mathbb{R}^{n}$. Empecemos definiendo este
+concepto.
+</p>
+<p>
+<div id="funcar" class="definition">
+La <em class="textbf">función característica</em> (o
+  <em class="textbf">función indicadora</em>)
+  de un subconjunto $X$ de $\mathbb{R}^{n}$ es la
+  función
+  \begin{equation*}
+    1_{X}(x):=
+      \begin{cases}
+        1 & 
+        \text{si $x\in X$,} \\
+        0 & \text{si $x\in \mathbb{R}^{n}\smallsetminus X$.}
+      \end{cases}
+  \end{equation*}
+</div>
+</p>
+<p>
+Es sencillo comprobar que la función $1_{X}$ es s.c.i si y
+sólo si $X $ es abierto en $\mathbb{R}^{n}$, y es s.c.s. si y
+sólo si $X$ es cerrado en $\mathbb{R}^{n}$. En consecuencia,
+\begin{align}
+  1_{X} &\in \mathcal{S}_{\ast }(\mathbb{R}^{n})\text{ si y sólo si }X\text{ es abierto en }\mathbb{R}^{n},\label{indsci} \\
+  1_{X} &\in \mathcal{S}^{\ast }(\mathbb{R}^{n})\text{ si y sólo si }X\text{ es compacto en }\mathbb{R}^{n}.\label{indscs}
+\end{align}
+Proponemos la demostración de estas afirmaciones como ejercicio
+[Ejercicio <a href="tul/P_T_02/12.html#indsc">12.48</a>].
+</p>
+<p>
+<div id="volabcom" class="definition">
+Si $X$ es un subconjunto abierto o $X$ es un
+  subconjunto compacto de $\mathbb{R}^{n}$, definimos el
+  <em class="textbf">volumen de</em> $X$ en $\mathbb{R}^{n}$ como
+  \begin{equation*}
+    \vol_{n}(X):=\int_{\mathbb{R}^{n}}1_{X} \;\in \mathbb{R}\cup
+    \left\{\infty \right\}.
+  \end{equation*}
+</div>
+</p>
+<p>
+El volumen tiene las siguientes propiedades.
+</p>
+<p>
+<div id="propvol" class="proposition">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $X\subset Y$ son subconjuntos de $\mathbb{R}^{n}$ y
+    ambos son abiertos o ambos son compactos, entonces
+    \begin{equation*}
+      \vol_{n}(X)\leq \vol_{n}(Y).
+    \end{equation*}
+</p>
+<p>
+  <li> Sea $\varphi (x)=Ax+\zeta $ con $A\in GL(n,\mathbb{R})$,
+    $\zeta \in \mathbb{R}^{n}$. Entonces $\varphi (X):=\left\{\varphi
+    (x):x\in X\right\}$ es un subconjunto abierto de $\mathbb{R}^{n}$ si $X$
+    lo es, y $\varphi (X)$ es compacto si $X$ lo es. En ambos casos,
+    \begin{equation*}
+      \vol_{n}(\varphi (X))=\left\vert \det A\right\vert \,\vol_{n}(X).
+    \end{equation*}
+  </ol>
+</div>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Si $X\subset Y$ entonces $1_{X}\leq 1_{Y}$.
+  Además, $1_{X},1_{Y}\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ si
+  $X$ y $Y$ son abiertos, y $1_{X},1_{Y}\in \mathcal{S}^{\ast
+  }(\mathbb{R}^{n})$ si $X$ y $Y$ son compactos. Así que en ambos
+  casos podemos aplicar la afirmación <em class="emph">(b)</em>&nbsp;de la
+  Proposición <a href="tul/P_T_02/12.html#linmonsc">12.12</a> para obtener la afirmación
+  deseada.
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Como $\varphi $ es un homeomorfismo, $\varphi (X)$ es
+  abierto si $X$ lo es y $\varphi (X)$ es compacto si $X$ lo es. Nota
+  que $1_{\varphi (X)}\circ \varphi =1_{X}$. Las
+  Proposiciones <a href="tul/P_T_02/12.html#linmonsc">12.12</a> y <a href="tul/P_T_02/12.html#cvsc">12.14</a> aseguran entonces que
+  \begin{equation*}
+    \left\vert \det A\right\vert \int_{\mathbb{R}^{n}}1_{X}=\int_{\mathbb{R}^{n}}\left( 1_{\varphi (X)}\circ \varphi \right) \left\vert \det
+      A\right\vert =\int_{\mathbb{R}^{n}}1_{\varphi (X)},
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Veamos algunos ejemplos.
+</p>
+<p>
+<div id="para" class="example">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $U=\left( a_{1},b_{1}\right) \times \cdots \times
+    \left( a_{n},b_{n}\right) $ con $a_{i},b_{i}\in \mathbb{R}$,
+    $a_{i}\menorque b_{i}$, entonces
+    \begin{equation*}
+      \vol_{n}(U)=\prod_{i=1}^{n}(b_{i}-a_{i}).
+    \end{equation*}
+</p>
+<p>
+  <li> Si $Q=[a_{1},b_{1}]\times \cdots \times [a_{n},b_{n}]$ con $a_{i},b_{i}\in \mathbb{R}$, $a_{i}\leq b_{i}$,
+    entonces
+    \begin{equation*}
+      \vol_{n}(Q)=\prod_{i=1}^{n}(b_{i}-a_{i}).
+    \end{equation*}
+    En particular, si $a_{i}=b_{i}$ para algún $i=1,\dots,n$,
+    entonces $\vol_{n}(Q)=0$.
+  </ol>
+</div>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;En el Ejemplo <a href="tul/P_T_02/12.html#volcubab">12.1</a>&nbsp;probamos que
+  \begin{equation*}
+    \vol_{1}((0,1))=1.
+  \end{equation*}
+  Si $a,b\in \mathbb{R}$, $a\leq b$, y $\varphi \colon \mathbb{R}\rightarrow
+  \mathbb{R}$ es la función $\varphi (t):=(b-a)t+a$, entonces
+  $\varphi ((0,1))=(a,b)$ y la Proposición <a href="tul/P_T_02/12.html#propvol">12.20</a>&nbsp;asegura
+  que
+  \begin{equation*}
+    \vol_{1}((a,b))=b-a.
+  \end{equation*}
+  Observa que $1_{U}=1_{(a_{1},b_{1})}\odot \cdots \odot
+  1_{(a_{n},b_{n})}$. Aplicando la Proposición <a href="tul/P_T_02/12.html#propprodtens">12.15</a>
+  obtenemos
+  \begin{equation*}
+    \vol_{n}(U)=\prod_{i=1}^{n}\int_{\mathbb{R}}1_{(a_{i},b_{i})}=\prod_{i=1}^{n}(b_{i}-a_{i}).
+  \end{equation*}
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Dados $a,b\in \mathbb{R}$, $a\leq b$, para cada $k\in
+  \mathbb{N}$ definimos $f_{k}\colon \mathbb{R}\rightarrow \mathbb{R}$ como
+  \begin{equation*}
+    f_{k}(t):=
+      \begin{cases}
+        1 & \text{si $t\in [a,b]$,} \\
+        k(t-a)+1 & \text{si $t\in [a-\frac{1}{k},a]$,} \\
+        k(b-t)+1 & \text{si $t\in [b,b+\frac{1}{k}]$,} \\
+        0 & \text{si $t\notin [a-\frac{1}{k},b+\frac{1}{k}]$.}
+      \end{cases}
+  \end{equation*}
+  Entonces $f_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R})$, $f_{k}\geq
+  f_{k+1}$ &nbsp;y $&nbsp;\inf_{k\in \mathbb{N}}f_{k}=1_{[a,b]}$. Por tanto,
+  \begin{equation*}
+    \vol_{1}([a,b])=\lim_{k\rightarrow \infty }\int_{\mathbb{R}}f_{k}=\lim_{k\rightarrow \infty }\left( b-a+\tfrac{1}{k}\right) =b-a.
+  \end{equation*}
+  Como $1_{Q}=1_{[a_{1},b_{1}]}\odot \cdots \odot 1_{[a_{n},b_{n}]}$,
+  aplicando la Proposición <a href="tul/P_T_02/12.html#propprodtens">12.15</a> obtenemos que
+  \begin{equation*}
+    \vol_{n}(Q)=\prod_{i=1}^{n}\int_{\mathbb{R}}1_{[a_{i},b_{i}]}=\prod_{i=1}^{n}(b_{i}-a_{i}),
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+<div id="abtomedfin" class="corollary">
+Si $X$ es un subconjunto abierto y acotado de
+  $\mathbb{R}^{n}$, o si $X$ es compacto, entonces
+  $\vol_{n}(X)\menorque\infty $.
+</div>
+<div class="proof">
+  En ambos casos $X$ es acotado, así que existe $r\in (0,\infty
+  )$ tal que $X\subset (-r,r)^{n}$. La Proposición <a href="tul/P_T_02/12.html#propvol">12.20</a> y
+  el Ejemplo <a href="tul/P_T_02/12.html#para">12.21</a> aseguran que
+  \begin{align*}
+    \vol_{n}(X) &\leq \vol_{n}((-r,r)^{n})=\left( 2r\right)
+   ^{n}\menorque\infty \qquad\text{si }X\text{ es abierto,} \\
+    \vol_{n}(X) &\leq \vol_{n}([-r,r]^{n})=\left( 2r\right)
+   ^{n}\menorque\infty \qquad\text{si }X\text{ es compacto.}
+  \end{align*}
+  Esto concluye la demostración.
+</div>
+<div id="volRn" class="corollary">
+$\vol_{n}(\mathbb{R}^{n})=\infty $.
+</div>
+<div class="proof">
+  De la Proposición <a href="tul/P_T_02/12.html#propvol">12.20</a> y el Ejemplo <a href="tul/P_T_02/12.html#para">12.21</a> se sigue
+  que
+  \begin{equation*}
+    \vol_{n}(\mathbb{R}^{n})\geq \vol_{n}((-r,r)^{n})=\left(
+      2r\right)^{n}\qquad \forall r>0.
+  \end{equation*}
+  Por tanto, vol$_{n}(\mathbb{R}^{n})=\infty $.
+</div>
+</p>
+<p>
+Una consecuencia importante del teorema de Fubini (Proposición
+ <a href="tul/P_T_02/12.html#propfub">12.16</a>) es el principio de Cavalieri, que afirma lo siguiente.
+</p>
+
+<div id="foto:cavalieri" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Cavalieri.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Bonaventura Cavalieri
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Bonaventura Francesco Cavalieri (1598-1647) nació en Milán, Italia.
+  Estudió teología en el monasterio de San Gerolamo en
+  Milán y geometría en la Universidad de Pisa. Su
+  <em class="emph">método de los indivisibles</em> para calcular áreas y
+  volúmenes es un antecedente importante del cálculo
+  moderno.
+  </div>
+</div>
+
+<p>
+<div class="corollary">[Principio de Cavalieri]
+  Sea $K$ un subconjunto compacto de
+  $\mathbb{R}^{n}$, $n\mayorque 1$. Para cada $t\in \mathbb{R}$, definimos
+  \begin{equation*}
+    K_{t}:=\left\{y\in \mathbb{R}^{n-1}:(y,t)\in K\right\}.
+  \end{equation*}
+  Entonces, la función $t\mapsto \vol_{n-1}(K_{t})$
+  pertenece a $\mathcal{S}^{\ast }(\mathbb{R})$ y
+  \begin{equation*}
+    \vol_{n}(K)=\int_{\mathbb{R}}\vol_{n-1}(K_{t})dt.
+  \end{equation*}
+</div>
+<div class="proof">
+  Aplicamos la Proposición <a href="tul/P_T_02/12.html#propfub">12.16</a> con $m=1$ a la
+  función $1_{K}$. Como $1_{K}^{t}=1_{K_{t}}$ para cada $t\in
+  \mathbb{R}$, la función $F$ de la Proposición <a href="tul/P_T_02/12.html#propfub">12.16</a>
+  es la función $F(t):=$ vol$_{n-1}(K_{t})$. Dicha proposición
+  asegura que $F\in \mathcal{S}^{\ast }(\mathbb{R})$ y que
+  \begin{equation*}
+    \vol_{n}(K)=\int_{\mathbb{R}^{n}}1_{K}=\int_{\mathbb{R}}F=\int_{\mathbb{R}}\vol_{n-1}(K_{t})dt,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Usemos el principio de Cavalieri para calcular el volumen de la
+bola.
+</p>
+<p>
+<div id="volbola" class="example">
+Sea $\bar{B}^{n}(0,r):=\left\{x\in
+  \mathbb{R}^{n}:\left\Vert x\right\Vert \leq r\right\}$, $r>0$.
+  Entonces
+  \begin{equation*}
+    \omega_{n}:=\vol_{n}(\bar{B}^{n}(0,1))=
+      \begin{cases}
+        \frac{1}{k!}\pi^{k} & \text{si $n=2k$,}\\
+        \frac{2^{k+1}}{1\cdot 3\cdots (2k+1)}\pi^{k} & \text{si $n=2k+1$,}
+      \end{cases}
+  \end{equation*}
+  y
+  \begin{equation*}
+    \vol_{n}(\bar{B}^{n}(0,r))=r^{n}\omega_{n}.
+  \end{equation*}
+</div>
+<div class="proof">
+  Como $\bar{B}^{n}(0,r)=\left\{rx:x\in \bar{B}^{n}(0,1)\right\}$, la
+  afirmación
+  \begin{equation}
+    \vol_{n}(\bar{B}^{n}(0,r))=r^{n}\omega_{n}\label{r-bola}
+  \end{equation}
+  es consecuencia de la Proposición <a href="tul/P_T_02/12.html#propvol">12.20</a>. Ahora
+  calcularemos $\omega_{n}$.
+</p>
+<p>
+  Si $n>1$, del principio de Cavalieri y la identidad (\ref{r-bola})
+  se sigue que
+  \begin{align}
+    \omega_{n} &=\int_{-1}^{1}\vol_{n-1}\left( \bar{B}^{n-1}(0,\sqrt{1-t^{2}})\right) dt  \notag \\
+    &=\omega_{n-1}\int_{-1}^{1}\left( 1-t^{2}\right)^{\frac{n-1}{2}}dt.
+\label{cav}
+  \end{align}
+<div id="fig:12-3" class="figure">
+  <img src="tul/P_T_02/figuras/Cap12-ejemplo-25.svg" height="220">
+  <div class="caption">
+  </div>                
+</div>
+
+  El cambio de variable $t=\cos x$ nos da
+  \begin{equation*}
+    c_{n}:=\int_{-1}^{1}\left( 1-t^{2}\right)^{\frac{n-1}{2}}dt=\int_{0}^{\pi
+    }\sen^{n}x\text{ }dx.
+  \end{equation*}
+  Integrando por partes obtenemos que
+  \begin{equation*}
+    c_{2k}=\pi \prod_{i=1}^{k}\tfrac{2i-1}{2i}\qquad\text{y}\qquad c_{2k+1}=2\prod_{i=1}^{k}\tfrac{2i}{2i+1}.
+  \end{equation*}
+  Por tanto, $c_{n}c_{n-1}=\frac{2\pi }{n}$, &nbsp;lo que implica que
+  \begin{equation}
+    \omega_{n}=\omega_{n-1}c_{n}=\omega_{n-2}c_{n}c_{n-1}=\tfrac{2\pi }{n}\omega_{n-2}\qquad\text{si }n>2.\label{cav2}
+  \end{equation}
+  Como $\omega_{1}:=$ vol$_{1}([-1,1])=2$, de la ecuación
+  (\ref{cav}) se sigue que $\omega_{2}=2c_{2}=\pi $. Iterando
+  (\ref{cav2}) obtenemos que
+  \begin{equation*}
+    \omega_{2k}=\frac{1}{k!}\pi^{k}\qquad\text{y}\qquad \omega_{2k+1}=\frac{2^{k+1}}{1\cdot 3\cdots (2k+1)}\pi^{k},
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<h3 id="sec12-4">Funciones Lebesgue-integrables</h3>
+<p class="noj">
+Para definir la integral de Lebesgue haremos uso de los siguientes
+conceptos.
+</p>
+<p>
+<div class="definition">
+  Para cualquier función $f\colon \mathbb{R}^{n}\rightarrow
+  \mathbb{R}\cup \left\{\pm \infty \right\}$ definimos la <em class="textbf">integral
+    superior de</em> $f$ como
+  \begin{equation*}
+    \int^{\ast }f:=\inf \left\{ \int_{\mathbb{R}^{n}}g:g\in \mathcal{S}_{\ast }(\mathbb{R}^{n}),\text{ }g\geq f\right\} \in \mathbb{R}\cup \left\{\pm \infty \right\},
+  \end{equation*}
+  y la <em class="textbf">integral inferior de</em> $f$ como
+  \begin{equation*}
+    \int_{\ast }f:=\sup \left\{ \int_{\mathbb{R}^{n}}h:h\in \mathcal{S}^{\ast }(\mathbb{R}^{n}),\text{ }h\leq f\right\} \in \mathbb{R}\cup \left\{\pm \infty \right\}.
+  \end{equation*}
+</div>
+</p>
+<p>
+Observa que en ambos casos el conjunto cuyo ínfimo o cuyo supremo
+estamos tomando no es vacío, ya que la función constante
+$\infty $ pertenece a $\mathcal{S}_{\ast }(\mathbb{R}^{n})$ y la
+función constante $-\infty $ pertenece a $\mathcal{S}^{\ast
+}(\mathbb{R}^{n})$. Enunciamos a continuación algunas propiedades
+sencillas de estas integrales.
+</p>
+<p>
+<div id="intsupinf" class="lemma">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Para toda $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+    \left\{\pm \infty \right\}$,
+    \begin{equation*}
+      \int_{\ast }f=-\int^{\ast }\left( -f\right) .
+    \end{equation*}
+</p>
+<p>
+  <li> Para toda $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+    \left\{\pm \infty \right\}$,
+    \begin{equation*}
+      \int_{\ast }f\leq \int^{\ast }f.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $f_{1},f_{2}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+    \left\{\pm \infty \right\}$ cumplen que $f_{1}\leq f_{2}$, entonces
+    \begin{equation*}
+      \int^{\ast }f_{1}\leq \int^{\ast }f_{2}\qquad\text{y}\qquad \int_{\ast
+      }f_{1}\leq \int_{\ast }f_{2}.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $f\in \mathcal{S}_{\ast }(\mathbb{R}^{n})\cup
+    \mathcal{S}^{\ast }(\mathbb{R}^{n})$, entonces
+    \begin{equation*}
+      \int_{\ast }f=\int^{\ast }f=\int_{\mathbb{R}^{n}}f.
+    \end{equation*}
+</p>
+<p>
+  <li> Para cualesquiera $f\colon \mathbb{R}^{n}\rightarrow
+    \mathbb{R}\cup \left\{\pm \infty \right\}$ y $\lambda \in [0,\infty
+    )$,
+    \begin{equation*}
+      \int^{\ast }\lambda f=\lambda \int^{\ast }f\qquad\text{y}\qquad \int_{\ast
+      }\lambda f=\lambda \int_{\ast }f.
+    \end{equation*}
+</p>
+<p>
+  <li> Para cualesquiera $f_{1},f_{2}\colon \mathbb{R}^{n}\rightarrow
+    [0,\infty ]$
+    \begin{equation*}
+      \int^{\ast }\left( f_{1}+f_{2}\right) \leq \int^{\ast }f_{1}+\int^{\ast
+      }f_{2}.
+    \end{equation*}
+  </ol>
+</div>
+<div class="proof">
+  <em class="emph">(a)</em> es consecuencia inmediata del Lema <a href="tul/P_T_02/12.html#rel">12.11</a>.
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Basta probar que, si $g\in \mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$, $h\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$ y
+  $h\leq g$, entonces
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}h\leq \int_{\mathbb{R}^{n}}g.
+  \end{equation*}
+  Del Corolario <a href="tul/P_T_02/12.html#correl">12.13</a> y la monotonía de la integral
+  (Proposición <a href="tul/P_T_02/12.html#linmonsc">12.12</a>) se sigue que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}g-\int_{\mathbb{R}^{n}}h=\int_{\mathbb{R}^{n}}\left(
+      g-h\right) \geq 0.
+  \end{equation*}
+  Esta es la desigualdad deseada.
+</p>
+<p>
+  <em class="emph">(c)</em> es consecuencia inmediata de la definición.
+</p>
+<p>
+  <em class="emph">(d):</em> &nbsp;Sea $f\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$. La
+  igualdad
+  \begin{equation*}
+    \int^{\ast }f=\int_{\mathbb{R}^{n}}f
+  \end{equation*}
+  es consecuencia inmediata de la definición de la integral
+  superior. Sean $f_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, tales
+  que $f_{k}\leq f_{k+1}$ y $\sup_{k\in \mathbb{N}}f_{k}=f$. En
+  particular, $f_{k}\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$ y
+  $f_{k}\leq f$. De la definición de integral inferior y la
+  afirmación <em class="emph">(b)</em> obtenemos
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}\leq \int_{\ast }f\leq \int^{\ast }f=\int_{\mathbb{R}^{n}}f,
+  \end{equation*}
+  es decir,
+  \begin{equation*}
+    \int_{\ast }f=\int^{\ast }f=\int_{\mathbb{R}^{n}}f\qquad \forall f\in 
+    \mathcal{S}_{\ast }(\mathbb{R}^{n}).
+  \end{equation*}
+  Si $f\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$, las identidades
+  correspondientes se siguen de éstas utilizando la afirmación
+  <em class="emph">(a)</em>&nbsp;y el Lema <a href="tul/P_T_02/12.html#rel">12.11</a>.
+</p>
+<p>
+  <em class="emph">(e):</em> &nbsp;Si $\lambda =0$ el resultado es obvio. Supongamos que
+  $\lambda >0$. Para toda $g\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$
+  tal que $g\geq \lambda f$, se tiene que $\lambda^{-1}g\in
+  \mathcal{S}_{\ast }(\mathbb{R}^{n})$ y $\lambda^{-1}g\geq f$.
+  Usando la Proposición <a href="tul/P_T_02/12.html#linmonsc">12.12</a> obtenemos
+  \begin{equation*}
+    \lambda \int^{\ast }f\leq \lambda \int_{\mathbb{R}^{n}}\lambda^{-1}g=\int_{\mathbb{R}^{n}}g.
+  \end{equation*}
+  Se tiene entonces que
+  \begin{equation*}
+    \lambda \int^{\ast }f\leq \int^{\ast }\lambda f.
+  \end{equation*}
+  Reemplazando $f$ por $\lambda f$ y $\lambda $ por $\lambda^{-1}$ en
+  la desigualdad anterior obtenemos
+  \begin{equation*}
+    \lambda^{-1}\int^{\ast }\lambda f\leq \int^{\ast }f,
+  \end{equation*}
+  es decir,
+  \begin{equation*}
+    \int^{\ast }\lambda f\leq \lambda \int^{\ast }f.
+  \end{equation*}
+  Esto prueba la igualdad para la integral superior. La igualdad para
+  la integral inferior se obtiene aplicando la afirmación
+  <em class="emph">(a)</em>.
+</p>
+<p>
+  <em class="emph">(f):</em> &nbsp;Si $\int^{\ast }f_{1}=\infty $ o $\int^{\ast
+  }f_{2}=\infty $ la desigualdad deseada se cumple
+  trivialmente. Supongamos que $\int^{\ast }f_{1}\menorque\infty $ y
+  $\int^{\ast }f_{2}\menorque\infty $. Sea $\varepsilon >0$ y sean
+  $g_{1},g_{2}\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ tales que
+  $g_{1}\geq f_{1}$, $g_{2}\geq f_{2}$,
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}g_{1}\leq \biggl( \int^{\ast }f_{1}\biggr) +\frac{\varepsilon }{2}\qquad\text{y}\qquad \int_{\mathbb{R}^{n}}g_{2}\leq \left(
+      \int^{\ast }f_{2}\right) +\frac{\varepsilon }{2}.
+  \end{equation*}
+  Entonces, $g_{1}+g_{2}\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$,
+  $g_{1}+g_{2}\geq f_{1}+f_{2}$ y, sumando las desigualdades
+  anteriores, obtenemos
+  \begin{equation*}
+    \int^{\ast }\left( f_{1}+f_{2}\right) \leq \int_{\mathbb{R}^{n}}\left(
+      g_{1}+g_{2}\right) \leq \biggl( \int^{\ast }f_{1}+\int^{\ast }f_{2}\biggr)
+    +\varepsilon .
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \int^{\ast }\left( f_{1}+f_{2}\right) \leq \int^{\ast }f_{1}+\int^{\ast
+    }f_{2},
+  \end{equation*}
+  como se afirma en <em class="emph">(f).</em>
+</div>
+<div id="defintleb" class="definition">
+Una función $f\colon \mathbb{R}^{n}\rightarrow
+  \mathbb{R}\cup \left\{\pm \infty \right\}$ es <em class="textbf">(Lebesgue-) integrable</em>
+  si
+  \begin{equation*}
+    -\infty \menorque\int_{\ast }f=\int^{\ast }f\menorque\infty .
+  \end{equation*}
+  En este caso, la <em class="textbf">integral (de Lebesgue</em><em class="textbf">) de</em> $f$
+  se define como
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f:=\int_{\ast }f=\int^{\ast }f\text{ &nbsp;}\in \mathbb{R}.
+  \end{equation*}
+</div>
+
+<div id="foto:lebesgue" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Lebesgue.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Henri Lebesgue
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    Henri Léon Lebesgue (1875-1941) nació en Beauvais, Oise,
+    Francia.  Estudió en la Sorbonne de Paris, donde fue
+    alumno de Émile Borel. Introdujo su teoría de
+    integración en 1902 en su tesis de doctorado titulada
+    <em class="emph">Integral, longitud y área</em>.
+  </div>
+</div>
+
+<p>
+<div id="obsintleb" class="obss">
+Del <em class="emph">Lema <a href="tul/P_T_02/12.html#intsupinf">12.27</a></em> se infiere lo
+  siguiente:
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $f\in \mathcal{S}_{\ast }(\mathbb{R}^{n})\cup
+    \mathcal{S}^{\ast }(\mathbb{R}^{n})$, entonces $f$ es
+    Lebesgue-integrable si y sólo si la integral definida en la
+    <em class="emph">Sección <a href="tul/P_T_02/12.html#sec12-1">12.1</a></em> cumple que
+    \begin{equation*}
+      -\infty \menorque\int_{\mathbb{R}^{n}}f\menorque\infty .
+    \end{equation*}
+    En este caso, la integral de Lebesgue de $f$ coincide con dicha
+    integral.
+</p>
+<p>
+  <li> En particular, si $f\in
+    \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, entonces $f$ es
+    Lebesgue-integrable y la integral de Lebesgue de $f$ coincide con
+    la de la <em class="emph">Definición <a href="tul/P_T_02/11.html#defintsopcomp">11.5</a></em>.
+  </ol>
+  </div>
+</p>
+<p>
+La Definición <a href="tul/P_T_02/12.html#defintleb">12.28</a>&nbsp;se puede reformular como sigue.
+</p>
+<p>
+<div id="ref" class="lemma">
+$f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty
+  \right\}$ es Lebesgue-integrable si y sólo si para cada $\varepsilon
+  >0$ existen $h\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$ y $g\in
+  \mathcal{S}_{\ast }(\mathbb{R}^{n})$ tales que $h\leq f\leq g$,
+  \begin{equation*}
+    -\infty \menorque\int_{\mathbb{R}^{n}}h\text{,\qquad }\int_{\mathbb{R}^{n}}g\menorque\infty 
+    \qquad\text{y}\qquad 0\leq \int_{\mathbb{R}^{n}}g-\int_{\mathbb{R}^{n}}h\menorque\varepsilon .
+  \end{equation*}
+</div>
+<div class="proof">
+  $\Rightarrow )$: &nbsp;Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$ es Lebesgue-integrable entonces, como su integral
+  superior y su integral inferior son finitas, para cada $\varepsilon
+  >0$, existen $h\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$ y $g\in
+  \mathcal{S}_{\ast }(\mathbb{R}^{n})$ tales que $h\leq f\leq g$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}g\leq \int^{\ast }f+\frac{\varepsilon }{2}\menorque\infty \qquad\text{y}\qquad -\infty \menorque\int_{\ast }f-\frac{\varepsilon }{2}\menorque\int_{\mathbb{R}^{n}}h.
+  \end{equation*}
+  Dado que la integral superior y la integral inferior de $f$
+  coinciden, concluimos que
+  \begin{equation*}
+    0=\int^{\ast }f-\int_{\ast }f\leq \int_{\mathbb{R}^{n}}g-\int_{\mathbb{R}^{n}}h\menorque\int^{\ast }f-\int_{\ast }f+\varepsilon =\varepsilon .
+  \end{equation*}
+  $\Leftarrow )$: &nbsp;Inversamente, si para cada $\varepsilon >0$
+  existen $h\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$ y $g\in
+  \mathcal{S}_{\ast }(\mathbb{R}^{n})$ tales que $h\leq f\leq g$,
+  \begin{equation*}
+    -\infty \menorque\int_{\mathbb{R}^{n}}h\text{,\qquad }\int_{\mathbb{R}^{n}}g\menorque\infty 
+    \qquad\text{y}\qquad \int_{\mathbb{R}^{n}}g-\int_{\mathbb{R}^{n}}h\menorque\varepsilon ,
+  \end{equation*}
+  entonces
+  \begin{equation*}
+    -\infty \menorque\int_{\mathbb{R}^{n}}h\leq \int_{\ast }f\leq \int^{\ast }f\leq
+    \int_{\mathbb{R}^{n}}g\menorque\infty
+  \end{equation*}
+  y, en consecuencia,
+  \begin{equation*}
+    0\leq \int^{\ast }f-\int_{\ast }f\leq \int_{\mathbb{R}^{n}}g-\int_{\mathbb{R}^{n}}h\menorque\varepsilon
+  \end{equation*}
+  para todo $\varepsilon >0$. Esto prueba que $f$ es
+  Lebesgue-integrable.
+</div>
+</p>
+<p>
+El siguiente resultado proporciona una caracterización muy
+útil de las funciones Lebesgue-integrables y permite expresar a su
+integral como el límite de integrales de funciones en
+$\mathcal{C}_{c}^{0}(\mathbb{R}^{n}) $.
+</p>
+<p>
+Dada $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$,
+definimos $\left\vert f\right\vert \colon \mathbb{R}^{n}\rightarrow
+\mathbb{R}\cup \left\{\infty \right\}$ como
+\begin{equation*}
+  \left\vert f\right\vert (x):=\left\vert f(x)\right\vert ,
+\end{equation*}
+donde $\left\vert \pm \infty \right\vert :=\infty $.
+</p>
+<p>
+<div id="caractint" class="proposition">
+Sea $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$. Entonces $f$ es Lebesgue-integrable si y sólo
+  si existe una sucesión $(\varphi_{k})$ en
+  $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int^{\ast }\left\vert f-\varphi_{k}\right\vert
+    =0.
+  \end{equation*}
+  En ese caso, se cumple que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}\varphi_{k}.
+  \end{equation*}
+</div>
+<div class="proof">
+  $\Rightarrow )$:<em class="emph">&nbsp;&nbsp;</em>Supongamos que $f$ es
+  Lebesgue-integrable. Basta probar que, para cada $\varepsilon >0$,
+  existe $\varphi \in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que
+  \begin{equation}
+    \int^{\ast }\left\vert f-\varphi \right\vert \menorque\varepsilon .\label{af1}
+  \end{equation}
+  Por el Lema <a href="tul/P_T_02/12.html#ref">12.30</a> y el Corolario <a href="tul/P_T_02/12.html#correl">12.13</a>, existen $g\in
+  \mathcal{S}_{\ast }(\mathbb{R}^{n})$ y $h\in \mathcal{S}^{\ast
+  }(\mathbb{R}^{n})$ tales que $h\leq f\leq g$ y
+  \begin{equation*}
+    -\infty \menorque\int_{\mathbb{R}^{n}}h,\qquad \int_{\mathbb{R}^{n}}g\menorque\infty 
+    \qquad\text{y}\qquad \int_{\mathbb{R}^{n}}(g-h)\menorque\frac{\varepsilon }{2}.
+  \end{equation*}
+  Por otra parte, de la definición de la integral para funciones
+  en $\mathcal{S}_{\ast }(\mathbb{R}^{n})$ se sigue que existe
+  $\varphi \in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que $\varphi
+  \leq g$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left( g-\varphi \right) \menorque\frac{\varepsilon }{2}.
+  \end{equation*}
+  Como
+  \begin{equation*}
+    \left\vert f-\varphi \right\vert (x)=
+      \begin{cases}
+        f(x)-\varphi (x)\leq g(x)-\varphi (x) &\text{si $f(x)\geq \varphi (x)$,}
+        \\
+        \varphi (x)-f(x)\leq g(x)-h(x) &\text{si $f(x)\leq \varphi (x)$,}
+      \end{cases}
+  \end{equation*}
+  se tiene que
+  \begin{equation*}
+    \left\vert f-\varphi \right\vert \leq (g-h)+(g-\varphi )\in \mathcal{S}_{\ast }(\mathbb{R}^{n}).
+  \end{equation*}
+  Usando el Lema <a href="tul/P_T_02/12.html#intsupinf">12.27</a> y la Proposición <a href="tul/P_T_02/12.html#linmonsc">12.12</a>,
+  concluimos que
+  \begin{equation*}
+    \int^{\ast }\left\vert f-\varphi \right\vert \leq \int_{\mathbb{R}^{n}}\left[
+      (g-h)+(g-\varphi )\right] =\int_{\mathbb{R}^{n}}(g-h)+\int_{\mathbb{R}^{n}}(g-\varphi )\menorque\varepsilon .
+  \end{equation*}
+  Esto prueba la afirmación (\ref{af1}).
+</p>
+<p>
+  $\Leftarrow )$: &nbsp;Supongamos que existe una sucesión $(\varphi
+ _{k})$ en $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int^{\ast }\left\vert f-\varphi_{k}\right\vert
+    =0.
+  \end{equation*}
+  Sea $\varepsilon >0$ y sea $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \int^{\ast }\left\vert f-\varphi_{k}\right\vert \menorque\frac{\varepsilon }{2}\qquad\text{si &nbsp;}k\geq k_{0}.
+  \end{equation*}
+  Entonces, por definición de la integral superior, para cada
+  $k\geq k_{0}$&nbsp;existe $g_{k}\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$
+  tal que $g_{k}\geq \left\vert f-\varphi_{k}\right\vert $ y
+  \begin{equation*}
+    \int^{\ast }\left\vert f-\varphi_{k}\right\vert \leq \int_{\mathbb{R}^{n}}g_{k}\menorque\frac{\varepsilon }{2}.
+  \end{equation*}
+  Por tanto,
+  $g_{k}+\varphi_{k}\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$,
+  $-g_{k}+\varphi_{k}\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$ y
+  $-g_{k}+\varphi_{k}\leq f\leq g_{k}+\varphi _{k}$. Aplicando el
+  Lema <a href="tul/P_T_02/12.html#intsupinf">12.27</a> y la Proposición <a href="tul/P_T_02/12.html#linmonsc">12.12</a> obtenemos que
+  \begin{align}
+    -\infty &<-\frac{\varepsilon }{2}+\int_{\mathbb{R}^{n}}\varphi_{k}<-\int_{\mathbb{R}^{n}}g_{k}+\int_{\mathbb{R}^{n}}\varphi_{k}=\int_{\ast
+    }(-g_{k}+\varphi_{k})\leq \int_{\ast }f  \notag \\
+    &\leq \int^{\ast }f\leq \int^{\ast }(g_{k}+\varphi_{k})=\int_{\mathbb{R}^{n}}g_{k}+\int_{\mathbb{R}^{n}}\varphi_{k}\menorque\frac{\varepsilon }{2}+\int_{\mathbb{R}^{n}}\varphi_{k}\menorque\infty .\label{fin}
+  \end{align}
+  En consecuencia,
+  \begin{equation*}
+    0\leq \int^{\ast }f-\int_{\ast }f\leq \varepsilon .
+  \end{equation*}
+  Concluimos que
+  \begin{equation*}
+    -\infty \menorque\int_{\ast }f=\int^{\ast }f\menorque\infty ,
+  \end{equation*}
+  es decir, $f$ es Lebesgue-integrable.
+</p>
+<p>
+  Finalmente, se sigue de (\ref{fin}) que
+  \begin{equation*}
+    \left\vert \int_{\mathbb{R}^{n}}f-\int_{\mathbb{R}^{n}}\varphi
+     _{k}\right\vert \menorque\frac{\varepsilon }{2}\qquad \forall k\geq k_{0}.
+  \end{equation*}
+  Esto prueba que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}\varphi_{k}
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<h3 id="sec12-5">Propiedades básicas de la integral de Lebesgue</h3>
+<p class="noj">
+Usaremos la Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a> para probar algunas
+propiedades fundamentales de la integral de Lebesgue. Empecemos
+observando lo siguiente.
+<div id="valabsint" class="proposition">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+    \infty \right\}$ es Lebesgue-integrable, entonces $-f$ es
+    Lebesgue-integrable y
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}\left( -f\right) =-\int_{\mathbb{R}^{n}}f.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+    \infty \right\}$ es Lebesgue-integrable, entonces $\left\vert
+      f\right\vert $ es Lebesgue-integrable y
+    \begin{equation*}
+      \left\vert \int_{\mathbb{R}^{n}}f\right\vert \leq \int_{\mathbb{R}^{n}}\left\vert f\right\vert .
+    \end{equation*}
+  </ol>
+</div>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+  \infty \right\}$ es Lebesgue-integrable, usando el Lema <a href="tul/P_T_02/12.html#intsupinf">12.27</a>
+  obtenemos que
+  \begin{equation*}
+    \int^{\ast }\left( -f\right) =-\int_{\ast }f=-\int^{\ast }f=\int_{\ast
+    }\left( -f\right) .
+  \end{equation*}
+  Esto demuestra la afirmación <em class="emph">(a)</em>.
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;La Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a> asegura que existe
+  una sucesión $(\varphi_{k})$ en
+  $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int^{\ast }\left\vert f-\varphi_{k}\right\vert
+    =0.
+  \end{equation*}
+  Observa que $0\leq \left\vert \left\vert f\right\vert -\left\vert
+      \varphi_{k}\right\vert \right\vert \leq \left\vert f-\varphi
+   _{k}\right\vert $. Así que, por la monotonía de la
+  integral superior,
+  \begin{equation*}
+    0\leq \lim_{k\rightarrow \infty }\int^{\ast }\left\vert \left\vert
+        f\right\vert -\left\vert \varphi_{k}\right\vert \right\vert \leq
+    \lim_{k\rightarrow \infty }\int^{\ast }\left\vert f-\varphi_{k}\right\vert
+    =0.
+  \end{equation*}
+  La Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a> asegura entonces que
+  $\left\vert f\right\vert $ es Lebesgue-integrable y, junto con el
+  Ejercicio <a href="tul/P_T_02/11.html#valabs">11.35</a>, asegura además que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left\vert f\right\vert =\lim_{k\rightarrow \infty
+    }\int_{\mathbb{R}^{n}}\left\vert \varphi_{k}\right\vert \geq
+    \lim_{k\rightarrow \infty }\left\vert \int_{\mathbb{R}^{n}}\varphi
+     _{k}\right\vert =\left\vert \int_{\mathbb{R}^{n}}f\right\vert ,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Veremos más adelante que una función Lebesgue-integrable
+$f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$ sólo
+toma los valores $\pm \infty $ en un conjunto muy pequeño que no
+afecta el valor de la integral (ver Proposición
+ <a href="tul/P_T_02/13.html#funcfinita">13.11</a>). Por ello consideraremos en el resto de esta
+sección únicamente funciones que toman valores reales.
+</p>
+<p>
+Denotemos por
+\begin{equation*}
+  \mathfrak{L}(\mathbb{R}^{n}):=\left\{f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}:f\text{ es Lebesgue-integrable}\right\}.
+\end{equation*}
+El siguiente resultado afirma que $\mathfrak{L}(\mathbb{R}^{n})$ es un
+espacio vectorial y que la integral es una función lineal y
+monótona.
+</p>
+<div class="theorem" id="linmon">[Linealidad y monotonía]
+  <ol class="alfa">
+  <li> Si $f_{1},f_{2}\in
+    \mathfrak{L}(\mathbb{R}^{n})$ y $\lambda_{1},\lambda_{2}\in
+    \mathbb{R}$, entonces $\lambda_{1}f_{1}+\lambda_{2}f_{2}\in
+    \mathfrak{L}(\mathbb{R}^{n})$ y
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}\left( \lambda_{1}f_{1}+\lambda_{2}f_{2}\right)
+      =\lambda_{1}\int_{\mathbb{R}^{n}}f_{1}+\lambda_{2}\int_{\mathbb{R}^{n}}f_{2}.
+    \end{equation*}
+  <li> Si $f,g\in
+    \mathfrak{L}(\mathbb{R}^{n})$ y $f\leq g$, entonces
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}f\leq \int_{\mathbb{R}^{n}}g.
+    \end{equation*}
+  </ol>
+</div>
+
+<div class="proof">
+  <em class="emph">(a): &nbsp;</em>Sean $f_{1},f_{2}\in \mathfrak{L}(\mathbb{R}^{n})$ y
+  $\lambda_{1},\lambda_{2}\in \mathbb{R}$. La
+  Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a>&nbsp;asegura que, para cada
+  $k\in \mathbb{N}$, existen
+  $\varphi_{1,k},\varphi_{2,k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$
+  tales que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int^{\ast }\left\vert f_{i}-\varphi
+     _{i,k}\right\vert =0\qquad\text{para }i=1,2.
+  \end{equation*}
+  De las afirmaciones <em class="emph">(c)</em>, <em class="emph">(e)</em> y <em class="emph">(f)</em> del
+  Lema <a href="tul/P_T_02/12.html#intsupinf">12.27</a> se sigue que
+  \begin{align*}
+    0&\leq \int^{\ast }\left\vert \lambda_{1}f_{1}+\lambda_{2}f_{2}-\lambda
+     _{1}\varphi_{1,k}-\lambda_{2}\varphi_{2,k}\right\vert\\
+    &\leq \left\vert
+      \lambda_{1}\right\vert \int^{\ast }\left\vert f_{1}-\varphi
+     _{1,k}\right\vert +\left\vert \lambda_{2}\right\vert \int^{\ast }\left\vert
+      f_{2}-\varphi_{2,k}\right\vert .
+  \end{align*}
+  En consecuencia,
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int^{\ast }\left\vert (\lambda_{1}f_{1}+\lambda
+     _{2}f_{2})-(\lambda_{1}\varphi_{1,k}+\lambda_{2}\varphi
+     _{2,k})\right\vert =0.
+  \end{equation*}
+  La Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a> asegura entonces que $\lambda
+ _{1}f_{1}+\lambda_{2}f_{2}\in \mathfrak{L}(\mathbb{R}^{n})$ y
+  \begin{align*}
+    \int_{\mathbb{R}^{n}}\left( \lambda_{1}f_{1}+\lambda_{2}f_{2}\right)
+    &=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}\left( \lambda
+     _{1}\varphi_{1,k}+\lambda_{2}\varphi_{2,k}\right) \\
+    &=\lim_{k\rightarrow \infty }\lambda_{1}\int_{\mathbb{R}^{n}}\varphi
+   _{1,k}+\lim_{k\rightarrow \infty }\lambda_{2}\int_{\mathbb{R}^{n}}\varphi
+   _{2,k}\\
+    &=\lambda_{1}\int_{\mathbb{R}^{n}}f_{1}+\lambda_{2}\int_{\mathbb{R}^{n}}f_{2}.
+  \end{align*}
+  Esto demuestra la linealidad.
+</p>
+<p>
+  <em class="emph">(b): &nbsp;</em>La monotonía es consecuencia inmediata de la
+  Definición <a href="tul/P_T_02/12.html#defintleb">12.28</a>&nbsp;y la afirmación <em class="emph">(c)</em> del
+  Lema <a href="tul/P_T_02/12.html#intsupinf">12.27</a>.
+</div>
+</p>
+<p>
+Ahora probaremos el teorema de cambio de variable para isometrías
+afines.  El teorema de cambio de variable para difeomorfismos es
+más delicado. Lo demostraremos en el siguiente capítulo.
+</p>
+<p>
+<div class="theorem">[Cambio lineal de variable]
+\label{cvlinleb}Sean $A\in
+  GL(n,\mathbb{R})$ y $\zeta \in \mathbb{R}^{n}$. Si $f\in
+  \mathfrak{L}(\mathbb{R}^{n})$ entonces la función $x\mapsto
+  f(Ax+\zeta )$ pertenece a $\mathfrak{L}(\mathbb{R}^{n})$ y se cumple
+  que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f(Ax+\zeta )\left\vert \det A\right\vert dx=\int_{\mathbb{R}^{n}}f(y)dy.
+  \end{equation*}
+</div>
+<div class="proof">
+  Sean $h\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$ y $g\in
+  \mathcal{S}_{\ast }(\mathbb{R}^{n})$ tales que $h\leq f\leq g$.
+  Denotemos por $F(x):=Ax+\zeta $. Por la Proposición <a href="tul/P_T_02/12.html#cvsc">12.14</a>,
+  $\left( h\circ F\right) \left\vert \det A\right\vert \in
+  \mathcal{S}^{\ast }(\mathbb{R}^{n})$, $\left( g\circ F\right)
+  \left\vert \det A\right\vert \in \mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$,
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left( h\circ F\right) \left\vert \det A\right\vert
+    =\int_{\mathbb{R}^{n}}h\qquad\text{y}\qquad \int_{\mathbb{R}^{n}}\left( g\circ F\right) \left\vert
+      \det A\right\vert =\int_{\mathbb{R}^{n}}g.
+  \end{equation*}
+  Por tanto,
+  \begin{align*}
+    \int_{\mathbb{R}^{n}}f &=\inf \left\{ \int_{\mathbb{R}^{n}}\left( g\circ
+        F\right) \left\vert \det A\right\vert :g\in \mathcal{S}_{\ast }(\mathbb{R}^{n}),\text{ }g\geq f\right\} , \\
+    &=\sup \left\{ \int_{\mathbb{R}^{n}}\left( h\circ F\right) \left\vert \det
+        A\right\vert :h\in \mathcal{S}^{\ast }(\mathbb{R}^{n}),\text{ }h\leq
+      f\right\} .
+  \end{align*}
+  Por otra parte, como $\left( h\circ F\right) \left\vert \det
+    A\right\vert \leq \left( f\circ F\right) \left\vert \det
+    A\right\vert \leq \left( g\circ F\right) \left\vert \det
+    A\right\vert $ se tiene que
+  \begin{gather*}
+    \int_{\mathbb{R}^{n}}\left( h\circ F\right) \left\vert \det A\right\vert
+    \leq \int_{\ast }\left( f\circ F\right) \left\vert \det
+      A\right\vert, \\
+    \int^{\ast }\left( f\circ F\right) \left\vert \det
+      A\right\vert \leq \int_{\mathbb{R}^{n}}\left( g\circ F\right) \left\vert
+      \det A\right\vert .
+  \end{gather*}
+  En consecuencia,
+  \begin{equation*}
+    \int^{\ast }\left( f\circ F\right) \left\vert \det A\right\vert \leq \int_{\mathbb{R}^{n}}f\leq \int_{\ast }\left( f\circ F\right) \left\vert \det
+      A\right\vert .
+  \end{equation*}
+  Del Lema <a href="tul/P_T_02/12.html#intsupinf">12.27</a> se sigue la igualdad y, por tanto, la
+  integrabilidad de $f\circ F$ y la identidad deseada.
+</div>
+</p>
+<p>
+Si $1\leq m\menorque n$,\: $g\colon \mathbb{R}^{m}\rightarrow \mathbb{R}$ y
+$h\colon \mathbb{R}^{n-m}\rightarrow \mathbb{R}$, definimos $g\odot
+h\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ como
+\begin{equation}
+  \left( g\odot h\right) (y,z):=g(y)h(z),\qquad\text{donde &nbsp;}(y,z)\in 
+  \mathbb{R}^{m}\times \mathbb{R}^{n-m}\equiv \mathbb{R}^{n}.
+\label{prodcomple}
+\end{equation}
+Se tiene el siguiente resultado.
+</p>
+<p>
+<div id="prodtens" class="proposition">
+Si $f_{1}\in \mathfrak{L}(\mathbb{R}^{m})$ y
+  $f_{2}\in \mathfrak{L}(\mathbb{R}^{n-m})$, $1\leq m\menorque n$, entonces
+  $f_{1}\odot f_{2}\in \mathfrak{L}(\mathbb{R}^{n})$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left( f_{1}\odot f_{2}\right) =\biggl( \int_{\mathbb{R}^{m}}f_{1}\biggr) \biggl( \int_{\mathbb{R}^{n-m}}f_{2}\biggr) .
+  \end{equation*}
+</div>
+<div class="proof">
+  Por la Proposición <a href="tul/P_T_02/12.html#valabsint">12.32</a>, si $f_{1}\in
+  \mathfrak{L}(\mathbb{R}^{m})$ y $f_{2}\in
+  \mathfrak{L}(\mathbb{R}^{n-m})$ entonces $\left\vert
+    f_{1}\right\vert \in \mathfrak{L}(\mathbb{R}^{m})$ y $\left\vert
+    f_{2}\right\vert \in \mathfrak{L}(\mathbb{R}^{n-m})$. Por tanto,
+  existe $M\in \mathbb{R}$ tal que
+  \begin{equation*}
+    \max \left\{ \int_{\mathbb{R}^{m}}\left\vert f_{1}\right\vert ,\text{ }\int_{\mathbb{R}^{n-m}}\left\vert f_{2}\right\vert \right\} \menorque M.
+  \end{equation*}
+  Elegimos $\tilde{g}\in \mathcal{S}_{\ast }(\mathbb{R}^{m})$ tal que
+  $\tilde{g}\geq \left\vert f_{1}\right\vert $ y
+  \begin{equation}
+    \int_{\mathbb{R}^{m}}\tilde{g}\menorque M.\label{prod1}
+  \end{equation}
+  Por otra parte, la Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a> asegura que
+  existen $\varphi_{1,k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{m})$,
+  $\varphi_{2,k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n-m})$ tales que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{m}}\left\vert f_{1}-\varphi
+     _{1,k}\right\vert =0\qquad\text{y}\qquad \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n-m}}\left\vert f_{2}-\varphi_{2,k}\right\vert =0.
+  \end{equation*}
+  Sea $\varepsilon >0$. Entonces existe $k_{0}\in \mathbb{N}$ tal que,
+  para todo $k\geq k_{0}$,
+  \begin{equation}
+  \label{prod2}
+    \begin{gathered}
+    \int_{\mathbb{R}^{n-m}}\left\vert \varphi_{2,k}\right\vert \leq \int_{\mathbb{R}^{m}}\left\vert f_{2}\right\vert +\int_{\mathbb{R}^{m}}\left\vert
+      f_{2}-\varphi_{2,k}\right\vert \menorque M,\\
+    \int_{\mathbb{R}^{m}}\left\vert f_{1}-\varphi_{1,k}\right\vert \menorque\frac{\varepsilon }{2M}\qquad\text{y}\qquad \int_{\mathbb{R}^{n-m}}\left\vert
+      f_{2}-\varphi_{2,k}\right\vert \menorque\frac{\varepsilon }{2M}.
+    \end{gathered}
+  \end{equation}
+  Para cada $k\geq k_{0}$ elegimos $g_{1,k}\in \mathcal{S}_{\ast
+  }(\mathbb{R}^{m})$ y $g_{2,k}\in \mathcal{S}_{\ast
+  }(\mathbb{R}^{n-m})$ de modo que $&nbsp;g_{1,k}\geq \left\vert
+    f_{1}-\varphi_{1,k}\right\vert $, $&nbsp;g_{2,k}\geq \left\vert
+    f_{2}-\varphi_{2,k}\right\vert $,
+  \begin{equation}
+    \int_{\mathbb{R}^{m}}g_{1,k}\menorque\frac{\varepsilon }{2M}\qquad\text{y}\qquad \int_{\mathbb{R}^{n-m}}g_{2,k}\menorque\frac{\varepsilon }{2M}\text{.}\label{prod3}
+  \end{equation}
+  Observa que
+  \begin{align*}
+    \bigl\vert f_{1}\odot f_{2}-\varphi_{1,k}\odot \varphi_{2,k}\bigr\vert
+    &\leq \left( \left\vert f_{1}\right\vert \odot \left\vert f_{2}-\varphi
+       _{2,k}\right\vert \right) +\left( \left\vert f_{1}-\varphi_{1,k}\right\vert
+      \odot \left\vert \varphi_{2,k}\right\vert \right) \\
+    &\leq \left( \tilde{g}\odot g_{2,k}\right) +\left( g_{1,k}\odot \left\vert
+        \varphi_{2,k}\right\vert \right)
+  \end{align*}
+  En consecuencia, usando el Lema <a href="tul/P_T_02/12.html#intsupinf">12.27</a>, la
+  Proposición <a href="tul/P_T_02/12.html#propprodtens">12.15</a> y las desigualdades (\ref{prod1}),
+  (\ref{prod2}) y (\ref{prod3}) obtenemos
+  \begin{align*}
+    \int^{\ast }\bigl\vert f_{1}\odot f_{2}-{}&\varphi_{1,k}\odot \varphi
+     _{2,k}\bigr\vert \leq \int_{\mathbb{R}^{n}}\left( \tilde{g}\odot
+      g_{2,k}\right) +\int_{\mathbb{R}^{n}}\left( g_{1,k}\odot \left\vert \varphi
+       _{2,k}\right\vert \right) \\
+    &=\biggl( \int_{\mathbb{R}^{m}}\tilde{g}\biggr) \biggl( \int_{\mathbb{R}^{n-m}}g_{2,k}\biggr) +\biggl( \int_{\mathbb{R}^{m}}g_{1,k}\biggr) \biggl(
+      \int_{\mathbb{R}^{n-m}}\left\vert \varphi_{2,k}\right\vert \biggr) \\
+    &\menorque\varepsilon \qquad \forall k\geq k_{0}.
+  \end{align*}
+  De la Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a>&nbsp;se sigue entonces que
+  $f_{1}\odot f_{2}\in \mathfrak{L}(\mathbb{R}^{n})$ y, usando el
+  Ejercicio <a href="tul/P_T_02/11.html#intprodtens">11.37</a>, obtenemos que\
+  \begin{align*}
+    \int_{\mathbb{R}^{n}}\left( f_{1}\odot f_{2}\right) &=\lim_{k\rightarrow
+      \infty }\int_{\mathbb{R}^{n}}\left( \varphi_{1,k}\odot \varphi_{2,k}\right)
+    \\
+    &=\lim_{k\rightarrow \infty }\biggl( \int_{\mathbb{R}^{m}}\varphi
+     _{1,k}\biggr) \biggl( \int_{\mathbb{R}^{n-m}}\varphi_{2,k}\biggr) =\left(
+      \int_{\mathbb{R}^{m}}f_{1}\right) \biggl( \int_{\mathbb{R}^{n-m}}f_{2}\biggr)
+    ,
+  \end{align*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+El teorema de Fubini para funciones Lebesgue-integrables es más
+delicado. Lo posponemos para el siguiente capítulo.
+</p>
+<h3 id="sec12-6">Conjuntos integrables</h3>
+<p class="noj">
+<div id="defvolumen" class="definition">
+Un subconjunto $X$ de $\mathbb{R}^{n}$ es
+  <em class="textbf">integrable</em> si $1_{X}\in \mathfrak{L}(\mathbb{R}^{n})$.
+  La <em class="textbf">medida de Lebesgue</em> (o el
+  <em class="textbf">volumen</em>) <em class="textbf">de</em> $X$ en $\mathbb{R}^{n}$\
+  se define como
+  \begin{equation*}
+    \vol_{n}(X):=\int_{\mathbb{R}^{n}}1_{X}
+  \end{equation*}
+  Se suele usar también la notación $\left\vert X\right\vert $
+  o $\left\vert X\right\vert_{n}$ en vez de $\vol_{n}(X)$.
+</div>
+</p>
+<p>
+El Corolario <a href="tul/P_T_02/12.html#abtomedfin">12.22</a> asegura que todo subconjunto compacto de
+$\mathbb{R}^{n}$ es integrable y todo subconjunto abierto y acotado de
+$\mathbb{R}^{n}$ es integrable. Si $\Omega $ es un subconjunto abierto
+y acotado de $\mathbb{R}^{n}$, entonces su cerradura $\overline{\Omega
+}$ y su frontera $\partial \Omega :=\overline{\Omega }\smallsetminus
+\Omega $ son compactos y, por tanto, integrables. Para obtener otros
+ejemplos de conjuntos integrables usaremos el siguiente resultado.
+</p>
+<p>
+<div id="lemprod" class="lemma">
+Si $f,g\in \mathfrak{L}(\mathbb{R}^{n})$ y $g$ es
+  acotada, entonces $fg\in \mathfrak{L}(\mathbb{R}^{n})$.
+</div>
+<div class="proof">
+  La Proposición <a href="tul/P_T_02/12.html#caractint">12.31</a>&nbsp;asegura que, para cada $k\in
+  \mathbb{N}$, existe $\varphi_{k}\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que
+  \begin{equation*}
+    \int^{\ast }\left\vert f-\varphi_{k}\right\vert \menorque\frac{1}{2k\left(
+        \left\Vert g\right\Vert_{\infty }+1\right) },
+  \end{equation*}
+  y que existe $\psi_{k}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal
+  que
+  \begin{equation*}
+    \int^{\ast }\left\vert g-\psi_{k}\right\vert \menorque\frac{1}{2k\left( \left\Vert
+          \varphi_{k}\right\Vert_{\infty }+1\right) }.
+  \end{equation*}
+  Como
+  \begin{equation*}
+    \left\vert fg-\varphi_{k}\psi_{k}\right\vert \leq \left\vert f-\varphi
+     _{k}\right\vert \left\vert g\right\vert +\left\vert \varphi_{k}\right\vert
+    \left\vert g-\psi_{k}\right\vert \leq \left\Vert g\right\Vert_{\infty
+    }\left\vert f-\varphi_{k}\right\vert +\left\Vert \varphi_{k}\right\Vert
+   _{\infty }\left\vert g-\psi_{k}\right\vert ,
+  \end{equation*}
+  se tiene que
+  \begin{equation*}
+    \int^{\ast }\left\vert fg-\varphi_{k}\psi_{k}\right\vert \leq \left\Vert
+      g\right\Vert_{\infty }\biggl( \int^{\ast }\left\vert f-\varphi
+       _{k}\right\vert \biggr) +\left\Vert \varphi_{k}\right\Vert_{\infty }\left(
+      \int^{\ast }\left\vert g-\psi_{k}\right\vert \right) \menorque\frac{1}{k}.
+  \end{equation*}
+  Esto prueba que $fg\in \mathfrak{L}(\mathbb{R}^{n})$.
+</div>
+</p>
+<p>
+Veremos más adelante que el producto de funciones
+Lebesgue-integrables no necesariamente es integrable (ver Ejemplo
+ <a href="tul/P_T_02/13.html#prodnoint">13.32</a>).
+</p>
+<p>
+<div id="vol" class="proposition">
+Si $X$ y $Y$ son subconjuntos integrables de
+  $\mathbb{R}^{n}$, entonces $X\cap Y$, $X\cup Y$ y $X\smallsetminus
+  Y$ son integrables y
+  \begin{align*}
+    \vol_{n}(X\cup Y) &=\vol_{n}(X)+\vol_{n}(Y)-\vol_{n}(X\cap Y), \\
+    \vol_{n}(X\smallsetminus Y) &=\vol_{n}(X)-\vol_{n}(X\cap Y).
+  \end{align*}
+</div>
+<div class="proof">
+  Para cualesquiera subconjuntos $X$ y $Y$ de $\mathbb{R}^{n}$ se
+  cumple que
+  \begin{align}
+    1_{X\cap Y} &=1_{X}1_{Y},\label{med1} \\
+    1_{X\cup Y} &=1_{X}+1_{Y}-1_{X\cap Y},\label{med2} \\
+    1_{X\smallsetminus Y} &=1_{X}-1_{X\cap Y}.\label{med3}
+  \end{align}
+  Si $1_{X}\in \mathfrak{L}(\mathbb{R}^{n})$ y $1_{Y}\in
+  \mathfrak{L}(\mathbb{R}^{n})$, el Lema <a href="tul/P_T_02/12.html#lemprod">12.37</a>&nbsp;y la identidad
+  (\ref{med1})&nbsp;aseguran que $1_{X\cap Y}\in
+  \mathfrak{L}(\mathbb{R}^{n})$. Del Teorema <a href="tul/P_T_02/12.html#linmon">12.33</a> y las
+  identidades (\ref{med2}) y (\ref{med3}) se sigue que $1_{X\cup Y}\in
+  \mathfrak{L}(\mathbb{R}^{n})$, $1_{X\smallsetminus Y}\in
+  \mathfrak{L}(\mathbb{R}^{n})$ y que son válidas las identidades
+  del enunciado.
+</div>
+</p>
+<p>
+En consecuencia, si $K$ es compacto y $\Omega $ es abierto en
+$\mathbb{R}^{n} $, entonces $K\cap \Omega $ es integrable.
+</p>
+<p>
+<div class="proposition">
+  Si $X$ es un subconjunto integrable de $\mathbb{R}^{m}$ y $Y$ es un
+  subconjunto integrable de $\mathbb{R}^{n-m}$, entonces $X\times Y$
+  es un subconjunto integrable de $\mathbb{R}^{n}$ y
+  \begin{equation*}
+    \vol_{n}(X\times Y)=\left( \vol_{m}(X)\right)
+    \left( \vol_{n-m}(Y)\right) .
+  \end{equation*}
+</div>
+<div class="proof">
+  Para cualesquiera subconjuntos $X$ y $Y$ de $\mathbb{R}^{n}$ se
+  tiene que $1_{X\times Y}=1_{X}\odot 1_{Y}$. La afirmación es
+  consecuencia de la Proposición <a href="tul/P_T_02/12.html#prodtens">12.35</a>.
+</div>
+<div class="obs">
+  Si $n>m$, identificamos a $\mathbb{R}^{m}$ con el subespacio
+  $\mathbb{R}^{m}\times \left\{0\right\}$ de $\mathbb{R}^{n}$. La proposición
+  anterior asegura que, si $X$ es un subconjunto integrable de
+  $\mathbb{R}^{m}$, entonces $X\equiv X\times \left\{0\right\}$ es un subconjunto
+  integrable de $\mathbb{R}^{n}$. Es decir, la integrabilidad de un
+  conjunto no depende del espacio euclidiano que lo contiene. Pero su
+  medida de Lebesgue sí, ya que vol$_{n}(X)=0$ para todo
+  subconjunto integrable $X$ de $\mathbb{R}^{m}$.
+</div>
+</p>
+<h3 id="sec12-7">La integral sobre un subconjunto de $\mathbb{R}^{n}$</h3>
+<p class="noj">
+Extenderemos ahora el concepto de integrabilidad a funciones definidas
+en un subconjunto $X$ de $\mathbb{R}^{n}$.
+</p>
+<p>
+Dada $f\colon X\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$ definimos
+$\bar{f}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$
+como
+\begin{equation}
+  \bar{f}(x):=
+    \begin{cases}
+      f(x) & \text{si $x\in X$,} \\
+      0 & \text{si $x\in \mathbb{R}^{n}\smallsetminus X$.}
+    \end{cases}\label{exten}
+\end{equation}
+$\bar{f}$ se llama la <em class="textbf">extensión trivial de</em> $f$
+a $\mathbb{R}^{n}$.
+</p>
+<p>
+<div id="intenX" class="definition">
+Sea $X$ un subconjunto de $\mathbb{R}^{n}$. Una
+  función $f\colon X\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$ es
+  (<em class="textbf">Lebesgue-</em>) <em class="textbf"> integrable en </em>$X$
+  si la función $\bar{f}&nbsp;$es
+  (Lebesgue-)integrable en $\mathbb{R}^{n}$. La <em class="textbf">integral</em> (<em class="textbf">de
+    Lebesgue</em>) <em class="textbf">de </em>$f$ <em class="textbf">en</em> $X$ se
+  define como
+  \begin{equation*}
+    \int_{X}f:=\int_{\mathbb{R}^{n}}\bar{f}.
+  \end{equation*}
+</div>
+</p>
+<p>
+Denotamos por
+\begin{equation}
+  \mathfrak{L}(X):=\left\{f\colon X\rightarrow \mathbb{R}:f\text{ es Lebesgue-integrable
+    en }X\right\}.\label{leb}
+\end{equation}
+Identificando a $f\colon X\rightarrow
+\mathbb{R}$ con su extensión $\bar{f}\colon \mathbb{R}^{n}\rightarrow
+\mathbb{R}$, se tiene que $\mathfrak{L}(X)$ es un subespacio vectorial
+de $\mathfrak{L}(\mathbb{R}^{n})$.
+</p>
+<p>
+<div id="intsobrecomp" class="proposition">
+Si $K$ es un subconjunto compacto de
+  $\mathbb{R}^{n}$ y $f\colon K\rightarrow \mathbb{R}$ es continua, entonces
+  $f\in \mathfrak{L}(K)$.
+</div>
+<div class="proof">
+  Sean $a:=\min_{x\in K}f$ y $b:=\max_{x\in K}f$. Definimos
+  $g\colon K\rightarrow \mathbb{R}$ como $g(x):=f(x)-a$. Como $g\geq 0$, se
+  tiene que $\bar{g}\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$
+  [Ejercicio <a href="tul/P_T_02/12.html#exte">12.47</a>]. Entonces
+  \begin{equation*}
+    0\leq \int_{\mathbb{R}^{n}}\bar{g}\leq \int_{\mathbb{R}^{n}}(b-a)1_{K}=(b-a)\vol_{n}(K)\menorque\infty .
+  \end{equation*}
+  De la Observación <a href="tul/P_T_02/12.html#obsintleb">12.29</a> se sigue que $\bar{g}\in
+  \mathfrak{L}(\mathbb{R}^{n})$. Puesto que $K$ es integrable, se
+  tiene entonces que $\bar{f}=\bar{g}+a1_{K}\in
+  \mathfrak{L}(\mathbb{R}^{n})$. Por tanto, $f\in \mathfrak{L}(K)$.
+</div>
+<div id="restrint" class="proposition">
+Si $f\colon X\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$
+  es Lebesgue-integrable en $X$ y $Y$ es un subconjunto integrable de
+  $\mathbb{R}^{n}$ tal que $Y\subset X$, entonces la restricción
+  de $f$ a $Y$,
+  \begin{equation*}
+    f\mid_{Y}\colon Y\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\},
+  \end{equation*}
+  es Lebesgue-integrable en $Y$ y se cumple que
+  \begin{equation*}
+    \int_{Y}\left( f\mid_{Y}\right) =\int_{X}f1_{Y}.
+  \end{equation*}
+</div>
+<div class="proof">
+  Observa que $\overline{f\mid_{Y}}=\bar{f}1_{Y}$. Así que este
+  resultado es consecuencia inmediata del Lema <a href="tul/P_T_02/12.html#lemprod">12.37</a>.
+</div>
+<div id="notint" class="notation">
+</p>
+<p>
+  <ol class="alfa">
+  <li> En adelante denotaremos simplemente por $f$, en vez de
+    $\bar{f}$, a la extensión trivial de $f$ a $\mathbb{R}^{n}$.
+</p>
+<p>
+  <li> Si $f\colon X\rightarrow \mathbb{R}\cup \left\{\pm \infty \right\}$ es
+    Lebesgue-integrable en $X$ y $Y$ es un subconjunto integrable de
+    $\mathbb{R}^{n}$ tal que $Y\subset X$, denotamos por
+    \begin{equation*}
+      \int_{Y}f:=\int_{Y}\left( f\mid_{Y}\right) .
+    \end{equation*}
+</p>
+<p>
+  <li> Si $X=(a,b)$ con $-\infty \leq a\menorque b\leq \infty $,
+    escribimos
+    \begin{equation*}
+      \int_{a}^{b}f:=\int_{(a,b)}f.
+    \end{equation*}
+</p>
+<p>
+  <li> En adelante diremos simplemente que $f$ es
+    <em class="textbf">integrable en</em> $X$, en vez de decir que es
+    Lebesgue-integrable en $X$, y llamaremos a la integral de Lebesgue
+    simplemente la <em class="textbf">integral</em>. Análogamente nos referiremos
+    simplemente a la <em class="textbf">medida</em> en vez de la medida de Lebesgue.
+  </ol>
+</div>
+</p>
+<h3 id="sec12-8">Ejercicios</h3>
+
+<div class="exercise">
+  Prueba que, si $K$ es un espacio métrico compacto y $f,f_{k}\in
+  \mathcal{C}^{0}(K)$ son tales que $f_{1}\geq \cdots \geq f_{k}\geq
+  f_{k+1}\geq \cdots $ &nbsp;y $&nbsp;f_{k}(x)\rightarrow f(x)$ &nbsp;para cada
+  $x\in K$, entonces $f_{k}\rightarrow f$ uniformemente en $K$.
+</div>
+<div class="exercise">
+  Prueba que, si $f_{k}\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$,
+  $f_{k}\geq f_{k+1}$ para todo $k\in \mathbb{N}$ y $f:=\inf_{k\in
+    \mathbb{N}}f_{k}$, entonces $f\in \mathcal{S}^{\ast
+  }(\mathbb{R}^{n})$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}.
+  \end{equation*}
+</div>
+<div id="exte" class="exercise">
+Sea $X\subset \mathbb{R}^{n}$. Dada una función
+  $f\colon X\rightarrow \mathbb{R}$ considera su extensión trivial
+  $\bar{f}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$, dada por
+  \begin{equation*}
+    \bar{f}(x):=
+      \begin{cases}
+        f(x) & \text{si $x\in X$,} \\
+        0 & \text{si $x\in \mathbb{R}^{n}\smallsetminus X$.}
+      \end{cases}
+  \end{equation*}
+</p>
+<p class="noj">
+  Si $f\colon X\rightarrow \mathbb{R}$ es continua y $f\geq 0$, prueba que
+</p>
+<p>
+  <ol class="alfa">
+  <li> si $X$ es abierto, entonces $\bar{f}\in \mathcal{S}_{\ast
+    }(\mathbb{R}^{n})$,
+</p>
+<p>
+  <li> si $X$ es compacto, entonces $\bar{f}\in
+    \mathcal{S}^{\ast }(\mathbb{R}^{n})$.
+  </ol>
+</p>
+<p>
+  <em class="emph">(Sugerencia: Usa el Ejercicio <a href="tul/P_T_02/4.html#subnivelsci">4.46</a>.)</em>
+</div>
+<div id="indsc" class="exercise">
+Sea $X\subset \mathbb{R}^{n}$. Demuestra que
+</p>
+<p>
+  <ol class="alfa">
+  <li> $1_{X}\in \mathcal{S}_{\ast }(\mathbb{R}^{n})$ si y
+    sólo si $X $ es abierto en $\mathbb{R}^{n}$,
+</p>
+<p>
+  <li> $1_{X}\in \mathcal{S}^{\ast }(\mathbb{R}^{n})$ si y
+    sólo si $X $ es compacto en $\mathbb{R}^{n}$.
+  </ol>
+</div>
+<div id="homotecia" class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $A$ es una matriz de $n\times n$ (no necesariamente
+    invertible) y$&nbsp;\zeta \in \mathbb{R}^{n}$, considera la
+    función afín $\varphi \colon \mathbb{R}^{n}\rightarrow
+    \mathbb{R}^{n}$ dada por $\varphi (x):=Ax+\zeta $. Prueba que, si
+    $K$ es un subconjunto compacto de $\mathbb{R}^{n}$, entonces
+    $\varphi (K)$ es integrable y
+    \begin{equation*}
+      \vol_{n}(\varphi (K))=\left\vert \det A\right\vert \vol_{n}(K).
+    \end{equation*}
+</p>
+<p>
+  <li> Prueba que, si $K$ es un subconjunto compacto de
+    $\mathbb{R}^{n}$ y $\lambda \in \mathbb{R}$, entonces $\lambda
+    K:=\left\{\lambda x:x\in K\right\}$ es integrable y
+    \begin{equation*}
+      \vol_{n}(\lambda K)=\left\vert \lambda \right\vert^{n}\vol_{n}(K).
+    \end{equation*}
+  </ol>
+</div>
+<div class="exercise">
+  Sean $\xi_{0},\xi_{1},\dots,\xi_{n}\in \mathbb{R}^{n}$. Prueba que
+  el <em class="textbf">paralelogramo</em>
+  \begin{equation*}
+    P:=\left\{\xi_{0}+t_{1}\xi_{1}+\cdots +t_{n}\xi_{n}:t_{i}\in \left[ 0,1\right] 
+    \text{ }\forall i=1,\dots,n\right\}
+  \end{equation*}
+  es un subconjunto compacto de $\mathbb{R}^{n}$ y que
+  \begin{equation*}
+    \vol_{n}(P)=\left\vert \det (\xi_{1}\cdots \xi_{n})\right\vert .
+  \end{equation*}
+  <em class="emph">(Sugerencia: Usa el Ejercicio <a href="tul/P_T_02/12.html#homotecia">12.49</a>.)</em>
+</div>
+<div class="exercise">
+  Sean $K$ un subconjunto compacto de $\mathbb{R}^{n-1}$ y $a\in
+  (0,\infty )$. Usando el principio de Cavalieri, calcula el volumen
+  en $\mathbb{R}^{n}$ del cilindro
+  \begin{equation*}
+    K\times [0,a]:=\left\{(y,t)\in \mathbb{R}^{n-1}\times \mathbb{R}:y\in K,\text{ }t\in [0,a]\right\}
+  \end{equation*}
+  en términos de $a$ y $\vol_{n-1}(K)$.
+</div>
+<div class="exercise">
+  Sean $K$ un subconjunto compacto de $\mathbb{R}^{n-1}$ y $a\in
+  [0,\infty )$. Calcula el volumen en $\mathbb{R}^{n}$ del cono
+  \begin{equation*}
+    C:=\left\{((1-t)y,ta)\in \mathbb{R}^{n-1}\times \mathbb{R}:y\in K,\text{ }t\in
+    [0,1]\right\}
+  \end{equation*}
+  en términos de $a$ y $\vol_{n-1}(K)$. <em class="emph">(Sugerencia:
+    Usa el principio de Cavalieri.)</em>
+</div>
+<div class="exercise">
+  Sean $\xi_{0},\xi_{1},\dots,\xi_{n}\in \mathbb{R}^{n}$. Calcula el
+  volumen en $\mathbb{R}^{n}$ del simplejo
+  \begin{equation*}
+    \Sigma (\xi_{0},\xi_{1},\dots,\xi_{n}):=\left\{ \sum_{i=0}^{n}t_{i}\xi
+     _{i}\in \mathbb{R}^{n}:t_{i}\geq 0\text{ y }\sum_{i=0}^{n}t_{i}=1\right\} .
+  \end{equation*}
+  <em class="emph">(Sugerencia: Calcula primero el volumen de </em>$\Sigma
+  (0,e_{1},\dots,e_{n}) $<em class="emph">&nbsp;para la base canónica
+  </em>$\left\{e_{1},\dots,e_{n}\right\}$<em class="emph">&nbsp;de </em>$R^{n}$,<em class="emph">&nbsp;y aplica el
+    Ejercicio <a href="tul/P_T_02/12.html#homotecia">12.49</a> para obtener el caso general.)</em>
+</div>
+<div class="exercise">
+  Calcula el volumen en $\mathbb{R}^{n}$ del elipsoide
+  \begin{equation*}
+    E:=\left\{ x\in \mathbb{R}^{n}:\sum_{i=1}^{n}\frac{x_{i}^{2}}{a_{i}^{2}}\leq
+      1\right\}
+  \end{equation*}
+  con semiejes $a_{1},\dots,a_{n}\in (0,\infty )$. <em class="emph">(Sugerencia:
+    Usa el Ejemplo <a href="tul/P_T_02/12.html#volbola">12.25</a> y el Ejercicio <a href="tul/P_T_02/12.html#homotecia">12.49</a>.)</em>
+</div>
+<div class="exercise">
+  Sean $K$ un subconjunto compacto de $\mathbb{R}^{n}$ y
+  $f\colon K\rightarrow \mathbb{R}$ una función continua tal que $f\geq
+  0$. Sea
+  \begin{equation*}
+    G^{f}:=\left\{(x,t)\in \mathbb{R}^{n}\times \mathbb{R}:x\in K,\text{ }0\leq t\leq
+    f(x)\right\}
+  \end{equation*}
+  el conjunto de puntos bajo la gráfica de $f$.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que $G^{f}$ es compacto y que
+    \begin{equation*}
+      \vol_{n+1}(G^{f})=\int_{K}f.
+    \end{equation*}
+    <em class="emph">(Sugerencia: Aplica la Proposición <a href="tul/P_T_02/12.html#propfub">12.16</a>.)</em>
+</p>
+<p>
+  <li> Usa la afirmación (a) y el <em class="emph">Ejemplo <a href="tul/P_T_02/12.html#volbola">12.25</a></em>
+    para calcular la integral de la función
+    \begin{equation*}
+      f(x):=
+        \begin{cases}
+          \sqrt{1-\left\Vert x\right\Vert^{2}} & \text{si $\left\Vert x\right\Vert
+          \leq 1$,} \\
+          0 & \text{si $\left\Vert x\right\Vert \geq 1$,}
+        \end{cases}
+    \end{equation*}
+    del <em class="emph">Ejercicio <a href="tul/P_T_02/11.html#calculo">11.44</a></em>.
+  </ol>
+</div>
+<div id="monvol" class="exercise">
+Si $X$ y $Y$ son subconjuntos integrables de
+  $\mathbb{R}^{n}$ demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $X\subset Y$ entonces $\vol_{n}(X)\leq vol_{n}(Y)$.
+</p>
+<p>
+  <li> $\vol_{n}(Y\smallsetminus X)\geq \vol_{n}(Y)-\vol_{n}(X)$.
+</p>
+<p>
+  <li> Si $X\subset Y$ entonces $\vol_{n}(Y\smallsetminus
+    X)=\vol_{n}(Y)-\vol_{n}(X)$.
+  </ol>
+</div>
+<div id="aproxabto" class="exercise">
+Prueba que, si $X$ es un subconjunto integrable de
+  $\mathbb{R}^{n}$ y $\vol_{n}(X)>0$ entonces, para cada $\alpha
+  >1$, existe un subconjunto abierto $\Omega $ de $\mathbb{R}^{n}$ tal
+  que
+  \begin{equation*}
+    X\subset \Omega \qquad\text{y}\qquad \vol_{n}(\Omega )\menorque\alpha\vol_{n}(X).
+  \end{equation*}
+  <em class="emph">(Sugerencia: Toma </em>$\varepsilon :=\frac{\alpha -1}{\alpha
+    +1}$<em class="emph">, observa que existe </em>$g\in \mathcal{S}_{\ast
+  }(\mathbb{R}^{n})$<em class="emph">&nbsp;tal que </em>$g\geq 1_{X}$<em class="emph">&nbsp;y </em>
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}g<(1+\varepsilon )\vol_{n}(X),
+  \end{equation*}
+  <em class="emph">y define </em>$\Omega :=\left\{x\in \mathbb{R}^{n}:g(x)>1-\varepsilon
+  \right\}$.<em class="emph">)</em>
+</div>
+<div class="exercise">
+  Prueba que, si $Y$ es un subconjunto integrable y acotado de
+  $\mathbb{R}^{n}$ y $\vol_{n}(Y)>0$ entonces, para cada $\beta
+  <1$, existe un subconjunto compacto $K$ de $\mathbb{R}^{n}$ tal que
+  \begin{equation*}
+    K\subset Y\qquad\text{y}\qquad \beta\vol_{n}(Y)\menorque\vol_{n}(K).
+  \end{equation*}
+  <em class="emph">(Sugerencia: Elige un rectángulo </em>$Q$<em class="emph">&nbsp;tal que
+  </em>$Y\subset Q$<em class="emph">&nbsp;y aplica el ejercicio anterior al conjunto
+  </em>$X:=Q-Y$<em class="emph">.)</em>
+</div>
+<div class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que, si $\Omega $ es un subconjunto abierto y
+    acotado de $\mathbb{R}^{n}$ y $f\colon \Omega \rightarrow \mathbb{R}$ es
+    una función continua y acotada, entonces $f\in
+    \mathfrak{L}(\Omega )$ y
+    \begin{equation*}
+      \int_{\Omega }\left\vert f\right\vert \leq \left\Vert f\right\Vert_{\infty }\vol_{n}(\Omega ).
+    \end{equation*}
+</p>
+<p>
+  <li> Si omitimos la hipótesis de que $\Omega $ sea
+    acotado, ¿es cierto que $f\in \mathfrak{L}(\Omega
+    )$?
+</p>
+<p>
+  <li> Si omitimos la hipótesis de que $f$ sea acotada,
+    ¿es cierto que $f\in \mathfrak{L}(\Omega )$?
+  </ol>
+</div>
+<div class="exercise">
+  Dada $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$, definimos
+  $f^{+},f^{-}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ como
+  \begin{equation*}
+    f^{+}(x):=\max \left\{f(x),0\right\}\text{,\qquad }f^{-}(x):=\max \left\{-f(x),0\right\}.
+  \end{equation*}
+  Prueba que $f\in \mathfrak{L}(\mathbb{R}^{n})$ si y sólo si
+  $f^{+}$ $\in \mathfrak{L}(\mathbb{R}^{n})$ y $f^{-}\in
+  \mathfrak{L}(\mathbb{R}^{n})$. <em class="emph">(Sugerencia: Observa que
+  </em>$f=f^{+}-f^{-}$<em class="emph">&nbsp;y </em>$\left\vert f\right\vert =f^{+}+f^{-}.)$
+</div>
+<div id="minmaxint" class="exercise">
+Prueba que, si $f,g\in
+  \mathfrak{L}(\mathbb{R}^{n})$, entonces $\max \left\{f,g\right\}\in
+  \mathfrak{L}(\mathbb{R}^{n})$ y $\min \left\{f,g\right\}\in
+  \mathfrak{L}(\mathbb{R}^{n})$.
+</div>
+<div id="riemannintervalo" class="exercise">
+Prueba que, si $-\infty \menorque a\menorque b\menorque \infty $ y
+  $f\colon [a,b]\rightarrow \mathbb{R}$ es continua, entonces la integral de
+  $f$ dada por la <em class="emph">Definición <a href="tul/P_T_02/12.html#intenX">12.41</a></em> coincide con la
+  integral usual de Riemann $\int_{a}^{b}f$.
+</div>
+<div class="exercise">
+  Prueba que, si $X$ es un subconjunto integrable de $\mathbb{R}^{n}$,
+  la función constante con valor $c\in \mathbb{R}$ es integrable
+  en $X$ y
+  \begin{equation*}
+    \int_{X}c=c\vol_{n}(X).
+  \end{equation*}
+</div>
+<div class="exercise">[Funciones Riemann-integrables]
+  Sea $\mathcal{E}(\mathbb{R}^{n})$ el espacio vectorial generado por
+  las funciones características de los rectángulos en
+  $\mathbb{R}^{n}$, es decir, los elementos de
+  $\mathcal{E}(\mathbb{R}^{n})$&nbsp;son funciones de la forma
+  \begin{equation*}
+    \vartheta =\sum_{i=1}^{m}c_{i}1_{Q_{i}},
+  \end{equation*}
+  donde $Q_{i}$ es un rectángulo y $c_{i}\in \mathbb{R}$. Se les
+  llama <em class="textbf">funciones escalonadas</em>.
+  <ol class="alfa">
+  <li> Prueba que toda función escalonada es
+    Lebesgue-integrable y que
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}\vartheta =\sum_{i=1}^{m}c_{i}\vol_{n}(Q_{i}).
+    \end{equation*}
+  <li> Una función $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$
+    es <em class="textbf">Riemann-integrable</em>
+    si, para cada $\varepsilon
+    >0$, existen $\vartheta_{1},\vartheta_{2}\in
+    \mathcal{E}(\mathbb{R}^{n})$ tales que $\vartheta_{1}\leq f\leq
+    \vartheta_{2}$ y
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}\vartheta_{2}-\int_{\mathbb{R}^{n}}\vartheta
+     _{1}\menorque\varepsilon .
+    \end{equation*}
+    Prueba que, si $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$,
+    entonces $f$ es Riemann-integrable.
+  <li> Si $f$ es Riemann-integrable, su <em class="textbf">integral de
+      Riemann</em> $I(f)$ se define como
+    \begin{align*}
+      I(f): &=\inf \left\{ \int_{\mathbb{R}^{n}}\vartheta :\vartheta \in \mathcal{E}(\mathbb{R}^{n}),\text{ }\vartheta \geq f\right\} \\
+      &=\sup \left\{ \int_{\mathbb{R}^{n}}\vartheta :\vartheta \in \mathcal{E}(\mathbb{R}^{n}),\text{ }\vartheta \leq f\right\} .
+    \end{align*}
+    Prueba que toda función Riemann-integrable
+    $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es Lebesgue-integrable y
+    \begin{equation*}
+      I(f)=\int_{\mathbb{R}^{n}}f.
+    \end{equation*}
+  <li> Sea $X=\mathbb{Q}\cap [0,1]$. Prueba que
+    $1_{X}\colon \mathbb{R}\rightarrow \mathbb{R}$ no es
+    Riemann-integrable. En el siguiente capítulo probaremos que
+    esta función sí es Lebesgue-integrable <em class="emph">(ver Ejemplo <a href="tul/P_T_02/13.html#numerable">13.5</a>)</em>.
+  </ol>
+</div>
+
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>

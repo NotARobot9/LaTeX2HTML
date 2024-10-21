@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/javascript" src="./tul/P_T_02/refs.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/16.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\sop}{\mathop{\rm sop}} $ 
+    $ \newcommand{\vol}{\mathop{\rm vol}\nolimits} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\graf}{\mathop{\rm graf}} $ 
+    $ \newcommand{\loc}{\mathop{\rm loc}} $ 
+    $ \newcommand{\lin}{\mathop{\rm lin}} $ 
+    $ \newcommand{\undercbrace}{\underbrace} $ 
+    $ \newcommand{\menorque}{\mathrel{<}}$ 
+    $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 15;
+              }
+              </style>
+<h2 id="Cap-16">Espacios de Sobolev</h2>
+<p class="noj">
+En el estudio de ecuaciones en derivadas parciales
+surge de manera natural la necesidad de considerar normas que
+involucren, no sólo a la función misma, sino a sus
+derivadas. Por ejemplo, si $\varphi $ es una función de clase
+$\mathcal{C}^{1}$ con soporte compacto en un abierto $\Omega $ de
+$\mathbb{R}^{n}$, podemos considerar las normas
+\begin{equation*}
+  \left\Vert \varphi \right\Vert :=\biggl( \int_{\Omega }\left\vert \varphi
+    \right\vert^{p}+\int_{\Omega }\left\vert 
+      \frac{\partial \varphi }{\partial x_{1}}\right\vert^{p}+\cdots
+    +\int_{\Omega }\left\vert \frac{\partial \varphi }{\partial x_{n}}\right\vert^{p}\biggr)^{1/p},\qquad p\in [1,\infty ).
+\end{equation*}
+El espacio de dichas funciones, al que denotamos
+$\mathcal{C}_{c}^{1}(\Omega )$, no resulta completo con esta norma.
+</p>
+<p>
+Los espacios de Sobolev que estudiaremos en este capítulo son
+espacios de Banach y contienen a $\mathcal{C}_{c}^{1}(\Omega )$ como
+subespacio denso. Consisten de funciones en $L^{p}(\Omega )$ que
+tienen derivadas parciales en un sentido débil y dichas
+<em class="emph">derivadas débiles</em> son elementos de $L^{p}(\Omega )$. De
+modo que la norma definida arriba tiene sentido para dichas funciones.
+</p>
+<p>
+Las derivadas débiles son una herramienta fundamental en el
+estudio de ecuaciones en derivadas parciales, pues al debilitar la
+noción de derivada se vuelve más fácil encontrar
+soluciones. Este tipo de soluciones se llaman <em class="emph">soluciones
+  débiles</em>. Una vez encontrada la solución débil, hay que
+analizar si ésta resulta diferenciable en el sentido usual y si
+resulta ser una solución auténtica de nuestra ecuación.
+</p>
+<p>
+Los espacios de Sobolev son el ambiente adecuado para estudiar la
+existencia de soluciones débiles. Gracias al principio de
+Dirichlet, los mínimos de ciertos funcionales en un espacio de
+Sobolev resultan ser soluciones débiles de ciertas ecuaciones en
+derivadas parciales.
+</p>
+<p>
+Aplicaremos la teoría de espacios de Sobolev para probar la
+existencia de una solución $u\colon \overline{\Omega }\rightarrow
+\mathbb{R}$ de la ecuación en derivadas parciales
+\begin{equation*}
+  -\Delta u+u=f
+\end{equation*}
+con valor prescrito sobre la frontera $\partial \Omega $ de $\Omega $,
+i.e.  tal que cumple
+\begin{equation*}
+  u(\zeta )=g(\zeta )\qquad \forall \zeta \in \partial \Omega ,
+\end{equation*}
+donde $&nbsp;\Delta u:=\sum_{i=1}^{n}$ $\frac{\partial^{2}u}{\partial
+  x_{1}^{2}}$ es el operador de Laplace y $f,g\colon \overline{\Omega
+}\rightarrow \mathbb{R}$ son funciones dadas.
+</p>
+
+<h3 id="sec16-1">Derivadas débiles</h3>
+
+<p class="noj"> 
+Dado un subconjunto abierto $\Omega $ de $\mathbb{R}^{n}$ denotamos
+por
+\begin{equation*}
+  \mathcal{C}_{c}^{k}(\Omega ):=\mathcal{C}_{c}^{0}(\Omega )\cap \mathcal{C}^{k}(\Omega )
+\end{equation*}
+al conjunto de las funciones $\varphi \colon \Omega \rightarrow \mathbb{R}$
+de clase $\mathcal{C}^{k}$ con soporte compacto contenido en $\Omega
+$.
+</p>
+<p>
+La fórmula de integración por partes es el punto de partida
+para definir las derivadas débiles.
+</p>
+<p>
+<div class="proposition" id="ip">[Integración por partes]
+
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $\varphi \in \mathcal{C}_{c}^{1}(\Omega )$, entonces
+    \begin{equation*}
+      \int_{\Omega }\frac{\partial \varphi }{\partial x_{i}}=0\qquad \forall i=1,\dots,n.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $f\in \mathcal{C}^{1}(\Omega )$, $\varphi \in
+    \mathcal{C}_{c}^{1}(\Omega )$, entonces
+    \begin{equation*}
+      \int_{\Omega }\frac{\partial f}{\partial x_{i}}\varphi +\int_{\Omega }f\frac{\partial \varphi }{\partial x_{i}}=0\qquad \forall i=1,\dots,n.
+    \end{equation*}
+  </ol>
+</div>
+</p>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Identificamos a $\varphi $ con su extensión
+  trivial a $\mathbb{R}^{n}$, así que $\varphi \in
+  \mathcal{C}_{c}^{1}(\mathbb{R}^{n})$ (ver Ejercicio <a href="tul/P_T_02/11.html#ext">11.48</a>), y
+  elegimos $a>0$ de modo que $\sop(\varphi )\subset [-a,a]^{n}$.
+  Sin perder generalidad podemos tomar $i=1$. El teorema fundamental
+  del cálculo asegura que
+  \begin{equation*}
+    \int_{-a}^{a}\frac{\partial \varphi }{\partial x_{1}}(x_{1},\widehat{x})\,dx_{1}=\varphi (a,\widehat{x})-\varphi (-a,\widehat{x})=0\qquad \forall \widehat{x}=(x_{2},\ldots ,x_{n})\in \mathbb{R}^{n-1}.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \int_{\Omega }\frac{\partial \varphi }{\partial x_{1}}=\int_{\mathbb{R}^{n-1}}\int_{-a}^{a}\frac{\partial \varphi }{\partial x_{1}}(x_{1},\,\widehat{x})\,dx_{1}\,d\widehat{x}=0.
+  \end{equation*}
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Aplicando la afirmación <em class="emph">(a)</em> al producto
+  $f\varphi \in \mathcal{C}_{c}^{1}(\Omega )$ obtenemos
+  </p>
+  \begin{equation*}
+    0=\int_{\Omega }\frac{\partial (f\varphi )}{\partial x_{i}}=\int_{\Omega }\frac{\partial f}{\partial x_{i}}\varphi +\int_{\Omega }f\frac{\partial
+      \varphi }{\partial x_{i}},
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+<p>
+Este resultado motiva la siguiente definición.
+</p>
+<p>
+<div class="definition">
+  Sea $u\in L_{\loc}^{1}(\Omega )$. Decimos que $u$ es
+  <em class="textbf">débilmente diferenciable en</em> $\Omega $
+  si existen
+  $v_{1},\dots,v_{n}\in L_{\loc}^{1}(\Omega )$ tales que
+  \begin{equation}
+    \int_{\Omega }u\frac{\partial \varphi }{\partial x_{i}}+\int_{\Omega }v_{i}\varphi =0\qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega )\label{dd}
+  \end{equation}
+  para toda $i=1,\cdots ,n$.
+</p>
+<p>
+  $v_{i}$ se llama la $i$-<em class="textbf">ésima derivada débil de </em>$u$
+  en $\Omega $ y se denota
+  \begin{equation*}
+    D_{i}u:=v_{i}.
+  \end{equation*}
+  El <em class="textbf">gradiente débil de</em> $u$ en
+  $\Omega $ es la función $\Omega \rightarrow \mathbb{R}^{n}$
+  cuyas componentes son las derivadas débiles.  Lo denotamos por
+  \begin{equation*}
+    \nabla u:=(D_{1}u,D_{2}u,\ldots ,D_{n}u).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="obs">
+  Observa que, si $v,w\in L_{\loc}^{1}(\Omega )$ satisfacen
+  \begin{equation*}
+    -\int_{\Omega }v\varphi =\int_{\Omega }u\frac{\partial \varphi }{\partial x_{i}}=-\int_{\Omega }w\varphi \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ),
+  \end{equation*}
+  entonces $v=w$ c.d. en $\Omega $ <em class="emph">(ver
+    Proposición <a href="tul/P_T_02/14.html#testL1loc">14.49</a>)</em>. Es decir, para cada
+  $i=1,\cdots ,n$, la función $v_{i}$ que cumple <em class="emph">(\ref{dd})</em> es
+  única.
+</div>
+</p>
+<p>
+La Proposición <a href="tul/P_T_02/16.html#ip">16.1</a> afirma lo siguiente.
+</p>
+<p>
+<div id="C1dd" class="example">
+Si $u\in \mathcal{C}^{1}(\Omega )$, entonces $u$ es
+  débilmente diferenciable en $\Omega $ y
+  \begin{equation*}
+    D_{i}u=\frac{\partial u}{\partial x_{i}}\qquad \forall i=1,\ldots ,n.
+  \end{equation*}
+</div>
+</p>
+<p>
+No todas las funciones débilmente diferenciables son
+diferenciables, como lo muestra el siguiente ejemplo.
+</p>
+<p>
+<div class="example">
+  Sea $u\colon \mathbb{R\rightarrow R}$ la función $u(x)=|x|$. Entonces
+  $u$ es débilmente diferenciable en $\mathbb{R}$ y su derivada
+  débil es la función
+  \begin{equation*}
+    (Du)(x)=
+      \begin{cases}
+        1 & x>0, \\
+        -1 & x\leq 0.
+      \end{cases}
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $\varphi \in C_{c}^{\infty }(\mathbb{R})$ y $\sop(\varphi )\subset
+  [-a,a]$, tomando en cuenta que $u$ es diferenciable en
+  $(-a,0)$ y en $(0,a)$ y usando el teorema fundamental del
+  cálculo obtenemos
+  \begin{align*}
+    \int_{-\infty }^{\infty }\left[ u\varphi^{\prime }+(Du)\varphi \right]
+    &= \int_{-a}^{0}\left[ u\varphi^{\prime }+(Du)\varphi \right] +\int_{0}^{a}\left[ u\varphi^{\prime }+(Du)\varphi \right] \\
+    &= \int_{-a}^{0}\left( u\varphi \right)^{\prime }+\int_{0}^{a}\left(
+      u\varphi \right)^{\prime }=-a\varphi (-a)+a\varphi (a)=0,
+  \end{align*}
+  pues $\varphi (a)=\varphi (-a)=0$.
+</div>
+</p>
+<p>
+Existen funciones que no son débilmente diferenciables. Veamos un
+ejemplo.
+</p>
+<p>
+<div id="nodd" class="example">
+La función característica $1_{(-\infty
+    ,0)}\colon \mathbb{R}\rightarrow \mathbb{R}$ no es débilmente
+  diferenciable en $\mathbb{R}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Argumentando por contradicción, supongamos que existe $v\in
+  L_{\loc}^{1}(\mathbb{R})$ tal que
+  \begin{equation*}
+    \int_{-\infty }^{\infty }1_{(-\infty ,0)}\varphi^{\prime }=-\int_{-\infty
+    }^{\infty }v\varphi \qquad \forall \varphi \in C_{c}^{\infty }(\mathbb{R}).
+  \end{equation*}
+  Entonces se cumple, en particular, que
+  \begin{align*}
+    \int_{-\infty }^{0}v\varphi 
+    &=-\int_{-\infty }^{0}\varphi^{\prime }=0\qquad \forall 
+      \varphi \in C_{c}^{\infty }(-\infty ,0), \\
+    \int_{0}^{\infty }v\varphi 
+    &= -\int_{0}^{\infty }0=0\qquad \forall
+      \varphi \in C_{c}^{\infty }(0,\infty ).
+  \end{align*}
+  Estas dos identidades, junto con la Proposición <a href="tul/P_T_02/14.html#testL1loc">14.49</a>,
+  implican que $v=0$ c.d. en $\mathbb{R}$. En consecuencia,
+  \begin{equation*}
+    \varphi (0)=\int_{-\infty }^{0}\varphi^{\prime }=\int_{-\infty }^{\infty
+    }1_{(-\infty ,0)}\varphi^{\prime }=0\qquad \forall \varphi \in
+    C_{c}^{\infty }(\mathbb{R}).
+  \end{equation*}
+  Esto es una contradicción.
+</div>
+</p>
+<p>
+<div id="remnodd" class="obs">
+El <em class="emph">Ejemplo <a href="tul/P_T_02/16.html#nodd">16.6</a></em>&nbsp;muestra que la
+  extensión trivial de una función débilmente
+  diferenciable en $\Omega $ no es, en general, débilmente
+  diferenciable en $\mathbb{R}^{n}$: la función constante igual a
+  $1$ es de clase $\mathcal{C}^{\infty }$ en $(-\infty ,0)$ pero su
+  extensión trivial $1_{(-\infty ,0)}\colon \mathbb{R}\rightarrow
+  \mathbb{R}$ no es débilmente diferenciable en $\mathbb{R}$.
+</div>
+</p>
+<p>
+Un ejemplo interesante es el siguiente.
+</p>
+<p>
+<div id="potdd" class="proposition">
+  Si $\gamma \in \mathbb{R}$ y $\gamma
+  +n>1$, la función $u(x)=\left\Vert x\right\Vert^{\gamma }$ es
+  débilmente diferenciable en $\mathbb{R}^{n}$ y
+  \begin{equation*}
+    \left( D_{i}u\right) (x)=\gamma \left\Vert x\right\Vert^{\gamma -2}x_{i}\qquad \forall i=1,\ldots ,n.
+  \end{equation*}
+</div>
+</p>
+
+<div class="proof">
+  Por simplicidad denotamos por $v_{i}(x):=\gamma \left\Vert x\right\Vert
+ ^{\gamma -2}x_{i}$. La Proposición <a href="tul/P_T_02/16.html#pot">13.31</a> asegura que $u\in
+  L_{\loc}^{1}(\mathbb{R}^{n})$ si $\gamma +n>0$. Como $\left\vert
+    v_{i}(x)\right\vert \leq \gamma \left\Vert x\right\Vert^{\gamma
+    -1}$,&nbsp;se tiene que $v_{i}\in L_{\loc}^{1}(\mathbb{R}^{n})$ si
+  $\gamma -1+n>0$.
+</p>
+<p>
+  Elegimos $\psi \in \mathcal{C}^{\infty }(\mathbb{R}^{n})$ tal que
+  $0\leq \psi (x)\leq 1$ para todo $x\in \mathbb{R}^{n}$, $\psi (x)=0$
+  si $\left\Vert x\right\Vert \leq 1$ y $\psi (x)=1$ si $\left\Vert
+    x\right\Vert \geq 2$, y definimos $\psi_{k}(x):=\psi (kx)$.
+  Entonces $0\leq \psi_{k}(x)\leq 1$ para todo $x\in \mathbb{R}^{n}$,
+  \begin{equation*}
+    \psi_{k}(x)=0\text{ &nbsp;si }\left\Vert x\right\Vert \leq 1/k\qquad\text{y}\qquad 
+    \psi_{k}(x)=1\text{ &nbsp;si }\left\Vert x\right\Vert \geq 2/k.
+  \end{equation*}
+  Observa que $u$ es diferenciable en $\mathbb{R}^{n}\smallsetminus
+  \left\{0\right\}$ y que
+  \begin{equation*}
+    \frac{\partial u}{\partial x_{i}}(x)=\gamma \left\Vert x\right\Vert^{\gamma
+      -2}x_{i}=v_{i}(x)\qquad \text{si }x\neq 0.
+  \end{equation*}
+  Por tanto, $u\psi_{k}\in \mathcal{C}^{1}(\mathbb{R}^{n})$ y la
+  Proposición <a href="tul/P_T_02/16.html#ip">16.1</a>&nbsp;asegura que
+  \begin{equation}
+    \int_{\mathbb{R}^{n}}u\psi_{k}\frac{\partial \varphi }{\partial x_{i}}+\int_{\mathbb{R}^{n}}\left( \frac{\partial u}{\partial x_{i}}\psi_{k}+u\frac{\partial \psi_{k}}{\partial x_{i}}\right) \varphi =0\qquad \forall \varphi \in C_{c}^{\infty }(\mathbb{R}^{n}).\label{dd1}
+  \end{equation}
+  Calcularemos ahora el límite cuando $k\rightarrow \infty $ de
+  cada uno de los sumandos.
+</p>
+<p>
+  Sea $\varphi \in C_{c}^{\infty }(\mathbb{R}^{n})$. Las funciones
+  $u\psi_{k}\frac{\partial \varphi }{\partial x_{i}}$ y
+  $u\frac{\partial \varphi }{\partial x_{i}}$ son integrables en
+  $\mathbb{R}^{n}$ y cumplen que
+  \begin{equation*}
+    u\psi_{k}\frac{\partial \varphi }{\partial x_{i}}\rightarrow
+    u\frac{\partial \varphi }{\partial x_{i}}\text{ &nbsp;c.d. en $\mathbb{R}^{n}$}\quad\text{y}\quad\left\vert u\psi_{k}\frac{\partial \varphi }{\partial x_{i}}\right\vert \leq \left\vert u\frac{\partial \varphi }{\partial x_{i}}\right\vert \text{ &nbsp;en }\mathbb{R}^{n}\quad\forall k\in \mathbb{N}.
+  \end{equation*}
+  Del teorema de convergencia dominada (Teorema <a href="tul/P_T_02/16.html#teocd">13.26</a>) se sigue
+  entonces que
+  \begin{equation}
+    \int_{\mathbb{R}^{n}}u\frac{\partial \varphi }{\partial x_{i}}=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}u\psi_{k}\frac{\partial
+      \varphi }{\partial x_{i}}.\label{dd2}
+  \end{equation}
+  Análogamente se demuestra que
+  \begin{equation}
+    \int_{\mathbb{R}^{n}}v_{i}\varphi =\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}\frac{\partial u}{\partial x_{i}}\psi_{k}\varphi .\label{dd3}
+  \end{equation}
+  Por otra parte, como $\frac{\partial \psi_{k}}{\partial
+    x_{i}}(x)=k\frac{\partial \psi }{\partial x_{i}}(kx)$, se tiene
+  que
+  \begin{equation*}
+    \left\Vert \frac{\partial \psi_{k}}{\partial x_{i}}\right\Vert_{\infty
+    }\leq k\left\Vert \frac{\partial \psi }{\partial x_{i}}\right\Vert_{\infty
+    }.
+  \end{equation*}
+  Observa además que $\sop(\frac{\partial \psi_{k}}{\partial
+    x_{i}})\subset \left\{x\in \mathbb{R}^{n}:\frac{1}{k}\leq \left\Vert
+    x\right\Vert \leq \frac{2}{k}\right\}=:A^{n}(\frac{1}{k},\frac{2}{k})$.
+  En consecuencia, usando el Ejemplo <a href="tul/P_T_02/16.html#anillo">13.30</a> obtenemos
+  \begin{align*}
+    \left\vert \int_{\mathbb{R}^{n}}u\frac{\partial \psi_{k}}{\partial x_{i}}\varphi \right\vert &\leq \int_{A^{n}(\frac{1}{k},\frac{2}{k})}\left\vert u\frac{\partial \psi_{k}}{\partial x_{i}}\varphi \right\vert \\
+    &\leq k\left\Vert \frac{\partial \psi }{\partial x_{i}}\right\Vert_{\infty
+    }\left\Vert \varphi \right\Vert_{\infty }\int_{A^{n}(\frac{1}{k},\frac{2}{k})}\left\Vert x\right\Vert^{\gamma }dx \\
+    &= \left\Vert \frac{\partial \psi }{\partial x_{i}}\right\Vert_{\infty
+    }\left\Vert \varphi \right\Vert_{\infty }\frac{n\omega_{n}}{\gamma +n}\left( \frac{2^{\gamma +n}-1}{k^{\gamma +n-1}}\right)
+  \end{align*}
+  y, dado que $\gamma +n-1>0$, concluimos que
+  \begin{equation}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}u\frac{\partial \psi_{k}}{\partial x_{i}}\varphi =0.\label{dd4}
+  \end{equation}
+</p>
+<p>
+  De (\ref{dd1}), (\ref{dd2}), (\ref{dd3}) y (\ref{dd4}) se sigue que
+  </p>
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}u\frac{\partial \varphi }{\partial x_{i}}+\int_{\mathbb{R}^{n}}v_{i}\varphi =0\qquad \forall \varphi \in C_{c}^{\infty }(\mathbb{R}^{n}),
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+
+<p>
+<div class="proposition" id="lindd">[Linealidad de la derivada débil]
+  Si $u,\,v\in L_{\loc}^{1}(\Omega )$ son débilmente
+  diferenciables y $\lambda ,\mu \in \mathbb{R}$, entonces $\lambda
+  u+\mu v$ es débilmente diferenciable y
+  \begin{equation*}
+    D_{i}(\lambda u+\mu v)=\lambda D_{i}u+\mu D_{i}v\qquad \forall
+    i=1,\dots,n.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Observa que, para cada $i=1,\dots,n$ y $\varphi \in C_{c}^{\infty
+  }(\Omega )$,
+  \begin{align*}
+    &\int_{\Omega }\left[ (\lambda u+\mu v)\frac{\partial \varphi }{\partial
+        x_{i}}+(\lambda D_{i}u+\mu D_{i}v)\varphi \right] \\
+    &\qquad{}=\lambda \int_{\Omega }\left[ u\frac{\partial \varphi }{\partial x_{i}}+(D_{i}u)\varphi \right] +\mu \int_{\Omega }\left[ v\frac{\partial \varphi }{\partial x_{i}}+(D_{i}v)\varphi \right] =0.
+  \end{align*}
+  Esto prueba que $\lambda u+\mu v$ es débilmente diferenciable y
+  $D_{i}(\lambda u+\mu v)=\lambda D_{i}u+\mu D_{i}v$.
+</div>
+</p>
+<p>
+Dado que el producto de dos funciones en $L_{\loc}^{1}(\Omega )$ no
+necesariamente pertenece a $L_{\loc}^{1}(\Omega )$ no siempre tiene
+sentido preguntarse si el producto de funciones débilmente
+diferenciables es débilmente diferenciable. Sin embargo, se tiene
+el siguiente resultado.
+</p>
+<p>
+<div class="proposition" id="ddprod">[Derivada débil de un producto]
+  Si $u\in L_{\loc}^{1}(\Omega )$ es débilmente
+  diferenciable en $\Omega $ y $\zeta \in C_{c}^{\infty }(\Omega )$,
+  entonces la extensión trivial de $\zeta u$ es débilmente
+  diferenciable en $\mathbb{R}^{n}$ y
+  \begin{equation*}
+    D_{i}(\zeta u)=\frac{\partial \zeta }{\partial x_{i}}u+\zeta D_{i}u.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\varphi \in C_{c}^{\infty }(\mathbb{R}^{n})$. Entonces $\zeta
+  \varphi \in C_{c}^{\infty }(\Omega )$ y, en consecuencia,
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\zeta u\frac{\partial \varphi }{\partial x_{i}}+\int_{\mathbb{R}^{n}}\left( \zeta D_{i}u+u\frac{\partial \zeta }{\partial x_{i}}\right) \varphi =\int_{\Omega }u\frac{\partial (\zeta \varphi )}{\partial
+      x_{i}}+\int_{\Omega }\left( D_{i}u\right) (\zeta \varphi )=0.
+  \end{equation*}
+  Esto demuestra la afirmación.
+</div>
+</p>
+
+<h3 id="sec16-2">Espacios de Sobolev</h3>
+
+<p class="noj">
+Introducimos ahora los espacios de Sobolev.
+
+<div id="foto:sobolev" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Sobolev.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Sergei Sobolev
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Sergei Lvovich
+  Sobolev (1908-1989) nació en San Petersburgo, Rusia.
+  Estudió en la Universidad de Leningrado, donde fue alumno de
+  Nikolai Maksimovich Günter y Vladimir Smirnov. Fue investigador
+  del Instituto Steklov y profesor de la Universidad Estatal de
+  Moscú.
+  </div>
+</div>
+
+</p>
+<p>
+<div class="definition">
+  Sea $p\in [1,\infty ]$. El <em class="textbf">espacio de Sobolev</em>
+  $W^{1,p}(\Omega )$ se define como
+  \begin{align*}
+    W^{1,p}(\Omega ):=\bigl\{u\in L^{p}(\Omega ) 
+    :{}&u\;\text{es débilmente diferenciable en $\Omega$}\\
+        &\text{y $D_{i}u\in
+        L^{p}(\Omega )\;\forall i=1,\dots ,n\bigr\}$}.
+  \end{align*}
+  Para $u\in W^{1,p}(\Omega )$ definimos
+  \begin{equation*}
+    \left\Vert u\right\Vert_{W^{1,p}(\Omega )}:=
+      \begin{cases}
+        \left( \left\Vert u\right\Vert_{p}^{p}+\left\Vert D_{1}u\right\Vert
+         _{p}^{p}+\cdots +\left\Vert D_{n}u\right\Vert_{p}^{p}\right)^{1/p} & \text{si &nbsp;}p\in [1,\infty ), \\[5pt] 
+        \max \left\{ \left\Vert u\right\Vert_{\infty },\left\Vert D_{1}u\right\Vert
+         _{\infty },\ldots ,\left\Vert D_{n}u\right\Vert_{\infty }\right\} & \text{si &nbsp;}p=\infty .
+      \end{cases}
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="normaSob" class="proposition">
+$W^{1,p}(\Omega )$ es un espacio vectorial y
+  $\left\Vert \cdot \right\Vert_{W^{1,p}(\Omega )}$ es una norma en
+  $W^{1,p}(\Omega )$ para todo $p\in [1,\infty ]$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Como $L^{p}(\Omega )$ es un espacio vectorial, de la
+  Proposición <a href="tul/P_T_02/16.html#lindd">16.9</a> se sigue que $W^{1,p}(\Omega )$ es un
+  espacio vectorial. Probemos ahora que
+  $\left\Vert \cdot \right\Vert _{W^{1,p}(\Omega )}$ es una norma.
+</p>
+<p>
+  (N1): &nbsp;Sea $u\in W^{1,p}(\Omega )$. Si $u=0$ entonces $D_{i}u=0$
+  para todo $i=1,\dots,n$ y, en consecuencia, $\left\Vert u\right\Vert
+ _{W^{1,p}(\Omega )}=0$. Inversamente: como $\left\Vert u\right\Vert
+ _{p}\leq \left\Vert u\right\Vert_{W^{1,p}(\Omega )}$, si
+  $\left\Vert u\right\Vert_{W^{1,p}(\Omega )}=0$ entonces $u=0$ en
+  $L^{p}(\Omega )$.
+</p>
+<p>
+  (N2): &nbsp;Claramente $\left\Vert \lambda u\right\Vert_{W^{1,p}(\Omega
+    )}=\lambda \left\Vert u\right\Vert_{W^{1,p}(\Omega )}$ para
+  cualesquiera $u\in W^{1,p}(\Omega )$, $\lambda \in \mathbb{R}$.
+</p>
+<p>
+  (N3): &nbsp;Si $p\in [1,\infty )$, aplicando primero la desigualdad de
+  Minkowski en $L^{p}(\Omega )$ (ver Proposición <a href="tul/P_T_02/14.html#minkovski">14.24</a>) y
+  luego la desigualdad del triángulo (<a href="tul/P_T_02/14.html#minkRp">2.3</a>) para la norma
+  $\left\Vert \cdot \right\Vert_{p}$ en $\mathbb{R}^{n+1}$, obtenemos
+  que, para cualesquiera $u,v\in W^{1,p}(\Omega )$,
+  \begin{align*}
+    \left\Vert u+v\right\Vert_{W^{1,p}(\Omega )} &=\Biggl( \left\Vert
+        u+v\right\Vert_{p}^{p}+\sum_{i=1}^{n}\left\Vert D_{i}u+D_{i}v\right\Vert
+     _{p}^{p}\Biggr)^{1/p} \\[5pt]
+    &{}\leq \Biggl( \left( \left\Vert u\right\Vert_{p}+\left\Vert v\right\Vert
+       _{p}\right)^{p}+\sum_{i=1}^{n}\left( \left\Vert D_{i}u\right\Vert
+       _{p}+\left\Vert D_{i}v\right\Vert_{p}\right)^{p}\Biggr)^{1/p} \\[5pt]
+    &{}\leq \Biggl( \left\Vert u\right\Vert_{p}^{p}+\sum_{i=1}^{n}\left\Vert
+        D_{i}u\right\Vert_{p}^{p}\Biggr)^{1/p}+\Biggl( \left\Vert v\right\Vert
+     _{p}^{p}+\sum_{i=1}^{n}\left\Vert D_{i}v\right\Vert_{p}^{p}\Biggr)^{1/p}
+    \\[5pt]
+    &{}=\left\Vert u\right\Vert_{W^{1,p}(\Omega )}+\left\Vert v\right\Vert
+   _{W^{1,p}(\Omega )}.
+  \end{align*}
+  La demostración de la desigualdad para $p=\infty $ es
+  análoga.
+</div>
+</p>
+<p>
+Probaremos que $W^{1,p}(\Omega )$ es un espacio de Banach. La
+demostración se basa en el siguiente hecho.
+</p>
+<p>
+<div id="lemfund" class="lemma">
+Sean $p\in [1,\infty ]$ y $(u_{k})$ una
+  sucesión en $W^{1,p}(\Omega )$ tal que $u_{k}\rightarrow u$ en
+  $L^{p}(\Omega )$ y $D_{i}u_{k}\rightarrow v_{i}$ en $L^{p}(\Omega )$
+  para cada $i=1,\dots,n$. Entonces $u$ es débilmente diferenciable
+  en $\Omega $, $v_{i}=D_{i}u$ para todo $i=1,\dots,n$,&nbsp;y
+  $u_{k}\rightarrow u$ en $W^{1,p}(\Omega )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\varphi \in C_{c}^{\infty }(\Omega )$. Entonces $\varphi
+  ,\,\frac{\partial \varphi }{\partial x_{i}}\in L^{q}(\Omega )$ para
+  todo $q\in [1,\infty ]$. Tomando $q$ de modo que
+  $\frac{1}{p}+\frac{1}{q}=1$ y usando la desigualdad de Hölder
+  (ver Proposición <a href="tul/P_T_02/14.html#holder">14.21</a>) obtenemos que
+  \begin{align*}
+    \left\vert \int_{\Omega }u\frac{\partial \varphi }{\partial x_{i}}-\int_{\Omega }u_{k}\frac{\partial \varphi }{\partial x_{i}}\right\vert
+    &{}\leq \left\Vert u-u_{k}\right\Vert_{p}\left\Vert \frac{\partial \varphi }{\partial x_{i}}\right\Vert_{q}\rightarrow 0\qquad \text{ cuando }k\rightarrow \infty , \\
+    \left\vert \int_{\Omega }v_{i}\varphi -\int_{\Omega }(D_{i}u_{k})\varphi
+    \right\vert &{}\leq \left\Vert v_{i}-D_{i}u_{k}\right\Vert_{p}\left\Vert
+      \varphi \right\Vert_{q}\rightarrow 0\qquad \text{ cuando }k\rightarrow
+    \infty .
+  \end{align*}
+  Por tanto,
+  \begin{equation*}
+    \int_{\Omega }u\frac{\partial \varphi }{\partial x_{i}}+\int_{\Omega
+    }v_{i}\varphi =\lim_{k\rightarrow \infty }\biggl( \int_{\Omega }u_{k}\frac{\partial \varphi }{\partial x_{i}}+\int_{\Omega }(D_{i}u_{k})\varphi \biggr)
+    =0
+  \end{equation*}
+  para cada $i=1,\dots,n$. Esto prueba que $u$ es débilmente
+  diferenciable en $\Omega $ y que $v_{i}=D_{i}u$. En consecuencia,
+  $u\in W^{1,p}(\Omega )$. Además, si $p\in[1,\infty)$, se tiene que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\Vert u_{k}-u\right\Vert_{W^{1,p}(\Omega
+      )}^{p}=\lim_{k\rightarrow \infty }\left\Vert u_{k}-u\right\Vert
+   _{p}^{p}+\sum_{i=1}^{n}\lim_{k\rightarrow \infty }\left\Vert
+      D_{i}u_{k}-D_{i}u\right\Vert_{p}^{p}=0.
+  \end{equation*}
+  Análogamente, $\lim_{k\rightarrow \infty }\left\Vert
+    u_{k}-u\right\Vert_{W^{1,\infty }(\Omega )}=0$ si $p=\infty $.
+</div>
+</p>
+<p>
+<div id="sobhil" class="theorem">
+$W^{1,p}(\Omega )$ es un espacio de Banach para todo
+  $p\in [1,\infty ]$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $(u_{k})$ una sucesión de Cauchy en $W^{1,p}(\Omega )$.
+  Entonces las sucesiones $(u_{k})$ y $(D_{i}u_{k})$ son de Cauchy en
+  $L^{p}(\Omega )$. Como $L^{p}(\Omega )$ es completo, se tiene que
+  $u_{k}\rightarrow u$ en $L^{p}(\Omega )$ y
+  $D_{i}u_{k}\rightarrow v_{i}$ en $L^{p}(\Omega )$ para cada
+  $i=1,\dots,n$. Del Lema <a href="tul/P_T_02/16.html#lemfund">16.13</a>&nbsp;se sigue que
+  $u\in W^{1,p}(\Omega ) $ y $u_{k}\rightarrow u$ en
+  $W^{1,p}(\Omega )$. Esto demuestra que $W^{1,p}(\Omega )$ es
+  completo.
+</div>
+</p>
+<p>
+<div class="notation">
+  Si $p=2$ se denota por
+  \begin{equation}
+    H^{1}(\Omega ):=W^{1,2}(\Omega )\qquad \text{y}\qquad \left\Vert u\right\Vert_{H^{1}(\Omega )}:=\left\Vert
+      u\right\Vert_{W^{1,2}(\Omega )}.\label{normH1}
+  \end{equation}
+  En este caso la norma está inducida por el producto escalar
+  \begin{equation}
+    \left\langle u,v\right\rangle_{H^{1}(\Omega )}:=\int_{\Omega
+    }uv+\sum_{i=1}^{n}\int_{\Omega }(D_{i}u)(D_{i}v)=\int_{\Omega
+    }uv+\int_{\Omega }\nabla u\cdot \nabla v.\label{pesc}
+  \end{equation}
+  Por tanto, $H^{1}(\Omega )$ es un espacio de Hilbert.
+</div>
+</p>
+<p>
+Veamos un ejemplo.
+</p>
+<p>
+<div class="proposition">
+  Sean $\gamma \in \mathbb{R}$, $u(x):=\left\Vert x\right\Vert
+ ^{\gamma }$ y $r>0$.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $p\in [1,\infty )$ y $(\gamma -1)p+n>0$
+    entonces $u\in W^{1,p}(B^{n}(0,r))$.
+</p>
+<p>
+  <li> Si $\gamma \geq 1$ entonces $u\in W^{1,\infty
+    }(B^{n}(0,r))$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $p\in [1,\infty )$ y $(\gamma -1)p+n>0$ entonces $(\gamma
+  -1+n)p>(p-1)n\geq 0$ y, en consecuencia, $\gamma -1+n>0$.
+  Así mismo, si $\gamma \geq 1$ entonces $\gamma -1+n>0$.
+  Así que en ambos casos la Proposición <a href="tul/P_T_02/16.html#potdd">16.8</a> asegura
+  que $u$ es débilmente diferenciable en $B^{n}(0,r)$ y que
+  \begin{equation*}
+    \left( D_{i}u\right) (x)=\gamma \left\Vert x\right\Vert^{\gamma -2}x_{i}\qquad \forall i=1,\ldots ,n.
+  \end{equation*}
+  Como
+  $\left\vert \left( D_{i}u\right) (x)\right\vert \leq \gamma
+  \left\Vert x\right\Vert^{\gamma -1}$,
+  de la Proposición <a href="tul/P_T_02/14.html#potLp">14.29</a> se sigue que $u\in L^{p}(B^{n}(0,r))$
+  y que $D_{i}u\in L^{p}(B^{n}(0,r))$ para todo $i=1,\ldots ,n$.
+</div>
+</p>
+<p>
+A continuación queremos investigar si el espacio
+$\mathcal{C}_{c}^{\infty }(\Omega )$ es denso en $W^{1,p}(\Omega )$
+para $p\in [1,\infty )$. Veremos primero que sí lo es
+cuando $\Omega =\mathbb{R}^{n}$. Requerimos el siguiente resultado.
+</p>
+<p>
+<div class="lemma" id="lemtrun">[de truncamiento]
+  Sean $p\in [1,\infty )$ y $(\psi_{k})$ una
+  sucesión en $\mathcal{C}^{\infty }(\mathbb{R}^{n})\cap
+  W^{1,p}(\mathbb{R}^{n})$ tal que $\psi_{k}\rightarrow u$ en
+  $W^{1,p}(\mathbb{R}^{n})$. Entonces existe una sucesión
+  $(\varphi_{k})$ en $\mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$ tal
+  que $\varphi_{k}\rightarrow u$ en $W^{1,p}(\mathbb{R}^{n})$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Escogemos una función $\zeta \in \mathcal{C}_{c}^{\infty
+  }(\mathbb{R}^{n})$ tal que $0\leq \zeta (x)\leq 1$ para todo $x\in
+  \mathbb{R}^{n}$, $\zeta (x)=1$ si $\left\Vert x\right\Vert \leq 1$ y
+  $\zeta (x)=0$ si $\left\Vert x\right\Vert \geq 2$, y definimos
+  $\zeta_{k}(x):=\zeta (\frac{x}{k})$. Entonces, $\zeta_{k}\in
+  \mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$ y cumple que
+  \begin{equation*}
+    0\leq \zeta_{k}(x)\leq 1\text{ &nbsp;}\forall x\in \mathbb{R}^{n},\qquad \zeta_{k}(x)=1\text{ si }\left\Vert x\right\Vert \leq k,\qquad \zeta
+   _{k}(t)=0\text{ si }\left\Vert x\right\Vert \geq 2k.
+  \end{equation*}
+  Defininimos $\varphi_{k}:=\zeta_{k}\psi_{k}$. Nota que $\varphi
+ _{k}\in \mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$. Probaremos que
+  $\varphi_{k}\rightarrow u$ en $W^{1,p}(\mathbb{R}^{n})$.
+</p>
+<p>
+  Del teorema de convergencia dominada en $L^{p}$
+  (Teorema <a href="tul/P_T_02/14.html#teocdLp">14.26</a>) se sigue que
+  \begin{equation*}
+    \left\Vert v-\zeta_{k}v\right\Vert_{p}\rightarrow 0\qquad \forall
+    v\in L^{p}(\mathbb{R}^{n})
+  \end{equation*}
+  y, como
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left\vert \zeta_{k}u-\zeta_{k}\psi_{k}\right\vert
+   ^{p}=\int_{\mathbb{R}^{n}}\left\vert \zeta_{k}\right\vert^{p}\left\vert
+      u-\psi_{k}\right\vert^{p}\leq \left\Vert u-\psi_{k}\right\Vert
+   _{p}^{p}\rightarrow 0
+  \end{equation*}
+  y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left\vert \zeta_{k}D_{i}u-\zeta_{k}\frac{\partial
+        \psi_{k}}{\partial x_{i}}\right\vert^{p}=\int_{\mathbb{R}^{n}}\left\vert
+      \zeta_{k}\right\vert^{p}\left\vert D_{i}u-\frac{\partial \psi_{k}}{\partial x_{i}}\right\vert^{p}\leq \left\Vert D_{i}u-\frac{\partial \psi
+       _{k}}{\partial x_{i}}\right\Vert_{p}^{p}\rightarrow 0,
+  \end{equation*}
+  usando la desigualdad del triángulo en $L^{p}(\mathbb{R}^{n})$
+  concluimos que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\Vert u-\zeta_{k}\psi_{k}\right\Vert_{p}=0\qquad \text{y}\qquad \lim_{k\rightarrow \infty }\left\Vert D_{i}u-\zeta_{k}\frac{\partial \psi_{k}}{\partial x_{i}}\right\Vert_{p}=0.
+  \end{equation*}
+  Por otra parte, puesto que $\frac{\partial \zeta_{k}}{\partial
+    x_{i}}(x)=\frac{1}{k}\frac{\partial \zeta }{\partial x_{i}}\left(
+    \frac{x}{k}\right) $, se tiene que
+  \begin{equation*}
+    \left\Vert \frac{\partial \zeta_{k}}{\partial x_{i}}\right\Vert_{\infty }=\frac{1}{k}\left\Vert \frac{\partial \zeta }{\partial x_{i}}\right\Vert
+   _{\infty }.
+  \end{equation*}
+  Así que, como $(\psi_{k})$ está acotada en
+  $L^{p}(\mathbb{R}^{n})$, existe una constante $c>0$ tal que
+  \begin{equation*}
+    \left\Vert \frac{\partial \zeta_{k}}{\partial x_{i}}\psi_{k}\right\Vert
+   _{p}^{p}=\int_{\mathbb{R}^{n}}\left\vert \frac{\partial \zeta_{k}}{\partial
+        x_{i}}\psi_{k}\right\vert^{p}\leq \frac{1}{k^{p}}\left\Vert \frac{\partial
+        \zeta }{\partial x_{i}}\right\Vert_{\infty }^{p}\left\Vert \psi
+     _{k}\right\Vert_{p}^{p}\leq \frac{c}{k^{p}}\rightarrow 0.
+  \end{equation*}
+  Por tanto,
+  \begin{align*}
+    \left\Vert D_{i}u-\frac{\partial (\zeta_{k}\psi_{k})}{\partial
+    x_{i}}\right\Vert_{p} 
+    &{}=\left\Vert D_{i}u-\zeta_{k}\frac{\partial \psi_{k}}{\partial x_{i}}-\frac{\partial \zeta_{k}}{\partial x_{i}}\psi
+     _{k}\right\Vert_{p} \\
+    &{}\leq \left\Vert D_{i}u-\zeta_{k}\frac{\partial \psi_{k}}{\partial x_{i}}\right\Vert_{p}+\left\Vert \frac{\partial \zeta_{k}}{\partial x_{i}}\psi
+     _{k}\right\Vert_{p}\rightarrow 0.
+  \end{align*}
+  Hemos probado pues que
+  \begin{equation*}
+    \varphi_{k}\rightarrow u\text{ &nbsp;en }L^{p}(\mathbb{R}^{n})\qquad\text{y}\qquad 
+    \frac{\partial \varphi_{k}}{\partial x_{i}}\rightarrow D_{i}u\text{
+      &nbsp;en }L^{p}(\mathbb{R}^{n})\quad\forall i=1,\dots,n.
+  \end{equation*}
+  Aplicando el Lema <a href="tul/P_T_02/16.html#lemfund">16.13</a>&nbsp;concluimos que $\varphi
+ _{k}\rightarrow u$ en $W^{1,p}(\mathbb{R}^{n})$.
+</div>
+</p>
+<p>
+<div id="W0deRn" class="theorem">
+$\mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$ es denso
+  en $W^{1,p}(\mathbb{R}^{n})$ para todo $p\in [1,\infty )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $u\in W^{1,p}(\mathbb{R}^{n})$ y sea $(\rho_{k})$ una
+  sucesión regularizante (ver Definición <a href="tul/P_T_02/14.html#defsucreg">14.41</a>). Las
+  Proposiciones <a href="tul/P_T_02/14.html#convdif">14.38</a>&nbsp;y <a href="tul/P_T_02/14.html#convLp">14.40</a> aseguran que $\rho
+ _{k}\ast u\in \mathcal{C}^{\infty }(\mathbb{R}^{n})\cap
+  W^{1,p}(\mathbb{R}^{n})$ y que
+  \begin{equation*}
+    \frac{\partial }{\partial x_{i}}(\rho_{k}\ast u)=\frac{\partial \rho_{k}}{\partial x_{i}}\ast u\qquad \forall i=1,\dots,n.
+  \end{equation*}
+  Puesto que $u$ es débilmente diferenciable en $\mathbb{R}^{n}$
+  y la función $y\mapsto \rho_{k}(x-y)$ pertenece a
+  $\mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$ para cada $x\in
+  \mathbb{R}^{n}$, se tiene que
+  \begin{align*}
+    0 &{}=\int_{\mathbb{R}^{n}}-\frac{\partial \rho_{k}}{\partial x_{i}}(x-y)u(y)dy+\int_{\mathbb{R}^{n}}\rho_{k}(x-y)D_{i}u(y)dy \\
+    &{}=-\left( \frac{\partial \rho_{k}}{\partial x_{i}}\ast u\right) (x)+(\rho
+   _{k}\ast D_{i}u)(x).
+  \end{align*}
+  En consecuencia,
+  \begin{equation*}
+    \frac{\partial }{\partial x_{i}}(\rho_{k}\ast u)=\rho_{k}\ast D_{i}u\qquad \forall i=1,\dots,n.
+  \end{equation*}
+  El Teorema <a href="tul/P_T_02/14.html#aproxsuaveRn">14.45</a>&nbsp;asegura que
+  \begin{equation*}
+    \rho_{k}\ast u\rightarrow u\quad\text{en }L^{p}(\mathbb{R}^{n})\qquad \text{y}\qquad \frac{\partial }{\partial x_{i}}(\rho_{k}\ast u)\rightarrow
+    D_{i}u\quad\text{en }L^{p}(\mathbb{R}^{n})\quad \forall i=1,\dots,n.
+  \end{equation*}
+  Aplicando el Lema <a href="tul/P_T_02/16.html#lemfund">16.13</a>&nbsp;concluimos que $\rho_{k}\ast
+  u\rightarrow u $ en $W^{1,p}(\mathbb{R}^{n})$. La afirmación del
+  teorema se obtiene aplicando el Lema <a href="tul/P_T_02/16.html#lemtrun">16.17</a> a las funciones
+  $\psi_{k}:=\rho_{k}\ast u$.
+</div>
+</p>
+<p>
+Si $\Omega \neq \mathbb{R}^{n}$ el espacio $C_{c}^{\infty }(\Omega )$
+no es, en general, denso en $W^{1,p}(\Omega )$. En las aplicaciones
+que daremos en la siguiente sección jugará un papel importante
+el siguiente espacio.
+</p>
+<p>
+<div class="definition">
+  Sea $p\in [1,\infty )$. El espacio de
+  Sobolev
+  $W_{0}^{1,p}(\Omega )$ es la cerradura de $\mathcal{C}_{c}^{\infty
+  }(\Omega )$ en $W^{1,p}(\Omega )$. Denotamos por
+  \begin{equation*}
+    H_{0}^{1}(\Omega ):=W_{0}^{1,2}(\Omega ).
+  \end{equation*}
+</div>
+</p>
+<p>
+$W_{0}^{1,p}(\Omega )$ es un subespacio vectorial cerrado de
+$W^{1,p}(\Omega )$, por tanto $W_{0}^{1,p}(\Omega )$ es un espacio de
+Banach y $H_{0}^{1}(\Omega )$ es un espacio de Hilbert.
+</p>
+<p>
+El Teorema <a href="tul/P_T_02/16.html#W0deRn">16.18</a> asegura que
+$W_{0}^{1,p}(\mathbb{R}^{n})=W^{1,p}(\mathbb{R}^{n})$ pero estos
+espacios en general no coinciden cuando $\Omega \neq \mathbb{R}^{n}$
+[Ejercicio <a href="tul/P_T_02/16.html#WvsW0">16.45</a>].
+</p>
+<p>
+En el resto de esta sección supondremos que $p\in [1,\infty
+)$.
+</p>
+<p>
+<div class="example">
+  Si $u\in \mathcal{C}_{c}^{1}(\Omega )$ entonces $u\in
+  W_{0}^{1,p}(\Omega )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $u\in \mathcal{C}_{c}^{1}(\Omega )$ y sea $(\rho_{k})$ una
+  sucesión regularizante. De la Proposición <a href="tul/P_T_02/14.html#convdif">14.38</a>&nbsp;se
+  sigue que $\rho_{k}\ast u\in \mathcal{C}_{c}^{\infty }(\Omega )$
+  para $k$ suficientemente grande y $\frac{\partial }{\partial
+    x_{i}}(\rho_{k}\ast u)=\rho_{k}\ast \frac{\partial u}{\partial
+    x_{i}}$. El Teorema <a href="tul/P_T_02/14.html#aproxsuaveRn">14.45</a>&nbsp;asegura entonces que
+  \begin{equation*}
+    \rho_{k}\ast u\rightarrow u\text{ &nbsp;en }L^{p}(\mathbb{R}^{n})\qquad\text{y}\qquad 
+    \frac{\partial }{\partial x_{i}}(\rho_{k}\ast u)\rightarrow \frac{\partial u}{\partial x_{i}}\text{ &nbsp;en }L^{p}(\Omega )\text{ &nbsp;}\forall
+    i=1,\dots,n,
+  \end{equation*}
+  y aplicando el Lema <a href="tul/P_T_02/16.html#lemfund">16.13</a>&nbsp;obtenemos que $\rho_{k}\ast
+  u\rightarrow u$ en $W^{1,p}(\Omega )$. En consecuencia, $u\in
+  W_{0}^{1,p}(\Omega )$.
+</div>
+</p>
+<p>
+En la siguiente proposición denotamos por $\bar{v}$ a la
+extensión trivial de $v$ a $\mathbb{R}^{n}$ definida en
+(<a href="tul/P_T_02/12.html#exten">12.21</a>).
+</p>
+<p>
+<div id="extW0" class="proposition">
+Si $u\in W_{0}^{1,p}(\Omega )$, entonces $\bar{u}\in
+  W^{1,p}(\mathbb{R}^{n})$ y $D_{i}(\bar{u})=\overline{D_{i}u}$ para
+  cada$\;i=1,\dots,n. $
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $(\varphi_{k})$ una sucesión en $\mathcal{C}_{c}^{\infty
+  }(\Omega )$ tal que $\varphi_{k}\rightarrow u$ en $W^{1,p}(\Omega
+  )$. Entonces $\varphi_{k}\rightarrow u$ en $L^{p}(\Omega )$ y
+  $\frac{\partial \varphi_{k}}{\partial x_{i}}\rightarrow D_{i}u$ en
+  $L^{p}(\Omega )$. Además, $\bar{\varphi}_{k}\in
+  \mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$ y $\frac{\partial
+    \bar{\varphi}_{k}}{\partial x_{i}}=\overline{\frac{\partial
+      \varphi_{k}}{\partial x_{i}}}$. En consecuencia,
+  \begin{equation*}
+    \bar{\varphi}_{k}\rightarrow \bar{u}\text{ &nbsp;en }L^{p}(\mathbb{R}^{n})\qquad \text{y}\qquad \frac{\partial \bar{\varphi}_{k}}{\partial x_{i}}\rightarrow 
+    \overline{D_{i}u}\text{ &nbsp;en }L^{p}(\mathbb{R}^{n})\text{ &nbsp;}\forall
+    i=1,\dots,n.
+  \end{equation*}
+  Del Lema <a href="tul/P_T_02/16.html#lemfund">16.13</a>&nbsp;se sigue que $\bar{u}$ es débilmente
+  diferenciable en $\mathbb{R}^{n}$ y
+  $D_{i}(\bar{u})=\overline{D_{i}u}$. Por tanto, $\bar{u}\in
+  W^{1,p}(\mathbb{R}^{n})$.
+</div>
+</p>
+<p>
+La proposición anterior nos permite considerar a
+$W_{0}^{1,p}(\Omega )$ como un subespacio de
+$W^{1,p}(\mathbb{R}^{n})$.
+</p>
+<p>
+Puesto que $\mathcal{C}_{c}^{\infty }(\Omega )$ es denso en
+$W_{0}^{1,p}(\Omega )&nbsp;$podemos extender, bajo hipótesis
+adecuadas, las fórmulas conocidas para la composición
+funciones diferenciables a funciones en $W_{0}^{1,p}(\Omega )$.
+</p>
+<p>
+<div class="proposition">[Regla de la cadena para derivadas débiles]
+  Sea $g\in
+  \mathcal{C}^{1}(\mathbb{R})$ tal que $g(0)=0$ y $g^{\prime }\in
+  L^{\infty }(\mathbb{R})$. Si $u\in W_{0}^{1,p}(\Omega )$, entonces
+  $g\circ u\in W_{0}^{1,p}(\Omega )$ y
+  \begin{equation*}
+    D_{i}(g\circ u)=(g^{\prime }\circ u)D_{i}u.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Por el teorema del valor medio (ver Teorema <a href="tul/P_T_02/9.html#tvm">9.14</a>)
+  \begin{equation}
+    \left\vert g(t_{1})-g(t_{2})\right\vert \leq \left\Vert g^{\prime
+      }\right\Vert_{\infty }\left\vert t_{1}-t_{2}\right\vert 
+    \qquad \forall t_{1},t_{2}\in \mathbb{R}\text{.}\label{gtvm}
+  \end{equation}
+</p>
+<p>
+  Sean $u\in W_{0}^{1,p}(\Omega )$ y $\varphi_{k}\in
+  \mathcal{C}_{c}^{\infty }(\Omega )$ tales que $\varphi
+ _{k}\rightarrow u$ en $W^{1,p}(\Omega )$. Como $g(0)=0$, se tiene
+  que $g\circ \varphi_{k}\in \mathcal{C}_{c}^{1}(\Omega )\subset
+  W_{0}^{1,p}(\Omega )$. Usando (\ref{gtvm}) obtenemos
+  \begin{equation*}
+    \int_{\Omega }\left\vert g\circ u-g\circ \varphi_{k}\right\vert^{p}\leq
+    \left\Vert g^{\prime }\right\Vert_{\infty }^{p}\int_{\Omega }\left\vert
+      u-\varphi_{k}\right\vert^{p}\rightarrow 0.
+  \end{equation*}
+  Por tanto, $g\circ u\in L^{p}(\Omega )$ y
+  \begin{equation}
+    g\circ \varphi_{k}\rightarrow g\circ u\qquad \text{ en }L^{p}(\Omega ).
+\label{g1}
+  \end{equation}
+</p>
+<p>
+  Por otra parte, el Teorema <a href="tul/P_T_02/14.html#convLppunt">14.28</a> asegura que $(\varphi
+ _{k})$ contiene una subsucesión tal que $\varphi
+ _{k_{j}}(x)\rightarrow u(x)$ p.c.t. $x\in \Omega $ y, puesto que
+  $g^{\prime }$ es continua, se tiene que
+  \begin{equation*}
+    g^{\prime }(\varphi_{k_{j}}(x))D_{i}u(x)\rightarrow g^{\prime
+    }(u(x))D_{i}u(x)\qquad \text{p.c.t. }x\in \Omega .
+  \end{equation*}
+  Además,
+  \begin{equation*}
+    \left\vert g^{\prime }(\varphi_{k_{j}}(x))D_{i}u(x)\right\vert \leq
+    \left\Vert g^{\prime }\right\Vert_{\infty }\left\vert D_{i}u(x)\right\vert 
+    \qquad \forall x\in \Omega ,\text{ }\forall j\in \mathbb{N}.
+  \end{equation*}
+  Como $D_{i}u\in L^{p}(\Omega )$, el Teorema <a href="tul/P_T_02/14.html#teocdLp">14.26</a>&nbsp;asegura
+  que $(g^{\prime }\circ u)D_{i}u\in L^{p}(\Omega )$ y
+  \begin{equation*}
+    \lim_{j\rightarrow \infty }\left\Vert (g^{\prime }\circ u)D_{i}u-(g^{\prime
+      }\circ \varphi_{k_{j}})D_{i}u\right\Vert_{p}=0.
+  \end{equation*}
+  Se tiene además que
+  \begin{equation*}
+    \int_{\Omega }\left\vert (g^{\prime }\circ \varphi
+     _{k_{j}})D_{i}u-(g^{\prime }\circ \varphi_{k_{j}})\frac{\partial \varphi
+       _{k_{j}}}{\partial x_{i}}\right\vert^{p}\leq \left\Vert g^{\prime
+      }\right\Vert_{\infty }^{p}\int_{\Omega }\left\vert D_{i}u-\frac{\partial
+        \varphi_{k_{j}}}{\partial x_{i}}\right\vert^{p}\rightarrow 0
+  \end{equation*}
+  cuando $j\rightarrow \infty$. De la desigualdad del triángulo
+  \begin{align*}
+    &\left\Vert \left( g^{\prime }\circ u\right) D_{i}u-\frac{\partial (g\circ
+        \varphi_{k_{j}})}{\partial x_{i}}\right\Vert_{p} \\[6pt]
+    &\qquad{}\leq \left\Vert \left( g^{\prime }\circ u\right) D_{i}u-\left( g^{\prime
+        }\circ \varphi_{k_{j}}\right) D_{i}u\right\Vert_{p}+\left\Vert \left(
+        g^{\prime }\circ \varphi_{k_{j}}\right) D_{i}u-\left( g^{\prime }\circ
+        \varphi_{k_{j}}\right) \frac{\partial \varphi_{k_{j}}}{\partial x_{i}}\right\Vert_{p},
+  \end{align*}
+  se obtiene entonces que
+  \begin{equation}
+    \frac{\partial (g\circ \varphi_{k_{j}})}{\partial x_{i}}\rightarrow \left(
+      g^{\prime }\circ u\right) D_{i}u\qquad \text{ en }L^{p}(\Omega ).\label{g2}
+  \end{equation}
+</p>
+<p>
+  El Lema <a href="tul/P_T_02/16.html#lemfund">16.13</a>&nbsp;y las afirmaciones (\ref{g1}) y (\ref{g2})
+  nos permiten concluir que $g\circ u$ es débilmente diferenciable
+  en $\Omega $, que$&nbsp;D_{i}(g\circ u)=(g^{\prime }\circ u)D_{i}u$ y
+  que$&nbsp;g\circ \varphi_{k_{j}}\rightarrow g\circ u$ en
+  $W^{1,p}(\Omega )$.
+</p>
+<p>
+  Finalmente, como $g\circ \varphi_{k}\in W_{0}^{1,p}(\Omega )$ y
+  $W_{0}^{1,p}(\Omega )$&nbsp;es un subespacio cerrado de $W^{1,p}(\Omega
+  )$, se tiene que $g\circ u\in W_{0}^{1,p}(\Omega )$.
+</div>
+</p>
+<p>
+Una función $\varphi \colon U\rightarrow U^{\prime }$ entre subconjuntos
+abiertos $U$ y $U^{\prime }$ de $\mathbb{R}^{n}$ se llama un
+<em class="textbf">difeomorfismo de clase</em> $\mathcal{C}^{k}$
+si
+$\varphi $ es de clase $\mathcal{C}^{k}$ en $U$, $\varphi $ es
+biyectiva y su inverso $\varphi^{-1}\colon U^{\prime }\rightarrow U$ es de
+clase $\mathcal{C}^{k}$ en $U^{\prime }$.
+</p>
+<p>
+<div class="proposition" id="cvdd">[Cambio de variable para derivadas débiles]
+  
+    Sea $\theta \colon \Omega^{\prime }\rightarrow
+  \Omega $ un difeomorfismo de clase $\mathcal{C}^{1}$ tal que
+  $\frac{\partial \theta_{i}}{\partial y_{j}}\in L^{\infty }(\Omega
+ ^{\prime }) $ y $\frac{\partial (\theta^{-1})_{i}}{\partial
+    x_{j}}\in L^{\infty }(\Omega )$ para $i,j=1,\dots,n$. Si $u\in
+  W_{0}^{1,p}(\Omega )$, entonces $u\circ \theta \in
+  W_{0}^{1,p}(\Omega^{\prime })$&nbsp;y
+  \begin{equation*}
+    D_{i}(u\circ \theta )=\sum_{j=1}^{n}\left( D_{j}u\circ \theta \right) \frac{\partial \theta_{j}}{\partial y_{i}}\qquad \forall i=1,\dots,n,
+  \end{equation*}
+  donde $\theta_{i}$ y $(\theta^{-1})_{i}$ denotan a la
+  $i$-ésima función componente de $\theta $ y $\theta^{-1}$
+  respectivamente.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $c\in \mathbb{R}$ tal que
+  \begin{equation*}
+    \left\Vert \det (\theta^{-1})^{\prime }\right\Vert_{\infty }\leq c^{p}\qquad \text{y}\qquad \left\Vert \frac{\partial \theta_{i}}{\partial y_{j}}\right\Vert_{\infty }\leq c\quad \forall i,j=1,\dots,n,
+  \end{equation*}
+  Observa primero que el teorema de cambio de variable
+  (Teorema <a href="tul/P_T_02/13.html#teocv">13.36</a>) asegura que, si $v\in L^{p}(\Omega )$,
+  entonces
+  $\left\vert v\circ \theta \right\vert^{p}=\left\vert v\right\vert
+  ^{p}\circ \theta $ es integrable y
+  \begin{equation*}
+    \left\Vert v\circ \theta \right\Vert_{p}^{p}=\int_{\Omega^{\prime
+      }}\left\vert v\right\vert^{p}\circ \theta =\int_{\Omega }\left\vert
+      v\right\vert^{p}\left\vert \det (\theta^{-1})^{\prime }\right\vert \leq
+    c^{p}\left\Vert v\right\Vert_{p}^{p}.
+  \end{equation*}
+</p>
+<p>
+  Sean $u\in W_{0}^{1,p}(\Omega )$ y $\varphi_{k}\in
+  \mathcal{C}_{c}^{\infty }(\Omega )$ tales que $\varphi
+ _{k}\rightarrow u$ en $W^{1,p}(\Omega )$. Entonces, $\varphi
+ _{k}\circ \theta \in \mathcal{C}_{c}^{1}(\Omega^{\prime })\subset
+  W_{0}^{1,p}(\Omega^{\prime })$. De la observación anterior se
+  sigue que $u\circ \theta \in L^{p}(\Omega^{\prime })$, $D_{j}u\circ
+  \theta \in L^{p}(\Omega^{\prime })$,
+  \begin{equation*}
+    \left\Vert u\circ \theta -\varphi_{k}\circ \theta \right\Vert
+   _{p}=\left\Vert \left( u-\varphi_{k}\right) \circ \theta \right\Vert
+   _{p}\leq c\left\Vert u-\varphi_{k}\right\Vert_{p}\rightarrow 0,
+  \end{equation*}
+  y
+  \begin{align*}
+    \left\Vert (D_{j}u\circ \theta )\frac{\partial \theta_{j}}{\partial y_{i}}-\left( \frac{\partial \varphi_{k}}{\partial x_{j}}\circ \theta \right) 
+      \frac{\partial \theta_{j}}{\partial y_{i}}\right\Vert_{p} 
+    &{}=\left\Vert \left[ \left( D_{j}u-\frac{\partial \varphi_{k}}{\partial x_{j}}\right)
+        \circ \theta \right] \frac{\partial \theta_{j}}{\partial y_{i}}\right\Vert
+   _{p} \\[7pt]
+    &{}\leq c\left\Vert \left( D_{j}u-\frac{\partial \varphi_{k}}{\partial x_{j}}\right) \circ \theta \right\Vert_{p} \\[7pt]
+    &{}\leq c^{2}\left\Vert D_{j}u-\frac{\partial \varphi_{k}}{\partial x_{j}}\right\Vert_{p}\rightarrow 0
+  \end{align*}
+  cuando $k\rightarrow \infty$, para cada $j=1,\dots,n$. Por tanto, $\varphi_{k}\circ \theta
+  \rightarrow u\circ \theta $ en $L^{p}(\Omega^{\prime })$ y
+  \begin{equation*}
+    \frac{\partial (\varphi_{k}\circ \theta )}{\partial y_{i}}=\sum_{j=1}^{n}\left( \frac{\partial \varphi_{k}}{\partial x_{j}}\circ
+      \theta \right) \frac{\partial \theta_{j}}{\partial y_{i}}\longrightarrow
+    \sum_{j=1}^{n}\left( D_{j}u\circ \theta \right) \frac{\partial \theta_{j}}{\partial y_{i}}\quad\text{en }L^{p}(\Omega^{\prime }).
+  \end{equation*}
+</p>
+<p class="noj">
+  El Lema <a href="tul/P_T_02/16.html#lemfund">16.13</a>&nbsp;asegura entonces que $u\circ \theta $ es
+  débilmente diferenciable en $\Omega $, que$&nbsp;D_{i}(u\circ \theta
+  )=\sum_{j=1}^{n}\left( D_{j}u\circ \theta \right) \frac{\partial
+    \theta_{j}}{\partial y_{i}}$ y que $\varphi_{k}\circ \theta
+  \rightarrow u\circ \theta $ en $W^{1,p}(\Omega )$.
+</p>
+<p>
+  Finalmente, como $\varphi_{k}\circ \theta \in W_{0}^{1,p}(\Omega )$
+  y $W_{0}^{1,p}(\Omega )$&nbsp;es un subespacio cerrado de
+  $W^{1,p}(\Omega )$, se tiene que $u\circ \theta \in
+  W_{0}^{1,p}(\Omega )$.
+</div>
+</p>
+<p>
+Observa que en las dos proposiciones anteriores jugó un papel
+importante el hecho de que $u$ es el límite de funciones en
+$\mathcal{C}_{c}^{\infty }(\Omega )$. Estas proposiciones son válidas
+también para funciones en $W^{1,p}(\Omega )$, pero su demostración
+requiere de un resultado de aproximación más delicado que no veremos
+aquí\footnote{Consulta, por ejemplo,~\cite{Bre}, Proposiciones IX.5 y
+  IX.6.}.
+</p>
+<p>
+Intuitivamente se antoja pensar a $W_{0}^{1,p}(\Omega )$ como el
+espacio de las funciones de $W^{1,p}(\Omega )$ que se anulan en la
+frontera de $\Omega $. Esta afirmación no tiene sentido en
+general, ya que los elementos de $W^{1,p}(\Omega )$ son clases de
+equivalencia de funciones que coinciden c.d. en $\Omega$
+y, si $\partial \Omega $ tiene medida $0,$ en cualquier clase
+de equivalencia hay una función que se anula en la frontera. Veremos a
+continuación que, bajo ciertas condiciones, esta afirmación tiene
+sentido y es cierta.
+</p>
+<p>
+Como antes denotamos por
+\begin{equation*}
+  B^{n-1}(0,r):=\left\{x\in \mathbb{R}^{n-1}:\left\vert x\right\vert \menorque r\right\}
+\end{equation*}
+y por $\bar{B}^{n-1}(0,r)$ a su cerradura.
+</p>
+<p>
+<div id="abtoCk" class="definition">
+Un subconjunto <em class="textbf">abierto</em> $\Omega $ de
+  $\mathbb{R}^{n}$ es <em class="textbf">de clase</em> $\mathcal{C}^{k}$ si, para
+  cada $x_{0}\in \partial \Omega $, existe un subconjunto abierto $U$
+  de $\mathbb{R}^{n}$&nbsp;que contiene a $x_{0}$ y un difeomorfismo
+  $\vartheta \colon B^{n-1}(0,1)\times (-1,1)\rightarrow U$ de clase
+  $\mathcal{C}^{k}$ tal que $\vartheta (0,0)=x_{0}$,
+  \begin{equation*}
+    \vartheta (B^{n-1}(0,1)\times (0,1))=U\cap \Omega \qquad \text{y}\qquad \vartheta (B^{n-1}(0,1)\times \left\{0\right\})=U\cap \partial \Omega .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="froncero" class="theorem">
+Si $\Omega $ es de clase $\mathcal{C}^{1}$ y $u\in
+  W_{0}^{1,p}(\Omega )\cap \mathcal{C}^{0}(\overline{\Omega })$,
+  entonces $u(x)=0$ para todo $x\in \partial \Omega $.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $u\in W_{0}^{1,p}(\Omega )\cap \mathcal{C}^{0}(\overline{\Omega
+  })$ y $x_{0}\in \partial \Omega $. Probaremos que $u(x_{0})=0$.
+</p>
+<p>
+  Elegimos $U$ y $\vartheta $ como en la Definición <a href="tul/P_T_02/16.html#abtoCk">16.24</a>. Nota
+  primero que, reemplazando a $B^{n-1}(0,1)$ por $B^{n-1}(0,3/4)$, a
+  $(-1,1)$ por $(-3/4,3/4)$, a $U$ por
+  $\vartheta (B^{n-1}(0,3/4)\times (-3/4,3/4))$ y reescalando, podemos
+  suponer que $\vartheta $ y
+  $\frac{\partial \theta_{i}}{\partial y_{j}}$ son continuas en
+  $\bar{B}^{n-1}(0,1)\times [-1,1]$ y que
+  $\frac{\partial (\theta^{-1})_{i}}{\partial x_{j}}$ es continua en
+  $\overline{U}$, en cuyo caso
+  \begin{equation*}
+    \frac{\partial \theta_{i}}{\partial y_{j}}\in L^{\infty
+    }(B^{n-1}(0,1)\times (0,1))\qquad \text{y}\qquad \frac{\partial (\theta
+     ^{-1})_{i}}{\partial x_{j}}\in L^{\infty }(U)\qquad \forall
+    i,j=1,\dots,n.
+  \end{equation*}
+</p>
+<p>
+  Sean
+  $K:=\vartheta (\bar{B}^{n-1}(0,\frac{1}{2})\times
+  [-\frac{1}{2},\frac{1}{2}])$ y 
+  $\delta :=\frac{1}{2}$dist$(K,\mathbb{R}^{n}\smallsetminus
+  U)$.
+  Por el Lema <a href="tul/P_T_02/14.html#ury">14.48</a> existe
+  $\zeta \in \mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$ tal que
+  $0\leq \zeta (x)\leq 1$ si $x\in \mathbb{R}^{n}$, $\zeta (x)=1$ si
+  $x\in K$ y $\zeta (x)=0$ si dist$(x,K)\geq \delta $.
+</p>
+<p>
+  Si $u\in W_{0}^{1,p}(\Omega )$ y $(\psi_{k})$ es una sucesión
+  en $\mathcal{C}_{c}^{\infty }(\Omega )$ tal que $\psi
+ _{k}\rightarrow u$ en $W^{1,p}(\Omega )$, entonces $\zeta \psi
+ _{k}\in \mathcal{C}_{c}^{\infty }(U\cap \Omega )$. Además,
+  \begin{equation*}
+    \left\Vert \zeta u-\zeta \psi_{k}\right\Vert_{L^{p}(U\cap \Omega
+      )}^{p}=\int_{U\cap \Omega }\left\vert \zeta \right\vert^{p}\left\vert
+      u-\psi_{k}\right\vert^{p}\leq \left\Vert u-\psi_{k}\right\Vert
+   _{L^{p}(\Omega )}^{p}\rightarrow 0,
+  \end{equation*}
+  \begin{align*}
+    &\left\Vert D_{i}(\zeta u)-\frac{\partial (\zeta \psi_{k})}{\partial x_{i}}\right\Vert_{L^{p}(U\cap \Omega )}\\&\qquad{}\leq \left\Vert \zeta D_{i}u-\zeta 
+      \frac{\partial \psi_{k}}{\partial x_{i}}\right\Vert_{L^{p}(U\cap \Omega
+      )}+\left\Vert \frac{\partial \zeta }{\partial x_{i}}u-\frac{\partial \zeta }{\partial x_{i}}\psi_{k}\right\Vert_{L^{p}(U\cap \Omega )} \\
+    &\qquad{}\leq \left\Vert D_{i}u-\frac{\partial \psi_{k}}{\partial x_{i}}\right\Vert_{L^{p}(\Omega )}+\left\Vert \frac{\partial \zeta }{\partial
+        x_{i}}\right\Vert_{\infty }\left\Vert u-\psi_{k}\right\Vert_{L^{p}(\Omega
+      )}^{p}\rightarrow 0.
+  \end{align*}
+  Del Lema <a href="tul/P_T_02/16.html#lemfund">16.13</a> se sigue que $\zeta u\in W^{1,p}(U\cap \Omega
+  )$ y que $\zeta \psi_{k}\rightarrow \zeta u$ en $W^{1,p}(U\cap
+  \Omega )$ y, como $\zeta \psi_{k}\in \mathcal{C}_{c}^{\infty
+  }(U\cap \Omega )$, se tiene entonces que $\zeta u\in
+  W_{0}^{1,p}(U\cap \Omega )$. Aplicando la Proposición <a href="tul/P_T_02/16.html#cvdd">16.23</a>
+  concluimos que
+  \begin{equation*}
+    v:=\zeta u\circ \vartheta \in W_{0}^{1,p}(B^{n-1}(0,1)\times (0,1))\cap 
+    \mathcal{C}^{0}(\bar{B}^{n-1}(0,1)\times [0,1]).
+  \end{equation*}
+  Demostraremos que
+  \begin{equation}
+    v(y,0)=0\qquad \forall y\in B^{n-1}(0,1).\label{condfront}
+  \end{equation}
+  Observa que esto basta para probar la afirmación del teorema ya
+  que, como $x_{0}=\vartheta (0,0)\in K$, se tiene que
+  $u(x_{0})=\zeta (x_{0})u(x_{0})=v(0,0)=0$.
+</p>
+<p>
+  Para probar (\ref{condfront}) elegimos $\varphi_{k}\in
+  \mathcal{C}_{c}^{\infty }(B^{n-1}(0,1)\times (0,1))$ tal que
+  $\varphi_{k}\rightarrow v$ en $W^{1,p}(B^{n-1}(0,1)\times (0,1))$.
+  Como $\varphi_{k}(y,0)=0$ para todo $y\in B^{n-1}(0,1)$, el teorema
+  fundamental del cálculo asegura que
+  \begin{equation*}
+    \varphi_{k}(y,t)=\int_{0}^{t}\frac{\partial \varphi_{k}}{\partial x_{n}}(y,s)ds\qquad \forall t\in (0,1).
+  \end{equation*}
+  Sea $\varepsilon \in (0,1)$. Por el teorema del valor medio para
+  integrales existen $t_{\varepsilon },s_{\varepsilon }\in
+  (0,\varepsilon )$ tales que
+  \begin{equation}
+    \int_{0}^{\varepsilon }\left\vert \varphi_{k}(y,t)\right\vert
+    dt=\varepsilon \left\vert \varphi_{k}(y,t_{\varepsilon })\right\vert \qquad \text{y}\qquad \int_{0}^{\varepsilon }\left\vert v(y,t)\right\vert
+    dt=\varepsilon \left\vert v(y,s_{\varepsilon })\right\vert .\label{vmi}
+  \end{equation}
+  Por tanto,
+  \begin{equation*}
+    \frac{1}{\varepsilon }\int_{0}^{\varepsilon }\left\vert \varphi
+     _{k}(y,t)\right\vert dt\leq \int_{0}^{\varepsilon }\left\vert \frac{\partial
+        \varphi_{k}}{\partial x_{n}}(y,s)\right\vert ds\qquad \forall
+    \varepsilon \in (0,1),
+  \end{equation*}
+  e integrando ambos lados de la desigualdad sobre $B^{n-1}(0,1)$
+  obtenemos que
+  \begin{equation*}
+    \frac{1}{\varepsilon }\int_{Q_{\varepsilon }}\left\vert \varphi
+     _{k}\right\vert \leq \int_{Q_{\varepsilon }}\left\vert \frac{\partial
+        \varphi_{k}}{\partial x_{n}}\right\vert ,
+  \end{equation*}
+  donde $Q_{\varepsilon }:=B^{n-1}(0,1)\times (0,\varepsilon )$. Dado
+  que $Q_{\varepsilon }$ tiene medida finita, se tiene que $\varphi
+ _{k}\rightarrow v$ en $L^{1}(Q_{\varepsilon })$ y $\frac{\partial
+    \varphi_{k}}{\partial x_{n}}\rightarrow D_{i}v$ en
+  $L^{1}(Q_{\varepsilon })$ (ver Proposición <a href="tul/P_T_02/14.html#encajes">14.31</a>). De
+  modo que, pasando al límite cuando $k\rightarrow \infty $,
+  concluimos que
+  \begin{equation*}
+    \frac{1}{\varepsilon }\int_{Q_{\varepsilon }}\left\vert v\right\vert \leq
+    \int_{Q_{\varepsilon }}\left\vert D_{n}v\right\vert .
+  \end{equation*}
+  Combinando esta desigualdad con (\ref{vmi})&nbsp;obtenemos
+  \begin{equation*}
+    \int_{\left\Vert y\right\Vert menorque 1}\left\vert v(y,s_{\varepsilon })\right\vert
+    =\int_{\left\Vert y\right\Vert menorque 1}\frac{1}{\varepsilon }\int_{0}^{\varepsilon }\left\vert v(y,t)\right\vert dtdy=\frac{1}{\varepsilon }\int_{Q_{\varepsilon }}\left\vert v\right\vert \leq \int_{Q_{\varepsilon
+      }}\left\vert D_{n}v\right\vert .
+  \end{equation*}
+  Nota que, como $v$ es continua, $\left\vert v(y,s_{\varepsilon
+    })\right\vert \rightarrow \left\vert v(y,0)\right\vert $ cuando
+  $\varepsilon \rightarrow 0$. Aplicando el teorema de convergencia
+  dominada (Teorema <a href="tul/P_T_02/13.html#teocv">13.36</a>) concluimos que
+  \begin{equation*}
+    \int_{\left\Vert y\right\Vert menorque 1}\left\vert v(y,0)\right\vert
+    =\lim_{\varepsilon \rightarrow 0}\int_{\left\Vert y\right\Vert menorque 1}\left\vert
+      v(y,s_{\varepsilon })\right\vert \leq \lim_{\varepsilon \rightarrow
+      0}\int_{Q_{\varepsilon }}\left\vert D_{n}v\right\vert =0.
+  \end{equation*}
+  En consecuencia, $v(y,0)=0$ para todo $y\in B^{n-1}(0,1)$.
+</div>
+</p>
+<p>
+El recíproco del teorema anterior también es cierto sin
+ninguna condición de regularidad en $\partial \Omega $. Más
+precisamente: si $u\in W^{1,p}(\Omega )\cap
+\mathcal{C}^{0}(\overline{\Omega })$ y $u(x)=0$ para todo
+$x\in \partial \Omega $, entonces $u\in W_{0}^{1,p}(\Omega
+)$\footnote{La demostración de esta afirmación se encuentra,
+  por ejemplo, en~\cite{Bre}, Teorema IX.17.}.
+</p>
+
+<h3 id="sec16-3">Problemas elípticos con condición de frontera</h3>
+
+<p class="noj">
+La ecuación en derivadas parciales
+\begin{equation}
+    -\Delta u=0 \quad \text{en }\Omega ,
+\label{eclap}
+\end{equation}
+donde $\Omega $ es un subconjunto abierto de $\mathbb{R}^{n}$ y
+\begin{equation}
+  \Delta u=\sum_{i=1}^{n}\frac{\partial^{2}u}{\partial x_{i}^{2}}
+\label{deflap}
+\end{equation}
+es el operador de Laplace o laplaciano, se llama
+la<em class="emph">&nbsp;</em><em class="textbf">ecuación de Laplace.</em>  
+Las soluciones de esta ecuación se llaman
+<em class="textbf">funciones armónicas.</em>
+</p>
+<p>
+Un ejemplo bien conocido de funciones armónicas aparece en
+análisis complejo: la parte real y la parte imaginaria de una
+función holomorfa son funciones armónicas. En la teoría
+de probabilidad la ecuación de Laplace juega un papel importante
+en el estudio del movimiento Browniano. En física aparece en
+múltiples contextos. Típicamente, $u$ denota la densidad de
+alguna cantidad en equilibrio, por ejemplo, una concentración
+química, una temperatura, un potencial electrostático,
+etc.\footnote{Consulta~\cite{Feynman}.}
+</p>
+<p>
+La ecuación de Laplace es el ejemplo más sencillo de una
+ecuación elíptica. Dedicaremos esta sección al estudio de
+algunos problemas elípticos lineales que satisfacen una
+condición prescrita sobre la frontera de $\Omega $.
+</p>
+<h4 id="subsec16-3-1">Un problema de Dirichlet homogéneo</h4>
+<p class="noj">
+Dado un subconjunto abierto $\Omega $ de
+$\mathbb{R}^{n}$ y una función $f\colon \overline{\Omega }\rightarrow
+\mathbb{R}$, nos preguntamos si existe una función
+$u\colon \overline{\Omega }\rightarrow \mathbb{R}$ que satisface
+\begin{equation}
+  \left\{ 
+    \begin{alignedat}{2}
+      -\Delta u+u &{}=f &\quad&\text{en $\Omega$,} \\
+      u &{}=0 &&\text{sobre $\partial \Omega$,}
+    \end{alignedat}
+  \right.\label{poisson}
+\end{equation}
+donde $\partial \Omega $ denota a la frontera de $\Omega $.
+</p>
+<p>
+La condición &ldquo; $u=0$ sobre
+$\partial \Omega $&rdquo;&nbsp;recibe el nombre de
+<em class="textbf">condición de Dirichlet homogénea.</em>
+</p>
+<p>
+<div class="definition">
+  Una función $u\in \mathcal{C}^{2}(\overline{\Omega })$ que
+  satisface <em class="emph">(\ref{poisson})</em> se llama una solución
+  clásica de
+  <em class="emph">(\ref{poisson})</em>.
+</div>
+</p>
+<p>
+Observa que, si existe una solución clásica de
+(\ref{poisson}), entonces forzosamente $f\in
+\mathcal{C}^{0}(\overline{\Omega })$. Además, se cumple lo
+siguiente.
+</p>
+<p>
+<div id="clasdeb" class="proposition">
+Si $u\in \mathcal{C}^{2}(\overline{\Omega })$
+  satisface $-\Delta u+u=f$, entonces
+  \begin{equation*}
+    \int_{\Omega }\nabla u\cdot \nabla \varphi +\int_{\Omega }u\varphi
+    =\int_{\Omega }f\varphi \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $u\in \mathcal{C}^{2}(\overline{\Omega })$ una solución
+  clásica de (\ref{poisson}). Multiplicando ambos lados de la
+  ecuación $-\Delta u+u=f$ por $\varphi \in
+  \mathcal{C}_{c}^{\infty }(\Omega )$ e integrando, obtenemos que
+  \begin{equation}
+    -\int_{\Omega }(\Delta u)\varphi +\int_{\Omega }u\varphi =\int_{\Omega
+    }f\varphi \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega
+    ).\label{pp1}
+  \end{equation}
+  La fórmula de integración por partes (ver Proposición <a href="tul/P_T_02/16.html#ip">16.1</a>)
+  asegura que
+  \begin{equation*}
+    \int_{\Omega }\frac{\partial u}{\partial x_{i}}\frac{\partial \varphi }{\partial x_{i}}=-\int_{\Omega }\frac{\partial^{2}u}{\partial x_{i}^{2}}\varphi .
+  \end{equation*}
+  Sumando estas identidades para $i=1,\dots,n$, obtenemos la
+  <em class="textbf">fórmula de Green </em>
+  \begin{equation}
+    -\int_{\Omega }(\Delta u)\varphi dx=\int_{\Omega }\nabla u\cdot \nabla
+    \varphi 
+    \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ).
+\label{pp2}
+  \end{equation}
+  Combinando (\ref{pp1}) y (\ref{pp2}) obtenemos la identidad deseada.
+</div>
+</p>
+<p>
+Este resultado motiva la siguiente definición.
+</p>
+<p>
+<div class="definition">
+  Una función $u\in H_{0}^{1}(\Omega )$ que satisface
+  \begin{equation}
+    \int_{\Omega }\nabla u\cdot \nabla \varphi +\int_{\Omega }u\varphi
+    =\int_{\Omega }f\varphi \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega )\label{soldeb}
+  \end{equation}
+  se llama una <em class="textbf">solución débil</em>
+  de <em class="emph">(\ref{poisson})</em><em class="emph">.</em>
+</div>
+</p>
+<p>
+El lado izquierdo de (\ref{soldeb}) es el producto escalar
+\begin{equation*}
+  \left\langle u,\varphi \right\rangle_{H^{1}(\Omega )}:=\int_{\Omega
+  }u\varphi +\int_{\Omega }\nabla u\cdot \nabla \varphi
+\end{equation*}
+en el espacio $H^{1}(\Omega )$ que definimos en (\ref{pesc}), así
+que podemos reescribir la condición (\ref{soldeb}) como
+\begin{equation}
+  \left\langle u,\varphi \right\rangle_{H^{1}(\Omega )}=\int_{\Omega
+  }f\varphi 
+  \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ).
+\label{soldebil}
+\end{equation}
+La existencia de una solución débil es consecuencia del
+teorema de representación de Fréchet-Riesz.
+</p>
+<p>
+<div class="theorem" id="existenciasd">[Existencia y unicidad]
+  Para cada $f\in L^{2}(\Omega )$ existe una
+  única solución débil $u\in H_{0}^{1}(\Omega )$ del
+  problema <em class="emph">(\ref{poisson})</em>. Más aún, $u$ es el
+  único mínimo del funcional $J\colon H_{0}^{1}(\Omega )\rightarrow
+  \mathbb{R}$ &nbsp;dado por
+  \begin{equation*}
+    J(v)=\frac{1}{2}\left\Vert v\right\Vert_{H^{1}(\Omega )}^{2}-\int_{\Omega
+    }fv.
+  \end{equation*}
+  <em class="emph">A esta última afirmación se le conoce como el
+    <em class="textbf">principio de Dirichlet</em>.</em>
+</div>
+</p>
+<p>
+<div class="proof">
+  Para $f\in L^{2}(\Omega )$ considera la función
+  $T\colon H_{0}^{1}(\Omega )\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    Tv:=\int_{\Omega }fv.
+  \end{equation*}
+  Esta función es claramente lineal. Además, usando la
+  desigualdad de Hölder en $L^{2}(\Omega )$ obtenemos que, para toda
+  $v\in H_{0}^{1}(\Omega)$,
+  \begin{equation*}
+    \left\vert \int_{\Omega }fv\right\vert \leq \left\Vert f\right\Vert
+   _{2}\left\Vert v\right\Vert_{2}\leq \left\Vert f\right\Vert_{2}\left(
+      \left\Vert v\right\Vert_{2}+\sum_{i=1}^{n}\left\Vert D_{i}v\right\Vert
+     _{2}\right)^{1/2}=\left\Vert f\right\Vert_{2}\left\Vert v\right\Vert
+   _{H^{1}(\Omega )}.
+  \end{equation*}
+  Esto prueba que $T$ es continua en $H_{0}^{1}(\Omega )$. Por el
+  teorema de representación de Fréchet-Riesz (Teorema <a href="tul/P_T_02/15.html#teofr">15.19</a>)
+  existe un único $u\in H_{0}^{1}(\Omega )$ tal que
+  \begin{equation*}
+    \left\langle u,v\right\rangle_{H^{1}(\Omega )}=Tv\qquad \forall v\in
+    H_{0}^{1}(\Omega ),
+  \end{equation*}
+  es decir, $u$ es la única solución débil de
+  (\ref{poisson}). Por la Proposición <a href="tul/P_T_02/15.html#dir">15.20</a>, $u$ es el
+  único mínimo de $J$.
+</div>
+</p>
+<p>
+<div class="obss">
+  Observa que, como $\mathcal{C}_{c}^{\infty }(\Omega )$ es denso en
+  $H_{0}^{1}(\Omega )$ y las funciones $v\mapsto \left\langle
+    u,v\right\rangle_{H^{1}(\Omega )}$ y $Tv=\int_{\Omega }fv$ son
+  continuas en $H_{0}^{1}(\Omega )$, si la identidad
+  <em class="emph">(\ref{soldebil})</em> se satisface para todo $\varphi \in
+  \mathcal{C}_{c}^{\infty }(\Omega )$ entonces se cumple también
+  para todo $v\in H_{0}^{1}(\Omega )$. Así que la condición
+  <em class="emph">(\ref{soldeb})</em> es equivalente a
+  \begin{equation}
+    \left\langle u,v\right\rangle_{H^{1}(\Omega )}=\int_{\Omega }fv\qquad \text{ 
+    }\forall v\in H_{0}^{1}(\Omega ).\label{soldeb'}
+  \end{equation}
+</div>
+</p>
+<p>
+El siguiente resultado afirma que, si los datos del problema y la
+solución débil son suficientemente regulares, entonces
+ésta es una solución clásica.
+</p>
+<p>
+<div id="debilreg=clas" class="proposition">
+Si $\Omega $ es de clase $\mathcal{C}^{1}$,
+  $f\in L^{2}(\Omega )\cap \mathcal{C}^{0}(\overline{\Omega })$ y la
+  solución débil $u\in H_{0}^{1}(\Omega )$ del problema
+  <em class="emph">(\ref{poisson})</em> satisface $u\in
+  \mathcal{C}^{2}(\overline{\Omega })$, entonces $u$ es solución
+  clásica de <em class="emph">(\ref{poisson})</em>.
+</div>
+</p>
+<p>
+<div class="proof">
+  El Teorema <a href="tul/P_T_02/16.html#froncero">16.25</a>&nbsp;asegura que $u(x)=0$ para todo
+  $x\in \partial \Omega $. Por otra parte, aplicando la fórmula de
+  Green (\ref{pp2}) obtenemos
+  \begin{equation*}
+    \int_{\Omega }(-\Delta u+u-f)\varphi =\int_{\Omega }\nabla u\cdot \nabla
+    \varphi +\int_{\Omega }u\varphi -\int_{\Omega }f\varphi =0
+    \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ).
+  \end{equation*}
+  La Proposición <a href="tul/P_T_02/14.html#testL1loc">14.49</a>&nbsp;asegura entonces que $h:=-\Delta
+  u+u-f=0$ c.d. en $\Omega $. Como $h$ es continua, si $h(x_{0})\neq
+  0$ para algún $x_{0}\in \Omega $, se tendría que $h(x)\neq
+  0$ para todo $x\in B^{n}(x_{0},\delta )$ con $\delta >0$, lo cual es
+  una contradicción. Así que
+  \begin{equation*}
+    -\Delta u+u=f\qquad \text{ en }\Omega .
+  \end{equation*}
+  Esto prueba que $u$ es una solución clásica de
+  (\ref{poisson}).
+</div>
+</p>
+<p>
+Si los datos del problema son suficientemente regulares, la
+solución débil resulta ser suficientemente regular. Se tiene,
+por ejemplo, el siguiente resultado, cuya demostración no daremos
+aquí\footnote{Puedes consultar la demostración en~\cite{Evans}.}.
+</p>
+<p>
+<div class="theorem" id="teoreg">[de regularidad]
+  Si $\Omega $ es un subconjunto abierto y acotado de
+  $\mathbb{R}^{n}$ de clase $\mathcal{C}^{\infty }$, $f\in
+  \mathcal{C}^{\infty }(\overline{\Omega })$ y $u\in H_{0}^{1}(\Omega
+  )$ es una solución débil del problema
+  <em class="emph">(\ref{poisson}),</em> entonces $u\in \mathcal{C}^{\infty
+  }(\overline{\Omega })$.
+</div>
+</p>
+<p>
+De hecho, bastan condiciones de regularidad mucho más débiles sobre
+$\Omega $ y $f$ para concluir que
+$u\in \mathcal{C}^{2}(\overline{\Omega })$\footnote{Una referencia muy
+  completa sobre resultados de este tipo es~\cite{Gilbarg}.}, como
+requiere la Proposición <a href="tul/P_T_02/16.html#debilreg=clas">16.31</a>.
+</p>
+<p>
+Usando el teorema de regularidad obtenemos el siguiente resultado.
+</p>
+<p>
+<div class="corollary">
+  Si $\Omega $ es un subconjunto abierto y acotado de $\mathbb{R}^{n}$
+  de clase $\mathcal{C}^{\infty }$ y $f\in \mathcal{C}^{\infty
+  }(\overline{\Omega })$, entonces el problema <em class="emph">(\ref{poisson})</em>
+  tiene una única solución clásica $u\in
+  \mathcal{C}^{\infty }(\overline{\Omega })$.
+</div>
+</p>
+<p>
+<div class="proof">
+  La afirmación es consecuencia inmediata del Teorema <a href="tul/P_T_02/16.html#teoreg">16.32</a>
+  y la Proposición <a href="tul/P_T_02/16.html#debilreg=clas">16.31</a>.
+</div>
+</p>
+<p>
+<h4 id="subsec16-3-2">Un problema de Dirichlet no homogéneo</h4>
+</p>
+<p class="noj">
+Estudiaremos ahora la misma ecuación con una
+condición más general sobre la frontera.
+</p>
+<p>
+Dados un subconjunto abierto $\Omega $ de $\mathbb{R}^{n}$ y funciones
+$f,g\colon \overline{\Omega }\rightarrow \mathbb{R}$, nos preguntamos si
+existe una función $u\colon \overline{\Omega }\rightarrow \mathbb{R}$
+que satisface
+\begin{equation}
+  \left\{ 
+    \begin{alignedat}{2}
+      -\Delta u+u&{}=f &\quad& \text{en $\Omega$,} \\
+      u&{}=g && \text{sobre $\partial \Omega$.}
+    \end{alignedat}
+  \right.\label{dirnh}
+\end{equation}
+La condición &ldquo; $u=g$ sobre $\partial \Omega
+$&rdquo;&nbsp;recibe el nombre de <em class="textbf">condición de
+  Dirichlet.</em>
+</p>
+<p>
+<div class="definition">
+  Una función $u\in \mathcal{C}^{2}(\overline{\Omega })$ que
+  satisface <em class="emph">(\ref{dirnh})</em> se llama una solución clásica
+  de <em class="emph">(\ref{dirnh})</em>.
+</div>
+</p>
+<p>
+El Teorema <a href="tul/P_T_02/16.html#froncero">16.25</a>&nbsp;sugiere buscar soluciones en el espacio
+afín
+\begin{equation*}
+  A_{g}:=\left\{u\in H^{1}(\Omega ):u-g\in H_{0}^{1}(\Omega )\right\}.
+\end{equation*}
+Definimos entonces una solución débil como sigue.
+</p>
+<p>
+<div class="definition">
+  Una función $u\in A_{g}$ que satisface
+  \begin{equation}
+    \int_{\Omega }\nabla u\cdot \nabla \varphi +\int_{\Omega }u\varphi
+    =\int_{\Omega }f\varphi \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega )\label{soldebnh}
+  \end{equation}
+  se llama una <em class="textbf">solución débil</em 
+  de <em class="emph"><em class="emph">(\ref{dirnh})</em>.</em>
+</div>
+</p>
+<p>
+Observa que la condición (\ref{soldebnh}) es la misma que la
+condición (\ref{soldeb}) del caso homogéneo. Sólo que
+ahora buscamos una solución en $A_{g}$ en vez de en
+$H_{0}^{1}(\Omega )$. Nota que $A_{g}$ no es un espacio vectorial (y
+en consecuencia no es un espacio de Hilbert) a menos que $g=0$ en cuyo
+caso $A_{g}=H_{0}^{1}(\Omega )$.
+</p>
+<p>
+El Teorema <a href="tul/P_T_02/16.html#existenciasd">16.29</a>&nbsp;se extiende como sigue.
+</p>
+<p>
+<div class="theorem">[Existencia y unicidad de la solución débil]
+  Para cada $f\in L^{2}(\Omega )$ y $g\in H^{1}(\Omega )$ existe una
+  única solución débil $u\in A_{g}$ del problema
+  <em class="emph">(\ref{dirnh})</em>. Más aún, $u$ es el único
+  mínimo del funcional&nbsp;$J\colon A_{g}\rightarrow \mathbb{R}$ &nbsp;dado
+  por
+  \begin{equation*}
+    J(v):=\frac{1}{2}\left\Vert v\right\Vert_{H^{1}(\Omega )}^{2}-\int_{\Omega }fv.
+  \end{equation*}
+  <em class="emph">A esta última afirmación se le llama el
+    <em class="textbf">principio de Dirichlet</em>.</em>
+</div>
+</p>
+<p>
+Proponemos la demostración de este teorema como ejercicio
+[Ejercicio <a href="tul/P_T_02/16.html#ejdirnh">16.48</a>].
+</p>
+<p>
+Nuevamente, si los datos del problema y la solución débil son
+suficientemente regulares, ésta es una solución clásica.
+</p>
+<p>
+<div class="proposition">
+  Si $\Omega $ es de clase $\mathcal{C}^{1}$, $f\in L^{2}(\Omega )\cap
+  \mathcal{C}^{0}(\overline{\Omega })$, $g\in H^{1}(\Omega )\cap
+  \mathcal{C}^{0}(\overline{\Omega })$ y la solución débil
+  $u\in A_{g}$ del problema <em class="emph">(\ref{dirnh})</em> satisface $u\in
+  \mathcal{C}^{2}(\overline{\Omega })$, entonces $u$ es solución
+  clásica de <em class="emph">(\ref{dirnh})</em>.
+</div>
+</p>
+<p>
+<div class="proof">
+  Como $u-g\in H_{0}^{1}(\Omega )\cap \mathcal{C}^{0}(\overline{\Omega
+  })$, el Teorema <a href="tul/P_T_02/16.html#froncero">16.25</a>&nbsp;asegura que $u(x)=g(x)$ para todo
+  $x\in \partial \Omega $.
+</p>
+<p>
+  El mismo argumento empleado en la demostración de la
+  Proposición <a href="tul/P_T_02/16.html#debilreg=clas">16.31</a>, prueba que $-\Delta u+u=f$ en
+  $\Omega $. Por tanto, $u$ es una solución clásica de
+  (\ref{dirnh}).
+</div>
+</p>
+<p>
+Como en el caso homogéneo, usando el Teorema <a href="tul/P_T_02/16.html#teoreg">16.32</a> se
+prueba la existencia de una única solución clásica cuando
+$\Omega $ es de clase $\mathcal{C}^{\infty }$ y $f,g\in
+\mathcal{C}^{\infty }(\overline{\Omega })$ [Ejercicio <a href="tul/P_T_02/16.html#ejdirnh">16.48</a>].
+</p>
+<p>
+Durante mucho tiempo el principio de Dirichlet se aplicó de manera
+exitosa pero poco rigurosa: si la integral de Dirichlet (que en
+nuestro caso es el funcional $J$) resultaba estar acotada
+inferiormente, los expertos (incluyendo a Riemann, que fue quien le
+puso el nombre de <em class="emph">principio de Dirichlet</em>) daban por hecho la
+existencia de un mínimo. Hasta que Weierstrass en 1895 mostró
+un contraejemplo, que proponemos aquí como ejercicio [Ejercicio <a href="tul/P_T_02/16.html#ejW">16.47</a>].
+</p>
+
+<h3 id="sec16-4">Ejercicios</h3>
+
+<div class="exercise">
+  Prueba que, si $\omega $ es un subconjunto abierto de $\Omega $ y
+  $u\in L_{\loc}^{1}(\Omega )$ es débilmente diferenciable en
+  $\Omega $, entonces la restricción de $u$ a $\omega $ es
+  débilmente diferenciable en $\omega $ y
+  \begin{equation*}
+    D_{i}(u\mid_{\omega })=(D_{i}u)\mid_{\omega }.
+  \end{equation*}
+</div>
+
+<p>
+<div class="exercise">
+  Prueba que, si $\Omega $ es conexo, $u\in L_{\loc}^{1}(\Omega )$ es
+  débilmente diferenciable en $\Omega $ y $D_{i}u=0$ c.d. en
+  $\Omega $ para todo $i=1,\dots,n$, entonces $u$ es constante c.d. en
+  $\Omega $.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $\Omega =\mathbb{R}^{n}\smallsetminus B_{n}(0,r)$, $r>0$, y
+  $u(x):=\left\Vert x\right\Vert^{\gamma }$.
+</p>
+<p>
+  <ol class="alfa">
+  <li> ¿Para qué valores de $\gamma \in
+    \mathbb{R}$ es $u$ es débilmente diferenciable en $\Omega $?
+</p>
+<p>
+  <li> Dada $p\in [1,\infty ]$, ¿para
+    qué valores de $\gamma \in \mathbb{R}$ se cumple que $u\in
+    W^{1,p}(\Omega )$?
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Considera las siguientes funciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> $u_{i}\colon \mathbb{R}^{n}\rightarrow \mathbb{R},\quad
+    u_{i}(x):=\frac{x_{i}}{\left\Vert x\right\Vert },\quad
+    i=1,\dots,n$.
+</p>
+<p>
+  <li> $u\colon \mathbb{R}^{n}\rightarrow \mathbb{R},\quad u(x):=\ln
+    \left\Vert x\right\Vert $.
+</p>
+<p>
+  <li> $1_{B^{n}(0,1)}\colon \mathbb{R}^{n}\rightarrow
+    \mathbb{R},\quad$ donde $B^{n}(0,1):=\left\{x\in
+    \mathbb{R}^{n}:\left\Vert x\right\Vert =1\right\}$.
+  </ol>
+</p>
+<p>
+  ¿Para qué valores de $n$ es cada una de las
+  funciones anteriores débilmente diferenciable en
+  $\mathbb{R}^{n}$?  ¿Para qué valores de $n$ y
+  $p$ pertenece a $W^{1,p}(\mathbb{R}^{n})$?
+</div>
+</p>
+<p>
+<div id="ejerprod" class="exercise">
+Sea $p\in [1,\infty )$. Prueba que, si $u\in
+  W^{1,p}(\mathbb{R}^{n})$ y $\varphi \in \mathcal{C}_{c}^{\infty
+  }(\Omega )$, entonces $u\varphi \in W_{0}^{1,p}(\Omega )$ y
+  \begin{equation*}
+    D_{i}(u\varphi )=\left( D_{i}u\right) \varphi +u\frac{\partial \varphi }{\partial x_{i}}\qquad \forall i=1,\dots,n.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="valabsdd" class="exercise">
+Sea $p\in [1,\infty )$. Prueba que, si $u\in
+  W_{0}^{1,p}(\Omega )$, entonces $\left\vert u\right\vert \in
+  W_{0}^{1,p}(\Omega )$ y
+  \begin{equation*}
+    \left( D_{i}\left\vert u\right\vert \right) (x)=
+      \begin{cases}
+        \left( D_{i}u\right) (x) & \text{si }u(x)\geq 0, \\
+        0 & \text{si }u(x)=0, \\
+        -\left( D_{i}u\right) (x) & \text{si }u(x)\leq 0.
+      \end{cases}
+  \end{equation*}
+  <em class="emph">(Sugerencia: Considera las funciones </em>$\phi_{\varepsilon
+  }(t)=(t^{2}+\varepsilon^{2})^{1/2}-\varepsilon $, $\varepsilon
+  >0$,<em class="emph">&nbsp;y </em>$\phi_{\varepsilon }\circ u$.<em class="emph">&nbsp;Prueba que
+  </em>$\phi_{\varepsilon }\circ u\rightarrow \left\vert u\right\vert $
+  en $W^{1,p}(\Omega )$.<em class="emph">)</em>
+</div>
+</p>
+<p>
+<div id="u+dd" class="exercise">
+Sea $p\in [1,\infty )$. Prueba que, si $u\in
+  W_{0}^{1,p}(\Omega )$, entonces
+  \begin{equation*}
+    u^{+}:=\max \left\{u,0\right\}\in W_{0}^{1,p}(\Omega ),\qquad u^{-}:=\min
+    \left\{u,0\right\}\in W_{0}^{1,p}(\Omega ),
+  \end{equation*}
+  y sus derivadas débiles son
+  \begin{align*}
+    \left( D_{i}u^{+}\right) (x)
+    &{}=
+      \begin{cases}
+        \left( D_{i}u\right) (x) & \text{si }u(x)\geq 0, \\
+        0 & \text{si }u(x)\leq 0.
+      \end{cases} \\
+     \qquad \left( D_{i}u^{-}\right) (x)
+    &{}=
+      \begin{cases}
+        \left( D_{i}u\right) (x) & \text{si }u(x)\leq 0, \\
+        0 & \text{si }u(x)\geq 0.
+      \end{cases}
+  \end{align*}
+</div>
+</p>
+<p>
+<div id="WvsW0" class="exercise">
+Sean $\Omega $ un subconjunto abierto de clase
+  $\mathcal{C}^{1}$ de $\mathbb{R}^{n}$ y $p\in [1,\infty )$.
+  Prueba que, si $\Omega \neq \mathbb{R}^{n}$, entonces
+  $W^{1,p}(\Omega )\neq W_{0}^{1,p}(\Omega )$.
+</div>
+</p>
+<p>
+<div id="simetriadd" class="exercise">
+Prueba que, si $u\in W^{1,p}(\Omega )$ y
+  $D_{i}u\in W^{1,p}(\Omega )$ para todo $i\in \left\{1,\dots,n\right\}$ entonces
+  \begin{equation*}
+    D_{j}D_{i}u=D_{i}D_{j}u\qquad \forall i,j=1,\dots,n.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise" id="ejW">[Ejemplo de Weierstrass]
+
+</p>
+<p>
+Sea $V:=\left\{u\in \mathcal{C}^{1}[-1,1]:u(1)=1,
+    u(-1)=-1\right\}$ y sea
+  \begin{equation*}
+    J(u):=\int_{-1}^{1}\left\vert xu^{\prime }(x)\right\vert^{2}dx
+  \end{equation*}
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que $&nbsp;\inf \left\{J(u):u\in V\right\}=0$. 
+    <em class="emph">(Sugerencia: Considera las funciones</em>
+    \begin{equation*}
+      u_{\varepsilon }(x):=\frac{\arctan \left( \frac{x}{\varepsilon }\right) }{\arctan \left( \frac{1}{\varepsilon }\right) },\qquad \varepsilon >0.
+    \end{equation*}
+    <em class="emph">Prueba que pertenecen a</em> $V$ <em class="emph">y que</em> $J(u_{\varepsilon
+    })\rightarrow 0$ <em class="emph">cuando</em> $\varepsilon \rightarrow
+    0$.<em class="emph">)</em>
+</p>
+<p>
+  <li> Prueba que $J$ no alcanza su mínimo en $V$.
+  </ol>
+</div>
+</p>
+<p>
+<div id="ejdirnh" class="exercise">
+Sean $\Omega $ un subconjunto abierto de
+  $\mathbb{R}^{n}$, $&nbsp;f,g\colon \overline{\Omega }\rightarrow
+  \mathbb{R}$. Considera el problema
+  \begin{equation}
+    \left\{ 
+      \begin{alignedat}{2}
+        -\Delta u+u&{}=f &\quad& \text{en }\Omega , \\
+        u&{}=g && \text{sobre }\partial \Omega .
+      \end{alignedat}
+    \right.\label{dirnh2}
+  \end{equation}
+  Recuerda que una solución débil de este problema es una
+  función $u\in A_{g}$, donde 
+  \begin{equation*}
+    A_{g}:=\left\{w\in H^{1}(\Omega ):w-g\in
+    H_{0}^{1}(\Omega )\right\},
+  \end{equation*}
+  que satisface
+  \begin{equation}
+    \int_{\Omega }\nabla u\cdot \nabla \varphi +\int_{\Omega }u\varphi
+    =\int_{\Omega }f\varphi \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ).\label{soldeb2}
+  \end{equation}
+  Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $g\in H^{1}(\Omega )$ y $f\in L^{2}(\Omega )$, el
+    problema <em class="emph">(\ref{dirnh2})</em>&nbsp;tiene una única solución
+    débil. <em class="emph">(Sugerencia: Prueba que </em>$u\in A_{g}$<em class="emph" 
+      satisface (\ref{soldeb2})</em> si y sólo si }$v:=u-g\in
+    H_{0}^{1}(\Omega )$<em class="emph">&nbsp;satisface</em>
+    \begin{equation*}
+      \int_{\Omega }\nabla v\cdot \nabla \varphi +\int_{\Omega }v\varphi
+      =-\int_{\Omega }\nabla g\cdot \nabla \varphi -\int_{\Omega }g\varphi
+      +\int_{\Omega }f\varphi \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ),
+    \end{equation*}
+    <em class="emph">y aplica el teorema de representación de
+      Fréchet-Riesz.)</em>
+</p>
+<p>
+  <li> $u\in A_{g}$ es una solución débil de
+    <em class="emph">(\ref{dirnh2})</em> si y sólo si $u$ es un mínimo del
+    funcional&nbsp;$J\colon A_{g}\rightarrow \mathbb{R}$ &nbsp;dado por
+    \begin{equation*}
+      J(w):=\frac{1}{2}\left\Vert w\right\Vert_{H^{1}(\Omega )}^{2}-\int_{\Omega
+      }fw.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $g\in \mathcal{C}^{2}(\overline{\Omega })$, entonces
+    $u$ es solución clásica de <em class="emph">(\ref{dirnh2})</em> si y
+    sólo si $v:=u-g$ es solución clásica de
+    \begin{equation*}
+      \left\{ 
+        \begin{alignedat}{2}
+          -\Delta v+v&{}=\Delta g-g+f &\quad& \text{en }\Omega , \\
+          v&{}=0 && \text{sobre }\partial \Omega .
+        \end{alignedat}
+      \right.
+    \end{equation*}
+</p>
+
+  <li> Si $\Omega $ es un subconjunto abierto y acotado de
+    $\mathbb{R}^{n}$ de clase $\mathcal{C}^{\infty }$ y $f,g\in
+    \mathcal{C}^{\infty }(\overline{\Omega })$, entonces el problema
+    <em class="emph">(\ref{dirnh2})</em> tiene una única solución clásica
+    $u\in \mathcal{C}^{\infty }(\overline{\Omega })$.
+  </ol>
+</div>
+
+
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+</html>

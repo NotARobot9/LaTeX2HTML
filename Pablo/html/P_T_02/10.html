@@ -1,0 +1,1535 @@
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/10.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 9;
+              }
+              </style>  
+<h2 id="Cap-10">El teorema de la función implícita</h2>
+<p>
+Sean $\varphi \colon \Omega \rightarrow \mathbb{R}$ una
+función de clase $\mathcal{C}^{1}$ definida en un abierto $\Omega
+$ de $\mathbb{R}^{n}$, y $c\in \mathbb{R}$. Queremos obtener
+información sobre la estructura del conjunto de soluciones $\xi
+\in \Omega $ de la ecuación
+\begin{equation}
+  \varphi (\xi )=c,\label{ec}
+\end{equation}
+al que denotaremos por
+\begin{equation*}
+  M:=\left\{\xi \in \Omega :\varphi (\xi )=c\right\}.
+\end{equation*}
+</p>
+<p>
+Veamos un ejemplo. Si $\varphi \colon \mathbb{R}^{2}\rightarrow \mathbb{R}$
+es la función $\varphi (x,y)=x^{2}-y^{2}$ entonces para $c<0$ el
+conjunto $M$ tiene dos componentes: una de ellas es la gráfica de
+la función $x\mapsto \sqrt{x^{2}-c}$ y la otra es la gráfica
+de $x\mapsto -\sqrt{x^{2}-c}$. Análogamente, si $c>0$, el conjunto
+$M$ tiene dos componentes: la gráfica de la función $y\mapsto
+\sqrt{c+y^{2}}$ y la de la función $y\mapsto -\sqrt{c+y^{2}}$. En
+cambio, si $c=0$, no existe ninguna vecindad de $(0,0)$ en
+$\mathbb{R}^{2}$ cuya intersección con $M$ sea la gráfica de
+alguna función.
+\begin{figure}[htb]
+  \centering
+  \input{./figuras-tikz/hip-c-menor.tikz}\qquad
+  \input{./figuras-tikz/hip-c-mayor.tikz}\qquad
+  \input{./figuras-tikz/hip-c-igual.tikz}
+   \caption{}\label{fig:10.1}
+\end{figure}
+</p>
+<p>
+Nota que $\nabla \varphi (x,y)\neq (0,0)$ si $(x,y)\neq (0,0)$. En
+este caso, la recta perpendicular a $\nabla \varphi (x,y)$ es tangente
+a $M$ en el punto $(x,y),&nbsp;$es decir, $M$ se parece a dicha recta en
+una vecindad del punto.
+</p>
+<p>
+Los conjuntos $M$ de soluciones de (\ref{ec}) que tienen la propiedad
+de que $\nabla \varphi (\xi )\neq 0$ para todo $\xi \in M$ se llaman
+<em class="emph">variedades</em>. El teorema de la función implícita asegura
+que, si $M$ es una variedad entonces, en una vecindad de cada punto
+$\xi \in M$, $&nbsp;M$ es la gráfica de una función cuyo dominio
+es un abierto en el subespacio de $\mathbb{R}^{n}$ ortogonal a $\nabla
+\varphi (\xi )$ y cuyo codominio es el espacio generado por $\nabla
+\varphi (\xi )$.
+\begin{figure}[htb]
+  \centering
+  \input{./figuras-tikz/figuraCap10-1.tikz}
+   \caption{}\label{fig:10.2}
+\end{figure}
+</p>
+<p>
+En particular, cerca de $\xi $, $M$ se parece a $\mathbb{R}^{n-1}$.
+Esto permite extender conceptos y resultados del cálculo
+diferencial a las variedades.
+</p>
+<p>
+En las aplicaciones interesa a menudo encontrar mínimos o
+máximos locales de una cierta función $g\colon \Omega \rightarrow
+\mathbb{R}$ sobre una variedad $M$. El teorema de la función
+implícita proporciona un criterio sencillo para detectarlos: si
+$\xi \in M$ es un máximo o un mínimo local de $g$ en $M$,
+entonces $\nabla g(\xi )$ es perpendicular al espacio tangente a $M$
+en $\xi $. Por ejemplo, si $g(x,y,z):=z$ es la función que a cada
+punto de $\mathbb{R}^{3}$ le asocia su altura respecto al plano $xy$,
+los máximos y mínimos locales de $g$ sobre una superficie $M$
+en $\mathbb{R}^{3}$ tienen la propiedad de que el plano tangente a $M$
+en tales puntos es paralelo al plano $xy$.
+\begin{figure}[htb]
+  \centering
+  \input{./figuras-tikz/plano-tangente.tikz}
+   \caption{}\label{fig:10.3}
+\end{figure}
+</p>
+<p>
+Los resultados anteriores son válidos también en espacios de
+Banach y tienen aplicaciones importantes en ese contexto, por ejemplo,
+para probar la existencia de soluciones de ciertas ecuaciones
+diferenciales no lineales\footnote{
+Consulta, por ejemplo,~\cite{Ambrosetti}.}.
+</p>
+<p>
+<h3 id="sec10-1">El teorema de la función implícita</h3>
+</p>
+<p>
+Sean $Y$ un espacio de Banach, $\Omega $ un subconjunto abierto de
+$Y$, $\varphi \colon \Omega \rightarrow \mathbb{R}^{m}$ una función de
+clase $\mathcal{C}^{1}$ y $c\in \mathbb{R}^{m}$. Como mencionamos en
+la introducción, nos interesa obtener información sobre la
+estructura del conjunto de soluciones $u\in \Omega $ de la
+ecuación
+\begin{equation}
+  \varphi (u)=c,\label{ecua}
+\end{equation}
+al que denotaremos por
+\begin{equation*}
+  M:=\left\{u\in \Omega :\varphi (u)=c\right\}.
+\end{equation*}
+Veamos el siguiente ejemplo.
+</p>
+<p>
+<div id="ejesfera" class="example">
+Sea $\varphi \colon \mathbb{R}^{n}\rightarrow \mathbb{R}$
+  la función $\varphi (x_{1},\ldots ,x_{n})=x_{1}^{2}+\cdots
+  +x_{n}^{2}$. Si $c>0$, el conjunto $M$ es la esfera de radio
+  $\sqrt{c}$ con centro en el origen.  Ésta tiene la propiedad de
+  que, localmente, se parece a $\mathbb{R}^{n-1} $ en el siguiente
+  sentido: Para cada punto $\xi \in M$ existe un subespacio vectorial
+  $T_{\xi }M$ de $\mathbb{R}^{n}$ de dimensión $n-1$, a saber
+  \begin{equation*}
+    T_{\xi }M:=\left\{y\in \mathbb{R}^{n}:y\cdot \xi =0\right\},
+  \end{equation*}
+  tal que, en una vecindad de $\xi $, el conjunto $M$ es la
+  gráfica de una función de clase $\mathcal{C}^{\infty }$ cuyo
+  dominio es la bola abierta de radio $\sqrt{c}$ en $T_{\xi }M$ y cuyo
+  codominio es el complemento ortogonal de $T_{\xi }M$.
+  Dicha función $f$ está dada por
+  \begin{equation*}
+    f(y):=\Bigl( \sqrt{c-\Vert y\Vert^{2}}\Bigr) \frac{\xi }{\left\Vert \xi \right\Vert },\text{\qquad }\forall y\in T_{\xi }M\text{ tal
+      que }\left\Vert y\right\Vert <\sqrt{c}.
+  \end{equation*}
+  La gráfica de $f$, definida como
+  \begin{equation*}
+    \text{<em class="emph">graf</em>}(f):=\left\{(y,z):y\in T_{\xi }M,\text{ }\left\Vert
+      y\right\Vert <\sqrt{c},\text{ }z=f(y)\right\},
+  \end{equation*}
+  resulta ser el conjunto $\left\{x\in M:x\cdot \xi >0\right\}$, el cual es
+  abierto en $M$ y contiene a $\xi $.
+\begin{figure}[htb]
+  \centering
+  \input{./figuras-tikz/ejemplo10-1.tikz}
+   \caption{}\label{fig:10.4}
+\end{figure}
+</p>
+<p>
+  Observa que $\nabla \varphi (\xi )=2\xi $, por lo que $T_{\xi
+  }M=\left\{y\in \mathbb{R}^{n}:y\cdot \nabla \varphi (\xi )=0\right\}$.
+</div>
+</p>
+<p>
+Queremos obtener una condición suficiente para que el conjunto de
+soluciones de la ecuación (\ref{ecua}) sea, localmente, la
+gráfica de una función. El siguiente concepto jugará un
+papel fundamental.
+</p>
+<p>
+<div class="definition">
+  Decimos que $c\in \mathbb{R}^{m}$ es un <em class="textbf">valor regular de</em>
+  $\varphi \colon \Omega \rightarrow \mathbb{R}^{m}$ \index{valor!regular}si
+  $\varphi^{\prime }(u)\colon Y\rightarrow \mathbb{R}^{m}$ es suprayectiva
+  para todo $u\in M:=\left\{w\in \Omega :\varphi (w)=c\right\}$.
+</p>
+<p>
+  El subespacio vectorial
+  \begin{equation*}
+    T_{u}M:=\ker \varphi^{\prime }(u)=\left\{v\in Y:\varphi^{\prime }(u)v=0\right\}
+  \end{equation*}
+  de $Y$ se llama el <em class="textbf">espacio tangente a</em> $M$
+  \index{espacio!tangente}en el punto $u\in M$.
+</div>
+</p>
+<p>
+Nota que, si $M=\emptyset $, entonces $c$ es un valor regular de
+$\varphi $.  Si $c$ es un valor regular de $\varphi $ y $M\neq
+\emptyset $, necesariamente $\dim Y\geq m$. Observa además que,
+dado que $\varphi^{\prime }(u)\colon Y\rightarrow \mathbb{R}^{m}$ es
+continua, el espacio tangente $T_{u}M$ es un subespacio cerrado de $Y$
+y, por tanto, es un espacio de Banach.
+</p>
+<p>
+<div class="example">
+  Si $\Omega $ es un subconjunto abierto de $\mathbb{R}^{n}$&nbsp;y
+  $\varphi \colon \Omega \rightarrow \mathbb{R}$ es de clase
+  $\mathcal{C}^{1}$&nbsp;entonces $c$ es un valor regular de $\varphi $ si
+  y sólo si $\nabla \varphi (\xi )\neq 0$ para cada $\xi \in M$.
+  En este caso,
+  \begin{equation*}
+    T_{\xi }M=\left\{y\in \mathbb{R}^{n}:y\cdot \nabla \varphi (\xi )=0\right\},
+  \end{equation*}
+  es decir, $T_{\xi }M$&nbsp;es el subespacio ortogonal a $\nabla \varphi
+  (\xi )$.
+</div>
+</p>
+<p>
+Este ejemplo incluye a la función $\varphi (x_{1},\ldots
+,x_{n})=x_{1}^{2}+\cdots +x_{n}^{2}$, considerada en el Ejemplo
+\ref{ejesfera}, y es un caso particular del siguiente ejemplo.
+</p>
+<p>
+<div id="tangRn" class="example">
+Si $\Omega $ es un subconjunto abierto de
+  $\mathbb{R}^{n}$&nbsp;y $\varphi =(\varphi_{1},\dots,\varphi_{m})\colon \Omega
+  \rightarrow \mathbb{R}^{m}$ es de clase $\mathcal{C}^{1}$, $m\leq
+  n$,&nbsp;entonces $c$ es un valor regular de $\varphi $ si y sólo si
+  el conjunto
+  \begin{equation*}
+    \left\{ \nabla \varphi_{1}(\xi ),\ldots ,\nabla \varphi_{m}(\xi )\right\}
+  \end{equation*}
+  es linealmente independiente para cada $\xi \in M$. En ese caso,
+  \begin{equation*}
+    T_{\xi }M=\left\{y\in \mathbb{R}^{n}:y\cdot \nabla \varphi_{j}(\xi )=0,\text{ }j=1,\ldots ,m\right\}
+  \end{equation*}
+  es el complemento ortogonal del espacio generado por $\left\{ \nabla
+    \varphi_{1}(\xi ),\ldots ,\nabla \varphi_{m}(\xi )\right\} $.
+</div>
+</p>
+<p>
+<div class="proof">
+  En efecto, $\varphi^{\prime }(\xi )$ es la función lineal dada
+  por la matriz jacobiana
+  \begin{equation*}
+    \varphi^{\prime }(\xi )=\left( 
+      \begin{array}{ccc}
+        \frac{\partial \varphi_{1}}{\partial x_{1}}(\xi ) & \cdots & \frac{\partial
+          \varphi_{1}}{\partial x_{n}}(\xi ) \\
+        \vdots &  & \vdots \\
+        \frac{\partial \varphi_{m}}{\partial x_{1}}(\xi ) & \cdots & \frac{\partial
+          \varphi_{m}}{\partial x_{n}}(\xi )
+      \end{array}
+    \right) ,
+  \end{equation*}
+  y ésta es suprayectiva si y sólo si la matriz tiene rango
+  máximo, es decir, sí y sólo si sus renglones son
+  linealmente independientes. 
+</p>
+<p>
+  Nota que
+  $\varphi^{\prime }(\xi )y=\left( \nabla \varphi_{1}(\xi )\cdot
+    y,\ldots ,\nabla \varphi _{m}(\xi )\cdot y\right) $,
+  así que $y\in T_{\xi }M$ si y sólo si
+  $\nabla \varphi_{j}(\xi )\cdot y=0$ para todo $j=1,\ldots ,m$.
+</div>
+</p>
+<p>
+Si queremos expresar localmente a $M$ como la gráfica de una
+función definida en un subconjunto abierto del espacio tangente,
+necesitamos primero expresar a $Y$ como un producto de espacios de
+Banach de la forma $T_{u}M\times W_{u}$. Si $Y=\mathbb{R}^{n}$ podemos
+simplemente tomar a $W_{u} $ como el complemento ortogonal de
+$T_{u}M$.
+</p>
+<p>
+Desde un punto de vista puramente algebraico, todo subespacio $V$ de
+un espacio vectorial $Y$ tiene un espacio complementario, es decir,
+existe un subespacio $W$ de $Y$ tal que $Y$ es linealmente isomorfo a
+$V\times W$. Sin embargo, si $Y$ es un espacio de Banach de
+dimensión infinita y $V$ es cerrado en $Y$, ni $W$ es
+necesariamente cerrado en $Y$, ni $Y$ es necesariamente homeomorfo a
+$V\times W$.
+</p>
+<p>
+En el caso particular que estamos considerando sí podemos
+expresar a $Y$ como $T_{u}M\times W_{u}$ de manera apropiada. Se tiene
+el siguiente resultado.
+</p>
+<p>
+<div id="complemento" class="proposition">
+Si $Y$ es un espacio de Banach, $T\in
+  \mathcal{L}(Y,\mathbb{R}^{m})$ es suprayectiva y $V:=\ker T$,
+  entonces existe un subespacio vectorial cerrado $W$ de $Y$ tal que
+  la restricción $T\mid_{W}\colon W\rightarrow \mathbb{R}^{m}$ de $T$ a
+  $W$ es un isomorfismo de espacios vectoriales y la función
+  lineal
+  \begin{equation*}
+    \iota \colon V\times W\rightarrow Y,\text{\qquad }\iota (v,w):=v+w,
+  \end{equation*}
+  es un homeomorfismo.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\left\{e_{1},\ldots ,e_{m}\right\}$ la base canónica de
+  $\mathbb{R}^{m}$. Escogemos $w_{j}\in Y$ tal que $Tw_{j}=e_{j}$,
+  $j=1,\dots,m$, y denotamos por $W$ al subespacio vectorial de $Y$
+  generado por $\left\{w_{1},\ldots ,w_{m}\right\}$. La función lineal
+  $S\colon \mathbb{R}^{m}\rightarrow Y$ dada por
+  \begin{equation*}
+    S(x_{1},\dots,x_{m}):=x_{1}w_{1}+\cdots +x_{m}w_{m}
+  \end{equation*}
+  es también continua, ya que su dominio es de dimensión
+  finita (ver Ejercicio~\ref{ejnorfinequiv}). Además, cumple que
+  $TSx=x$ para todo $x\in \mathbb{R}^{m}$. En consecuencia, $y-STy\in
+  \ker T$ para todo $y\in Y$ y la función
+  \begin{equation*}
+    \pi \colon Y\rightarrow V\times W,\text{\qquad }\pi (y):=(y-STy,STy),
+  \end{equation*}
+  es lineal y continua (ver Ejercicio~\ref{distcont}). Claramente,
+  $\iota $ es lineal y continua y $\iota \circ \pi =\id_{Y}$. Observa
+  que $ST(v+w)=STw=w$ para todo $v\in V$, $w\in W$. Por tanto,
+  \begin{equation*}
+    \pi (\iota (v,w))=(v+w-ST(v+w),\,ST(v+w))=(v,w),
+  \end{equation*}
+  es decir, $\pi \circ \iota =\id_{V\times W}$. Esto prueba que $\iota
+  $ es un homeomorfismo.
+</p>
+<p>
+  Para probar que $W$ es cerrado en $Y$ tomemos una sucesión
+  $(y_{k})$ en $W$ tal que $y_{k}\rightarrow y$ en $Y$. Como $ST$ es
+  continua, se tiene que $y_{k}=STy_{k}\rightarrow STy$. En
+  consecuencia, $y=STy\in W$. Esto prueba que $W$ es cerrado en $Y$.
+</div>
+</p>
+<p>
+<div id="defisoBanach" class="definition">
+Una función lineal y biyectiva
+  $T\colon V\rightarrow W$ entre dos espacios de Banach $V$ y $W$ que es
+  además un homeomorfismo se llama un <em class="textbf">isomorfismo de
+    Banach</em>.  \index{isomorfismo!de Banach}
+</div>
+</p>
+<p>
+De la Proposición~\ref{complemento} se desprende que, si $c$ es un
+valor regular de $\varphi $ entonces, para cada $u\in M$, existe un
+subespacio cerrado $W_{u}$ de $Y$ tal que la función
+\begin{equation*}
+  \iota \colon T_{u}M\times W_{u}\rightarrow Y,\text{\qquad }\iota (v,w):=v+w,
+\end{equation*}
+es un isomorfismo de Banach. El teorema de la función implícita,
+que enunciaremos a continuación, garantiza que $M$ se puede
+expresar localmente como la gráfica de una función cuyo
+dominio es un abierto de $T_{u}M$ y cuyo codominio es $W_{u}$.
+</p>
+<p>
+<div class="theorem">[de la función implícita]
+\label{teofi}\index{teorema!de la función implícita}Sean
+  $V,W,Z$ espacios de Banach, $\Omega &nbsp;$un subconjunto abierto de
+  $V\times W$, $(v_{0},w_{0})\in \Omega $ y $\varphi \colon \Omega
+  \rightarrow Z$ una función de clase $\mathcal{C}^{1}$ en $\Omega
+  $. Si $\varphi (v_{0},w_{0})=c$ y $\partial_{2}\varphi
+  (v_{0},w_{0})\in \mathcal{L}(W,Z)$ es un isomorfismo de Banach,
+  entonces existen $\delta ,\eta >0$ tales que $B_{V}(v_{0},\delta
+  )\times B_{W}(w_{0},\eta )\subset \Omega $ y una función
+  $f\colon B_{V}(v_{0},\delta )\rightarrow W$ de clase $\mathcal{C}^{1}$ con
+  las siguientes propiedades:
+</p>
+<p>
+  \begin{enumerate}
+  \item[(I) &nbsp;] El conjunto de soluciones $(v,w)\in B_{V}(v_{0},\delta
+    )\times B_{W}(w_{0},\eta )$ de la ecuación
+    \begin{equation*}
+      \varphi (v,w)=c
+    \end{equation*}
+    coincide con la gráfica de $f$,
+    \begin{equation*}
+      \text{<em class="emph">graf</em>}(f):=\left\{(v,f(v)):v\in B_{V}(v_{0},\delta )\right\}.
+    \end{equation*}
+    En particular, $f(v_{0})=w_{0}$ y $f(v)\in B_{W}(w_{0},\eta )$
+    para todo $v\in B_{V}(v_{0},\delta )$.
+</p>
+<p>
+  \item[(II) ] Para todo $v\in B_{V}(v_{0},\delta )$ se cumple
+    que$&nbsp;\partial_{2}\varphi (v,f(v))$ es un isomorfismo de Banach y
+    \begin{equation*}
+      f^{\prime }(v)=-\left[ \partial_{2}\varphi (v,f(v))\right]^{-1}\circ
+      \partial_{1}\varphi (v,f(v)).
+    \end{equation*}
+  \end{enumerate}
+</div>
+</p>
+<p>
+Pospondremos la demostración de este teorema para la Sección
+\ref{sec10-4} de este capítulo, y procederemos a presentar
+algunas consecuencias importantes.
+</p>
+<p>
+La Proposición~\ref{complemento} asegura que, si $c\in
+\mathbb{R}^{m}$ es un valor regular de $\varphi \colon \Omega \rightarrow
+\mathbb{R}^{m}$, entonces para cada $u\in M$ existe un subespacio
+cerrado $W_{u}$ de $Y$ tal que la función
+\begin{equation*}
+  \iota \colon T_{u}M\times W_{u}\rightarrow Y,\text{\qquad }\iota (v,w):=v+w,
+\end{equation*}
+es un isomorfismo de Banach. Identificando a $Y$ con $T_{u}M\times
+W_{u}$ mediante dicho isomorfismo, se obtiene que $\partial
+_{2}\varphi (u)\equiv \varphi^{\prime }(u)\mid
+_{W_{u}}\colon W_{u}\rightarrow \mathbb{R}^{m}$ es un isomorfismo. Nota que
+$W_{u}$ no es único. Para cualquier elección de $W_{u}$ con
+las propiedades mencionadas se tiene el siguiente resultado, que es
+consecuencia inmediata del teorema de la función implícita.
+</p>
+<p>
+<div id="variedad" class="corollary">
+Si $c\in \mathbb{R}^{m}$ es un valor regular de
+  $\varphi \colon \Omega \rightarrow \mathbb{R}^{m}$ y $u=v_{0}+w_{0}\in M$
+  con $v_{0}\in T_{u}M$ y $w_{0}\in W_{u}$, entonces existen $\delta
+  ,\eta >0$ y una función $f\colon B_{T_{u}M}(v_{0},\delta )\rightarrow
+  W_{u}$ de clase $\mathcal{C}^{1}$ tal que
+  \begin{equation*}
+    M\cap \left( B_{T_{u}M}(v_{0},\delta )\times B_{W_{u}}(w_{0},\eta )\right)
+    =\left\{v+f(v):v\in B_{T_{u}M}(v_{0},\delta )\right\}.
+  \end{equation*}
+  Más aún, $\partial_{2}\varphi (v+f(v))$ es un isomorfismo y
+  \begin{equation*}
+    f^{\prime }(v)=-\left[ \partial_{2}\varphi (v+f(v))\right]^{-1}\circ
+    \partial_{1}\varphi (v+f(v))
+  \end{equation*}
+  para cada $v\in B_{T_{u}M}(v_{0},\delta )$.
+</div>
+</p>
+<p>
+Es importante hacer notar que, si la función $\varphi $ del
+Teorema~\ref{teofi} y del Corolario~\ref{variedad}&nbsp;es de clase
+$\mathcal{C}^{k}$, entonces la función $f$ también es de clase
+$\mathcal{C}^{k}$ [Ejercicio~\ref{fiCk}].
+</p>
+<p>
+<h3 id="sec10-2">Extremos locales de una función diferenciable sobre una
+  variedad</h3>
+</p>
+<p>
+Sean $\Omega $ un subconjunto abierto de un espacio de Banach $Y$,
+$\varphi \colon \Omega \rightarrow \mathbb{R}^{m}$ una función de clase
+$\mathcal{C}^{1} $, $c\in \mathbb{R}^{m}$ y $M:=\left\{u\in \Omega :\varphi
+(u)=c\right\}$. El Corolario~\ref{variedad} permite caracterizar al espacio
+tangente como sigue.
+</p>
+<p>
+<div class="proposition">
+  Si $c$ es un valor regular de $\varphi $ entonces, para cada $u\in
+  M$,
+  \begin{equation*}
+    T_{u}M=\left\{\sigma^{\prime }(0):\sigma \in \Gamma_{u}(M)\right\},
+  \end{equation*}
+  donde $\Gamma_{u}(M)$ es el conjunto de todas las funciones $\sigma
+  \colon (-\varepsilon ,\varepsilon )\rightarrow Y$ de clase
+  $\mathcal{C}^{1}$ tales que $\sigma (0)=u$ y $\sigma (t)\in M$ para
+  todo $t\in (-\varepsilon ,\varepsilon )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  $\supset )$: &nbsp;Si $\sigma \in \Gamma_{u}(M)$ entonces $(\varphi
+  \circ \sigma )(t)=c$ para todo $t\in (-\varepsilon ,\varepsilon )$.
+  Por tanto, $(\varphi \circ \sigma )^{\prime }(t)=0$ para todo $t\in
+  (-\varepsilon ,\varepsilon )$. En particular, si $t=0$, usando la
+  regla de la cadena obtenemos
+  \begin{equation*}
+    0=(\varphi \circ \sigma )^{\prime }(0)=\varphi^{\prime }(u)\left[ \sigma
+     ^{\prime }(0)\right] .
+  \end{equation*}
+  Esto prueba que $\sigma^{\prime }(0)\in \ker \varphi^{\prime
+  }(u)=:T_{u}M$.
+</p>
+<p>
+  $\subset )$: &nbsp;Inversamente, sea $v\in T_{u}M$. Si escribimos
+  $u=v_{0}+w_{0}$ con $v_{0}\in T_{u}M$ y $w_{0}\in W_{u}$, el
+  Corolario~\ref{variedad}&nbsp;asegura que existen $\delta ,\eta >0$ y
+  una función $f\colon B_{T_{u}M}(v_{0},\delta )\rightarrow W_{u}$ de
+  clase $\mathcal{C}^{1}$ tal que
+  \begin{equation*}
+    M\cap \left[ B_{T_{u}M}(v_{0},\delta )\times B_{W_{u}}(w_{0},\eta )\right]
+    =\left\{v+f(v):v\in B_{T_{u}M}(v_{0},\delta )\right\}
+  \end{equation*}
+  y
+  \begin{equation*}
+    f^{\prime }(v_{0})=-\left[ \partial_{2}\varphi (u)\right]^{-1}\circ
+    \partial_{1}\varphi (u).
+  \end{equation*}
+  Escogemos $\varepsilon >0$ tal que $v_{0}+tv\in
+  B_{T_{u}M}(x_{0},\delta )$ para todo $t\in (-\varepsilon
+  ,\varepsilon )$ y definimos $\sigma \colon (-\varepsilon ,\varepsilon
+  )\rightarrow Y$ como
+  \begin{equation*}
+    \sigma (t):=v_{0}+tv+f(v_{0}+tv).
+  \end{equation*}
+  Claramente, $\sigma \in \Gamma_{u}(M)$. Como $v\in T_{u}M$ se tiene
+  que $\partial_{1}\varphi (u)v=\varphi^{\prime }(u)v=0$ y, en
+  consecuencia,
+  \begin{equation*}
+    f^{\prime }(v_{0})v=-\left[ \partial_{2}\varphi (u)\right]^{-1}\left[
+      \partial_{1}\varphi (u)v\right] =0.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \sigma^{\prime }(0)=v+f^{\prime }(v_{0})v=v.
+  \end{equation*}
+  Esto prueba que $T_{u}M\subset \left\{\sigma^{\prime }(0):\sigma \in
+  \Gamma_{u}(M)\right\}$.
+</div>
+</p>
+<p>
+Así pues, $T_{u}M$ es el conjunto de velocidades en el punto $u$
+de todas las trayectorias continuamente diferenciables en $M$ que
+pasan por $u$. Esto justifica llamarlo el espacio tangente a $M$ en
+$u$. Nota que esta última caracterización no depende de la
+función $\varphi $.
+</p>
+<p>
+<div id="defvar" class="definition">
+Un subconjunto $M$ de un espacio de Banach $Y$ se
+  llama una <em class="textbf">subvariedad de </em>$Y$<em class="textbf">&nbsp;de clase
+  </em>$\mathcal{C}^{k}$ <em class="textbf">y</em>&nbsp;<em class="textbf">de codimensión</em> $m$
+  \index{subvariedad!de un espacio de Banach}si existen una
+  función $\varphi \colon \Omega \rightarrow \mathbb{R}^{m}$ de clase
+  $\mathcal{C}^{k}$ definida en un abierto $\Omega $ de $Y$ que
+  contiene a $M$ y un valor regular $c\in \mathbb{R}^{m}$ de $\varphi
+  $ tales que $M=\left\{u\in \Omega :\varphi (u)=c\right\}$.
+</div>
+</p>
+<p>
+Las subvariedades aparecen a menudo en las aplicaciones como
+restricciones de una función cuyos máximos y mínimos
+locales sobre la variedad interesa encontrar.
+</p>
+<p>
+<div id="defminloc" class="definition">
+Sea $A$ un subconjunto de un espacio métrico
+  $X$. Decimos que $\xi \in A$ es un <em class="textbf">mínimo local</em>
+  \index{minimo@mínimo!local}de $g\colon X\rightarrow \mathbb{R}$ en $A$ si
+  existe $\delta >0$ tal que
+  \begin{equation*}
+    g(\xi )\leq g(x)\text{\qquad }\forall x\in A\cap B_{X}(\xi ,\delta ).
+  \end{equation*}
+  Decimos que $\xi \in A$ es un <em class="textbf">máximo local</em>
+  \index{maximo@máximo!local}de $g\colon X\rightarrow \mathbb{R}$ en $A$ si
+  existe $\delta >0$ tal que
+  \begin{equation*}
+    g(\xi )\geq g(x)\text{\qquad }\forall x\in A\cap B_{X}(\xi ,\delta ).
+  \end{equation*}
+</div>
+</p>
+<p>
+Los mínimos y máximos locales de una función en una
+variedad tienen la siguiente propiedad.
+</p>
+<p>
+<div id="minespc" class="proposition">
+Sean $M$ una subvariedad de un espacio de Banach $Y$,
+  $\Omega $ un subconjunto abierto de $Y$ que contiene a $M$ y
+  $g\colon \Omega \rightarrow \mathbb{R}$ una función de clase
+  $\mathcal{C}^{1}$. Si $u$ es un mínimo (máximo) local de
+  $g$ en $M$, entonces
+  \begin{equation*}
+    g^{\prime }(u)v=0\text{\qquad }\forall v\in T_{u}M.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $v\in T_{u}M$ y $\sigma \in \Gamma_{u}(M)$, definida en
+  $(-\varepsilon ,\varepsilon )$, tal que $\sigma^{\prime }(0)=v$. Si
+  $u$ es un mínimo (máximo) local de $g$ en $M$, entonces $0$
+  es un mínimo (máximo) local de $g\circ \sigma
+  \colon (-\varepsilon ,\varepsilon )\rightarrow \mathbb{R}$. Por tanto,
+  \begin{equation*}
+    0=(g\circ \sigma )^{\prime }(0)=g^{\prime }(u)\left[ \sigma^{\prime }(0)\right] =g^{\prime }(u)v,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+<div class="definition">
+  Sean $M$ una subvariedad de un espacio de Banach $Y$, $\Omega $ un
+  subconjunto abierto de $Y$ que contiene a $M$ y $g\colon \Omega
+  \rightarrow \mathbb{R}$ una función de clase $\mathcal{C}^{1}$.
+  Se dice que un punto $u\in M$ es un <em class="textbf">punto crítico de
+  </em>$g$ <em class="textbf">en</em> $M$ \index{punto!crítico}si
+  \begin{equation*}
+    g^{\prime }(u)v=0\text{\qquad }\forall v\in T_{u}M.
+  \end{equation*}
+</div>
+</p>
+<p>
+La Proposición~\ref{minespc} afirma que los máximos y
+mínimos locales son puntos críticos de $g$ en $M$. Para
+$Y=\mathbb{R}^{n}$ podemos caracterizar a los puntos críticos del
+siguiente modo.
+</p>
+<p>
+<div class="theorem">[multiplicadores de Lagrange]
+  \index{multiplicador de Lagrange}Sean $\Omega $ un abierto de
+  $\mathbb{R}^{n} $,\break $\varphi =(\varphi_{1},\dots,\varphi_{m})\colon \Omega
+  \rightarrow \mathbb{R}^{m}$ una función de clase
+  $\mathcal{C}^{1}$, $&nbsp;c\in \mathbb{R}^{m}$ un valor regular de
+  $\varphi $ y $M:=\left\{x\in \mathbb{R}^{n}:\varphi (x)=c\right\}$. Sea
+  $g\colon \Omega \rightarrow \mathbb{R}$ una función de clase
+  $\mathcal{C}^{1}$. Entonces $\xi $ es un punto crítico de $g$
+  en $M&nbsp;$si y sólo si existen $\lambda_{1},\dots,\lambda_{m}\in
+  \mathbb{R}$ únicos tales que
+  \begin{equation*}
+    \nabla g(\xi )=\lambda_{1}\nabla \varphi_{1}(\xi )+\cdots +\lambda
+   _{m}\nabla \varphi_{m}(\xi )\text{\qquad y\qquad }\varphi (\xi )=c.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Por definición, $\xi $ es un punto crítico de $g$ en $M$ si
+  y sólo si $\nabla g(\xi )$ es ortogonal a $T_{\xi }M$. En el
+  Ejemplo~\ref{tangRn}&nbsp;vimos que $\left\{ \nabla \varphi_{1}(\xi
+    ),\ldots ,\nabla \varphi_{m}(\xi )\right\} $ es una base del
+  complemento ortogonal de $T_{\xi }M$. En consecuencia, $\xi $ es un
+  punto crítico de $g$ en $M$ si y sólo si $\nabla g(\xi )$
+  se expresa de manera única como
+  \begin{equation*}
+    \nabla g(\xi )=\lambda_{1}\nabla \varphi_{1}(\xi )+\cdots +\lambda
+   _{m}\nabla \varphi_{m}(\xi )
+  \end{equation*}
+  con $\lambda_{1},\dots,\lambda_{m}\in \mathbb{R}$.
+</div>
+</p>
+<p>
+<div class="example">
+  Sea $g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ la función
+  $g(x_{1},\dots,x_{n})=x_{1}^{2}+\cdots +x_{n-1}^{2}$. Los puntos
+  críticos de $g$ en la esfera unitaria $\mathbb{S}^{n-1}$ son
+  los puntos de la forma $(\xi_{1},\dots,\xi_{n-1},0)$ y $(0,\dots,0,\pm
+  1)$. Los primeros son máximos y los últimos son mínimos
+  de $g$ en $\mathbb{S}^{n-1}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Por el teorema anterior, $\xi $ es punto crítico de $g$ en
+  $\mathbb{S}^{n-1}$ si y sólo si existe $\lambda \in \mathbb{R}$
+  tal que
+  \begin{equation}
+    2(\xi_{1},\dots,\xi_{n-1},0)=\nabla g(\xi )=\lambda \nabla \varphi (\xi
+    )=\lambda 2(\xi_{1},\dots,\xi_{n})\text{\qquad y\qquad }\varphi (\xi )=1,
+  \label{lag}
+  \end{equation}
+  donde $\varphi (x_{1},\dots,x_{n})=x_{1}^{2}+\cdots +x_{n}^{2}$. Si
+  $\xi_{j}\neq 0$ para algún $j=1,\dots,n-1$, entonces $\xi $
+  satisface (\ref{lag}) si y sólo si $\lambda =1$ y $\xi_{n}=0$.
+  Si $\xi_{1}=\cdots =\xi_{n-1}=0$, entonces $\xi_{n}=\pm 1$ y la
+  igualdad (\ref{lag}) se cumple para $\lambda =0$. Por tanto, los
+  puntos críticos de $g$ en $\mathbb{S}^{n-1}$ son los puntos de
+  la forma $(\xi_{1},\dots,\xi_{n-1},0)$ y $(0,\dots,0,\pm 1)$. Para
+  verificar si son máximos o mínimos basta observar que
+  \begin{equation*}
+    g(\xi_{1},\dots,\xi_{n-1},0)=1\text{,\qquad }g(0,\dots,0,\pm 1)=0,
+  \end{equation*}
+  y $0\leq g(x)\leq 1$ para todo $x\in \mathbb{S}^{n-1}$.
+</div>
+</p>
+<p>
+<h3 id="sec10-3">Homeomorfismos lineales</h3>
+</p>
+<p>
+Consideremos el conjunto de isomorfismos de Banach de
+$V$ a $W$ al que denotaremos
+\begin{equation*}
+  \mathcal{H}(V,W):=\left\{T\in \mathcal{L}(V,W):T\text{ es isomorfismo de Banach}\right\}.
+\end{equation*}
+Un elemento de $\mathcal{H}(V,W)$&nbsp;\index{conjunto!de isomorfismos de
+  Banach!$\mathcal{H}(V,W)$}es una función $T\colon V\rightarrow W$
+lineal, continua y biyectiva, cuyo inverso es lineal y continuo.
+</p>
+<p>
+Si $T\in \mathcal{H}(V,V)$ denotamos por
+\begin{equation*}
+  T^{0}:=I,\text{\qquad }T^{k}:=\underset{k\text{ veces}}{\undercbrace{T\circ \cdots
+      \circ T}},
+\end{equation*}
+donde $I$ es la identidad. Escribiremos $TS$ en vez de $T\circ S$ para
+denotar a la composición.
+</p>
+<p>
+Probaremos que $\mathcal{H}(V,W)$ es un subconjunto abierto de
+$\mathcal{L}(V,W)$. Para ello usaremos el siguiente resultado.
+</p>
+<p>
+<div id="lemhomeo" class="lemma">
+Si $S\in \mathcal{L}(V,V)$ y $\left\Vert
+    S\right\Vert_{\mathcal{L}(V,V)}<1$, entonces $I-S\in
+  \mathcal{H}(V,V)$,
+  \begin{equation*}
+    \left( I-S\right)^{-1}=\sum_{k=0}^{\infty }S^{k},
+  \end{equation*}
+  \begin{equation*}
+    \bigl\Vert \left( I-S\right)^{-1}\bigr\Vert_{\mathcal{L}(V,V)}\leq \frac{1}{1-\bigl\Vert S\bigr\Vert_{\mathcal{L}(V,V)}}
+  \end{equation*}
+  y
+  \begin{equation*}
+    \lim_{S\rightarrow 0}\frac{\bigl\Vert \left( I-S\right)^{-1}-I-S\bigr\Vert
+     _{\mathcal{L}(V,V)}}{\bigl\Vert S\bigr\Vert_{\mathcal{L}(V,V)}}=0.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Como
+  $\left\Vert S^{k}\right\Vert_{\mathcal{L}(V,V)}\leq \left\Vert
+    S\right\Vert_{\mathcal{L}(V,V)}^{k}$
+  (ver Ejercicio~\ref{normcomp}) y
+  $\left\Vert S\right\Vert_{\mathcal{L}(V,V)}<1$, se tiene que
+  \begin{equation*}
+    \sum_{k=0}^{\infty }\bigl\Vert S^{k}\bigr\Vert_{\mathcal{L}(V,V)}\leq \sum_{k=0}^{\infty }\bigl\Vert S\bigr\Vert_{\mathcal{L}(V,V)}^{k}=\frac{1}{1-\bigl\Vert S\bigr\Vert_{\mathcal{L}(V,V)}}.
+  \end{equation*}
+  El Teorema~\ref{cw}&nbsp;asegura entonces que la serie
+  \begin{equation}
+    \sum_{k=0}^{\infty }S^{k}\label{inverso}
+  \end{equation}
+  converge en $\mathcal{L}(V,V)$ y que
+  \begin{equation}
+    \left\Vert \sum_{k=0}^{\infty }S^{k}\right\Vert_{\mathcal{L}(V,V)}\leq \frac{1}{1-\left\Vert S\right\Vert_{\mathcal{L}(V,V)}}.
+  \label{cota}
+  \end{equation}
+  Observa que, para cada $n\in \mathbb{N}$,
+  \begin{equation*}
+    (I-S)\biggl( \sum_{k=0}^{n}S^{k}\biggr) =I-S^{n+1}=\left(
+      \sum_{k=0}^{n}S^{k}\right) (I-S).
+  \end{equation*}
+  Dado que la serie (\ref{inverso}) converge, la sucesión
+  $S^{k}\rightarrow 0$ en $\mathcal{L}(V,V)$. Por tanto, haciendo
+  tender $n\rightarrow \infty $, obtenemos
+  \begin{equation*}
+    (I-S)\biggl( \sum_{k=0}^{\infty }S^{k}\biggr) =I=\biggl(
+      \sum_{k=0}^{\infty }S^{k}\biggr) (I-S).
+  \end{equation*}
+  Esto prueba que $I-S\in \mathcal{H}(V,V)$ y que
+  \begin{equation*}
+    \left( I-S\right)^{-1}=\sum_{k=0}^{\infty }S^{k}.
+  \end{equation*}
+  De la desigualdad (\ref{cota}) se sigue que
+  \begin{equation*}
+    \left\Vert ( I-S)^{-1}\right\Vert_{\mathcal{L}(V,V)}\leq \frac{1}{1-\bigl\Vert S\bigr\Vert_{\mathcal{L}(V,V)}}.
+  \end{equation*}
+</p>
+<p>
+  Por último, observa que
+  \begin{equation*}
+    \left( I-S\right)^{-1}-I-S=\sum_{k=2}^{\infty
+    }S^{k}=S^{2}\sum_{k=0}^{\infty }S^{k}=S^{2}\left( I-S\right)^{-1}.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \left\Vert ( I-S)^{-1}-I-S\right\Vert_{\mathcal{L}(V,V)}\leq 
+    \frac{\bigl\Vert S\bigr\Vert_{\mathcal{L}(V,V)}^{2}}{1-\bigl\Vert
+        S\bigr\Vert_{\mathcal{L}(V,V)}}.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \lim_{S\rightarrow 0}\frac{\left\Vert ( I-S)^{-1}-I-S\right\Vert
+     _{\mathcal{L}(V,V)}}{\bigl\Vert S\bigr\Vert_{\mathcal{L}(V,V)}}\leq
+    \lim_{S\rightarrow 0}\frac{\bigl\Vert S\bigr\Vert_{\mathcal{L}(V,V)}}{1-\bigl\Vert S\bigr\Vert_{\mathcal{L}(V,V)}}=0,
+  \end{equation*}
+  lo que demuestra la última afirmación del lema.
+</div>
+</p>
+<p>
+En la demostración del teorema de la función implícita
+usaremos el siguiente resultado.
+</p>
+<p>
+<div id="homeo" class="proposition">
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] $\mathcal{H}(V,W)$ es un subconjunto abierto de
+    $\mathcal{L}(V,W). $
+</p>
+<p>
+  \item[(b)] La función
+    \begin{equation*}
+      \Phi \colon \mathcal{H}(V,W)\rightarrow \mathcal{L}(W,V),\text{\qquad }\Phi
+      (T):=T^{-1},
+    \end{equation*}
+    es diferenciable y su derivada en $T_{0}$ es
+    \begin{equation*}
+      \Phi^{\prime }(T_{0})T=-T_{0}^{-1}TT_{0}^{-1}.
+    \end{equation*}
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Si $V=W=\left\{0\right\}$ o si $\mathcal{H}(V,W)=\emptyset $, la
+  afirmación es obvia. Supongamos pues que $\mathcal{H}(V,W)\neq
+  \emptyset $ y que $V\neq \left\{0\right\}$ y $W\neq \left\{0\right\}$. Sea $T_{0}\in
+  \mathcal{H}(V,W)$. Entonces $T_{0}\neq 0$. Probaremos que
+  \begin{equation}
+    B_{\mathcal{L}(V,W)}(T_{0},r)\subset \mathcal{H}(V,W),\text{\qquad donde &nbsp;}r:=\left\Vert T_{0}^{-1}\right\Vert_{\mathcal{L}(W,V)}^{-1}.
+  \label{afhomeo}
+  \end{equation}
+  Sea $T\in \mathcal{L}(V,W)$ tal que $\left\Vert T-T_{0}\right\Vert
+ _{\mathcal{L}(V,W)}<r$. Entonces
+  \begin{align*}
+    \left\Vert T_{0}^{-1}T-I\right\Vert_{\mathcal{L}(V,V)} &=\left\Vert
+      T_{0}^{-1}\left( T-T_{0}\right) \right\Vert_{\mathcal{L}(V,V)} \\
+    &{}\leq \left\Vert T_{0}^{-1}\right\Vert_{\mathcal{L}(W,V)}\bigl\Vert
+      T-T_{0}\bigr\Vert_{\mathcal{L}(V,W)}<1.
+  \end{align*}
+  El Lema~\ref{lemhomeo} asegura entonces que $T_{0}^{-1}T\in
+  \mathcal{H}(V,V)$. En consecuencia, $T=T_{0}T_{0}^{-1}T\in
+  \mathcal{H}(V,W)$. Esto prueba que
+  $B_{\mathcal{L}(V,W)}(T_{0},r)\subset \mathcal{H}(V,W)$.
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Sean $T_{0}\in \mathcal{H}(V,W)$ y $T\in
+  \mathcal{L}(V,W)$ tal que $T\neq 0$ y $\Vert
+  T\Vert_{\mathcal{L}(V,W)}<r$, con $r$ como en~\eqref{afhomeo}. 
+  Denotemos por $S:=T_{0}^{-1}T$.
+  Entonces $\Vert S\Vert_{\mathcal{L}(V,V)}<1$ y el Lema~\ref{lemhomeo}
+  asegura que $I-S\in\mathcal{H}(V,V)$. Se tiene que
+  \begin{equation*}
+    (I-S)^{-1}T_{0}^{-1}=\left( T_{0}(I-S)\right)^{-1}=(T_{0}-T)^{-1},
+  \end{equation*}
+  y, por tanto,
+  \begin{equation*}
+    (T_{0}-T)^{-1}-T_{0}^{-1}-T_{0}^{-1}TT_{0}^{-1}=\left[ (I-S)^{-1}-I-S\right]
+    T_{0}^{-1}.
+  \end{equation*}
+  En consecuencia,
+  \begin{multline*}
+    \frac{\left\Vert
+        (T_{0}-T)^{-1}-T_{0}^{-1}-T_{0}^{-1}TT_{0}^{-1}\right\Vert
+      _{\mathcal{L}(W,V)}}{\bigl\Vert
+        T\bigr\Vert_{\mathcal{L}(V,W)}}\\
+    {}\leq \frac{\left\Vert (
+          I-S)^{-1}-I-S\right\Vert_{\mathcal{L}(V,V)}\left\Vert
+        T_{0}^{-1}\right\Vert_{\mathcal{L}(W,V)}}{\bigl\Vert
+        S\bigr\Vert_{\mathcal{L}(V,V)}\left\Vert
+        T_{0}^{-1}\right\Vert_{\mathcal{L}(W,V)}^{-1}}.
+  \end{multline*}
+  Nota que $S\rightarrow 0$ cuando $T\rightarrow 0$. De modo que,
+  usando el Lema~\ref{lemhomeo}, concluimos que
+  \begin{multline*}
+    \lim_{T\rightarrow 0}\frac{\left\Vert
+        (T_{0}-T)^{-1}-T_{0}^{-1}-T_{0}^{-1}TT_{0}^{-1}\right\Vert_{\mathcal{L}(W,V)}}{\bigl\Vert T\bigr\Vert_{\mathcal{L}(V,W)}} \\
+    {}\leq \left\Vert T_{0}^{-1}\right\Vert_{\mathcal{L}(W,V)}^{2}\left(
+      \lim_{T\rightarrow 0}\frac{\left\Vert ( I-S)^{-1}-I-S\right\Vert
+       _{\mathcal{L}(V,V)}}{\bigl\Vert S\bigr\Vert_{\mathcal{L}(V,V)}}\right) =0.
+  \end{multline*}
+  Observa que la función
+  \begin{equation*}
+    \mathcal{L}(V,W)\to\mathcal{L}(W,V), \qquad T\mapsto T_0^{-1}TT_0^{-1},
+  \end{equation*}
+  es lineal y, como
+  \begin{equation*}
+    \Vert T_0^{-1}TT_0^{-1}\Vert_{\mathcal{L}(W,V)}\leq \Vert
+    T_0^{-1}\Vert^2_{\mathcal{L}(W,V)}\,\Vert T\Vert_{\mathcal{L}(V,W)},
+  \end{equation*}
+  esta función es continua.
+  
+  Esto prueba que $\Phi $ es diferenciable en $T_{0}$ y que $\Phi
+  ^{\prime }(T_{0})T=-T_{0}^{-1}TT_{0}^{-1}$.
+</div>
+</p>
+<p>
+<h3 id="sec10-4">Demostración del teorema de la función
+  implícita</h3>
+</p>
+<p>
+Observa primero que basta probar el Teorema
+\ref{teofi} para $c=0$. En efecto: la función $\widetilde{\varphi
+}(v,w):=\varphi (v,w)-c$&nbsp;cumple que $\widetilde{\varphi
+}(v_{0},w_{0})=0$&nbsp;si y sólo si $\varphi (v_{0},w_{0})=c$, y
+$\partial_{i}\widetilde{\varphi }(v,w)=\partial_{i}\varphi (v,w)$
+para todo $(v,w)\in \Omega $, $i=1,2$.&nbsp;Así que, si el teorema de
+la función implícita vale para $\widetilde{\varphi }$,\
+también vale para $\varphi $.
+</p>
+<p>
+En lo que resta de esta sección supondremos que $V,W,Z$ son
+espacios de Banach, $\Omega &nbsp;$es un subconjunto abierto de $V\times
+W$, $\varphi \colon \Omega \rightarrow Z$ es una función de clase
+$\mathcal{C}^{1}$ en $\Omega $, y $(v_{0},w_{0})$ es un punto de
+$\Omega $ tal que
+\begin{equation*}
+  \varphi (v_{0},w_{0})=0\hspace{0.3in}\text{y\hspace{0.3in}}T_{0}:=\partial
+ _{2}\varphi (v_{0},w_{0})\in \mathcal{H}(W,Z).
+\end{equation*}
+</p>
+<p>
+Dado $(v,w)\in \Omega $, definimos
+\begin{equation*}
+  \psi_{v}(w):=w-T_{0}^{-1}\varphi (v,w).
+\end{equation*}
+Observa que
+\begin{equation}
+  \varphi (v,w)=0\text{\quad }\Longleftrightarrow \text{\quad }T_{0}^{-1}\varphi (v,w)=0\text{\quad }\Longleftrightarrow \text{\quad }\psi
+ _{v}(w)=w.\label{fi=pf}
+\end{equation}
+Esto sugiere usar el teorema de punto fijo de Banach para obtener
+soluciones de la ecuación $\varphi (v,w)=0$. Empezaremos
+demostrando el siguiente lema.
+</p>
+<p>
+<div id="lemfi1" class="lemma">
+Existen $\delta ,\eta >0$ tales que
+</p>
+<p>
+  \begin{enumerate}
+  \item[(i)] $\bar{B}_{V}(v_{0},\delta )\times \bar{B}_{W}(w_{0},\eta
+    )\subset \Omega $,
+</p>
+<p>
+  \item[(ii)] $\partial_{2}\varphi (v,w)\in \mathcal{H}(W,Z)$ &nbsp;\
+    para cualesquiera $v\in \bar{B}_{V}(v_{0},\delta )$, $w\in
+    \bar{B}_{W}(w_{0},\eta )$,
+</p>
+<p>
+  \item[(iii)] $\bigl\Vert \psi_{v}(w)-w_{0}\bigr\Vert <\eta $ &nbsp;\
+    para cualesquiera $v\in \bar{B}_{V}(v_{0},\delta )$, $w\in
+    \bar{B}_{W}(w_{0},\eta )$,
+</p>
+<p>
+  \item[(iv)] $\bigl\Vert \psi_{v}(w_{1})-\psi_{v}(w_{2})\bigr\Vert
+   _{W}\leq \frac{3}{4}\bigl\Vert w_{1}-w_{2}\bigr\Vert_{W}$ &nbsp;\
+    para cualesquiera $v\in \bar{B}_{V}(v_{0},\delta )$,
+    $w_{1},w_{2}\in \bar{B}_{W}(w_{0},\eta )$.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $c_{0}:=\Vert T_{0}^{-1}\Vert_{\mathcal{L}(Z,W)}$.
+  Como $\mathcal{H}(W,Z)$ es abierto en $\mathcal{L}(W,Z)$ (ver
+  Proposición~\ref{homeo}), $\partial_{2}\varphi (v_{0},w_{0})\in
+  \mathcal{H}(W,Z)$ y $\partial_{2}\varphi \colon \Omega \rightarrow
+  \mathcal{L}(W,Z)$ es continua, existe $\eta >0$ tal que
+  \begin{equation}
+      \begin{aligned}
+        &\bar{B}_{V}(v_{0},\eta )\times \bar{B}_{W}(w_{0},\eta )\subset \Omega , \\
+        &\partial_{2}\varphi (v,w)\in \mathcal{H}(W,Z)\text{\qquad }\forall (v,w)\in 
+        \bar{B}_{V}(v_{0},\eta )\times \bar{B}_{W}(w_{0},\eta ),
+      \end{aligned}\label{1}
+  \end{equation}
+  y
+  \begin{equation}
+    \bigl\Vert \partial_{2}\varphi (v,w)-\partial_{2}\varphi
+      (v_{0},w_{0})\bigr\Vert_{\mathcal{L}(W,Z)}<\tfrac{1}{4c_{0}}\text{\qquad }\forall (v,w)\in \bar{B}_{V}(v_{0},\eta )\times \bar{B}_{W}(w_{0},\eta ).
+  \label{2}
+  \end{equation}
+  Por otra parte, como $T_{0}^{-1}\varphi $ es continua y
+  $T_{0}^{-1}\varphi (v_{0},w_{0})=0$, existe $\delta \in (0,\eta )$
+  tal que
+  \begin{equation}
+    \bigl\Vert T_{0}^{-1}\varphi (v,w_{0})\bigr\Vert_{W}<\tfrac{\eta }{4}\text{\qquad }\forall v\in \bar{B}_{V}(v_{0},\delta ).\label{3}
+  \end{equation}
+  Las propiedades <em class="emph">(i)</em> y <em class="emph">(ii)</em> se siguen de
+  (\ref{1}). Probemos <em class="emph">(iii)</em> y <em class="emph">(iv)</em>.
+</p>
+<p>
+  Sean $v\in \bar{B}_{V}(v_{0},\delta )$, $w_{1},w_{2}\in
+  \bar{B}_{W}(w_{0},\eta )$. Entonces, $w_{t+1}:=(1-t)w_{1}+tw_{2}\in
+  \bar{B}_{W}(w_{0},\eta )$ para todo $t\in [0,1]$. Del
+  Corolario~\ref{cortvm}&nbsp;y la desigualdad (\ref{2}) se sigue que
+  \begin{align*}
+    &\bigl\Vert \psi_{v}(w_{1})-\psi_{v}(w_{2})\bigr\Vert_{W}\\
+    &\qquad{}=\bigl\Vert
+      T_{0}^{-1}T_{0}[w_{1}-w_{2}]-T_{0}^{-1}\left[ \varphi (v,w_{1})-\varphi
+        (v,w_{2})\right] \bigr\Vert_{W} \\
+    &\qquad{}\leq c_{0}\bigl\Vert \partial_{2}\varphi
+      (v_{0},w_{0})[w_{1}-w_{2}]-\varphi (v,w_{1})+\varphi (v,w_{2})\bigr\Vert_{Z} \\
+    &\qquad{}\leq c_{0}\bigl\Vert \partial_{2}\varphi
+      (v_{0},w_{0})[w_{1}-w_{2}]-\partial_{2}\varphi
+      (v,w_{0})[w_{1}-w_{2}]\bigr\Vert_{Z} \\
+    &\qquad{}\qquad{}+c_{0}\bigl\Vert \partial_{2}\varphi (v,w_{0})[w_{1}-w_{2}]-\varphi
+      (v,w_{1})+\varphi (v,w_{2})\bigr\Vert_{Z} \\
+    &\qquad{}\leq c_{0}\bigl\Vert \partial_{2}\varphi (v,w_{0})-\partial_{2}\varphi
+      (v_{0},w_{0})\bigr\Vert_{\mathcal{L}(W,Z)}\bigl\Vert
+      w_{1}-w_{2}\bigr\Vert_{W} \\
+    &\qquad{}\qquad{}+c_{0}\sup_{t\in [0,1]}\bigl\Vert \partial_{2}\varphi
+      (v,w_{t+1})-\partial_{2}\varphi (v,w_{0})\bigr\Vert_{\mathcal{L}(W,Z)}\bigl\Vert w_{1}-w_{2}\bigr\Vert_{W} \\
+    &\qquad{}<\tfrac{3}{4}\bigl\Vert w_{1}-w_{2}\bigr\Vert_{W}.
+  \end{align*}
+  En consecuencia, usando (\ref{3}) obtenemos
+  \begin{align*}
+    \bigl\Vert \psi_{v}(w)-w_{0}\bigr\Vert_{W} &\leq \bigl\Vert \psi
+     _{v}(w)-\psi_{v}(w_{0})\bigr\Vert_{W}+\bigl\Vert \psi
+     _{v}(w_{0})-w_{0}\bigr\Vert_{W} \\
+    &=\bigl\Vert \psi_{v}(w)-\psi_{v}(w_{0})\bigr\Vert_{W}+\bigl\Vert
+      T_{0}^{-1}\varphi (v,w_{0})\bigr\Vert_{W} \\
+    &<\tfrac{3}{4}\bigl\Vert w-w_{0}\bigr\Vert_{W}+\tfrac{\eta }{4} \\
+    &\leq \eta \text{\qquad }\forall v\in \bar{B}_{V}(v_{0},\delta ),\text{ }\forall w\in \bar{B}_{W}(w_{0},\eta ).
+  \end{align*}
+  Esto concluye la demostración.
+</div>
+</p>
+<p>
+<div id="lemfi2" class="lemma">
+Para $\delta ,\eta >0$ como en el
+  <em class="emph">Lema~\ref{lemfi1}</em>&nbsp;se cumple lo siguiente:
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Para cada $v\in \bar{B}_{V}(v_{0},\delta )$ existe
+    $f(v)\in B_{W}(w_{0},\eta )$ tal que
+    \begin{equation*}
+      \varphi (v,f(v))=0,
+    \end{equation*}
+    y $f(v)$ es el único elemento de $\bar{B}_{W}(w_{0},\eta )$
+    con esta propiedad.
+</p>
+<p>
+  \item[(b)] La función $f\colon B_{V}(v_{0},\delta )\rightarrow W$ es
+    de clase $\mathcal{C}^{1}$ y
+    \begin{equation*}
+      f^{\prime }(v)=-\left[ \partial_{2}\varphi (v,f(v))\right]^{-1}\circ
+      \partial_{1}\varphi (v,f(v))\text{\qquad }\forall v\in B_{V}(v_{0},\delta ).
+    \end{equation*}
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Sea $v\in \bar{B}_{V}(v_{0},\delta )$. La
+  afirmación <em class="emph">(iii) </em>del Lema~\ref{lemfi1}&nbsp;asegura que $\psi
+ _{v}$ es una función de $\bar{B}_{W}(w_{0},\eta )$ en sí
+  mismo. Como $\bar{B}_{W}(w_{0},\eta )$ es cerrado y $W$ es de
+  Banach, $\bar{B}_{W}(w_{0},\eta )$ es un espacio métrico
+  completo. La afirmación <em class="emph">(iv) </em>del Lema~\ref{lemfi1}\
+  asegura que
+  \begin{equation*}
+    \psi_{v}\colon \bar{B}_{W}(w_{0},\eta )\rightarrow \bar{B}_{W}(w_{0},\eta )
+  \end{equation*}
+  es una contracción. Por el teorema de punto fijo de Banach (ver
+  Teorema~\ref{pf}) existe un único $f(v)\in
+  \bar{B}_{W}(w_{0},\eta )$ tal que
+  \begin{equation*}
+    f(v)=\psi_{v}(f(v)).
+  \end{equation*}
+  La afirmación <em class="emph">(iii) </em>del Lema~\ref{lemfi1}&nbsp;asegura
+  entonces que $f(v)=\psi_{v}(f(v))\in B_{W}(w_{0},\eta )$. De la
+  observación (\ref{fi=pf}) se sigue la afirmación <em class="emph">(a).</em>
+</p>
+<p>
+  Antes de probar la afirmación <em class="emph">(b)</em> probaremos que&nbsp;la
+  función $f\colon B_{V}(v_{0},\delta )\rightarrow W$&nbsp;es continua.
+</p>
+<p>
+  Sean $v_{1}\in B_{V}(v_{0},\delta )$ y $\varepsilon >0$. Como
+  $\psi _{v}^{k}(f(v))=f(v)$, la afirmación <em class="emph">(iv) </em>del
+  Lema~\ref{lemfi1} asegura que
+  \begin{equation*}
+    \bigl\Vert \psi_{v}^{k}(w_{0})-f(v)\bigr\Vert_{W}\leq \left( \tfrac{3}{4}\right)^{k}\bigl\Vert w_{0}-f(v)\bigr\Vert_{W}<\left( \tfrac{3}{4}\right)
+   ^{k}\eta \text{\qquad }\forall v\in B_{V}(v_{0},\delta ).
+  \end{equation*}
+  Por tanto, existe $k_{0}\in \mathbb{N}$, independiente de $v$, tal
+  que
+  \begin{equation*}
+    \bigl\Vert \psi_{v}^{k}(w_{0})-f(v)\bigr\Vert_{W}<\tfrac{\varepsilon }{3}\text{\qquad }\forall k\geq k_{0},\text{ &nbsp;}\forall v\in B_{V}(v_{0},\delta
+    ).
+  \end{equation*}
+  La función $v\mapsto \psi_{v}(w_{0})=w_{0}-T_{0}^{-1}\varphi
+  (v,w_{0})$ es continua en $B_{V}(v_{0},\delta )$. Por tanto, existe
+  $\gamma >0$ tal que
+  \begin{equation*}
+    \bigl\Vert \psi_{v}^{k_{0}}(w_{0})-\psi_{v_{1}}^{k_{0}}(w_{0})\bigr\Vert
+   _{W}<\tfrac{\varepsilon }{3}\text{\qquad }\forall v\in B_{V}(v_{0},\delta
+    )\cap B_{V}(v_{1},\gamma ).
+  \end{equation*}
+  Concluimos que
+  \begin{align*}
+    \bigl\Vert f(v)-f(v_{1})\bigr\Vert_{W} &\leq \bigl\Vert f(v)-\psi
+     _{v}^{k_{0}}(w_{0})\bigr\Vert_{W}+\bigl\Vert \psi_{v}^{k_{0}}(w_{0})-\psi
+     _{v_{1}}^{k_{0}}(w_{0})\bigr\Vert_{W} \\
+    &\qquad{}+\bigl\Vert \psi_{v_{1}}^{k_{0}}(w_{0})-f(v_{1})\bigr\Vert_{W} \\
+    &<\varepsilon \text{\qquad }\forall v\in B_{V}(v_{0},\delta )\cap
+    B_{V}(v_{1},\gamma ).
+  \end{align*}
+  Esto demuestra que $f$ es continua en $B_{V}(v_{0},\delta )$.
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Sean $v,v_{1}\in B_{V}(v_{0},\delta )$ y $\varepsilon
+  >0$. Denotamos por
+  \begin{equation*}
+    w:=f(v),\text{\qquad }w_{1}:=f(v_{1}),\text{\qquad }T_{1}:=\partial
+   _{1}\varphi (v_{1},w_{1}),\text{\qquad }T_{2}:=\partial_{2}\varphi
+    (v_{1},w_{1}).
+  \end{equation*}
+  La afirmación <em class="emph">(ii) </em>del Lema~\ref{lemfi1} asegura que
+  $T_{2}$ es un isomorfismo de Banach. Definimos
+  \begin{equation*}
+    c_{1}:=\bigl\Vert T_{2}^{-1}T_{1}\bigr\Vert_{\mathcal{L}(V,W)},\text{\qquad }c_{2}:=\bigl\Vert T_{2}^{-1}\bigr\Vert_{\mathcal{L}(Z,W)},\text{\qquad }\theta :=\min \left\{ 1,\frac{\varepsilon }{c_{1}+1}\right\} .
+  \end{equation*}
+  &nbsp;Se sigue de <em class="emph">(a)</em> que $\varphi (v_{1},w_{1})=0=\varphi
+  (v,w)$. En consecuencia,
+  \begin{equation*}
+    \varphi (v,w)-\varphi (v_{1},w_{1})-\varphi^{\prime
+    }(v_{1},w_{1})(v-v_{1},w-w_{1})=-T_{1}(v-v_{1})-T_{2}(w-w_{1})
+  \end{equation*}
+  y, como $\varphi $ es diferenciable en $(v_{1},w_{1})$, se tiene que
+  \begin{equation}
+    \lim_{(v,w)\rightarrow (v_{1},w_{1})}\frac{\bigl\Vert
+        T_{1}(v-v_{1})+T_{2}(w-w_{1})\bigr\Vert_{Z}}{\bigl\Vert
+        (v-v_{1},w-w_{1})\bigr\Vert_{V\times W}}=0.\label{7}
+  \end{equation}
+  De (\ref{7}) y de la continuidad de $f$ se sigue que existe $\gamma
+  >0$ tal que $B_{V}(v_{1},\gamma )\subset B_{V}(v_{0},\delta )$ y
+  \begin{equation*}
+    \bigl\Vert T_{1}[v-v_{1}]+T_{2}[w-w_{1}]\bigr\Vert_{Z}<\tfrac{\theta }{2c_{2}}\left( \bigl\Vert v-v_{1}\bigr\Vert_{V}+\bigl\Vert
+        w-w_{1}\bigr\Vert_{W}\right) 
+  \end{equation*}
+  si $\bigl\Vert v-v_{1}\bigr\Vert_{V}<\gamma$.  
+  Así que, si &nbsp;$\bigl\Vert v-v_{1}\bigr\Vert_{V}<\gamma $,
+  \begin{align}
+    \bigl\Vert T_{2}^{-1}T_{1}[v-v_{1}]+w-w_{1}\bigr\Vert_{W} &=\bigl\Vert
+      T_{2}^{-1}\left[ T_{1}[v-v_{1}]+T_{2}\left[ w-w_{1}\right] \right]
+    \bigr\Vert_{W}  \notag \\
+    &<\tfrac{\theta }{2}\left( \bigl\Vert v-v_{1}\bigr\Vert_{V}+\bigl\Vert
+        w-w_{1}\bigr\Vert_{W}\right)\label{5}
+  \end{align}
+  y, como $\theta\leq 1$,
+  \begin{align*}
+    \bigl\Vert w-w_{1}\bigr\Vert_{W} &\leq\bigl\Vert
+      T_{2}^{-1}T_{1}[v-v_{1}]+w-w_{1}\bigr\Vert_{W}+\bigl\Vert
+      T_{2}^{-1}T_{1}[v-v_{1}]\bigr\Vert_{W} \\
+    &{}\leq\tfrac{1}{2}\left( \bigl\Vert v-v_{1}\bigr\Vert_{V}+\bigl\Vert
+        w-w_{1}\bigr\Vert_{W}\right) +c_{1}\bigl\Vert v-v_{1}\bigr\Vert_{V},
+  \end{align*}
+  es decir,
+  \begin{equation*}
+    \bigl\Vert w-w_{1}\bigr\Vert_{W}\leq (2c_{1}+1)\bigl\Vert v-v_{1}\bigr\Vert
+   _{V}\text{\qquad si &nbsp;}\bigl\Vert v-v_{1}\bigr\Vert_{V}<\gamma .
+  \end{equation*}
+  Combinando ésta con la desigualdad (\ref{5}) obtenemos que
+  \begin{align*}
+    \bigl\Vert f(v)-f(v_{1})+T_{2}^{-1}T_{1}[v-v_{1}]\bigr\Vert_{W}
+    &=\bigl\Vert w-w_{1}+T_{2}^{-1}T_{1}[v-v_{1}]\bigr\Vert_{W} \\
+    &<\tfrac{\theta }{2}\bigl\Vert v-v_{1}\bigr\Vert_{V}+\tfrac{\theta }{2}\bigl\Vert w-w_{1}\bigr\Vert_{W} \\
+    &<\theta (c_{1}+1)\bigl\Vert v-v_{1}\bigr\Vert_{V} \\
+    &\leq \varepsilon \bigl\Vert v-v_{1}\bigr\Vert_{V}\text{\qquad si }\bigl\Vert v-v_{1}\bigr\Vert_{V}<\gamma ,
+  \end{align*}
+</p>
+<p class="noj">
+  lo cual demuestra que $f$ es diferenciable en $v_{1}$ y que
+  \begin{equation*}
+    f^{\prime }(v_{1})=-\left[ \partial_{2}\varphi (v_{1},f(v_{1}))\right]
+   ^{-1}\circ \partial_{1}\varphi (v_{1},f(v_{1})).
+  \end{equation*}
+  Probaremos ahora que $f^{\prime }\colon B_{V}(v_{0},\delta )\rightarrow
+  \mathcal{L}(V,W)$ es continua. Sean $v_{k},v\in B_{V}(v_{0},\delta
+  )$ tales que $v_{k}\rightarrow v$ en $V$. Como $f$, $\partial
+ _{1}\varphi $, $\partial_{2}\varphi $ y la función $T\mapsto
+  T^{-1}$ son funciones continuas (ver Proposición~\ref{homeo}),
+  se tiene que
+  \begin{alignat*}{2}
+    \partial_{1}\varphi (v_{k},f(v_{k})) &\longrightarrow \partial_{1}\varphi
+    (v,f(v)) &\qquad& \text{en $\mathcal{L}(V,Z)$,} \\
+    \left[ \partial_{2}\varphi (v_{k},f(v_{k}))\right]^{-1}
+    &\longrightarrow \left[ \partial_{2}\varphi (v,f(v))\right]^{-1} &&\text{en $\mathcal{L}(Z,W)$.}
+  \end{alignat*}
+  En consecuencia,
+  \begin{equation*}
+    -\left[ \partial_{2}\varphi (v_{k},f(v_{k}))\right]^{-1}\circ \partial
+   _{1}\varphi (v_{k},f(v_{k}))\longrightarrow -\left[ \partial_{2}\varphi (v,f(v))\right]^{-1}\circ \partial_{1}\varphi (v,f(v))
+  \end{equation*}
+  en $\mathcal{L}(V,W)$
+  (ver Ejercicio~\ref{normcomp}), es decir, $f^{\prime
+  }(v_{k})\rightarrow f(v) $ en $\mathcal{L}(V,W)$. Esto prueba que
+  $f$ es de clase $\mathcal{C}^{1}$ en $B_{V}(v_{0},\delta ).\medskip
+  $
+</div>
+</p>
+<p>
+<div class="proof">[Demostración del Teorema~\ref{teofi}:] Sean $\delta
+,\eta >0$ como en el Lema~\ref{lemfi1} y\break $f\colon B_{V}(v_{0},\delta
+)\rightarrow W$ como en el Lema~\ref{lemfi2}. Entonces
+$B_{V}(v_{0},\delta )\times B_{W}(w_{0},\eta )\subset \Omega $ y $f$
+es de clase $\mathcal{C}^{1}$. La afirmación <em class="emph">(a)</em> del Lema
+\ref{lemfi2}&nbsp;asegura que
+\begin{equation*}
+  \left\{(v,w)\in B_{V}(v_{0},\delta )\times B_{W}(w_{0},\eta ):\varphi
+  (v,w)=0\right\}=\left\{(v,f(v)):v\in B_{V}(v_{0},\delta )\right\}.
+\end{equation*}
+Esta es la afirmacion <em class="emph">(I)</em> del Teorema~\ref{teofi}. La
+afirmación <em class="emph">(II)</em> se sigue de las afirmaciones <em class="emph">(ii)</em>
+del Lema~\ref{lemfi1}&nbsp;y <em class="emph">(b)</em> del Lema~\ref{lemfi2}. \
+</div>
+</p>
+<p>
+<h3 id="sec10-5">Ejercicios</h3>
+</p>
+<p>
+<div id="filin" class="exercise">
+Sea $A=(a_{ij})$ una matriz de $n\times (m+n)$ tal que
+  el determinante
+  \begin{equation*}
+    \left\vert 
+      \begin{array}{ccc}
+        a_{1,m+1} & \cdots & a_{1,m+n} \\
+        \vdots &  & \vdots \\
+        a_{n,m+1} & \cdots & a_{n,m+n}
+      \end{array}
+    \right\vert
+  \end{equation*}
+  es distinto de $0$. Prueba directamente (sin usar el teorema de la
+  función implícita) que existe una única función
+  $L\colon \mathbb{R}^{m}\rightarrow \mathbb{R}^{n}$ tal que
+  \begin{equation*}
+    A(x_{1},\ldots ,x_{m},L(x_{1},\ldots ,x_{m}))=0.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="matrices" class="exercise">
+Identificamos al espacio
+  $\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{m})$ con el espacio
+  $\mathcal{M}_{m\times n}(\mathbb{R})$ de matrices de $m\times n$ de
+  la manera usual.
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Prueba que el espacio
+    $\mathcal{H}(\mathbb{R}^{n},\mathbb{R}^{m})$ es vacío si
+    $m\neq n$ y es el espacio de matrices cuyo determinante es
+    distinto de $0$ si $m=n$.
+</p>
+<p>
+  \item[(b)] Prueba que el determinante $\det \colon \mathcal{M}_{n\times
+      n}(\mathbb{R})\rightarrow \mathbb{R}$ es una función
+    continua y concluye que
+    $\mathcal{H}(\mathbb{R}^{n},\mathbb{R}^{m})$ es abierto en
+    $\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{m})$.
+</p>
+<p>
+  \item[(c)] Si $n\leq m$, el espacio
+    $\mathcal{M}\mathit{ono}(\mathbb{R}^{n},\mathbb{R}^{m})$ de
+    funciones lineales e inyectivas de $\mathbb{R}^{n}$ en
+    $\mathbb{R}^{m}$ coincide con el espacio de matrices de $m\times
+    n$ de rango $n$. Prueba que
+    $\mathcal{M}\mathit{ono}(\mathbb{R}^{n},\mathbb{R}^{m})$ es
+    abierto en $\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{m})$.
+</p>
+<p>
+  \item[(d)] Análogamente, si $n\geq m$, prueba que el espacio
+    $\mathcal{E}\mathit{pi}(\mathbb{R}^{n},\mathbb{R}^{m})$ de
+    funciones lineales y suprayectivas de $\mathbb{R}^{n}$ en
+    $\mathbb{R}^{m}$ es abierto en
+    $\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{m})$.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div id="conj" class="exercise">
+Sea $F\colon \mathcal{L}(W,V)\times
+  \mathcal{L}(W,V)\rightarrow
+  \mathcal{L}(\mathcal{L}(V,W),\mathcal{L}(W,V))$ la función
+  \begin{equation*}
+    F(T_{1},T_{2})S:=T_{1}ST_{2}.
+  \end{equation*}
+  Prueba que $F$ es bilineal y que
+  \begin{equation*}
+    \bigl\Vert F(T_{1},T_{2})\bigr\Vert_{\mathcal{L}(\mathcal{L}(V,W),\mathcal{L}(W,V))}\leq \bigl\Vert T_{1}\bigr\Vert_{\mathcal{L}(W,V)}\bigl\Vert
+      T_{2}\bigr\Vert_{\mathcal{L}(W,V)}.
+  \end{equation*}
+  En consecuencia, $F$ es continua.
+</div>
+</p>
+<p>
+<div id="invCinf" class="exercise">
+Prueba que la función
+  \begin{equation*}
+    \Phi \colon \mathcal{H}(V,W)\rightarrow \mathcal{L}(W,V),\text{\qquad }\Phi
+    (T)=T^{-1},
+  \end{equation*}
+  es de clase $C^{\infty }$. <em class="emph">(Sugerencia: Usa los
+    Ejercicios~\ref{derbil} y~\ref{conj}.)</em>
+</div>
+</p>
+<p>
+<div id="fiCk" class="exercise">
+Demuestra que, si en el <em class="emph">Teorema~\ref{teofi}</em> la
+  función $\varphi $ es de clase $\mathcal{C}^{k}$, entonces la
+  función $f$ también es de clase $\mathcal{C}^{k}$.
+</div>
+</p>
+<p>
+<div class="exercise">[Teorema de la función inversa]
+  \index{teorema!de la función inversa}Sean $V,W$ espacios de
+  Banach, $\Omega &nbsp;$un subconjunto abierto de $V$, $\varphi \colon \Omega
+  \rightarrow W$ una función de clase $\mathcal{C}^{k}$ en $\Omega
+  $ con $1\leq k\leq \infty $, y $v_{0}\in \Omega $. Prueba que, si
+  $\varphi^{\prime }(v_{0})\in \mathcal{H}(V,W)$, entonces existen un
+  abierto $\Omega^{\prime }$ de $W$ y un abierto $\Omega^{\prime
+    \prime }$ de $V$ tales que $v_{0}\in \Omega^{\prime \prime
+  }\subset \Omega $, $\varphi (\Omega^{\prime \prime })=\Omega
+ ^{\prime }$ y la función
+  \begin{equation*}
+    \varphi \mid_{\Omega^{\prime \prime }}\colon \Omega^{\prime \prime }\rightarrow
+    \Omega^{\prime }
+  \end{equation*}
+  es un homeomorfismo cuyo inverso $\psi :=\left( \varphi \mid
+   _{\Omega^{\prime \prime }}\right)^{-1}\colon \Omega^{\prime
+  }\rightarrow \Omega^{\prime \prime }$ es de clase $\mathcal{C}^{k}$
+  en $\Omega^{\prime }$ y satisface
+  \begin{equation*}
+    \psi^{\prime }(\varphi (v_{0}))=\left( \varphi^{\prime }(v_{0})\right)
+   ^{-1}.
+  \end{equation*}
+  <em class="emph">(Sugerencia: Aplica el teorema de la función
+    implícita a la función</em> $\theta \colon W\times \Omega
+  \rightarrow W$, $\theta (w,v):=\varphi (v)-w$ <em class="emph">.)</em>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Considera la función $\varphi \colon (0,\infty )\times
+  \mathbb{R}\rightarrow \mathbb{R}^{2}$ dada por $\varphi (r,\theta
+  ):=(r\cos\theta, r\sen\theta )$. Demuestra las
+  siguientes afirmaciones:
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Para todo $(r,\theta )\in (0,\infty )\times \mathbb{R}$
+    existen un abierto $\Omega^{\prime }$ de $\mathbb{R}^{2}$ y un
+    abierto $\Omega^{\prime \prime }$ de $(0,\infty )\times
+    \mathbb{R}$ tales que $(r,\theta )\in \Omega^{\prime \prime }$,
+    $\varphi (\Omega^{\prime \prime })=\Omega^{\prime }$ y la
+    función
+    \begin{equation*}
+      \varphi \mid_{\Omega^{\prime \prime }}\colon \Omega^{\prime \prime }\rightarrow
+      \Omega^{\prime }
+    \end{equation*}
+    es un homeomorfismo cuyo inverso $\psi :=\left( \varphi \mid
+     _{\Omega^{\prime \prime }}\right)^{-1}\colon \Omega^{\prime
+    }\rightarrow \Omega^{\prime \prime }$ es de clase
+    $\mathcal{C}^{\infty }$.
+</p>
+<p>
+  \item[(b)] La función $\varphi \colon (0,\infty )\times
+    \mathbb{R}\rightarrow \mathbb{R}^{2}$ no es un homeomorfismo.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Considera la función $\varphi \colon \mathbb{R}^{2}\rightarrow
+  \mathbb{R}^{2}$ dada por
+  \begin{equation*}
+    \varphi(x,y):=\left\{ 
+      \begin{array}{ll}
+        (x,y-x^{2}) & 
+        \text{si }x^{2}\leq y, \\
+        (x,\frac{y^{2}-x^{2}y}{x^{2}}) & \text{si }0\leq y\leq x^{2}, \\
+        -\varphi_{2}(x,-y) & \text{si }y\leq 0.
+      \end{array}
+    \right.
+  \end{equation*}
+  Prueba que
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] $\varphi $ es diferenciable en $\mathbb{R}^{2}$,
+</p>
+<p>
+  \item[(b)] $\varphi^{\prime }(0,0)$ es la identidad de
+    $\mathbb{R}^{2}$,
+</p>
+<p>
+  \item[(c)] $\varphi $ no es de clase $\mathcal{C}^{1}$en
+    $\mathbb{R}^{2}$,
+</p>
+<p>
+  \item[(d)] $\varphi $ no es inyectiva en ningún abierto $\Omega
+    $ que contiene a $(0,0)$.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $\Omega $ un abierto de $\mathbb{R}^{n}$, $x_{0}\in \Omega $ y
+  $\varphi \colon \Omega \rightarrow \mathbb{R}^{m}$ una función de
+  clase $\mathcal{C}^{k} $ con $1\leq k\leq \infty $. Demuestra las
+  siguientes afirmaciones:
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Si $\varphi^{\prime }(x_{0})\colon \mathbb{R}^{n}\rightarrow
+    \mathbb{R}^{m}$ es inyectiva, entonces existen un abierto $\Omega
+   ^{\prime }$ de $\mathbb{R}^{n}$ y un abierto $\Omega^{\prime
+      \prime }$ de $\mathbb{R}^{m}$ tales que $x_{0}\in \Omega
+   ^{\prime }\subset \Omega $ y $\varphi (\Omega^{\prime })\subset
+    \Omega^{\prime \prime }$, y una función $\psi \colon \Omega
+   ^{\prime \prime }\rightarrow \mathbb{R}^{m}$ de clase
+    $\mathcal{C}^{k}$ tal que
+    \begin{equation*}
+      \psi (\varphi (x_{1},\dots,x_{n}))=(x_{1},\dots,x_{n},0,\dots,0)\text{\qquad }\forall (x_{1},\dots,x_{n})\in \Omega^{\prime }.
+    \end{equation*}
+</p>
+<p>
+  \item[(b)] Si $\varphi^{\prime }(x_{0})\colon \mathbb{R}^{n}\rightarrow
+    \mathbb{R}^{m}$ es suprayectiva, entonces existen un abierto
+    $\Omega^{\prime }$ de $\mathbb{R}^{n}$ y una función $\eta
+    \colon \Omega^{\prime }\rightarrow \mathbb{R}^{n}$ de clase
+    $\mathcal{C}^{k}$ tales que $x_{0}\in \Omega^{\prime }$, $\eta
+    (x_{0})=x_{0}$, $\eta (\Omega^{\prime })\subset \Omega $ y
+    \begin{equation*}
+      \varphi (\eta (x_{1},\dots,x_{n}))=(x_{1},\dots,x_{m})\text{\qquad }\forall
+      (x_{1},\dots,x_{n})\in \Omega^{\prime }.
+    \end{equation*}
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Encuentra los máximos y los mínimos locales de la
+  función\break $g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ dada por
+  $g(x_{1},\dots,x_{n}):=x_{1}+\cdots +x_{n}$ en la esfera unitaria
+  $\mathbb{S}^{n-1}:=\left\{x\in \mathbb{R}^{n}:\bigl\Vert x\bigr\Vert
+  =1\right\}$.
+</div>
+</p>
+<p>
+<div id="torrev" class="exercise">
+Sea $T$ el toro de revolución en $\mathbb{R}^{3}$
+  que se obtiene rotando el círculo
+  \begin{equation*}
+    S:=\left\{(x,y,0):(x-a)^{2}+y^{2}=r^{2}\right\},\text{\qquad }0<r<a,
+  \end{equation*}
+  alrededor del eje $y$.
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Encuentra los puntos críticos de la función
+    $g(x,y,z)=z$ en $T$, y di cuáles de ellos son máximos o
+    mínimos locales de $g $ en $T$.
+</p>
+<p>
+  \item[(b)] Encuentra los puntos críticos de la función
+    $h(x,y,z)=y$ en $T$, y di cuáles de ellos son máximos o
+    mínimos locales de $h $ en $T$.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $\Omega $ un subconjunto abierto de un espacio de Banach $V$,
+  $\varphi \colon \Omega \rightarrow \mathbb{R}$ una función de clase
+  $\mathcal{C}^{2}$ y $u_{0}\in \Omega $ un punto crítico de
+  $\varphi $, es decir, $\varphi^{\prime }(u_{0})v=0$ para todo $v\in
+  V$. Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Si existe $c>0$ tal que
+    \begin{equation*}
+      D^{2}\varphi (u_{0})(v,v)\geq c\text{\qquad }\forall v\in V\text{ con }\bigl\Vert v\bigr\Vert =1,
+    \end{equation*}
+    entonces $u_{0}$ es un mínimo local de $\varphi $, es decir,
+    existe $\delta >0$ tal que $\varphi (u)\geq \varphi (u_{0})$ si
+    $\bigl\Vert u-u_{0}\bigr\Vert <\delta $.
+</p>
+<p>
+  \item[(b)] Si existe $c<0$ tal que
+    \begin{equation*}
+      D^{2}\varphi (u_{0})(v,v)\leq c\text{\qquad }\forall v\in V\text{ con }\bigl\Vert v\bigr\Vert =1,
+    \end{equation*}
+    entonces $u_{0}$ es un máximo local de $\varphi $, es decir,
+    existe $\delta >0$ tal que $\varphi (u)\leq \varphi (u_{0})$ si
+    $\bigl\Vert u-u_{0}\bigr\Vert <\delta $.
+  \end{enumerate}
+</p>
+<p>
+  <em class="emph">(Sugerencia: Usa el teorema de Taylor.)</em>
+</div>
+  </p>
+
+
+</div>
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>

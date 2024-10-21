@@ -1,0 +1,3064 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/javascript" src="./tul/P_T_02/refs.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/14.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\sop}{\mathop{\rm sop}} $ 
+    $ \newcommand{\vol}{\mathop{\rm vol}\nolimits} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\graf}{\mathop{\rm graf}} $ 
+    $ \newcommand{\loc}{\mathop{\rm loc}} $ 
+    $ \newcommand{\undercbrace}{\underbrace} $ 
+    $ \newcommand{\menorque}{\mathrel{<}}$ 
+    $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 13;
+              }
+              </style>
+<h2 id="Cap-14">Los espacios de Lebesgue</h2>
+<p class="noj">
+En el espacio de funciones continuas con soporte compacto
+$\mathcal{C}_{c}^{0}(\Omega )$ podemos considerar las normas
+\begin{equation*}
+  \left\Vert f\right\Vert_{p}:=\biggl( \int_{\Omega }\left\vert f\right\vert
+   ^{p}\biggr)^{1/p},\qquad p\in [1,\infty ),
+\end{equation*}
+análogas a aquéllas en $\mathcal{C}^{0}[a,b]$ que consideramos
+en el capítulo <a href="tul/P_T_02/2.html">2</a>. Éstas aparecen en muchas
+aplicaciones importantes, pero el espacio $\mathcal{C}_{c}^{0}(\Omega
+)$ no resulta adecuado para tratar muchas de esas aplicaciones porque
+no es completo.
+</p>
+<p>
+Los espacios de Lebesgue $L^{p}(\Omega )$, que introduciremos en este
+capítulo, son espacios de Banach y contienen a
+$\mathcal{C}_{c}^{0}(\Omega )$ como subespacio denso. Sus elementos
+son clases de equivalencia de funciones <em class="emph">medibles</em> $f\colon \Omega
+\rightarrow \mathbb{R}$ tales que $\left\vert f\right\vert^{p}$ es
+integrable, y su norma es la que definimos arriba. Los espacios de
+Lebesgue tienen una enorme relevancia en análisis y en diversas
+áreas de las matemáticas, e importantes aplicaciones en la
+física, la ingeniería, las finanzas y otras disciplinas.
+</p>
+<p>
+Las funciones medibles son aquéllas que se obtienen como el
+límite puntual de una sucesión de funciones integrables en
+$\Omega $. A diferencia de las funciones integrables, las funciones
+medibles tienen la ventaja de que el producto de funciones medibles y
+la $p$-ésima potencia de una función medible resultan ser
+funciones medibles. Se tiene además un criterio sencillo que
+garantiza su integrabilidad: si $f$ es medible y está dominada por
+una función integrable, entonces $f$ es integrable (ver Teorema
+<a href="tul/P_T_02/14.html#medint">14.15</a>). Para funciones medibles vale además el inverso del
+teorema de Fubini (ver Teorema <a href="tul/P_T_02/14.html#teoton">14.17</a>).
+</p>
+<p>
+Probaremos que el espacio $\mathcal{C}_{c}^{\infty }(\Omega )$ de
+funciones de clase $\mathcal{C}^{\infty }$ con soporte compacto en
+$\Omega $ es un subespacio denso de $L^{p}(\Omega )$. Para ello
+introduciremos el <em class="emph">producto de convolución</em>, que asocia a
+un par de funciones $\rho \in \mathcal{C}_{c}^{\infty
+}(\mathbb{R}^{n})$ y $f\in L^{p}(\mathbb{R}^{n})$ una función
+$\rho \ast f\in \mathcal{C}^{\infty }(\mathbb{R}^{n})\cap
+L^{p}(\mathbb{R}^{n})$. Escogiendo $\rho_{k}$ de manera adecuada, se
+obtiene una sucesión $\rho_{k}\ast f$ de funciones con soporte
+compacto que converge a $f$ en $L^{p}(\mathbb{R}^{n})$.
+</p>
+<p>
+El producto de convolución tiene múltiples aplicaciones que
+van desde la solución de problemas con condición de frontera
+en ecuaciones diferenciales parciales, hasta el procesamiento de
+señales digitales o de imágenes
+<a href="tul/P_T_02/14.html#footnote:14-1" onclick="setVisibility('bibdiv',2);">*</a>.
+</p>
+<p>
+Finalmente, estudiaremos la noción de compacidad en $L^{p}(\Omega
+)$ y daremos condiciones que garantizan que un subconjunto
+$\mathcal{K}$ de $L^{p}(\Omega )$ es compacto.
+</p>
+<p>
+<h3 id="sec14-1">Conjuntos y funciones medibles</h3>
+</p>
+<p>
+Denotemos por
+\begin{equation*}
+  \bar{B}^{n}(0,k):=\left\{x\in \mathbb{R}^{n}:\left\Vert x\right\Vert \leq r\right\}.
+\end{equation*}
+</p>
+<p>
+El volumen de un subconjunto abierto de $\mathbb{R}^{n}$ siempre
+está definido (ver Definición <a href="tul/P_T_02/12.html#volabcom">12.19</a>), aun cuando
+éste no sea integrable. Podemos extender la noción de volumen
+como sigue.
+</p>
+<p>
+<div id="defmedida" class="definition">
+Un subconjunto $X$ de $\mathbb{R}^{n}$
+  es <em class="textbf">(Lebesgue-) medible</em> si $X\cap
+  \bar{B}^{n}(0,k)$ es integrable en $\mathbb{R}^{n}$ para todo $k\in
+  \mathbb{N}$. Su <em class="textbf">medida</em> (<em class="textbf">de
+    Lebesgue</em>) se define como
+  \begin{equation*}
+    \left\vert X\right\vert :=\lim_{k\rightarrow \infty }\left\vert X\cap 
+      \bar{B}^{n}(0,k)\right\vert .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="obss">
+  (a) Observa que todo conjunto integrable es medible <em class="emph">(ver
+    Proposición <a href="tul/P_T_02/12.html#vol">12.38</a>)</em>. El <em class="emph">Corolario <a href="tul/P_T_02/13.html#cmunion">13.22</a></em>
+  asegura que, en ese caso, la noción de medida dada por la
+  <em class="emph">Definición <a href="tul/P_T_02/12.html#defvolumen">12.36</a></em> coincide con la dada
+  aquí.
+</p>
+<p>
+  (b) El recíproco no es cierto: claramente$, \mathbb{R}^{n}$ es
+  medible pero no es integrable.
+</p>
+<p>
+  (c) Nota también que si $X$ es medible y $\left\vert
+    X\right\vert =0$ entonces $X$ es un conjunto nulo. Proponemos la
+  demostración de esta afirmación como ejercicio
+  <em class="emph">[Ejercicio <a href="tul/P_T_02/14.html#med0nulo">14.51</a>]</em>.
+</div>
+</p>
+<p>
+Los conjuntos medibles tienen las siguientes propiedades.
+</p>
+<p>
+<div id="conjmed" class="proposition">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $X$ y $Y$ son subconjuntos medibles de
+    $\mathbb{R}^{n}$, entonces $X\smallsetminus Y$ es medible.
+</p>
+<p>
+  <li> Si $\left\{X_{j}:j\in \mathbb{N}\right\}$ es una familia numerable
+    de subconjuntos medibles de $\mathbb{R}^{n}$, entonces
+    \begin{equation*}
+      \bigcup_{j=1}^{\infty }X_{j}\hspace{0.3in}\text{y}\hspace{0.3in}\bigcap_{j=1}^{\infty }X_{j}
+    \end{equation*}
+    son medibles.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a)</em> es consecuencia de la identidad
+  \begin{equation*}
+    \left( X\smallsetminus Y\right) \cap \bar{B}^{n}(0,k)=\left[ X\cap \bar{B}^{n}(0,k)\right] \smallsetminus \left[ Y\cap \bar{B}^{n}(0,k)\right]
+  \end{equation*}
+  y la Proposición <a href="tul/P_T_02/12.html#vol">12.38</a>.
+</p>
+<p>
+  <em class="emph">(b):</em>  Sean $k\in \mathbb{N}$ y
+  $Y_{m}:=\cup_{j=1}^{m}\left( X_{j}\cap \bar{B}^{n}(0,k)\right)
+  $.
+  Como $Y_{m}\subset \bar{B}^{n}(0,k)$, se tiene que la sucesión
+  $\left( \left\vert Y_{m}\right\vert \right) $ es acotada. El
+  Corolario <a href="tul/P_T_02/13.html#cmunion">13.22</a> asegura entonces que
+  \begin{equation*}
+    \bigcup_{m=1}^{\infty }Y_{m}=\bigcup_{j=1}^{\infty }\left(
+      X_{j}\cap \bar{B}^{n}(0,k)\right) =\Biggl( \bigcup_{j=1}^{\infty
+      }X_{j}\Biggr) \cap \bar{B}^{n}(0,k)
+  \end{equation*}
+  es integrable. En consecuencia, $\bigcup_{j=1}^{\infty }X_{j}$ es
+  medible. De <em class="emph">(a)</em> y la identidad
+  \begin{equation*}
+    \bigcap_{j=1}^{\infty }X_{j}=\mathbb{R}^{n}\smallsetminus
+    \bigcup_{j=1}^{\infty }(\mathbb{R}^{n}\smallsetminus X_{j})
+  \end{equation*}
+  se sigue que $\bigcap_{j=1}^{\infty }X_{j}$ es medible.
+</div>
+</p>
+<p>
+La proposición anterior proporciona muchos ejemplos de conjuntos
+medibles, como los siguientes.
+</p>
+<p>
+<div class="example">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Todo subconjunto cerrado de $\mathbb{R}^{n}$ es medible.
+</p>
+<p>
+  <li> Todo subconjunto abierto de $\mathbb{R}^{n}$ es medible.
+</p>
+<p>
+  <li> Las uniones y las intersecciones numerables de
+    subconjuntos abiertos o cerrados de $\mathbb{R}^{n}$ son medibles.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a):</em>  Si $X$ es cerrado en $\mathbb{R}^{n}$, entonces $X\cap
+  \bar{B}^{n}(0,k)$ es compacto y, en consecuencia, integrable en
+  $\mathbb{R}^{n}$.
+</p>
+<p>
+  <em class="emph">(b)</em> y <em class="emph">(c)</em> son consecuencia inmediata de <em class="emph">(a)</em> y
+  de la Proposición <a href="tul/P_T_02/14.html#conjmed">14.3</a>.
+</div>
+</p>
+<p>
+No todos los subconjuntos de $\mathbb{R}^{n}$ son medibles. A
+continuación daremos un ejemplo de un subconjunto de $\mathbb{R}$
+que no lo es. Dicho ejemplo se debe a Vitali.
+
+<div id="foto:vitali" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Vitali.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Giuseppe Vitali
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Giuseppe Vitali
+  (1875-1932) nació en Ravenna, Italia. Estudió en la Scuola
+  Normale Superiore de Pisa, donde fue alumno de Luigi Bianchi y
+  asistente de Ulisse Dini. Fue maestro de secundaria durante más
+  de 20 años hasta que finalmente obtuvo una cátedra en la
+  Universidad de Modena y Reggio Emilia.
+  </div>
+</div>
+
+Requerimos el siguiente lema.
+</p>
+<p>
+<div id="lemnomed" class="lemma">
+Si $X$ es un subconjunto medible de $\mathbb{R}$ con
+  $\left\vert X\right\vert >0$ entonces existe $\delta >0$ tal que
+  $\left\{x-y:x,y\in X\right\}\supset (-\delta ,\delta )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Reemplazando, de ser necesario, a $X$ por alguno de sus subconjuntos
+  $X\cap \left[ -k,k\right] $ de medida positiva, podemos suponer sin
+  perder generalidad que $X$ es integrable en $\mathbb{R}$. Escojamos
+  un abierto $\Omega $ en $\mathbb{R}$ tal que $X\subset \Omega $ y
+  $\left\vert \Omega \right\vert \menorque\frac{4}{3}\left\vert X\right\vert $
+  (ver Ejercicio <a href="tul/P_T_02/12.html#aproxabto">12.57</a>). $\Omega $ es la unión de una
+  familia numerable de intervalos cerrados $I_{k}$, $k\in \mathbb{N}$,
+  cuyos interiores son ajenos por pares (ver
+  Ejercicio <a href="tul/P_T_02/13.html#uninumrect">13.45</a>). Usando el Corolario <a href="tul/P_T_02/13.html#cmunion">13.22</a>
+  obtenemos
+  \begin{equation*}
+    \sum_{k=1}^{\infty }\left\vert I_{k}\right\vert =\left\vert \Omega
+    \right\vert \menorque\frac{4}{3}\left\vert X\right\vert =\frac{4}{3}\sum_{k=1}^{\infty }\left\vert X\cap I_{k}\right\vert .
+  \end{equation*}
+  Esta desigualdad implica que existe $k_{0}\in \mathbb{N}$ tal que
+  $\left\vert I_{k_{0}}\right\vert \menorque\frac{4}{3}\left\vert X\cap
+    I_{k_{0}}\right\vert $. Sea $\delta :=\frac{1}{2}\left\vert
+    I_{k_{0}}\right\vert $. Denotemos por$ Y:=X\cap I_{k_{0}}$ y por
+  \begin{equation*}
+    Y+z:=\left\{y+z:y\in Y\right\}.
+  \end{equation*}
+  Probaremos a continuación que
+  \begin{equation}
+    (Y+z)\cap Y\neq \emptyset \qquad \forall z\in (-\delta ,\delta ).
+\label{intertras}
+  \end{equation}
+  Argumentando por contradicción, supongamos que $(Y+z)\cap
+  Y=\emptyset $ para algún $z\in (-\delta ,\delta )$. Entonces
+  \begin{align*}
+    2\left\vert Y\right\vert &=\left\vert Y+z\right\vert +\left\vert
+      Y\right\vert =\left\vert \left( Y+z\right) \cup Y\right\vert \\
+    &\leq \left\vert \left( I_{k_{0}}+z\right) \cup I_{k_{0}}\right\vert \leq
+    \left\vert I_{k_{0}}\right\vert +\left\vert z\right\vert \leq \frac{3}{2}\left\vert I_{k_{0}}\right\vert ,
+  \end{align*}
+  lo cual es imposible, ya que $\left\vert I_{k_{0}}\right\vert
+  \menorque\frac{4}{3}\left\vert Y\right\vert $.
+
+<div id="fig:14-1" class="figure">
+  <img src="tul/P_T_02/figuras/Cap14-lema-5.svg" height="110">
+  <div class="caption">
+  </div>                
+</div>
+
+  En consecuencia, se cumple (\ref{intertras}), es decir, para cada
+  $z\in (-\delta ,\delta )$ existen $x,y\in Y$ tales que $x+z=y$. Esto
+  concluye la demostración.
+</div>
+</p>
+<p>
+<div class="theorem">[Vitali]
+  $\mathbb{R}$ contiene un subconjunto que no
+  es medible.
+</div>
+</p>
+<p>
+<div class="proof">
+  Considera la relación de equivalencia en $\mathbb{R}$ dada por
+  \begin{equation*}
+    x\sim y\text{  si y sólo si  }x-y\in \mathbb{Q}\text{,}
+  \end{equation*}
+  y escoge un elemento en cada clase de equivalencia. Sea $X$ el
+  conjunto de dichos elementos. Entonces $\mathbb{R=\cup }_{q\in
+    \mathbb{Q}}(X+q)$. Si $X$ fuera medible, necesariamente
+  $\left\vert X\right\vert >0$ pues, de lo contrario, $\mathbb{R}$
+  sería nulo (ver Ejercicio <a href="tul/P_T_02/14.html#med0nulo">14.51</a>). De modo que, por el
+  Lema <a href="tul/P_T_02/14.html#lemnomed">14.5</a>, existiría $\delta >0$ tal que $(-\delta
+  ,\delta )\subset \left\{x-y:x,y\in X\right\}$, lo cual es imposible ya que
+  \begin{equation*}
+    \left\{x-y:x,y\in X\right\}\subset (\mathbb{R\smallsetminus Q)}\cup \left\{0\right\}.
+  \end{equation*}
+  Así concluimos que $X$ no es medible.
+</div>
+</p>
+<p>
+De manera análoga se define el concepto de función medible:
+una función es medible si cuando restringimos su dominio a
+$\bar{B}^{n}(0,k)$ y proyectamos sus valores sobre el intervalo
+$[-k,k]$ la función resulta integrable.
+</p>
+<p>
+Más precisamente: dada $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+\left\{\pm \infty \right\}$ consideramos, para cada $k\in \mathbb{N}$, la
+función $f_{[k]}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ definida
+como
+\begin{equation}
+  f_{[k]}:=\min \left\{\max \left\{f,-k\right\},k\right\}1_{\bar{B}^{n}(0,k)},\label{fsubk}
+\end{equation}
+es decir,
+\begin{equation*}
+  f_{[k]}(x):=
+  \begin{cases}
+    k & \text{si }\left\Vert x\right\Vert \leq k\quad\text{y}\quad f(x)\in
+    [k,\infty ), \\
+    f(x) & \text{si }\left\Vert x\right\Vert \leq k\quad\text{y}\quad f(x)\in
+    [-k,k], \\
+    -k & \text{si }\left\Vert x\right\Vert \leq k\quad\text{y}\quad f(x)\in
+    (-\infty ,-k], \\
+    0 & \text{si }\left\Vert x\right\Vert >k.
+  \end{cases}
+\end{equation*}
+
+<div id="fig:14-2" class="figure">
+  <img src="tul/P_T_02/figuras/Cap14-medible.svg" height="310">
+  <div class="caption">
+  </div>                
+</div>
+
+<div class="definition">
+  Una función $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+  \infty \right\}$ es (<em class="textbf">Lebesgue-</em>) <em class="textbf">medible</em>
+  si $f_{[k]}$ es integrable en $\mathbb{R}^{n}$ para todo $k\in
+  \mathbb{N}$.
+</div>
+</p>
+<p>
+Observa que, para cualquier subconjunto $X$ de $\mathbb{R}^{n}$ y
+cualquier $k\in \mathbb{N}$,
+\begin{equation}
+  \left( 1_{X}\right)_{[k]}=1_{X\cap 
+    \bar{B}^{n}(0,k)}.\label{caracmed}
+\end{equation}
+En consecuencia, un subconjunto $X$ de $\mathbb{R}^{n}$ es medible si
+y sólo si $1_{X}$ es medible. El teorema de Vitali muestra pues
+que no todas las funciones son medibles. Pero muchas funciones sí
+lo son, por ejemplo las siguientes.
+</p>
+<p>
+<div id="L1locesmed" class="example">
+Toda función $f\in
+  \mathfrak{L}_{\loc}(\mathbb{R}^{n})$ es medible. En particular, toda
+  función continua $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es
+  medible.
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $f\in \mathfrak{L}_{\loc}(\mathbb{R}^{n})$ y $k\in \mathbb{N}$,
+  entonces $f1_{\bar{B}^{n}(0,k)}$ es integrable en $\mathbb{R}^{n}$
+  (ver Definición <a href="tul/P_T_02/13.html#deflocint">13.33</a>). En consecuencia, 
+  \begin{equation*}
+    f_{[k]}=\min
+    \left\{\max
+      \left\{f1_{\bar{B}^{n}(0,k)},-k1_{\bar{B}^{n}(0,k)}\right\},k1_{\bar{B}^{n}(0,k)}\right\}
+  \end{equation*}
+  es integrable en $\mathbb{R}^{n}$ (ver Ejercicio <a href="tul/P_T_02/12.html#minmaxint">12.61</a>).
+</div>
+</p>
+<p>
+Probaremos ahora que las funciones medibles son precisamente
+aquéllas que son límites puntuales de funciones integrables.
+</p>
+<p>
+<div id="medlimint" class="proposition">
+Sea $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$. Las siguientes afirmaciones son equivalentes:
+</p>
+<p>
+  <ol class="alfa">
+  <li> $f$ es medible.
+</p>
+<p>
+  <li> Existe una sucesión $f_{k}\colon \mathbb{R}^{n}\rightarrow
+    \mathbb{R}$ de funciones integrables tales que
+    $f_{k}(x)\rightarrow f(x)$ para todo $x\in \mathbb{R}^{n}$.
+</p>
+<p>
+  <li> Existe una sucesión $f_{j}\colon \mathbb{R}^{n}\rightarrow
+    \mathbb{R}\cup \left\{\pm \infty \right\}$ de funciones medibles tales que
+    $f_{j}(x)\rightarrow f(x)$ para todo $x\in \mathbb{R}^{n}$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a)</em>$\Rightarrow $<em class="emph">(b):</em>  Si $f$ es medible, entonces
+  $f_{[k]}$ es integrable y $f_{[k]}(x)\rightarrow f(x)$ para todo
+  $x\in \mathbb{R}^{n}$.
+</p>
+<p>
+  <em class="emph">(b)</em>$\Rightarrow $<em class="emph">(c):</em>  Esta implicación es obvia,
+  ya que toda función integrable es medible.
+</p>
+<p>
+  <em class="emph">(c)</em>$\Rightarrow $<em class="emph">(a):</em>  Si $f_{j} $es medible y
+  $f_{j}(x)\rightarrow f(x)$ entonces, para cada $k\in \mathbb{N}$, se
+  tiene que $\left( f_{j}\right)_{[k]}$ es integrable y que
+  $\lim_{j\rightarrow \infty }\left( f_{j}\right)
+ _{[k]}(x)=f_{[k]}(x)$. Claramente, $|\left( f_{j}\right)_{[k]}|\leq
+  k1_{\bar{B}^{n}(0,k)}$ para todo $j\in \mathbb{N}$. El teorema de
+  convergencia dominada (Teorema <a href="tul/P_T_02/13.html#teocd">13.26</a>) asegura entonces que
+  $f_{[k]}$ es integrable. Esto prueba que $f$ es medible.
+</div>
+</p>
+<p>
+Concluimos lo siguiente.
+</p>
+<p>
+<div id="scmed" class="example">
+Si $f\in \mathcal{S}_{\ast }(\mathbb{R}^{n})\cup
+  \mathcal{S}^{\ast }(\mathbb{R}^{n})$, entonces $f$ es medible.
+</div>
+</p>
+<p>
+<div class="proof">
+  Toda función $f\in \mathcal{S}_{\ast }(\mathbb{R}^{n})\cup
+  \mathcal{S}^{\ast }(\mathbb{R}^{n})$ es, por definición, el
+  límite puntual de una sucesión de funciones en
+  $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$. Así que, por la
+  Proposición <a href="tul/P_T_02/14.html#medlimint">14.9</a>, $f$ es medible.
+</div>
+</p>
+<p>
+<div id="medlin" class="proposition">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $f,g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ son
+    medibles y $\lambda ,\mu \in \mathbb{R}$, entonces $\lambda f+\mu
+    g$ es medible.
+</p>
+<p>
+  <li> Si $f,g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+    \infty \right\}$ son medibles, entonces
+    \begin{equation*}
+      \left\vert f\right\vert ,\quad f^{+},\quad f^{-},\quad \max \left\{f,g\right\}\quad 
+      \text{y}\quad \min \left\{f,g\right\}
+    \end{equation*}
+    son funciones medibles.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a):</em>  Por la Proposición <a href="tul/P_T_02/14.html#medlimint">14.9</a> existen
+  sucesiones de funciones integrables
+  $f_{k},g_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ tales que
+  $f_{k}(x)\rightarrow f(x)$ y $g_{k}(x)\rightarrow g(x)$ para todo
+  $x\in \mathbb{R}^{n}$. Como $\lambda f_{k}+\mu g_{k}$ es integrable
+  y $(\lambda f_{k}+\mu g_{k})(x)\rightarrow (\lambda f+\mu g)(x)$
+  para todo $x\in \mathbb{R}^{n}$ la Proposición <a href="tul/P_T_02/14.html#medlimint">14.9</a>
+  asegura que $\lambda f+\mu g$ es medible.
+</p>
+<p>
+  <em class="emph">(b)</em> se demuesta de manera análoga.
+</div>
+</p>
+<p>
+El siguiente resultado caracteriza a las funciones medibles en
+términos de conjuntos medibles.
+</p>
+<p>
+<div id="caractmed" class="proposition">
+$f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+  \infty \right\}$ es medible si y sólo si 
+\begin{equation*}
+f^{\geq a}:=\left\{x\in\mathbb{R}^{n}:f(x)\geq a\right\}
+\end{equation*}
+es un subconjunto medible de
+$\mathbb{R}^{n}$ para todo $a\in \mathbb{R}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$:  Si $f$ es medible, la Proposición <a href="tul/P_T_02/14.html#medlin">14.11</a>
+  asegura que la función 
+  $f_{k}:=\min \left\{ \max \left\{ k(f-a+\frac{1}{k}),0\right\}
+    ,1\right\} $
+   es medible para cualesquiera $k\in \mathbb{N}$, $a\in
+  \mathbb{R}$.
+  Nota que $f_{k}(x)=0$ si $f(x)\leq a-\frac{1}{k}$ y que $f_{k}(x)=1$
+  si $f(x)\geq a$. En consecuencia,
+  $f_{k}(x)\rightarrow 1_{f^{\geq a}}(x)$ para todo
+  $x\in \mathbb{R}^{n}$. La Proposición <a href="tul/P_T_02/14.html#medlimint">14.9</a> asegura
+  entonces que la función $1_{f^{\geq a}}$ es medible, y de
+  (\ref{caracmed}) se sigue que $f^{\geq a}$ es un conjunto medible.
+</p>
+<p>
+  $\Leftarrow )$:  Inversamente, supongamos que $f^{\geq a}$ es
+  medible para cualquier $a\in \mathbb{R}$. Para cada $k\in
+  \mathbb{N}$ subdividimos el intervalo $[-k,k]$ en intervalos de
+  longitud $\frac{1}{2^{k}}$ y denotamos a los puntos de la
+  partición por $a_{k,j}:=-k+\frac{j}{2^{k}}$, $
+  j=0,\dots,k2^{k+1}$. De la Proposición <a href="tul/P_T_02/14.html#conjmed">14.3</a> se sigue que
+  los conjuntos
+  \begin{align*}
+        &X_{k,0}:=\left\{x\in \mathbb{R}^{n}:f(x)\menorque a_{k,1}\right\}=\mathbb{R}^{n}\smallsetminus
+        f^{\geq a_{k,1}}, \\
+        &X_{k,j}:=\left\{x\in \mathbb{R}^{n}:a_{k,j}\leq f(x)\menorque a_{k,j+1}\right\}=f^{\geq
+          a_{k,j}}\smallsetminus f^{\geq a_{k,j+1}}, \\
+        &X_{k,k2^{k+1}}:=\left\{x\in \mathbb{R}^{n}:a_{k,k2^{k+1}}\leq f(x)\right\}=f^{\geq k},
+  \end{align*}
+  son medibles, para todo $j=1,\ldots ,k2^{k+1}-1$. Por tanto, la función
+  \begin{equation*}
+    f_{k}:=\sum_{j=0}^{k2^{k+1}}a_{k,j}1_{X_{k,j}}
+  \end{equation*}
+  es medible.
+  <div id="fig:14-3" class="figure">
+  <img src="tul/P_T_02/figuras/Cap14-medible-2.svg" height="260">
+  <div class="caption">
+  </div>                
+</div>
+
+</p>
+<p>
+  Además, $f_{k}(x)\rightarrow f(x)$ para todo $x\in
+  \mathbb{R}^{n}$. La Proposición <a href="tul/P_T_02/14.html#medlimint">14.9</a> asegura entonces
+  que $f$ es medible.
+</div>
+</p>
+<p>
+Recuerda que, en general, no es cierto que el producto de funciones
+integrables es integrable (ver Ejemplo <a href="tul/P_T_02/13.html#prodnoint">13.32</a>). Pero sí
+es una función medible, como veremos a continuación.
+</p>
+<p>
+<div id="prodmed" class="proposition">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es medible y
+    $p\in (0,\infty )$, entonces $\left\vert f\right\vert^{p}$ es
+    medible.
+</p>
+<p>
+  <li> Si $f,g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ son
+    medibles, entonces $fg$ es medible.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a): </em> Por Proposición <a href="tul/P_T_02/14.html#medlin">14.11</a> sabemos que
+  $\left\vert f\right\vert $ es medible. Entonces, la
+  Proposición <a href="tul/P_T_02/14.html#caractmed">14.12</a> asegura que
+  \begin{equation*}
+    \left( \left\vert f\right\vert^{p}\right)^{\geq a}=
+      \begin{cases}
+        \left\vert f\right\vert^{\geq a^{1/p}} & \text{si $a\in (0,\infty )$,} \\
+        \mathbb{R}^{n} & \text{si $a\in (-\infty ,0]$,}
+      \end{cases}
+  \end{equation*}
+  es un conjunto medible para todo $a\in \mathbb{R}$ y, en
+  consecuencia, $\left\vert f\right\vert^{p}$ es una función
+  medible.
+</p>
+<p>
+  <em class="emph">(b):</em>  Como
+  \begin{equation*}
+    fg=\frac{1}{2}\left[ (f+g)^{2}-f^{2}-g^{2}\right] ,
+  \end{equation*}
+  la afirmación <em class="emph">(a)</em> con $p=2$ y la Proposición <a href="tul/P_T_02/14.html#medlin">14.11</a>
+  implican que $fg$ es medible.
+</div>
+</p>
+<p>
+Si modificamos los valores de una función medible sobre un
+conjunto nulo, ésta continúa siendo medible.
+</p>
+<p>
+<div id="medcd" class="proposition">
+Sean $f,g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$. Si $f$ es medible y $f(x)=g(x)$ p.c.t. $x\in
+  \mathbb{R}^{n}$, entonces $g$ es medible.
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $f$ es medible y $f(x)=g(x)$ p.c.t. $x\in \mathbb{R}^{n}$,
+  entonces $f_{[k]}$ es integrable y $f_{[k]}(x)=g_{[k]}(x)$
+  p.c.t. $x\in \mathbb{R}^{n}$ para todo $k\in \mathbb{N}$. En
+  consecuencia, $g_{[k]}$ es integrable (ver
+  Proposición <a href="tul/P_T_02/13.html#igualint">13.10</a>). Esto prueba que $g$ es medible.
+</div>
+</p>
+<p>
+El siguiente criterio de integrabilidad jugará un papel muy
+importante en la siguiente sección.
+</p>
+<p>
+<div id="medint" class="theorem">
+Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+  \infty \right\}$ es medible y existe una función integrable
+  $g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\infty \right\}$ tal que
+  $\left\vert f(x)\right\vert \leq g(x)$ p.c.t. $x\in \mathbb{R}^{n}$,
+  entonces $f$ es integrable.
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $f$ es medible, entonces $f_{[k]}$ es integrable para todo
+  $k\in \mathbb{N}$. Como $f_{[k]}(x)\rightarrow f(x)$ para todo
+  $x\in \mathbb{R}^{n}$ y
+  $\left\vert f_{[k]}(x)\right\vert \leq \left\vert f(x)\right\vert
+  \leq g(x)$
+  p.c.t. $x\in \mathbb{R}^{n}$ y todo $k\in \mathbb{N}$, el teorema de
+  convergencia dominada (Teorema <a href="tul/P_T_02/13.html#teocd">13.26</a>) asegura que $f$ es
+  integrable.
+</div>
+</p>
+<p>
+Recuerda que, si $f$ es integrable, entonces $\left\vert f\right\vert
+$ lo es (ver Proposición <a href="tul/P_T_02/12.html#valabsint">12.32</a>). Del teorema anterior se
+obtiene inmediatamente el recíproco para funciones medibles.
+</p>
+<p>
+<div id="valabsinteq" class="corollary">
+Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup
+  \left\{\pm \infty \right\}$ es medible y $\left\vert f\right\vert $ es
+  integrable, entonces $f$ es integrable.
+</div>
+</p>
+<p>
+Tonelli demostró que para funciones medibles
+vale el recíproco del teorema de Fubini.
+
+<div id="foto:tonelli" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Tonelli.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Leonida Tonelli
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Leonida Tonelli (1885-1946) nació en Gallipoli,
+  Puglia, Italia. Estudió en la Universidad de Bologna donde fue
+  alumno de Cesare Arzelà.  Fue profesor en las universidades de
+  Parma, Bologna y Pisa.
+  </div>
+</div>
+
+Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es una función,
+$1\leq m\menorque n$  y $y\in \mathbb{R}^{n-m}$, denotaremos como antes por
+$f^{y}\colon \mathbb{R}^{m}\rightarrow \mathbb{R}$ a la función
+\begin{equation*}
+  f^{y}(x):=f(x,y).
+\end{equation*}
+</p>
+<p>
+<div class="theorem" id="teoton">[Tonelli]
+Sean
+  $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ una función medible y
+  $1\leq m\menorque n$. Si $\left\vert f\right\vert^{y}$ es integrable en
+  $\mathbb{R}^{m}$ p.c.t. $y\in \mathbb{R}^{n-m}$ y la función
+  $F\colon \mathbb{R}^{n-m}\rightarrow \mathbb{R}$ definida como
+  \begin{equation*}
+    F(y):=\int_{\mathbb{R}^{m}}\left\vert f\right\vert^{y}\qquad 
+    \text{p.c.t.  }y\in \mathbb{R}^{n-m}
+  \end{equation*}
+  es integrable en $\mathbb{R}^{n-m}$, entonces $f$ es integrable en
+  $\mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $f$ es medible entonces la función $g_{k}:=\left\vert
+    f\right\vert_{[k]}$ es integrable en $\mathbb{R}^{n}$ para todo
+  $k\in \mathbb{N}$ y el teorema de Fubini (Teorema <a href="tul/P_T_02/13.html#teofub">13.17</a>)
+  asegura que $g_{k}^{y}$ es integrable en $\mathbb{R}^{m}$
+  p.c.t. $y\in \mathbb{R}^{n-m}$, que la función
+  $G_{k}\colon \mathbb{R}^{n-m}\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    G_{k}(y):=\int_{\mathbb{R}^{m}}g_{k}^{y}\qquad \text{p.c.t.  }y\in \mathbb{R}^{n-m}
+  \end{equation*}
+  es integrable en $\mathbb{R}^{n-m}$ y que se cumple
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}g_{k}=\int_{\mathbb{R}^{n-m}}G_{k}.
+  \end{equation*}
+  Nota que $g_{k}\leq \left\vert f\right\vert $. En consecuencia,
+  $g_{k}^{y}\leq \left\vert f\right\vert^{y}$, $ G_{k}\leq F$
+  c.d. en $\mathbb{R}^{n-m}$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}g_{k}=\int_{\mathbb{R}^{n-m}}G_{k}\leq \int_{\mathbb{R}^{n-m}}F\menorque\infty \qquad \forall k\in \mathbb{N}.
+  \end{equation*}
+  Como $g_{k}\leq g_{k+1}$ y
+  $\sup_{k\in \mathbb{N}}g_{k}=\left\vert f\right\vert $, el teorema
+  de convergencia monótona (Teorema <a href="tul/P_T_02/13.html#teocm">13.20</a>) asegura que
+  $\left\vert f\right\vert $ es integrable, y el
+  Corolario <a href="tul/P_T_02/14.html#valabsinteq">14.16</a> asegura que $f$ es integrable.
+</div>
+</p>
+<p>
+<h3 id="sec14-2">Los espacios $L^{p}(\Omega )$</h3>
+</p>
+<p>
+Sea $\Omega $ un subconjunto abierto de $\mathbb{R}^{n}$. Como hemos
+convenido, identificaremos a una función $f\colon \Omega \rightarrow
+\mathbb{R} $ con su extensión trivial a todo $\mathbb{R}^{n}$ (ver
+Notación <a href="tul/P_T_02/12.html#notint">12.44</a>). Diremos entonces que $f$ es medible si su
+extensión trivial lo es. En el conjunto
+\begin{equation*}
+  \mathfrak{M}(\Omega ):=\left\{f\colon \Omega \rightarrow \mathbb{R}:f\text{ es medible}\right\}
+\end{equation*}
+consideramos la relación de equivalencia dada por
+\begin{equation}
+  f\sim g\quad \Longleftrightarrow \quad f(x)=g(x)\text{ p.c.t. }x\in \mathbb{R}^{n}.\label{relequi}
+\end{equation}
+Al conjunto de clases de equivalencia lo denotamos por
+\begin{equation}
+  M(\Omega ):=\mathfrak{M}(\Omega )/\sim .\label{med}
+\end{equation}
+</p>
+<p>
+Observa que, si $f_{i}=g_{i}$ c.d. en $\Omega $, $i=1,2$, entonces
+$\lambda f_{1}+\mu f_{2}=\lambda g_{1}+\mu g_{2}$ c.d. en $\Omega $
+para cualesquiera $\lambda ,\mu \in \mathbb{R}$. En consecuencia, la
+estructura de espacio vectorial de $\mathfrak{M}(\Omega )$ (ver
+Proposición <a href="tul/P_T_02/14.html#medlin">14.11</a>) induce una estructura de espacio
+vectorial en $M(\Omega )$.
+</p>
+<p>
+Denotaremos a la clase de equivalencia de $f$ simplemente por
+$f\colon \Omega \rightarrow \mathbb{R}$. Si una función está
+definida c.d. en $\Omega $, la consideraremos definida en todo $\Omega
+$ dándole, por ejemplo, el valor $0$ en los puntos en los que no
+está definida.
+</p>
+<p>
+<div id="defLp" class="definition">
+Si $p\in [1,\infty )$ definimos
+  \begin{equation*}
+    L^{p}(\Omega ):=\left\{f\in M(\Omega ):\left\vert f\right\vert^{p}\text{ es integrable en }\Omega \right\}.
+  \end{equation*}
+  Para $f\in L^{p}(\Omega )$ denotamos por
+  \begin{equation*}
+    \left\Vert f\right\Vert_{L^{p}(\Omega )}=\left\Vert f\right\Vert
+   _{p}:=\biggl( \int_{\Omega }\left\vert f\right\vert^{p}\biggr)^{1/p}.
+  \end{equation*}
+</div>
+Nota que, si $f$ es medible y $\left\vert f\right\vert $ es integrable
+en $\Omega $, entonces $f$ es integrable en $\Omega $ (ver Corolario
+<a href="tul/P_T_02/14.html#valabsinteq">14.16</a>). Por tanto, $L^{1}(\Omega )$ es simplemente el
+conjunto de clases de equivalencia de funciones en
+$\mathfrak{L}(\Omega )$ bajo la relación (\ref{relequi}).
+</p>
+<p>
+<div id="defLinf" class="definition">
+Definimos
+(\Omega )$}
+  \begin{equation*}
+    L^{\infty }(\Omega ):=\left\{f\in M(\Omega ):\text{ existe }c\in \mathbb{R}\text{ tal que }\left\vert f(x)\right\vert
+    \leq c\quad\text{p.c.t. }x\in \Omega \right\}.
+  \end{equation*}
+  A una función $f\in L^{\infty }(\Omega )$ se le llama una
+  función <em class="textbf">esencialmente
+    acotada</em>. Si $f\in
+  L^{\infty }(\Omega )$ denotamos por
+  \begin{equation*}
+    \left\Vert f\right\Vert_{L^{\infty }(\Omega )}=\left\Vert f\right\Vert
+   _{\infty }:=\inf \left\{c\in \mathbb{R}:\text{ }\left\vert f(x)\right\vert \leq c\quad\text{p.c.t. }x\in \Omega \right\}.
+  \end{equation*}
+</div>
+</p>
+<p>
+Nota que $\left\Vert f\right\Vert_{p}$ depende únicamente de la
+clase de equivalencia de $f$.
+</p>
+<p>
+Observa también que, si $f\in L^{\infty }(\Omega )$, el conjunto
+\begin{equation*}
+Z_{k}:=\left\{x\in \Omega :\left\vert f(x)\right\vert >\left\Vert
+  f\right\Vert_{\infty }+\tfrac{1}{k}\right\}
+\end{equation*}
+es nulo para todo $k\in
+\mathbb{N}$. En consecuencia, $\left\vert f(x)\right\vert \leq
+\left\Vert f\right\Vert_{\infty }$ para todo $x\in \Omega
+\smallsetminus \bigcup_{k=1}^{\infty }Z_{k}$, es decir,
+\begin{equation}
+  \left\vert f(x)\right\vert \leq \left\Vert f\right\Vert_{\infty }\qquad\text{p.c.t. }x\in \Omega .\label{supes}
+\end{equation}
+</p>
+<p>
+A continuación probaremos que $(L^{p}(\Omega ),\left\Vert \cdot
+\right\Vert_{p})$ es un espacio normado (ver Definición
+<a href="tul/P_T_02/2.html#defnor">2.9</a>).  Empecemos observando lo siguiente.
+</p>
+<p>
+<div id="N1Lp" class="lemma">
+Sean $p\in [1,\infty ]$ y $f\in L^{p}(\Omega )$.
+  Entonces, $\left\Vert f\right\Vert_{p}=0$ si y sólo si $f(x)=0$
+  p.c.t. $x\in \Omega $.
+</div>
+</p>
+<p>
+<div class="proof">
+  Para $p=\infty $ esta afirmación es consecuencia inmediata de
+  (\ref{supes}). Si $p\in [1,\infty )$, el Corolario <a href="tul/P_T_02/13.html#corfunnula">13.15</a>
+  asegura que
+  \begin{equation*}
+    \left\Vert f\right\Vert_{p}^{p}=\int_{\Omega }\left\vert f\right\vert
+   ^{p}=0\quad \Longleftrightarrow \quad \left\vert f(x)\right\vert^{p}=0\quad\text{p.c.t. }x\in \Omega ,
+  \end{equation*}
+  de donde se sigue inmediatamente la afirmación.
+</div>
+</p>
+<p>
+Como los elementos de $L^{p}(\Omega )$ son clases de equivalencia bajo
+la relación (\ref{relequi}), el lema anterior afirma que
+$\left\Vert \cdot \right\Vert_{p}$ cumple la propiedad (N1) de la
+definición de norma (ver Definición <a href="tul/P_T_02/2.html#defnor">2.9</a>).
+</p>
+<p>
+Como en el ejemplo que estudiamos en el Capítulo <a href="tul/P_T_02/2.html#Cap-2">2</a>, la
+desigualdad del triángulo se obtiene a partir de la desigualdad de
+Hölder. Sólo que ahora su demostración es más
+delicada, ya que tenemos que cerciorarnos de que las funciones que
+estamos considerando son integrables. Es por ello que resulta
+importante considerar funciones medibles. Veamos los detalles.
+</p>
+<p>
+<div class="proposition" id="holder">[Desigualdad de Hölder]
+
+  <ol class="alfa">
+  <li> Sean $p,q\in (1,\infty )$ tales que
+    $\frac{1}{p}+\frac{1}{q}=1$. Si $f\in L^{p}(\Omega )$ y $g\in
+    L^{q}(\Omega )$, entonces $fg\in L^{1}(\Omega )$ y
+    \begin{equation*}
+      \left\Vert fg\right\Vert_{1}\leq \left\Vert f\right\Vert_{p}\left\Vert
+        g\right\Vert_{q}.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $f\in L^{\infty }(\Omega )$ y $g\in L^{1}(\Omega )$,
+    entonces $fg\in L^{1}(\Omega )$ y
+    \begin{equation*}
+      \left\Vert fg\right\Vert_{1}\leq \left\Vert f\right\Vert_{\infty
+      }\left\Vert g\right\Vert_{1}.
+    \end{equation*}
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  Observa primero que, como $f$ y $g$ son medibles, la función
+  $\left\vert fg\right\vert $ es medible (ver
+  Proposiciones <a href="tul/P_T_02/14.html#medlin">14.11</a> y <a href="tul/P_T_02/14.html#prodmed">14.13</a>).
+</p>
+<p>
+  <em class="emph">(a):</em>  Sean $p,q\in (1,\infty )$ tales que
+  $\frac{1}{p}+\frac{1}{q}=1$, $f\in L^{p}(\Omega )$ y $g\in
+  L^{q}(\Omega )$. La afirmación es trivial si $f=0$ o si $g=0$.
+  Supongamos pues que ambas funciones son distintas de cero. Por el
+  Lema <a href="tul/P_T_02/14.html#N1Lp">14.20</a>, se tiene entonces que $\left\Vert f\right\Vert
+ _{p}\neq 0$ y $\left\Vert g\right\Vert_{q}\neq 0$. Para cada $x\in
+  \Omega $ aplicamos la desigualdad de Young (ver Lema <a href="tul/P_T_02/2.html#young">2.11</a>) a
+  la pareja de números reales
+  \begin{equation*}
+    a_{x}:=\frac{\left\vert f(x)\right\vert }{\left\Vert f\right\Vert_{p}}\qquad\text{y}\qquad b_{x}:=\frac{\left\vert g(x)\right\vert }{\left\Vert
+        g\right\Vert_{q}}
+  \end{equation*}
+  para obtener
+  \begin{equation*}
+    \frac{\left\vert f(x)g(x)\right\vert }{\left\Vert f\right\Vert
+     _{p}\left\Vert g\right\Vert_{q}}\leq \frac{\left\vert f(x)\right\vert^{p}}{p\left\Vert f\right\Vert_{p}^{p}}+\frac{\left\vert g(x)\right\vert^{q}}{q\left\Vert g\right\Vert_{q}^{q}},
+  \end{equation*}
+  es decir,
+  \begin{equation}
+    \left\vert f(x)g(x)\right\vert \leq \left\Vert f\right\Vert_{p}\left\Vert
+      g\right\Vert_{q}\biggl( \frac{1}{p\left\Vert f\right\Vert_{p}^{p}}\left\vert f(x)\right\vert^{p}+\frac{1}{q\left\Vert g\right\Vert_{q}^{q}}\left\vert g(x)\right\vert^{q}\biggr) .\label{proddom}
+  \end{equation}
+  Como $f\in L^{p}(\Omega )$ y $g\in L^{q}(\Omega )$, el lado derecho
+  de la desigualdad (\ref{proddom}) es integrable. El
+  Teorema <a href="tul/P_T_02/14.html#medint">14.15</a> implica entonces que
+  $\left\vert fg\right\vert $ es integrable. En consecuencia,
+  $fg\in L^{1}(\Omega )$.
+</p>
+<p>
+  Integrando la desigualdad (\ref{proddom}) obtenemos
+  \begin{align*}
+    \left\Vert fg\right\Vert_{1} &=\int_{\Omega }\left\vert fg\right\vert \leq
+    \left\Vert f\right\Vert_{p}\left\Vert g\right\Vert_{q}\biggl( \frac{1}{p\left\Vert f\right\Vert_{p}^{p}}\int_{\Omega }\left\vert f\right\vert^{p}+\frac{1}{q\left\Vert g\right\Vert_{q}^{q}}\int_{\Omega }\left\vert
+        g\right\vert^{q}\biggr) \\
+    &=\left\Vert f\right\Vert_{p}\left\Vert g\right\Vert_{q}\left( \frac{1}{p}+\frac{1}{q}\right) =\left\Vert f\right\Vert_{p}\left\Vert g\right\Vert
+   _{q},
+  \end{align*}
+  como afirma el enunciado.
+</p>
+<p>
+  <em class="emph">(b):</em>  Si $f\in L^{\infty }(\Omega )$ y $g\in L^{1}(\Omega
+  )$, entonces $\left\Vert f\right\Vert_{\infty }\left\vert
+    g\right\vert $ es integrable. Usando la desigualdad (\ref{supes})
+  obtenemos que $\left\vert f(x)g(x)\right\vert \leq \left\Vert
+    f\right\Vert_{\infty }\left\vert g(x)\right\vert $ p.c.t. $x\in
+  \Omega $. El Teorema <a href="tul/P_T_02/14.html#medint">14.15</a> implica entonces que $fg\in
+  L^{1}(\Omega )$. Integrando la desigualdad anterior, obtenemos
+  \begin{equation*}
+    \left\Vert fg\right\Vert_{1}=\int_{\Omega }\left\vert fg\right\vert \leq
+    \left\Vert f\right\Vert_{\infty }\int_{\Omega }\left\vert g\right\vert
+    =\left\Vert f\right\Vert_{\infty }\left\Vert g\right\Vert_{1}.
+  \end{equation*}
+  Esto concluye la demostración.
+</div>
+</p>
+<p>
+<div class="notation">
+  De aquí en adelante convendremos que $\frac{1}{\infty }:=0$. De
+  este modo la identidad $\frac{1}{p}+\frac{1}{q}=1$ tiene sentido
+  para todo $p\in [1,\infty ]$.
+</div>
+</p>
+<p>
+Para probar la desigualdad del triángulo usaremos la siguiente
+desigualdad elemental.
+</p>
+<p>
+<div id="desp" class="lemma">
+Para cualesquiera $a,b\in \mathbb{R}$, $p\in (0,\infty
+  )$,
+  \begin{equation*}
+    \left\vert a+b\right\vert^{p}\leq 2^{p}(\left\vert a\right\vert
+   ^{p}+\left\vert b\right\vert^{p}).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Se tiene que
+  \begin{equation*}
+    \left\vert a+b\right\vert^{p}\!\leq (\left\vert a\right\vert +\left\vert
+      b\right\vert )^{p}\!\leq (2\max \left\{\left\vert a\right\vert ,\left\vert
+      b\right\vert \right\})^{p}\!=\!2^{p}\max \left\{\left\vert a\right\vert^{p},\left\vert
+      b\right\vert^{p}\right\}\leq 2^{p}(\left\vert a\right\vert^{p}+\left\vert
+      b\right\vert^{p}),
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+<div class="proposition" id="minkovski">[Desigualdad de Minkowski]
+Sea $p\in [1,\infty ]$. Si $f,g\in L^{p}(\Omega )$, entonces $f+g\in
+  L^{p}(\Omega )$ y se cumple que
+  \begin{equation}
+    \left\Vert f+g\right\Vert_{p}\leq \left\Vert f\right\Vert_{p}+\left\Vert
+      g\right\Vert_{p}.\label{desmin}
+  \end{equation}
+</div>
+</p>
+<p>
+<div class="proof">
+  Observa primero que, si $f$ y $g$ son medibles, entonces $\left\vert
+    f+g\right\vert^{r}$ es medible para todo $r\in (0,\infty )$ (ver
+  Proposiciones <a href="tul/P_T_02/14.html#medlin">14.11</a> y <a href="tul/P_T_02/14.html#prodmed">14.13</a>). Consideramos tres
+  casos.
+</p>
+<p>
+  <em class="textsc">Caso 1:</em>\quad $p=1$.
+</p>
+<p>
+  Si $f,g\in L^{1}(\Omega )$, como
+  $\left\vert f+g\right\vert \leq \left\vert f\right\vert +\left\vert
+    g\right\vert $,
+  el Teorema <a href="tul/P_T_02/14.html#medint">14.15</a> asegura que $f+g\in L^{1}(\Omega
+  )$. Integrando ambos lados de la desigualdad obtenemos
+  \begin{equation*}
+    \left\Vert f+g\right\Vert_{1}\leq \left\Vert f\right\Vert_{1}+\left\Vert
+      g\right\Vert_{1}.
+  \end{equation*}
+</p>
+<p>
+  <em class="textsc">Caso 2:</em>\quad $p=\infty $.
+</p>
+<p>
+  Si $f,g\in L^{\infty }(\Omega )$, como $\left\vert f+g\right\vert
+  \leq \left\vert f\right\vert +\left\vert g\right\vert \leq
+  \left\Vert f\right\Vert_{\infty }+\left\Vert g\right\Vert_{\infty
+  }$ c.d. en $\Omega $, se tiene que $f+g\in L^{\infty }(\Omega )$ y
+  \begin{equation*}
+    \left\Vert f+g\right\Vert_{\infty }\leq \left\Vert f\right\Vert_{\infty
+    }+\left\Vert g\right\Vert_{\infty }.
+  \end{equation*}
+</p>
+<p>
+  <em class="textsc">Caso 3:</em>\quad $p\in (1,\infty )$.
+</p>
+<p>
+  Si $f,g\in L^{p}(\Omega )$, el Lema <a href="tul/P_T_02/14.html#desp">14.23</a> asegura que
+  $\left\vert f(x)+g(x)\right\vert^{p}\leq 2^{p}(\left\vert
+    f(x)\right\vert^{p}+\left\vert g(x)\right\vert^{p})$ para toda
+  $x\in \Omega $ y del Teorema <a href="tul/P_T_02/14.html#medint">14.15</a> se sigue que $f+g\in
+  L^{p}(\Omega )$.
+</p>
+<p>
+  Sea $q:=\frac{p}{p-1}$. Entonces $\left\vert f+g\right\vert
+ ^{p-1}\in L^{q}(\Omega )$ y
+  \begin{align*}
+    \left\Vert \left\vert f+g\right\vert^{p-1}\right\Vert_{q}
+    &=\left(
+      \int_{\Omega }(\left\vert
+      f+g\right\vert^{p-1})^{q}\right)^{1/q}\\
+    &=\left(
+      \int_{\Omega }\left\vert f+g\right\vert^{p}\right)^{(p-1)/p}=\left\Vert
+      f+g\right\Vert_{p}^{p-1}.
+  \end{align*}
+  Como
+  \begin{equation*}
+    \left\vert f+g\right\vert^{p}=\left\vert f+g\right\vert \left\vert
+      f+g\right\vert^{p-1}\leq \left\vert f\right\vert \left\vert f+g\right\vert
+   ^{p-1}+\left\vert g\right\vert \left\vert f+g\right\vert^{p-1},
+  \end{equation*}
+  aplicando la desigualdad de Hölder (ver Proposición <a href="tul/P_T_02/14.html#holder">14.21</a>)
+  obtenemos
+  \begin{align*}
+    \left\Vert f+g\right\Vert_{p}^{p} 
+    &=\int_{\Omega }\left\vert
+      f+g\right\vert^{p}\leq \int_{\Omega }\left\vert f\right\vert \left\vert
+      f+g\right\vert^{p-1}+\int_{\Omega }\left\vert g\right\vert \left\vert
+      f+g\right\vert^{p-1} \\
+    &\leq \left\Vert f\right\Vert_{p}\left\Vert f+g\right\Vert
+      _{p}^{p-1}+\left\Vert g\right\Vert_{p}\left\Vert f+g\right\Vert
+      _{p}^{p-1}\\
+    &=(\left\Vert f\right\Vert_{p}+\left\Vert g\right\Vert
+      _{p})\left\Vert f+g\right\Vert_{p}^{p-1}.
+  \end{align*}
+  Si $\left\Vert f+g\right\Vert_{p}=0$, la desigualdad (\ref{desmin})
+  se satisface trivialmente. Si $\left\Vert f+g\right\Vert_{p}\neq
+  0$, dividiendo la desigualdad anterior entre $\left\Vert
+    f+g\right\Vert_{p}^{p-1}$ obtenemos la desigualdad
+  (\ref{desmin}).
+</div>
+</p>
+<p>
+<div class="proposition">
+  $L^{p}(\Omega )=(L^{p}(\Omega ),\left\Vert \cdot \right\Vert_{p})$
+  es un espacio normado para todo $p\in [1,\infty ]$.
+</div>
+</p>
+<p>
+<div class="proof">
+  El Lema <a href="tul/P_T_02/14.html#N1Lp">14.20</a> asegura que $\left\Vert f\right\Vert_{p}=0 $si y
+  sólo si $f=0$ en $L^{p}(\Omega )$. Esta es la condición (N1) de la
+  definición de norma (ver Definición <a href="tul/P_T_02/2.html#defnor">2.9</a>).
+</p>
+<p>
+  Si $f$ es medible y $\lambda \in \mathbb{R}$, entonces $\lambda f$
+  es medible (ver Proposición <a href="tul/P_T_02/14.html#medlin">14.11</a>). Además, si $p\in
+  [1,\infty )$, entonces $\left\vert \lambda f\right\vert
+ ^{p}=\left\vert \lambda \right\vert^{p}\left\vert f\right\vert
+ ^{p}$ es integrable si $\left\vert f\right\vert^{p}$ lo es. Para
+  $p=\infty $ observa que $\left\vert \lambda f\right\vert \leq
+  \left\vert \lambda \right\vert c$  c.d. en $\Omega $  si
+  $\left\vert f\right\vert \leq c$  c.d. en $\Omega $. Por tanto,
+  para cualquier $p\in [1,\infty ]$, $ \lambda f\in
+  L^{p}(\Omega )$ y $\left\Vert \lambda f\right\Vert_{p}=\left\vert
+    \lambda \right\vert \left\Vert f\right\Vert_{p}$.
+</p>
+<p>
+  Esta última afirmación, junto con la Proposición <a href="tul/P_T_02/14.html#minkovski">14.24</a>,
+  asegura que $L^{p}(\Omega )$ es un espacio vectorial y que
+  $\left\Vert \cdot \right\Vert_{p}$ satisface las condiciones (N2) y
+  (N3) de la Definición <a href="tul/P_T_02/2.html#defnor">2.9</a>.
+</div>
+</p>
+<p>
+Probaremos a continuación que $L^{p}(\Omega )$ es un espacio de
+Banach.  Para ello requerimos la siguiente generalización del
+Teorema <a href="tul/P_T_02/13.html#teocd">13.26</a>.
+</p>
+<p>
+<div class="theorem" id="teocdLp">[de convergencia dominada en $L^{p}$]
+Sean $p\in [1,\infty )$ y
+  $(f_{k})$ una sucesión en $M(\Omega )$ tal que
+  $f_{k}(x)\rightarrow f(x)$ p.c.t. $x\in \Omega $. Si existe $g\in
+  L^{p}(\Omega )$ tal que
+  \begin{equation*}
+    \left\vert f_{k}(x)\right\vert \leq g(x)\quad\text{p.c.t. }x\in \Omega \qquad \forall k\in \mathbb{N}\text{,}
+  \end{equation*}
+  entonces $f_{k},f\in L^{p}(\Omega )$ y
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\Vert f-f_{k}\right\Vert_{p}=0.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Como cada $f_{k}$ es medible, las Proposiciones <a href="tul/P_T_02/14.html#medcd">14.14</a>
+  y <a href="tul/P_T_02/14.html#medlimint">14.9</a> implican que $f$ es medible. Más aún, como
+  $\left\vert f_{k}\right\vert^{p}$ es medible y
+  $\left\vert f_{k}(x)\right\vert^{p}\leq \left\vert
+    g(x)\right\vert^{p}$
+  p.c.t. $x\in \Omega $, el Teorema <a href="tul/P_T_02/14.html#medint">14.15</a> asegura que
+  $\left\vert f_{k}\right\vert^{p}$ es integrable. Dado que
+  $\left\vert f_{k}(x)\right\vert^{p}\rightarrow \left\vert
+    f(x)\right\vert^{p}$
+  p.c.t. $x\in \Omega $, el teorema de convergencia dominada
+  (Teorema <a href="tul/P_T_02/13.html#teocd">13.26</a>) asegura que $\left\vert f\right\vert^{p}$ es
+  integrable. En consecuencia, $f_{k},f\in L^{p}(\Omega )$, y de la
+  Proposición <a href="tul/P_T_02/14.html#minkovski">14.24</a> se sigue que
+  $\left\vert f-f_{k}\right\vert^{p}$ es integrable. Usando el
+  Lema <a href="tul/P_T_02/14.html#desp">14.23</a> obtenemos que
+  \begin{equation*}
+    \left\vert f(x)-f_{k}(x)\right\vert^{p}\leq 2^{p}(\left\vert
+      f(x)\right\vert^{p}+\left\vert f_{k}(x)\right\vert^{p})\leq
+    2^{p}(\left\vert f(x)\right\vert^{p}+\left\vert g(x)\right\vert^{p})\quad\text{p.c.t. $x\in \Omega$.}
+  \end{equation*}
+  El teorema de convergencia dominada asegura entonces que
+  $\lim_{k\rightarrow \infty }\left\Vert f-f_{k}\right\Vert_{p}=0$.
+</div>
+</p>
+<p>
+<div id="teoLpBanach" class="theorem">
+$L^{p}(\Omega )$ es un espacio de Banach para
+  todo $p\in [1,\infty ]$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Supongamos primero que $p\in [1,\infty )$. Sea $(f_{k})$ una
+  sucesión de Cauchy en $L^{p}(\Omega )$. Escogemos $k_{1}\menorque\cdots
+  \menorque k_{j}\menorque k_{j+1}\menorque\cdots $ tales que
+  \begin{equation*}
+    \left\Vert f_{i}-f_{k}\right\Vert_{p}\leq \frac{1}{2^{j}}\qquad\text{si } i,k\geq k_{j}.
+  \end{equation*}
+  Entonces,
+  \begin{equation*}
+    \sum_{j=1}^{\infty }\left\Vert f_{k_{j+1}}-f_{k_{j}}\right\Vert
+   _{p}\leq \sum_{j=1}^{\infty }\frac{1}{2^{j}}=1.
+  \end{equation*}
+  Definimos $f_{k_{0}}:=0$,
+  \begin{equation*}
+    g_{m}:=\sum_{j=0}^{m-1}\left\vert f_{k_{j+1}}-f_{k_{j}}\right\vert 
+    \qquad\text{y}\qquad g:=\sum_{j=0}^{\infty }\left\vert
+      f_{k_{j+1}}-f_{k_{j}}\right\vert =\sup_{m\in \mathbb{N}}g_{m}.
+  \end{equation*}
+  La Proposición <a href="tul/P_T_02/14.html#minkovski">14.24</a> asegura que $\left\Vert
+    g_{m}\right\Vert_{p}\leq \sum_{j=0}^{m}\left\Vert
+    f_{k_{j+1}}-f_{k_{j}}\right\Vert_{p}$. En consecuencia,
+  \begin{equation*}
+    \int_{\Omega }\left\vert g_{m}\right\vert^{p}=\left\Vert g_{m}\right\Vert
+   _{p}^{p}\leq \Biggl( \sum_{j=0}^{m-1}\left\Vert
+        f_{k_{j+1}}-f_{k_{j}}\right\Vert_{p}\Biggr)^{p}\leq \Biggl(
+      \sum_{j=0}^{\infty }\left\Vert f_{k_{j+1}}-f_{k_{j}}\right\Vert
+     _{p}\Biggr)^{p}\menorque\infty
+  \end{equation*}
+  y, por el teorema de convergencia monótona (ver
+  Teorema <a href="tul/P_T_02/13.html#teocm">13.20</a>), la función
+  $\left\vert g\right\vert ^{p}=\sup_{m\in \mathbb{N}}\left\vert
+    g_{m}\right\vert^{p}$
+  es integrable. La Proposición <a href="tul/P_T_02/13.html#funcfinita">13.11</a> asegura entonces que
+  existe un subconjunto nulo $Z$ de $\Omega $ tal que
+  \begin{equation*}
+    g(x):=\sum_{j=0}^{\infty }\left\vert
+      f_{k_{j+1}}(x)-f_{k_{j}}(x)\right\vert \menorque\infty \qquad \forall x\in
+    \Omega \smallsetminus Z.
+  \end{equation*}
+  Esto implica que la serie
+  \begin{equation*}
+    \sum_{j=0}^{\infty }\left( f_{k_{j+1}}(x)-f_{k_{j}}(x)\right)
+  \end{equation*}
+  converge para cada $x\in \Omega \smallsetminus Z$. Definimos
+  $f\colon \Omega \rightarrow \mathbb{R}$ como
+  \begin{equation*}
+    f(x):=
+      \begin{cases}
+        \sum_{j=0}^{\infty }\left( f_{k_{j+1}}(x)-f_{k_{j}}(x)\right) & \text{si $x\in \Omega \smallsetminus Z$,} \\
+        0 & \text{si $x\in Z$.}
+      \end{cases}
+  \end{equation*}
+  Dado que
+  \begin{equation*}
+    \sum_{j=0}^{m-1}\left( f_{k_{j+1}}(x)-f_{k_{j}}(x)\right)
+    =f_{k_{m}}(x),
+  \end{equation*}
+  se tiene que
+  \begin{equation*}
+    f_{k_{m}}(x)\rightarrow f(x)\qquad\text{y}\qquad \left\vert
+      f_{k_{m}}(x)\right\vert \leq g_{m}(x)\leq g(x)\qquad\text{p.c.t. }x\in
+    \Omega .
+  \end{equation*}
+  Del Teorema <a href="tul/P_T_02/14.html#teocdLp">14.26</a>, se sigue que $f\in L^{p}(\Omega )$ y
+  \begin{equation*}
+    \lim_{j\rightarrow \infty }\left\Vert f-f_{k_{j}}\right\Vert_{p}=0,
+  \end{equation*}
+  es decir, la subsucesión $(f_{k_{j}})$ converge a $f$ en
+  $L^{p}(\Omega )$. Como $(f_{k})$ es de Cauchy, concluimos que
+  $f_{k}\rightarrow f$ en $L^{p}(\Omega )$ (ver
+  Ejercicio <a href="tul/P_T_02/5.html#subconvcau">5.30</a>).
+</p>
+<p>
+  Consideremos ahora el caso $p=\infty $. Si $(f_{k})$ es una
+  sucesión de Cauchy en $L^{\infty }(\Omega )$, entonces existe
+  $k_{m}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \left\Vert f_{i}-f_{k}\right\Vert_{\infty }\leq \frac{1}{m}\qquad \forall i,k\geq k_{m}.
+  \end{equation*}
+  Sea $Z_{i,k}$ un subconjunto nulo de $\Omega $ tal que
+  \begin{equation*}
+    \left\vert f_{i}(x)-f_{k}(x)\right\vert \leq \left\Vert
+      f_{i}-f_{k}\right\Vert_{\infty }\qquad \forall x\in \Omega
+    \smallsetminus Z_{i,k}.
+  \end{equation*}
+  Entonces, $Z:=\bigcup_{i,k=1}^{\infty }Z_{i,k}$ es nulo y, para cada
+  $x\in \Omega \smallsetminus Z$,
+  \begin{equation}
+    \left\vert f_{i}(x)-f_{k}(x)\right\vert \leq \frac{1}{m}\qquad \forall i,k\geq k_{m}.\label{baninf}
+  \end{equation}
+  Es decir, $(f_{k}(x))$ es una sucesión de Cauchy en
+  $\mathbb{R}$. En consecuencia, para cada $x\in \Omega \smallsetminus
+  Z$, existe $f(x)\in \mathbb{R}$ tal que $f_{k}(x)\rightarrow f(x)$
+  en $\mathbb{R}$. Extendemos $f $ como $f(x):=0$ si $x\in Z$. Las
+  Proposiciones <a href="tul/P_T_02/14.html#medcd">14.14</a> y <a href="tul/P_T_02/14.html#medlimint">14.9</a> aseguran que la
+  función $f$ es medible. Fijando $k$ y haciendo tender $i$ a
+  infinito en la desigualdad (\ref{baninf}), obtenemos que
+  \begin{equation*}
+    \left\vert f(x)-f_{k}(x)\right\vert \leq \frac{1}{m}\qquad \forall
+    x\in \Omega \smallsetminus Z,\text{ }\forall k\geq k_{m}.
+  \end{equation*}
+  Por tanto, $f-f_{k}\in L^{\infty }(\Omega )$ y
+  \begin{equation}
+    \left\Vert f-f_{k}\right\Vert_{\infty }\leq \frac{1}{m}\qquad \forall k\geq k_{m}.\label{baninf2}
+  \end{equation}
+  Como $f=(f-f_{k_{1}})+f_{k_{1}}$, concluimos que $f\in L^{\infty
+  }(\Omega )$, y se sigue de (\ref{baninf2}) que $f_{k}\rightarrow f$
+  en $L^{\infty }(\Omega )$.
+</div>
+</p>
+<p>
+Si $p\in [1,\infty )$ la convergencia de una sucesión de
+funciones en $L^{p}(\Omega )$ no implica que ésta converge
+puntualmente c.d. en $\Omega $. Sin embargo, repasando la
+demostración del Teorema <a href="tul/P_T_02/14.html#teoLpBanach">14.27</a>, vemos que hemos
+probado lo siguiente.
+</p>
+<p>
+<div id="convLppunt" class="theorem">
+Sea $(f_{k})$
+  una sucesión en $L^{p}(\Omega )$ tal que $f_{k}\rightarrow f$ en
+  $L^{p}(\Omega )$.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $p\in [1,\infty )$, existen una subsucesión
+    $(f_{k_{j}})$ de $(f_{k})$ y una función $g\in L^{p}(\Omega )$
+    tales que
+    \begin{alignat*}{2}
+          &f_{k_{j}}(x)\rightarrow f(x) && 
+          \text{p.c.t. $x\in \Omega$,} \\
+          &\left\vert f_{k_{j}}(x)\right\vert \leq g(x)&\quad& \text{p.c.t. $x\in \Omega
+          ,\quad \forall j\in \mathbb{N}$.}
+    \end{alignat*}
+</p>
+<p>
+  <li> Si $p=\infty $, entonces $f_{k}(x)\rightarrow f(x)$ 
+    p.c.t. $x\in \Omega $ y existe $c\in \mathbb{R}$ tal que
+    $\left\vert f_{k}(x)\right\vert \leq c$  p.c.t. $x\in \Omega $ y
+    para todo $k\in \mathbb{N}$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a):</em>  Supongamos primero que $p\in [1,\infty )$. Como
+  $(f_{k}) $ es de Cauchy en $L^{p}(\Omega )$, siguiendo la
+  demostración del Teorema <a href="tul/P_T_02/14.html#teoLpBanach">14.27</a> concluimos que
+  existen una subsucesión $(f_{k_{j}})$ de $(f_{k})$ y funciones
+  $\tilde{f},g\in L^{p}(\Omega )$ tales que
+  \begin{equation*}
+    f_{k_{j}}(x)\rightarrow \tilde{f}(x)\quad \text{p.c.t. }x\in \Omega \text{,\qquad }\left\vert f_{k_{j}}(x)\right\vert \leq g(x)\quad \text{p.c.t. }x\in \Omega ,\quad \forall j\in \mathbb{N}\text{,}
+  \end{equation*}
+  y $f_{k}\rightarrow \tilde{f}\quad $en $L^{p}(\Omega )$. Como
+  $f_{k}\rightarrow f$ en $L^{p}(\Omega )$ se tiene que $f=\tilde{f}$.
+</p>
+<p>
+  <em class="emph">(b):</em>  Supongamos ahora que $p=\infty $. Para cada $k\in
+  \mathbb{N}$ existe un conjunto nulo $Z_{k}$ tal que
+  \begin{equation*}
+    \left\vert f_{k}(x)\right\vert \leq \left\Vert f_{k}\right\Vert_{\infty }\quad\text{y}\quad \left\vert f(x)-f_{k}(x)\right\vert \leq \left\Vert
+      f-f_{k}\right\Vert_{\infty }\qquad \forall x\in \Omega
+    \smallsetminus Z_{k}.
+  \end{equation*}
+  Tomando $Z:=\bigcup_{k=1}^{\infty }Z_{k}$ obtenemos que
+  \begin{equation*}
+    \left\vert f_{k}(x)\right\vert \leq \left\Vert f_{k}\right\Vert_{\infty }\quad\text{y}\quad \left\vert f(x)-f_{k}(x)\right\vert \leq \left\Vert
+      f-f_{k}\right\Vert_{\infty }\qquad \forall x\in \Omega
+    \smallsetminus Z,\text{  }\forall k\in \mathbb{N}.
+  \end{equation*}
+  Como $f_{k}\rightarrow f$ en $L^{\infty }(\Omega )$ concluimos que
+  $f_{k}(x)\rightarrow f(x)$ para todo $x\in \Omega \smallsetminus Z$.
+  Además, $(f_{k})$ está acotada en $L^{\infty }(\Omega )$,
+  por lo que $\left\vert f_{k}(x)\right\vert \leq \left\Vert
+    f_{k}\right\Vert_{\infty }\leq c$  para cualesquiera $x\in
+  \Omega \smallsetminus Z$ y $k\in \mathbb{N}$.
+</div>
+</p>
+<p>
+Veamos un ejemplo importante.
+</p>
+<p>
+<div id="potLp" class="proposition">
+Sean $f(x):=\left\Vert x\right\Vert^{\gamma }$ con
+  $\gamma \in \mathbb{R}$, y $r>0$.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $p\in [1,\infty )$ entonces $f\in
+    L^{p}(B^{n}(0,r))$ si y sólo si $p\gamma +n>0$ y, en ese caso,
+    \begin{equation*}
+      \left\Vert f\right\Vert_{L^{p}(B^{n}(0,r))}=\left\vert \frac{n\omega_{n}}{n+p\gamma }\right\vert^{1/p}r^{(n/p)+\gamma }.
+    \end{equation*}
+</p>
+<p>
+  <li> $f\in L^{\infty }(B^{n}(0,r))$ si y sólo si $\gamma
+    \geq 0$ y, en ese caso,
+    \begin{equation*}
+      \left\Vert f\right\Vert_{L^{\infty }(B^{n}(0,r))}=r^{\gamma }.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $p\in [1,\infty )$ entonces $f\in
+    L^{p}(\mathbb{R}^{n}\smallsetminus B^{n}(0,r))$ si y sólo si
+    $p\gamma +n\menorque 0$ y, en ese caso,
+    \begin{equation*}
+      \left\Vert f\right\Vert_{L^{p}(\mathbb{R}^{n}\smallsetminus \bar{B}^{n}(0,r))}=\left\vert \frac{n\omega_{n}}{n+p\gamma }\right\vert
+     ^{1/p}r^{(n/p)+\gamma }.
+    \end{equation*}
+</p>
+<p>
+  <li> $f\in L^{\infty }(\mathbb{R}^{n}\smallsetminus
+    B^{n}(0,r))$ si y sólo si $\gamma \leq 0$ y, en ese caso,
+    \begin{equation*}
+      \left\Vert f\right\Vert_{L^{\infty }(\mathbb{R}^{n}\smallsetminus \bar{B}^{n}(0,r))}=r^{\gamma }.
+    \end{equation*}
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  Es sencillo comprobar que $f$ es una función medible
+  [Ejercicio <a href="tul/P_T_02/14.html#potmedible">14.60</a>]. Las afirmaciones <em class="emph">(a)</em> y
+  <em class="emph">(c)</em> son consecuencia inmediata de la Proposición <a href="tul/P_T_02/13.html#pot">13.31</a>.
+</p>
+<p>
+  <em class="emph">(b):</em>  Si $\gamma \geq 0$, entonces $f$ es continua en
+  $\mathbb{R}^{n} $ y creciente en la dirección radial. Por tanto,
+  $f\in L^{\infty }(B^{n}(0,r))$ y
+  \begin{equation*}
+    \left\Vert f\right\Vert_{L^{\infty }(\bar{B}^{n}(0,r))}=r^{\gamma }.
+  \end{equation*}
+  Si $\gamma \menorque 0$ entonces, para cualquier $c>0$, se cumple que
+  $\left\Vert x\right\Vert^{\gamma }\leq c$ si y sólo si
+  $\left\Vert x\right\Vert \geq c^{1/\gamma }$. Como
+  $B^{n}(0,c^{1/\gamma })\cap B^{n}(0,r)$ no es un conjunto nulo,
+  concluimos que $f\notin L^{\infty }(B^{n}(0,r))$.
+</p>
+<p>
+  <em class="emph">(d):</em>  Esta afirmación se demuestra de manera
+  análoga.
+</div>
+</p>
+<p>
+Queremos ahora comparar a los espacios $L^{s}(\Omega )$ y
+$L^{p}(\Omega )$. Una consecuencia de la proposición anterior es
+la siguiente.
+</p>
+<p>
+<div class="proposition">
+  Si $1\leq p\menorque s\leq \infty $, entonces $L^{p}(\Omega ) $no está
+  contenido en $L^{s}(\Omega )$ para ningún abierto $\Omega $.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\xi \in \Omega $. Escogemos $r>0$ tal que $B^{n}(\xi ,r)\subset
+  \Omega $. Si $q\in (p,s)$, la Proposición <a href="tul/P_T_02/14.html#potLp">14.29</a> asegura
+  que la función
+  \begin{equation*}
+    f(x):=
+      \begin{cases}
+        \left\Vert x-\xi \right\Vert^{-n/q} & \text{si $x\in B^{n}(\xi ,r)$,} \\
+        0 & \text{si $\xi \in \Omega \smallsetminus B^{n}(\xi ,r)$,}
+      \end{cases}
+  \end{equation*}
+  satisface $f\in L^{p}(\Omega )$ y $f\notin L^{s}(\Omega )$.
+</div>
+</p>
+<p>
+La inclusión opuesta se tiene cuando la medida de $\Omega $ es
+finita.
+</p>
+<p>
+<div id="encajes" class="proposition">
+Si $\left\vert \Omega \right\vert \menorque\infty $ y $1\leq
+  p\menorque s\leq \infty $, entonces $L^{s}(\Omega )\subset L^{p}(\Omega )$ y
+  esta inclusión es continua. Más aún, para todo $f\in
+  L^{s}(\Omega )$,
+  \begin{alignat*}{2}
+      &\left\Vert f\right\Vert_{p}\leq \left\vert \Omega \right\vert
+     ^{(s-p)/sp}\left\Vert f\right\Vert_{s} &\quad& \text{si }s\in [1,\infty ),
+      \\
+      &\left\Vert f\right\Vert_{p}\leq \left\vert \Omega \right\vert
+     ^{1/p}\left\Vert f\right\Vert_{\infty } && \text{si }s=\infty .
+  \end{alignat*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Nota que, si $\left\vert \Omega \right\vert \menorque\infty $, entonces
+  $1_{\Omega }\in L^{q}(\Omega )$ para todo $q\in [1,\infty ]$
+  y
+  \begin{equation*}
+    \left\Vert 1_{\Omega }\right\Vert_{q}=\biggl( \int_{\Omega }1_{\Omega
+      }\biggr)^{1/q}=\left\vert \Omega \right\vert^{1/q}.
+  \end{equation*}
+</p>
+<p>
+  Si $1\leq p\menorque s\menorque\infty $ y $f\in L^{s}(\Omega )$, entonces $\left\vert
+    f\right\vert^{p}\in L^{s/p}(\Omega )$ y
+  \begin{equation*}
+    \left\Vert \left\vert f\right\vert^{p}\right\Vert_{s/p}=\left(
+      \int_{\Omega }\left\vert f\right\vert^{s}\right)^{p/s}=\left\Vert
+      f\right\Vert_{s}^{p}.
+  \end{equation*}
+  De la desigualdad de Hölder (ver Proposición <a href="tul/P_T_02/14.html#holder">14.21</a>)
+  se sigue que $\left\vert f\right\vert^{p}=1_{\Omega }\left\vert
+    f\right\vert^{p}$ es integrable y que
+  \begin{equation*}
+    \left\Vert f\right\Vert_{p}^{p}=\int_{\Omega }1_{\Omega }\left\vert
+      f\right\vert^{p}\leq \left\Vert 1_{\Omega }\right\Vert_{s/(s-p)}\left\Vert
+      \left\vert f\right\vert^{p}\right\Vert_{s/p}=\left\vert \Omega \right\vert
+   ^{(s-p)/s}\left\Vert f\right\Vert_{s}^{p}.
+  \end{equation*}
+  En consecuencia, $f\in L^{p}(\Omega )$ y
+  \begin{equation}
+    \left\Vert f\right\Vert_{p}\leq \left\vert \Omega \right\vert
+   ^{(s-p)/sp}\left\Vert f\right\Vert_{s}.\label{comLp1}
+  \end{equation}
+</p>
+<p>
+  Si $1\leq p\menorque\infty $ y $f\in L^{\infty }(\Omega )$, entonces
+  $\left\vert f\right\vert^{p}\leq \left\Vert f\right\Vert_{\infty
+  }^{p}1_{\Omega }$ c.d. en $\Omega $. Como $\left\vert \Omega
+  \right\vert \menorque\infty $, la función $\left\Vert f\right\Vert
+ _{\infty }^{p}1_{\Omega }$ es integrable.  Por tanto, $f\in
+  L^{p}(\Omega )$ (ver Teorema <a href="tul/P_T_02/14.html#medint">14.15</a>). Integrando la
+  desigualdad anterior obtenemos $\left\Vert f\right\Vert_{p}^{p}\leq
+  \left\vert \Omega \right\vert \left\Vert f\right\Vert_{\infty
+  }^{p}$, es decir,
+  \begin{equation}
+    \left\Vert f\right\Vert_{p}\leq \left\vert \Omega \right\vert
+   ^{1/p}\left\Vert f\right\Vert_{\infty }.\label{comLp2}
+  \end{equation}
+</p>
+<p>
+  Finalmente, si $f_{k}\rightarrow f$ en $L^{s}(\Omega )$, como las
+  desigualdades (\ref{comLp1}) y (\ref{comLp2}) aseguran la existencia
+  de una constante $c$ tal que
+  \begin{equation*}
+    \left\Vert f_{k}-f\right\Vert_{p}\leq c\left\Vert f_{k}-f\right\Vert_{s},
+  \end{equation*}
+  concluimos que $f_{k}\rightarrow f$ en $L^{p}(\Omega )$. Esto prueba
+  que la inclusión $L^{s}(\Omega )\hookrightarrow L^{p}(\Omega )$
+  es continua.
+</div>
+</p>
+<p>
+Si $\left\vert \Omega \right\vert =\infty $ las afirmaciones de la
+Proposición <a href="tul/P_T_02/14.html#encajes">14.31</a> no son ciertas en general, como lo
+muestra el siguiente ejemplo.
+</p>
+<p>
+<div class="example">
+  Si $\Omega :=\mathbb{R}^{n}\smallsetminus \bar{B}^{n}(0,1)$, $1\leq
+  p\menorque s\leq \infty $ y $f(x):=\left\Vert x\right\Vert^{-n/q}$ con $q\in
+  (p,s)$, entonces $f\in L^{s}(\Omega )$ pero $f\notin L^{p}(\Omega )$
+  <em class="emph">(ver Proposición <a href="tul/P_T_02/14.html#potLp">14.29</a>)</em>.
+</div>
+</p>
+<p>
+<h3 id="sec14-3">Aproximación mediante funciones suaves</h3>
+</p>
+<p>
+Para $k\in \mathbb{N}\cup \left\{\infty \right\}$ denotamos por
+\begin{equation}
+  \mathcal{C}_{c}^{k}(\Omega ):=\mathcal{C}_{c}^{0}(\Omega )\cap \mathcal{C}^{k}(\Omega ),\label{Cksopcomp}
+\end{equation}
+al 
+espacio de las funciones $f\colon \Omega \rightarrow \mathbb{R}$ de
+clase $\mathcal{C}^{k}$ con soporte compacto en $\Omega $. El
+objetivo de esta sección es probar que $\mathcal{C}_{c}^{\infty
+}(\Omega )$ es denso en $L^{p}(\Omega )$ para todo $p\in [1,\infty )$. Empezaremos demostrando la siguiente afirmación.
+</p>
+<p>
+<div id="contdens" class="proposition">
+$\mathcal{C}_{c}^{0}(\Omega )$ es denso en
+  $L^{p}(\Omega )$ para todo $p\in [1,\infty )$. Es decir,
+  dadas $f\in L^{p}(\Omega )$ y $\varepsilon >0$, existe $g\in
+  \mathcal{C}_{c}^{0}(\Omega )$ tal que
+  \begin{equation*}
+    \left\Vert f-g\right\Vert_{p}\menorque\varepsilon .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $f\in L^{p}(\Omega )$ y $\varepsilon >0$. Las funciones
+  \begin{equation*}
+    f_{[k]}=\min \left\{\max \left\{-k,f\right\},k\right\}1_{\bar{B}^{n}(0,k)},
+  \end{equation*}
+  definidas en (\ref{fsubk}), cumplen que $f_{[k]}(x)\rightarrow f(x)$
+  y que
+  $\left\vert f_{[k]}(x)\right\vert \leq \left\vert f(x)\right\vert $
+  para todo $x\in \Omega $. Del Teorema <a href="tul/P_T_02/14.html#teocdLp">14.26</a> se sigue que
+  $f_{[k]}\in L^{p}(\Omega )$ y
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\Vert f-f_{[k]}\right\Vert_{p}=0.
+  \end{equation*}
+  Fijemos $k\in \mathbb{N}$ tal que
+  \begin{equation}
+    \left\Vert f-f_{[k]}\right\Vert_{p}\menorque\frac{\varepsilon }{2}.\label{apr1}
+  \end{equation}
+  Como $f_{[k]}$ es integrable, la Proposición <a href="tul/P_T_02/13.html#aprox">13.37</a>
+  asegura que existe $\varphi \in \mathcal{C}_{c}^{0}(\Omega )$ tal
+  que
+  \begin{equation*}
+    \int_{\Omega }\left\vert f_{[k]}-\varphi \right\vert \menorque\frac{\varepsilon^{p}}{2^{p}(2k)^{p-1}}.
+  \end{equation*}
+  Sea $g:=\min \left\{\max \left\{-k,\varphi \right\},k\right\}$. Entonces $g\in
+  \mathcal{C}_{c}^{0}(\Omega )$ y $\left\vert f_{[k]}-g\right\vert
+  \leq 2k$. Además se cumple que$ \left\vert f_{[k]}-g\right\vert
+  \leq \left\vert f_{[k]}-\varphi \right\vert $, ya que si $\left\vert
+    \varphi (x)\right\vert >k$ entonces $\left\vert y-g(x)\right\vert
+  \menorque\left\vert y-\varphi (x)\right\vert $ para todo $y\in [-k,k]$. Por tanto,
+  \begin{equation*}
+    \left\vert f_{[k]}-g\right\vert^{p}
+    \leq \left\vert f_{[k]}-g\right\vert^{p-1}\left\vert f_{[k]}-\varphi\right\vert
+    \leq (2k)^{p-1}\left\vert f_{[k]}-\varphi \right\vert .
+  \end{equation*}
+  Esta desigualdad implica que $\left\vert f_{[k]}-g\right\vert^{p}$
+  es integrable y que
+  \begin{equation}
+    \left\Vert f_{[k]}-g\right\Vert_{p}^{p}=\int_{\Omega }\left\vert
+      f_{[k]}-g\right\vert^{p}\leq \left( 2k\right)^{p-1}\int_{\Omega
+    }\left\vert f_{[k]}-\varphi \right\vert \menorque\frac{\varepsilon^{p}}{2^{p}}.
+\label{apr2}
+  \end{equation}
+  De las desigualdades (\ref{apr1}) y (\ref{apr2}) y la desigualdad de
+  Minkowski se sigue que $\left\Vert f-g\right\Vert_{p}\menorque\varepsilon
+  $.
+</div>
+</p>
+<p>
+<div class="obs">
+  $\mathcal{C}_{c}^{0}(\Omega )$ no es denso en $L^{\infty }(\Omega
+  )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $g\in \mathcal{C}_{c}^{0}(\Omega )$, entonces $\Omega
+  \smallsetminus \sop(g)$ es abierto y no vacío. Por tanto,
+  existen $x_{0}\in \Omega $ y $\delta >0$ tales que $g(x)=0$ para
+  todo $x\in B^{n}(x_{0},\delta )$. En consecuencia,
+  \begin{equation*}
+    \left\Vert 1_{\Omega }-g\right\Vert_{\infty }\geq 1\qquad \forall
+    g\in \mathcal{C}_{c}^{0}(\Omega ).
+  \end{equation*}
+  Esto prueba que $\mathcal{C}_{c}^{0}(\Omega )$ no es denso en
+  $L^{\infty }(\Omega )$.
+</div>
+</p>
+<p>
+<div id="defL1loc" class="definition">
+Un
+  subconjunto abierto $\omega $ de $\mathbb{R}^{n}$ <em class="textbf">está
+    compactamente contenido en</em> $\Omega $
+si su cerradura $\overline{\omega }$ es compacta y
+  $\overline{\omega }\subset \Omega $. Escribimos $\omega \subset
+  \subset \Omega $ para denotar que $\omega $ está compactamente
+  contenido en $\Omega $. Definimos
+  \begin{equation*}
+    L_{\loc}^{1}(\Omega ):=\left\{f\in M(\Omega ):f1_{\omega }\text{es integrable para todo abierto }\omega \subset \subset \Omega
+    \right\}.
+  \end{equation*}
+</div>
+</p>
+<p>
+Nota que $L_{\loc}^{1}(\Omega )$ es el conjunto de clases de
+equivalencia de funciones en el espacio $\mathfrak{L}_{\loc}(\Omega )$,
+definido en (<a href="tul/P_T_02/13.html#Lloc">13.11</a>), bajo la relación (\ref{relequi}).
+</p>
+<p>
+Si $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, $g\in
+L_{\loc}^{1}(\mathbb{R}^{n})$ y $\sop(f)\subset B^{n}(0,r)$, entonces
+\begin{equation*}
+  f(x-y)g(y)=f(x-y)g(y)1_{B^{n}(x,r)}(y)\qquad \forall x,y\in \mathbb{R}^{n}.
+\end{equation*}
+Como $g1_{B^{n}(x,r)}\in L^{1}(\mathbb{R}^{n})$ y la función
+$y\mapsto f(x-y)$ pertenece a $L^{\infty }(\mathbb{R}^{n})$, la
+función $y\mapsto f(x-y)g(y)$ es integrable en $\mathbb{R}^{n}$
+para cada $x\in \mathbb{R}^{n}$ (ver Proposición
+<a href="tul/P_T_02/14.html#holder">14.21</a>). Esta observación nos permite definir la siguiente
+función.
+</p>
+<p>
+<div id="defconvolucion" class="definition">
+Sean $f\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y $g\in
+  L_{\loc}^{1}(\mathbb{R}^{n})$. La <em class="textbf">convolución de</em> $f$
+  <em class="textbf">y</em> $g$ es la
+  función $f\ast
+  g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    (f\ast g)(x):=\int_{\mathbb{R}^{n}}f(x-y)g(y)dy.
+  \end{equation*}
+</div>
+</p>
+<p>
+Veremos a continuación que $f\ast g$ hereda las propiedades de
+regularidad de $f$.
+</p>
+<p>
+<div id="convcont" class="proposition">
+Si $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y
+  $g\in L_{\loc}^{1}(\mathbb{R}^{n})$, entonces $f\ast g\in
+  \mathcal{C}^{0}(\mathbb{R}^{n})$. En particular, $f\ast g$ es
+  medible.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $(x_{k})$ una sucesión en $\mathbb{R}^{n}$ tal que
+  $x_{k}\rightarrow x$. Definimos $h_{k}(y):=f(x_{k}-y)g(y)$ y
+  $h(y):=f(x-y)g(y)$. Puesto que $f$ es continua, se cumple que
+  $h_{k}(y)\rightarrow h(y)$ para cada $y\in \mathbb{R}^{n}$. Elegimos
+  $r>0$ tal que $\sop(f)\subset B^{n}(0,r)$ y $x_{k}\in B^{n}(0,r)$
+  para todo $k\in \mathbb{N}$. Nota que, si $x_{k}-y\in $ $\sop(f)$,
+  entonces $y\in B^{n}(0,2r)$. En consecuencia,
+  $h_{k}=h_{k}1_{B^{n}(0,2r)}$ y
+  \begin{equation*}
+    \left\vert h_{k}(y)\right\vert \leq \left\Vert f\right\Vert_{\infty
+    }\left\vert \left( g1_{B^{n}(0,2r)}\right) (y)\right\vert 
+    \qquad \forall y\in \mathbb{R}^{n},\text{ }\forall k\in \mathbb{N}.
+  \end{equation*}
+  Dado que $g1_{B^{n}(0,2r)}$ es integrable, el teorema de
+  convergencia dominada (Teorema <a href="tul/P_T_02/13.html#teocd">13.26</a>) asegura que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }(f\ast g)(x_{k})=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}h_{k}=\int_{\mathbb{R}^{n}}h=(f\ast g)(x).
+  \end{equation*}
+  Esto demuestra que $f\ast g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es
+  continua.
+</div>
+</p>
+<p>
+Nota que el soporte de $f\ast g$ no es necesariamente compacto. Por
+ejemplo, si $g=1_{\mathbb{R}^{n}}$ entonces $f\ast g$ es la
+función constante con valor $c:=\int_{\mathbb{R}^{n}}f$, cuyo
+soporte es $\mathbb{R}^{n}$ si $c\neq 0$.
+</p>
+<p>
+<div id="convdif" class="proposition">
+Si $f\in \mathcal{C}_{c}^{1}(\mathbb{R}^{n})$ y $g\in
+  L_{\loc}^{1}(\mathbb{R}^{n})$, entonces $f\ast
+  g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es de clase
+  $\mathcal{C}^{1}$ y
+  \begin{equation*}
+    \frac{\partial }{\partial x_{i}}(f\ast g)=\frac{\partial f}{\partial x_{i}}\ast g\qquad \forall i=1,\dots,n.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Fijemos $i\in \left\{1,\dots,n\right\}$, $ x\in \mathbb{R}^{n}$ y
+  $\varepsilon >0$. Como
+  $\frac{\partial f}{\partial x_{i}}\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$,
+  se tiene que $\frac{\partial f}{\partial x_{i}}$ es uniformemente
+  continua (ver Ejercicio <a href="tul/P_T_02/11.html#sopcompesunifcont">11.39</a>). Por tanto, existe
+  $\delta >0$ tal que
+  \begin{equation}
+    \left\vert \frac{\partial f}{\partial x_{i}}(y)-\frac{\partial f}{\partial
+        x_{i}}(z)\right\vert \menorque\varepsilon \qquad\text{si } \left\Vert y-z\right\Vert
+    \menorque\delta .\label{difcon1}
+  \end{equation}
+  Sea $r>0$ tal que $\sop\left( \frac{\partial f}{\partial
+      x_{i}}\right) \subset B^{n}(0,r)$ y $x+te_{i}\in B^{n}(0,r)$
+  para todo $t\in [-\delta ,\delta ]$, donde $e_{i}$ es el
+  $i$-ésimo vector de la base canónica de $\mathbb{R}^{n}$.
+  Entonces
+  \begin{equation}
+    \frac{\partial f}{\partial x_{i}}(x+te_{i}-y)=\frac{\partial f}{\partial
+      x_{i}}(x+te_{i}-y)1_{B^{n}(0,2r)}(y)\qquad \forall t\in [-\delta ,\delta ],\text{ }y\in \mathbb{R}^{n}.\label{difcon2}
+  \end{equation}
+  Por otra parte, aplicando el teorema del valor medio a la
+  función $s\mapsto f(x+ste_{i}-y)$ para cada $t\in [-\delta ,\delta ]$ y cada $y\in \mathbb{R}^{n}$, concluimos que
+  existe $s\in (0,1)$ tal que
+  \begin{equation}
+    f(x+te_{i}-y)-f(x-y)=t\frac{\partial f}{\partial x_{i}}(x+ste_{i}-y).
+\label{difcon3}
+  \end{equation}
+  De (\ref{difcon1}), (\ref{difcon2}) y (\ref{difcon3}) se sigue que
+  \begin{align*}
+    &\left\vert \frac{f(x+te_{i}-y)-f(x-y)}{t}-\frac{\partial f}{\partial x_{i}}(x-y)\right\vert \left\vert g(y)\right\vert \\
+    &\qquad{}=\left\vert \frac{\partial f}{\partial x_{i}}(x+ste_{i}-y)-\frac{\partial f}{\partial x_{i}}(x-y)\right\vert \left\vert \left( g1_{B^{n}(0,2r)}\right)
+      (y)\right\vert \menorque\varepsilon \left\vert \left( g1_{B^{n}(0,2r)}\right)
+      (y)\right\vert
+  \end{align*}
+  para cualesquiera $0\menorque\left\vert t\right\vert \menorque\delta $, $y\in
+  \mathbb{R}^{n}$. En consecuencia,
+  \begin{align*}
+    &\left\vert \frac{(f\ast g)(x+te_{i})-(f\ast g)(x)}{t}-\left( \frac{\partial f}{\partial x_{i}}\ast g\right) (x)\right\vert \\
+    &\qquad{}=\left\vert \int_{\mathbb{R}^{n}}\left( \frac{f(x+te_{i}-y)-f(x-y)}{t}-\frac{\partial f}{\partial x_{i}}(x-y)\right) g(y)dy\right\vert \\
+    &\qquad{}\leq \int_{\mathbb{R}^{n}}\left\vert \frac{f(x+te_{i}-y)-f(x-y)}{t}-\frac{\partial f}{\partial x_{i}}(x-y)\right\vert \left\vert g(y)\right\vert dy \\
+    &\qquad{}\menorque\varepsilon \int_{B^{n}(0,2r)}\left\vert g\right\vert .
+  \end{align*}
+  para todo $0\menorque\left\vert t\right\vert \menorque\delta $.  Esto prueba que
+  \begin{equation*}
+    \lim_{t\rightarrow 0}\frac{(f\ast g)(x+te_{i})-(f\ast g)(x)}{t}=\left( \frac{\partial f}{\partial x_{i}}\ast g\right) (x),
+  \end{equation*}
+  es decir, que existe la derivada parcial de $f\ast g$ respecto a
+  $x_{i}$ en $x$ y que
+  \begin{equation*}
+    \frac{\partial }{\partial x_{i}}(f\ast g)=\frac{\partial f}{\partial x_{i}}\ast g.
+  \end{equation*}
+  Por la proposición anterior, $\frac{\partial }{\partial
+    x_{i}}(f\ast g)$ es continua.
+</div>
+</p>
+<p>
+<div id="difconv" class="corollary">
+Sea $k\in \mathbb{N}\cup \left\{\infty \right\}$. Si $f\in
+  \mathcal{C}_{c}^{k}(\mathbb{R}^{n})$ y $g\in
+  L_{\loc}^{1}(\mathbb{R}^{n})$, entonces $f\ast
+  g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es de clase
+  $\mathcal{C}^{k}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Para cada $k\in \mathbb{N}$, la afirmación se obtiene
+  inductivamente aplicando la proposición anterior a las derivadas
+  parciales de orden $k-1 $ de $f$.
+</div>
+</p>
+<p>
+Observa que
+\begin{equation*}
+  L^{p}(\Omega )\subset L_{\loc}^{1}(\mathbb{R}^{n})\qquad \forall p\in
+  [1,\infty ].
+\end{equation*}
+En efecto: si $g\in L^{p}(\Omega )$, entonces $g1_{\omega }\in
+L^{p}(\omega ) $ para todo subconjunto abierto y acotado $\omega $ de
+$\mathbb{R}^{n}$ y la Proposición <a href="tul/P_T_02/14.html#encajes">14.31</a> asegura que
+$g1_{\omega }\in L^{1}(\omega ). $
+</p>
+<p>
+Ahora veremos que $f\ast g$ hereda también las propiedades de
+integrabilidad de $g$.
+</p>
+<p>
+<div id="convLp" class="proposition">
+Si $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y $g\in
+  L^{p}(\mathbb{R}^{n})$ con $p\in [1,\infty ]$, entonces
+  $f\ast g\in L^{p}(\mathbb{R}^{n})$ y
+  \begin{equation*}
+    \left\Vert f\ast g\right\Vert_{p}\leq \left\Vert f\right\Vert
+   _{1}\left\Vert g\right\Vert_{p}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Consideramos tres casos.
+</p>
+<p>
+  <em class="textsc">Caso 1:</em> $p=\infty $.
+</p>
+<p>
+  En este caso la afirmación es evidente.
+</p>
+<p>
+  <em class="textsc">Caso 2:</em> $p=1$.
+</p>
+<p>
+  La función $h\colon \mathbb{R}^{2n}\rightarrow \mathbb{R}$ dada por
+  $h(x,y):=\left\vert f(x-y)g(y)\right\vert $ es medible ya que es el
+  producto de la función continua
+  $(x,y)\mapsto \left\vert f(x-y)\right\vert $ con la función
+  $1\odot \left\vert g\right\vert \in L_{\loc}^{1}(\mathbb{R}^{2n})$
+  (ver Ejercicio <a href="tul/P_T_02/13.html#prodloc">13.72</a>) y ambas son funciones medibles (ver
+  Ejemplo <a href="tul/P_T_02/14.html#L1locesmed">14.8</a> y Proposición <a href="tul/P_T_02/14.html#prodmed">14.13</a>). Para cada
+  $y\in \mathbb{R}^{n}$, $h$ es integrable respecto a $x$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}h(x,y)dx=\left\vert g(y)\right\vert \int_{\mathbb{R}^{n}}\left\vert f(x-y)\right\vert dx=\left\Vert f\right\Vert_{1}\left\vert
+      g(y)\right\vert \qquad \forall y\in \mathbb{R}^{n}.
+  \end{equation*}
+  Más aún, $\left\Vert f\right\Vert_{1}\left\vert
+    g\right\vert \in L^{1}(\mathbb{R}^{n})$ y
+  \begin{equation}
+    \int_{\mathbb{R}^{n}}\int_{\mathbb{R}^{n}}h(x,y)dx\,dy=\left\Vert
+      f\right\Vert_{1}\int_{\mathbb{R}^{n}}\left\vert g(y)\right\vert
+    dy=\left\Vert f\right\Vert_{1}\left\Vert g\right\Vert_{1}.\label{ton}
+  \end{equation}
+  El teorema de Tonelli (Teorema <a href="tul/P_T_02/14.html#teoton">14.17</a>) asegura entonces que
+  $h$ es integrable en $\mathbb{R}^{2n}$. Observa que
+  \begin{equation*}
+    \left\vert \left( f\ast g\right) (x)\right\vert \leq \int_{\mathbb{R}^{n}}\left\vert f(x-y)g(y)\right\vert dy=\int_{\mathbb{R}^{n}}h(x,y)dy.
+  \end{equation*}
+  Como $h$ es integrable en $\mathbb{R}^{2n}$, el teorema de Fubini
+  (<a href="tul/P_T_02/14.html#teofub">13.17</a>) garantiza que el lado derecho de esta desigualdad es
+  integrable respecto a $x$ y, dado que $f\ast g$ es medible (ver
+  Proposición <a href="tul/P_T_02/14.html#convcont">14.37</a>), ello implica que $f\ast g$ es
+  integrable (ver Teorema <a href="tul/P_T_02/14.html#medint">14.15</a>). Más aún, usando
+  (\ref{ton}) obtenemos que
+  \begin{align*}
+    \int_{\mathbb{R}^{n}}\left\vert \left( f\ast g\right) (x)\right\vert dx
+    &\leq \int_{\mathbb{R}^{n}}\int_{\mathbb{R}^{n}}h(x,y)dy\,dx \\
+    &=\int_{\mathbb{R}^{n}}\int_{\mathbb{R}^{n}}h(x,y)dx\,dy=\left\Vert
+      f\right\Vert_{1}\left\Vert g\right\Vert_{1}.
+  \end{align*}
+  En consecuencia, $f\ast g\in L^{1}(\mathbb{R}^{n})$ y $\left\Vert
+    f\ast g\right\Vert_{1}\leq \left\Vert f\right\Vert_{1}\left\Vert
+    g\right\Vert_{1}$, como afirma el enunciado.
+</p>
+<p>
+  <em class="textsc">Caso 3:</em> $p\in (1,\infty )$.
+</p>
+<p>
+  Sea $q:=\frac{p}{p-1}$. De la desigualdad de Hölder (ver
+  Proposición <a href="tul/P_T_02/14.html#holder">14.21</a>) se sigue que
+  \begin{align*}
+    \left\vert (f\ast g)(x)\right\vert 
+    &\leq \int_{\mathbb{R}^{n}}\left\vert
+      f(x-y)\right\vert \left\vert g(y)\right\vert dy\\
+    &=\int_{\mathbb{R}^{n}}\left\vert f(x-y)\right\vert^{1/q}\left\vert f(x-y)\right\vert
+   ^{1/p}\left\vert g(y)\right\vert dy \\
+    &\leq \left\Vert f\right\Vert_{1}^{1/q}\biggl( \int_{\mathbb{R}^{n}}\left\vert f(x-y)\right\vert \left\vert g(y)\right\vert^{p}dy\biggr)
+   ^{1/p} \\
+    &=\left\Vert f\right\Vert_{1}^{1/q}\left[ \left( \left\vert f\right\vert
+        \ast \left\vert g\right\vert^{p}\right) (x)\right]^{1/p}\qquad \forall x\in \mathbb{R}^{n}.
+  \end{align*}
+  Por tanto,
+  \begin{equation*}
+    \left\vert (f\ast g)(x)\right\vert^{p}\leq \left\Vert f\right\Vert
+   _{1}^{p/q}\left( \left\vert f\right\vert \ast \left\vert g\right\vert
+     ^{p}\right) (x)\qquad \forall x\in \mathbb{R}^{n}.
+  \end{equation*}
+  Aplicando el caso $p=1$ a las funciones $\left\vert f\right\vert $ y
+  $\left\vert g\right\vert^{p}$ y el Teorema <a href="tul/P_T_02/14.html#medint">14.15</a> concluimos
+  que $f\ast g\in L^{p}(\mathbb{R}^{n})$ y
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left\vert (f\ast g)(x)\right\vert^{p}dx\leq
+    \left\Vert f\right\Vert_{1}^{p/q}\int_{\mathbb{R}^{n}}\left( \left\vert
+        f\right\vert \ast \left\vert g\right\vert^{p}\right) (x)dx\leq \left\Vert
+      f\right\Vert_{1}^{p/q}\left\Vert f\right\Vert_{1}\left\Vert g\right\Vert
+   _{p}^{p},
+  \end{equation*}
+</p>
+<p class="noj">
+  es decir,
+  \begin{equation*}
+    \left\Vert f\ast g\right\Vert_{p}\leq \left\Vert f\right\Vert
+   _{1}\left\Vert g\right\Vert_{p},
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Usaremos la convolución para aproximar a una función $f\in
+L^{p}(\Omega )$ mediante funciones suaves. Empezaremos eligiendo
+funciones $\rho_{k}\in \mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$
+cuyo soporte se hace cada vez más pequeño conforme $k$ crece.
+</p>
+<p>
+<div id="defsucreg" class="definition">
+Una sucesión
+  de funciones $(\rho_{k})$ se llama una <em class="textbf">sucesión
+    regularizante</em> si, para todo $k\in \mathbb{N}$, se cumple que
+  \begin{equation*}
+    \rho_{k}\in \mathcal{C}_{c}^{\infty }(\mathbb{R}^{n}),\qquad \rho_{k}\geq 0,\qquad \sop(\rho_{k})\subset 
+    \bar{B}^{n}(0,1/k),\qquad \int_{\mathbb{R}^{n}}\rho_{k}=1.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="sucreg" class="example">
+Sea
+  \begin{equation*}
+    \rho (x):=
+      \begin{cases}
+        \exp \left( \frac{1}{\left\Vert x\right\Vert^{2}-1}\right) & \text{si $\left\Vert x\right\Vert \menorque 1$,} \\
+        0 & \text{si $\left\Vert x\right\Vert \geq 1$,}
+      \end{cases}
+  \end{equation*}
+  y sea $c:=\bigl( \int_{\mathbb{R}^{n}}\rho \bigr)^{-1}$. Definimos
+  \begin{equation*}
+    \rho_{k}(x):=ck^{n}\rho (kx).
+  \end{equation*}
+  Es sencillo comprobar que $(\rho_{k})$ es una sucesión
+  regularizante <em class="emph">[Ejercicio <a href="tul/P_T_02/14.html#ejsucreg">14.76</a>].</em> Se le llama
+  la
+  <em class="textbf">sucesión regularizante estándar</em>.
+</div>
+</p>
+<p>
+Si $f\in L_{\loc}^{1}(\Omega )$ y $(\rho_{k})$ es una sucesión
+regularizante, entonces
+\begin{equation*}
+  \sop(\rho_{k}\ast f)\subset \left\{ x\in \mathbb{R}^{n}:\text{ dist}(x,\Omega )\leq \tfrac{1}{k}\right\} ,
+\end{equation*}
+pero $\sop(\rho_{k}\ast f)$ no está necesariamente contenido en
+$\Omega$. Por ejemplo, si $f=1_{\Omega }$ y $(\rho_{k})$ es la
+sucesión regularizante estándar, entonces
+\begin{equation*}
+  (\rho_{k}\ast 1_{\Omega })(x)=\int_{\Omega }\rho_{k}(x-y)dy\,
+    \begin{cases}
+      >0 & \text{si dist}(x,\Omega )\menorque\frac{1}{k},
+      =0 & \text{si dist}(x,\Omega )\geq \frac{1}{k}.
+    \end{cases}
+\end{equation*}
+En consecuencia,
+\begin{equation*}
+  \sop(\rho_{k}\ast 1_{\Omega })=\left\{ x\in \mathbb{R}^{n}:\text{ dist}(x,\Omega )\leq \tfrac{1}{k}\right\} .
+\end{equation*}
+Nota sin embargo que, si $g\in \mathcal{C}_{c}^{0}(\Omega )$, entonces
+$\sop(\rho_{k}\ast g)\subset \Omega $ para $k$ suficientemente
+grande. Más aún, se cumple lo siguiente.
+</p>
+<p>
+<div id="regC0" class="lemma">
+Dadas $g\in \mathcal{C}_{c}^{0}(\Omega )$ y una
+  sucesión regularizante $(\rho_{k})$ existe $k_{0}\in
+  \mathbb{N}$ tal que $\rho_{k}\ast g\in \mathcal{C}_{c}^{\infty
+  }(\Omega )$ para todo $k\geq k_{0}$ y
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\Vert g-\left( \rho_{k}\ast g\right)
+    \right\Vert_{p}=0\qquad \forall p\in [1,\infty ].
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Escogemos un abierto $\omega $ tal que $\sop(g)\subset \omega \subset
+  \subset \Omega $. Como
+  \begin{equation*}
+    \sop(\rho_{k}\ast g)\subset \left\{ x\in \mathbb{R}^{n}:\text{ dist}(x,\sop(g))\leq \tfrac{1}{k}\right\} ,
+  \end{equation*}
+  existe $k_{0}\in \mathbb{N}$ tal que  $\sop(\rho_{k}\ast g)\subset
+  \omega $  para todo $k\geq k_{0}$, y del Corolario <a href="tul/P_T_02/14.html#difconv">14.39</a>
+  se sigue que $\rho_{k}\ast g\in \mathcal{C}_{c}^{\infty }(\Omega )$
+  para todo $k\geq k_{0}$.
+</p>
+<p>
+  Sean $\varepsilon >0$ y $p\in [1,\infty )$. Como $g$ es
+  uniformemente continua, existe $\delta >0$ tal que
+  \begin{equation*}
+    \left\vert g(x-y)-g(x)\right\vert \menorque\frac{\varepsilon }{\left\vert \omega
+      \right\vert^{1/p}}\qquad \forall x,y\in \mathbb{R}^{n}\text{ con }\left\Vert y\right\Vert \menorque\delta .
+  \end{equation*}
+  Para cada $x\in \mathbb{R}^{n}$, haciendo el cambio de variable
+  $z:=x-y$ obtenemos
+  \begin{align*}
+    (\rho_{k}\ast g)(x)-g(x) &=\int_{\mathbb{R}^{n}}\rho
+   _{k}(x-y)g(y)dy-g(x)\int_{\mathbb{R}^{n}}\rho_{k}(y)dy \\
+    &=\int_{\mathbb{R}^{n}}\rho_{k}(z)g(x-z)dz-\int_{\mathbb{R}^{n}}\rho
+   _{k}(y)g(x)dy \\
+    &=\int_{B^{n}(0,\frac{1}{k})}\rho_{k}(y)\left( g(x-y)-g(x)\right) dy.
+  \end{align*}
+  Por tanto, si $k\geq \frac{1}{\delta }$ se tiene que
+  \begin{equation}
+    \left\vert (\rho_{k}\ast g)(x)-g(x)\right\vert \leq \int_{B^{n}(0,\frac{1}{k})}\rho_{k}(y)\left\vert g(x-y)-g(x)\right\vert dy\menorque\frac{\varepsilon }{\left\vert \omega \right\vert^{1/p}}\qquad \forall x\in \mathbb{R}^{n},\label{convinf}
+  \end{equation}
+  y para $k\geq \max \left\{k_{0},\frac{1}{\delta }\right\}=:k_{1}$ se cumple que
+  \begin{equation}
+    \int_{\Omega }\left\vert \left( \rho_{k}\ast g\right) -g\right\vert
+   ^{p}=\int_{\omega }\left\vert \left( \rho_{k}\ast g\right) -g\right\vert
+   ^{p}\menorque\frac{\varepsilon^{p}}{\left\vert \omega \right\vert }\left\vert
+      \omega \right\vert =\varepsilon^{p}.\label{convp}
+  \end{equation}
+  De las desigualdades (\ref{convinf}) y (\ref{convp}) se obtienen
+  respectivamente las desigualdades
+  \begin{equation*}
+    \left\Vert \left( \rho_{k}\ast g\right) -g\right\Vert_{\infty }\menorque\frac{\varepsilon }{\left\vert \omega \right\vert^{1/p}}\qquad\text{y}\qquad \left\Vert \left( \rho_{k}\ast g\right) -g\right\Vert_{p}\menorque\varepsilon 
+    \qquad \forall k\geq k_{1}.
+  \end{equation*}
+  Esto demuestra la afirmación.
+</div>
+</p>
+<p>
+<div id="aproxsuave" class="theorem">
+$\mathcal{C}_{c}^{\infty }(\Omega )$ es denso en
+  $L^{p}(\Omega )$ para todo $p\in [1,\infty )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $p\in [1,\infty )$, $f\in L^{p}(\Omega )$ y $\varepsilon
+  >0$. Por la Proposición <a href="tul/P_T_02/14.html#contdens">14.33</a> existe $g\in
+  \mathcal{C}_{c}^{0}(\Omega )$ tal que $\left\Vert f-g\right\Vert
+ _{p}\menorque\frac{\varepsilon }{2}$. Si $(\rho_{k})$ es una sucesión
+  regularizante, el Lema <a href="tul/P_T_02/14.html#regC0">14.43</a> asegura que existe $k\in
+  \mathbb{N}$ tal que $\rho_{k}\ast g\in \mathcal{C}_{c}^{\infty
+  }(\Omega )$ y $\left\Vert \left( \rho_{k}\ast g\right)
+    -g\right\Vert_{p}\menorque\frac{\varepsilon }{2}$. Por tanto, $\left\Vert
+    \left( \rho_{k}\ast g\right) -f\right\Vert_{p}\menorque\varepsilon $.
+</div>
+</p>
+<p>
+Si $\Omega =\mathbb{R}^{n}$ se tiene un resultado más preciso.
+</p>
+<p>
+<div id="aproxsuaveRn" class="theorem">
+Si $p\in [1,\infty )$ entonces, para toda
+  $f\in L^{p}(\mathbb{R}^{n})$ y toda sucesión regularizante
+  $(\rho_{k})$, se cumple que
+  \begin{equation*}
+    \rho_{k}\ast f\rightarrow f\qquad\text{en }L^{p}(\mathbb{R}^{n}).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\varepsilon >0$. Por la Proposición <a href="tul/P_T_02/14.html#contdens">14.33</a> existe
+  $g\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que
+  $\left\Vert f-g\right\Vert_{p}\menorque\frac{\varepsilon }{3}$, y por el
+  Lema <a href="tul/P_T_02/14.html#regC0">14.43</a> existe $k_{0}\in \mathbb{N}$ tal que
+  $\left\Vert \left( \rho_{k}\ast g\right)
+    -g\right\Vert_{p}\menorque\frac{\varepsilon }{3}$
+  para todo $k\geq k_{0}$. La Proposición <a href="tul/P_T_02/14.html#convLp">14.40</a> asegura
+  entonces que
+  \begin{equation*}
+    \left\Vert \left( \rho_{k}\ast f\right) -\left( \rho_{k}\ast g\right)
+    \right\Vert_{p}=\left\Vert \rho_{k}\ast \left( f-g\right) \right\Vert
+   _{p}\leq \left\Vert \rho_{k}\right\Vert_{1}\left\Vert f-g\right\Vert
+   _{p}=\left\Vert f-g\right\Vert_{p}\menorque\frac{\varepsilon }{3}.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \left\Vert \left( \rho_{k}\ast f\right) -f\right\Vert_{p}\leq \left\Vert
+      \left( \rho_{k}\ast f\right) -\left( \rho_{k}\ast g\right) \right\Vert
+   _{p}+\left\Vert \left( \rho_{k}\ast g\right) -g\right\Vert_{p}+\left\Vert
+      g-f\right\Vert_{p}\menorque\varepsilon
+  \end{equation*}
+  para todo $k\geq k_{0}$.
+</div>
+</p>
+<p>
+<h3 id="sec14-4">Un criterio de compacidad en $L^{p}(\Omega )$</h3>
+</p>
+<p>
+Sea $p\in [1,\infty )$. A continuación daremos condiciones
+suficientes para que un subconjunto $\mathcal{K}$ de $L^{p}(\Omega )$
+sea compacto.
+</p>
+<p>
+El siguiente resultado se conoce como el teorema de
+Fréchet-Kolmogorov. Podemos pensar en él
+como la versión para espacios $L^{p}$ del teorema de
+Arzelà-Ascoli, que se usa, por cierto, en su demostración.
+</p>
+<p>
+Como antes, dados $\xi \in \mathbb{R}^{n}$ y
+$f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$, denotamos por
+$\mathrm{T}_{\xi }f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ a la
+traslación de $f$ por $\xi $, es decir,
+\begin{equation*}
+  \mathrm{T}_{\xi }f(x):=f(x-\xi ).
+\end{equation*}
+</p>
+<p>
+
+<div id="foto:kolmogorov" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Kolmogorov.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Andrey Kolmogorov
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Andrey Nikolaevich Kolmogorov
+  (1903-1987) nació en Tambov, Rusia. Estudió en la
+  Universidad Estatal de Moscú, donde fue alumno de Nikolai
+  Luzin. Fue profesor en dicha universidad.
+  </div>
+</div>
+
+</p>
+<p>
+<div class="theorem" id="teofk">[Fréchet-Kolmogorov]
+Sean $p\in
+  [1,\infty )$, $\Omega $ y $\omega $ subconjuntos abiertos de
+  $\mathbb{R}^{n}$ con $\omega \subset \subset \Omega $ y
+  $\mathcal{K}$ un subconjunto acotado de $L^{p}(\Omega )$ con la
+  siguiente propiedad: para cada $\varepsilon >0$ existe $\delta \in
+  (0,\,$<em class="emph">dist</em>$(\omega ,\mathbb{R}^{n}\smallsetminus \Omega ))$
+  tal que
+  \begin{equation}
+    \left\Vert \mathrm{T}_{\xi }f-f\right\Vert_{L^{p}(\omega )}\menorque\varepsilon 
+    \qquad \forall \xi \in \mathbb{R}^{n}\text{ con }\left\Vert \xi
+    \right\Vert \menorque\delta \quad\text{y}\quad \forall f\in \mathcal{K}\text{.}
+\label{shift}
+  \end{equation}
+  Entonces el conjunto $\mathcal{K}_{\omega }:=\left\{f1_{\omega }:f\in
+  \mathcal{K}\right\}$ es relativamente compacto en $L^{p}(\omega )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sin perder generalidad podemos suponer que $\Omega $ es
+  acotado. Entonces $\mathcal{K}$ es un subconjunto acotado de
+  $L^{q}(\Omega )$ para todo $q\in [1,p]$. Demostraremos el
+  resultado en tres pasos.
+</p>
+<p>
+  <em class="textsc">Afirmación 1</em>:  Sea $\rho \in \mathcal{C}_{c}^{\infty
+  }(\mathbb{R}^{n})$. Entonces el conjunto $\mathcal{K}_{\rho ,\omega
+  }:=\left\{\left( \rho \ast f\right) 1_{\overline{\omega }}:f\in
+  \mathcal{K}\right\}$ es relativamente compacto en
+  $\mathcal{C}^{0}(\overline{\omega })$.
+</p>
+<p>
+  En efecto: como $\mathcal{K}$ es un subconjunto acotado de
+  $L^{1}(\Omega )$, existe $C_{0}>0$ tal que
+  \begin{equation*}
+    \left\vert (\rho \ast f)(x)\right\vert \leq \int_{\mathbb{R}^{n}}\left\vert
+      \rho (x-y)\right\vert \left\vert f(y)\right\vert dy\leq \left\Vert \rho
+    \right\Vert_{\infty }\left\Vert f\right\Vert_{1}\leq C_{0}\quad\text{$\forall x\in \mathbb{R}^{n}, \forall f\in \mathcal{K}$.}
+  \end{equation*}
+  Además, como $\rho $ es Lipschitz continua, existen
+  $C_{1},C_{2}>0$ tales que para cualesquiera $x_{1},x_{2}\in
+  \mathbb{R}^{n}$ y $f\in \mathcal{K}$ se cumple que
+  \begin{align*}
+    \left\vert (\rho \ast f)(x_{1})-(\rho \ast f)(x_{2})\right\vert &\leq \int_{\mathbb{R}^{n}}\left\vert \rho (x_{1}-y)-\rho (x_{2}-y)\right\vert
+    \left\vert f(y)\right\vert dy \\
+    &\leq C_{1}\left\Vert x_{1}-x_{2}\right\Vert \left\Vert f\right\Vert
+   _{1}\leq C_{2}\left\Vert x_{1}-x_{2}\right\Vert .
+  \end{align*}
+  En consecuencia, $\mathcal{K}_{\rho ,\omega }$ es un subconjunto
+  acotado y equicontinuo de $\mathcal{C}^{0}(\overline{\omega })$.
+  Como $\overline{\omega }$ es compacto, el teorema de
+  Arzelà-Ascoli (ver Corolario <a href="tul/P_T_02/7.html#coraa">7.10</a>) asegura que
+  $\mathcal{K}_{\rho ,\omega }$ es relativamente compacto en
+  $\mathcal{C}^{0}(\overline{\omega })$.
+</p>
+<p>
+<em class="textsc">Afirmación 2</em>: Dados $\varepsilon >0$ y una sucesión
+regularizante $(\rho _{k}),$ existe $k_{0}\in \mathbb{N}$ tal que
+\begin{equation*}
+\left\Vert \rho _{k}\ast f-f\right\Vert _{L^{p}(\omega )}\menorque\varepsilon \qquad \forall 
+k\geq k_{0}\quad\text{y}\quad \forall f\in \mathcal{K}.
+\end{equation*}
+</p>
+<p>
+En efecto: tomemos $\delta \in (0,\,$dist$(\omega ,\mathbb{R}^{n}\smallsetminus \Omega ))$ 
+tal que se cumple (\ref{shift}) y $k_{0}>\frac{
+1}{\delta }.$ Para cada $x\in \mathbb{R}^{n},$ haciendo el cambio de
+variable $z:=x-y$ y aplicando la desigualdad de Hölder obtenemos
+\begin{align*}
+\left\vert (\rho _{k}\ast f)(x)-f(x)\right\vert &=\left\vert \int_{\mathbb{R
+}^{n}}\rho _{k}(x-y)f(y)\,dy-f(x)\int_{\mathbb{R}^{n}}\rho _{k}(z)\,dz\right\vert
+\\[4pt]
+&=\int_{B^{n}(0,\frac{1}{k})}\rho _{k}(z)\left\vert f(x-z)-f(x)\right\vert
+dz \\[4pt]
+&=\int_{B^{n}(0,\frac{1}{k})}\rho _{k}(z)^{\frac{p-1}{p}}(\rho _{k}(z)^{
+\frac{1}{p}}\left\vert f(x-z)-f(x)\right\vert )\,dz \\[4pt]
+&\leq\biggl( \int_{B^{n}(0,\frac{1}{k})}\rho _{k}(z)\left\vert
+f(x-z)-f(x)\right\vert ^{p}dz\biggr) ^{\frac{1}{p}}.
+\end{align*}
+Por tanto,
+\begin{equation}
+\left\vert (\rho _{k}\ast f)(x)-f(x)\right\vert ^{p}\leq \int_{B^{n}(0,\frac{
+1}{k})}\rho _{k}(z)\left\vert f(x-z)-f(x)\right\vert ^{p}dz.\label{fk1}
+\end{equation}
+A continuación usaremos los teoremas de Tonelli y Fubini (Teoremas \ref
+{teoton} y <a href="tul/P_T_02/14.html#teofub">13.17</a>) para probar que el lado derecho de esta desigualdad
+es integrable respecto a $x$. Observa que la función $h(x,z):=\rho
+_{k}(z)\left\vert f(x-z)-f(x)\right\vert ^{p}1_{\omega }(x)$ es medible en $
+\mathbb{R}^{2n}.$ Además, es integrable respecto a $x$ y la integral está dada por
+\begin{equation*}
+H(z)=\rho _{k}(z)\int_{\omega }\left\vert f(x-z)-f(x)\right\vert ^{p}dx=\rho
+_{k}(z)\left\Vert \mathrm{T}_{z}f-f\right\Vert _{L^{p}(\omega )}^{p}.
+\end{equation*}
+Como $H\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ 
+[Ejercicio <a href="tul/P_T_02/14.html#traslacion">14.77</a>], 
+el teorema de Tonelli asegura que $h$ es integrable en $\mathbb{R}^{2n}$
+y, de la desigualdad (\ref{fk1}), el teorema de Fubini y la hipótesis 
+(\ref{shift}) inferimos que, para todo $k\geq k_{0}$ y toda $f\in \mathcal{K}$, 
+\begin{align*}
+  \int_{\omega }\left\vert (\rho _{k}\ast f)(x)-f(x)\right\vert ^{p}dx 
+  &\leq\int_{\omega }\int_{B^{n}(0,\frac{1}{k})}\rho _{k}(z)\left\vert
+    f(x-z)-f(x)\right\vert ^{p}dz\,dx \\[4pt]
+  &=\int_{B^{n}(0,\frac{1}{k})}\rho _{k}(z)\int_{\omega }\left\vert
+    f(x-z)-f(x)\right\vert ^{p}dx\,dz\menorque\varepsilon ^{p}.
+\end{align*}
+<em class="textsc">Afirmación 3</em>:  $\mathcal{K}_{\omega }$ es relativamente
+compacto en $L^{p}(\omega ).$
+Por el Corolario <a href="tul/P_T_02/7.html#relcomp=ta">7.6</a> basta probar que $\mathcal{K}_{\omega }$
+es totalmente acotado. Sea $\varepsilon >0.$ Elegimos una sucesión
+regularizante $(\rho _{k})$, fijamos $k_{0}\in \mathbb{N}$ como en la
+Afirmación 2 y denotamos por $\rho :=\rho _{k_{0}}.$
+  Como $\omega $ es acotado, la inclusión
+  $\mathcal{C}^{0}(\overline{\omega })\hookrightarrow L^{p}(\omega )$
+  es continua. De la Afirmación 1 se sigue que $\mathcal{K}_{\rho
+    ,\omega }$ es relativamente compacto en $L^{p}(\omega )$. Por
+  tanto, existen $g_{1},\ldots ,g_{m}\in \mathcal{K}$ tales que
+  \begin{equation*}
+    \mathcal{K}_{\rho ,\omega }\subset B_{L^{p}(\omega )}(\left( \rho \ast
+      g_{1}\right) 1_{\overline{\omega }},\varepsilon )\cup \cdots \cup
+    B_{L^{p}(\omega )}(\left( \rho \ast g_{m}\right) 1_{\overline{\omega }},\varepsilon ).
+  \end{equation*}
+  Es decir, para cada $f\in \mathcal{K}$ existe $i\in \left\{1,\dots,m\right\}$ tal
+  que $\left\Vert \rho \ast f-\rho \ast g_{i}\right\Vert
+ _{L^{p}(\omega )}\menorque\varepsilon $. Usando la Afirmación 2
+  obtenemos
+  \begin{align*}
+    \left\Vert f-g_{i}\right\Vert_{L^{p}(\omega )} &\leq \left\Vert f-\rho \ast
+      f\right\Vert_{L^{p}(\omega )}+\left\Vert \rho \ast f-\rho \ast
+      g_{i}\right\Vert_{L^{p}(\omega )}\\
+    &\qquad{}+\left\Vert \rho \ast
+      g_{i}-g_{i}\right\Vert_{L^{p}(\omega )}\menorque 3\varepsilon \text{.}
+  \end{align*}
+  En consecuencia,
+  \begin{equation*}
+    \mathcal{K}_{\omega }\subset B_{L^{p}(\omega )}(g_{1}1_{\omega
+    },3\varepsilon )\cup \cdots \cup B_{L^{p}(\omega )}(g_{m}1_{\omega
+    },3\varepsilon ).
+  \end{equation*}
+  Esto prueba que $\mathcal{K}_{\omega }$ es totalmente acotado en
+  $L^{p}(\omega )$.
+</div>
+<div id="compLp" class="corollary">
+Sean $p\in [1,\infty )$, $\Omega $ un
+  subconjunto abierto de $\mathbb{R}^{n}$ y $\mathcal{K}$ un
+  subconjunto acotado de $L^{p}(\Omega )$, con las siguientes
+  propiedades:
+  <ol class="roman">
+  <li> Para cada $\varepsilon >0$ y cada abierto $\omega \subset
+    \subset \Omega $ existe $\delta \in (0,\,$<em class="emph">dist</em>$(\omega
+    ,\mathbb{R}^{n}\smallsetminus \Omega ))$ tal que
+    \begin{equation*}
+      \left\Vert \mathrm{T}_{\xi }f-f\right\Vert_{L^{p}(\omega )}\menorque\varepsilon 
+      \qquad \forall \xi \in \mathbb{R}^{n}\text{ con }\left\Vert \xi
+      \right\Vert \menorque\delta \quad\text{y}\quad \forall f\in \mathcal{K}\text{.}
+    \end{equation*}
+  <li> Para cada $\varepsilon >0$ existe un abierto $\omega
+    \subset \subset \Omega $ tal que
+    \begin{equation*}
+      \left\Vert f\right\Vert_{L^{p}(\Omega \smallsetminus \omega )}\menorque\varepsilon 
+      \qquad \forall f\in \mathcal{K}\text{.}
+    \end{equation*}
+  </ol>
+</p>
+<p>
+  Entonces $\mathcal{K}$ es relativamente compacto en $L^{p}(\Omega
+  )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Probaremos que $\mathcal{K}$ es totalmente acotado. Dado
+  $\varepsilon >0$ escogemos un abierto $\omega \subset \subset \Omega
+  $ tal que
+  \begin{equation*}
+    \left\Vert f\right\Vert_{L^{p}(\Omega \smallsetminus \omega )}\menorque\tfrac{\varepsilon }{3}\qquad \forall f\in \mathcal{K}\text{.}
+  \end{equation*}
+  Por el Teorema <a href="tul/P_T_02/14.html#teofk">14.46</a>, $\mathcal{K}_{\omega }:=\left\{f1_{\omega
+  }:f\in \mathcal{K}\right\}$ es relativamente compacto en $L^{p}(\omega )$.
+  De modo que existen $g_{1},\ldots ,g_{m}\in \mathcal{K}$ tales que
+  \begin{equation*}
+    \mathcal{K}_{\omega }\subset B_{L^{p}(\omega )}(g_{1}1_{\omega },\tfrac{\varepsilon }{3})\cup \cdots \cup B_{L^{p}(\omega )}(g_{m}1_{\omega },\tfrac{\varepsilon }{3}).
+  \end{equation*}
+  Es decir, para cada $f\in \mathcal{K}$ existe $i\in \left\{1,\dots,m\right\}$ tal
+  que $\left\Vert f-g_{i}\right\Vert_{L^{p}(\omega
+    )}\menorque\frac{\varepsilon }{3}$. Por tanto,
+  \begin{align*}
+    \left\Vert f-g_i\right\Vert_{L^p(\Omega)}
+    &\leq \left\Vert f-f1_\omega\right\Vert_{L^p(\Omega)} 
+      + \left\Vert
+      f1_\omega-g_i1_\omega\right\Vert_{L^p(\Omega)}
+      + \left\Vert
+      g_i1_\omega-g_i\right\Vert_{L^p(\Omega)}\\
+&=\left\Vert f\right\Vert_{L^p(\Omega\smallsetminus\omega)}
+  +\left\Vert f-g_i\right\Vert_{L^p(\omega)}
+  +\left\Vert g_i\right\Vert_{L^p(\Omega\smallsetminus\omega)}
+  < \varepsilon .
+  \end{align*}
+  Esto prueba que
+  \begin{equation*}
+    \mathcal{K}\subset B_{L^{p}(\Omega )}(g_{1},\varepsilon )\cup \cdots \cup
+    B_{L^{p}(\Omega )}(g_{m},\varepsilon ),
+  \end{equation*}
+  así que $\mathcal{K}$ es totalmente acotado. Por el
+  Corolario <a href="tul/P_T_02/7.html#relcomp=ta">7.6</a>, $\mathcal{K}$ es relativamente compacto
+  en $L^{p}(\Omega )$.
+</div>
+</p>
+<p>
+<h3 id="sec14-5">Un criterio de nulidad</h3>
+</p>
+<p>
+Concluimos este capítulo dando un criterio de nulidad para
+funciones en $L_{\loc}^{1}(\Omega )$ que usaremos más
+adelante. Requerimos el siguente lema.
+</p>
+<p>
+<div id="ury" class="lemma">
+Sean $K$ un subconjunto compacto de $\mathbb{R}^{n}$ y
+  $\delta >0$. Entonces existe $\zeta \in \mathcal{C}_{c}^{\infty
+  }(\mathbb{R}^{n})$ tal que $0\leq \zeta (x)\leq 1$ para todo $x\in
+  \mathbb{R}^{n}$, $\zeta (x)=1 $ para todo $x\in K$ y $\zeta (x)=0$
+  si <em class="emph">dist</em>$(x,K)\geq \delta $.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean
+  \begin{equation*}
+    X:=\left\{ x\in \mathbb{R}^{n}:\text{ dist}(x,K)\leq \tfrac{\delta }{3}\right\} ,\qquad Y:=\left\{ x\in \mathbb{R}^{n}:\text{ dist}(x,K)\geq \tfrac{2\delta }{3}\right\} .
+  \end{equation*}
+  La función
+  \begin{equation*}
+    f(x):=\frac{\text{dist}(x,Y)}{\text{dist}(x,Y)+\text{dist}(x,X)}
+  \end{equation*}
+  está bien definida, es continua (ver Ejercicio <a href="tul/P_T_02/3.html#contdist">3.52</a>) y
+  satisface que $0\leq f(x)\leq 1$ para todo $x\in \mathbb{R}^{n}$, $
+  f(x)=1$ si $x\in X$ y $f(x)=0$ si $x\in Y$.
+</p>
+<p>
+  Tomemos $k\in \mathbb{N}$ tal que $\frac{1}{k}\menorque\frac{\delta }{3}$ y
+  $\rho_{k}\in \mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$ tal que
+  $\rho_{k}\geq 0, $ $\sop(\rho_{k})\subset B^{n}(0,\frac{1}{k})$ y
+  $\int_{\mathbb{R}^{n}}\rho_{k}=1$. Es sencillo comprobar que la
+  función $\zeta :=\rho_{k}\ast f\in \mathcal{C}_{c}^{\infty
+  }(\mathbb{R}^{n})$ tiene las propiedades deseadas.
+</div>
+</p>
+<p>
+<div id="testL1loc" class="proposition">
+Si $f\in L_{\loc}^{1}(\Omega )$ cumple que
+  \begin{equation*}
+    \int_{\Omega }f\varphi =0\qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ),
+  \end{equation*}
+  entonces $f=0$ c.d. en $\Omega $.
+</div>
+</p>
+<p>
+<div class="proof">
+  Consideramos dos casos.
+</p>
+<p>
+  <em class="textsc">Caso 1</em>: $f\in L^{1}(\Omega )$ y $\left\vert \Omega
+  \right\vert \menorque\infty $.
+</p>
+<p>
+  Dada $\varepsilon >0$ escogemos $g\in \mathcal{C}_{c}^{0}(\Omega )$
+  tal que $\left\Vert f-g\right\Vert_{1}\menorque\varepsilon $ (ver
+  Proposición <a href="tul/P_T_02/14.html#contdens">14.33</a>). Entonces, para toda $\varphi \in \mathcal{C}_{c}^{\infty }(\Omega )$,
+  \begin{equation*}
+    \int_{\Omega }g\varphi =\int_{\Omega }g\varphi -\int_{\Omega }f\varphi \leq
+    \int_{\Omega }\left\vert g-f\right\vert \left\vert \varphi \right\vert \leq
+    \left\Vert f-g\right\Vert_{1}\left\Vert \varphi \right\Vert_{\infty
+    }\menorque\varepsilon \left\Vert \varphi \right\Vert_{\infty }.
+  \end{equation*}
+  Sean $K_{1}:=\left\{x\in \Omega :g(x)\geq \varepsilon \right\}$ y
+  $K_{2}:=\left\{x\in \Omega :g(x)\leq -\varepsilon \right\}$. Como $g$ es
+  continua, $K_{1}$ y $K_{2}$ son cerrados. Dado que $K_{1}\cup
+  K_{2}\subset $ $\sop(g)$, se tiene que $K_{1}$ y $K_{2}$ son
+  compactos. Por tanto, dist$(K_{1},K_{2})>0$. Sea $\delta >0$ tal que
+  $\delta \leq $ dist$(K_{1},K_{2})$ y
+  \begin{equation*}
+    \left\{x\in \mathbb{R}^{n}:\text{ dist}(x,K_{1}\cup K_{2})\leq \delta \right\}\subset
+    \Omega .
+  \end{equation*}
+  Por el Lema <a href="tul/P_T_02/14.html#ury">14.48</a> existen $\zeta_{i}\in \mathcal{C}_{c}^{\infty
+  }(\mathbb{R}^{n})$ tales que $0\leq \zeta_{i}(x)\leq 1$ para todo
+  $x\in \mathbb{R}^{n}$, $\zeta_{i}(x)=1$ si $x\in K_{i}$ y $\zeta
+ _{i}(x)=0$ si dist$(x,K_{i})\geq \delta $, $i=1,2$. Definimos
+  $\varphi :=\zeta_{1}-\zeta_{2}$. Entonces $\varphi \in
+  \mathcal{C}_{c}^{\infty }(\Omega )$ y satisface
+  \begin{equation*}
+    -1\leq \varphi (x)\leq 1\text{  }\forall x\in \mathbb{R}^{n},\qquad \varphi (x)=1\text{  }\forall x\in K_{1},\qquad \varphi (x)=-1\text{
+       }\forall x\in K_{2}.
+  \end{equation*}
+  Para esta función $\varphi $ y $K:=K_{1}\cup K_{2}$ se cumple
+  que
+  \begin{equation*}
+    \int_{K}\left\vert g\right\vert =\int_{K}g\varphi =\int_{\Omega }g\varphi
+    -\int_{\Omega \smallsetminus K}g\varphi \leq \varepsilon \left\Vert \varphi
+    \right\Vert_{\infty }+\int_{\Omega \smallsetminus K}\left\vert g\varphi
+    \right\vert \menorque\varepsilon +\int_{\Omega \smallsetminus K}\left\vert
+      g\right\vert .
+  \end{equation*}
+  Dado que $\left\vert g(x)\right\vert \menorque\varepsilon $ para $x\in
+  \Omega \smallsetminus K$, obtenemos
+  \begin{equation*}
+    \int_{\Omega }\left\vert g\right\vert =\int_{K}\left\vert g\right\vert
+    +\int_{\Omega \smallsetminus K}\left\vert g\right\vert \menorque\varepsilon
+    +2\int_{\Omega \smallsetminus K}\left\vert g\right\vert \leq \varepsilon
+    +2\left\vert \Omega \right\vert \varepsilon .
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \left\Vert f\right\Vert_{1}\leq \left\Vert f-g\right\Vert_{1}+\left\Vert
+      g\right\Vert_{1}\leq 2(1+\left\vert \Omega \right\vert )\varepsilon \qquad \forall \varepsilon >0.
+  \end{equation*}
+  Por tanto, $f=0$ c.d. en $\Omega $.
+</p>
+<p>
+  <em class="textsc">Caso 2</em>: $f\in L_{\loc}^{1}(\Omega )$ y $\left\vert \Omega
+  \right\vert $ arbitrario.
+</p>
+<p>
+  Sea
+  \begin{equation*}
+    \Omega_{k}:=\left\{x\in \Omega :\left\Vert x\right\Vert \menorque k, \text{ dist}(x,\partial \Omega )>\tfrac{1}{k}\right\}.
+  \end{equation*}
+  Como $\Omega_{k}$ es abierto y acotado y $f1_{\Omega_{k}}\in
+  L^{1}(\Omega_{k})$, aplicando el Caso 1 concluimos que $f=0$
+  c.d. en $\Omega_{k}$. Por tanto, $f=0$ c.d. en $\Omega
+  =\bigcup_{k=1}^{\infty }\Omega_{k}$.
+</div>
+</p>
+<p>
+<h3 id="sec14-6">Ejercicios</h3>
+</p>
+<p>
+<div class="exercise">
+  Si $\Omega $ es abierto en $\mathbb{R}^{n}$, prueba que la medida
+  $\left\vert \Omega \right\vert $ de la
+  <em class="emph">Definición <a href="tul/P_T_02/14.html#defmedida">14.1</a></em> coincide con el volumen
+  $\vol_{n}(\Omega )$ de la <em class="emph">Definición <a href="tul/P_T_02/12.html#volabcom">12.19</a></em>.
+</div>
+</p>
+<p>
+<div id="med0nulo" class="exercise">
+Prueba que si $X$ es medible y $\left\vert
+    X\right\vert =0$ entonces $X$ es un conjunto nulo.
+</div>
+</p>
+<p>
+<div id="ejconjmed" class="exercise">
+Demuestra las siguientes afirmaciones.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $X$ es un subconjunto medible de $\mathbb{R}^{n}$ y
+    $\xi \in \mathbb{R}^{n}$ entonces $X+\xi :=\left\{x+\xi :x\in X\right\}$ es
+    medible y $\left\vert X+\xi \right\vert =\left\vert X\right\vert
+    $.
+</p>
+<p>
+  <li> Si $X$ y $Y$ son subconjuntos medibles de
+    $\mathbb{R}^{n}$ y $Y\subset X$, entonces $\left\vert Y\right\vert
+    \leq \left\vert X\right\vert . $
+</p>
+<p>
+  <li> Si $X_{1}\subset \cdots \subset X_{k}\subset
+    X_{k+1}\subset \cdots $ es una sucesión de subconjuntos
+    medibles de $\mathbb{R}^{n}$, entonces $\bigcup_{j=1}^{\infty
+    }X_{j}$ es medible y
+    \begin{equation*}
+      \Biggl\vert \bigcup_{j=1}^{\infty }X_{j}\Biggr\vert
+      =\lim_{j\rightarrow \infty }\left\vert X_{j}\right\vert .
+    \end{equation*}
+</p>
+<p>
+  <li> Si $\left\{X_{j}:j\in \mathbb{N}\right\}$ es una familia numerable
+    de subconjuntos medibles de $\mathbb{R}^{n}$, entonces
+    $\bigcup_{j=1}^{\infty }X_{j}$ es medible y
+    \begin{equation*}
+      \Biggl\vert \bigcup_{j=1}^{\infty }X_{j}\Biggr\vert \leq
+      \sum_{j=1}^{\infty }\left\vert X_{j}\right\vert .
+    \end{equation*}
+    Si además $X_{i}\cap X_{j}=\emptyset $ para $i\neq j$,
+    entonces
+    \begin{equation*}
+      \Biggl\vert \bigcup_{j=1}^{\infty }X_{j}\Biggr\vert
+      =\sum_{j=1}^{\infty }\left\vert X_{j}\right\vert .
+    \end{equation*}
+</p>
+<p>
+  <li> Si $X_{1}\supset \cdots \supset X_{k}\supset
+    X_{k+1}\supset \cdots $ es una sucesión de subconjuntos
+    medibles de $\mathbb{R}^{n}$ y $\left\vert X_{1}\right\vert
+    \menorque\infty $, entonces $\bigcap_{j=1}^{\infty }X_{j}$ es medible y
+    \begin{equation*}
+      \Biggl\vert \bigcap_{j=1}^{\infty }X_{j}\Biggr\vert
+      =\lim_{j\rightarrow \infty }\left\vert X_{j}\right\vert .
+    \end{equation*}
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que, si $X$ es un subconjunto medible de $\mathbb{R}^{m}$ y
+  $Y$ es un subconjunto medible de $\mathbb{R}^{n}$, entonces $X\times
+  Y$ es un subconjunto medible de $\mathbb{R}^{m+n}$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Di si las siguientes afirmaciones son verdaderas o falsas y
+  demuestra tu afirmación.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Toda función medible pertenece a
+    $\mathfrak{L}_{\loc}(\mathbb{R}^{n})$.
+</p>
+<p>
+  <li> Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+    \infty \right\}$ es medible, entonces $f(x)\in \mathbb{R}$ p.c.t. $x\in
+    \mathbb{R}^{n}$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que, si $f_{k}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm
+  \infty \right\}$ es una sucesión de funciones medibles, entonces las
+  funciones
+  \begin{equation*}
+    \sup_{k\in \mathbb{N}}f_{k},\qquad \inf_{k\in \mathbb{N}}f_{k},\qquad \limsup_{k\rightarrow \infty }f_{k},\qquad \liminf_{k\rightarrow \infty }f_{k},
+  \end{equation*}
+  son medibles.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que son equivalentes las siguientes afirmaciones.
+</p>
+<p>
+  <ol class="alfa">
+  <li> $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\pm \infty
+    \right\}$ es medible.
+</p>
+<p>
+  <li> $f^{\geq a}:=\left\{x\in \mathbb{R}^{n}:f(x)\geq a\right\}$ es un
+    subconjunto medible de $\mathbb{R}^{n}$ para todo $a\in
+    \mathbb{R}$.
+</p>
+<p>
+  <li> $f^{\menorque a}:=\left\{x\in \mathbb{R}^{n}:f(x)\menorque a\right\}$ es un
+    subconjunto medible de $\mathbb{R}^{n}$ para todo $a\in
+    \mathbb{R}$.
+</p>
+<p>
+  <li> $f^{\leq a}:=\left\{x\in \mathbb{R}^{n}:f(x)\leq a\right\}$ es un
+    subconjunto medible de $\mathbb{R}^{n}$ para todo $a\in
+    \mathbb{R}$.
+</p>
+<p>
+  <li> $f^{>a}:=\left\{x\in \mathbb{R}^{n}:f(x)>a\right\}$ es un
+    subconjunto medible de $\mathbb{R}^{n}$ para todo $a\in
+    \mathbb{R}$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es medible, demuestra
+  las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $U$ es abierto en $\mathbb{R}$, entonces
+    $f^{-1}(U):=\left\{x\in \mathbb{R}^{n}:f(x)\in U\right\}$ es un subconjunto
+    medible de $\mathbb{R}^{n}$.
+</p>
+<p>
+  <li> Si $C$ es cerrado en $\mathbb{R}$, entonces
+    $f^{-1}(C):=\left\{x\in \mathbb{R}^{n}:f(x)\in C\right\}$ es un subconjunto
+    medible de $\mathbb{R}^{n}$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que, si $f_{1},\dots,f_{m}\colon \mathbb{R}^{n}\rightarrow
+  \mathbb{R}$ son medibles y $\varphi \colon \mathbb{R}^{m}\rightarrow
+  \mathbb{R}$ es continua, entonces la función
+  $h\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    h(x):=\varphi (f_{1}(x),\dots,f_{m}(x))
+  \end{equation*}
+  es medible.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que, si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es medible,
+  entonces la función
+  \begin{equation*}
+    g(x):=
+      \begin{cases}
+        \frac{1}{f(x)} & \text{si }f(x)\neq 0, \\
+        0 & \text{si }f(x)=0,
+      \end{cases}
+  \end{equation*}
+  es medible.
+</div>
+</p>
+<p>
+<div id="potmedible" class="exercise">
+Prueba que, para todo $\gamma \in \mathbb{R}$, la
+  función $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    f(x):=
+      \begin{cases}
+        \left\Vert x\right\Vert^{\gamma } & \text{si }x\neq 0, \\
+        0 & \text{si }x=0,
+      \end{cases}
+  \end{equation*}
+  es medible.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que, si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\infty
+  \right\}$ es medible y $f\geq 0$, entonces
+  \begin{equation*}
+    \int^{\ast }f=\lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{[k]}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que, si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}\cup \left\{\infty
+  \right\}$ es medible, $f\geq 0$ y $1\leq m\menorque n$, entonces
+</p>
+<p>
+  <ol class="alfa">
+  <li> la función $f^{y}\colon \mathbb{R}^{m}\rightarrow
+    \mathbb{R}\cup \left\{\infty \right\}$ es medible p.c.t. $y\in
+    \mathbb{R}^{n-m}$,
+</p>
+<p>
+  <li> la función $F\colon \mathbb{R}^{n-m}\rightarrow
+    \mathbb{R}\cup \left\{\infty \right\}$ dada por
+    \begin{equation*}
+      F(y):=\int^{\ast }f^{y}
+    \end{equation*}
+    es medible y
+    \begin{equation*}
+      \int^{\ast }f=\int^{\ast }F.
+    \end{equation*}
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Para cada $n\in \mathbb{N}$ da un ejemplo de un subconjunto de
+  $\mathbb{R}^{n}$ que no sea medible.
+</div>
+</p>
+<p>
+<div class="exercise">[Teorema de Egorov]
+  Sean $X$ un subconjunto medible de
+  $\mathbb{R}^{n}$ tal que $\left\vert X\right\vert \menorque\infty $ y
+  $f_{k},f\colon X\rightarrow \mathbb{R} $ funciones medibles tales que
+  $f_{k}(x)\rightarrow f(x)$ p.c.t. $x\in X$. Prueba que, para cada
+  $\varepsilon >0$, existe un subconjunto medible $Y\subset X$ tal que
+</p>
+<p>
+  <ol class="alfa">
+  <li> $\left\vert X\smallsetminus Y\right\vert \menorque\varepsilon $,
+</p>
+<p>
+  <li> $(f_{k})$ converge a $f$ uniformemente en $Y$.
+  </ol>
+</p>
+<p>
+  <em class="emph">(Sugerencia: Considera los conjuntos</em>
+  \begin{equation*}
+    Y_{m,k}:=\bigcup_{j=k}^{\infty }\left\{ x\in X:\left\vert
+        f_{j}(x)-f(x)\right\vert \geq 
+      \frac{1}{2^{m}}\right\} .
+  \end{equation*}
+  <em class="emph">Usando el Ejercicio <a href="tul/P_T_02/14.html#ejconjmed">14.52</a> prueba que, para cada
+  </em>$m\in \mathbb{N}$<em class="emph">, existe </em>$k_{m}\in \mathbb{N}$<em class="emph"> tal
+    que </em>$\left\vert Y_{m,k_{m}}\right\vert \menorque\frac{\varepsilon
+  }{2^{m}}$.<em class="emph"> Demuestra que </em>$Y:=X\smallsetminus
+  \bigcup_{m=1}^{\infty }Y_{m,k_{m}}$<em class="emph"> tiene las propiedades
+    deseadas.)</em>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que el espacio
+  \begin{equation*}
+    \mathcal{C}_{b}^{0}(\Omega ):=\left\{f\colon \Omega \rightarrow \mathbb{R}:f\text{ es
+      continua y acotada}\right\}
+  \end{equation*}
+  está contenido en $L^{\infty }(\Omega )$ y que la norma inducida
+  por $\left\Vert \cdot \right\Vert_{\infty }$ coincide con la
+  definida en <em class="emph">(<a href="tul/P_T_02/5.html#normuni">5.5</a>)</em>, es decir,
+  \begin{equation*}
+    \inf \left\{c\in \mathbb{R}:\left\vert f(x)\right\vert \leq c\text{ p.c.t. }x\in
+    \Omega \right\}=\sup_{x\in \Omega }\left\vert f(x)\right\vert \qquad \forall f\in \mathcal{C}_{b}^{0}(\Omega ).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="restLp" class="exercise">
+Sea $\omega $ un subconjunto abierto de $\Omega $ y
+  $p\in [1,\infty ]$. Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $f\in L^{p}(\Omega )$, entonces $f1_{\omega }\in
+    L^{p}(\omega ) $ y
+    \begin{equation*}
+      \left\Vert f1_{\omega }\right\Vert_{L^{p}(\omega )}\leq \left\Vert
+        f\right\Vert_{L^{p}(\Omega )}.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $f\in L^{p}(\Omega )$ y $X$ es un subconjunto medible
+    de $\Omega $ con $\left\vert X\right\vert \menorque\infty $, entonces
+    $f1_{X}\in L^{r}(\Omega )$ para todo $r\in [1,p]$ y
+    \begin{equation*}
+      \left\Vert f1_{X}\right\Vert_{L^{r}(\Omega )}\leq \left\vert X\right\vert^{\frac{p-r}{rp}}\left\Vert f\right\Vert_{L^{p}(\Omega )}.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $f_{k}\rightarrow f$ en $L^{p}(\Omega )$ y $\left\vert
+      \omega \right\vert \menorque\infty $, entonces $f_{k}1_{\omega
+    }\rightarrow f1_{\omega } $en $L^{r}(\omega )$ para todo $r\in
+    [1,p]$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">[Desigualdad de interpolación]
+\label{interpolacion}Sean
+  $1\leq p\menorque s\menorque r\leq \infty $. Prueba que, si $f\in L^{p}(\Omega )\cap
+  L^{r}(\Omega )$, entonces $f\in L^{s}(\Omega )$ y se cumple que
+  \begin{equation*}
+    \left\Vert f\right\Vert_{s}\leq \left\Vert f\right\Vert_{p}^{1-\alpha
+    }\left\Vert f\right\Vert_{r}^{\alpha }\text{,}
+  \end{equation*}
+  donde $\alpha \in (0,1)$ satisface que $\frac{1}{s}=\frac{1-\alpha
+  }{p}+\frac{\alpha }{r}$ si $r\menorque\infty $  y  $\alpha
+  :=1-\frac{p}{s}$ si $r=\infty $.
+</div>
+</p>
+<p>
+<div class="exercise">[Desigualdad de Hölder generalizada]
+\label{holdergen}Sean
+  $r,p_{1},\dots,p_{m}\in [1,\infty )$ tales que
+  $\frac{1}{p_{1}}+\cdots +\frac{1}{p_{m}}=\frac{1}{r}$. Prueba que
+  para cualesquiera $f_{j}\in L^{p_{j}}(\Omega )$, $1\leq j\leq m$, se
+  cumple que $\prod_{j=1}^{m}f_{j}\in L^{r}(\Omega )$ y
+  \begin{equation*}
+    \left\Vert \prod_{j=1}^{m}f_{j}\right\Vert_{r}\leq
+    \prod_{j=1}^{m}\left\Vert f_{j}\right\Vert_{p_{j}}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="limnormLp" class="exercise">
+Prueba que,si $\left\vert \Omega \right\vert
+  \menorque\infty $ y $f\in L^{\infty }(\Omega )$, entonces
+  \begin{equation*}
+    \left\Vert f\right\Vert_{\infty }=\lim_{p\rightarrow \infty }\left\vert
+      \Omega \right\vert^{-1/p}\left\Vert f\right\Vert_{p}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="vectencajes" class="exercise">
+Si $f=(f_{1},\dots,f_{m})$ y $f_{1},\dots,f_{m}\in
+  L^{s}(\Omega )$ definimos
+  \begin{equation*}
+    \left\Vert f\right\Vert_{s}:=\left( \left\Vert f_{1}\right\Vert
+     _{s}^{s}+\cdots +\left\Vert f_{m}\right\Vert_{s}^{s}\right)^{1/s}.
+  \end{equation*}
+  Prueba que, si $\left\vert \Omega \right\vert \menorque\infty $, $1\leq
+  p\menorque s\leq \infty $ y $f_{1},\dots,f_{m}\in L^{s}(\Omega )$, entonces
+  \begin{alignat*}{2}
+      &\left\Vert f\right\Vert_{p}\leq \left( m\left\vert \Omega \right\vert
+      \right)^{(s-p)/sp}\left\Vert f\right\Vert_{s} &\qquad& \text{si $s\in [1,\infty )$,} \\
+      &\left\Vert f\right\Vert_{p}\leq \left( m\left\vert \Omega \right\vert
+      \right)^{1/p}\left\Vert f\right\Vert_{\infty } && \text{si $s=\infty$.}
+  \end{alignat*}
+  <em class="emph">(Sugerencia: Usa la Proposición <a href="tul/P_T_02/14.html#encajes">14.31</a> y el
+    Ejercicio <a href="tul/P_T_02/2.html#ejRnormequiv">2.42</a>.)</em>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $f_{k}\colon (0,1)\rightarrow \mathbb{R}$ la función
+  $f_{k}(x):=\sen^{k}(k\pi x)$.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que $f_{k}\in L^{p}(0,1)$ para todo $p\in [1,\infty ]$.
+</p>
+<p>
+  <li> Prueba que $f_{k}\rightarrow 0$ en $L^{p}(0,1)$ para todo
+    $p\in [1,\infty )$.
+</p>
+<p>
+  <li> ¿Converge la sucesión $(f_{k})$ en
+    $L^{\infty }(0,1)$?
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $p\in [1,\infty ]$. ¿Es cierto que para
+  toda sucesión $(f_{k})$ en $L^{p}(\Omega )$ tal que
+  $\lim_{k\rightarrow \infty }\left\Vert f_{k}\right\Vert
+ _{p}=\left\Vert f\right\Vert_{p}$ se cumple que $f_{k}\rightarrow
+  f$ en $L^{p}(\Omega )$?
+</div>
+</p>
+<p>
+<div id="ineqbl" class="exercise">
+Sea $p\in \lbrack 1,\infty ).$ Prueba que, dada
+$\varepsilon >0,$ existe una constante $C>0,$ que depende sólo de $
+\varepsilon $ y de $p,$ tal que
+\begin{equation*}
+\left\vert \left\vert a+b\right\vert ^{p}-|a|^{p}\right\vert \leqq
+\varepsilon \left\vert a\right\vert ^{p}+C\left\vert b\right\vert ^{p}\text{
+\qquad }\forall a,b\in \mathbb{R}\text{.}
+\end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">[Lema de Brezis-Lieb]
+Sea $p\in \lbrack 1,\infty )$ y sea $(f_{k})$ una sucesión acotada en $
+L^{p}(\Omega )$ tal que $f_{k}(x)\rightarrow f(x)$ p.c.t. $x\in \Omega .$
+Prueba que
+\begin{equation*}
+\lim_{k\rightarrow \infty }\left( \left\vert f_{k}\right\vert
+_{p}^{p}-\left\vert f_{k}-f\right\vert _{p}^{p}\right) =\left\vert
+f\right\vert _{p}^{p},
+\end{equation*}
+siguiendo los pasos que se indican a continuación:
+<ol class="roman">
+<li> Prueba que $f\in L^{p}(\Omega )$.
+<li> Dada $\varepsilon >0$ definimos 
+\begin{equation*}
+g_{k}:=\left\vert \left\vert f_{k}\right\vert ^{p}-\left\vert
+f_{k}-f\right\vert ^{p}-\left\vert f\right\vert ^{p}\right\vert -
+\varepsilon\left\vert f_{k}-f\right\vert ^{p}.
+\end{equation*}
+Usando el <em class="emph">Ejercicio <a href="tul/P_T_02/14.html#ineqbl">14.73</a></em> prueba que existe $C>0$ tal que 
+\begin{equation*}
+g_{k}(x)\leq (C+1)|f(x)|^{p}\qquad \forall x\in \Omega \text{  y  }
+\forall k\in \mathbb{N}.
+\end{equation*}
+<li> Sea $g_{k}^{+}:=\max \{g_{k},0\}.$ Prueba que
+\begin{equation*}
+\lim_{k\rightarrow \infty }\int_{\Omega }g_{k}^{+}=0.
+\end{equation*}
+<li> Prueba que existe $\widetilde{C}>0$ tal que
+\begin{equation*}
+\int_{\Omega }\left\vert \left\vert f_{k}\right\vert ^{p}-\left\vert
+f_{k}-f\right\vert ^{p}-\left\vert f\right\vert ^{p}\right\vert \leqq 
+\widetilde{C}\varepsilon +\int_{\Omega }g_{k}^{+}\qquad 
+\forall k\in \mathbb{N}.
+\end{equation*}
+<li> Concluye que
+\begin{equation*}
+\lim_{k\rightarrow \infty }\left( \left\vert f_{k}\right\vert
+_{p}^{p}-\left\vert f_{k}-f\right\vert _{p}^{p}-\left\vert f\right\vert
+_{p}^{p}\right) =0.
+\end{equation*}
+</ol>
+</div>
+<div class="exercise">
+  Sean $p,q\in (1,\infty )$ tales que $\frac{1}{p}+\frac{1}{q}=1$.
+  Dado $g\in L^{q}(\Omega )$ definimos
+  \begin{equation*}
+    \eta_{g}\colon L^{p}(\Omega )\rightarrow \mathbb{R},\qquad \eta
+   _{g}(f):=\int_{\Omega }fg.
+  \end{equation*}
+  <ol class="alfa">
+  <li> Prueba que $\eta_{g}$ es lineal y continua.
+  <li> Considera el espacio
+    \begin{equation*}
+      \mathcal{L}(L^{p}(\Omega ),\mathbb{R}):=\left\{f\colon L^{p}(\Omega )\rightarrow 
+      \mathbb{R}:f\text{ es lineal y continua}\right\}
+    \end{equation*}
+    con la norma definida en <em class="emph">(<a href="tul/P_T_02/9.html#defnorma">9.1</a>)</em>. Prueba que la
+    función
+    \begin{equation*}
+      \Phi \colon L^{q}(\Omega )\rightarrow \mathcal{L}(L^{p}(\Omega ),\mathbb{R}),\qquad \Phi (g):=\eta_{g},
+    \end{equation*}
+    es lineal, y que es una isometría, es decir,
+    \begin{equation*}
+      \left\Vert \eta_{g}\right\Vert_{\mathcal{L}(L^{p}(\Omega ),\mathbb{R})}=\left\Vert g\right\Vert_{q}\qquad \forall g\in L^{q}(\Omega ).
+    \end{equation*}
+    En particular, $\Phi $ es continua e inyectiva
+    <a href="tul/P_T_02/14.html#footnote:14-2" onclick="setVisibility('bibdiv',3);">*</a>.
+  </ol>
+</div>
+<div id="ejsucreg" class="exercise">
+Demuestra que la sucesión del
+  <em class="emph">Ejemplo <a href="tul/P_T_02/14.html#sucreg">14.42</a></em> es una sucesión regularizante.
+</div>
+<div id="traslacion" class="exercise">
+Prueba que, si $f\in L^{p}(\mathbb{R}^{n})$ con $p\in
+\lbrack 1,\infty ),$ la función $F\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$
+dada por
+\begin{equation*}
+F(z):=\left\Vert \mathrm{T}_{z}f-f\right\Vert _{p}
+\end{equation*}
+es continua, donde $\mathrm{T}_{z}f$ es la traslación de $f$ por $z.$
+</div>
+<div class="exercise">
+  Demuestra los siguentes resultados a partir del
+  <em class="emph">Teorema <a href="tul/P_T_02/14.html#aproxsuave">14.44</a></em> (sin usar la
+  <em class="emph">Proposición <a href="tul/P_T_02/14.html#testL1loc">14.49</a></em>).
+  <ol class="alfa">
+  <li> Si $f\in L^{2}(\Omega )$ satisface que
+    \begin{equation*}
+      \int_{\Omega }f\varphi =0\qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ),
+    \end{equation*}
+    entonces $f=0$ c.d. en $\Omega $.
+  <li> Si $f\in \mathcal{C}^{0}(\Omega )$ satisface
+    \begin{equation*}
+      \int_{\Omega }f\varphi =0\qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ),
+    \end{equation*}
+    entonces $f=0$ en $\Omega $.
+  </ol>
+</div>
+<div class="exercise">[Convolución de funciones integrables]
+  Sean $f,g\in L^{1}(\mathbb{R}^{n})$.
+  <ol class="alfa">
+  <li> Prueba que la función $ (x,y)\mapsto f(x-y)g(y)$ 
+    pertenece a $L^{1}(\mathbb{R}^{2n})$. <em class="emph">(Sugerencia: Usa el
+      Teorema <a href="tul/P_T_02/14.html#teoton">14.17</a>.)</em>
+  <li> Prueba que existe un subconjunto nulo $Z$ de
+    $\mathbb{R}^{n}$ tal que la función  $y\mapsto f(x-y)g(y)$ 
+    es integrable para todo $x\in \mathbb{R}^{n}\smallsetminus Z$.
+    <em class="emph">(Sugerencia: Aplica el Teorema <a href="tul/P_T_02/14.html#teofub">13.17</a>.)</em>
+  <li> Definimos la <em class="textbf">convolución de</em> $f$ <em class="textbf">y</em>
+    $g$ como
+    \begin{equation*}
+      (f\ast g)(x):=
+        \begin{cases}
+          \int_{\mathbb{R}^{n}}f(x-y)g(y)dy & 
+          \text{si $x\in \mathbb{R}^{n}\smallsetminus Z$,} \\
+          0 & \text{si $x\in Z$.}
+        \end{cases}
+    \end{equation*}
+    Prueba que $f\ast g\in L^{1}(\mathbb{R}^{n})$ y que
+    \begin{equation*}
+      \left\Vert f\ast g\right\Vert_{1}\leq \left\Vert f\right\Vert
+     _{1}\left\Vert g\right\Vert_{1}.
+    \end{equation*}
+  <li> Prueba que
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}f\ast g=\int_{\mathbb{R}^{2n}}f(x)g(y)dx\,dy=\biggl(
+        \int_{\mathbb{R}^{n}}f\biggr) \biggl( \int_{\mathbb{R}^{n}}g\biggr) .
+    \end{equation*}
+  <li> Prueba que
+    \begin{equation*}
+      f\ast g=g\ast f.
+    \end{equation*}
+  </ol>
+</div>
+
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+</html>

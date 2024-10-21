@@ -1,0 +1,1812 @@
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/7.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 6;
+              }
+              </style>  
+<h2 id="Cap-7">Compacidad en espacios de funciones</h2>
+<p class="noj">
+En el Capítulo <a href="tul/P_T_02/4.html">4</a>&nbsp;dimos una
+caracterización sencilla de los subconjuntos compactos de
+$\mathbb{R}^{n} $. Probamos que son precisamente aquellos que son
+cerrados y acotados.
+</p>
+<p>
+El objetivo de este capítulo es dar una caracterización
+sencilla de los subconjuntos compactos del espacio de funciones
+continuas $\mathcal{C}^{0}(K,X)$ en un espacio métrico compacto
+$K$. Dicha caracterización, debida a Giulio Ascoli y Cesare
+Arzelà, se basa fundamentalmente en la noción de
+<em class="emph">equicontinuidad</em>.
+</p>
+<p>
+El teorema de Arzelà-Ascoli es un resultado fundamental en
+análisis y tiene muchas aplicaciones importantes. Una de ellas es
+el teorema de Peano que afirma la existencia de soluciones al problema
+de Cauchy para campos vectoriales continuos. Lo demostraremos en este
+capítulo.
+</p>
+<p>
+Además aplicaremos el teorema de Arzelà-Ascoli para obtener
+condiciones que aseguren la existencia de trayectorias de longitud
+mínima en espacios métricos, dando así respuesta a la
+pregunta que planteamos en el Capítulo <a href="tul/P_T_02/1.html">1</a>.
+</p>
+
+<h3  id="sec7-1">Conjuntos totalmente acotados</h3>
+<p class="noj">
+La demostración del teorema de Heine-Borel se basó en el hecho
+de que podemos cubrir a un cubo en $\mathbb{R}^{n}$ (y, en
+consecuencia, a cualquier subconjunto acotado) con un número
+finito de bolas de radio $\varepsilon $, para cualquier $\varepsilon
+>0$. Esto no es cierto en un espacio métrico arbitrario, como lo
+muestra el siguiente ejemplo.
+</p>
+<p>
+<div id="nota" class="example">
+La bola cerrada $&nbsp;\bar{B}_{\ell
+   _{2}}(0,1):=\left\{(x_{n})\in \ell_{2}:\sum_{n=1}^{\infty
+  }x_{n}^{2}\leq 1\right\}$<em class="textbf">&nbsp;</em> no puede ser cubierta por un
+  número finito de bolas abiertas de radio $\varepsilon $ en $\ell
+ _{2}$, para ningún $\varepsilon \in (0,\sqrt{2}/2)$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Para cada $k\in \mathbb{N}$ denotemos por $\overline{e}_{k}\in \ell
+ _{2}$ a la sucesión cuyo $k$-ésimo término es $1$ y
+  todos los demás términos son $0$. Claramente
+  $\overline{e}_{k}\in \bar{B}_{\ell_{2}}(0,1)$. Observa que
+  \begin{equation*}
+    \left\Vert \overline{e}_{j}-\overline{e}_{k}\right\Vert_{2}=\sqrt{2}\text{\qquad }\forall j\neq k.
+  \end{equation*}
+  Sea $\varepsilon \in (0,\sqrt{2}/2)$. Si $\bar{B}_{\ell_{2}}(0,1)$
+  pudiese ser cubierta por un número finito de bolas de radio
+  $\varepsilon $ en $\ell_{2}$, entonces al menos una de ellas
+  tendría que contener a un par de sucesiones
+  $\overline{e}_{j},\overline{e}_{k}$ con $j\neq k$, lo cual es
+  imposible.
+</div>
+</p>
+<p>
+Sea $X=(X,d_{X})$ un espacio métrico. Estudiaremos a los
+subconjuntos de $X$ que tienen la siguiente propiedad.
+</p>
+<p>
+<div class="definition">
+  Un subconjunto $A$ de $X$ es <em class="textbf">totalmente acotado
+  </em>\index{conjunto!totalmente acotado}\index{totalmente acotado}si
+  para cada $\varepsilon >0$ existe un número finito de puntos
+  $a_{1},\dots,a_{m}\in A$ tales que
+  \begin{equation*}
+    A\subset B_{X}(a_{1},\varepsilon )\cup \cdots \cup B_{X}(a_{m},\varepsilon ),
+  \end{equation*}
+  donde $B_{X}(a,\varepsilon )$ denota a la bola abierta con centro en
+  $a$ y radio $\varepsilon $ en $X$.
+</div>
+</p>
+<p>
+Veamos algunas propiedades sencillas de los conjuntos totalmente
+acotados.
+</p>
+<p>
+<div id="propta" class="proposition">
+Sea $A$ un subconjunto de $X$.
+</p>
+  <ol class="alfa">
+  <li> Si $A$ es compacto, entonces $A$ es totalmente acotado.</li>
+
+  <li> Si $A$ es totalmente acotado, entonces $A$ es acotado en
+    $X$.</li>
+<p>
+  <li> Si $D\subset A$ y $A$ es totalmente acotado, entonces $D$
+    es totalmente acotado.</li>
+<li> Si $A$ es totalmente acotado, entonces su cerradura
+
+    $\overline{A}$ en $X$ es totalmente acotada.</li>
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a): </em> Si $A\subset X$ es compacto entonces, para toda
+  $\varepsilon >0$, la cubierta abierta $\left\{B_{X}(x,\varepsilon ):x\in
+  A\right\}$ de $A$ contiene una subcubierta finita. Es decir, existen
+  $x_{1},\dots,x_{m}\in A$ tales que
+  \begin{equation*}
+    A\subset B_{X}(x_{1},\varepsilon )\cup \cdots \cup B_{X}(x_{m},\varepsilon ).
+  \end{equation*}
+</p>
+<p>
+  <em class="emph">(b): </em> Si $A\subset X$ es totalmente acotado entonces existen
+  $a_{1},\dots,a_{m}\in A$ tales que
+  \begin{equation*}
+    A\subset B_{X}(a_{1},1)\cup \cdots \cup B_{X}(a_{m},1).
+  \end{equation*}
+  En consecuencia, $A\subset B_{X}(a_{1},r+1)$ donde $r:=\max
+  \left\{d_{X}(a_{1},a_{j}):j=2,\dots,m\right\}$, es decir, $A$ es acotado.
+</p>
+<p>
+  <em class="emph">(c): </em> Sean $A$ un subconjunto totalmente acotado de $X$,
+  $D\subset A$ y $\varepsilon >0$. Entonces existen
+  $a_{1},\dots,a_{m}\in A$ tales que
+  \begin{equation*}
+    A\subset B_{X}(a_{1},\tfrac{\varepsilon }{2})\cup \cdots \cup B_{X}(a_{m},\tfrac{\varepsilon }{2}).
+  \end{equation*}
+  Sea $J:=\left\{j\in \left\{1,\dots,m\right\}:B_{X}(a_{j},\frac{\varepsilon }{2})\cap
+  D\neq \emptyset \right\}$. Para cada $j\in J$ elegimos un punto $b_{j}\in
+  B_{X}(a_{j},\frac{\varepsilon }{2})\cap D$. Entonces se cumple que
+  \begin{equation*}
+    D\subset \bigcup_{j\in J}B_{X}(b_{j},\varepsilon ).
+  \end{equation*}
+  Esto prueba que $D$ es totalmente acotado.
+</p>
+<p>
+  <em class="emph">(d): </em> Sean $A$ un subconjunto totalmente acotado de $X$,
+  $\varepsilon >0$, y $a_{1},\dots,a_{m}\in A$ tales que
+  \begin{equation*}
+    A\subset B_{X}(a_{1},\tfrac{\varepsilon }{2})\cup \cdots \cup B_{X}(a_{m},\tfrac{\varepsilon }{2}).
+  \end{equation*}
+  Como &nbsp;$\bar{B}_{X}(a_{1},\frac{\varepsilon }{2})\cup \cdots \cup
+  \bar{B}_{X}(a_{m},\frac{\varepsilon }{2})$ &nbsp;es cerrado, se tiene
+  que
+  \begin{equation*}
+    \overline{A}\subset \bar{B}_{X}(a_{1},\tfrac{\varepsilon }{2})\cup \cdots
+    \cup \bar{B}_{X}(a_{m},\tfrac{\varepsilon }{2}).
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \overline{A}\subset B_{X}(a_{1},\varepsilon )\cup \cdots \cup
+    B_{X}(a_{m},\varepsilon ).
+  \end{equation*}
+  Esto prueba que $\overline{A}$ es totalmente acotado.
+</div>
+</p>
+<p>
+El siguiente resultado da caracterizaciones muy útiles de los
+espacios métricos compactos.
+</p>
+<p>
+<div id="caractcomp" class="theorem">
+Las siguientes tres afirmaciones son equivalentes:
+</p>
+<p>
+  <ol class="alfa">
+  <li> $X$ es compacto.</li>
+<li> Toda sucesión en $X$ contiene una subsucesión que
+    converge en $X$.</li>
+<li> $X$ es completo y totalmente acotado.</li>
+
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a)&nbsp; </em>$\Rightarrow $<em class="emph">&nbsp; (b)</em>: &nbsp;Esta
+  es la afirmación de la Proposición <a href="tul/P_T_02/7.html#compbw">compbw</a>.
+</p>
+<p>
+  <em class="emph">(b)&nbsp; </em>$\Rightarrow $<em class="emph">&nbsp; (c)</em>: &nbsp;Sea
+  $(x_{k})$ una sucesión de Cauchy en $X$. Si $X$ satisface
+  <em class="emph">(b)</em> entonces $(x_{k})$ contiene una subsucesión que
+  converge a un punto $x\in X$. En consecuencia, $(x_{k})$ converge a
+  $x$ en $X$ (ver Ejercicio <a href="tul/P_T_02/7.html#subconvcau">subconvcau</a>). Esto prueba que $X$
+  es completo.
+</p>
+<p>
+  Supongamos ahora que $X$ no es totalmente acotado. Entonces existe
+  $\varepsilon_{0}>0$ tal que $X$ no puede ser cubierto por un
+  número finito de bolas abiertas de radio $\varepsilon_{0}$. Por
+  consiguiente, podemos escoger, inductivamente, una sucesión de
+  puntos $x_{k}\in X$ tales que
+  \begin{equation*}
+    x_{k}\notin B_{X}(x_{1},\varepsilon_{0})\cup \cdots \cup
+    B_{X}(x_{k-1},\varepsilon_{0}).
+  \end{equation*}
+  Por tanto, $d_{X}(x_{j},x_{k})\geq \varepsilon_{0}$ para toda
+  $j\neq k$ y, en consecuencia, ninguna subsucesión de $(x_{k})$
+  es de Cauchy. Esto implica que $(x_{k})$ no contiene ninguna
+  subsucesión convergente. Es decir, si $X$ no es totalmente
+  acotado, entonces <em class="emph">(b)</em> no se cumple.
+</p>
+<p>
+  <em class="emph">(c)&nbsp; </em>$\Rightarrow $<em class="emph">&nbsp; (a)</em>: \
+  Argumentando por contradicción, supongamos que $X$ es completo y
+  totalmente acotado pero no es compacto. Entonces $X$ tiene una
+  cubierta abierta $\mathcal{U}=\left\{U_{i}:i\in \mathcal{I}\right\}$
+  que no contiene ninguna subcubierta finita.  Como $X$ es totalmente
+  acotado, está contenido en la unión de un número finito de bolas
+  abiertas de radio $1$. Por tanto, existe un punto $x_{0}\in X$ tal
+  que $B_{X}(x_{0},1)$, no puede ser cubierta por un número finito de
+  elementos de $\mathcal{U}$. Como $B_{X}(x_{0},1)$ es totalmente
+  acotado (ver Proposición <a href="tul/P_T_02/7.html#propta">propta</a>), está contenido en la unión
+  de un número finito de bolas abiertas de radio $\frac{1}{2}$ cuyos
+  centros están en $B_{X}(x_{0},1)$. Por consiguiente, existe
+  $x_{1}\in B_{X}(x_{0},1)$ tal que $B_{X}(x_{1},\frac{1}{2})$, no
+  puede ser cubierta por un número finito de elementos de
+  $\mathcal{U}$. De este modo construímos, inductivamente, una
+  sucesión $(x_{k})$ tal que
+  $x_{k}\in B_{X}(x_{k-1},\frac{1}{2^{k-1}}) $ &nbsp;y \
+  $B_{X}(x_{k},\frac{1}{2^{k}})$ &nbsp;no puede ser cubierta por un número
+  finito de elementos de $\mathcal{U}$. Para toda $j\geq k$, se tiene
+  entonces que
+  \begin{equation}
+    d_{X}(x_{k},x_{j})\leq d_{X}(x_{k},x_{k+1})+\cdots +d_{X}(x_{j-1},x_{j})<\tfrac{1}{2^{k}}+\cdots +\tfrac{1}{2^{j-1}}<\tfrac{1}{2^{k-1}},\label{desta}
+  \end{equation}
+  es decir, la sucesión $(x_{k})$ es Cauchy. Como $X$ es completo,
+  esta sucesión converge a un punto $x^{\ast }&nbsp;$en $X$. Haciendo
+  tender $j\rightarrow \infty $ en la desigualdad (\ref{desta})
+  obtenemos que
+  \begin{equation*}
+    d_{X}(x_{k},x^{\ast })\leq \tfrac{1}{2^{k-1}}\text{\qquad }\forall k\in 
+    \mathbb{N}.
+  \end{equation*}
+  Por otra parte, como $x^{\ast }\in X$, existe $U^{\ast }\in
+  \mathcal{U}$ tal que $x^{\ast }\in U^{\ast }$. Como $U^{\ast }$ es
+  abierto, existe $\varepsilon >0$ tal que $B_{X}(x^{\ast
+  },\varepsilon )\subset U^{\ast }$. Sea $k$ tal que
+  $\frac{1}{2^{k-1}}<\frac{\varepsilon }{2}$. Entonces, para todo
+  $x\in B_{X}(x_{k},\frac{1}{2^{k}})$, se tiene que
+  \begin{equation*}
+    d_{X}(x,x^{\ast })\leq d_{X}(x,x_{k})+d_{X}(x^{\ast },x_{k})<\tfrac{1}{2^{k}}+\tfrac{1}{2^{k-1}}<\varepsilon ,
+  \end{equation*}
+  es decir,
+  \begin{equation*}
+    B_{X}(x_{k},\tfrac{1}{2^{k}})\subset B_{X}(x^{\ast },\varepsilon )\subset
+    U^{\ast }.
+  \end{equation*}
+  Esto es una contradicción, ya que habíamos supuesto que
+  $B_{X}(x_{k},\frac{1}{2^{k}})$ no puede ser cubierta por un
+  número finito de elementos de $\mathcal{U}$.
+</div>
+</p>
+<p>
+Observa la similitud de la demostración de la afirmación
+<em class="emph">(c)&nbsp; </em>$\Rightarrow $<em class="emph">&nbsp; (a)</em> con la de la
+Proposición <a href="tul/P_T_02/7.html#cubo">cubo</a>, que constituye la parte medular de la
+demostración del teorema de Heine-Borel. La caracterización
+<em class="emph">(c)</em> es muy útil, como veremos en las siguientes secciones.
+</p>
+<p>
+<div class="definition">
+  Un subconjunto $A$ de $X$ es <em class="textbf">relativamente compacto</em>
+  \index{conjunto!relativamente compacto}\index{relativamente
+    compacto}en $X$ si su cerradura $\overline{A}$ en $X$ es compacta.
+</div>
+</p>
+<p>
+Los subconjuntos relativamente compactos de $\mathbb{R}^{n}$ son
+precisamente los conjuntos acotados.
+</p>
+<p>
+En un espacio métrico completo se cumple lo siguiente.
+</p>
+<p>
+<div id="relcomp=ta" class="corollary">
+  Un subconjunto $A$ de un espacio métrico
+  completo $X$ es relativamente compacto en $X$ si y sólo si es
+  totalmente acotado.
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$: &nbsp;Sea $A$ relativamente compacto en $X$. La
+  Proposición <a href="tul/P_T_02/7.html#propta">propta</a> implica entonces que $\overline{A}$ es
+  totalmente acotado y, en consecuencia, que $A$ también lo es.
+</p>
+<p>
+  $\Leftarrow )$: &nbsp;Inversamente, supongamos que $A$ es totalmente
+  acotado. La Proposición <a href="tul/P_T_02/7.html#propta">propta</a> afirma que $\overline{A}$ es
+  totalmente acotado. Por otra parte, como $X$ es completo y
+  $\overline{A}$ es cerrado en $X$, se tiene que $\overline{A}$ es
+  completo (ver Proposición <a href="tul/P_T_02/7.html#complcerr">complcerr</a>). El
+  Teorema <a href="tul/P_T_02/7.html#caractcomp">caractcomp</a> asegura entonces que $\overline{A}$&nbsp;es
+  compacto.
+</div>
+</p>
+
+<h3 id="sec7-2">El teorema de Arzelà-Ascoli</h3>
+<p class="noj">
+Sean $K=(K,d_{K})$ un espacio métrico compacto y $X=(X,d_{X})$ un
+espacio métrico. Consideremos el espacio de funciones continuas
+\begin{equation*}
+  \mathcal{C}^{0}(K,X):=\left\{f\colon K\rightarrow X:f\text{ es continua}\right\}
+\end{equation*}
+con la métrica uniforme
+\begin{equation*}
+  d_{\infty }(f,g)=\max_{z\in K}d_{X}(f(z),g(z)),
+\end{equation*}
+ver (\ref{dinfmax}). Usaremos el Corolario <a href="tul/P_T_02/7.html#relcomp=ta">relcomp=ta</a> para
+obtener una caracterización sencilla de los subconjuntos
+relativamente compactos de $\mathcal{C}^{0}(K,X)$. La siguiente
+noción, introducida por Ascoli en 1884, jugará un papel
+fundamental.
+</p>
+<p>
+<div class="definition">
+  Un subconjunto $\mathcal{H}$ de $\mathcal{C}^{0}(K,X)$ es
+  <em class="textbf">equicontinuo</em>
+  \index{conjunto!equicontinuo}\index{equicontinuo}en el punto
+  $z_{0}\in K$ si, para cada $\varepsilon >0$, existe $\delta >0$ (que
+  depende de $\varepsilon $ y de $z_{0}$) tal que, para toda $f\in
+  \mathcal{H}$,
+  \begin{equation*}
+    d_{X}\left( f(z),f(z_{0})\right) <\varepsilon 
+    \text{\qquad si &nbsp;}d_{K}\left( z,z_{0}\right) <\delta .
+  \end{equation*}
+  $\mathcal{H}$ es <em class="textbf">equicontinuo </em>si lo es en todo punto de
+  $K$.
+</div>
+</p>
+<p>
+El aspecto crucial de esta definición es que la misma $\delta >0$
+nos sirve para todas las funciones que pertenecen a $\mathcal{H}$. Un
+ejemplo en el que esto no se cumple es el siguiente.
+</p>
+<p>
+<div class="example">
+  El conjunto $\mathcal{H}=\left\{f_{k}\in
+  \mathcal{C}^{0}([-1,1],\mathbb{R}):k\in \mathbb{N}\right\}$, donde
+  \begin{equation*}
+    f_{k}(t)=
+      \begin{cases}
+        -1 & \text{si $t\in \left[ -1,-\frac{1}{k}\right]$,} \\[3pt] 
+        kt & \text{si $t\in \left[ -\frac{1}{k},\frac{1}{k}\right]$,} \\[3pt] 
+        1 & \text{si $t\in \left[ \frac{1}{k},1\right]$,}
+      \end{cases}
+  \end{equation*}
+  no es equicontinuo en $0$.
+<div id="fig:7-1" class="figure">
+  <img src="tul/P_T_02/figuras/fk-cap7.svg" height="270">
+  <div class="caption">
+  </div>                
+</div>
+</div>
+</p>
+<p>
+La demostración es sencilla [Ejercicio <a href="tul/P_T_02/7.html#noequi">noequi</a>].
+</p>
+<p>
+A continuación enunciamos el teorema de Giulio
+Ascoli\footnote{Giulio Ascoli (1843-1896) nació en Trieste,
+  Italia. Estudió en la Scuola Normale di Pisa y fue profesor en
+  el Politecnico di Milano.} y Cesare Arzelà\footnote{Cesare
+  Arzelà (1847-1912) nació en Santo Stefano di Magra, Italia.
+  Estudió en la Scuola Normale Superiore de Pisa, donde fue alumno
+  de Enrico Betti y Ulisse Dini, y fue profesor en la Universidad de
+  Bologna.}.
+</p>
+<p>
+\begin{multicols}{2}
+\begin{bio}[H]
+\centering
+\includegraphics[width=.3\textwidth]{./fotos/calcasdos/Frechet.png}\\[5pt]
+\includegraphics[height=.31\textwidth]{./fotos/calcasdos/Giulio_ascoli.pdf}\\[5pt]
+ \bfseries Giulio Ascoli
+\end{bio}
+\begin{bio}[H]
+\centering
+\includegraphics[width=.3\textwidth]{./fotos/calcasdos/Frechet.png}\\[5pt]
+\includegraphics[height=.31\textwidth]{./fotos/calcasdos/Arzela.pdf}\\[5pt]
+ \bfseries Cesare Arzelà
+\end{bio}
+\end{multicols}
+</p>
+<p>
+Denotaremos por
+\begin{equation*}
+  B_{\infty }(f_{0},r):=\left\{f\in \mathcal{C}^{0}(K,X):d_{\infty }(f,f_{0})<r\right\}
+\end{equation*}
+a la bola abierta en $\mathcal{C}^{0}(K,X)$ con centro en $f_{0}$ y
+radio $r. $
+</p>
+<p>
+<div class="theorem">[Arzelà-Ascoli]
+\label{aa}\index{teorema!de Arzelà-Ascoli}Sean $K$ un espacio
+  métrico compacto y $X$ un espacio métrico completo. Un
+  subconjunto $\mathcal{H}$ de $\mathcal{C}^{0}(K,X)$ es relativamente
+  compacto en $\mathcal{C}^{0}(K,X)$ si y sólo si $\mathcal{H}$ es
+  equicontinuo y los conjuntos
+  \begin{equation*}
+    \mathcal{H}(z):=\left\{f(z):f\in \mathcal{H}\right\}
+  \end{equation*}
+  son relativamente compactos en $X$ para cada $z\in K$.
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$: &nbsp;Supongamos que $\mathcal{H}$ es relativamente
+  compacto en $\mathcal{C}^{0}(K,X)$. Entonces $\mathcal{H}$ es
+  totalmente acotado. En consecuencia, dada $\varepsilon >0$, existen
+  $g_{1},\dots,g_{m}\in \mathcal{H}$ tales que
+  \begin{equation*}
+    \mathcal{H}\subset B_{\infty }(g_{1},\tfrac{\varepsilon }{3})\cup 
+    \cdots \cup B_{\infty }(g_{m},\tfrac{\varepsilon }{3}).
+  \end{equation*}
+  Por tanto, $g_{i}(z)\in \mathcal{H}(z)$ para $i=1,\dots,m$, y
+  \begin{equation*}
+    \mathcal{H}(z)\subset B_{X}(g_{1}(z),\tfrac{\varepsilon }{3})\cup \cdots \cup
+    B_{X}(g_{m}(z),\tfrac{\varepsilon }{3})\text{\qquad }\forall z\in K.
+  \end{equation*}
+  Esto prueba que $\mathcal{H}(z)$ es totalmente acotado y, como $X$
+  es completo, el Corolario <a href="tul/P_T_02/7.html#relcomp=ta">relcomp=ta</a>&nbsp;asegura que
+  $\mathcal{H}(z)$ es relativamente compacto en $X$ para todo $z\in
+  K$.
+</p>
+<p>
+  Por otra parte, como $K$ es compacto, cada $g_{i}$ es uniformemente
+  continua. En consecuencia, existe $\delta_{i}>0$ tal que, para
+  cualesquiera $y,z\in K$,
+  \begin{equation}
+    d_{X}\left( g_{i}(y),g_{i}(z)\right) <\frac{\varepsilon }{3}\text{\qquad si }d_{K}(y,z)<\delta_{i}.\label{gunifcon}
+  \end{equation}
+  Definimos $\delta :=\min \left\{\delta_{1},\dots,\delta_{m}\right\}$. Dada
+  $f\in \mathcal{H}$ existe $i\in \left\{1,\dots,m\right\}$ tal que $d_{\infty
+  }(f,g_{i})<\frac{\varepsilon }{3}$. Usando (\ref{gunifcon})
+  obtenemos que
+  \begin{align*}
+    d_{X}(f(y),f(z)) &\leq
+    d_{X}(f(y),g_{i}(y))+d_{X}(g_{i}(y),g_{i}(z))+d_{X}\left(
+      g_{i}(z),f(z)\right) \\
+    &<\varepsilon \text{\qquad si &nbsp;}d_{K}(y,z)<\delta .
+  \end{align*}
+  Esto prueba que $\mathcal{H}$&nbsp;es equicontinuo.
+</p>
+<p>
+  $\Leftarrow )$: &nbsp;Supongamos ahora que $\mathcal{H}$ es equicontinuo
+  y que $\mathcal{H}(z)$&nbsp;es relativamente compacto en $X$ para todo
+  $z\in K$. Queremos probar que $\mathcal{H}$ es relativamente
+  compacto en $\mathcal{C}^{0}(K,X)$. Como $X$ es completo,
+  $\mathcal{C}^{0}(K,X)$ también lo es (ver
+  Teorema <a href="tul/P_T_02/7.html#funcacotcompl">funcacotcompl</a>). Por el Corolario <a href="tul/P_T_02/7.html#relcomp=ta">relcomp=ta</a>\
+  basta entonces probar que $\mathcal{H}$ es totalmente acotado.
+</p>
+<p>
+  Sea $\varepsilon >0$. Para cada $z\in K$ tomemos $\delta_{z}>0$ tal
+  que, para toda $f\in \mathcal{H}$,
+  \begin{equation}
+    d_{X}\left( f(y),f(z)\right) <\frac{\varepsilon }{4}\text{ \quad si }d_{K}\left( y,z\right) <\delta_{z}.\label{Hequi}
+  \end{equation}
+  Como $K$ es compacto, existen $z_{1},\dots,z_{m}\in K$ tales que
+  \begin{equation}
+    K\subset B_{K}(z_{1},\delta_{z_{1}})\cup \cdots \cup B_{K}(z_{m},\delta
+   _{z_{m}})\label{Xcomp}
+  \end{equation}
+  y, como cada $\mathcal{H}(z_{i})$&nbsp;es totalmente acotado, existen
+  $x_{1},\dots,x_{k}\in X$ tales que
+  \begin{equation}
+    \mathcal{H}(z_{1})\cup \cdots \cup \mathcal{H}(z_{m})\subset B_{X}(x_{1},\tfrac{\varepsilon }{4})\cup \cdots \cup B_{X}(x_{k},\tfrac{\varepsilon }{4}).
+  \label{Hta}
+  \end{equation}
+  Denotemos por $S$ al conjunto (finito) de todas las funciones
+  $\sigma \colon \left\{1,\dots,m\right\}\rightarrow \left\{1,\dots,k\right\}$. Para cada $\sigma \in
+  S$ definimos
+  \begin{equation*}
+    \mathcal{H}_{\sigma }:=\left\{f\in \mathcal{H}:f(z_{i})\in B_{X}(x_{\sigma (i)},\tfrac{\varepsilon }{4})\text{ &nbsp;}\forall i=1,\dots,m\right\}.
+  \end{equation*}
+  Se sigue de (\ref{Hta}) que, para cada $f\in \mathcal{H}$ y cada
+  $i\in \left\{1,\dots,m\right\}$, existe $\sigma (i)\in \left\{1,\dots,k\right\}$ tal que
+  $f(z_{i})\in B_{X}(x_{\sigma (i)},\frac{\varepsilon }{4})$. En
+  consecuencia,
+  \begin{equation}
+    \mathcal{H}\subset \bigcup_{\sigma \in S}\mathcal{H}_{\sigma }.\label{Hta1}
+  \end{equation}
+  Probaremos ahora que cada $\mathcal{H}_{\sigma }$ está contenida
+  en una bola de radio $\varepsilon $ con centro en $\mathcal{H}$.
+  Sean $f,g\in \mathcal{H}_{\sigma }$ y sea $z\in K$. Se sigue de
+  (\ref{Xcomp}) que existe $i\in \left\{1,\dots,m\right\}$ tal que
+  $d_{K}(z,z_{i})<\delta_{z_{i}}$ y, en consecuencia, (\ref{Hequi})
+  implica que $d_{X}\left( h(z),h(z_{i})\right) <\frac{\varepsilon
+  }{4}$ para toda $h\in \mathcal{H}$. Por tanto,
+  \begin{align*}
+    d_{X}(f(z),g(z)) &\leq d_{X}\left( f(z),f(z_{i})\right)
+    +d_{X}(f(z_{i}),x_{\sigma (i)}) \\
+    &\qquad{}+d_{X}(g(z_{i}),x_{\sigma (i)})+d_{X}\left( g(z),g(z_{i})\right)
+    <\varepsilon .
+  \end{align*}
+  Tomando el máximo sobre toda $z\in K$ concluimos que $d_{\infty
+  }(f,g)<\varepsilon $ para todas $f,g\in \mathcal{H}_{\sigma }$. En
+  consecuencia, para cualquier elección de $g_{\sigma }\in
+  \mathcal{H}_{\sigma }$, se cumple que
+  \begin{equation}
+    \mathcal{H}_{\sigma }\subset B_{\infty }(g_{\sigma },\varepsilon ).
+  \label{Hta2}
+  \end{equation}
+  De (\ref{Hta1}) y (\ref{Hta2}) se sigue que
+  \begin{equation*}
+    \mathcal{H}\subset \bigcup_{\sigma \in S}B_{\infty }(g_{\sigma },\varepsilon
+    ).
+  \end{equation*}
+  Por tanto, $\mathcal{H}$ es totalmente acotado.
+</div>
+</p>
+<p>
+Recordemos que $\mathcal{H}$ es un subconjunto acotado de
+$\mathcal{C}^{0}(K,\mathbb{R}^{n})$ si existen $f_{0}\in \mathcal{H}$
+y $C>0$ tales que
+\begin{equation*}
+  \left\Vert f-f_{0}\right\Vert_{\infty }=\max_{z\in K}\left\Vert
+    f(z)-f_{0}(z)\right\Vert \leq C\text{\qquad }\forall f\in \mathcal{H}
+\end{equation*}
+(ver Definición <a href="tul/P_T_02/7.html#defconjacotado">defconjacotado</a>). El teorema de
+Arzelà-Ascoli permite caracterizar a los subconjuntos
+relativamente compactos de $\mathcal{C}^{0}(K,\mathbb{R}^{n})$ como
+sigue.
+</p>
+<p>
+<div id="coraa" class="corollary">
+Sea $K$ un espacio métrico compacto. Un subconjunto
+  $\mathcal{H}$ de $\mathcal{C}^{0}(K,\mathbb{R}^{n})$ es
+  relativamente compacto en $\mathcal{C}^{0}(K,\mathbb{R}^{n})$ si y
+  sólo si $\mathcal{H} $ es equicontinuo y acotado en
+  $\mathcal{C}^{0}(K,\mathbb{R}^{n})$.
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$: &nbsp;Sea $\mathcal{H}$ un subconjunto relativamente
+  compacto en $\mathcal{C}^{0}(K,\mathbb{R}^{n})$. Por el
+  Teorema <a href="tul/P_T_02/7.html#aa">aa</a>, $\mathcal{H} $ es equicontinuo y, por la
+  Proposición <a href="tul/P_T_02/7.html#comphb">comphb</a>,&nbsp;la cerradura de $\mathcal{H}$ es acotada
+  en $\mathcal{C}^{0}(K,\mathbb{R}^{n})$. En consecuencia,
+  $\mathcal{H}$ es acotado en $\mathcal{C}^{0}(K,\mathbb{R}^{n}). $
+</p>
+<p>
+  $\Leftarrow )$: &nbsp;Inversamente, supongamos que $\mathcal{H}$ es
+  equicontinuo y acotado en $\mathcal{C}^{0}(K,\mathbb{R}^{n})$.
+  Entonces existen $f_{0}\in \mathcal{H}$ y $C>0$ tales que
+  \begin{equation*}
+    \left\Vert f-f_{0}\right\Vert_{\infty }=\max_{z\in K}\left\Vert
+      f(z)-f_{0}(z)\right\Vert \leq C\text{\qquad }\forall f\in \mathcal{H}.
+  \end{equation*}
+  En consecuencia, $\mathcal{H}(z)$ está acotado en
+  $\mathbb{R}^{n}$ para todo $z\in K$ y, por el teorema de Heine-Borel
+  (ver Teorema <a href="tul/P_T_02/7.html#hb">hb</a>), $\mathcal{H}(z)$ es relativamente compacto
+  en $\mathbb{R}^{n}$ para todo $z\in K$. El Teorema <a href="tul/P_T_02/7.html#aa">aa</a>&nbsp;asegura
+  entonces que $\mathcal{H}$ es relativamente compacto en
+  $\mathcal{C}^{0}(K,\mathbb{R}^{n})$.
+</div>
+</p>
+<p>
+Daremos a continuación una primera aplicación interesante de
+este resultado. Requerimos la siguiente definición.
+</p>
+<p>
+<div class="definition">
+  Una función lineal $T\colon V\rightarrow W$ entre espacios de Banach
+  se llama un <em class="textbf">operador compacto</em> \index{operador!compacto}si,
+  para cualquier sucesión acotada $(v_{k})$ en $V$, la
+  sucesión $(Tv_{k})$ contiene una subsucesión convergente en
+  $W$.
+</div>
+</p>
+<p>
+<div class="proposition">
+  Sea $\mathcal{K}\colon [a,b]\times [a,b]\rightarrow \mathbb{R}$ una
+  función continua. El operador de Volterra
+  $\mathfrak{V}\colon \mathcal{C}^{0}[a,b]\rightarrow \mathcal{C}^{0}[a,b]$
+  dado por
+  \begin{equation*}
+    (\mathfrak{V}f)(x):=\int_{a}^{x}\mathcal{K}(x,y)f(y)dy
+  \end{equation*}
+  es un operador compacto.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $(f_{k})$ una sucesión en $\mathcal{C}^{0}[a,b]$&nbsp;tal que
+  $\left\Vert f_{k}\right\Vert_{\infty }\leq c$ para algún $c\in
+  \mathbb{R}$. Entonces,
+  \begin{equation*}
+    \left\vert (\mathfrak{V}f_{k})(x)\right\vert \leq \int_{a}^{x}\left\vert 
+      \mathcal{K}(x,y)\right\vert \left\vert f_{k}(y)\right\vert dy\leq
+    (b-a)\left\Vert \mathcal{K}\right\Vert_{\infty }\left\Vert f_{k}\right\Vert
+   _{\infty }\leq (b-a)\left\Vert \mathcal{K}\right\Vert_{\infty }c
+  \end{equation*}
+  para todo $x\in [a,b]$ y todo $k\in \mathbb{N}$. Por tanto,
+  $\left\Vert \mathfrak{V}f_{k}\right\Vert_{\infty }\leq
+  (b-a)\left\Vert \mathcal{K}\right\Vert_{\infty }c$ para todo $k\in
+  \mathbb{N}$, es decir, $\mathcal{H}:=\left\{\mathfrak{V}f_{k}:k\in
+  \mathbb{N}\right\}$ es acotado en $\mathcal{C}^{0}[a,b]$. Más aún,
+  como $\mathcal{K}$ es uniformemente continua, para cada $\varepsilon
+  >0$ existe $\delta_{1}>0$ tal que
+  \begin{equation*}
+    \left\vert \mathcal{K}(x_{1},y_{1})-\mathcal{K}(x_{2},y_{2})\right\vert <\frac{\varepsilon }{2(b-a)c}\text{\qquad si }\left\Vert
+      (x_{1},y_{1})-(x_{2},y_{2})\right\Vert <\delta_{1}.
+  \end{equation*}
+  En consecuencia, si&nbsp;$\left\vert x_{1}-x_{2}\right\vert <\delta
+  :=\min \left\{\delta_{1},\frac{\varepsilon }{2\left\Vert
+      \mathcal{K}\right\Vert_{\infty }c}\right\}$ y $x_{1}\leq x_{2}$, se
+  tiene que
+  \begin{align*}
+    &\left\vert \left( \mathfrak{V}f_{k}\right)
+    (x_{1})-\left( \mathfrak{V}f_{k}\right) (x_{2})\right\vert \\
+    &\qquad{}=\biggl\vert
+      \int_{a}^{x_{1}}(\mathcal{K}(x_{1},y)-\mathcal{K}(x_{2},y))f_{k}(y)dy
+    -\int_{x_{1}}^{x_{2}}\mathcal{K}(x_{2},y)f_{k}(y)dy\biggr\vert \\
+    &\qquad{}\leq \int_{a}^{x_{1}}\left\vert \mathcal{K}(x_{1},y)-\mathcal{K}(x_{2},y)\right\vert \left\vert f_{k}(y)\right\vert
+    dy
+      +\int_{x_{1}}^{x_{2}}\left\vert \mathcal{K}(x_{2},y)\right\vert \left\vert
+      f_{k}(y)\right\vert dy \\
+    &\qquad{}<(b-a)\frac{\varepsilon }{2(b-a)c}c+\frac{\varepsilon }{2\left\Vert 
+        \mathcal{K}\right\Vert_{\infty }c}\left\Vert \mathcal{K}\right\Vert
+   _{\infty }c=\varepsilon ,
+  \end{align*}
+  para todo $k\in \mathbb{N}$. Esto prueba que $\mathcal{H}$ es
+  equicontinuo.  Por el Corolario <a href="tul/P_T_02/7.html#coraa">coraa</a>, $\mathcal{H}$ es
+  relativamente compacto en $\mathcal{C}^{0}[a,b]$ y, en consecuencia,
+  $(\mathfrak{V}f_{k})$ contiene una subsucesión convergente en
+  $\mathcal{C}^{0}[a,b]$.
+</div>
+</p>
+<p>
+En las siguientes secciones daremos otras dos aplicaciones importantes
+del teorema de Arzelà-Ascoli.
+</p>
+
+<h3 id="sec7-3">El problema de Cauchy</h3>
+<p class="noj">
+Sean $\Omega $ un subconjunto abierto de $\mathbb{R}^{n}$, $\chi
+\colon (a,b)\times \Omega \rightarrow \mathbb{R}^{n}$ una función
+continua, $t_{0}\in (a,b)$ y $x_{0}\in \Omega $. En la Sección
+\ref{sec6-4} probamos que el problema de Cauchy 
+\index{problema!de Cauchy}
+\begin{equation*}
+    \begin{cases}
+      u^{\prime }=\chi (t,u), \\
+      u(t_{0})=x_{0},
+    \end{cases}
+\end{equation*}
+tiene una única solución en un intervalo $\left[ t_{0}-\delta
+  ,t_{0}+\delta \right] $ si el campo vectorial $\chi $ es localmente
+Lipschitz continuo en la segunda variable (ver Teorema
+\ref{pl}). Usaremos el teorema de Arzelà-Ascoli para probar que
+basta con que el campo vectorial sea continuo para que este problema
+tenga solución. Sin embargo, la solución no necesariamente es
+única (ver Ejercicio <a href="tul/P_T_02/7.html#ejnounica">ejnounica</a>).
+</p>
+<p>
+Fijemos $r>0$ tal que
+\begin{equation}
+  [t_{0}-r,t_{0}+r]\subset (a,b)\text{\qquad y\qquad }\bar{B}(x_{0},r)\subset \Omega\label{r}
+\end{equation}
+y consideremos el conjunto
+\begin{equation*}
+  K:=\left\{(t,x)\in \mathbb{R}\times \mathbb{R}^{n}:\left\vert t-t_{0}\right\vert
+  \leq r,\text{ }\left\Vert x-x_{0}\right\Vert \leq r\right\}.
+\end{equation*}
+Sea $M>0$ tal que
+\begin{equation*}
+  M>\max_{(t,x)\in K}\left\Vert \chi (t,x)\right\Vert ,
+\end{equation*}
+y sea
+\begin{equation*}
+  \delta :=\min \left\{r,\frac{r}{M}\right\}.
+\end{equation*}
+Empezaremos demostrando que el problema de Cauchy tiene soluciones
+aproximadas.
+</p>
+<p>
+<div id="solaprox" class="lemma">
+Dada $\varepsilon >0$ existe $u_{\varepsilon }\in
+  \mathcal{C}^{0}(\left[ t_{0}-\delta ,t_{0}+\delta \right]
+  ,\mathbb{R}^{n})$ con las siguientes propiedades:
+</p>
+<p>
+  <ol class="alfa">
+  <li> $u_{\varepsilon }(t_{0})=x_{0}$.</li>
+<li> $\left\Vert u_{\varepsilon }(t)-x_{0}\right\Vert \leq r$
+    &nbsp;para todo $t\in \left[ t_{0}-\delta ,t_{0}+\delta \right] $.</li>
+<li> $\left\Vert u_{\varepsilon }(t)-u_{\varepsilon
+      }(s)\right\Vert \leq M\left\vert t-s\right\vert $ &nbsp;si $s,t\in
+    \left[ t_{0}-\delta ,t_{0}+\delta \right] $.</li>
+<li> Existe un subconjunto finito $F_{\varepsilon }$ de
+
+    $\left( t_{0}-\delta ,t_{0}+\delta \right) $ tal que
+    $u_{\varepsilon }$ es continuamente diferenciable en $\left(
+      t_{0}-\delta ,t_{0}+\delta \right) \smallsetminus F_{\varepsilon
+    }$, y
+    \begin{equation*}
+      \left\Vert u_{\varepsilon }^{\prime }(t)-\chi (t,u_{\varepsilon
+        }(t))\right\Vert <\varepsilon \text{\qquad }\forall t\in \left( t_{0}-\delta
+        ,t_{0}+\delta \right) \smallsetminus F_{\varepsilon }.
+    \end{equation*}
+    </li>
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  Como $\chi $ es uniformemente continua en $K$, existe $\gamma >0$
+  tal que, para cualesquiera $(s,x),(t,y)\in K$,
+  \begin{equation}
+    \left\Vert \chi (s,x)-\chi (t,y)\right\Vert \leq \varepsilon \text{\qquad si
+      &nbsp;}\left\vert s-t\right\vert \leq \gamma \text{ &nbsp;y }\left\Vert
+      x-y\right\Vert \leq \gamma .\label{campouc}
+  \end{equation}
+  Subdividimos el intervalo $\left[ t_{0}-\delta ,t_{0}+\delta \right]
+  $ en subintervalos
+  \begin{equation*}
+    t_{0}-\delta =:t_{-n}<\cdots <t_{-1}<t_{0}<t_{1}<\cdots <t_{n}:=t_{0}+\delta
+  \end{equation*}
+  tales que $\left\vert t_{i+1}-t_{i}\right\vert \leq \min \left\{\gamma
+  ,\gamma /M\right\}$ para toda $i=-n,\dots,n-1$, y
+definimos
+$u_{\varepsilon
+  }\colon \left[ t_{0}-\delta ,t_{0}+\delta \right] \rightarrow
+  \mathbb{R}^{n}$, empezando con $u_{\varepsilon }(t_{0}):=x_{0}$,
+  recursivamente, del siguiente modo:
+  \begin{equation*}
+    u_{\varepsilon }(t):=
+      \begin{cases}
+        u_{\varepsilon }(t_{i})+(t-t_{i})\chi (t_{i},u_{\varepsilon }(t_{i})) & 
+        \text{si $i\geq 0$, $t\in [t_{i},t_{i+1}]$} \\
+        u_{\varepsilon }(t_{i})+(t-t_{i})\chi (t_{i},u_{\varepsilon }(t_{i})) & 
+        \text{si $i\leq 0$, $t\in [t_{i-1},t_{i}]$}
+      \end{cases}
+  \end{equation*}
+\begin{figure}[htb]
+  \centering
+  \input{./figuras-tikz/lema7-13.tikz}
+   \caption{}\label{fig:7.2}
+\end{figure}
+</p>
+<p>
+  Probaremos primero que $u_{\varepsilon }$ está bien definida, es
+  decir, que $u_{\varepsilon }(t_{i})\in \Omega $ para todo
+  $i=-n,\dots,n$. Para ello, basta probar que
+  \begin{equation}
+    \left\Vert u_{\varepsilon }(t_{i})-x_{0}\right\Vert \leq M\left\vert
+      t_{i}-t_{0}\right\vert \text{\qquad }\forall i=-n,\dots,n,\label{enK}
+  \end{equation}
+  ya que, en ese caso, $\left\Vert u_{\varepsilon
+    }(t_{i})-x_{0}\right\Vert \leq M\delta \leq r$ &nbsp;y, en
+  consecuencia, $u_{\varepsilon }(t_{i})\in \Omega$. Demostraremos
+  la desigualdad (\ref{enK}) inductivamente. Si $i=0$, puesto que
+  hemos definido $u_{\varepsilon }(t_{0}):=x_{0}$, la desigualdad se
+  cumple. Supongamos que $\left\Vert u_{\varepsilon
+    }(t_{i})-x_{0}\right\Vert \leq M\left\vert t_{i}-t_{0}\right\vert
+  $ para algún $\left\vert i\right\vert <n$ y tomemos $s,t\in
+  [t_{i},t_{i+1}]$ si $i\geq 0$, o bien $s,t\in [t_{i-1},t_{i}]$ si $i\leq 0$. Como
+  \begin{equation*}
+    \left\Vert u_{\varepsilon }(t)-u_{\varepsilon }(s)\right\Vert =\left\Vert
+      (t-s)\chi (t_{i},u_{\varepsilon }(t_{i}))\right\Vert \leq M\left\vert
+      t-s\right\vert ,
+  \end{equation*}
+  se tiene entonces que
+  \begin{align*}
+    \left\Vert u_{\varepsilon }(t)-x_{0}\right\Vert &\leq \left\Vert
+      u_{\varepsilon }(t)-u_{\varepsilon }(t_{i})\right\Vert +\left\Vert
+      u_{\varepsilon }(t_{i})-x_{0}\right\Vert \\
+    &\leq M\left\vert t-t_{i}\right\vert +M\left\vert t_{i}-t_{0}\right\vert
+    =M\left\vert t-t_{0}\right\vert .
+  \end{align*}
+  En particular,
+  \begin{gather*}
+    \left\Vert u_{\varepsilon
+      }(t_{i+1})-x_{0}\right\Vert \leq M\left\vert
+      t_{i+1}-t_{0}\right\vert\quad\text{si $i\geq 0$,}\\
+    \left\Vert
+      u_{\varepsilon }(t_{i-1})-x_{0}\right\Vert \leq M\left\vert
+      t_{i-1}-t_{0}\right\vert\quad\text{si $i\leq 0$.} 
+  \end{gather*}
+Esto prueba,
+  inductivamente, la desigualdad (\ref{enK}).
+</p>
+<p>
+  Verifiquemos ahora que $u_{\varepsilon }$ tiene las propiedades
+  deseadas.  Por definición, $u_{\varepsilon }&nbsp;$cumple
+  <em class="emph">(a)</em>. Para $s,t\in \left[ t_{0}-\delta ,t_{0}+\delta \right] $
+  con $t_{j-1}\leq s<t_{j}<\cdots <t_{j+i}<t\leq t_{j+i+1}$ se tiene
+  que
+  \begin{align*}
+    \bigl\Vert u_{\varepsilon }(t)-u_{\varepsilon }(s)\bigr\Vert &\leq
+    \bigl\Vert u_{\varepsilon }(t)-u_{\varepsilon }(t_{j+i})\bigr\Vert +\cdots
+    +\bigl\Vert u_{\varepsilon }(t_{j})-u_{\varepsilon }(s)\bigr\Vert \\
+    &\leq M(t-t_{j+i})+\cdots +M(t_{j}-s)=M\left\vert t-s\right\vert .
+  \end{align*}
+  Es decir, se cumple <em class="emph">(c)</em>. Tomando $s=t_{0}$ en la desigualdad
+  anterior obtenemos
+  \begin{equation*}
+    \left\Vert u_{\varepsilon }(t)-x_{0}\right\Vert \leq M\left\vert
+      t-t_{0}\right\vert \leq r\text{\qquad }\forall t\in [t_{0}-\delta
+    ,t_{0}+\delta ].
+  \end{equation*}
+  Esta es la afirmación <em class="emph">(b)</em>. Claramente, $u_{\varepsilon }$ es
+  continuamente diferenciable en\break
+  $\left( t_{0}-\delta ,t_{0}+\delta \right) \smallsetminus
+  \left\{t_{i}:i=-n+1,\ldots ,n-1\right\}$.
+  Si $t\in \left( t_{i},t_{i+1}\right)$ con $i\geq0$ o si
+  $t\in \left(t_{i-1},t_{i}\right)$ con $i\leq0$, usando <em class="emph">(c)</em>
+  obtenemos que
+  \begin{equation*}
+    \left\vert t-t_{i}\right\vert \leq \gamma \text{\qquad y\qquad }\left\Vert
+      u_{\varepsilon }(t)-u_{\varepsilon }(t_{i})\right\Vert \leq \gamma .
+  \end{equation*}
+  Se sigue entonces de (\ref{campouc}) que
+  \begin{equation*}
+    \left\Vert \chi (t,u_{\varepsilon }(t))-u_{\varepsilon }^{\prime
+      }(t)\right\Vert =\left\Vert \chi (t,u_{\varepsilon }(t))-\chi
+      (t_{i},u_{\varepsilon }(t_{i}))\right\Vert \leq \varepsilon .
+  \end{equation*}
+  Esto prueba la afirmación $<em class="emph">(d)</em>$.
+</div>
+</p>
+<p>
+Giuseppe Peano\footnote{Giuseppe Peano (1858-1932) nació en
+  Piemonte, Italia. Estudió en la Universidad de Torino, en donde
+  fue profesor. Publicó su teorema de existencia en 1886 con una
+  prueba incorrecta y en 1890 publicó una nueva demostración
+  correcta usando aproximaciones sucesivas.} obtuvo el siguiente
+resultado.
+</p>
+<p>
+<div class="theorem">[de existencia de Peano]
+\label{cp}\index{teorema!de existencia de Peano}Sean $\Omega $ un
+  abierto de $\mathbb{R}^{n}$ y $&nbsp;\chi \colon (a,b)\times \Omega
+  \rightarrow \mathbb{R}^{n}$ una función continua. Entonces, para
+  cada $(t_{0},x_{0})\in (a,b)\times \Omega $, existe $\delta >0$ tal
+  que el problema de Cauchy
+  \begin{equation}
+      \begin{cases}
+        u^{\prime }=\chi (t,u), \\
+        u(t_{0})=x_{0},
+      \end{cases}
+    \label{pc2}
+  \end{equation}
+  tiene al menos una solución en el intervalo $\left[ t_{0}-\delta
+    ,t_{0}+\delta \right] $.
+</div>
+</p>
+<p>
+\begin{bio}
+\centering
+\includegraphics[width=.27\textwidth]{./fotos/calcasdos/Giuseppe_Peano.pdf}\\[5pt]
+ \bfseries Giuseppe Peano
+\end{bio} 
+</p>
+<p>
+<div class="proof">
+  Consideremos el conjunto
+  \begin{equation*}
+    \mathcal{H}:=\left\{u_{1/k}\in \mathcal{C}^{0}(\left[ t_{0}-\delta ,t_{0}+\delta \right] ,\mathbb{R}^{n}):k\in \mathbb{N}\right\},
+  \end{equation*}
+  donde $u_{1/k}$ es la función dada por el Lema <a href="tul/P_T_02/7.html#solaprox">solaprox</a>. Si
+  denotamos por $x_{0}$ a la función constante con valor $x_{0}$
+  definida en $\left[ t_{0}-\delta ,t_{0}+\delta \right] $, la función
+  $u_{1/k}$ satisface
+  \begin{equation*}
+    \left\Vert u_{1/k}-x_{0}\right\Vert_{\infty }=\max_{\left\vert
+        t-t_{0}\right\vert \leq \delta }\left\Vert u_{1/k}(t)-x_{0}\right\Vert \leq
+    r.
+  \end{equation*}
+  Esto prueba que $\mathcal{H}$ está acotado en
+  $\mathcal{C}^{0}(\left[ t_{0}-\delta ,t_{0}+\delta \right]
+  ,\mathbb{R}^{n})$. Por otra parte, dada $\varepsilon >0$, la
+  propiedad <em class="emph">(c)</em> del Lema <a href="tul/P_T_02/7.html#solaprox">solaprox</a> asegura que, para toda
+  $k\in \mathbb{N}$,
+  \begin{equation*}
+    \left\Vert u_{1/k}(t)-u_{1/k}(s)\right\Vert <\varepsilon 
+    \text{\qquad si &nbsp;}\left\vert t-s\right\vert <\frac{\varepsilon }{M}.
+  \end{equation*}
+  Esto prueba que $\mathcal{H}$ es equicontinuo.
+  El Corolario <a href="tul/P_T_02/7.html#coraa">coraa</a> asegura entonces que $\mathcal{H}$ es
+  relativamente compacto en $\mathcal{C}^{0}(\left[ t_{0}-\delta
+    ,t_{0}+\delta \right] ,\mathbb{R}^{n})$. Por tanto, existen una
+  subsucesión $(u_{1/k_{j}})$ de $(u_{1/k})$ y una función
+  $u^{\ast }\in \mathcal{C}^{0}(\left[ t_{0}-\delta ,t_{0}+\delta
+  \right] ,\mathbb{R}^{n})$ tales que
+  \begin{equation}
+    u_{1/k_{j}}\rightarrow u^{\ast }\text{\quad cuando }j\rightarrow \infty 
+    \text{\qquad en\quad }\mathcal{C}^{0}(\left[ t_{0}-\delta ,t_{0}+\delta \right] ,\mathbb{R}^{n}).\label{convx}
+  \end{equation}
+  Probaremos ahora que $u^{\ast }$ es una solución del problema
+  (\ref{pc2}).
+</p>
+<p>
+  Como $u_{1/k_{j}}(t)\rightarrow u^{\ast }(t)$ para cada $t\in \left[
+    t_{0}-\delta ,t_{0}+\delta \right] $, la propiedad <em class="emph">(b)</em>\
+  implica que
+  \begin{equation*}
+    \left\Vert u^{\ast }(t)-x_{0}\right\Vert \leq r\text{\qquad }\forall t\in \left[ t_{0}-\delta ,t_{0}+\delta \right] .
+  \end{equation*}
+  Se sigue de (\ref{r}) que $u^{\ast }(t)\in \Omega $ para todo $t\in
+  \left[ t_{0}-\delta ,t_{0}+\delta \right] $. Además, la
+  propiedad <em class="emph">(a)</em> implica que $u^{\ast }(t_{0})=x_{0}$.
+  Demostraremos que $u^{\ast }$ satisface
+  \begin{equation}
+    u^{\ast }(t)=x_{0}+\int_{t_{0}}^{t}\chi (s,u^{\ast }(s))ds\text{\qquad }\forall t\in [t_{0}-\delta ,t_{0}+\delta ].\label{ecint}
+  \end{equation}
+  Sea $\varepsilon >0$. Como $\chi $ es uniformemente continua en $K$,
+  existe $\eta >0$ tal que
+  \begin{equation*}
+    \left\Vert \chi (s,x)-\chi (s,y)\right\Vert <\frac{\varepsilon }{3\delta }\text{\qquad si &nbsp;}(s,x),(s,y)\in K\text{ y }\left\Vert x-y\right\Vert <\eta
+    .
+  \end{equation*}
+  Tomemos $j_{0}\in \mathbb{N}$ tal que $\frac{\delta
+  }{k_{j}}<\frac{\varepsilon }{3}$ para todo $j\geq j_{0}$ y tal que
+  \begin{equation*}
+    \left\Vert u_{1/k_{j}}-u^{\ast }\right\Vert_{\infty }<\min \left\{\eta ,\frac{\varepsilon }{3}\right\}\text{\qquad si &nbsp;}j\geq j_{0}.
+  \end{equation*}
+  Entonces, usando el Lema <a href="tul/P_T_02/7.html#lemcotint">lemcotint</a>,&nbsp;para cada $t\in [t_{0}-\delta ,t_{0}+\delta ]$&nbsp;obtenemos
+  \begin{multline*}
+    \left\Vert \int_{t_{0}}^{t}\left[ \chi (s,u_{1/k_{j}}(s))-\chi (s,u^{\ast
+        }(s))\right] ds\right\Vert\\
+    {}\leq\left\vert t-t_{0}\right\vert
+    \max_{\left\vert s-t_{0}\right\vert \leq \delta }\left\Vert \chi
+      (s,u_{1/k_{j}}(s))-\chi (s,u^{\ast }(s))\right\Vert 
+    <\tfrac{\varepsilon }{3}\text{\qquad si }&nbsp;j\geq j_{0}.
+  \end{multline*}
+  Usando además el teorema fundamental del cálculo y la
+  propiedad <em class="emph">(d)</em> obtenemos
+  \begin{align*}
+    \left\Vert u_{1/k_{j}}(t)-x_{0}-\int_{t_{0}}^{t}\chi
+      (s,u_{1/k_{j}}(s))ds\right\Vert &=\left\Vert \int_{t_{0}}^{t}\left[
+        u_{1/k_{j}}^{\prime }(s)-\chi (s,u_{1/k_{j}}(s))\right] ds\right\Vert \\
+    &\leq\left\vert t-t_{0}\right\vert \frac{1}{k_{j}} \\
+    &<\tfrac{\varepsilon }{3}\text{\qquad si }&nbsp;j\geq j_{0}.
+  \end{align*}
+  En consecuencia,
+  \begin{align*}
+    \left\Vert u^{\ast }(t)-x_{0}-\int_{t_{0}}^{t}\chi (s,u^{\ast
+      }(s))ds\right\Vert &\leq\left\Vert u^{\ast }(t)-u_{1/k_{j}}(t)\right\Vert\\
+    &\qquad{}+\left\Vert u_{1/k_{j}}(t)-x_{0}-\int_{t_{0}}^{t}\chi
+      (s,u_{1/k_{j}}(s))ds\right\Vert \\
+    &\qquad{}+\left\Vert \int_{t_{0}}^{t}\left[ \chi (s,u_{1/k_{j}}(s))-\chi (s,u^{\ast
+        }(s))\right] ds\right\Vert \\
+    &<\varepsilon,
+  \end{align*}
+  para toda $\varepsilon >0$. Esto demuestra (\ref{ecint}). El
+  Lema <a href="tul/P_T_02/7.html#int">int</a> asegura entonces que $u^{\ast }$ es solución del
+  problema (\ref{pc2}).
+</div>
+</p>
+
+<h3 id="sec7-4">Existencia de trayectorias de longitud mínima</h3>
+<p class="noj">
+Volvamos a nuestro problema de partida: el Problema
+\ref{probpresentacion}.  Podemos ahora plantear esa misma pregunta de
+manera más general, para trayectorias en espacios métricos y
+no únicamente en subconjuntos de $\mathbb{R}^{n}$.
+</p>
+<p>
+Sean $X=(X,d)$ un espacio métrico y $x,y\in X$. Una
+<em class="textbf">trayectoria</em>\index{trayectoria} <em class="textbf">de </em>$x$<em class="textbf">&nbsp;a
+</em>$y$<em class="textbf">&nbsp;en </em>$X$ es una función continua $\sigma
+\colon [a,b]\rightarrow X$ tal que $\sigma (a)=x$ y $\sigma (b)=y$.
+Recordemos que la longitud de $\sigma $ se define como
+\begin{equation*}
+  \mathfrak{L}(\sigma ):=\sup \left\{ \sum_{k=1}^{m}d(\sigma
+    (t_{k-1}),\sigma (t_{k})):a=t_{0}\leq t_{1}\leq \cdots \leq t_{m}=b,\text{ }m\in \mathbb{N}\right\}
+\end{equation*}
+(ver Definición <a href="tul/P_T_02/7.html#deflongitud">deflongitud</a>). El objetivo de esta
+sección es dar una respuesta a la siguiente pregunta.
+</p>
+<p>
+<div id="probtray" class="problem">
+Dados $x,y\in X$, ¿existe una
+  trayectoria de longitud mínima de $x$ a $y$ en $X$?
+</div>
+</p>
+<p>
+Para poder expresar este problema como un problema de minimización
+en un espacio de funciones veremos primero que, reparametrizando a
+$\sigma $, podemos siempre suponer que está definida en el
+intervalo $[0,1]$.
+</p>
+<p>
+Si $\rho \colon [\alpha ,\beta ]\rightarrow [a,b]$ es una función
+continua, no decreciente y suprayectiva, y $\sigma \in
+\mathcal{C}^{0}([a,b],X)$ es una trayectoria de $x$ a $y$ en $X$,
+entonces la trayectoria $\sigma \circ \rho \in \mathcal{C}^{0}([\alpha
+,\beta ],X)$ es también una trayectoria de $x$ a $y$ en $X$. Se le
+llama una <em class="textbf">reparametrización</em>
+\index{reparametrización}<em class="textbf">de</em> $\sigma $. Las
+reparametrizaciones preservan la longitud, es decir, se cumple lo
+siguiente.
+</p>
+<p>
+<div id="lemrep" class="lemma">
+Si $\sigma \circ \rho $ es una reparametrización
+  de $\sigma $, entonces $\mathfrak{L}(\sigma \circ \rho
+  )=\mathfrak{L}(\sigma )$.
+</div>
+</p>
+<p>
+La demostración es sencilla y se propone como ejercicio [Ejercicio
+\ref{repar}].
+</p>
+<p>
+Cualquier trayectoria $\sigma \in \mathcal{C}^{0}([a,b],X)$ se puede
+reparamentrizar mediante la función
+\begin{equation*}
+  \rho \colon [0,1]\rightarrow [a,b],\text{\qquad }\rho (t)=(1-t)a+tb.
+\end{equation*}
+El dominio de la trayectoria $\sigma \circ \rho $ es el intervalo
+$[0,1]$ y esta trayectoria tiene la misma longitud que $\sigma $.
+</p>
+<p>
+Consideremos entonces el <em class="textbf">espacio de
+  trayectorias</em>\index{espacio!Tx,yX@$\mathcal{T}_{x,y}(X)$}
+\begin{equation*}
+  \mathcal{T}_{x,y}(X):=\left\{\sigma \in \mathcal{C}^{0}([0,1],X):\sigma (0)=x,\text{ }\sigma (1)=y\right\}
+\end{equation*}
+con la métrica uniforme
+\begin{equation*}
+  d_{\infty }(\sigma ,\tau )=\max_{t\in [0,1]}d(\sigma (t),\tau (t)),
+\end{equation*}
+y la <em class="textbf">función longitud </em>\index{función!longitud}
+\begin{equation*}
+  \mathfrak{L}\colon \mathcal{T}_{x,y}(X)\rightarrow \mathbb{R}\cup \left\{ \infty
+  \right\} ,\text{\qquad }\sigma \mapsto \mathfrak{L}(\sigma ).
+\end{equation*}
+El Problema <a href="tul/P_T_02/7.html#probtray">probtray</a> se puede expresar como sigue.
+</p>
+<p>
+<div class="problem">
+  ¿Alcanza $\mathfrak{L}$ su mínimo en
+  $\mathcal{T}_{x,y}(X)$?
+</div>
+</p>
+<p>
+Recordemos que la función $\mathfrak{L}$ es semicontinua
+inferiormente (ver Proposición <a href="tul/P_T_02/7.html#Lsci">Lsci</a>). Sin embargo, vimos un
+ejemplo en el que no es posible aplicar el Teorema <a href="tul/P_T_02/7.html#sci">sci</a>&nbsp;para
+obtener la existencia de una trayectoria de longitud mínima (ver
+Ejercicio <a href="tul/P_T_02/7.html#ejtraynocomp">ejtraynocomp</a>). El siguiente resultado muestra que,
+para nuestro problema, las hipótesis de dicho teorema casi nunca
+se cumplen.
+<div class="proposition">
+  Sean $x,y\in X$, $x\neq y$, $c\in \mathbb{R}$. Si
+  \begin{equation*}
+    \mathfrak{L}^{\leq c}:=\left\{\sigma \in \mathcal{T}_{x,y}(X):\mathfrak{L}(\sigma
+    )\leq c\right\}\neq \emptyset ,
+  \end{equation*}
+  entonces $\mathfrak{L}^{\leq c}$ no es compacto.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\sigma \in \mathcal{T}_{x,y}(X)$ tal que $\mathfrak{L}(\sigma
+  )\leq c$. Las funciones $\rho_{k}\colon [0,1]\rightarrow [0,1]$
+  dadas por
+  \begin{equation*}
+    \rho_{k}(t):=
+      \begin{cases}
+        kt & \text{si $t\in \left[ 0,\frac{1}{k}\right]$,} \\
+        1 & \text{si $t\in \left[ \frac{1}{k},1\right]$,}
+      \end{cases}
+  \end{equation*}
+  son continuas, no decrecientes y suprayectivas. Por tanto, $\sigma
+ _{k}:=\sigma \circ \rho_{k}$ es una reparametrización de
+  $\sigma $ y, en consecuencia, $\mathfrak{L}(\sigma
+ _{k})=\mathfrak{L}(\sigma )\leq c$. Observa que
+  \begin{align*}
+    \sigma_{k}(t) &=\sigma (1)=y\qquad\text{si $t\in (0,1]$\;&nbsp;y\;&nbsp;$k\geq 
+    \tfrac{1}{t}$,} \\
+    \sigma_{k}(0) &=\sigma (0)=x\qquad\forall k\in \mathbb{N}.
+  \end{align*}
+</p>
+<p>
+  Argumentando por contradicción, supongamos que
+  $\mathfrak{L}^{\leq c}$ es compacto. Entonces $(\sigma_{k})$
+  contiene una subsucesión tal que $\sigma_{k_{j}}\rightarrow
+  \sigma^{\ast }$ en $\mathcal{C}^{0}([0,1],X)$. En particular, esta
+  subsucesión converge puntualmente, es decir,
+  \begin{equation*}
+    \sigma^{\ast }(t)=\lim_{j\rightarrow \infty }\sigma_{k_{j}}(t)=
+      \begin{cases}
+        x & \text{si $t=0$,} \\
+        y & \text{si $t\in (0,1]$,}
+      \end{cases}
+  \end{equation*}
+  lo que contradice la continuidad de $\sigma^{\ast }$. Esto prueba
+  que $\mathfrak{L}^{\leq c}$ no es compacto.
+</div>
+</p>
+<p>
+En la proposición anterior la falta de compacidad se deriva de
+admitir muchas parametrizaciones de una trayectoria. Mostraremos a
+continuación que es posible seleccionar una parametrización
+específica para cada trayectoria.
+</p>
+<p>
+<div class="definition">
+  Decimos que una trayectoria $\sigma \in \mathcal{C}^{0}([0,1],X)$ de
+  longitud finita está <em class="textbf">parametrizada proporcionalmente a
+    la longitud de arco</em> \index{parametrización!proporcional a la
+    longitud de arco}si
+  \begin{equation*}
+    \mathfrak{L}(\sigma \mid_{[0,t]})=\mathfrak{L}(\sigma )t\text{\qquad }\forall t\in [0,1],
+  \end{equation*}
+  donde $\sigma \mid_{[0,t]}\colon [0,t]\rightarrow X$ denota la
+  restricción de $\sigma $ al intervalo $[0,t]$.
+</div>
+\begin{figure}[htb]
+  \centering
+  \input{./figuras-tikz/lema7-19.tikz}
+   \caption{}\label{fig:7.3}
+\end{figure}
+</p>
+<p>
+Probaremos a continuación que toda trayectoria de longitud finita
+se puede reparametrizar de este modo. Para ello requerimos el
+siguiente lema.
+</p>
+<p>
+<div id="proplambda" class="lemma">
+Dada $\sigma \in \mathcal{C}^{0}([0,1],X)$ de
+  longitud finita, definimos $\lambda \colon [0,1]\rightarrow [0,\mathfrak{L}(\sigma )] $ como
+  \begin{equation*}
+    \lambda (t):=\mathfrak{L}(\sigma \mid_{[0,t]}).
+  \end{equation*}
+  Esta función es continua, no decreciente y suprayectiva.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $s,t\in [0,1]$ con $s<t$. Usando el Ejercicio <a href="tul/P_T_02/7.html#aditlong">aditlong</a> obtenemos
+  \begin{equation*}
+    \lambda (t)=\mathfrak{L}(\sigma \mid_{[0,t]})=\mathfrak{L}(\sigma
+    \mid_{[0,s]})+\mathfrak{L}(\sigma \mid_{[s,t]})\geq 
+    \mathfrak{L}(\sigma \mid_{[0,s]})=\lambda (s),
+  \end{equation*}
+  lo que prueba que $\lambda $ es no decreciente.
+</p>
+<p>
+  Para probar que $\lambda $ es continua probaremos que es continua
+  por la izquierda y por la derecha.
+</p>
+<p>
+  Probemos primero que es continua por la izquierda. Sean
+  $t_{k},t^{\ast }\in [0,1]$ tales que $t_{k}\leq t^{\ast }$ y
+  $t_{k}\rightarrow t^{\ast }$. Consideremos las reparametrizaciones
+  $\sigma_{k},\sigma^{\ast }\in \mathcal{C}^{0}([0,1],X)$ de $\sigma
+  \mid_{[0,t_{k}]}$ y $\sigma \mid_{[0,t^{\ast }]}$
+  respectivamente, dadas por
+  \begin{equation*}
+    \sigma_{k}(t):=\sigma (t_{k}t),\qquad \sigma^{\ast }(t):=\sigma (t^{\ast
+    }t).
+  \end{equation*}
+  El Lema <a href="tul/P_T_02/7.html#lemrep">lemrep</a> asegura que
+  \begin{align*}
+    \mathfrak{L}(\sigma_{k}) &=\mathfrak{L}(\sigma \mid_{[0,t_{k}]})=\lambda (t_{k}), \\
+    \mathfrak{L}(\sigma^{\ast }) &=\mathfrak{L}(\sigma \mid_{[0,t^{\ast }]})=\lambda (t^{\ast }).
+  \end{align*}
+  Sea $\varepsilon >0$. Como $\sigma $ es uniformemente continua en
+  $[0,1]$ existe $\delta >0$ tal que
+  \begin{equation*}
+    d(\sigma (t),\sigma (s))<\varepsilon \text{\qquad si }\left\vert
+      t-s\right\vert <\delta ,
+  \end{equation*}
+  y como $t_{k}\rightarrow t^{\ast }$ existe $k_{0}\in \mathbb{N}$ tal
+  que
+  \begin{equation*}
+    \left\vert t_{k}-t^{\ast }\right\vert <\delta \text{\qquad }\forall k\geq
+    k_{0}.
+  \end{equation*}
+  De aquí que
+  \begin{equation*}
+    d(\sigma_{k}(t),\sigma^{\ast }(t))=d(\sigma (t_{k}t),\sigma (t^{\ast
+    }t))<\varepsilon \text{\qquad }\forall k\geq k_{0},\text{ }\forall t\in
+    [0,1].
+  \end{equation*}
+  En consecuencia, $\sigma_{k}\rightarrow \sigma^{\ast }$ en
+  $\mathcal{C}^{0}([0,1],X)$. La Proposición <a href="tul/P_T_02/7.html#Lsci">Lsci</a>&nbsp;asegura
+  que $\mathfrak{L}$ es semicontinua inferiormente así que,
+  usando la Proposición <a href="tul/P_T_02/7.html#sciliminf">sciliminf</a>&nbsp;y que $\lambda $ es no
+  decreciente, obtenemos
+  \begin{equation*}
+    \lambda (t^{\ast })=\mathfrak{L}(\sigma^{\ast })\leq \liminf_{k\rightarrow
+      \infty }\mathfrak{L}(\sigma_{k})=\liminf_{k\rightarrow \infty }\lambda
+    (t_{k})\leq \limsup_{k\rightarrow \infty }\lambda (t_{k})\leq \lambda
+    (t^{\ast }).
+  \end{equation*}
+  Por tanto, $\lim_{k\rightarrow \infty }\lambda (t_{k})=\lambda
+  (t^{\ast })$, lo que demuestra que $\lambda $ es continua por la
+  izquierda.
+</p>
+<p>
+  Probemos ahora que $\lambda $ es continua por la derecha. Sean
+  $t_{k},t^{\ast }\in [0,1]$ tales que $t_{k}\geq t^{\ast }$ y
+  $t_{k}\rightarrow t^{\ast }$. Consideremos ahora las
+  reparametrizaciones $\tau_{k},\tau^{\ast }\in
+  \mathcal{C}^{0}([0,1],X)$ de $\sigma \mid_{[t_{k,1}]}$ y
+  $\sigma \mid_{[t^{\ast },1]}$ dadas por
+  \begin{equation*}
+    \tau_{k}(t):=\sigma (t_{k}(1-t)+t),\qquad \tau^{\ast }(t):=\sigma (t^{\ast
+    }(1-t)+t).
+  \end{equation*}
+  El Lema <a href="tul/P_T_02/7.html#lemrep">lemrep</a> y el Ejercicio <a href="tul/P_T_02/7.html#aditlong">aditlong</a> aseguran que
+  \begin{align*}
+    \mathfrak{L}(\tau_{k}) &=\mathfrak{L}(\sigma \mid_{[t_{k},1]})=\mathfrak{L}(\sigma )-\lambda (t_{k}), \\
+    \mathfrak{L}(\tau^{\ast }) &=\mathfrak{L}(\sigma \mid_{[t^{\ast
+      },1]})=\mathfrak{L}(\sigma )-\lambda (t^{\ast }).
+  \end{align*}
+  Argumentando como antes concluimos que $\lim_{k\rightarrow
+    \infty }\lambda (t_{k})=\lambda (t^{\ast })$, lo cual demuestra
+  que $\lambda $ es continua por la derecha.
+</p>
+<p>
+  Finalmente, como $\lambda (0)=0$ y $\lambda (1)=\mathfrak{L}(\sigma
+  )$, el teorema del valor intermedio implica que $\lambda $ es
+  suprayectiva.
+</div>
+</p>
+<p>
+Denotamos por
+\begin{equation*}
+  \mathcal{\hat{T}}_{x,y}(X):=\left\{\sigma \in \mathcal{T}_{x,y}(X):\mathfrak{L}(\sigma )<\infty ,\text{\quad }\mathfrak{L}(\sigma \mid_{[0,t]})=\mathfrak{L}(\sigma )t\text{ &nbsp;}\forall t\in [0,1]\right\}
+\end{equation*}
+al espacio de las trayectorias de $x$ a $y$ parametrizadas
+proporcionalmente a la longitud de arco, con la métrica uniforme.
+</p>
+<p>
+<div id="existla" class="lemma">
+Para cada $\sigma \in \mathcal{T}_{x,y}(X)$ de
+  longitud finita existe $\hat{\sigma}\in \mathcal{\hat{T}}_{x,y}(X)$
+  tal que $\mathfrak{L}(\hat{\sigma})=\mathfrak{L}(\sigma )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\sigma \in \mathcal{T}_{x,y}(X)$ de longitud finita y sea
+  $\lambda \colon [0,1]\rightarrow [0,\mathfrak{L}(\sigma )]$ como en
+  el Lema <a href="tul/P_T_02/7.html#proplambda">proplambda</a>. Observa que, como $\lambda $ es no
+  decreciente, si $\lambda (t_{1})=\lambda (t_{2})$ entonces $\sigma
+  (t)=\sigma (t_{1})$ para todo $t\in [t_{1},t_{2}]$. Por
+  tanto, la función $\widetilde{\sigma }:[0,\mathfrak{L}(\sigma
+  )]\rightarrow X$, dada por
+  \begin{equation*}
+    \widetilde{\sigma }(s):=\sigma (t)\text{\qquad con\quad }t\in \lambda
+   ^{-1}(s),
+  \end{equation*}
+  no depende de la elección de $t\in \lambda^{-1}(s)$. Veamos
+  ahora que $\widetilde{\sigma }$ es continua. Sea $Y$ un subconjunto
+  cerrado de $X$. Como $\sigma $ es continua, $\sigma^{-1}(Y)$ es un
+  subconjunto cerrado de $[0,1]$. En consecuencia, $\sigma^{-1}(Y)$
+  es compacto y, como $\lambda $ es continua, $\lambda (\sigma
+ ^{-1}(Y))$ es compacto. En particular, $\lambda (\sigma^{-1}(Y))$
+  es un subconjunto cerrado de $[0,\mathfrak{L}(\sigma )]$. Dado que
+  $\lambda $ es suprayectiva, es sencillo comprobar que
+  \begin{equation*}
+    \lambda (\sigma^{-1}(Y))=\widetilde{\sigma }^{-1}(Y).
+  \end{equation*}
+  Así pues, $\widetilde{\sigma }^{-1}(Y)$ es un subconjunto
+  cerrado de $[0,\mathfrak{L}(\sigma )]$. Esto demuestra que
+  $\widetilde{\sigma }$ es continua. Nota además que, como
+  $\widetilde{\sigma }\circ \lambda =\sigma $, el Lema <a href="tul/P_T_02/7.html#lemrep">lemrep</a>
+  asegura que
+  \begin{equation*}
+    \mathfrak{L}(\widetilde{\sigma }\mid_{[0,s]})=\mathfrak{L}(\sigma
+    \mid_{[0,t]})=\lambda (t)=s\text{\qquad }\forall s\in [0,\mathfrak{L}(\sigma )].
+  \end{equation*}
+</p>
+<p>
+  Ahora definimos $\hat{\sigma}\colon [0,1]\rightarrow X$ como
+  \begin{equation*}
+    \hat{\sigma}(t):=\widetilde{\sigma }(\mathfrak{L}(\sigma )t).
+  \end{equation*}
+  Claramente, $\hat{\sigma}$ es continua y satisface
+  \begin{equation*}
+    \mathfrak{L}(\hat{\sigma}\mid_{[0,t]})=\mathfrak{L}(\widetilde{\sigma }\mid_{[0,\mathfrak{L}(\sigma )t]})=\mathfrak{L}(\sigma )t\text{\qquad }\forall t\in [0,1].
+  \end{equation*}
+  En particular, $\mathfrak{L}(\hat{\sigma})=\mathfrak{L}(\sigma
+  )<\infty $. Por tanto, $\hat{\sigma}\in \mathcal{\hat{T}}_{x,y}(X)$.
+</div>
+</p>
+<p>
+El siguiente resultado da una respuesta afirmativa al Problema
+\ref{probtray}&nbsp;cuando $X$ es compacto.
+</p>
+<p>
+<div class="theorem">[Existencia de trayectorias geodésicas]
+\label{teogeodesicas}\index{teorema!de existencia de trayectorias
+    geodésicas}Sean $X$ un
+  espacio métrico compacto y $x,y\in X$. Si existe una trayectoria
+  de $x$ a $y$ en $X$, entonces existe una trayectoria de longitud
+  mínima de $x$ a $y$ en $X$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Por hipótesis, $\mathcal{T}_{x,y}(X)\neq \emptyset $. Si todas
+  las trayectorias en $\mathcal{T}_{x,y}(X)$ tienen longitud infinita,
+  cualquiera de ellas es un mínimo de $\mathfrak{L}$.
+</p>
+<p>
+  Supongamos pues que existe $\tau \in \mathcal{T}_{x,y}(X)$ tal que
+  $\mathfrak{L}(\tau )=:c<\infty $. Entonces, por el
+  Lema <a href="tul/P_T_02/7.html#existla">existla</a>,
+  \begin{equation*}
+    \mathcal{H}:=\left\{\sigma \in \mathcal{\hat{T}}_{x,y}(X):\text{ }\mathfrak{L}(\sigma )\leq c\right\}\neq \emptyset .
+  \end{equation*}
+  Veamos que este conjunto satisface las hipótesis del teorema de
+  Arzelà-Ascoli. Como $X$ es compacto,&nbsp;cualquier subconjunto de
+  $X$ es relativamente compacto en él. En particular,
+  \begin{equation*}
+    \mathcal{H}(t):=\left\{\sigma (t):\sigma \in \mathcal{H}\right\}
+  \end{equation*}
+  es relativamente compacto en $X$ para todo $t\in [0,1]$.
+  Probemos ahora que $\mathcal{H}$ es equicontinuo. Sean $t_{0}\in
+  [0,1]$ y $\varepsilon >0$. Para toda $\sigma \in \mathcal{H}$
+  se cumple que
+  \begin{align*}
+    d(\sigma (t),\sigma (t_{0})) &\leq \left\vert \mathfrak{L}(\sigma \mid
+     _{[0,t]})-\mathfrak{L}(\sigma \mid_{[0,t_{0}]})\right\vert \\
+    &=\mathfrak{L}(\sigma )\left\vert t-t_{0}\right\vert \leq c\left\vert
+      t-t_{0}\right\vert <\varepsilon \text{\qquad si &nbsp;}\left\vert
+      t-t_{0}\right\vert <\tfrac{\varepsilon }{c}.
+  \end{align*}
+  Esto prueba que $\mathcal{H}$ es equicontinuo. El teorema de
+  Arzelà-Ascoli asegura entonces que $\mathcal{H}$ es
+  relativamente compacto en $\mathcal{C}^{0}([0,1],X)$.
+</p>
+<p>
+  Denotemos por $\mathcal{K}:=\overline{\mathcal{H}}$ a la cerradura
+  de $\mathcal{H}$ en $\mathcal{C}^{0}([0,1],X)$ y consideremos la
+  restricción $\mathfrak{L}\mid_{\mathcal{K}}$ de la función
+  $\mathfrak{L}&nbsp;$a $\mathcal{K}$. Como $\mathfrak{L}$ es s.c.i. (ver
+  Proposición <a href="tul/P_T_02/7.html#Lsci">Lsci</a>), se tiene que $\mathfrak{L}^{\leq c}$&nbsp;es
+  cerrado en $\mathcal{C}^{0}([0,1],X)$ (ver
+  Ejercicio <a href="tul/P_T_02/7.html#subnivelsci">subnivelsci</a>). En consecuencia,
+  $\left( \mathfrak{L}\mid _{\mathcal{K}}\right)^{\leq
+    c}=\mathfrak{L}^{\leq c}\cap \mathcal{K}$
+  es compacto. El Teorema <a href="tul/P_T_02/7.html#sci">sci</a> asegura entonces que existe
+  $\sigma_{0}\in \mathcal{K}$ tal que
+  \begin{equation*}
+    \mathfrak{L}(\sigma_{0})\leq \mathfrak{L}(\sigma )\text{\qquad }\forall
+    \sigma \in \mathcal{K}.
+  \end{equation*}
+  Dado que $\hat{\sigma}\in \mathcal{H}\subset \mathcal{K}$ para todo
+  $\sigma \in \mathcal{T}_{x,y}(X)$ con $\mathfrak{L}(\sigma )\leq c$,
+  el Lema <a href="tul/P_T_02/7.html#existla">existla</a> asegura que
+  \begin{equation*}
+    \mathfrak{L}(\sigma_{0})\leq \mathfrak{L}(\hat{\sigma})=\mathfrak{L}(\sigma
+    )\text{\qquad }\forall \sigma \in \mathcal{T}_{x,y}(X),
+  \end{equation*}
+  es decir, $\sigma_{0}$ es una trayectoria de longitud mínima
+  de $x$ a $y$ en $X$.
+</div>
+</p>
+<p>
+Vale la pena observar que el conjunto $\mathcal{H}$ no es cerrado en
+$\mathcal{C}^{0}([0,1],X)$ [Ejercicio <a href="tul/P_T_02/7.html#nocerr">nocerr</a>].
+</p>
+
+<h3 id="sec7-5">Ejercicios</h3>
+<p class="noj">
+<div class="exercise">
+  Sea $A$ un subconjunto de $X$. Investiga si es falsa o verdadera
+  cada una de las siguientes afirmaciones.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $A$ es acotado, entonces $A$ es totalmente acotado.</li>
+<li> Si $A$ es totalmente acotado, entonces $A$ es compacto.</li>
+<li> Si $A$ es totalmente acotado, entonces $A$ es
+    relativamente compacto en $X$.</li>
+<li> Si $A$ es relativamente compacto en $X$, entonces $A$ es
+    totalmente acotado.</li>
+<li> Si $X$ es compacto, entonces $A$ es relativamente
+
+    compacto en $X$.</li>
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que un espacio métrico $X$ es totalmente acotado si y
+  sólo si toda sucesión en $X$ contiene una subsucesión de
+  Cauchy.
+</div>
+</p>
+<p>
+<div class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que, si $\phi \colon X\rightarrow Y$ es uniformemente
+    continua y $A$ es un subconjunto totalmente acotado de $X$,
+    entonces $\phi (A)$ es un subconjunto totalmente acotado de $Y$.</li>
+<li> ¿Es cierto que, si $\phi \colon X\rightarrow
+
+    Y$ es continua y $A$ es un subconjunto totalmente acotado de $X$,
+    entonces $\phi (A)$ es un subconjunto totalmente acotado de $Y$?
+    Demuestra tu afirmación.</li>
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que los subconjuntos totalmente acotados de $\mathbb{R}^{n}$
+  son precisamente los conjuntos acotados.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $X$ un espacio vectorial normado y sea $S_{X}:=\left\{x\in
+  X:\left\Vert x\right\Vert =1\right\}$ la esfera unitaria en $X$. En cada
+  uno de los siguientes casos investiga si la esfera unitaria es o no
+  totalmente acotada.
+</p>
+<p>
+  <ol class="alfa">
+  <li> $X=\ell_{2}$.</li>
+<li> $X=\ell_{\infty }$.</li>
+<li> $X=\mathcal{C}^{0}[0,1]$.</li>
+<li> $X=\mathcal{C}_{1}^{0}[0,1]$.</li>
+
+  </ol>
+</div>
+</p>
+<p>
+<div id="prodcomp" class="exercise">
+Prueba que, si $X$ y $Y$ son espacios métricos
+  compactos, el producto $X\times Y$ con cualquiera de las
+  métricas del <em class="emph">Ejercicio <a href="tul/P_T_02/7.html#ejnormprod">ejnormprod</a></em> es compacto.
+</div>
+</p>
+<p>
+<div id="cuboHilbert" class="exercise">
+El conjunto
+  \begin{equation*}
+    \mathcal{Q}:=\left\{ (x_{k})\in \ell_{2}:\left\vert x_{k}\right\vert \leq 
+      \tfrac{1}{2^{k-1}}\right\}
+  \end{equation*}
+  se llama el <em class="textbf">cubo de Hilbert.</em>  \index{cubo!de Hilbert}Prueba
+  que
+</p>
+<p>
+  <ol class="alfa">
+  <li> $\mathcal{Q}$ es cerrado en $\ell_{2}$.</li>
+<li> $\mathcal{Q}$ es totalmente acotado. <em class="emph">(Sugerencia:
+
+      Prueba que, para cada $k_{0</em>\in \mathbb{N}$, el conjunto
+    $\mathcal{Q}^{k_{0}}:=\left\{(x_{k})\in
+      \mathcal{Q}:x_{k}=0\:\forall 
+      k>k_{0}\right\}$ es compacto. Dado $x=(x_{k})\in
+    \mathcal{Q}$, define
+    $x^{k_{0}}:=(x_{1},\dots,x_{k_{0}},0,0,\dots)\in
+    \mathcal{Q}^{k_{0}}$. Prueba que $\left\Vert
+      x-x^{k_{0}}\right\Vert_{2}<\frac{1}{2^{k_{0}-1}}$.)}
+      </li>
+  </ol>
+</p>
+<p>
+  En consecuencia, el cubo de Hilbert es compacto.
+</div>
+</p>
+<p>
+<div id="noequi" class="exercise">
+Sea $f_{k}\colon [-1,1]\rightarrow \mathbb{R}$ la
+  función dada por
+  \begin{equation*}
+    f_{k}(x):=
+      \begin{cases}
+        -1 & \text{si $-1\leq x\leq -\frac{1}{k}$,} \\
+        kx & \text{si $-\frac{1}{k}\leq x\leq \frac{1}{k}$,} \\
+        1 & \text{si $\frac{1}{k}\leq x\leq 1$.}
+      \end{cases}
+  \end{equation*}
+  Prueba que el conjunto $\mathcal{H}:=\left\{f_{k}:k\in \mathbb{N}\right\}$ no
+  es equicontinuo en $0$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $Z$ y $X$ espacios métricos y $\mathcal{H\subset
+    C}_{b}^{0}(Z,X)$. Prueba que, si existen $C,\alpha >0$ tales que
+  \begin{equation*}
+    d_{X}(f(x),f(y))\leq C\left( d_{Z}(x,y)\right)^{\alpha }\text{\qquad }\forall f\in \mathcal{H}\text{,}
+  \end{equation*}
+  entonces $\mathcal{H}$ es equicontinuo.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $Z$ y $X$ espacios métricos. Prueba que la cerradura en
+  $\mathcal{C}_{b}^{0}(Z,X)$ de cualquier subconjunto equicontinuo es
+  equicontinua.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $f_{k}\colon [0,\infty )\rightarrow \mathbb{R}$ la función dada
+  por $f_{k}(t):=\sen\sqrt{t+4\pi^{2}k^{2}}$. Demuestra las
+  siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> El conjunto $\mathcal{H}:=\left\{f_{k}:k\in \mathbb{N}\right\}$ es
+    equicontinuo.</li>
+<li> El conjunto $\mathcal{H}(t)$ es relativamente compacto en
+    $\mathbb{R}$&nbsp;para cada $t\in [0,\infty )$.
+    <em class="emph">(Sugerencia: Prueba que la sucesión </em>$(f_{k})$<em class="emph">\
+      converge puntualmente a </em>$0$<em class="emph">&nbsp;en </em>$[0,\infty )$.<em class="emph">)</em></li>
+<li> $\mathcal{H}$ no es un subconjunto compacto de
+
+    $\mathcal{C}_{b}^{0}([0,\infty ),\mathbb{R})$. <em class="emph">(Sugerencia:
+      Prueba que la sucesión </em>$(f_{k})$<em class="emph">&nbsp;no converge
+      uniformemente a </em>$0$<em class="emph">&nbsp;en </em>$[0,\infty )$.<em class="emph">)</em></li>
+  </ol>
+</p>
+<p>
+  Concluye que la compacidad de $K$ es necesaria en el teorema de
+  Arzelà-Ascoli.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $X:=\left\{(x,y)\in \mathbb{R}^{2}:(x,y)\neq (\frac{1}{2},0)\right\}$ &nbsp;y
+  $\sigma_{k}\in \mathcal{C}^{0}([0,1],X)$ la función $\sigma
+ _{k}(t):=(t,\frac{1}{k}\sen\pi t)$. Considera el conjunto
+  $\mathcal{H}:=\left\{\sigma_{k}:k\in \mathbb{N}\right\}$.
+</p>
+<p>
+  <ol class="alfa">
+  <li> ¿Es $\mathcal{H}$ equicontinuo?</li>
+<li> ¿Es $\mathcal{H}$&nbsp;acotado en
+    $\mathcal{C}^{0}([0,1],X)$?</li>
+<li> ¿Es $\mathcal{H}$&nbsp;relativamente
+
+    compacto en $\mathcal{C}^{0}([0,1],X)$?</li>
+  </ol>
+</p>
+<p>
+  Compara tus conclusiones con el <em class="emph">Corolario <a href="tul/P_T_02/7.html#coraa">coraa</a></em>.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $K$ un espacio métrico compacto, $X$ un espacio métrico
+  completo y $(f_{k})$ una sucesión en $\mathcal{C}^{0}(K,X)$ que
+  converge <em class="textit">puntualmente a una función </em>$f\colon K\rightarrow X$. %%%%%%%%%%%%%%%%%% chechar comando en este ejerciocio.
+  Prueba que, si $\mathcal{H}:=\left\{f_{k}:k\in \mathbb{N}\right\}$ es
+  equicontinuo, entonces $f$ es continua y $f_{k}\rightarrow f$ en
+  $\mathcal{C}^{0}(K,X)$.
+</div>
+</p>
+<p>
+<div id="aacomp" class="exercise">
+Prueba que, si $K$ y $X$ son espacios métricos
+  compactos, entonces un subconjunto $\mathcal{H}$ de
+  $\mathcal{C}^{0}(K,X)$ es relativamente compacto en
+  $\mathcal{C}^{0}(K,X)$ si y sólo si es equicontinuo.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\mathcal{K}\colon [a,b]\times [a,b]\rightarrow \mathbb{R}$ una
+  función continua. Prueba que el operador de Fredholm
+  $\mathfrak{F}\colon \mathcal{C}^{0}[a,b]\rightarrow \mathcal{C}^{0}[a,b]$
+  dado por
+  \begin{equation*}
+    (\mathfrak{F}f)(x):=\int_{a}^{b}\mathcal{K}(x,y)f(y)dy
+  \end{equation*}
+  es un operador compacto.
+</div>
+</p>
+<p>
+<div id="repar" class="exercise">
+Sea $\rho \colon [\alpha ,\beta ]\rightarrow [a,b]$
+  una función continua, no decreciente y suprayectiva. Prueba que,
+  para toda $\sigma \in \mathcal{C}^{0}([a,b],X)$ se cumple que
+  \begin{equation*}
+    \mathfrak{L}(\sigma \circ \rho )=\mathfrak{L}(\sigma ).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="aditlong" class="exercise">
+Prueba que, si $a<b<c$, entonces para toda $\sigma
+  \in \mathcal{C}^{0}([a,c],X)$ se cumple que
+  \begin{equation*}
+    \mathfrak{L}(\sigma )=\mathfrak{L}(\sigma \mid_{[a,b]})+\mathfrak{L}(\sigma \mid_{[b,c]}).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $X$ un espacio métrico y $x\in X$. Prueba que el espacio de
+  trayectorias
+  \begin{equation*}
+    \mathcal{T}_{x}(X):=\left\{\sigma \in \mathcal{C}^{0}([0,1],X):\sigma (0)=\sigma
+    (1)=x\right\}
+  \end{equation*}
+  de $x$ a $x$ en $X$ es relativamente compacto en
+  $\mathcal{C}^{0}([0,1],X)$ si y sólo si la única trayectoria
+  de $x$ a $x$ en $X$ es la trayectoria constante.
+</div>
+</p>
+<p>
+<div id="nocerr" class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Para cada $k\in \mathbb{N}$, $k>1$, da un ejemplo de una
+
+    trayectoria $\tau_{k}\colon [0,\frac{1}{2}]\rightarrow \mathbb{R}^{2}$
+    con las siguientes propiedades:
+    <ul>
+    <li> $\tau_{k}(0)=(0,0)$ $&nbsp;$y $&nbsp;\tau
+     _{k}(\frac{1}{2})=(\frac{1}{k},0)$,</li>
+    <li> $\mathfrak{L}(\tau_{k})=\frac{k-1}{k}$,</li>
+    <li> $\tau_{k}(t)\in \left[ 0,\frac{1}{k}\right] \times \left[
+        0,\frac{1}{k}\right] $ &nbsp;para todo $t\in \left[
+        0,\frac{1}{2}\right] $.</li>
+        </ul>
+<li> Define $\sigma_{k}\colon[0,1]\rightarrow
+
+    \mathbb{R}^{2}$ como
+    \begin{equation*}
+      \sigma_{k}(t):=
+        \begin{cases}
+          \hat{\tau}_{k}(t) & \text{si $t\in \left[ 0,\frac{1}{2}\right]$,} \\
+          \left( \frac{2-2t}{k}+2t-1,0\right) & \text{si $t\in \left[ \frac{1}{2},1\right]$,}
+        \end{cases}
+    \end{equation*}
+    donde $\hat{\tau}_{k}\colon [0,\frac{1}{2}]\rightarrow \mathbb{R}^{2}$
+    es la parametrización proporcional a la longitud de arco de la
+    trayectoria $\tau_{k}$ que construiste en el inciso (a). Prueba
+    que
+    <ol>
+    <li>[(b.1)] $\sigma_{k}\in
+      \mathcal{\hat{T}}_{(0,0),(1,0)}(\mathbb{R}^{2}), $</li>
+    <li>[(b.2)] $\sigma_{k}\rightarrow \sigma $ &nbsp;en
+      $\mathcal{C}^{0}([0,1],\mathbb{R}^{2})$, donde
+      \begin{equation*}
+        \sigma (t):=
+          \begin{cases}
+            (0,0) & \text{si $t\in \left[ 0,\frac{1}{2}\right]$,} \\
+            \left( 2t-1,0\right) & \text{si $t\in \left[ \frac{1}{2},1\right]$.}
+          \end{cases}
+      \end{equation*}
+      </li>
+    </ol>
+    </li>
+<li> ¿Es
+    $\mathcal{\hat{T}}_{(0,0),(1,0)}(\mathbb{R}^{2})$ un subespacio
+    cerrado de $\mathcal{C}^{0}([0,1],\mathbb{R}^{2})$?</li>
+<li> ¿Es
+
+    $\mathcal{\hat{T}}_{(0,0),(1,0)}(\mathbb{R}^{2})$ con la
+    métrica uniforme un espacio completo?</li>
+  </ol>
+</div>
+</p>
+
+<h3 id="sec7-6">Proyecto: Un espacio completo sin trayectorias de longitud
+  mínima</h3>
+<p class="noj">
+<h4 id="subsec7-6-1">Objetivo</h4>
+</p>
+<p>
+El objetivo de este proyecto es mostrar que en un espacio métrico
+completo no necesariamente existen trayectorias de longitud
+mínima.
+</p>
+<p>
+<h4 id="subsec7-6-2">Procedimiento</h4>
+</p>
+<p>
+Elije una sucesión creciente de números reales $a_{k}\in
+(0,1)$ tal que $\lim_{k\rightarrow \infty }a_{k}=1$ y define
+\begin{align*}
+  A^{+} &:=\left\{ (x_{k})\in \ell_{2}:(x_{1}-\frac{3}{4})^{2}+\sum_{k=2}^{\infty }a_{k}^{2}x_{k}^{2}<1\right\} , \\
+  A^{-} &:=\left\{ (x_{k})\in \ell_{2}:(x_{1}+\frac{3}{4})^{2}+\sum_{k=2}^{\infty }a_{k}^{2}x_{k}^{2}<1\right\} , \\
+  X &:=\ell_{2}\smallsetminus \left( A^{+}\cap A^{+}\right) .
+\end{align*}
+</p>
+<p>
+<ol>
+<li> Prueba que $A^{+}$ y $A^{-}$ son subconjuntos abiertos de $\ell
+ _{2}$.</li>
+<li> Prueba que $X$ con la métrica inducida por la de $\ell_{2}$
+  es un espacio completo y que $x^{+}:=(\frac{3}{4},0,0,\dots)$,
+  $x^{-}:=(-\frac{3}{4},0,0,\dots)\in X$.</li>
+  <li> Prueba que cualquier trayectoria de $x^{+}&nbsp;$a $x^{-}$ en $\ell
+ _{2}$ intersecta al hiperplano
+  \begin{equation*}
+    \mathfrak{h}:=\left\{(x_{k})\in \ell_{2}:x_{1}=0\right\}.
+  \end{equation*}
+  (Sugerencia: Usa el teorema del valor intermedio.)</li>
+  <li> Prueba que, si $x\in X\cap \mathfrak{h}$, entonces $\left\Vert
+    x\right\Vert_{\ell_{2}}>\frac{\sqrt{7}}{4}$.</li>
+  <li> Prueba que la longitud de cualquier trayectoria de $x^{+}&nbsp;$a
+  $x^{-}$ en $X$ es estrictamente mayor que $2$.</li>
+  <li> Define $\sigma_{m}\colon [-\frac{3}{4},\frac{3}{4}]\rightarrow \ell_{2}$ como
+  \begin{equation*}
+    \left( \sigma_{m}(t)\right)_{k}:=
+      \begin{cases}
+        t & \text{si &nbsp;}k=1,\medskip \\
+        \frac{\sqrt{7}}{3a_{m}}\left( t+\frac{3}{4}\right) & \text{si &nbsp;}k=m\geq 2\text{ &nbsp;y &nbsp;}t\in \left[ -\frac{3}{4},0\right] ,\medskip \\
+        \frac{\sqrt{7}}{3a_{m}}\left( -t+\frac{3}{4}\right) & \text{si &nbsp;}k=m\geq 2\text{ &nbsp;y &nbsp;}t\in \left[ 0,\frac{3}{4}\right] ,\medskip \\
+        0 & \text{si &nbsp;}k\neq 1,m.
+      \end{cases}
+  \end{equation*}
+  <ol>
+  <li> Prueba que &nbsp;$\sigma_{m}(t)\in X$ &nbsp;para todo $t\in [-\frac{3}{4},\frac{3}{4}]$.</li>
+  <li> Calcula $\mathfrak{L}(\sigma_{k})$&nbsp;y prueba que 
+    $\lim_{m\rightarrow \infty }\mathfrak{L}(\sigma_{k})=2$.</li>
+  </ol>
+  </li>
+<li> Prueba que no existe una trayectoria de longitud mínima de
+  $x^{+}&nbsp;$a $x^{-}$ en $X$.</li>
+</ol>
+
+</div>
+
+
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>

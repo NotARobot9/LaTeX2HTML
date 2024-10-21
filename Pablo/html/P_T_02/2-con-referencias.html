@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_I_02/1.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\mathop{\rm id}} $ 
+    $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+//      include_once '/papirhos-web/scripts/menu-top.php';
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum;
+              }
+              </style>            
+            <h2 id="Cap-2">Espacios métricos</h2>
+
+<p class="noj">
+Algunos conceptos fundamentales, como el paso al
+límite o la continuidad de funciones en espacios euclidianos, se
+definen exclusivamente en términos de la distancia. Otras
+propiedades de los espacios euclidianos, como su estructura de espacio
+vectorial, no intervienen en la definición de estos conceptos.
+</p>
+<p>
+Empezaremos pues considerando conjuntos dotados de una
+<em class="emph">distancia</em>, a los que se denomina <em class="emph">espacios
+  métricos</em>. El matemático francés Maurice
+Fréchet introdujo esta noción, que juega un papel
+fundamental en las matemáticas modernas.
+</p>
+
+<div id="foto:frechet" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Frechet.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+    Maurice Fréchet
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    Maurice René Fréchet (1878-1973)
+    nació en Maligni, Francia. En la escuela secundaria fue alumno
+    de Jacques Hadamard, quien reconoció su potencial y decidió
+    asesorarlo de manera personal. Estudió matemáticas en la
+    École Normale Supérieure de París. Introdujo la
+    noción de espacio métrico en 1906, en su tesis de
+    doctorado.
+  </div>
+</div>
+
+<p>
+Daremos en este capítulo ejemplos interesantes de espacios
+métricos que aparecen de manera natural en muchas aplicaciones,
+algunas de las cuales se verán más adelante.
+</p>
+<p>
+<h3 id="sec2-1">Definición y ejemplos</h3>
+</p>
+
+<div id="defmet" class="definition">
+Sea $X$ un conjunto. Una
+  <em class="textbf">métrica\index{metrica@métrica}</em> (o
+  <em class="textbf">distancia\index{distancia}</em>) en $X$ es una función
+  $d\colon X\times X\rightarrow \mathbb{R}$ que tiene las siguientes tres
+  propiedades:
+
+<dl>
+  <dt>(M1)</dt> <dd> $d(x,y)=0$ si y sólo si $x=y$.</dd>
+  <dt>(M2)</dt> <dd> $d(x,y)=d(y,x)$  para cualesquiera $x,y\in X$.</dd>
+  <dt>(M3)</dt> <dd>$d\left( x,z\right) \leq d(x,y)+d(y,z)$  para
+    cualesquiera $x,y,z\in X$. A esta desigualdad se le llama la
+    <em class="textbf">desigualdad del triángulo\index{desigualdad!del triángulo}</em>.
+    </dd>
+  </dl>
+
+  Un <em class="textbf">espacio métrico\index{espacio!metrico@métrico}</em> es un
+  conjunto $X$ provisto de una métrica $d$. Lo denotaremos por
+  $(X,d)$, o simplemente por $X$ cuando no haga falta especificar
+  quién es su métrica.
+</div>
+
+<p>
+Veamos que la distancia entre dos puntos nunca es negativa.
+</p>
+<p>
+<div class="proposition">
+  $d(x,y)\geq 0$ para cualesquiera $x,y\in X$.
+</div>
+</p>
+<p>
+<div class="proof">
+  De las propiedades (M1), (M3) y (M2) respectivamente se sigue que
+  \begin{equation*}
+    0=d(x,x)\leq d(x,y)+d(y,x)=2d(x,y).
+  \end{equation*}
+  En consecuencia, $d(x,y)\geq 0$ para todos $x,y\in X$.
+</div>
+</p>
+<p>
+Los siguientes dos ejemplos de espacios métricos son bien
+conocidos.
+</p>
+<p>
+<div id="R" class="example">
+El conjunto $\mathbb{R}$ de los números reales con la
+  distancia usual
+  \begin{equation*}
+    d(x,y):=\left\vert x-y\right\vert =
+    \begin{cases}
+      x-y & \text{si $x\geq y$}, \\
+      y-x & \text{si $x\leq y$},
+    \end{cases}
+  \end{equation*}
+  es un espacio métrico.
+</div>
+</p>
+<p>
+<div id="R2" class="example">
+El espacio euclidiano $\mathbb{R}^{n}$ con la distancia
+  usual
+  \begin{equation*}
+    d_{2}(x,y):=\sqrt{(x_{1}-y_{1})^{2}+\cdots +(x_{n}-y_{n})^{2}},
+  \end{equation*}
+  donde $x=(x_{1},\dots,x_{n})$, $y=(y_{1},\dots,y_{n})\in
+  \mathbb{R}^{n}$, es un espacio métrico.
+</div>
+</p>
+<p>
+La demostración de estas afirmaciones se propone como ejercicio
+[Ejercicio~\ref{ejR}].
+</p>
+<p>
+Podemos darle a $\mathbb{R}^{n}$ otras métricas interesantes, por
+ejemplo las siguientes dos.
+</p>
+<p>
+<div id="R1" class="example">
+La función
+  \begin{equation*}
+    d_{1}(x,y):=\left\vert x_{1}-y_{1}\right\vert +\cdots +\left\vert
+      x_{n}-y_{n}\right\vert ,
+  \end{equation*}
+  $x=(x_{1},\dots,x_{n})$, $y=(y_{1},\dots,y_{n})\in \mathbb{R}^{n}$, es
+  una métrica para el espacio euclidiano $\mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Las propiedades (M1) y (M2) son inmediatas y la propiedad (M3) se
+  sigue de la desigualdad del triángulo en $\mathbb{R}$ que afirma
+  que, para cada $i=1,\dots,n$,
+  \begin{equation*}
+    \left\vert x_{i}-z_{i}\right\vert \leq \left\vert x_{i}-y_{i}\right\vert
+    +\left\vert y_{i}-z_{i}\right\vert .
+  \end{equation*}
+  Sumando ambos lados de estas desigualdades para $i=1,\dots,n$
+  obtenemos
+  \begin{equation*}
+    d_{1}(x,z)\leq d_{1}(x,y)+d_{1}(y,z).
+  \end{equation*}
+  En consecuencia, $d_{1}$ es una métrica.
+</div>
+</p>
+<p>
+<div id="Rinf" class="example">
+La función
+  \begin{equation*}
+    d_{\infty }(x,y):=\max \left\{ \left\vert x_{1}-y_{1}\right\vert ,\ldots
+      ,\left\vert x_{n}-y_{n}\right\vert \right\} ,
+  \end{equation*}
+  $x=(x_{1},\dots,x_{n})$, $y=(y_{1},\dots,y_{n})\in \mathbb{R}^{n}$, es
+  una métrica para el espacio euclidiano $\mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+La demostración es sencilla y se propone como ejercicio [Ejercicio
+\ref{ejRinf}].
+</p>
+<p>
+Introduciremos ahora métricas análogas en espacios de
+sucesiones $(x_{k})$ de números reales.
+</p>
+<p>
+<div id="l-inf" class="example">
+Sea $\ell_{\infty }$ el conjunto de todas las
+  sucesiones acotadas de números reales, es decir, de las
+  sucesiones $\overline{x}=(x_{k})$ para las cuales existe $c\in
+  \mathbb{R}$ (que depende de $\overline{x}$) tal que $\left\vert
+    x_{k}\right\vert \menorque c$ para todo $k\in \mathbb{N}$. Definimos
+  \begin{equation*}
+    d_{\infty }(\overline{x},\overline{y}):=\underset{k\geq 1}{\sup }\left\vert
+      x_{k}-y_{k}\right\vert ,\qquad \overline{x}=(x_{k}),\text{ }\overline{y}=(y_{k})\in \ell_{\infty }.
+  \end{equation*}
+  Entonces $d_{\infty }$ toma valores en $\mathbb{R}$ y es una
+  métrica en $\ell_{\infty }$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $\overline{x}=(x_{k})$, $\overline{y}=(y_{k})$ sucesiones
+  acotadas, y sean $c_{1},c_{2}\in \mathbb{R}$ tales que $\left\vert
+    x_{k}\right\vert \menorque c_{1}$ y $\left\vert y_{k}\right\vert \menorque c_{2}$
+  para todo $k\in \mathbb{N}$. De la desigualdad del triángulo
+  para números reales se sigue que
+  \begin{equation*}
+    \left\vert x_{k}-y_{k}\right\vert \leq \left\vert x_{k}\right\vert
+    +\left\vert y_{k}\right\vert \leq c_{1}+c_{2}\qquad \forall k\in 
+    \mathbb{N},
+  \end{equation*}
+  es decir, la sucesión $(x_{k}-y_{k})$ está acotada y, por
+  tanto,
+  \begin{equation*}
+    d_{\infty }(\overline{x},\overline{y})=\underset{k\geq 1}{\sup }\left\vert
+      x_{k}-y_{k}\right\vert \in \mathbb{R}.
+  \end{equation*}
+  Es inmediato comprobar que $d_{\infty }$ satisface las propiedades
+  (M1) y (M2). Aplicando nuevamente desigualdad del triángulo para
+  números reales obtenemos que, si
+  $\overline{x},\overline{y},\overline{z}\in \ell_{\infty }$,
+  entonces
+  \begin{equation*}
+    \left\vert x_{k}-y_{k}\right\vert \leq \left\vert x_{k}-z_{k}\right\vert
+    +\left\vert z_{k}-y_{k}\right\vert \leq d_{\infty }(\overline{x},\overline{z})+d_{\infty }(\overline{z},\overline{y})\qquad \forall k\in \mathbb{N}.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    d_{\infty }(\overline{x},\overline{y})\leq d_{\infty }(\overline{x},\overline{z})+d_{\infty }(\overline{z},\overline{y})\qquad \forall 
+    \overline{x},\overline{y},\overline{z}\in \ell_{\infty },
+  \end{equation*}
+  es decir, $d_{\infty }$ satisface (M3).
+</div>
+</p>
+<p>
+En los siguientes ejemplos requeriremos la noción de convergencia
+de una serie. Recordemos que una serie de números reales
+\begin{equation*}
+  \sum_{k=1}^{\infty }x_{k}
+\end{equation*}
+converge, si la sucesión $(s_{n})$ de sumas finitas
+\begin{equation*}
+  s_{n}:=\sum_{k=1}^{n}x_{k}
+\end{equation*}
+converge. En tal caso, se denota
+\begin{equation*}
+  \sum_{k=1}^{\infty }x_{k}:=\lim_{n\rightarrow \infty }s_{n}.
+\end{equation*}
+Si $x_{k}\geq 0$ para todo $k\in \mathbb{N}$, entonces la sucesión
+$(s_{n})$ es creciente. En ese caso, la serie converge si y sólo
+si la sucesión $(s_{n})$ está acotada y, si eso ocurre, se
+tiene que
+\begin{equation*}
+  \sum_{k=1}^{\infty }x_{k}=\lim_{n\rightarrow \infty }s_{n}=\sup_{n\geq
+    1}s_{n}.
+\end{equation*}
+</p>
+<p>
+<div id="l-1" class="example">
+Sea $\ell_{1}$ el conjunto de las sucesiones $(x_{k})$
+  de números reales tales que la serie
+  \begin{equation*}
+    \sum_{k=1}^{\infty }\left\vert x_{k}\right\vert
+  \end{equation*}
+  converge, y sea
+  \begin{equation*}
+    d_{1}(\overline{x},\overline{y}):=\sum_{k=1}^{\infty }\left\vert
+      x_{k}-y_{k}\right\vert ,\qquad \overline{x}=(x_{k}),\text{ }\overline{y}=(y_{k})\in \ell_{1}.
+  \end{equation*}
+  Entonces $d_{1}$ toma valores en $\mathbb{R}$ y es una métrica
+  en $\ell_{1}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  De la desigualdad del triángulo para números reales,
+  \begin{equation*}
+    \left\vert x_{k}-y_{k}\right\vert \leq \left\vert x_{k}\right\vert
+    +\left\vert y_{k}\right\vert,
+  \end{equation*}
+  se sigue que
+  \begin{align*}
+    \sum_{k=1}^{n}\left\vert x_{k}-y_{k}\right\vert &\leq
+    \sum_{k=1}^{n}\left\vert x_{k}\right\vert +\sum_{k=1}^{n}\left\vert
+      y_{k}\right\vert \\
+    &\leq \sum_{k=1}^{\infty }\left\vert x_{k}\right\vert +\sum_{k=1}^{\infty
+    }\left\vert y_{k}\right\vert .
+  \end{align*}
+  Por consiguiente, si $(x_{k}),(y_{k})\in \ell_{1}$, la serie
+  $\sum_{k=1}^{\infty }\left\vert x_{k}-y_{k}\right\vert $ converge y
+  se cumple que
+  \begin{equation}
+    \sum_{k=1}^{\infty }\left\vert x_{k}-y_{k}\right\vert \leq
+    \sum_{k=1}^{\infty }\left\vert x_{k}\right\vert +\sum_{k=1}^{\infty
+    }\left\vert y_{k}\right\vert .  \label{l1}
+  \end{equation}
+  Es fácil comprobar que $d_{1}$ satisface (M1) y (M2). La
+  propiedad (M3) se sigue de la desigualdad (\ref{l1}) reemplazando
+  $x_{k}$ por $x_{k}-z_{k}$ y $y_{k}$ por $y_{k}-z_{k}$, es decir,
+  \begin{equation*}
+    d_{1}(\overline{x},\overline{y})=\sum_{k=1}^{\infty }\left\vert
+      x_{k}-y_{k}\right\vert \leq \sum_{k=1}^{\infty }\left\vert
+      x_{k}-z_{k}\right\vert +\sum_{k=1}^{\infty }\left\vert
+      z_{k}-y_{k}\right\vert =d_{1}(\overline{x},\overline{z})+d_{1}(\overline{z},\overline{y}),
+  \end{equation*}
+  para cualesquiera $\overline{x},\overline{y},\overline{z}\in \ell
+ _{1}$.
+</div>
+</p>
+<p>
+<h3 id="sec2-2">Espacios normados</h3>
+</p>
+<p>
+Nota que todos los ejemplos anteriores, además de la estructura
+geométrica dada por la distancia, poseen una estructura
+algebraica: la de espacio vectorial. Las métricas más
+interesantes en un espacio vectorial son las inducidas por una norma.
+</p>
+<p>
+<div id="defnor"class="definition">
+Sea $V$ un espacio vectorial sobre $\mathbb{R}$. Una
+  <em class="textbf">norma</em>\index{norma} en $V$ es una función $\left\Vert
+    \cdot \right\Vert \colon V\rightarrow \mathbb{R}$ que tiene las
+  siguientes propiedades:
+</p>
+
+  <dl>
+  <dt>(N1)</dt> <dd>$\left\Vert v\right\Vert =0$ si y sólo si $v=0$,</dd>
+  <dt>(N2)</dt> <dd>$\left\Vert \lambda v\right\Vert =\left\vert \lambda
+    \right\vert \left\Vert v\right\Vert $ para cualesquiera $v\in
+    V$, $\lambda \in \mathbb{R}$,</dd>
+  <dt>(N3)</dt> <dd>$\left\Vert v+w\right\Vert \leq \left\Vert v\right\Vert
+    +\left\Vert w\right\Vert $ para cualesquiera $v,w\in V$.</dd>
+  </dl>
+
+<p>
+  Un <em class="textbf">espacio normado\index{espacio!normado}</em> es un espacio
+  vectorial $V$ provisto de una norma $\left\Vert \cdot \right\Vert
+  $. Lo denotaremos por $(V,\left\Vert \cdot \right\Vert )$, o
+  simplemente por $V$ cuando no haga falta especificar quién es su
+  norma.
+</div>
+</p>
+<p>
+<div id="evmet" class="proposition">
+Todo espacio normado $(V,\left\Vert \cdot \right\Vert
+  )$ es un espacio métrico con la métrica dada por
+  \begin{equation*}
+    d(v,w):=\left\Vert v-w\right\Vert .
+  \end{equation*}
+  Esta métrica se llama la <em class="textbf">métrica
+    inducida\index{metrica@métrica!inducida por una norma}</em> por la norma
+  $\left\Vert \cdot \right\Vert $.
+</div>
+</p>
+<p>
+La demostración es sencilla y se propone como ejercicio [Ejercicio
+\ref{ejevmet}].
+</p>
+<p>
+Todas las métricas consideradas en los ejemplos anteriores
+están inducidas por una norma. Veamos otros ejemplos.
+</p>
+<p>
+Dado $x\in \mathbb{R}^{n}$ definimos
+\index{norma!norma p@$\left\Vert \cdot \right\Vert_{p}$}
+\begin{equation}
+  \left. 
+    \begin{aligned}
+      &\left\Vert x\right\Vert_{p}:=\biggl( \sum_{k=1}^{n}\left\vert
+          x_{k}\right\vert^{p}\biggr)^{\frac{1}{p}}\qquad\text{si }p\in [1,\infty ), \\
+      &\left\Vert x\right\Vert_{\infty }:=\max_{1\leq k\leq n}\left\vert
+        x_{k}\right\vert .
+    \end{aligned}
+  \right.  \label{normRn}
+\end{equation}
+Es sencillo comprobar que $\left\Vert \cdot \right\Vert_{p}$ cumple
+las propiedades (N1) y (N2). Para probar que cumple la propiedad
+(N3) requerimos unas desigualdades que demostraremos a
+continuación.
+</p>
+<p>
+<div id="young" class="lemma">[Desigualdad de Young]
+Sean $p,q\in (1,\infty )$ tales que
+  $\frac{1}{p}+\frac{1}{q}=1$. Entonces, para cualquier par de
+  números reales $a,b\geq 0$ se cumple que\index{desigualdad!de Young}
+  \begin{equation*}
+    ab\leq 
+    \tfrac{1}{p}a^{p}+\tfrac{1}{q}b^{q}.
+  \end{equation*}
+</div>
+</p>
+
+<div class="proof">
+  Si $a=0$ o $b=0$ la desigualdad es obvia, de modo que podemos
+  suponer que $ab>0$. La función exponencial es una función
+  convexa, es decir, para cualesquiera $x_{0},x_{1}\in \mathbb{R}$ y
+  $t\in [0,1]$ se cumple que
+  \begin{equation*}
+    (1-t)e^{x_{0}}+te^{x_{1}}\geq e^{\left[ (1-t)x_{0}+tx_{1}\right] }.
+  \end{equation*}
+
+              <div id="fig:2-1" class="figure">
+                <img src="tul/P_T_02/figuras/e-a-la-x.svg" height="280">
+                <div class="caption">
+                </div>                
+              </div>
+
+  <p class="noj">
+  Tomando $x_{0}=\ln a^{p}$, $x_{1}=\ln b^{q}$ y $t=\frac{1}{q}$
+  obtenemos
+  </p>
+  \begin{equation*}
+    \tfrac{1}{p}a^{p}+\tfrac{1}{q}b^{q}\geq e^{(\frac{1}{p}\ln a^{p}+\frac{1}{q}\ln b^{q})}=ab.
+  \end{equation*}
+  Esta es la desigualdad deseada.
+</div>
+
+<p>
+Aplicaremos la desigualdad de Young para
+demostrar la desigualdad de Hölder.
+</p>
+
+<div id="foto:young" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Young_2.svg" height="300">
+    <div class="caption">                
+      <div class="tag">
+        William Henry Young
+      </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    William Henry Young
+    (1863-1942) nació en Londres, Inglaterra. Estudió
+    matemáticas en Cambridge y fue profesor en diversas
+    universidades europeas. Publicó esta desigualdad en 1912.
+  </div>
+</div>
+
+
+<div id="foto:hoelder" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Hoelder_Otto.svg" height="300">
+    <div class="caption">                
+      <div class="tag">
+        Otto Hölder
+      </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    Otto Ludwig Hölder
+    (1859-1937) nació en Stuttgart, Alemania. Estudió en las
+    universidades de Stuttgart y Berlín, donde fue estudiante de
+    Kronecker, Weierstrass y Kummer. Obtuvo el doctorado en la
+    Universidad de Tübingen en 1882. Descubrió la desigualdad
+    que lleva su nombre en 1884, cuando trabajaba en la convergencia de
+    series de Fourier.
+  </div>
+</div>
+
+<p>
+<div class="proposition">[Desigualdad de Hölder en $\mathbb{R}^{n}$]
+\label{Rholder}Sean $p,q\in (1,\infty )$ tales que\break
+  $\frac{1}{p}+\frac{1}{q}=1$. Entonces, para cualesquiera
+  $x=(x_{1},\dots,x_{n})$, $y=(y_{1},\dots,y_{n})\in \mathbb{R}^{n}$ se
+  cumple que\index{desigualdad!de Hölder!en $\mathbb{R}^{n}$}
+  \begin{equation*}
+    \sum_{k=1}^{n}\left\vert x_{k}y_{k}\right\vert \leq \biggl(
+      \sum_{k=1}^{n}\left\vert x_{k}\right\vert^{p}\biggr)^{\frac{1}{p}}\biggl( \sum_{k=1}^{n}\left\vert y_{k}\right\vert^{q}\biggr)^{\frac{1}{q}},
+  \end{equation*}
+  es decir,
+  \begin{equation*}
+    \left\Vert xy\right\Vert_{1}\leq \left\Vert x\right\Vert_{p}\left\Vert
+      y\right\Vert_{q}
+  \end{equation*}
+  donde $xy:=(x_{1}y_{1},\dots,x_{n}y_{n})$.
+</div>
+</p>
+<p>
+<div class="proof">
+  La afirmación es trivial si $x=0$ o si $y=0$. Supongamos pues
+  que ambos son distintos de cero. Aplicando la desigualdad de Young a
+  \begin{equation*}
+    a_{k}:=\frac{\left\vert x_{k}\right\vert }{\left\Vert x\right\Vert_{p}}\qquad\text{y}\qquad b_{k}:=\frac{\left\vert y_{k}\right\vert }{\left\Vert
+        y\right\Vert_{q}}
+  \end{equation*}
+  obtenemos
+  \begin{equation*}
+    \frac{\left\vert x_{k}y_{k}\right\vert }{\left\Vert x\right\Vert
+     _{p}\left\Vert y\right\Vert_{q}}\leq \frac{\left\vert x_{k}\right\vert^{p}}{p\left\Vert x\right\Vert_{p}^{p}}+\frac{\left\vert y_{k}\right\vert^{q}}{q\left\Vert y\right\Vert_{q}^{q}}.
+  \end{equation*}
+  Sumando todas estas desigualdades para $k=1,\dots,n$, concluimos que
+  \begin{align*}
+    \frac{1}{\left\Vert x\right\Vert_{p}\left\Vert y\right\Vert_{q}}\biggl(
+      \sum_{k=1}^{n}\left\vert x_{k}y_{k}\right\vert \biggr) &\leq \frac{1}{p\left\Vert x\right\Vert_{p}^{p}}\biggl( \sum_{k=1}^{n}\left\vert
+        x_{k}\right\vert^{p}\biggr) +\frac{1}{q\left\Vert y\right\Vert_{q}^{q}}\biggl( \sum_{k=1}^{n}\left\vert y_{k}\right\vert^{q}\biggr) \\
+    &=\frac{1}{p}+\frac{1}{q}=1.
+  \end{align*}
+  Multiplicando ambos lados de la desigualdad anterior por $\left\Vert
+    x\right\Vert_{p}\left\Vert y\right\Vert_{q}$ obtenemos la
+  desigualdad deseada.
+</div>
+</p>
+<p>
+Estamos listos para demostrar el siguiente resultado.
+</p>
+<p>
+<div id="Rp" class="proposition">
+Para cada $p\in [1,\infty ]$, la función
+  $\left\Vert \cdot \right\Vert_{p}$ definida en
+  <em class="emph">(\ref{normRn})</em> es una norma en $\mathbb{R}^{n}$.
+</div>
+  <div class="proof"> 
+  Es sencillo ver que
+    $\left\Vert \cdot \right\Vert_{p}$ cumple las propiedades (N1) y
+    (N2). Demostremos la propiedad (N3), es decir, que para todo
+    $p\in [1,\infty ]$ se cumple que \begin{equation} \left\Vert
+        x+y\right\Vert_{p}\leq \left\Vert x\right\Vert_{p}+\left\Vert
+        y\right\Vert_{p}\qquad \forall x,y\in
+      \mathbb{R}^{n}.  \label{minkRp} \end{equation} Para $p=\infty $
+    esta desigualdad es consequencia inmediata de la desigualdad del
+    triángulo para números reales [Ejercicio~\ref{ejRinf}]. El caso
+    $p=1$ se probó en el Ejemplo~\ref{R1}.
+
+  Tomemos ahora $p\in (1,\infty )$. La afirmación es trivial si
+  $x=0$. Supongamos pues que $x\neq 0$ y apliquemos la desigualdad de
+  Hölder a $x$ y $((\left\vert x_{1}\right\vert +\left\vert
+    y_{1}\right\vert )^{p-1},\ldots ,(\left\vert x_{n}\right\vert
+  +\left\vert y_{n}\right\vert )^{p-1})$. Definiendo
+  $q:=\frac{p}{p-1}$ obtenemos
+  \begin{equation*}
+    \sum_{k=1}^{n}\left\vert x_{k}\right\vert (\left\vert
+      x_{k}\right\vert +\left\vert y_{k}\right\vert )^{p-1}\leq \left\Vert
+      x\right\Vert_{p}\biggl( \sum_{k=1}^{n}(\left\vert x_{k}\right\vert
+      +\left\vert y_{k}\right\vert )^{p}\biggr)^{\frac{1}{q}},
+  \end{equation*}
+  Análogamente,
+  \begin{equation*}
+    \sum_{k=1}^{n}\left\vert y_{k}\right\vert (\left\vert
+      x_{k}\right\vert +\left\vert y_{k}\right\vert )^{p-1}\leq \left\Vert
+      y\right\Vert_{p}\biggl( \sum_{k=1}^{n}(\left\vert x_{k}\right\vert
+      +\left\vert y_{k}\right\vert )^{p}\biggr)^{\frac{1}{q}}.
+  \end{equation*}
+  Sumando las dos desigualdades anteriores obtenemos
+  \begin{equation*}
+    \sum_{k=1}^{n}(\left\vert x_{k}\right\vert +\left\vert
+      y_{k}\right\vert )^{p}\leq \left( \left\Vert x\right\Vert_{p}+\left\Vert
+        y\right\Vert_{p}\right) \biggl( \sum_{k=1}^{n}(\left\vert
+        x_{k}\right\vert +\left\vert y_{k}\right\vert )^{p}\biggr)^{\frac{1}{q}}.
+  \end{equation*}
+  Dividiendo ambos lados de esta desigualdad entre
+  \begin{equation*}
+    \biggl( \sum_{k=1}^{n}(\left\vert x_{k}\right\vert +\left\vert
+        y_{k}\right\vert )^{p}\biggr)^{\frac{1}{q}}
+  \end{equation*}
+  y usando la desigualdad del triángulo para números reales
+  $\left\vert x_{k}+y_{k}\right\vert \leq \left\vert x_{k}\right\vert
+  +\left\vert y_{k}\right\vert $, concluimos que
+  \begin{equation*}
+    \left\Vert x+y\right\Vert_{p}=\biggl( \sum_{k=1}^{n}\left\vert
+        x_{k}+y_{k}\right\vert^{p}\biggr)^{\frac{1}{p}}\leq \left(
+      \sum_{k=1}^{n}(\left\vert x_{k}\right\vert +\left\vert
+        y_{k}\right\vert )^{p}\right)^{\frac{1}{p}}\leq \left\Vert x\right\Vert
+   _{p}+\left\Vert y\right\Vert_{p}.
+  \end{equation*}
+  Ésta es la desigualdad deseada.
+</div>
+</p>
+<p>
+<div class="notation">
+  Con el fin de distinguir cuál de todas estas normas estamos
+  considerando, usaremos la notación\index{espacio!Rn@$\mathbb{R}_{p}^{n}$}
+  \begin{equation}
+    \mathbb{R}_{p}^{n}:=(\mathbb{R}^{n},\left\Vert \cdot \right\Vert
+   _{p}),\qquad p\in [1,\infty ],  \label{Rnp}
+  \end{equation}
+  para designar al espacio $\mathbb{R}^{n}$ con la norma $\left\Vert
+    \cdot \right\Vert_{p}$. Escribiremos simplemente $\mathbb{R}^{n}$
+  \index{espacio!Rn@$\mathbb{R}^{n}$}en vez de
+  $\mathbb{R}_{2}^{n}$ para designar a $\mathbb{R}^{n}$ con la norma
+  usual, a la que denotaremos simplemente por
+  \begin{equation}
+    \left\Vert x\right\Vert :=\sqrt{x_{1}^{2}+\cdots +x_{n}^{2}}.  \label{normausual}
+  \end{equation}
+</div>
+</p>
+<p>
+Nota que las métricas $d_{1},d_{2}$ y $d_{\infty }$ consideradas
+en los Ejemplos~\ref{R2} al~\ref{Rinf} son las inducidas por las
+normas $\left\Vert \cdot \right\Vert_{1}$, $\left\Vert \cdot
+\right\Vert $ y $\left\Vert \cdot \right\Vert_{\infty }$,
+respectivamente.
+</p>
+<p>
+Consideremos ahora espacios de sucesiones. Las sucesiones de
+números reales se pueden sumar y multiplicar por escalares
+término a término, es decir, si $\overline{x}=(x_{k})$ y
+$\overline{y}=(y_{k})$ son sucesiones de números reales y $\lambda
+\in \mathbb{R}$, se definen
+\begin{equation*}
+  \overline{x}+\overline{y}:=(x_{k}+y_{k})\qquad \text{y}\qquad\lambda 
+  \overline{x}:=(\lambda x_{k}).
+\end{equation*}
+Con estas operaciones el conjunto de todas las sucesiones de
+números reales es un espacio vectorial. Para espacios de
+sucesiones adecuados podemos definir normas análogas a las
+definidas para $\mathbb{R}^{n}$.
+</p>
+<p>
+<div id="l-p" class="proposition">
+
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $p\in [1,\infty )$, el conjunto $\ell_{p}$
+    \index{espacio!l subp@$\ell_{p}$}de todas las sucesiones
+    de números reales $(x_{k})$ tales que la serie
+    \begin{equation*}
+      \sum_{k=1}^{\infty }\left\vert x_{k}\right\vert^{p}
+    \end{equation*}
+    converge es un espacio vectorial y
+\index{norma!norma p@$\left\Vert \cdot \right\Vert_{p}$}
+    \begin{equation}
+      \left\Vert (x_{k})\right\Vert_{p}:=\biggl( \sum_{k=1}^{\infty
+        }\left\vert x_{k}\right\vert^{p}\biggr)^{\frac{1}{p}}  \label{normlp}
+    \end{equation}
+    es una norma en $\ell_{p}$.
+</li> 
+  <li> El conjunto $\ell_{\infty }$ de todas las sucesiones
+    acotadas de números reales es un espacio vectorial y
+    \begin{equation}
+      \left\Vert (x_{k})\right\Vert_{\infty }:=\underset{k\geq 1}{\sup }\left\vert x_{k}\right\vert  \label{normlinf}
+    \end{equation}
+    es una norma en $\ell_{\infty }$.
+    </li>
+  </ol>
+</div>
+
+<div class="proof">
+  Es sencillo ver que $\lambda \overline{x}\in \ell_{p}$ para
+  cualesquiera $\overline{x}\in \ell_{p}$, $\lambda \in \mathbb{R}$,
+  y que $\left\Vert \cdot \right\Vert_{p}$ cumple las propiedades
+  (N1) y (N2) [Ejercicio~\ref{ejlp}]. Probaremos a continuación
+  que $\overline{x}+\overline{y}\in \ell_{p}$ si
+  $\overline{x},\overline{y}\in \ell_{p}$ y que $\left\Vert \cdot
+  \right\Vert_{p}$ cumple la propiedad (N3).
+
+  <em class="emph">(a):</em>  Si $p\in [1,\infty )$ y $(x_{k}),(y_{k})\in
+  \ell_{p}$, como la norma $\left\Vert \cdot \right\Vert_{p}$ en
+  $\mathbb{R}^{n}$ satisface la propiedad (N3), se tiene que
+  \begin{equation*}
+    \biggl( \sum_{k=1}^{n}\left\vert x_{k}+y_{k}\right\vert^{p}\biggr)^{\frac{1}{p}}\leq \biggl( \sum_{k=1}^{n}\left\vert x_{k}\right\vert
+     ^{p}\biggr)^{\frac{1}{p}}+\biggl( \sum_{k=1}^{n}\left\vert
+        y_{k}\right\vert^{p}\biggr)^{\frac{1}{p}}\leq \left\Vert
+      (x_{k})\right\Vert_{p}+\left\Vert (y_{k})\right\Vert_{p}
+  \end{equation*}
+  para todo $n\in \mathbb{N}$. En consecuencia, la serie
+  $\sum_{k=1}^{\infty }\left\vert x_{k}+y_{k}\right\vert^{p}$
+  converge y se cumple que
+  \begin{equation*}
+    \left\Vert (x_{k}+y_{k})\right\Vert_{p}=\biggl( \sum_{k=1}^{\infty
+      }\left\vert x_{k}+y_{k}\right\vert^{p}\biggr)^{\frac{1}{p}}\leq \left\Vert
+      (x_{k})\right\Vert_{p}+\left\Vert (y_{k})\right\Vert_{p}.
+  \end{equation*}
+
+  <em class="emph">(b):</em>  El caso $p=\infty $ se probó en el Ejemplo~\ref{l-inf}.
+</div>
+<p>
+Si $p\in [1,\infty )$ la desigualdad (N3) en $\ell_{p}&nbsp;$se
+llama la <em class="textbf">desigualdad de Minkowski para
+  series</em>\index{desigualdad!de Minkowski!para series}. Nota que las
+métricas $d_{1}$ y $d_{\infty }$ consideradas en los Ejemplos
+\ref{l-1} y~\ref{l-inf} son las inducidas por las normas $\left\Vert
+  \cdot \right\Vert_{1}$ y $\left\Vert \cdot \right\Vert_{\infty }$
+que acabamos de definir.
+</p>
+<p>
+No cualquier métrica en un espacio vectorial está inducida por
+una norma. De hecho, a cualquier conjunto le podemos dar la
+métrica siguiente.
+</p>
+<p>
+<div id="disc" class="example">
+Sea $X$ un conjunto arbitrario. La función
+  \begin{equation*}
+    d_{\disc}(x,y)=
+      \begin{cases}
+        0&\text{si $x=y$,} \\
+        1&\text{si $x\neq y,$}
+      \end{cases}
+  \end{equation*}
+  es una métrica en $X$, llamada la <em class="textbf">métrica
+    discreta\index{metrica@métrica!discreta@discreta $d_{\disc</em>$}}. El
+  espacio $X_{\disc}:=(X,d_{\disc})$ se llama un <em class="textbf">espacio
+    discreto\index{espacio!discreto@discreto $X_{\disc</em>$}}.
+</div>
+</p>
+<p>
+Es sencillo comprobar que en un espacio vectorial no trivial ninguna
+norma induce la métrica discreta [Ejercicio~\ref{ejdiscnoev}].
+</p>
+<p>
+<h3 id="sec2-3">Espacios de funciones</h3>
+</p>
+<p>
+Denotemos por $\mathcal{C}^{0}[a,b]$ al conjunto de
+todas las funciones continuas $f\colon [a,b]\rightarrow \mathbb{R}$. La suma
+de funciones y el producto de una función por un escalar,
+definidos como
+\begin{equation*}
+  (f+g)(x):=f(x)+g(x),\qquad (\lambda f)(x):=\lambda f(x),\qquad f,g\in \mathcal{C}^{0}[a,b],\text{ }\lambda \in \mathbb{R},
+\end{equation*}
+le dan a $\mathcal{C}^{0}[a,b]$ la estructura de espacio vectorial.
+Dada $f\in \mathcal{C}^{0}[a,b]$
+definimos\index{norma!norma p@$\left\Vert \cdot \right\Vert_{p}$}
+\begin{equation}
+    \begin{aligned}
+      &\left\Vert f\right\Vert_{p}:=\biggl(\int_{a}^{b}\left\vert f(x)\right\vert
+       ^{p}dx\biggr)^{\frac{1}{p}}\qquad\text{si }p\in [1,\infty ), \\
+      &\left\Vert f\right\Vert_{\infty }:=\max \left\{\left\vert f(x)\right\vert :a\leq
+      x\leq b\right\}.
+    \end{aligned}\label{normfunc}
+\end{equation}
+Demostraremos a continuación que éstas son normas en
+$\mathcal{C}^{0}[a,b]$. Empecemos observando lo siguiente.
+</p>
+<p>
+<div id="N1int" class="lemma">
+Sean $f\in \mathcal{C}^{0}[a,b]$ y $p\in [1,\infty ]$. Entonces, $\left\Vert f\right\Vert_{p}=0$ si y
+  sólo si $f=0$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Para $p=\infty $ esta afirmación es consecuencia inmediata de la
+  definición (\ref{normfunc}). Si $p\in [1,\infty )$, como
+  $\left\vert f(x)\right\vert^{p}$ es una función continua y no
+  negativa, se tiene que
+  \begin{equation*}
+    \left\Vert f\right\Vert_{p}^{p}=\int_{a}^{b}\left\vert f(x)\right\vert
+   ^{p}dx=0\quad \Longleftrightarrow \quad \left\vert f(x)\right\vert^{p}=0\text{ }\forall x\in [a,b].
+  \end{equation*}
+  En consecuencia, $\left\Vert f\right\Vert_{p}=0$ si y sólo si
+  $f=0$.
+</div>
+</p>
+<p>
+Probaremos ahora la desigualdad de Hölder para integrales. Su
+demostración es análoga a la correspondiente para
+$\mathbb{R}^{n}$.
+</p>
+<p>
+<div class="proposition">[Desigualdad de Hölder para integrales]
+\label{iholder}\index{desigualdad!de Hölder}Sean $p,q\in
+  (1,\infty )$ tales que $\frac{1}{p}+\frac{1}{q}=1$. Entonces, para
+  cualquier par de funciones continuas $f,g\colon [a,b]\rightarrow
+  \mathbb{R}$ se cumple que
+  \begin{equation*}
+    \int_{a}^{b}\left\vert f(x)g(x)\right\vert dx\leq \biggl(
+      \int_{a}^{b}\left\vert f(x)\right\vert^{p}dx\biggr)^{\frac{1}{p}}\biggl(
+      \int_{a}^{b}\left\vert g(x)\right\vert^{q}dx\biggr)^{\frac{1}{q}},
+  \end{equation*}
+  es decir,
+  \begin{equation*}
+    \left\Vert fg\right\Vert_{1}\leq \left\Vert f\right\Vert_{p}\left\Vert
+      g\right\Vert_{q}.
+  \end{equation*}
+</div>
+</p>
+
+<div class="proof">
+  La afirmación es trivial si $f=0$ o si $g=0$. Supongamos pues
+  que ambas funciones son distintas de cero. Para cada $x\in [a,b]$, definimos
+  \begin{equation*}
+    a_{x}:=\frac{\left\vert f(x)\right\vert }{\left\Vert f\right\Vert_{p}}\qquad\text{y}\qquad b_{x}:=\frac{\left\vert g(x)\right\vert }{\left\Vert
+        g\right\Vert_{q}}.
+  \end{equation*}
+  Aplicando la desigualdad de Young (Lema~\ref{young}) a estos
+  números obtenemos
+  \begin{equation*}
+    \frac{\left\vert f(x)g(x)\right\vert }{\left\Vert f\right\Vert
+     _{p}\left\Vert g\right\Vert_{q}}\leq \frac{\left\vert f(x)\right\vert^{p}}{p\left\Vert f\right\Vert_{p}^{p}}+\frac{\left\vert g(x)\right\vert^{q}}{q\left\Vert g\right\Vert_{q}^{q}},
+  \end{equation*}
+  e integrando ambos lados de esta desigualdad concluimos que
+  \begin{equation*}
+    \frac{\int_{a}^{b}\left\vert f(x)g(x)\right\vert dx}{\left\Vert f\right\Vert
+     _{p}\left\Vert g\right\Vert_{q}}\leq \frac{\int_{a}^{b}\left\vert
+        f(x)\right\vert^{p}dx}{p\left\Vert f\right\Vert_{p}^{p}}+\frac{\int_{a}^{b}\left\vert g(x)\right\vert^{q}dx}{q\left\Vert g\right\Vert
+     _{q}^{q}}=\frac{1}{p}+\frac{1}{q}=1\text{.}
+  \end{equation*}
+  Multiplicando ambos lados de esta desigualdad por $\left\Vert
+    f\right\Vert_{p}\left\Vert g\right\Vert_{q}$ obtenemos la
+  desigualdad deseada.
+</div>
+
+<p>
+Es fácil ver que también vale la desigualdad de Hölder
+\begin{equation*}
+  \left\Vert fg\right\Vert_{1}\leq \left\Vert f\right\Vert_{1}\left\Vert
+    g\right\Vert_{\infty }
+\end{equation*}
+[Ejercicio~\ref{ejholder1inf}]. A partir de la desigualdad de Hölder se
+obtiene la desigualdad de Minkowski.
+</p>
+
+<div id="foto:hoelder" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/minkowski.svg" height="300">
+    <div class="caption">                
+      <div class="tag">
+        Hermann Minkowski
+      </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    Hermann Minkowski (1864-1909) nació en Lituania, entonces parte del
+  Imperio Ruso. Obtuvo el doctorado en 1885 en la Universidad Albertina de Königsberg. Fue profesor en la ETH de Zürich y en la Universidad de Göttingen, ciudad en la que murió.
+  </div>
+</div>
+
+<p>
+<div class="proposition">[Desigualdad de Minkowski para integrales]
+\label{imink}\index{desigualdad!de Minkowski}Sea $p\in [1,\infty ]$. Entonces,
+  \begin{equation*}
+    \left\Vert f+g\right\Vert_{p}\leq \left\Vert f\right\Vert_{p}+\left\Vert
+      g\right\Vert_{p}\qquad \forall f,g\in \mathcal{C}^{0}[a,b].
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Los casos $p=1,\infty $ se proponen como ejercicio [Ejercicio~\ref{ejmink1inf}].
+</p>
+<p>
+  Sea $p\in (1,\infty )$. Si $f=0$ la afirmación es
+  evidente. Supongamos pues que $f\neq 0$. Sea
+  $h(x)=(\left\vert f(x)\right\vert +\left\vert g(x)\right\vert
+  )^{p-1}$.
+  Aplicando la desigualdad de Hölder para integrales
+  (Proposición~\ref{iholder}) a las funciones $f,h$, y $g,h$
+  respectivamente, obtenemos
+  \begin{align*}
+    \int_{a}^{b}\left\vert f(x)\right\vert (\left\vert f(x)\right\vert
+    +\left\vert g(x)\right\vert )^{p-1}dx &\leq \left\Vert f\right\Vert
+   _{p}\biggl( \int_{a}^{b}(\left\vert f(x)\right\vert +\left\vert
+        g(x)\right\vert )^{p}\biggr)^{\frac{1}{q}}, \\
+    \int_{a}^{b}\left\vert g(x)\right\vert (\left\vert f(x)\right\vert
+    +\left\vert g(x)\right\vert )^{p-1}dx &\leq \left\Vert g\right\Vert
+   _{p}\biggl( \int_{a}^{b}(\left\vert f(x)\right\vert +\left\vert
+        g(x)\right\vert )^{p}\biggr)^{\frac{1}{q}},
+  \end{align*}
+  y sumando estas desigualdades concluimos que
+  \begin{equation*}
+    \int_{a}^{b}(\left\vert f(x)\right\vert +\left\vert g(x)\right\vert
+    )^{p}dx\leq \left( \left\Vert f\right\Vert_{p}+\left\Vert g\right\Vert
+     _{p}\right) \biggl( \int_{a}^{b}(\left\vert f(x)\right\vert +\left\vert
+        g(x)\right\vert )^{p}\biggr)^{\frac{1}{q}}.
+  \end{equation*}
+  Dividiendo ambos lados de esta desigualdad entre
+  \begin{equation*}
+    \biggl( \int_{a}^{b}(\left\vert f(x)\right\vert +\left\vert g(x)\right\vert
+      )^{p}\biggr)^{\frac{1}{q}}
+  \end{equation*}
+  y usando la desigualdad del triángulo para números reales
+  $\left\vert f(x)+g(x)\right\vert \leq \left\vert f(x)\right\vert
+  +\left\vert g(x)\right\vert $ y la monotonía de la integral
+  obtenemos
+  \begin{align*}
+    \left\Vert f+g\right\Vert_{p}&=\biggl( \int_{a}^{b}\left\vert
+        f(x)+g(x)\right\vert^{p}dx\biggr)^{\frac{1}{p}}\\
+&\leq \biggl(
+      \int_{a}^{b}\left( \left\vert f(x)\right\vert +\left\vert g(x)\right\vert
+      \right)^{p}dx\biggr)^{\frac{1}{p}}\leq \left\Vert f\right\Vert
+   _{p}+\left\Vert g\right\Vert_{p},
+  \end{align*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Ahora podemos concluir lo siguiente.
+</p>
+<p>
+<div class="proposition">
+  Para cada $p\in [1,\infty ]$ la función $\left\Vert \cdot
+  \right\Vert_{p}$ definida en <em class="emph">(\ref{normfunc})</em> es una norma
+  en $\mathcal{C}^{0}[a,b]$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Las propiedades (N1) y (N3) se probaron en el Lema~\ref{N1int} y la
+  Proposición~\ref{imink} respectivamente. La propiedad (N2) es
+  consecuencia inmediata de la linealidad de la integral.
+</div>
+</p>
+<p>
+<div class="notation">
+  Con el fin de distinguir cuál de todas estas normas estamos
+  considerando, usaremos la
+  notación\index{espacio!C subp0ab@$\mathcal{C}_{p}^{0}[a,b]\vspaceindex$}
+  \begin{equation*}
+    \mathcal{C}_{p}^{0}[a,b]:=(\mathcal{C}^{0}[a,b],\left\Vert \cdot \right\Vert
+   _{p}),\qquad p\in [1,\infty ],
+  \end{equation*}
+  para designar al espacio de las funciones continuas
+  $f\colon [a,b]\rightarrow \mathbb{R}$ con la norma $\left\Vert \cdot
+  \right\Vert_{p}$. Como veremos más adelante, la norma más
+  adecuada en el espacio de funciones continuas $\mathcal{C}^{0}[a,b]$
+  es la norma $\left\Vert \cdot \right\Vert_{\infty }$. Por ello,
+  escribiremos
+  simplemente\index{espacio!C ala0ab@$\mathcal{C}^{0}[a,b]$}
+  \begin{equation*}
+    \mathcal{C}^{0}[a,b]:=(\mathcal{C}^{0}[a,b],\left\Vert \cdot \right\Vert
+   _{\infty }).
+  \end{equation*}
+</div>
+</p>
+<p>
+Observa que la distancia $\left\Vert f-g\right\Vert_{\infty }$ entre
+dos funciones continuas$&nbsp;f$ y $g$ es pequeña si sus gráficas
+están cerca la una de la otra, mientras que la distancia
+$\left\Vert f-g\right\Vert_{1}$ es pequeña si el área de la
+región delimitada por sus gráficas es pequeña. Así,
+dos funciones continuas pueden estar muy cerca según la norma
+$\left\Vert \cdot \right\Vert_{1}$ y a distancia arbitrariamente
+grande según la norma $\left\Vert \cdot \right\Vert_{\infty }$,
+como lo muestra el siguiente ejemplo.
+</p>
+
+<div id="difnorm1inf" class="example">
+Sean $R>0$ y $f_{k}\colon [0,1]\rightarrow \mathbb{R}$
+  la función dada por
+  \begin{equation*}
+    f_{k}(x)=
+      \begin{cases}
+        R(1-kx) & 
+        \text{si $0\leq x\leq \frac{1}{k}$,} \\
+        0 & \text{si $\frac{1}{k}\leq x\leq 1.$}
+      \end{cases}
+  \end{equation*}
+  Entonces $\left\Vert f_{k}\right\Vert_{\infty }=R$ para toda $k\in
+  \mathbb{N}$, mientras que $\left\Vert f_{k}\right\Vert
+ _{1}=\frac{R}{2k}$.
+
+              <div id="fig:2-2" class="figure">
+                <img src="tul/P_T_02/figuras/f4yf8.svg" height="160">
+                <div class="caption">
+                </div>                
+              </div>
+
+  <p class="noj">
+  Es decir, según la norma $\left\Vert \cdot \right\Vert_{\infty
+  }$ todas las funciones $f_{k}$ distan exactamente $R$ de la
+  función constante igual a $0$, mientras que, según la norma
+  $\left\Vert \cdot \right\Vert_{1}$, dichas funciones se acercan
+  cada vez más a la función $0$ conforme $k$ crece.
+</div>
+
+<p>
+Las normas definidas en esta sección satisfacen las siguientes
+relaciones.
+</p>
+<p>
+<div id="compinorm" class="proposition">
+Para toda $f\in \mathcal{C}^{0}[a,b]$ se cumple que
+  \begin{align*}
+    \left\Vert f\right\Vert_{s}& \leq (b-a)^{\frac{r-s}{rs}}\left\Vert
+      f\right\Vert_{r}\qquad \forall 1\leq s\menorque r\menorque\infty , \\
+    \left\Vert f\right\Vert_{s} & \leq (b-a)^{\frac{1}{s}}\left\Vert
+      f\right\Vert_{\infty }\qquad \forall 1\leq s\menorque\infty .
+  \end{align*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $1\leq s\menorque r\menorque\infty $, aplicando la desigualdad de Hölder
+  (Proposición~\ref{iholder}) con $p=\frac{r}{r-s}$ y
+  $q=\frac{r}{s}$ a la función constante con valor $1$ y a la
+  función $\left\vert f\right\vert^{s}$ obtenemos que
+  \begin{align*}
+    \int_{a}^{b}\left\vert f(x)\right\vert^{s}dx &\leq \biggl(
+      \int_{a}^{b}dx\biggr)^{\frac{r-s}{r}}\biggl( \int_{a}^{b}\left\vert
+        f(x)\right\vert^{r}dx\biggr)^{\frac{s}{r}} \\
+    &=(b-a)^{\frac{r-s}{r}}\biggl( \int_{a}^{b}\left\vert f(x)\right\vert
+     ^{r}dx\biggr)^{\frac{s}{r}}.
+  \end{align*}
+  Por otra parte, de la monotonía y la linealidad de la integral
+  se sigue que
+  \begin{equation*}
+    \int_{a}^{b}\left\vert f(x)\right\vert^{s}dx\leq \int_{a}^{b}\left\Vert
+      f\right\Vert_{\infty }^{s}dx=(b-a)\left\Vert f\right\Vert_{\infty }^{s}.
+  \end{equation*}
+  Elevando a la potencia $\frac{1}{s}$ cada una de las desigualdades
+  anteriores obtenemos las desigualdades deseadas.
+</div>
+</p>
+<p>
+<h3 id="sec2-4">El espacio de funciones acotadas</h3>
+</p>
+<p>
+El siguiente espacio juega un papel importante en
+muchas aplicaciones, algunas de las cuales se estudiarán más
+adelante.
+</p>
+<p>
+Sean $S$ un conjunto no vacío y $X=(X,d)$ un espacio métrico.
+<div id="deffuncacot" class="definition">
+Una función $f\colon S\rightarrow X$ es
+  <em class="textbf">acotada</em> \index{función!acotada}si existen $c\in
+  \mathbb{R}$ y $x_{0}\in X$ tales que
+  \begin{equation*}
+    d(f(z),x_{0})\leq c\qquad \forall z\in S.
+  \end{equation*}
+</div>
+</p>
+<p>
+Denotamos por\index{espacio!B SX@$\mathcal{B}(S,X)$}
+\begin{equation*}
+  \mathcal{B}(S,X):=\left\{f\colon S\rightarrow X:f\text{ es acotada}\right\}
+\end{equation*}
+y definimos
+\begin{equation*}
+  d_{\infty }(f,g):=\sup_{z\in S}d(f(z),g(z)).
+\end{equation*}
+</p>
+<p>
+<div class="proposition">
+  $d_{\infty }$ es una métrica en $\mathcal{B}(S,X)$. Esta
+  métrica se llama la <em class="textbf">métrica
+    uniforme</em>\index{metrica@métrica!uniforme @uniforme $d_{\infty }$}.
+</div>
+</p>
+<p>
+<div class="proof">
+  Veamos primero que, si $f,g\in \mathcal{B}(S,X)$, entonces
+  $d_{\infty }(f,g)\in \mathbb{R}$. Sean $x_{0},x_{1}\in X$ y
+  $c_{0},c_{1}\in \mathbb{R}$ tales que
+  \begin{equation*}
+    d(f(z),x_{0})\leq c_{0}\qquad\text{y}\qquad  d(g(z),x_{1})\leq c_{1}\qquad \forall z\in S.
+  \end{equation*}
+  Como $d$ satisface (M3) se tiene que para toda $z\in S$
+  \begin{equation*}
+    d(f(z),g(z))\leq d(f(z),x_{0})+d(x_{0},x_{1})+d(x_{1},g(z))\leq
+    c_{0}+d(x_{0},x_{1})+c_{1}.\quad \forall z\in S.
+  \end{equation*}
+  En consecuencia, $d_{\infty }(f,g)\in \mathbb{R}$. Probemos ahora
+  que $d_{\infty }$ es una métrica para $\mathcal{B}(S,X)$. Como
+  $d$ satisface (M1) se tiene que
+  \begin{eqnarray*}
+    d_{\infty }(f,g)=0 &\Leftrightarrow &d(f(z),g(z))=0\quad \forall z\in
+    S \\
+    &\Leftrightarrow &f(z)=g(z)\quad \forall z\in S,
+  \end{eqnarray*}
+  es decir, $d_{\infty }$ satisface (M1). La propiedad (M2) para
+  $d_{\infty }$ se sigue inmediatamente de la misma propiedad para
+  $d$. Sean $f,g,h\in \mathcal{B}(S,X)$. La propiedad (M3) de $d$
+  implica que
+  \begin{equation*}
+    d(f(z),g(z))\leq d(f(z),h(z))+d(h(z),g(z))\leq d_{\infty }(f,h)+d_{\infty
+    }(h,g)\qquad \forall z\in S.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    d_{\infty }(f,g)\leq d_{\infty }(f,h)+d_{\infty }(h,g),
+  \end{equation*}
+  es decir, $d_{\infty }$ satisface (M3).
+</div>
+</p>
+<p>
+Si $V$ es un espacio vectorial, entonces el conjunto de todas las
+funciones de $S$ a $V$ es un espacio vectorial con las operaciones
+dadas por
+\begin{equation*}
+  (f+g)(z):=f(z)+g(z),\qquad (\lambda f)(z):=\lambda f(z).
+\end{equation*}
+Si $V$ es un espacio normado con norma $\left\Vert \cdot \right\Vert $
+entonces $\mathcal{B}(S,V)$ es un espacio vectorial y
+\begin{equation*}
+  \left\Vert f\right\Vert_{\infty }:=\sup_{z\in S}\left\Vert f(z)\right\Vert
+\end{equation*}
+es una norma en $\mathcal{B}(S,V)$. La demostración de estas
+afirmaciones es un ejercicio sencillo [Ejercicio
+\ref{ejnormunif}]. Esta norma se llama la <em class="textbf">norma
+  uniforme</em>.
+\index{norma!uniforme@uniforme $\left\Vert \cdot \right\Vert_{\infty }$}
+</p>
+<p>
+<h3 id="sec2-5">Subespacios métricos e isometrías</h3>
+</p>
+<p>
+Los subconjuntos de un espacio métrico heredan su métrica.
+</p>
+<p>
+<div class="definition">
+  Si $X=(X,d)$ es un espacio métrico y $A$ es un subconjunto de
+  $X$ definimos
+  \begin{equation*}
+    d_{A}(x,y):=d(x,y)\qquad \forall x,y\in A.
+  \end{equation*}
+  Esta es claramente una métrica en $A$, que se llama la
+  <em class="textbf">métrica inducida</em> \index{metrica@métrica!inducida en un
+    subconjunto}por $d$.<em class="textbf"> </em>Al conjunto $A$ con esta
+  métrica se le llama un <em class="textbf">subespacio métrico</em>
+  \index{subespacio!métrico}de $X$.
+</div>
+</p>
+<p>
+Nota que toda función continua $f\colon [a,b]\rightarrow \mathbb{R}^{n}$
+es acotada. En particular, $\mathcal{C}^{0}[a,b]\subset
+\mathcal{B}([a,b],\mathbb{R})$. La norma definida en (\ref{normfunc})
+coincide con la norma inducida en $\mathcal{C}^{0}[a,b]$ por la norma
+uniforme de $\mathcal{B}([a,b],\mathbb{R})$.
+</p>
+<p>
+Veamos otros ejemplos.
+</p>
+<p>
+<div id="ejemplomettray" class="example">
+Si $X$ es un subconjunto de $\mathbb{R}^{n}$ y
+  $p,q\in X$, el conjunto $\mathcal{T}_{p,q}(X)$ de todas las
+  trayectorias de $p$ a $q$ en $X$, definido en el
+  <em class="emph">Capítulo~\ref{Cap-1}</em>, es un subconjunto de
+  $\mathcal{B}([0,1],\mathbb{R}^{n})$. Así que $\mathcal{T}_{p,q}(X)$
+  resulta ser un espacio métrico con la métrica inducida por la
+  métrica uniforme de $\mathcal{B}([0,1],\mathbb{R}^{n})$.
+</div>
+</p>
+<p>
+A un subconjunto de un espacio métrico se le pueden dar otras
+métricas, distintas de la inducida. Una métrica muy natural
+sobre la esfera es la siguiente.
+</p>
+<p>
+<div class="example">
+  Sean $ \mathbb{S}^{n-1}:=\left\{x\in \mathbb{R}^{n}:\left\Vert
+    x\right\Vert =1\right\}$  la esfera unitaria en $\mathbb{R}^{n}$ y $\
+  x,y\in \mathbb{S}^{n-1}$. Consideremos el conjunto
+  $\mathcal{T}_{x,y}(\mathbb{S}^{n-1})$ de todas las trayectorias de
+  $x$ a $y$ en $\mathbb{S}^{n-1}$. Definimos
+  \begin{equation*}
+    d(x,y):=\inf \left\{\mathfrak{L}(\sigma ):\sigma \in \mathcal{T}_{x,y}(\mathbb{S}^{n-1})\right\},
+  \end{equation*}
+  donde $\mathfrak{L}(\sigma )$ es la longitud de la trayectoria
+  $\sigma $ definida en <em class="emph">(\ref{long})</em>. Ésta es una
+  métrica en $\mathbb{S}^{n-1}$, distinta de la métrica
+  inducida por la métrica usual de $\mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+La demostración de estas afirmaciones se propone como ejercicio
+[Ejercicio~\ref{ejmetrriem}].
+</p>
+<p>
+<div class="definition">
+  Sean $X=(X,d_{X})$ y $Y=(Y,d_{Y})$ dos espacios métricos. Una
+  función $\phi \colon X\rightarrow Y$ es una <em class="textbf">isometría</em>
+  \index{isometria@isometría}si
+  \begin{equation*}
+    d_{Y}(\phi (x_{1}),\phi (x_{2}))=d_{X}(x_{1},x_{2})\qquad \forall x_{1},x_{2}\in X.
+  \end{equation*}
+</div>
+</p>
+<p>
+Por ejemplo, si a un subconjunto $A$ de un espacio métrico de $X$
+le damos la métrica inducida, entonces la inclusión $\iota\colon
+A\hookrightarrow X$ es una isometría. Por otra parte, observemos
+que toda isometría es inyectiva. En efecto, si $\phi (x_{1})=\phi
+(x_{2})$ entonces $d_{X}(x_{1},x_{2})=d_{Y}(\phi (x_{1}),\phi
+(x_{2}))=0$ y, en consecuencia, $x_{1}=x_{2}$.
+</p>
+<p>
+Desde el punto de vista geométrico dos espacios métricos se
+consideran iguales si existe una biyección entre ellos que es una
+isometría. Así pues, una isometría $\phi\colon X\rightarrow
+Y$ nos permite identificar a $X$ con el subespacio métrico $\phi
+(X):=\left\{\phi (x):x\in X\right\}$ de $Y$. Veamos algunos ejemplos.
+</p>
+<p>
+<div class="example">
+  Para cada $p\in [1,\infty ]$, la función
+  \begin{equation*}
+    \iota\colon\mathbb{R}_{p}^{n}\rightarrow \ell_{p},\qquad \iota
+    (x_{1},\dots,x_{n})=(x_{1},\dots,x_{n},0,0,\dots),
+  \end{equation*}
+  es una isometría. Es decir, podemos identificar a
+  $\mathbb{R}_{p}^{n}$ con el subespacio de $\ell_{p}$ que consiste
+  de las sucesiones $(x_{k})$ tales que $x_{k}=0$ para $k>n$.
+</div>
+</p>
+<p>
+<div class="example">
+  La identidad
+  \begin{equation*}
+    \id\colon\mathcal{C}_{\infty }^{0}[0,1]\rightarrow \mathcal{C}_{1}^{0}[0,1],\qquad
+    \id(f)=f,
+  \end{equation*}
+  no es una isometría. En efecto, la función $f_{k}$ del
+  <em class="emph">Ejemplo~\ref{difnorm1inf}</em> satisface
+  \begin{equation*}
+    \frac{R}{2k}=\left\Vert f_{k}\right\Vert_{1}\neq \left\Vert
+      f_{k}\right\Vert_{\infty }=R,
+  \end{equation*}
+  es decir, la distancia de $f_{k}$ a la función constante $0$
+  según la métrica inducida por la norma $\left\Vert \cdot
+  \right\Vert_{1}$ es $\frac{R}{2k}$, mientras que su distancia
+  según la métrica inducida por $\left\Vert \cdot \right\Vert
+ _{\infty }$ es $R$.
+</div>
+</p>
+
+<h3 id="sec2-6">Ejercicios</h3>
+
+<div id="ejdifdist" class="exercise">
+Sea $X=(X,d)$ un espacio métrico. Prueba que,
+  para cualesquiera $w,x,y,z\in X$, se cumple que
+  \begin{equation*}
+    \left\vert d(w,x)-d(y,z)\right\vert \leq d(w,y)+d(x,z).
+  \end{equation*}
+</div>
+
+<div id="ejR" class="exercise">
+Demuestra las siguientes afirmaciones.
+
+  <ol class="alfa">
+  <li> La distancia usual en $\mathbb{R}$, definida en el
+    <em class="emph">Ejemplo~\ref{R}</em>, es una métrica.
+</li>
+  <li> La distancia usual en $\mathbb{R}^{n}$, definida en el
+    <em class="emph">Ejemplo~\ref{R2}</em>, es una métrica.
+    </li>
+  </ol>
+</div>
+
+<div id="ejRinf" class="exercise">
+Prueba que $\left\Vert x\right\Vert_{\infty }:=\max
+  \left\{ \left\vert x_{1}\right\vert ,\dots,\left\vert x_{n}\right\vert
+  \right\} $ donde $x=(x_{1},\dots,x_{n})\in \mathbb{R}^{n}$, es una
+  norma en $\mathbb{R}^{n}$.
+</div>
+
+<div class="exercise">
+  ¿Es la función $\mu \colon \mathbb{R}^{n}\rightarrow
+  \mathbb{R}$, dada por $\mu (x)=\min \left\{ \left\vert
+      x_{1}\right\vert ,\dots,\left\vert x_{n}\right\vert \right\} $,
+  una norma en $\mathbb{R}^{n}$? Justifica tu afirmación.
+</div>
+
+<div class="exercise">
+  Muestra que la desigualdad <em class="emph">(\ref{minkRp})</em> en $\mathbb{R}^{n}$
+  no se cumple si $p=\frac{1}{2}$.
+</div>
+
+<div id="ejevmet" class="exercise">
+Sea $(V,\left\Vert \cdot \right\Vert )$ un espacio
+  normado.  Prueba que la función $d(v,w):=\left\Vert
+    v-w\right\Vert $ es una métrica en $V$.
+</div>
+
+<div class="exercise">
+Describe los conjuntos $\bar{B}_{p}(0,1):=\left\{x\in
+  \mathbb{R}^{2}:\left\Vert x\right\Vert_{p}\leq 1\right\}$ para
+  $p=1,2,\infty $. Haz un dibujo de cada uno de ellos.
+</div>
+
+<div class="exercise">
+  Describe los conjuntos
+  \begin{gather*}
+    \bar{B}_{\disc}(0,1):=\left\{x\in \mathbb{R}^{2}:d_{\disc}(x,0)\leq 1\right\}, \\
+    B_{\disc}(0,1):=\left\{x\in \mathbb{R}^{2}:d_{\disc}(x,0) \menorque 1\right\},
+  \end{gather*}
+  donde $d_{\disc}$ es la métrica discreta en $\mathbb{R}^{2}$.
+</div>
+
+<div id="ejdiscnoev" class="exercise">
+Sea $V$ un espacio vectorial distinto de $\left\{0\right\}$.
+  Prueba que no existe ninguna norma en $V$ que induzca la métrica
+  discreta, es decir, no existe ninguna norma en $V$ tal que
+  \begin{equation*}
+    \left\Vert v-w\right\Vert =
+      \begin{cases}
+        0&\text{si $v=w$,} \\
+        1&\text{si $v\neq w$.}
+      \end{cases}
+  \end{equation*}
+</div>
+
+<div id="ejlp" class="exercise">
+Prueba que, para cada $p\in [1,\infty ]$, la
+  función $\left\Vert \cdot \right\Vert_{p}$ definida en
+  <em class="emph">(\ref{normlp})</em> y <em class="emph">(\ref{normlinf})</em> satisface
+
+  <dl>
+  <dt>(N1)</dt> <dd>$\left\Vert x\right\Vert_{p}=0$ si y sólo si
+    $x=0$ en $\ell_{p}$.</dd>
+
+  <dt>(N2)</dt> <dd>Si $(x_{k})\in \ell_{p}$ y $\lambda \in
+    \mathbb{R}$, entonces $(\lambda x_{k})\in \ell_{p}$ y $\left\Vert
+      (\lambda x_{k})\right\Vert_{p}=\left\vert \lambda \right\vert
+    \left\Vert (x_{k})\right\Vert_{p}$.</dd>
+</dl>
+</div>
+
+<div id="ejRnormequiv" class="exercise">
+Prueba que, para toda $x\in \mathbb{R}^{n}$,
+  <ol class="alfa">
+      <li>  $\left\Vert x\right\Vert_{r}\leq \left\Vert x\right\Vert_{s}\qquad
+      \text{si $1\leq s\leq r\leq \infty$,}$ 
+      </li>
+      <li> $\left\Vert x\right\Vert_{s}\leq n^{\frac{r-s}{sr}}\left\Vert
+        x\right\Vert_{r}\qquad \text{si $1\leq s\leq r\menorque\infty$,}$ 
+        </li>
+      <li> $\left\Vert x\right\Vert_{s}\leq n^{\frac{1}{s}}\left\Vert
+        x\right\Vert_{\infty }\qquad \text{si $1\leq s\menorque\infty$.}$
+        </li>
+    </ol>
+    <em class="emph">(Sugerencia: Para probar la segunda desigualdad aplica la
+      desigualdad de Hölder a los vectores</em> $(1,\dots,1)$<em class="emph">&nbsp;y
+    </em>$(\left\vert x_{1}\right\vert^{s},\dots,\left\vert x_{n}\right\vert
+    ^{s})$<em class="emph">&nbsp;con </em>$p=\frac{r}{r-s}$<em class="emph">&nbsp;y
+    </em>$q=\frac{r}{s}$<em class="emph">)</em>.
+  </div>
+  
+  <div class="exercise">[Desigualdad de Hölder para series]
+  \label{lholder}\index{desigualdad!de Hölder!para series}Prueba
+    que, si $p,q\in (1,\infty )$, $\frac{1}{p}+\frac{1}{q}=1$,
+    $(x_{k})\in \ell_{p}$ y $(y_{k})\in \ell_{q}$, entonces
+    $(x_{k}y_{k})\in \ell_{1}$ y
+    \begin{equation*}
+      \sum_{k=1}^{\infty }\left\vert x_{k}y_{k}\right\vert \leq \left(
+        \sum_{k=1}^{\infty }\left\vert x_{k}\right\vert^{p}\right)^{\frac{1}{p}}\biggl( \sum_{k=1}^{\infty }\left\vert y_{k}\right\vert
+        ^{q}\biggr)^{\frac{1}{q}}.
+    \end{equation*}
+    es decir,
+    \begin{equation*}
+      \left\Vert (x_{k}y_{k})\right\Vert_{1}\leq \left\Vert (x_{k})\right\Vert
+      _{p}\left\Vert (y_{k})\right\Vert_{q}.
+  \end{equation*}
+</div>
+
+<div class="exercise">
+  Demuestra las siguientes afirmaciones.
+
+  <ol class="alfa">
+  <li> Si $1\leq s\menorque r\leq \infty $, entonces
+    \begin{equation*}
+      \ell_{s}\subset \ell_{r},\qquad \ell_{s}\neq \ell_{r}\qquad \text{y}\qquad \left\Vert (x_{k})\right\Vert_{r}\leq \left\Vert (x_{k})\right\Vert
+     _{s}\quad \forall (x_{k})\in \ell_{s}.
+    \end{equation*}
+    </li>
+  <li> Si $(x_{k})\in \ell_{p}$ para alguna $1\leq p\menorque\infty $,
+    entonces
+    \begin{equation*}
+      \left\Vert (x_{k})\right\Vert_{\infty }=\underset{r\rightarrow \infty }{\lim }\left\Vert (x_{k})\right\Vert_{r}.
+    \end{equation*}
+    </li>
+  </ol>
+</div>
+
+<div class="exercise">
+  Sea $S$ el conjunto de todas las sucesiones de números
+  reales. Para $\overline{x}=(x_{i})$, $\overline{y}=(y_{i})\in S$
+  definimos
+  \begin{equation*}
+    d(\overline{x},\overline{y}):=\sum_{i=1}^{\infty }\frac{\left\vert
+        x_{i}-y_{i}\right\vert }{2^{i}(1+\left\vert x_{i}-y_{i}\right\vert )}.
+  \end{equation*}
+
+  <ol class="alfa">
+  <li> Prueba que ésta es una métrica en $S$.</li>
+
+  <li> Sean $\overline{x}^{k}=(x_{i}^{k})$,
+    $\overline{x}=(x_{i})\in S$. Prueba que
+    \begin{equation*}
+      \lim_{k\rightarrow \infty }d(\overline{x}^{k},\overline{x})=0\quad
+      \Longleftrightarrow \quad \lim_{k\rightarrow \infty }x_{i}^{k}=x_{i}\quad
+      \forall i\in \mathbb{N}.
+    \end{equation*}
+    </li>
+  </ol>
+</div>
+
+<div id="ejmink1inf" class="exercise">
+Prueba que cualquier par de funciones continuas
+  $f,g\colon [a,b]\rightarrow \mathbb{R}$ satisface las siguientes
+  desigualdades:
+  \begin{align*}
+    \int_{a}^{b}\left\vert f(x)+g(x)\right\vert dx &\leq \int_{a}^{b}\left\vert
+      f(x)\right\vert dx+\int_{a}^{b}\left\vert g(x)\right\vert dx, \\
+    \max_{x\in [a,b]}\left\vert f(x)+g(x)\right\vert &\leq \max_{x\in
+      [a,b]}\left\vert f(x)\right\vert +\max_{x\in [a,b]}\left\vert
+      g(x)\right\vert .
+  \end{align*}
+</div>
+
+<div id="ejholder1inf" class="exercise">
+Prueba que las desigualdades de Hölder para
+  sumas, para series y para integrales siguen siendo válidas si
+  $p=1$ y $q=\infty $, es decir:
+
+  <ol class="alfa">
+  <li> Si $(x_{1},\dots,x_{n})$, $(y_{1},\dots,y_{n})\in
+    \mathbb{R}^{n}$ entonces
+    \begin{equation*}
+      \overset{n}{\underset{k=1}{\sum }}\left\vert x_{k}y_{k}\right\vert \leq
+      \left( \overset{n}{\underset{k=1}{\sum }}\left\vert x_{k}\right\vert
+      \right) \left( \underset{1\leq k\leq n}{\max }\left\vert y_{k}\right\vert
+      \right) .
+    \end{equation*}
+    </li>
+
+  <li> Si $(x_{k})\in \ell_{1}$, $(y_{k})\in \ell_{\infty }$
+    entonces $(x_{k}y_{k})\in \ell_{1}$ y
+    \begin{equation*}
+      \overset{\infty }{\underset{k=1}{\sum }}\left\vert x_{k}y_{k}\right\vert
+      \leq \left( \overset{\infty }{\underset{k=1}{\sum }}\left\vert
+          x_{k}\right\vert \right) \left( \underset{k\in \mathbb{N}}{\sup }\left\vert
+          y_{k}\right\vert \right) .
+    \end{equation*}
+</li>
+  <li> Si $f,g\colon [a,b]\rightarrow \mathbb{R}$ son funciones
+    continuas, entonces
+    \begin{equation*}
+      \int_{a}^{b}\left\vert f(x)g(x)\right\vert dx\leq \biggl(
+        \int_{a}^{b}\left\vert f(x)\right\vert dx\biggr) \left( \underset{a\leq
+          x\leq b}{\max }\left\vert g(x)\right\vert \right) .
+    \end{equation*}
+    </li>
+  </ol>
+</div>
+
+<div class="exercise">
+  Da un ejemplo de una sucesión de funciones continuas
+  $f_{k}\colon [0,1]\rightarrow \mathbb{R}$ tales que $\left\Vert
+    f_{k}\right\Vert_{1}=1$ para toda $k\in \mathbb{N}$, y
+  $\left\Vert f_{k}\right\Vert_{\infty }\rightarrow \infty $.
+  Concluye que no existe ninguna constante $c\in \mathbb{R}$ tal que
+  \begin{equation*}
+    \left\Vert f\right\Vert_{\infty }\leq c\left\Vert f\right\Vert_{1}\qquad \forall f\in \mathcal{C}^{0}[0,1].
+  \end{equation*}
+  ¿Es posible construir una sucesión de funciones
+  continuas $g_{k}\colon [0,1]\rightarrow \mathbb{R}$ tales que $\left\Vert
+    g_{k}\right\Vert_{\infty }=1$ para toda $k\in \mathbb{N}$, y
+  $\left\Vert g_{k}\right\Vert_{1}\rightarrow \infty $? Justifica tu
+  respuesta.
+</div>
+
+<div id="calc" class="exercise">
+Sea $f_{k}\colon [0,1]\rightarrow \mathbb{R}$, la función
+  \begin{equation*}
+    f_{k}(x)=
+      \begin{cases}
+        1-kx & \text{si $0\leq x\leq \frac{1}{k}$,} \\
+        0 & \text{si $\frac{1}{k}\leq x\leq 1$.}
+      \end{cases}
+  \end{equation*}
+  Para cada $p\in [1,\infty )$ y $k\in \mathbb{N}$ calcula
+  \begin{equation*}
+    \left\Vert f_{k}\right\Vert_{p}:=\biggl( \int_{0}^{1}\left\vert
+        f_k(t)\right\vert^{p}dt\biggr)^{1/p}.
+  \end{equation*}
+</div>
+
+<div class="exercise">
+  Demuestra si son verdaderas o falsas las siguientes afirmaciones:
+
+  <ol class="alfa">
+  <li> Si $p,r\in [1,\infty ]$ y $p\menorque r$, entonces existe
+    una constante $c>0$ tal que
+    \begin{equation*}
+      \left\Vert f\right\Vert_{p}\leq c\left\Vert f\right\Vert_{r}\qquad \forall f\in \mathcal{C}^{0}[0,1].
+    \end{equation*}
+</li>
+  <li> Si $p,r\in [1,\infty ]$ y $p>r$, entonces existe
+    una constante $c>0$ tal que
+    \begin{equation*}
+      \left\Vert f\right\Vert_{p}\leq c\left\Vert f\right\Vert_{r}\qquad \forall f\in \mathcal{C}^{0}[0,1].
+    \end{equation*}
+    </li>
+  </ol>
+</div>
+
+<div id="ejCr" class="exercise">
+Sea $\mathcal{C}^{r}[a,b]$ el conjunto de las funciones
+  $f\colon [a,b]\rightarrow \mathbb{R}$ que son $r$-veces continuamente
+  diferenciables en $[a,b]$, es decir, tales que todas sus derivadas
+  $f^{\prime },f^{\prime \prime },\dots,f^{(r)}$ hasta la de orden $r$
+  existen en $(a,b)$ y son continuas en $[a,b]$. Para cada $p\in
+  [1,\infty ]$ definimos
+  \begin{equation*}
+    \bigl\Vert f\bigr\Vert_{r,p}:=\bigl\Vert f\bigr\Vert_{p}+\bigl\Vert
+      f^{\prime }\bigr\Vert_{p}+\cdots +\bigl\Vert f^{(r)}\bigr\Vert_{p}.
+  \end{equation*}
+  Prueba que
+  $\mathcal{C}_{p}^{r}[a,b]=(\mathcal{C}^{r}[a,b],\left\Vert \cdot
+  \right\Vert_{r,p})$ es un espacio normado.
+</div>
+
+<div id="ejnormunif" class="exercise">
+Sean $S$ un conjunto y $V=(V,\left\Vert \cdot
+  \right\Vert ) $ un espacio normado. Prueba que $\mathcal{B}(S,V)$ es
+  un espacio vectorial con las operaciones dadas por
+  \begin{equation*}
+    (f+g)(z):=f(z)+g(z),\qquad (\lambda f)(z):=\lambda f(z),
+  \end{equation*}
+  $z\in S$, $f,g\in \mathcal{B}(S,V)$, $\lambda \in \mathbb{R}$, y que
+  \begin{equation*}
+    \left\Vert f\right\Vert_{\infty }:=\sup_{z\in S}\left\Vert f(z)\right\Vert
+  \end{equation*}
+  es una norma en $\mathcal{B}(S,V)$.
+</div>
+
+<div id="ejnormprod" class="exercise">
+Sean $X=(X,d_{X})$ y $Y=(Y,d_{Y})$ espacios
+  métricos.  Considera el producto cartesiano
+  \begin{equation*}
+    X\times Y:=\left\{(x,y):x\in X,\text{ }y\in Y\right\}.
+  \end{equation*}
+  Dados $(x_{1},y_{1}),(x_{2},y_{2})\in X\times Y$, definimos
+      \begin{align*}
+        &d_{p}((x_{1},y_{1}),(x_{2},y_{2})):=\left(
+          d_{X}(x_{1},x_{2})^{p}+d_{Y}(y_{1},y_{2})^{p}\right)^{1/p}\qquad\text{si }p\in [1,\infty ), \\
+        &d_{\infty }((x_{1},y_{1}),(x_{2},y_{2})):=\max \left\{
+          d_{X}(x_{1},x_{2}),d_{Y}(y_{1},y_{2})\right\} .
+      \end{align*}
+
+  <ol class="alfa">
+  <li> Prueba que $d_{p}$ es una métrica en $X\times Y$ para
+    todo $p\in [1,\infty ]$.</li>
+
+  <li> Prueba que, para cualquiera de estas métricas y para
+    cualquier $y_{0}\in Y$, la inclusión
+    \begin{equation*}
+      \iota \colon X\rightarrow X\times Y,\qquad \iota (x)=(x,y_{0}),
+    \end{equation*}
+    es una isometría.</li>
+
+  <li> ¿Es la proyección
+    \begin{equation*}
+      \pi \colon X\times Y\rightarrow X,\qquad \pi (x,y)=x,
+    \end{equation*}
+    una isometría?</li>
+  </ol>
+</div>
+
+<div class="exercise">
+  Prueba que, si $\phi \colon X\rightarrow Y$ es una isometría y es
+  biyectiva, entonces su inversa $\phi^{-1}\colon Y\rightarrow X$ es una
+  isometría.
+</div>
+
+<div class="exercise">
+  ¿Cuáles de las siguientes funciones son
+  isometrías y cuáles no? Justifica tu afirmación.
+
+  <ol class="alfa">
+  <li> La identidad $&nbsp;\id\colon\mathbb{R}_{p}^{2}\rightarrow
+    \mathbb{R}_{r}^{2},\quad \id(x)=x,\quad \text{con } p\neq r$.</li>
+
+  <li> La identidad $&nbsp;\id\colon\mathcal{C}_{p}^{0}[0,1]\rightarrow
+    \mathcal{C}_{r}^{0}[0,1],\quad\id(f)=f,\quad \text{con } p\neq r$.</li>
+
+  <li> La inclusión $&nbsp;\iota\colon
+    \mathcal{C}_{2}^{1}[0,1]\hookrightarrow
+    \mathcal{C}_{2}^{0}[0,1],\quad \iota (f)=f$.</li>
+
+  <li> La inclusión $&nbsp;\iota\colon\mathcal{C}_{\infty
+    }^{0}[0,1]\hookrightarrow \mathcal{B}([0,1],\mathbb{R}),\quad
+    \iota (f)=f$.</li>
+
+  <li> La función &nbsp;$\phi\colon
+    \mathcal{B}(\mathbb{N},\mathbb{R})\rightarrow \ell_{\infty
+    },\quad \phi (f)=(f(k))$.</li>
+  </ol>
+</div>
+
+<div id="ejisomdimfin" class="exercise">
+Sea $V$ un espacio vectorial de dimensión
+  finita y sea $\left\{e_{1},\dots,e_{n}\right\}$ una base de $V$. Expresamos a
+  cada $v\in V$ como $v=\sum_{i=1}^{n}x_{i}e_{i}$ con $x_{i}\in
+  \mathbb{R}$, y definimos
+  \begin{equation*}
+    \left\Vert v\right\Vert_{\ast }:=\biggl( \sum_{i=1}^{n}x_{i}^{2}\biggr)
+   ^{1/2}.
+  \end{equation*}
+  Demuestra las siguientes afirmaciones:
+
+  <ol class="alfa">
+  <li> $\left\Vert \cdot \right\Vert_{\ast }$ es una norma en
+    $V$.</li>
+
+  <li> Si a $V$ le damos la norma $\left\Vert \cdot \right\Vert
+   _{\ast }$, entonces la función $\phi\colon\mathbb{R}^{n}\rightarrow V$ dada por
+    \begin{equation*}
+      \phi (x_{1},\dots,x_{n}):=\sum_{i=1}^{n}x_{i}e_{i}
+    \end{equation*}
+    es una isometría.</li>
+  </ol>
+</div>
+</p>
+<div id="ejmetrriem" class="exercise">
+  Sean $X\subset \mathbb{R}^{n}$, $x,y\in X$ y
+  $\mathcal{T}_{x,y}(X)$ el conjunto de todas las trayectorias de $x$
+  a $y$ en $X$. Definimos
+  \begin{equation*}
+  d(x,y):=\inf \left\{\mathfrak{L}(\sigma ):\sigma \in \mathcal{T}_{x,y}(X)\right\},
+  \end{equation*}
+  donde $\mathfrak{L}(\sigma )$ es la longitud de la trayectoria
+  $\sigma $, definida en <em class="emph">(\ref{long})</em>.
+  <ol class="alfa">
+    <li> Prueba que, si para cada $x,y\in X$ existe $\sigma
+     _{x,y}\in \mathcal{T}_{x,y}(X)$ con $\mathfrak{L}(\sigma
+     _{x,y})\menorque\infty $, entonces $d$ es una métrica en $X$.</li>
+     <li> ¿En cuáles de los siguientes
+      ejemplos coincide esta métrica con la inducida por la
+      métrica usual de $\mathbb{R}^{n}$? Justifica tu
+      afirmación.
+      <ol>
+        <li> $X=\mathbb{R}^{n}$,</li>
+        <li> $X=\mathbb{B}^{n}:=\left\{x\in \mathbb{R}^{n}:\left\Vert
+          x\right\Vert \leq 1\right\}$,</li>
+          <li> $X=\left\{x\in \mathbb{B}^{n}:x\neq 0\right\}$, $n\geq 2$,</li>
+
+          <li> $X=\left\{x\in \mathbb{B}^{n}:x\notin D\right\}$, donde $n\geq
+            2$ y
+            \begin{equation*}
+            D:=\left\{(x_{1},\dots,x_{n-1},0)\in \mathbb{R}^{n}:x_{1}^{2}+\cdots
+            +x_{n-1}^{2}\leq \tfrac{1}{2}\right\},
+            \end{equation*}
+          </li>
+          <li> $X=\mathbb{S}^{n-1}:=\left\{x\in \mathbb{R}^{n}:\left\Vert
+            x\right\Vert =1\right\}$, $n\geq 2$.</li>
+          </ol>
+        </li>
+      </ol>
+
+    </div>
+</div>
+</div>
+
+          <div class="column column-3">
+            <div class="menu-tul">
+              <div class="titulo-menu">Análisis matemático</div>
+              <div class="autor-menu">Mónica Clapp</div>
+              <ol>
+                <a href="tul/P_T_02/index.html">Índice</a>
+
+                <li>
+                  <a href="tul/P_T_02/1.html#Cap-1">Motivación
+                  </a>
+                </li>
+                <li>
+                <a href="tul/P_T_02/2.html#Cap-2">
+                  Espacios métricos
+                </a>
+                <ol>                  
+                  <li>
+                  <a href="tul/P_T_02/2.html#sec2-1">
+                  Definición y ejemplos
+                  </a>
+                  </li>                                    
+                  <li>
+                  <a href="tul/P_T_02/2.html#sec2-2">
+                    Espacios normados
+                  </a>
+                  </li>
+                  <li>
+                  <a href="tul/P_T_02/2.html#sec2-3">
+                    Espacios de funciones
+                  </a>
+                  </li>                  
+                  <li>
+                  <a href="tul/P_T_02/2.html#sec2-4">
+                    El espacio de funciones acotadas
+                  </a>
+                  </li>
+                  <li>
+                  <a href="tul/P_T_02/2.html#sec2-5">
+                    Subespacios métricos e isometrías</a>
+                  </li>
+                  <li>
+                    <a href="tul/P_T_02/2.html#sec2-6">
+                      Ejercicios
+                    </a>
+                  </li>
+                </ol>
+                </li>
+                <li> Continuidad</li>
+                <li> Compacidad</li>
+              </ol>
+            </div>
+          </div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>

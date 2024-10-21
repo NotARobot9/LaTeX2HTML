@@ -1,0 +1,741 @@
+.texto-tul {
+  counter-reset: capnum;
+  border-radius: 6px;
+  width: 100%;
+  padding: 2em;
+  font-family: "STIXGeneral";
+  text-align: justify;
+  line-height: 140%;
+  font-size: 13pt;
+  color: #444;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  box-shadow: 4px 0 2px 1px rgba(0, 0, 0, .5);
+  margin-top: 1rem;
+}
+
+.texto-tul p {
+  text-align: justify;
+  line-height: 140%;
+  text-indent: 1.5em;
+  font-size: 13pt;
+  margin-top: 0em;
+  margin-bottom: 0.5em;
+}
+
+.texto-tul p.noj {
+  text-indent: 0;
+}
+
+.texto-tul dt {
+  float: left;
+  display: block;
+  font-weight: bold;
+  clear: left;
+  padding-left: 0em;
+  padding-right: 0.5em;
+}
+
+.texto-tul dd {
+  color: #ccb;
+  margin: 0 0 0 0.5em;
+  padding: 0 1em 0em 0;
+}
+
+.texto-tul h2 {
+  counter-reset: secnum;
+  counter-reset: enunnum;
+  font-size: 2.4rem;
+  line-height: 2.6rem;
+  text-align: left;
+  color: #833;
+  border-bottom: 2px solid #833;
+  border-top: 2px solid #833;
+  padding: 1.5rem 0;
+  padding-top: 80px;
+  padding-left: 4.5rem;
+  text-indent: -8.5rem;
+  margin-top: -60px;
+//  margin-left: 1rem;
+  margin-left: -1.5rem; 
+  margin-bottom: 2rem;
+}
+
+.texto-tul h2:before {
+  counter-increment: capnum;
+  content: counter(capnum);
+  padding-right: 1em; 
+  padding-left: 2em;
+}
+
+.texto-tul h3 {
+  counter-reset: subsecnum;
+  counter-increment: secnum;
+  border-bottom: 2px solid #833;
+  font-size: 1.6rem;
+  color: #833;
+  padding: 0.5rem 0;
+  padding-top: 80px;
+  margin-top: -60px;
+  margin-left: -1.5rem;
+  margin-bottom: 2rem;
+}
+
+.texto-tul h3:before {
+  padding-right: 1em;
+  content: counter(capnum) "." counter(secnum);
+}
+
+.texto-tul h4 {
+  counter-increment: subsecnum;
+  font-size: 1.2rem;
+  color: #833;
+  padding: 0.5rem 0;
+  padding-top: 40px;
+  margin-top: -20px;
+  margin-left: -1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.texto-tul h4:before {
+  padding-right: 1em;
+  content: counter(capnum) "." counter(secnum) "." counter(subsecnum);
+}
+
+.texto-tul h2 .tag {
+  font-weight: bold;
+  padding-right: 0.5em;
+}
+
+.texto-tul h3 .tag {
+  font-weight: bold;
+  padding-right: 0.5em;
+}
+
+.texto-tul .textbf {
+  font-weight: bold;
+  font-style: normal;
+}
+
+.texto-tul .textsc {
+  font-weight: normal;
+  font-style: normal;
+  font-variant: small-caps;
+}
+
+.texto-tul .figure {
+  display: block;
+  width: 100%;
+  padding-top: 80px;
+  margin-top: -60px;
+}
+
+.texto-tul .figure .foto {
+//  display: inline-block;
+  float: left;
+  width: 50%;
+  height: 360px;
+
+}
+
+.texto-tul .figure .leyenda-foto{
+  margin-left: 50%;
+  width: 50%;
+  color: rgb(130,150,160);
+  font-size: smaller;
+  text-align: left;
+  line-height: 130%;
+  height: 360px;
+  padding-top: 60px;
+  padding-right: 4rem;
+}
+
+.texto-tul img {
+  transform-origin: top;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2em;
+}
+
+.texto-tul .caption {
+  color: #833;
+  display: block;
+  text-align: center;
+  padding-top: 1.5em;
+  padding-bottom: 2em;
+  font-size: 12pt;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.texto-tul .caption .tag {
+  display: inline-block;
+  font-weight: bold;
+  padding-right: 0.5em;
+  vertical-align: top;
+}
+
+.texto-tul .caption .leyenda {
+  display: inline-block;
+  text-align: left;
+  max-width: 50%;
+  font-size: 12pt;
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Enunciados distinguidos, Teorema, Definición, Demostración, etc.
+   ---------------------------------------------------------------- */
+.texto-tul .definicion,
+.texto-tul .definition,
+.texto-tul .coro,
+.texto-tul .problem,
+.texto-tul .theorem, 
+.texto-tul .proposition, 
+.texto-tul .lemma, 
+.texto-tul .notation, 
+.texto-tul .exercise, 
+.texto-tul .corollary,
+.texto-tul .obs,
+.texto-tul .obss,
+.texto-tul .example {
+  counter-increment: enunnum;  
+  padding-top: 3.5em;
+  margin-top: -2em;
+  padding-bottom: 1.5em;
+}
+
+.texto-tul .proof {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;  
+}
+
+.texto-tul .definition:before,
+.texto-tul .definicion:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Definición " counter(capnum) "." counter(enunnum) ". ";
+}
+
+.texto-tul .proof:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Demostración. ";
+}
+.texto-tul .proof:after {
+  display: inline-block;
+  padding-left: 2rem;
+  font-size: smaller;
+  content: "\25A0";
+  }
+
+.texto-tul .coro:before,
+.texto-tul .corollary:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Corolario " counter(capnum) "." counter(enunnum) ". ";
+}
+
+.texto-tul .problem:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Problema " counter(capnum) "." counter(enunnum) ". ";
+}
+
+.texto-tul .theorem:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Teorema " counter(capnum) "." counter(enunnum) ". ";
+}
+
+.texto-tul .proposition:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Proposición " counter(capnum) "." counter(enunnum) ". ";
+}
+
+.texto-tul .lemma:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Lema " counter(capnum) "." counter(enunnum) ". ";
+}
+
+.texto-tul .notation:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Notación " counter(capnum) "." counter(enunnum) ". ";
+}
+
+.texto-tul .obs:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Observación " counter(capnum) "." counter(enunnum) ". ";
+}
+
+.texto-tul .obss:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Observaciones " counter(capnum) "." counter(enunnum) ". ";
+}
+
+.texto-tul .exercise:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Ejercicio " counter(capnum) "." counter(enunnum) ". ";
+}
+
+.texto-tul .example:before {
+  font-size: inherit;
+  font-weight: bold;
+  content: "Ejemplo " counter(capnum) "." counter(enunnum) ". ";
+}
+
+/* Hasta aquí los enunciados distinguidos */
+
+.texto-tul a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.texto-tul a:link {
+/*  background-color: yellow; */
+  color: #833;
+}
+
+.texto-tul a:visited {
+/*  background-color: yellow; */
+  color: #833;
+}
+
+.texto-tul a:hover {
+  color: #a33;
+}
+
+.texto-tul a:active {
+  color: #a33;
+}
+
+.texto-tul ul.cuadrito >li {
+  margin: 0.5rem 0;
+/*  margin-left: 2rem; */
+  padding-left: 3rem;
+}
+
+.texto-tul ol.alfa{
+  counter-reset: item;
+}
+
+.texto-tul ol.alfa > li > ol{
+  counter-reset: subitem;
+}
+
+.texto-tul ol.alfa > li,
+.texto-tul ol.alfa > li > ol > li {
+  list-style-type: none;
+  margin: 0.5rem 0;
+  padding-left: 3rem;
+}
+
+.texto-tul ol.alfa > li:before {
+  counter-increment: item;
+  content: "(" counter(item, lower-alpha) ") ";
+  padding-right: 0.5rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+
+}
+
+.texto-tul ol.alfa > li > ol > li:before {
+  counter-increment: subitem;
+  content: "(" counter(item, lower-alpha) "." counter(subitem) ") ";
+  padding-right: 0.5rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+
+}
+
+.texto-tul ol.roman{
+  counter-reset: item;
+}
+
+.texto-tul ol.roman > li > ol{
+  counter-reset: subitem;
+}
+
+.texto-tul ol.roman > li,
+.texto-tul ol.roman > li > ol > li {
+  list-style-type: none;
+  margin: 0.5rem 0;
+  padding-left: 3rem;
+}
+
+.texto-tul ol.roman > li:before {
+  counter-increment: item;
+  content: "(" counter(item, lower-roman) ") ";
+  padding-right: 0.5rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+
+.texto-tul dl {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.texto-tul dt {
+    float: left;
+    clear: left;
+    width: 4rem;
+    text-align: right;
+    font-weight: normal;
+    color: inherit;
+  }
+
+.texto-tul dd {
+    margin: 0 0 0 4rem;
+    padding: 0 0 0.5rem 0;
+    color: inherit;
+  }
+
+.menu-tul {
+  position: fixed;
+  top: 180px;
+  bottom: 90px;
+  padding: 0 2em 1em 2em;
+  font-family: "Helvetica";
+  text-align: left;
+  line-height: 140%;
+  font-size: .7rem;
+  color: #999;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, .3);
+  overflow: scroll;
+}
+
+.titulo-menu {
+  font-size: 12pt;
+  font-variant: small-caps;
+  font-weight: bold;
+  line-height: 140%;
+  color: #678;
+  padding-top: 0.5em;
+  padding-bottom: 0.4em;
+  border-bottom: 2px solid #345;
+  border-top: 2px solid #345;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.autor-menu {
+  font-size: 9pt;
+  font-weight: 200;
+  color: #345;
+  padding-top: 0.4em;
+  padding-bottom: 1em;
+  text-align: right;
+}
+
+.menu-tul OL {
+  counter-reset: item;
+  padding-left: 2.5em;
+}
+
+.menu-tul ol LI {
+  display: block;
+  position: relative;
+}
+
+.menu-tul ol LI:before {
+  content: counters(item, ".") " ";
+  counter-increment: item;
+  position: absolute;
+  margin-right: 100%;
+  right: 1em;
+}
+
+.menu-tul a {
+  color: #a54;
+  font-weight: 400;
+}
+
+.menu-tul a:hover {
+  color: #c65;
+}
+
+.ejercicios ol {
+  counter-reset: li;
+  /* Initiate a counter */
+  margin-left: 0;
+  /* Remove the default left margin */
+  padding-left: 0;
+  /* Remove the default left padding */
+}
+
+.ejercicios ol > li {
+  position: relative;
+  /* Create a positioning context */
+  margin: 0 0 6px 2em;
+  /* Give each list item a left margin to make room for the numbers */
+  padding: 4px 8px;
+  /* Add some spacing around the content */
+  list-style: none;
+  /* Disable the normal item numbering */
+}
+
+.ejercicios ol > li:before {
+  content: counter(li)". ";
+  /* Use the counter as content */
+  counter-increment: li;
+  /* Increment the counter by 1 */
+  /* Position and style the number */
+  position: absolute;
+  left: -3rem;
+  width: 3rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  text-align: right;
+}
+
+.ejercicios ol > li > ol > li:before {
+  content: counter(li, lower-roman)". ";
+  /* Use the counter as content */
+  counter-increment: li;
+  /* Increment the counter by 1 */
+  /* Position and style the number */
+  left: -3rem;
+  width: 3rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  font-style: italic;
+  text-align: right;
+}
+
+
+/*Para la bibliografía */
+
+#bibdiv,
+#notapie {
+  position: fixed;
+  bottom: 15px;
+  border-radius: 15px;
+  width: 25%;
+  background-color: #fcfcfc;
+  position: fixed;
+  right: 3%;
+  padding: 0 1em 1em 1em;
+  font-family: "STIXGeneral";
+  text-align: left;
+  line-height: 120%;
+  font-size: 12pt;
+  color: #444;
+  box-sizing: border-box;
+  visibility: hidden;
+}
+
+#bibdiv:before {
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  color: #833;
+  background: #eee;
+  border-bottom: 1px solid #833;
+  content: "Referencia";
+}
+
+#notapie:before {
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  color: #833;
+  background: #eee;
+  border-bottom: 1px solid #833;
+  content: "Nota";
+}
+
+
+.biblabel {
+  font-size: 10pt;
+  color: #833;
+  text-align: right;
+  float: left;
+  width: 3rem;
+  padding-right: .5rem;
+  overflow: hidden;
+}
+
+.bibentry {
+  font-size: 10pt;
+  overflow: hidden;
+}
+
+#relojito {
+  position: fixed;
+  top: 200px;
+  left: 300px;
+  width: 400px;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid #234;
+  background-color: rgba(0, 0, 0, .01);
+  animation-name: example;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#relojito:before {
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 4px;
+  color: #456;
+  content: "Cargando...";
+}
+
+@keyframes example {
+  from {
+    background-color: rgba(100, 100, 100, 0.2);
+  }
+  to {
+    background-color: rgba(200, 120, 10, 0.2);
+  }
+}
+
+#indice-titulo-I,
+#indice-titulo-T {
+  width: 1090px;
+  height: 50px;
+  margin: 0;
+}
+
+#indice-titulo-I {
+  background: #883000;
+  background: linear-gradient(to right, rgb(251, 167, 65) 0%, #883000 100%);
+}
+
+#indice-titulo-T {
+  background: #A0CF67;
+  background: linear-gradient(to right, rgb(3,43,101) 0%, #A0CF67 100%);
+}
+
+#indice-titulo-I,
+#indice-titulo-T {
+  position: absolute;
+  top: 167px;
+  z-index: 1000;
+}
+
+#indice-titulo-I.sticky,
+#indice-titulo-T.sticky  
+{
+  position: fixed;
+  top: 50px;
+  z-index: 1000;
+}
+
+.tul-eltitulo {
+  display: block;
+  width:100%;
+  line-height: 48px;
+  text-align: right;
+  padding-right: 3rem;
+  color: #e2e2e2;
+  font-size: 1.8rem;
+  font-variant: small-caps;
+  font-weight: 500;
+}
+
+.tul-elautor {
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding-right: 3rem;
+  margin-top: 16px;
+  color: #e2e2e2;
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+.tul-logo-serie{
+  position:absolute;
+  padding-left: 3rem;
+  margin-top: 12px;
+}
+
+#indice-fondo,
+#indice-fondo-T {
+  display: block;
+  position: relative;
+  top: 0;
+  left: -20px;
+  height: 100%;
+  margin-bottom: 0px;
+}
+
+#indice-fondo{
+  background-color: rgb(245, 110, 32);
+}
+
+#indice-fondo-T{
+  background-color: rgb(3,43,101);
+}
+
+#indice-tul {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  top: 100px;
+  margin-left: -40px;
+  padding: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+  color: #333;
+  background-color: rgba(255,255,255,.5);
+  border-radius: 6px;
+  overflow: auto;
+}
+
+#contenedor #indice-tul{
+  max-height: 300px;
+}
+
+#indice-tul h1{
+  font-size: 1.2rem;
+  border-bottom: 1px solid;
+  font-weight: 900;
+}
+#indice-tul ol li,
+a{
+  color: #345;
+}
+
+#indice-tul > ol > li {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-left: 1rem;
+  line-height: 2rem;
+  padding-bottom: .3rem;
+}
+
+#indice-tul > ol > li > ol li {
+  font-weight: 400;
+  font-size: .8rem;
+  margin-left: 1rem;
+  line-height: 1.2rem;
+}
+
+#contenedor.fondo {
+  background: rgb(245, 110, 32);
+}

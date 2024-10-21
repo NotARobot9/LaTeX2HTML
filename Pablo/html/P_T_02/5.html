@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/5.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\mathop{\rm id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+//      include_once '/papirhos-web/scripts/menu-top.php';
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 4;
+              }
+              </style>  
+
+<h2 id="Cap-5">Completitud</h2>
+<p class="noj">
+Para sucesiones de números reales se tiene un criterio de convergencia
+que depende únicamente de la sucesión misma: si una sucesión de
+números reales es de Cauchy entonces converge.
+</p>
+<p>
+La noción de sucesión de Cauchy se extiende de manera natural
+a espacios métricos. Sin embargo, no es cierto en general que
+cualquier sucesión de Cauchy en un espacio métrico converge. A
+los espacios métricos en los que cualquier sucesión de Cauchy
+converge se les llama <em class="emph">completos</em>.
+</p>
+<p>
+La completitud es una propiedad muy importante. Permite, por ejemplo,
+obtener soluciones de sistemas de ecuaciones numéricas, de
+ecuaciones diferenciales y de ecuaciones integrales mediante un
+proceso de iteración, como veremos en el siguiente capítulo.
+</p>
+
+<h3 id="sec5-1">Espacios métricos completos</h3>
+
+<p class="noj">
+Sea $X=(X,d_{X})$ un espacio métrico. La definición de
+sucesión de Cauchy en $X$ es
+formalmente idéntica a la que conocemos en $\mathbb{R}$.
+</p>
+<div class="definition">
+  Una sucesión $(x_{k})$ en $X$ es <em class="textbf">de Cauchy</em>
+  si, dada $\varepsilon >0$, existe
+  $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    d_{X}(x_{k},x_{j})<\varepsilon 
+    \qquad \forall k,j\geq k_{0}.
+  \end{equation*}
+</div>
+<p>
+
+<div id="foto:cauchy" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Augustin-Louis_Cauchy.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Augustin Cauchy
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    Augustin Louis Cauchy (1789-1857)
+  nació en París. Es uno de los pioneros del análisis
+  matemático. Fue un matemático profundo, que cultivó
+  diversas áreas de las matemáticas y ejerció una fuerte
+  influencia sobre sus contemporáneos y sucesores. Escribió
+  cerca de 800 artículos de investigación.
+  </div>
+</div>
+
+</p>
+<div id="convcau" class="proposition">
+Toda sucesión convergente en $X$ es de Cauchy.
+</div>
+<div class="proof">
+  Si $x_{k}\rightarrow x$ en $X$ entonces, dada $\varepsilon >0$
+  existe $k_{0}\in \mathbb{N}$ tal que
+  $d_{X}(x_{k},x)<\frac{\varepsilon }{2}$ si $k\geq k_{0}$. Por tanto
+  \begin{equation*}
+    d_{X}(x_{k},x_{j})\leq d_{X}(x_{k},x)+d_{X}(x,x_{j})<\varepsilon \qquad \forall k,j\geq k_{0}.
+  \end{equation*}
+  Es decir, $(x_{k})$ es de Cauchy.
+</div>
+<p>
+No es cierto, en general, que cualquier sucesión de Cauchy
+converge.  Veamos un par de ejemplos.
+</p>
+<div class="example">
+  Sea $X:=(0,1)$ con la métrica inducida por la de
+  $\mathbb{R}$. La sucesión $(\frac{1}{k})$ es de Cauchy en $X$
+  pero no converge en $X$ <em class="emph">[Ejercicio <a href="tul/P_T_02/5.html#ejnocompl">5.31</a>]</em>.
+</div>
+<div id="C1nocompl" class="example">
+La sucesión de funciones
+  $f_{k}\colon [-1,1]\rightarrow \mathbb{R}$,
+  \begin{equation*}
+    f_{k}(x)=
+      \begin{cases}
+        -1 & \text{si $-1\leq x\leq -\frac{1}{k}$,} \\
+        kx & \text{si $-\frac{1}{k}\leq x\leq \frac{1}{k}$,} \\
+        1 & \text{si $\frac{1}{k}\leq x\leq 1$,}
+      \end{cases}
+  \end{equation*}
+  es de Cauchy en $\mathcal{C}_{1}^{0}[-1,1]$ pero no converge en
+  $\mathcal{C}_{1}^{0}[-1,1]$.
+              <div id="fig:5-1" class="figure">
+                <img src="tul/P_T_02/figuras/fk.svg" height="230">
+                <div class="caption">
+                </div>                
+              </div>
+</div>
+
+<div class="proof">
+  Para $j\geq k$ se tiene que
+  \begin{equation*}
+    \int_{-1}^{1}\left\vert f_{j}(x)-f_{k}(x)\right\vert dx=2\int_{0}^{1}\left(
+      f_{j}(x)-f_{k}(x)\right) dx=\tfrac{1}{k}-\tfrac{1}{j}.
+  \end{equation*}
+  En consecuencia, dada $\varepsilon >0$ se cumple que
+  \begin{equation*}
+    \left\Vert f_{j}-f_{k}\right\Vert_{1}<\varepsilon \qquad \forall k,j>\tfrac{2}{\varepsilon }.
+  \end{equation*}
+  Así pues, $(f_{k})$ es de Cauchy.
+  <br> 
+  Argumentando por contradicción, supongamos que $f_{k}\rightarrow
+  f$ en $\mathcal{C}_{1}^{0}[-1,1]$. Sea $a\in (0,1)$. Si $k\geq
+  \frac{1}{a}$, entonces $f_{k}(x)=1$ para todo $x\in [a,1]$.
+  En consecuencia,
+  \begin{equation*}
+    0\leq \int_{a}^{1}\left\vert 1-f(x)\right\vert dx\leq
+    \int_{-1}^{1}\left\vert f_{k}(x)-f(x)\right\vert dx=\left\Vert
+      f_{k}-f\right\Vert_{1}\rightarrow 0.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \int_{a}^{1}\left\vert 1-f(x)\right\vert dx=0,
+  \end{equation*}
+  lo que implica que $f(x)=1$ para todo $x\in [a,1]$.
+  Análogamente, $f(x)=-1$ para todo $x\in [-1,-a]$ y, como
+  $a\in (0,1)$ es arbitraria, tenemos que
+  \begin{equation*}
+    f(x)=
+      \begin{cases}
+        -1 & \text{si $x\in [-1,0)$,} \\
+        1 & \text{si $x\in (0,1]$.}
+      \end{cases}
+  \end{equation*}
+  En consecuencia, $f$ no es continua en $[-1,1]$, lo cual contradice
+  nuestra suposición.
+</div>
+
+<p>
+En la siguiente sección probaremos que en $\mathcal{C}_{\infty
+}^{0}[-1,1]$ cualquier sucesión de Cauchy converge. A los espacios
+métricos que tienen esta propiedad se les llama completos.
+</p>
+<div class="definition">
+  Un espacio métrico $X$ es <em class="textbf">completo</em>,
+  si toda sucesión de Cauchy en $X$
+  converge en $X$. Un espacio normado que es completo con la
+  métrica inducida por su norma se llama un <em class="textbf">espacio de
+    Banach</em>.  
+</div>
+<p>
+Los ejemplos anteriores muestran que $(a,b)$ y
+$\mathcal{C}_{1}^{0}[a,b]$ no son completos. De hecho,
+$\mathcal{C}_{p}^{0}[a,b]$ no es un espacio de Banach para ninguna
+$p\in [1,\infty )$ [Ejercicio <a href="tul/P_T_02/5.html#ejCpnocompl">5.32</a>].
+</p>
+<p>
+La completitud no es invariante bajo homeomorfismos, como lo muestra
+el siguiente ejemplo.
+</p>
+<div class="example">
+  La función &nbsp;$\tan \colon (-\frac{\pi }{2},\frac{\pi }{2})\rightarrow
+  \mathbb{R}$ &nbsp;es un homeomorfismo.  &nbsp;$\mathbb{R}$ es un espacio
+  métrico completo, pero $(-\frac{\pi }{2},\frac{\pi }{2})$ no lo
+  es.
+              <div id="fig:5-2" class="figure">
+                <img src="tul/P_T_02/figuras/arctan.svg" height="190">
+                <div class="caption">
+                </div>                
+              </div>
+
+</div>
+<p>
+Sin embargo, la completitud sí se preserva bajo equivalencias.
+</p>
+<div id="equivcomplet" class="proposition">
+Si existe una equivalencia $\phi \colon X\rightarrow
+  Y$ entre dos espacios métricos $X$ y $Y$, entonces $X$ es
+  completo si y sólo si $Y$ lo es.
+</div>
+<div class="proof">
+  Supongamos que $Y$ es completo y que $\phi \colon X\rightarrow Y$ es
+  Lipschitz continua. Sea $(x_{k})$ una sucesión de Cauchy en
+  $X$. Entonces, dada $\varepsilon >0$, existe $k_{0}\in \mathbb{N}$
+  tal que
+  \begin{equation*}
+    d_{Y}(\phi (x_{j}),\phi (x_{k}))\leq c\,d_{X}(x_{j},x_{k})<\varepsilon \qquad \forall j,k\geq k_{0}.
+  \end{equation*}
+  Es decir, la sucesión $(\phi (x_{k}))$ es de Cauchy en $Y$ y, como
+  $Y$ es completo, se tiene que $\phi (x_{k})\rightarrow y$ en
+  $Y$. Ahora bien, como $\phi^{-1}$ es continua, la
+  Proposición <a href="tul/P_T_02/3.html#contsuc">3.33</a> garantiza que
+  $x_{k}=\phi^{-1}(\phi (x_{k}))\rightarrow \phi^{-1}(y)$ &nbsp;en
+  $X$. Esto prueba que $X$ es completo. El recíproco se obtiene
+  reemplazando $Y$ por $X$ y $\phi $ por $\phi^{-1}$ en el argumento
+  anterior.
+</div>
+<p>
+Una consecuencia importante es la siguiente.
+</p>
+
+<div class="theorem">
+  Todo espacio normado de dimensión finita es de Banach.
+</div>
+
+<div class="proof">
+  Como para cualquier espacio normado $V$ de dimensión $n$ existe una
+  equivalencia $\phi \colon \mathbb{R}_{\infty }^{n}\rightarrow V$
+  (ver Ejercicio <a href="tul/P_T_02/4.html#ejnorfinequiv">4.42</a>), en virtud de la
+  Proposición <a href="tul/P_T_02/5.html#equivcomplet">5.7</a> bastará probar que
+  $\mathbb{R}_{\infty }^{n}$ es completo.
+<p>
+  Sea $(x_{k})$ una sucesión de Cauchy en $\mathbb{R}_{\infty
+  }^{n}$, donde $x_{k}=(x_{k,1},\dots,x_{k,n})$. Entonces, dada
+  $\varepsilon >0$, existe $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \left\vert x_{j,i}-x_{k,i}\right\vert \leq \max_{i=1,\dots,n}\left\vert
+      x_{j,i}-x_{k,i}\right\vert =\left\Vert x_{j}-x_{k}\right\Vert_{\infty
+    }<\varepsilon\:\:\: \forall j,k\geq k_{0},\:
+    \forall i=1,\dots,n.
+  \end{equation*}
+  </p>
+  Esto prueba que, para cada $i=1,\dots,n$, la sucesión $(x_{k,i})$
+  es de Cauchy en $\mathbb{R}$. Como $\mathbb{R}$ es completo,
+  $x_{k,i}\rightarrow x_{i}$ en $\mathbb{R}$. Por tanto, dada
+  $\varepsilon >0$, existe $k_{i}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \left\vert x_{k,i}-x_{i}\right\vert <\varepsilon \qquad \forall k\geq
+    k_{i},\text{ &nbsp;}\forall i=1,\dots,n,
+  \end{equation*}
+  y, en consecuencia,
+  \begin{equation*}
+    \left\Vert x_{k}-x\right\Vert_{\infty }=\max_{i=1,\dots,n}\left\vert
+      x_{k,i}-x_{i}\right\vert <\varepsilon \qquad \forall k\geq \max
+    \left\{k_{1},\dots,k_{n}\right\},
+  \end{equation*}
+  donde $x:=(x_{1},\dots,x_{n})$. Es decir, $x_{k}\rightarrow x$ en
+  $\mathbb{R}_{\infty }^{n}$.
+</div>
+
+<p>
+No todo subespacio de un espacio métrico completo es un espacio
+métrico completo. Por ejemplo, $\mathbb{R}$ es completo pero
+ningún intervalo abierto $(a,b)$ lo es. La siguiente
+proposición caracteriza a aquéllos que sí lo son.
+</p>
+<div id="complcerr" class="proposition">
+Sea $X$ un espacio métrico completo. Un
+  subespacio métrico $A$ de $X$ es completo si y sólo si es
+  cerrado en $X$.
+</div>
+
+<div class="proof">
+  $\Leftarrow )$: &nbsp;Supongamos que $A$ es cerrado en $X$. Sea
+  $(a_{k})$ una sucesión de Cauchy en $A$. Entonces $(a_{k})$ es
+  una sucesión de Cauchy en $X$ y, como $X$ es completo,
+  $a_{k}\rightarrow x$ en $X$. Por la Proposición <a href="tul/P_T_02/3.html#cerrsuc">3.32</a> se
+  tiene que $x\in \overline{A}=A$. Esto prueba que $A$ es completo.
+<br>
+  $\Rightarrow )$: &nbsp;Supongamos ahora que $A$ es completo. Sea
+  $x\in \overline{A}$. Por la Proposición <a href="tul/P_T_02/3.html#cerrsuc">3.32</a>, existe una
+  sucesión $(a_{k})$ en $A$ tal que $a_{k}\rightarrow x$ en $X$.  La
+  Proposición <a href="tul/P_T_02/5.html#convcau">5.2</a> asegura entonces que $(a_{k})$ es de
+  Cauchy y, como $A$ es completo, se tiene que $a_{k}\rightarrow a$ en
+  $A$. De la unicidad del límite (ver Proposición <a href="tul/P_T_02/3.html#unilim">3.29</a>) se
+  sigue que $x=a\in A$. En consecuencia, $A$ es cerrado.
+</div>
+
+<h3 id="sec5-2">Convergencia uniforme</h3>
+
+<p class="noj">
+En esta sección daremos ejemplos importantes de espacios
+métricos completos. Empezaremos comparando ciertos tipos de
+convergencia para sucesiones de funciones.
+</p>
+<p>
+Sean $S$ un conjunto y $X=(X,d_{X})$ un espacio métrico.
+</p>
+<div class="definition">
+  Una sucesión de funciones $f_{k}\colon S\rightarrow X$, $k\in
+  \mathbb{N}$, converge <em class="textbf">puntualmente</em>
+  en $S$ a una función $f\colon S\rightarrow
+  X$ si $f_{k}(z)\rightarrow f(z)$ en $X$ para cada $z\in S$. Es
+  decir, si para cada $\varepsilon >0$ y cada $z\in S$ existe
+  $k_{0}\in \mathbb{N}$ (que depende de $\varepsilon $ y de $z)$ tal
+  que
+  \begin{equation*}
+    d_{X}(f_{k}(z),f(z))<\varepsilon 
+    \qquad \forall k\geq k_{0}.
+  \end{equation*}
+  La función $f$ se llama el <em class="textbf">límite puntual</em>
+  de $(f_{k})$.
+</div>
+<p>
+El límite puntual de una sucesión de funciones continuas no
+es, por lo general, una función continua, como lo muestra el
+siguiente ejemplo.
+</p>
+
+<div id="limpun" class="example">
+La sucesión de funciones $f_{k}\colon [0,1]\rightarrow
+  \mathbb{R}$, $f_{k}(x)=x^{k}$, converge puntualmente a
+  \begin{equation*}
+    f(x)=
+      \begin{cases}
+        0 & 
+        \text{si $0\leq x<1$,} \\
+        1 & \text{si $x=1$.}
+      \end{cases}
+  \end{equation*}
+
+              <div id="fig:5-4" class="figure">
+                <img src="tul/P_T_02/figuras/fig5-4.svg" height="190">
+                <div class="caption">
+                </div>                
+              </div>
+</div>
+
+<p>
+Daremos a continuación una noción de convergencia según la
+cual el límite de una sucesión de funciones continuas
+resultará ser una función continua.
+</p>
+<div class="definition">
+  Una sucesión de funciones $f_{k}\colon S\rightarrow X$, $k\in
+  \mathbb{N}$, converge <em class="textbf">uniformemente</em>
+  en $S$ a una función
+  $f\colon S\rightarrow X$ si, dada $\varepsilon >0$, existe $k_{0}\in
+  \mathbb{N}$ (que depende de $\varepsilon )$ tal que
+  \begin{equation*}
+    d_{X}(f_{k}(z),f(z))<\varepsilon 
+    \qquad \forall k\geq k_{0}\text{, &nbsp;}\forall z\in S.
+  \end{equation*}
+  La función $f$ se llama el <em class="textbf">límite uniforme</em>
+  de $(f_{k})$.
+</div>
+<p>
+Nota que esta noción es más fuerte que la de convergencia
+puntual: si $(f_{k})$ converge uniformemente a $f$, entonces converge
+puntualmente a $f$. El recíproco no es cierto pues la
+sucesión $(f_{k})$ del Ejemplo <a href="tul/P_T_02/5.html#limpun">5.11</a> no converge
+uniformemente en $[0,1]$ &nbsp;[Ejercicio <a href="tul/P_T_02/5.html#ejnoconvuni">5.41</a>]. El siguiente
+ejemplo muestra que, aun cuando una sucesión de funciones
+continuas converge puntualmente a una función continua, no
+necesariamente converge uniformemente.
+</p>
+<div id="puntnounif" class="example">
+Sea $f_{k}\colon [0,1]\rightarrow \mathbb{R}$ la
+  función dada por
+  \begin{equation*}
+    f_{k}(x)=\max \left\{1-k\left\vert x-\tfrac{1}{k}\right\vert ,0\right\} .
+  \end{equation*}
+
+             <div id="fig:5-5" class="figure">
+                <img src="tul/P_T_02/figuras/tienda.svg" height="190">
+                <div class="caption">
+                </div>                
+              </div>
+
+  La sucesión $(f_{k})$ converge puntualmente a $0$, pero no
+  converge uniformemente a $0$ ya que, si $\varepsilon \in (0,1)$,
+  ningún $k\in \mathbb{N}$ cumple que $\left\vert
+    f_{k}(x)\right\vert <\varepsilon $ para todo $x\in [0,1]$.
+  En efecto:
+  \begin{equation*}
+    \left\vert f_{k}\left(\tfrac{1}{k}\right) \right\vert =1>\varepsilon \qquad \forall k\in \mathbb{N}.
+  \end{equation*}
+</div>
+<p>
+La propiedad fundamental de la convergencia uniforme es la siguiente.
+</p>
+<div id="contlimuni" class="theorem">
+Sean $Z=(Z,d_{Z})$ y $X=(X,d_{X})$ espacios
+  métricos.  Si $f_{k}\colon Z\rightarrow X$ es continua para todo $k\in
+  \mathbb{N}$ y $(f_{k})$ converge uniformemente a $f$ en $Z$,
+  entonces $f\colon Z\rightarrow X$ es continua.
+</div>
+<div class="proof">
+  Sean $z_{0}\in Z$ y $\varepsilon >0$. Como $(f_{k})$ converge
+  uniformemente a $f$, existe $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    d_{X}(f_{k}(z),f(z))<\frac{\varepsilon }{3}\qquad \forall z\in Z,\text{ &nbsp;}\forall k\geq k_{0}.
+  \end{equation*}
+  Y, como $f_{k_{0}}$ es continua, existe $\delta >0$ tal que
+  \begin{equation*}
+    d_{X}(f_{k_{0}}(z),f_{k_{0}}(z_{0}))<\frac{\varepsilon }{3}\qquad\text{ si &nbsp;
+    }d_{Z}(z,z_{0})<\delta .
+  \end{equation*}
+  En consecuencia,
+  \begin{align*}
+    d_{X}(f(z),f(z_{0})) &\leq
+    d_{X}(f(z),f_{k_{0}}(z))+d_{X}(f_{k_{0}}(z),f_{k_{0}}(z_{0}))+d_{X}(f_{k_{0}}(z_{0}),f(z_{0}))
+    \\
+    &<\varepsilon \qquad\text{ si &nbsp;}d_{Z}(z,z_{0})<\delta .
+  \end{align*}
+  Esto prueba que $f$ es continua.
+</div>
+<p>
+Para funciones acotadas la convergencia uniforme es simplemente la
+convergencia en el espacio métrico $\mathcal{B}(S,X)$, definido en
+la Sección <a href="tul/P_T_02/2.html#sec2-4">2.4</a>, cuya métrica es la métrica
+uniforme
+\begin{equation*}
+  d_{\infty }(f,g)=\sup_{z\in S}d_{X}(f(z),g(z)),\qquad f,g\in \mathcal{B}(S,X).
+\end{equation*}
+Es decir, se tiene el siguiente resultado.
+</p>
+
+<div id="convB=cu" class="proposition">
+Sea $(f_{k})$ una sucesión en
+  $\mathcal{B}(S,X)$. Entonces, $(f_{k})$ converge uniformemente a $f$
+  en $S$ si y sólo si $(f_{k})$ converge a $f$&nbsp;en
+  $\mathcal{B}(S,X)$.
+</div>
+
+<div class="proof">
+  $\Leftarrow )$: &nbsp;Si $(f_{k})$ converge a $f$&nbsp;en $\mathcal{B}(S,X)$
+  entonces, dada $\varepsilon >0$, existe $k_{0}\in \mathbb{N}$ tal
+  que
+  \begin{equation*}
+    d_{\infty }(f_{k},f)=\sup_{z\in S}d_{X}(f_{k}(z),f(z))<\varepsilon \qquad \forall k\geq k_{0}.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    d_{X}(f_{k}(z),f(z))<\varepsilon \qquad \forall k\geq k_{0},\text{ &nbsp;}\forall z\in S.
+  \end{equation*}
+  Es decir, $(f_{k})$ converge uniformemente a $f$ en $S$.
+<br>
+  $\Rightarrow )$: &nbsp;Recíprocamente, si $f_{k}\in
+  \mathcal{B}(S,X)$ y $(f_{k})$ converge uniformemente a $f$ en $S$
+  entonces, dada $\varepsilon >0$, existe $k_{0}\in N$ tal que
+  \begin{equation}
+    d_{X}(f_{k}(z),f(z))<\varepsilon \qquad \forall k\geq k_{0},\text{ &nbsp;}\forall z\in S.\label{cu}
+  \end{equation}
+  Como $f_{k_{0}}$ es acotada, existen $c>0$ y $x_{0}\in X$ tales que
+  $d_{X}(f_{k_{0}}(z),x_{0})\menorque c$ para todo $z\in S$. En consecuencia,
+  \begin{equation*}
+    d_{X}(f(z),x_{0})\leq
+    d_{X}(f(z),f_{k_{0}}(z))+d_{X}(f_{k_{0}}(z),x_{0})<\varepsilon +c\qquad \forall z\in S.
+  \end{equation*}
+  Esto prueba que $f\in \mathcal{B}(S,X)$. De (\ref{cu}) se sigue que
+  \begin{equation*}
+    d_{\infty }(f_{k},f)=\sup_{z\in S}d_{X}(f_{k}(z),f(z))\leq \varepsilon \qquad \forall k\geq k_{0}.
+  \end{equation*}
+  Es decir, $(f_{k})$ converge a $f$ en $\mathcal{B}(S,X)$.
+</div>
+
+<p>
+El siguiente espacio jugará un papel importante en las
+aplicaciones del próximo capítulo.
+</p>
+<div id="defespfuncont" class="definition">
+Sean $Z$ y $X$ espacios métricos. El
+  <em class="textbf">espacio de funciones continuas y acotadas</em> 
+de $Z$ a
+  $X$ es el espacio métrico
+  \begin{equation*}
+    \mathcal{C}_{b}^{0}(Z,X):=\left\{f\colon Z\rightarrow X:f\text{ es continua y acotada}\right\}
+  \end{equation*}
+  con la métrica inducida por la de $\mathcal{B}(Z,X)$, es decir,
+  \begin{equation*}
+    d_{\infty }(f,g)=\sup_{z\in Z}d_{X}(f(z),g(z))
+  \end{equation*}
+  si $f,g\in \mathcal{C}_{b}^{0}(Z,X)$.
+</div>
+<p>
+Para sucesiones de funciones continuas y acotadas podemos
+reinterpretar el Teorema <a href="tul/P_T_02/5.html#contlimuni">5.14</a> como sigue.
+</p>
+<div id="contcerrenacot" class="corollary">
+Sean $Z$ y $X$ espacios métricos. Entonces
+  $\mathcal{C}_{b}^{0}(Z,X)$ es un subespacio cerrado de
+  $\mathcal{B}(Z,X)$.
+</div>
+<div class="proof">
+  Sea $f\in \overline{\mathcal{C}_{b}^{0}(Z,X)}$. Por la
+  Proposición <a href="tul/P_T_02/5.html#cerrsuc">3.32</a> existe una sucesión $(f_{k})$ en
+  $\mathcal{C}_{b}^{0}(Z,X)$ tal que $f_{k}\rightarrow f$ en
+  $\mathcal{B}(Z,X)$. La Proposición <a href="tul/P_T_02/5.html#convB=cu">5.15</a> y el
+  Teorema <a href="tul/P_T_02/5.html#contlimuni">5.14</a> aseguran entonces que
+  $f\in \mathcal{C}_{b}^{0}(Z,X)$. Esto prueba que
+  $\mathcal{C}_{b}^{0}(Z,X)$ es cerrado en $\mathcal{B}(Z,X)$.
+</div>
+<p>
+Concluimos esta sección con otra consecuencia importante de la
+convergencia uniforme.
+</p>
+<div id="limunifdif" class="theorem">
+Si $f_{k}\colon [a,b]\rightarrow \mathbb{R}$ es una
+  sucesión de funciones continuamente diferenciables en $[a,b]$
+  tales que $(f_{k})$ converge a $f$ puntualmente en $[a,b]$ y
+  $(f_{k}^{\prime })$ converge a $g$ uniformemente en $[a,b]$,
+  entonces $f$ es continuamente diferenciable en $[a,b]$ y $f^{\prime
+  }=g$.
+</div>
+<div class="proof">
+  Sea $x_{0}\in (a,b)$. Aplicando el teorema del valor medio a la
+  función $f_{j}-f_{k}$&nbsp;se tiene que, para cada $x\in (a,b)$,
+  existe $\xi_{x}\in (a,b) $ tal que
+  \begin{equation*}
+    f_{j}(x)-f_{k}(x)-(f_{j}(x_{0})-f_{k}(x_{0}))=\left( f_{j}^{\prime }(\xi
+     _{x})-f_{k}^{\prime }(\xi_{x})\right) (x-x_{0}).
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \left\vert f_{j}(x)-f_{j}(x_{0})-f_{k}(x)+f_{k}(x_{0})\right\vert \leq
+    \left\Vert f_{j}^{\prime }-f_{k}^{\prime }\right\Vert_{\infty }\left\vert
+      x-x_{0}\right\vert \qquad \forall x\in (a,b).
+  \end{equation*}
+  Como $(f_{k}^{\prime })$ converge en $\mathcal{C}^{0}[a,b]$, dada
+  $\varepsilon >0$&nbsp;existe $k_{0}\in \mathbb{N}$&nbsp;tal que
+  \begin{equation*}
+    \left\vert f_{j}(x)-f_{j}(x_{0})-f_{k}(x)+f_{k}(x_{0})\right\vert \leq \frac{\varepsilon }{3}\left\vert x-x_{0}\right\vert \qquad \forall x\in (a,b),\text{ &nbsp;}\forall j,k\geq k_{0}.
+  \end{equation*}
+  Tomando el límite cuando $j\rightarrow \infty $,&nbsp;concluimos
+  que
+  \begin{equation}
+    \left\vert f(x)-f(x_{0})-f_{k}(x)+f_{k}(x_{0})\right\vert \leq \frac{\varepsilon }{3}\left\vert x-x_{0}\right\vert \qquad \forall x\in (a,b),\text{ &nbsp;}\forall k\geq k_{0}.\label{uno}
+  \end{equation}
+  Por otra parte, existe $k_{1}\in \mathbb{N}$&nbsp;tal que
+  \begin{equation}
+    \left\vert f_{k}^{\prime }(x_{0})-g(x_{0})\right\vert <\frac{\varepsilon }{3}\qquad \forall k\geq k_{1}.\label{dos}
+  \end{equation}
+  Sea $k_{\ast }:=\max \left\{k_{0},k_{1}\right\}$, y sea $\delta >0$ tal que
+  \begin{equation}
+    \left\vert \frac{f_{k_{\ast }}(x)-f_{k_{\ast }}(x_{0})}{x-x_{0}}-f_{k_{\ast
+        }}^{\prime }(x_{0})\right\vert <\frac{\varepsilon }{3}\qquad \text{si }\left\vert x-x_{0}\right\vert <\delta .\label{tres}
+  \end{equation}
+  De las desigualdades (\ref{uno}), (\ref{dos}) y (\ref{tres}) se
+  sigue que
+  \begin{align*}
+    \left\vert \frac{f(x)-f(x_{0})}{x-x_{0}}-g(x_{0})\right\vert &\leq
+    \left\vert \frac{f(x)-f(x_{0})}{x-x_{0}}-\frac{f_{k_{\ast }}(x)-f_{k_{\ast
+          }}(x_{0})}{x-x_{0}}\right\vert \\
+    &\qquad{}+\left\vert \frac{f_{k_{\ast }}(x)-f_{k_{\ast }}(x_{0})}{x-x_{0}}-f_{k_{\ast }}^{\prime }(x_{0})\right\vert +\left\vert f_{k_{\ast }}^{\prime
+      }(x_{0})-g(x_{0})\right\vert \\
+    &<\varepsilon \qquad \text{si &nbsp;}\left\vert x-x_{0}\right\vert <\delta .
+  \end{align*}
+  Es decir, $f&nbsp;$es diferenciable en $x_{0}$ y $f^{\prime
+  }(x_{0})=g(x_{0})$. Finalmente, como $f_{k}^{\prime }\in
+  \mathcal{C}^{0}[a,b]$, se tiene que $g\in \mathcal{C}^{0}[a,b]$, es
+  decir, $f$ es continuamente diferenciable en $[a,b]$.
+</div>
+
+<h3 id="sec5-3">Espacios completos de funciones</h3>
+
+<p class="noj">
+A continuación daremos un criterio que garantiza la convergencia
+uniforme de una sucesión de funciones en términos de la
+sucesión misma.
+</p>
+<p>
+Sean $S$ un conjunto y $X=(X,d_{X})$ un espacio métrico.
+</p>
+<div class="definition">
+  Una sucesión de funciones $f_{k}\colon S\rightarrow X$, $k\in
+  \mathbb{N}$, es <em class="textbf">uniformemente de Cauchy</em>
+  en $S$ si, para cada
+  $\varepsilon >0$, existe $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    d_{X}(f_{k}(z),f_{j}(z))<\varepsilon \qquad \forall j,k\geq k_{0}\text{, &nbsp;}\forall z\in S.
+  \end{equation*}
+</div>
+<p>
+El siguiente teorema nos da una condición necesaria y suficiente
+para la convergencia uniforme de una sucesión de funciones.
+</p>
+
+<div id="cricau" class="theorem">[Criterio de convergencia uniforme de Cauchy]
+Sea $X$ un
+  espacio métrico completo. Una sucesión de funciones
+  $f_{k}\colon S\rightarrow X$, $k\in \mathbb{N}$, converge uniformemente en
+  $S$ si y sólo si $(f_{k})$ es uniformemente de Cauchy en $S$.
+</div>
+
+<div class="proof">
+  $\Rightarrow )$: Si$(f_{k})$ converge uniformemente a
+  $f$ en $S$ entonces, dada $\varepsilon >0$, existe $k_{0}\in
+  \mathbb{N}$ tal que
+  \begin{equation*}
+    d_{X}(f_{k}(z),f(z))<\frac{\varepsilon }{2}\qquad \forall k\geq k_{0}\text{, &nbsp;}\forall z\in S.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    d_{X}(f_{k}(z),f_{j}(z))\leq
+    d_{X}(f_{k}(z),f(z))+d_{X}(f(z),f_{j}(z))<\varepsilon \qquad \forall j,k\geq
+    k_{0}\text{, &nbsp;}\forall z\in S.
+  \end{equation*}
+  Es decir, $(f_{k})$ es uniformemente de Cauchy.
+<br>
+  $\Leftarrow )$: &nbsp;Supongamos ahora que $(f_{k})$ es uniformemente de
+  Cauchy en $S$. Entonces, para cada $z\in S$, la sucesión
+  $(f_{k}(z))$ es de Cauchy en $X$ y, como $X$ es completo, esta
+  sucesión converge a un punto de $X$ al que denotaremos por
+  $f(z)$. Probaremos ahora que $f_{k}\rightarrow f$ uniformemente en
+  $S$.
+<p>
+  Sea $\varepsilon >0$. Como $(f_{k})$ es uniformemente de Cauchy,
+  existe $k_{0}\in \mathbb{N}$ tal que
+  </p>
+  \begin{equation*}
+    d_{X}(f_{k}(z),f_{j}(z))<\frac{\varepsilon }{2}\qquad \forall j,k\geq k_{0}\text{, &nbsp;}\forall z\in S.
+  \end{equation*}
+  Y como para cada $z\in S$ se tiene que$&nbsp;f_{j}(z)\rightarrow f(z)$
+  en $X$, existe $k(z)\in \mathbb{N}$ (que depende de $z$) tal que
+  \begin{equation*}
+    d_{X}(f_{j}(z),f(z))<\frac{\varepsilon }{2}\qquad \forall j\geq k(z)\text{.}
+  \end{equation*}
+  Dadas $k\geq k_{0}$ y $z\in S$, tomemos $j:=\max \left\{k_{0},k(z)\right\}$.
+  Entonces
+  \begin{equation*}
+    d_{X}(f_{k}(z),f(z))\leq
+    d_{X}(f_{k}(z),f_{j}(z))+d_{X}(f_{j}(z),f(z))<\varepsilon \text{.}
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    d_{X}(f_{k}(z),f(z))<\varepsilon \qquad \forall k\geq k_{0}\text{, &nbsp;}\forall z\in S,
+  \end{equation*}
+
+  es decir, $(f_{k})$ converge uniformemente a $f$.
+</div>
+
+Recuerda que, si $S$ es un conjunto y $V=(V,\left\Vert \cdot
+\right\Vert )$ es un espacio vectorial normado, entonces
+$\mathcal{B}(S,V)$ con la norma uniforme
+\begin{equation}
+  \left\Vert f\right\Vert_{\infty }=\sup_{z\in Z}\left\Vert f(z)\right\Vert
+\label{normuni}
+\end{equation}
+es un espacio vectorial normado (ver Ejercicio <a href="tul/P_T_02/5.html#ejnormunif">2.52</a>). Si
+$Z$ es un espacio métrico, $\mathcal{C}_{b}^{0}(Z,V)$ es un
+subespacio vectorial de $\mathcal{B}(Z,V)$.
+</p>
+<p>
+Una consecuencia importante del teorema anterior es la siguiente.
+</p>
+<div id="funcacotcompl" class="theorem">
+Sean $S$ un conjunto y $Z$ un espacio
+  métrico.
+</p>
+<p>
+  <ul class="cuadrito">
+  <li> Si $X$ es un espacio métrico completo, entonces
+    $\mathcal{B}(S,X)$&nbsp;y&nbsp;$\mathcal{C}_{b}^{0}(Z,X)$ son completos.
+    </li>
+  <li> Si $V$ es un espacio de Banach, entonces $\mathcal{B}(S,V)$
+    y&nbsp;$\mathcal{C}_{b}^{0}(Z,V)$ son espacios de Banach.
+    </li>
+  </ul>
+</div>
+<div class="proof">
+  Sea $(f_{k})$ una sucesión de Cauchy en $\mathcal{B}(S,X)$.
+  Claramente $(f_{k})$ es uniformemente de Cauchy en $S$ y, por la
+  Proposición <a href="tul/P_T_02/5.html#convB=cu">5.15</a> y el Teorema <a href="tul/P_T_02/5.html#cricau">5.20</a>, $(f_{k})$
+  converge en $\mathcal{B}(S,X)$. Esto prueba que $\mathcal{B}(S,X)$
+  es completo. Por el Corolario <a href="tul/P_T_02/5.html#contcerrenacot">5.17</a>,
+  $\mathcal{C}_{b}^{0}(Z,X)$ es un subconjunto cerrado de
+  $\mathcal{B}(Z,X)$. La Proposición <a href="tul/P_T_02/5.html#complcerr">5.9</a> asegura
+  entonces que $\mathcal{C}_{b}^{0}(Z,X)$ es completo.
+</div>
+<p>
+Esta propiedad permite que los espacios $\mathcal{B}(S,X)$ y
+$\mathcal{C}_{b}^{0}(Z,X)$ jueguen un papel importante en las
+aplicaciones, como veremos en el siguiente capítulo.
+</p>
+<p>
+Recuerda que, si $K$ es un espacio métrico compacto, entonces toda
+función continua de $K$ en $X$ es acotada (ver Corolario
+<a href="tul/P_T_02/4.html#contencomp">4.11</a>), es decir,
+\begin{equation*}
+  \mathcal{C}^{0}(K,X):=\left\{\phi \colon K\rightarrow X:\phi 
+  \text{ es continua}\right\}=\mathcal{C}_{b}^{0}(K,X).
+\end{equation*}
+Por tanto, $\mathcal{C}^{0}(K,X)$ es un espacio completo si $K$ es
+compacto y $X$ es completo.
+</p>
+
+<h3 id="sec5-4">Series en espacios de Banach</h3>
+
+<p class="noj">
+Sea $V=(V,\left\Vert \cdot \right\Vert )$ un espacio vectorial normado
+y sea $(v_{k})$ una sucesión en $V$.
+</p>
+<div class="definition">
+  Decimos que <em class="textbf">la serie </em>
+  \begin{equation*}
+    \sum_{k=1}^{\infty }v_{k}
+  \end{equation*}
+  <em class="textbf">converge</em> en $V$ si la
+  sucesión $(w_{n})$ de sumas parciales
+  $w_{n}:=\sum_{k=1}^{n}v_{k}$ converge en $V$. Su límite se
+  denota
+  \begin{equation*}
+    \sum_{k=1}^{\infty }v_{k}:=\lim_{n\rightarrow \infty }\sum_{k=1}^{n}v_{k}.
+  \end{equation*}
+</div>
+<p>
+Una observación sencilla es la siguiente.
+</p>
+<div id="serconvacot" class="proposition">
+Si la serie $\sum_{k=1}^{\infty }v_{k}$ converge
+  en $V$, entonces $v_{k}\rightarrow 0$ en $V$. En particular,
+  $(v_{k})$ está acotada.
+</div>
+<div class="proof">
+  La sucesión $(w_n)$, donde $w_n:=\sum_{k=1}^{n}v_{k}$, es de Cauchy
+  (ver Proposición <a href="tul/P_T_02/5.html#convcau">5.2</a>). Por tanto, dada $\varepsilon
+  >0$, existe $n_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \left\Vert v_{n+1}\right\Vert =\left\Vert
+      \sum_{k=1}^{n+1}v_{k}-\sum_{k=1}^{n}v_{k}\right\Vert \leq
+    \varepsilon \qquad \forall n\geq n_{0}.
+  \end{equation*}
+  Esto prueba que $v_{k}\rightarrow 0$ en $V$. Por la
+  Proposición <a href="tul/P_T_02/3.html#succonvacot">3.31</a>, $(v_{k})$ está acotada.
+</div>
+<p>
+En espacios de Banach se tiene el siguiente criterio de convergencia
+para series.
+<div id="critcauser" class="proposition">[Criterio de Cauchy para series]
+Sea $V$ un
+  espacio de Banach y sea $(v_{k})$ una sucesión en $V$. La serie
+  \begin{equation*}
+    \sum_{k=1}^{\infty }v_{k}
+  \end{equation*}
+  converge en $V$ si y sólo si, para cada $\varepsilon >0$, existe
+  $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \left\Vert v_{k+1}+\cdots +v_{k+j}\right\Vert <\varepsilon \qquad \forall
+    k\geq k_{0},\text{ &nbsp;}\forall j\geq 1.
+  \end{equation*}
+</div>
+<div class="proof">
+  Como $V$ es completo, la sucesión $(w_{n})$ de sumas parciales
+  $w_{n}:=\sum_{k=1}^{n}v_{k}$ converge en $V$ si y sólo si
+  $\left( w_{n}\right) $ es de Cauchy, es decir, si y sólo si para
+  cada $\varepsilon >0$, existe $k_{0}\in N$ tal que
+  \begin{equation*}
+    \left\Vert w_{k+j}-w_{k}\right\Vert =\left\Vert v_{k+1}+\cdots
+      +v_{k+j}\right\Vert <\varepsilon \qquad \forall k\geq k_{0},\text{ &nbsp;}\forall j\geq 1,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+<p>
+El siguiente criterio garantiza la convergencia uniforme de una serie
+de funciones en términos de la convergencia de una serie de
+números reales.
+</p>
+<div id="cw" class="theorem">[Criterio de Weierstrass]
+Sea $V$ un
+  espacio de Banach y sea $(v_{k})$ una sucesión en $V$. Si la
+  serie de números reales
+  \begin{equation*}
+    \sum_{k=1}^{\infty }\left\Vert v_{k}\right\Vert
+  \end{equation*}
+  converge, entonces la serie
+  \begin{equation*}
+    \sum_{k=1}^{\infty }v_{k}
+  \end{equation*}
+  converge en $V$ y se cumple que
+  \begin{equation*}
+    \left\Vert \sum_{k=1}^{\infty }v_{k}\right\Vert \leq \sum_{k=1}^{\infty
+    }\left\Vert v_{k}\right\Vert .
+  \end{equation*}
+</div>
+<div class="proof">
+  Sea $\varepsilon >0$. Como
+  $\sum_{k=1}^{\infty }\left\Vert v_{k}\right\Vert $ converge en
+  $\mathbb{R}$, la Proposición <a href="tul/P_T_02/5.html#critcauser">5.24</a> asegura que existe
+  $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \left\Vert v_{k+1}\right\Vert +\cdots +\left\Vert v_{k+j}\right\Vert
+    <\varepsilon \qquad \forall k\geq k_{0},\text{ &nbsp;}\forall j\geq 1.
+  \end{equation*}
+  Usando la desigualdad del triángulo obtenemos que
+  \begin{equation*}
+    \left\Vert v_{k+1}+\cdots +v_{k+j}\right\Vert \leq \left\Vert
+      v_{k+1}\right\Vert +\cdots +\left\Vert v_{k+j}\right\Vert <\varepsilon
+    \qquad \forall k\geq k_{0},\text{ &nbsp;}\forall j\geq 1.
+  \end{equation*}
+  Aplicando nuevamente la Proposición <a href="tul/P_T_02/5.html#critcauser">5.24</a> concluimos
+  que la serie
+  \begin{equation*}
+    \sum_{k=1}^{\infty }v_{k}
+  \end{equation*}
+  converge en $V$. En consecuencia, usando la continuidad de la norma
+  y la desigualdad del triángulo obtenemos
+  \begin{equation*}
+    \left\Vert \sum_{k=1}^{\infty }v_{k}\right\Vert =\lim_{n\rightarrow \infty
+    }\left\Vert \sum_{k=1}^{n}v_{k}\right\Vert \leq \lim_{n\rightarrow \infty
+    }\sum_{k=1}^{n}\left\Vert v_{k}\right\Vert =\sum_{k=1}^{\infty }\left\Vert
+      v_{k}\right\Vert ,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+Sea $S$ un conjunto y sea $f_{k}\colon S\rightarrow V$ una sucesión de
+funciones.
+</p>
+<div class="definition">
+  Decimos que <em class="textbf">la serie de funciones </em><em class="textbf">&nbsp;</em>
+  \begin{equation*}
+    \sum_{k=1}^{\infty }f_{k}
+  \end{equation*}
+  <em class="textbf">converge uniformemente en</em> $S$ si la sucesión de funciones
+  $g_{n}:=\sum_{k=1}^{n}f_{k}$ converge uniformemente en $S$ a una
+  función $S\rightarrow V$, a la que se denota
+  \begin{equation*}
+    \sum_{k=1}^{\infty }f_{k}.
+  \end{equation*}
+</div>
+<p>
+Un ejemplo importante de series de funciones son las series de
+potencias.
+</p>
+<div class="definition">
+  Sea $(a_{k})$ una sucesión en $\mathbb{R}$ y sea $x_{0}\in
+  \mathbb{R}$.  La serie
+  \begin{equation*}
+    \sum_{k=0}^{\infty }a_{k}(x-x_{0})^{k}
+  \end{equation*}
+  de funciones reales de variable real $x$ se llama una <em class="textbf">serie
+    de potencias</em>.  Su <em class="textbf">radio de
+    convergencia</em> se define como
+  \begin{equation*}
+    R:=\sup \biggl\{r\in [0,\infty ):\sum_{k=0}^{\infty }a_{k}r^{k}\text{ converge en }\mathbb{R}\biggr\}\in [0,\infty ].
+  \end{equation*}
+</div>
+<p>
+El siguiente resultado justifica llamar a $R$ el radio de
+convergencia.
+</p>
+<div id="serpot" class="theorem">
+Sean $(a_{k})$ una sucesión en $\mathbb{R}$ y
+  $x_{0}\in \mathbb{R}$.
+</p>
+<p>
+  <ol class="alfa">
+  <li>Las series de potencias
+    \begin{equation*}
+      \sum_{k=0}^{\infty }a_{k}(x-x_{0})^{k}\qquad \text{y}\qquad
+      \sum_{k=1}^{\infty }ka_{k}(x-x_{0})^{k-1}
+    \end{equation*}
+    convergen uniformemente en $[x_{0}-r,x_{0}+r]$ para todo $r\in
+    (0,R)$, donde $R$ es el radio de convergencia de
+    $\sum_{k=0}^{\infty }a_{k}(x-x_{0})^{k}$.
+</li>
+  <li>La función
+    \begin{equation*}
+      f(x):=\sum_{k=0}^{\infty }a_{k}(x-x_{0})^{k}
+    \end{equation*}
+    es continuamente diferenciable en $(x_{0}-R,x_{0}+R)$ y su
+    derivada está dada por
+    \begin{equation*}
+      f^{\prime }(x)=\sum_{k=1}^{\infty }ka_{k}(x-x_{0})^{k-1}.
+    \end{equation*}
+    </li>
+  </ol>
+</div>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Sea $r\in (0,R)$. Definimos $f_{k}\in
+  \mathcal{C}^{0}[x_{0}-r,x_{0}+r]$ como
+  $f_{k}(x):=a_{k}(x-x_{0})^{k}$, $k\geq 0$. Probaremos que la
+  sucesión $(f_{k})$ satisface el criterio de Weierstrass. De la
+  definición del radio de convergencia se sigue que existe
+  $\hat{r}\in (r,R]\cap \mathbb{R}$ tal que $\sum_{k=0}^{\infty
+  }a_{k}\hat{r}^{k}$ converge en $\mathbb{R}$. Por tanto, existe $c\in
+  \mathbb{R}$ tal que $\left\vert a_{k}\hat{r}^{k}\right\vert \menorque c$ para
+  todo $k\in \mathbb{N}$ (ver Proposición <a href="tul/P_T_02/5.html#serconvacot">5.23</a>) y, en
+  consecuencia,
+  \begin{equation*}
+    \left\vert f_{k}(x)\right\vert =\left\vert a_{k}\right\vert \left\vert
+      x-x_{0}\right\vert^{k}\leq \left\vert a_{k}\right\vert \hat{r}^{k}\theta
+   ^{k}\leq c\theta^{k}\qquad \forall k\in \mathbb{N}\text{, &nbsp;}\forall x\in
+    [x_{0}-r,x_{0}+r],
+  \end{equation*}
+  donde $\theta :=\frac{r}{\hat{r}}$. Se tiene entonces que
+  \begin{equation*}
+    \left\Vert f_{k}\right\Vert_{\infty }=\max_{x\in [x_{0}-r,x_{0}+r]}\left\vert f_{k}(x)\right\vert \leq c\theta^{k}\qquad
+    \forall k\in \mathbb{N}.
+  \end{equation*}
+  Como $\theta \in (0,1)$, la serie de números reales
+  $\sum_{k=0}^{\infty }\theta^{k}$ converge. Por consiguiente, la
+  serie $\sum_{k=0}^{\infty }\left\Vert f_{k}\right\Vert_{\infty }$
+  converge [Ejercicio <a href="tul/P_T_02/5.html#ejdomser">5.45</a>] y el Teorema <a href="tul/P_T_02/5.html#cw">5.25</a>
+  aplicado al espacio $\mathcal{C}^0[x_0-r, x_0+r]$ implica
+  que la serie
+  \begin{equation*}
+    \sum_{k=0}^{\infty }a_{k}(x-x_{0})^{k}
+  \end{equation*}
+  converge uniformemente en $[x_{0}-r,x_{0}+r]$.
+</p>
+<p>
+  Por otra parte, si definimos $g_{k}\in
+  \mathcal{C}^{0}[x_{0}-r,x_{0}+r]$, como
+  $g_{k}(x):=ka_{k}(x-x_{0})^{k-1}$, $k\geq 1$, tenemos que
+  \begin{equation*}
+    \left\vert g_{k}(x)\right\vert =k\left\vert a_{k}\right\vert \left\vert
+      x-x_{0}\right\vert^{k-1}\leq \frac{c}{\hat{r}}k\theta^{k-1}\qquad \forall
+    k\in \mathbb{N}\text{, &nbsp;}\forall x\in [x_{0}-r,x_{0}+r].
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \left\Vert g_{k}\right\Vert_{\infty }=\max_{x\in [x_{0}-r,x_{0}+r]}\left\vert g_{k}(x)\right\vert \leq \frac{c}{\hat{r}}k\theta^{k-1}\qquad \forall k\in \mathbb{N}.
+  \end{equation*}
+  Dado que la serie $\sum_{k=1}^{\infty }k\theta^{k-1}$converge en
+  $\mathbb{R} $, argumentando como en el caso anterior, concluimos que
+  la serie
+  \begin{equation*}
+    \sum_{k=1}^{\infty }ka_{k}(x-x_{0})^{k-1}
+  \end{equation*}
+  converge uniformemente en $[x_{0}-r,x_{0}+r]$.
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Sea $r\in (0,R)$ y denotemos por
+  \begin{equation*}
+    F_{k}(x):=\sum_{j=0}^{k}a_{j}(x-x_{0})^{j},\quad f(x):=\sum_{j=0}^{\infty }a_{j}(x-x_{0})^{j},\quad g(x):=\sum_{j=1}^{\infty
+    }ja_{j}(x-x_{0})^{j-1}.
+  \end{equation*}
+  $F_{k}$ es continuamente diferenciable, y acabamos de probar que
+  $\left( F_{k}\right) $ converge a $f$ &nbsp;y $\left( F_{k}^{\prime
+    }\right) $ converge a $g$ uniformemente en $[x_{0}-r,x_{0}+r]$. El
+  Teorema <a href="tul/P_T_02/5.html#limunifdif">5.18</a> asegura entonces que $f$ es continuamente
+  diferenciable en $[x_{0}-r,x_{0}+r] $ y que $f^{\prime }=g$.
+</div>
+<p>
+Una función $f\colon (x_{0}-R,x_{0}+R)\rightarrow \mathbb{R}$ que se
+puede expresar como una serie de potencias
+\begin{equation*}
+  f(x)=\sum_{k=0}^{\infty }a_{k}(x-x_{0})^{k}
+\end{equation*}
+se llama una <em class="textbf">función analítica</em>.
+Una función analítica tiene
+derivadas de todos los órdenes [Ejercicio <a href="tul/P_T_02/5.html#ejanalcinf">5.50</a>]. El
+recíproco no es cierto: una función que tiene derivadas de
+todos los órdenes no necesariamente es analítica [Ejercicio
+<a href="tul/P_T_02/5.html#ejcinfnoanal">5.51</a>].
+</p>
+<p>
+<h3 id="sec5-5">Ejercicios</h3>
+</p>
+<div class="exercise">
+  Sea $X_{\disc}$ un espacio métrico discreto.
+</p>
+<p>
+  <ol class="alfa">
+  <li>Describe a las sucesiones de Cauchy en $X_{\disc}$.
+</li>
+  <li>¿Es $X_{\disc}$ un espacio métrico
+    completo?
+    </li>
+  </ol>
+</div>
+<div id="subconvcau" class="exercise">
+Sea $(x_{k})$ una sucesión de Cauchy en un
+  espacio métrico $X$. Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>$(x_{k})$ está acotada en $X$.
+</li>
+  <li>Si alguna subsucesión de $(x_{k})$ converge a $x$ en
+    $X$, entonces $(x_{k})$ converge a $x&nbsp;$en $X$.
+    </li>
+  </ol>
+</div>
+<div id="ejnocompl" class="exercise">
+Sea $X=(0,1)$ con la métrica inducida por la de
+  $\mathbb{R}$. Prueba que la sucesión $(\frac{1}{k})$ es de
+  Cauchy en $X$ pero no converge en $X$.
+</div>
+<div id="ejCpnocompl" class="exercise">
+Considera la sucesión de funciones
+  $f_{k}\colon [-1,1]\rightarrow \mathbb{R}$,
+  \begin{equation*}
+    f_{k}(x)=
+      \begin{cases}
+        -1 & \text{si $-1\leq x\leq -\frac{1}{k}$,} \\
+        kx & \text{si $-\frac{1}{k}\leq x\leq \frac{1}{k}$,} \\
+        1 & \text{si $\frac{1}{k}\leq x\leq 1$.}
+      \end{cases}
+  \end{equation*}
+</p>
+<p>
+  <ol class="alfa">
+  <li>Prueba que $(f_{k})$ es de Cauchy en
+    $\mathcal{C}_{p}^{0}[-1,1]$ para toda $p\in [1,\infty )$.
+</li>
+  <li>Prueba que $(f_{k})$ no converge en
+    $\mathcal{C}_{p}^{0}[-1,1]$ para ninguna $p\in [1,\infty ]$. 
+    <em class="emph">(Sugerencia: Usa el Ejercicio <a href="tul/P_T_02/3.html#ejidC">3.47</a> y el
+      Ejemplo <a href="tul/P_T_02/5.html#C1nocompl">5.4</a>.)</em>
+</li>
+  <li>¿Es $(f_{k})$ de Cauchy en
+    $\mathcal{C}_{\infty }^{0}[-1,1]$?
+    </li>
+  </ol>
+</div>
+<div id="ejlpcompl" class="exercise">
+Prueba que $\ell_{p}$ es un espacio de Banach para
+  todo $p\in [1,\infty ]$.
+</div>
+<div class="exercise">
+  Considera los siguientes subespacios de $\ell_{\infty }$ con la
+  norma inducida. ¿Cuáles de ellos son de Banach?
+</p>
+<p>
+  <ol class="alfa">
+  <li>$\mathfrak{d}:=\left\{(x_{n})\in \ell_{\infty }:x_{n}\neq 0
+    \text{ sólo para un número finito de $n$&rsquo;s}\right\}$.
+</li>
+  <li>$\mathfrak{c}_{0}:=\left\{(x_{n})\in \ell_{\infty
+    }:x_{n}\rightarrow 0\right\}$.
+</li>
+  <li>$\mathfrak{c}:=\left\{(x_{n})\in \ell_{\infty }:(x_{n})
+    \text{ converge en $\mathbb{R}$}\right\}$.
+    </li>
+  </ol>
+</div>
+<div class="exercise">
+  Sean $X$ un espacio métrico completo y $&nbsp;x,y\in X$. Prueba que
+  el espacio de trayectorias
+  \begin{equation*}
+    \mathcal{T}_{x,y}(X):=\left\{\sigma \in \mathcal{C}^{0}([0,1],X):\sigma (0)=x,\text{ }\sigma (1)=y\right\}
+  \end{equation*}
+  con la métrica uniforme es completo.
+</div>
+<div class="exercise">
+  Prueba que todo espacio métrico compacto es completo.
+</div>
+<div id="prodcompl" class="exercise">
+Sean $X$ y $Y$ espacios métricos
+  completos. Prueba que $X\times Y$ con cualquiera de las métricas
+  del <em class="emph">Ejercicio <a href="tul/P_T_02/5.html#ejnormprod">2.53</a></em>&nbsp;es completo.
+</div>
+<div id="ejdimfincerr" class="exercise">
+Sea $V$ un espacio normado. Prueba que todo
+  subespacio vectorial de dimensión finita de $V$ es cerrado en
+  $V$.
+</div>
+<div id="ejesferacomp" class="exercise">
+Sean $V=(V,\left\Vert \cdot \right\Vert )$ un
+  espacio normado y $S_{V}:=\left\{v\in V:\left\Vert v\right\Vert =1\right\}$ la
+  esfera unitaria en $V$. Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>Si $W$ es un subespacio vectorial de $V$, $W$ es cerrado
+    en $V$ y $W\neq V$ entonces, para cada $\delta \in (0,1)$, existe
+    $v_{\delta }\in S_{V}$ tal que
+    \begin{equation*}
+      \left\Vert v_{\delta }-w\right\Vert \geq \delta \qquad \forall w\in W.
+    \end{equation*}
+</li>
+  <li><em class="textbf">Teorema (Riesz)</em> &nbsp;La esfera unitaria
+    $S_{V}:=\left\{v\in V:\left\Vert v\right\Vert =1\right\}$ es compacta si y
+    sólo si <em class="emph">dim</em>$V<\infty $. <em class="emph">(Sugerencia: Si
+      dim</em>$V=\infty $<em class="emph">,&nbsp;usa el Ejercicio <a href="tul/P_T_02/5.html#ejdimfincerr">5.38</a>&nbsp;y
+      el inciso </em>(a)<em class="emph">&nbsp;para construir una sucesión en
+    </em>$S_{V}$<em class="emph">&nbsp;que no contiene ninguna subsucesión
+      convergente.)</em>
+</li>
+  <li>La bola cerrada $\bar{B}_{V}(0,1):=\left\{v\in V:\left\Vert
+      v\right\Vert \leq 1\right\}$ es compacta si y sólo si
+    <em class="emph">dim</em>$V<\infty $.
+    </li>
+  </ol>
+</div>
+<div class="exercise">
+  Sea $\phi \colon X\rightarrow Y$ una función uniformemente
+  continua. Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>Si $(x_{k})$ es de Cauchy en $X$, entonces $(\phi
+    (x_{k}))$ es de Cauchy en $Y$.
+</li>
+  <li>Si existe una función continua $\psi \colon Y\rightarrow X$
+    tal que $\psi \circ \phi = \id$ y $Y$ es completo, entonces $X$ es
+    completo.
+    </li>
+  </ol>
+</div>
+<div id="ejnoconvuni" class="exercise">
+Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>La sucesión de funciones $f_{k}(x)=x^{k}$ no converge
+    uniformemente en $[0,1]$.
+</li>
+  <li>La sucesión de funciones $f_{k}(x)=x^{k}$ converge
+    uniformemente en cualquier subintervalo cerrado $[a,b]\subset
+    [0,1)$.
+    </li>
+  </ol>
+</div>
+<div class="exercise">
+  ¿Cuáles de las siguientes sucesiones de
+  funciones $f_{k}\colon \mathbb{R}\rightarrow \mathbb{R}$ convergen
+  puntualmente en $\mathbb{R} $? Encuentra todos los intervalos donde
+  la convergencia es uniforme.
+  \begin{equation*}
+    \text{(a) &nbsp;}f_{k}(x)=\frac{kx}{kx^{2}+1};\qquad \text{(b) &nbsp;}f_{k}(x)=\frac{kx}{k^{2}x^{2}+1};\qquad \text{(c) &nbsp;}f_{k}(x)=\frac{k^{2}x}{kx^{2}+1}.
+  \end{equation*}
+</div>
+
+<div class="exercise">
+  ¿Cuáles de las siguientes sucesiones de
+  funciones $f_{k}\colon \mathbb{R}\rightarrow \mathbb{R}$ convergen
+  uniformemente en $\mathbb{R}$? Encuentra el límite de tales
+  sucesiones.
+  <ol class="alfa">
+    <li>$\displaystyle{f_{k}(x) = 
+      \begin{cases}
+        \left\vert x-k\right\vert -1 & \text{si $x\in [k-1,k+1]$,} \\
+        0 & \text{si $x\notin [k-1,k+1]$.}
+      \end{cases}}$
+      </li>
+    <li>$\displaystyle{f_{k}(x) = \frac{1}{(x/k)^{2}+1}.}$
+    </li>
+    <li>$\displaystyle{f_{k}(x) =\sen(x/k).}$
+    </li>
+    <li>$\displaystyle{f_{k}(x) =
+      \begin{cases}
+        \frac{1}{k}\sen x & \text{si $x\in [2\pi k,2\pi (k+1)]$,} \\
+        0 & \text{si $x\notin [2\pi k,2\pi (k+1)]$.}
+      \end{cases}}$
+      </li>
+  </ol>
+</div>
+<div class="exercise">
+  Sea $f_{k}\colon [a,b]\rightarrow \mathbb{R}$ una sucesión de
+  funciones continuamente diferenciables en $[a,b]$ que converge
+  puntualmente a una función $f$ en $[a,b]$. Investiga si son
+  falsas o verdaderas las siguientes afirmaciones:
+</p>
+  <ol class="alfa">
+  <li>$f$ es continua en $[a,b]$.
+</li>
+  <li>$(f_{k})$ converge uniformemente a $f$ en $[a,b]$.
+</li>
+  <li>La sucesión $(f_{k}^{\prime })$ converge puntualmente
+    en $[a,b]$.
+</li>
+  <li>Si $f$ es continuamente diferenciable, entonces
+    $(f_{k}^{\prime }) $ converge puntualmente en $[a,b]$.
+</li>
+  <li>Si $f$ es continuamente diferenciable y si
+    $(f_{k}^{\prime }(x))$ converge para cada $x\in [a,b]$,
+    entonces $(f_{k}^{\prime })$ converge puntualmente a $f^{\prime }$
+    en $[a,b]$.
+  </ol>
+</div>
+
+<div id="ejdomser" class="exercise">
+Prueba que, si $a_{n},b_{n}\in \mathbb{R}$, $0\leq
+  a_{n}\leq b_{n}$ y $\sum_{n=1}^{\infty }b_{n}$ converge en
+  $\mathbb{R}$, entonces $\sum_{n=1}^{\infty }a_{n}$ converge en
+  $\mathbb{R}$.
+</div>
+<div class="exercise">
+  Considera la sucesión de funciones $f_{k}\colon \mathbb{R}\rightarrow
+  \mathbb{R}$,
+  \begin{equation*}
+    f_{k}(x)=\frac{x^{2}}{(1+x^{2})^{k}}.
+  \end{equation*}
+</p>
+<p>
+  <ol class="alfa">
+  <li>Prueba que, para cada $x\in \mathbb{R}$, la serie de
+    números reales $\sum_{k=1}^{\infty }f_{k}(x)$&nbsp;converge.
+</li>
+  <li>¿Converge la serie de funciones $
+    \sum_{k=1}^{\infty }f_{k}$ &nbsp;uniformemente en $\mathbb{R}$?
+</li>
+  </ol>
+</div>
+<div class="exercise">
+  Considera las funciones $f_{k}\colon \mathbb{R}\rightarrow \mathbb{R}$
+  dadas por
+  \begin{equation*}
+    f_{k}(x)=\frac{\sen kx}{\sqrt{k}}.
+  \end{equation*}
+</p>
+<p>
+  <ol class="alfa">
+  <li>Prueba que $(f_{k})$ converge uniformemente a $0$ en
+    $\mathbb{R}$.
+</li>
+  <li>Prueba que $(f_{k}^{\prime })$&nbsp;no converge puntualmente
+    en $\mathbb{R}$, donde $f_{k}^{\prime }$ es la derivada de
+    $f_{k}$.
+</li>
+  </ol>
+</div>
+
+<div id="mvecesdif" class="exercise">
+<em class="emph">Sea $\Omega $ un subconjunto abierto
+    y acotado de $\mathbb{R}^{n}$. Una función $\varphi
+  \colon \overline{\Omega }\rightarrow \mathbb{R}$ es de clase
+  $\mathcal{C}^{m}$ en $\overline{\Omega }$ si todas
+    las derivadas parciales de orden $\leq m$ de  $\varphi$,
+  \begin{equation*}
+    \frac{\partial^{\alpha_{1}}}{\partial x_{1}^{\alpha_{1}}}\cdots \frac{\partial^{\alpha_{n}}\varphi }{\partial x_{n}^{\alpha_{n}}}\qquad\text{ 
+      con }\alpha_{i}\in \mathbb{N}\cup \left\{0\right\}\text{  y  }\alpha
+   _{1}+\cdots +\alpha_{n}\leq m,
+  \end{equation*}
+  existen en $\Omega $ y admiten una extensión
+    continua a la cerradura $\overline{\Omega }$,  donde 
+  \begin{equation*}
+    \frac{\partial^{0}\varphi }{\partial x_{i}^{0}}:=\varphi \qquad\text{
+        y}\qquad\frac{\partial^{\alpha_{i}}\varphi }{\partial x_{i}^{\alpha_{i}}}=\underset{\alpha_{i}\text{ veces}}{\underbrace{\frac{\partial }{\partial x_{i}}\cdots \frac{\partial }{\partial x_{i}}}}\quad\text{si }
+      \alpha_{i}\geq 1.
+  \end{equation*}
+  Denotamos por
+  \begin{equation*}
+    \mathcal{C}^{m}(\overline{\Omega }):=\left\{\varphi \colon \overline{\Omega }\rightarrow \mathbb{R}:\varphi \text{ es de clase }\mathcal{C}^{m}\text{ en }\overline{\Omega }\right\}
+  \end{equation*}
+  y definimos
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{\mathcal{C}^{m}(\overline{\Omega })}:=\max
+    \left\{ \left\Vert \frac{\partial^{\alpha_{1}}}{\partial x_{1}^{\alpha
+           _{1}}}\cdots \frac{\partial^{\alpha_{n}}\varphi }{\partial x_{n}^{\alpha
+           _{n}}}\right\Vert_{\infty }:\alpha_{i}\in \mathbb{N}\cup \left\{0\right\},\text{ }\alpha_{1}+\cdots +\alpha_{n}\leq m\right\} .
+  \end{equation*}
+    </em>
+
+  Prueba que ésta es una norma en
+  $\mathcal{C}^{m}(\overline{\Omega })$ y que
+  $\mathcal{C}^{m}(\overline{\Omega })$ es un espacio de
+  Banach. (Sugerencia: Recuerda que
+  \begin{equation*}
+    \frac{\partial \varphi }{\partial x_{i}}(x)=f_{i}^{\prime }(0)
+  \end{equation*}
+  donde $f_{i}(t):=\varphi (x+te_{i})$, $e_{i}$ 
+  es el $i$-ésimo vector de la base canónica de
+  $\mathbb{R}^{n}$, y usa los Teoremas <a href="tul/P_T_02/5.html#funcacotcompl">5.21</a>
+    y <a href="tul/P_T_02/5.html#limunifdif">5.18</a>.)
+</div>
+
+<div class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li>Dada una sucesión $(c_{k})$ en $\mathbb{R}$ definimos
+    \begin{equation*}
+      c:=\limsup_{k\rightarrow \infty }\left\vert c_{k}\right\vert^{1/k}.
+    \end{equation*}
+    Demuestra el <em class="textbf">criterio de la raíz</em> 
+    para la convergencia de series de
+    números reales:
+    \begin{equation*}
+      \begin{array}{ll}
+        \sum_{k=0}^{\infty }c_{k}\quad\text{ converge} & \text{si }c<\menorque 1, \\[5pt]
+        \sum_{k=0}^{\infty }c_{k}\quad\text{ no converge} & \text{si }c>1.
+      \end{array}
+    \end{equation*}
+</li>
+  <li>Prueba que el radio de convergencia $R$ de una serie de
+    potencias $&nbsp;\sum_{k=0}^{\infty }a_{k}(x-x_{0})^{k}$ &nbsp;está
+    dado por
+    \begin{equation*}
+      R^{-1}=\limsup_{k\rightarrow \infty }\left\vert a_{k}\right\vert^{1/k}.
+    \end{equation*}
+</li>
+  <li>Calcula el radio de convergencia de las siguientes series
+    de potencias y averigua si convergen o no en los puntos
+    $\left\vert x\right\vert =R$.
+    \begin{equation*}
+      \sum_{k=0}^{\infty }k^{k}x^{k},\qquad \sum_{k=0}^{\infty }x^{k},\qquad \sum_{k=1}^{\infty }\frac{x^{k}}{k},\qquad \sum_{k=1}^{\infty }\frac{x^{k}}{k^{2}}.
+    \end{equation*}
+    </li>
+  </ol>
+</div>
+<div id="ejanalcinf" class="exercise">
+Sea $\sum_{k=0}^{\infty }a_{k}(x-x_{0})^{k}$,
+  $a_{k}\in \mathbb{R}$, una serie de potencias con radio de
+  convergencia $R>0$. Prueba que la función
+  $f\colon (x_{0}-R,x_{0}+R)\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    f(x):=\sum_{k=0}^{\infty }a_{k}(x-x_{0})^{k}
+  \end{equation*}
+  tiene derivadas de todos los órdenes y que la $n$-ésima
+  derivada $f^{(n)}$ de $f$ está dada por
+  \begin{equation*}
+    f^{(n)}(x)=\sum_{k=n}^{\infty }k(k-1)\cdots
+    (k-n+1)a_{k}(x-x_{0})^{k-n},\qquad x\in (x_{0}-R,x_{0}+R).
+  \end{equation*}
+  En particular se cumple que $f^{(n)}(x_{0})=n!a_{n}$.
+</div>
+<div id="ejcinfnoanal" class="exercise">
+Considera la función $f\colon \mathbb{R\rightarrow
+    R}$ dada por
+  \begin{equation*}
+    f(x)=
+      \begin{cases}
+        e^{-1/x^{2}} & \text{si $x\neq 0$,} \\
+        0 & \text{si $x=0$.}
+      \end{cases}
+  \end{equation*}
+              <div id="fig:5-5" class="figure">
+                <img src="tul/P_T_02/figuras/e-menosunosobrexcuadrada.svg" height="190">
+                <div class="caption">
+                </div>                
+              </div>
+
+  <ol class="alfa">
+  <li>Prueba que $f$ tiene derivadas de todos los órdenes
+    en $x=0$ y que $f^{(n)}(0)=0$.
+</li>
+  <li>¿Se puede escribir $f$ como una serie
+    \begin{equation*}
+      f(x)=\sum_{k=0}^{\infty }a_{k}x^{k},\qquad a_{k}\in \mathbb{R}\text{,}
+    \end{equation*}
+    convergente en algún intervalo $(-R,R)$, $R>0$?
+    </li>
+  </ol>
+</div>
+<div class="exercise">
+  Sean $a_{kj}\in \mathbb{R}$ tales que las series de números
+  reales
+  \begin{equation*}
+    \sum_{j=1}^{\infty }\left\vert a_{kj}\right\vert =b_{k}
+  \end{equation*}
+  convergen para cada $k\in \mathbb{N}$&nbsp;y la serie
+  $\sum_{k=1}^{\infty }b_{k}$ también converge. Prueba que
+  \begin{equation*}
+    \sum_{k=0}^{\infty }\sum_{j=1}^{\infty
+    }a_{kj}=\sum_{j=1}^{\infty }\sum_{k=0}^{\infty }a_{kj}.
+  \end{equation*}
+  <em class="emph">(Sugerencia: Considera el subespacio métrico
+  $X:=\left\{\frac{1}{n}:n\in \mathbb{N}\right\}\cup\left\{0\right\}$ de
+  $\mathbb{R}$ y aplica el criterio de Weierstrass a la
+    sucesión de funciones $f_{k}\colon X\rightarrow \mathbb{R}$
+    dadas por
+  \begin{equation*}
+    f_{k}\left( \frac{1}{n}\right) =\sum_{j=1}^{n}a_{kj},\qquad f_{k}(0)=\sum_{j=1}^{\infty }a_{kj}.
+  \end{equation*}
+  Comprueba que esta sucesión satisface todas las
+  hipótesis del Teorema <a href="tul/P_T_02/5.html#cw">5.25</a>.)</em>
+</div>
+<div class="exercise">
+  Calcula el radio de convergencia $R$ de la serie de potencias
+  \begin{equation*}
+    f(x):=\sum_{k=0}^{\infty }\frac{x^{k}}{k!}
+  \end{equation*}
+  y demuestra que $f^{\prime }=f$ en $(-R,R)$. ¿Quién es la función
+  $f$?
+</div>
+
+<div class="exercise">
+  Sea $\mathcal{P}$ el conjunto de todas las funciones polinomiales
+  $p\colon [0,1]\rightarrow \mathbb{R}$, $p(x)=a_{n}x^{n}+\cdots
+  +a_{1}x+a_{0}$, con $a_{0},\dots,a_{n}\in \mathbb{R}$.
+  <ol class="alfa">
+  <li>Prueba que $\mathcal{P}$ es un subespacio vectorial de
+    $\mathcal{C}^{0}[0,1]$.
+</li>
+  <li>¿Es $\mathcal{P}$ con la norma uniforme
+    \begin{equation*}
+      \left\Vert p\right\Vert_{\infty }=\max_{0\leq x\leq 1}\left\vert
+        p(x)\right\vert
+    \end{equation*}
+    un espacio de Banach? <em class="emph">(Sugerencia: Considera la sucesión
+      de polinomios</em>
+    $p_{k}(x)=\frac{1}{k!}x^{k}+\frac{1}{(k-1)!}x^{k-1}+\cdots +x+1$
+    <em class="emph">y utiliza la Proposición <a href="tul/P_T_02/5.html#complcerr">5.9</a>)</em>.
+    </li>
+  </ol>
+</div>
+
+<div class="exercise">
+  Sea $\varphi \colon \mathbb{R}\rightarrow \mathbb{R}$ la función dada
+  por
+  \begin{equation*}
+    \varphi (x):=
+      \begin{cases}
+        x & \text{si $x\in [0,1]$,} \\
+        2-x & \text{si $x\in [1,2]$,}
+      \end{cases}
+  \end{equation*}
+  y $\varphi (x+2)=\varphi (x)$ para todo $x\in \mathbb{R}$. Demuestra
+  las siguientes afirmaciones:
+
+  <ol class="alfa">
+  <li>La serie
+    \begin{equation*}
+      \sum_{k=0}^{\infty }\left( \frac{3}{4}\right)^{k}\varphi (4^{k}x)
+    \end{equation*}
+    converge uniformemente en $\mathbb{R}$. En consecuencia, la
+    función $f\colon \mathbb{R}\rightarrow \mathbb{R}$ dada por
+    \begin{equation*}
+      f(x):=\sum_{k=0}^{\infty }\left( \frac{3}{4}\right)^{k}\varphi (4^{k}x)
+    \end{equation*}
+    es continua.
+</li>
+  <li>
+  $f$ no es diferenciable en ningún punto $x\in
+    \mathbb{R}$. 
+    <em class="emph">(Sugerencia: Para cada $j\in \mathbb{N}$
+    toma $m\in \mathbb{N}$ tal que $m\leq 4^{j}x\menorque m+1$
+    , y define $y_{j}:=4^{-j}m$, $z_{j}:=4^{-j}(m+1)$.
+    Prueba que
+    \begin{equation*}
+      \left\vert \frac{f(z_{j})-f(y_{j})}{z_{j}-y_{j}}\right\vert \rightarrow
+      \infty \qquad\text{ cuando }j\rightarrow \infty .
+    \end{equation*}
+    Usa este hecho para concluir que $f$ no es
+      diferenciable en $x$.)
+      </em>
+  </li>
+  </ol>
+</div>
+
+
+<h3 id="sec5-6">Proyecto: Completación de un espacio métrico</h3>
+
+<h4 id="subsec5-6-1">Objetivo</h4>
+
+<p class="noj">
+Sea $X$ un espacio métrico.
+</p>
+
+<div id="defcompletacion" class="definition">
+Se dice que un espacio métrico $X^{\ast
+  }$ es una <em class="textbf">completación de</em> $X$ 
+  si&nbsp;$X^{\ast }$ es completo y existe una isometría $\iota
+  \colon X\rightarrow X^{\ast }$ tal que $\overline{\iota (X)}=X^{\ast }$,
+  donde $\overline{\iota (X)}$&nbsp;denota a la cerradura de $\iota (X)$
+  en $X^{\ast }$.
+</div>
+
+<p>
+Por ejemplo, el espacio $\mathbb{R}$ de los números reales es una
+completación del espacio $\mathbb{Q}$ de números racionales.
+</p>
+<p>
+El objetivo de este proyecto es demostrar el siguiente resultado.
+</p>
+
+<div class="theorem">
+  Cualquier espacio métrico admite una completación y ésta
+  es única salvo isometría.
+</div>
+
+<h4 id="subsec5-6-2">Procedimiento</h4>
+
+<ol>
+<li> Demuestra que, si $X^{\ast }=(X^{\ast },d^{\ast })$ y
+  $X^{\#}=(X^{\#},d^{\#})$ son completaciones de $(X,d)$, entonces
+  existe una isometría biyectiva $\beta \colon X^{\ast }\rightarrow
+  X^{\#}$.
+</li>
+<li> Diremos que dos sucesiones de Cauchy $(x_{k})$ y $(y_{k})$ en
+  $X$ son <em class="emph">equivalentes</em> si
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }d(x_{k},y_{k})=0.
+  \end{equation*}
+  Demuestra que ésta es una relación de equivalencia en el
+  conjunto de todas las sucesiones de Cauchy en $X$.
+</li>
+<li> Denota por $[x_{k}]$ a la clase de equivalencia de la
+  sucesión de Cauchy $(x_{k})$ y define
+  \begin{equation*}
+    X^{\ast }:=\left\{[x_{k}]:(x_{k})\text{ es de Cauchy en }X\right\},
+  \end{equation*}
+  \begin{equation*}
+    d^{\ast }([x_{k}],[y_{k}]):=\lim_{k\rightarrow \infty }d(x_{k},y_{k}).
+  \end{equation*}
+  Demuestra que
+  <ol class="alfa">
+  <li> $d^{\ast }$ está bien definida, es decir, existe
+    $\lim_{k\rightarrow \infty }d(x_{k},y_{k})$ y no depende de los
+    representantes $(x_{k})$ y $(y_{k})$ elegidos.
+  </li>
+  <li> $d^{\ast }$ es una métrica en $X^{\ast }$.
+  </li>
+  </ol>
+  </li>
+  <li> Si $x\in X$ denotamos por $[x]$ a la clase de equivalencia de la
+  sucesión cuyos términos son todos iguales a $x$. Demuestra
+  las siguientes afirmaciones:
+  <ol class="alfa">
+  <li> $X^{\ast }=(X^{\ast },d^{\ast })$ es un espacio métrico
+    completo.
+  </li>
+  <li> La función $\iota \colon X\rightarrow X^{\ast }$ dada por $\iota
+    (x):=[x]&nbsp;$es una isometría.
+  </li>
+  <li> $\overline{\iota (X)}=X^{\ast }$.
+  </li>
+  </ol>
+</li>
+</ol>
+
+<h4 id="subsec5-6-3">Observaciones</h4>
+
+<p class="noj">
+Es importante saber que todo espacio métrico admite una única
+completación. Sin embargo, la descripción que hemos dado
+aquí resulta poco práctica: pensar a los números reales
+como clases de equivalencia de sucesiones de Cauchy de números
+racionales haría muy engorroso operar con ellos. Conviene pues
+tener representaciones más sencillas.
+</p>
+<p>
+En el Capítulo <a href="tul/P_T_02/14.html#Cap-14">14</a> introduciremos una completación
+accesible del espacio $\mathcal{C}_{p}^{0}[a,b]$: el espacio de
+Lebesgue $L^{p}(a,b)$. Este espacio aparece de manera natural en
+muchas aplicaciones importantes.
+</p>
+
+
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>

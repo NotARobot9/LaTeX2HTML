@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/6.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+//      include_once '/papirhos-web/scripts/menu-top.php';
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 5;
+              }
+              </style>  
+
+<h2 id="Cap-6">El teorema de punto fijo de Banach y aplicaciones</h2>
+<p class="noj">
+El teorema de punto fijo de Banach, también llamado el
+<em class="emph">principio de contracción</em>,
+ garantiza la existencia 
+y unicidad de puntos fijos
+de ciertas funciones de un espacio métrico completo en sí
+mismo. A diferencia de otros teoremas de punto fijo, éste da un
+método constructivo para obtenerlo mediante un proceso de
+iteración.
+</p>
+<p>
+El teorema de punto fijo de Banach tiene multitud de aplicaciones a
+resultados de existencia y unicidad de soluciones de ecuaciones
+numéricas, ecuaciones diferenciales y ecuaciones
+integrales. Daremos aquí algunos ejemplos.
+</p>
+<p>
+Una de las aplicaciones más importantes es el teorema de
+Picard-Lindelöf que asegura la existencia y unicidad de la
+solución de un sistema de ecuaciones diferenciales ordinarias que
+satisface una condición inicial prescrita. A este problema se le
+conoce como el <em class="emph">problema de Cauchy</em> y es uno de los problemas
+fundamentales de la teoría de ecuaciones diferenciales.
+</p>
+
+<h3 id="sec6-1">El teorema de punto fijo de Banach</h3>
+<p class="noj">
+Sea $X=(X,d)$ un espacio métrico.
+</p>
+<p>
+<div class="definition">
+  Una función $\phi \colon X\rightarrow X$ se llama una
+  <em class="textbf">contracción</em> si existe $\alpha
+  \in (0,1)$ tal que
+  \begin{equation}
+    d(\phi (x),\phi (y))\leq \alpha d(x,y)\qquad\forall x,y\in X.\label{contr}
+  \end{equation}
+</div>
+</p>
+<p>
+Es decir, una contracción es una función de un espacio
+métrico en sí mismo que es Lipschitz continua con constante
+de Lipschitz estrictamente menor que $1$. Es importante observar que
+el que $\phi \colon X\rightarrow X$ sea o no contracción depende de la
+métrica que le demos a $X$ [Ejercicio <a href="tul/P_T_02/6.html#metcont">6.20</a>].
+</p>
+<p>
+<div class="definition">
+  Un punto $x^{\ast }\in X$ se llama un <em class="textbf">punto fijo
+  </em>de la función $\phi \colon X\rightarrow X$ si $\phi
+  (x^{\ast })=x^{\ast }$.
+</div>
+</p>
+<p>
+Denotamos por $\phi^{k}$ a la composición
+\begin{equation*}
+  \phi^{k}:=\underset{k\text{ veces}}{\underbrace{\phi \circ \cdots \circ \phi }}\quad\text{ si }k\in \mathbb{N},\qquad\phi^{0}:=\id_{X},
+\end{equation*}
+donde $\id_{X}\colon X\rightarrow X$ es la función identidad. El
+siguiente resultado sencillo y profundo de Stefan
+Banach tiene aplicaciones muy importantes.
+</p>
+
+<div id="foto:banach" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Banach.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+   Stefan Banach
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+ Stefan Banach (1892-1945) nació en Cracovia,
+  Polonia. Fue básicamente autodidacta y su genio fue descubierto
+  accidentalmente por el matemático Hugo Steinhaus. Se le
+  considera fundador del análisis funcional moderno. Muchos
+  conceptos y resultados notables llevan su nombre.
+  </div>
+</div>
+<p>
+<div id="pf" class="theorem">[de punto fijo de Banach]
+Sea $X$ un espacio
+  métrico completo, no vacío, y sea $\phi \colon X\rightarrow X$
+  una contracción.  Entonces se cumple lo siguiente:
+</p>
+<p>
+  <ol class="alfa">
+  <li> $\phi $ tiene un único punto fijo $x^{\ast }$.
+</li>
+  <li> Para cualquier $x_{0}\in X$ la sucesión $(\phi
+   ^{k}(x_{0}))$ converge a $x^{\ast }$ en $X$, y se cumple que
+    \begin{equation}
+      d(\phi^{k}(x_{0}),x^{\ast })\leq 
+      \frac{\alpha^{k}}{1-\alpha }d(\phi (x_{0}),x_{0}),\label{error}
+    \end{equation}
+    donde $\alpha \in (0,1)$ satisface <em class="emph">(\ref{contr})</em>.
+    </li>
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Sea $x_{0}$ un punto cualquiera de $X$ y denotemos por
+  \begin{equation*}
+    x_{k}:=\phi^{k}(x_{0}).
+  \end{equation*}
+  Demostraremos primero que la sucesión $(x_{k})$ es de Cauchy en
+  $X$.  Nota que, si $\phi $ satisface (\ref{contr}), entonces
+  \begin{equation*}
+    d(x_{k+1},x_{k})=d(\phi^{k}(x_{1}),\phi^{k}(x_{0}))\leq \alpha
+   ^{k}d(x_{1},x_{0})\qquad\forall k\in \mathbb{N}.
+  \end{equation*}
+  Además, para cualesquiera $y,z\in X$, se cumple que
+  \begin{align*}
+    d(y,z) &\leq d(y,\phi (y))+d(\phi (y),\phi (z))+d(\phi (z),z) \\
+    &\leq d(y,\phi (y))+\alpha d(y,z)+d(\phi (z),z),
+  \end{align*}
+  es decir,
+  \begin{equation*}
+    (1-\alpha )d(y,z)\leq d(y,\phi (y))+d(\phi (z),z).
+  \end{equation*}
+  Tomando $y:=x_{k}$ y $z:=x_{j}$ obtenemos
+  \begin{equation}
+    d(x_{k},x_{j})\leq \frac{d(x_{k+1},x_{k})+d(x_{j+1},x_{j})}{1-\alpha }\leq 
+    \frac{\alpha^{k}+\alpha^{j}}{1-\alpha }d(x_{1},x_{0}).\label{eqpf1}
+  \end{equation}
+  Sea $\varepsilon >0$. Como $\alpha \in (0,1)$ existe $k_{0}\in
+  \mathbb{N}$ tal que
+  \begin{equation}
+    \frac{\alpha^{k}}{1-\alpha }d(x_{1},x_{0})\menorque \frac{\varepsilon }{2}\qquad\forall k\geq k_{0}.\label{eqpf2}
+  \end{equation}
+  En consecuencia,
+  \begin{equation*}
+    d(x_{k},x_{j})\menorque \varepsilon \qquad\forall j,k\geq k_{0}.
+  \end{equation*}
+  Esto demuestra que la sucesión $(x_{k})$ es de Cauchy en $X$.
+</p>
+<p>
+  Como $X$ es completo, existe $x^{\ast }\in X$ tal que
+  $x_{k}\rightarrow x^{\ast }$ en $X$ y, como $\phi $ es continua, se
+  tiene entonces que $x_{k+1}=\phi (x_{k})\rightarrow \phi (x^{\ast
+  })$ en $X$. Como el límite de una sucesión es único,
+  concluimos que $\phi (x^{\ast })=x^{\ast }$, es decir, $x^{\ast }$
+  es un punto fijo de $\phi $.
+  </p>
+  <p>
+  Veamos ahora que es único. Si $x_{1}^{\ast }$ y $x_{2}^{\ast }$
+  son puntos fijos de $\phi $ entonces
+  </p>
+  \begin{equation*}
+    d(x_{1}^{\ast },x_{2}^{\ast })=d(\phi (x_{1}^{\ast }),\phi (x_{2}^{\ast
+    }))\leq \alpha d(x_{1}^{\ast },x_{2}^{\ast }).
+  \end{equation*}
+  Como $\alpha \menorque 1$, esta desigualdad implica que $d(x_{1}^{\ast
+  },x_{2}^{\ast })=0$, es decir, $x_{1}^{\ast }=x_{2}^{\ast }$.
+<br>
+  <em class="emph">(b):</em> &nbsp;Por último, haciendo tender $j\rightarrow \infty $
+  en la desigualdad (\ref{eqpf1}) obtenemos que
+  \begin{equation*}
+    d(x_{k},x^{\ast })=\lim_{j\rightarrow \infty }d(x_{k},x_{j})\leq \frac{\alpha^{k}}{1-\alpha }d(x_{1},x_{0})\qquad\forall k\in \mathbb{N}\text{.}
+  \end{equation*}
+  Esto concluye la demostración.
+</div>
+
+<p>
+El teorema anterior no sólo afirma la existencia de un único
+punto fijo para una contracción $\phi \colon X\rightarrow
+X$. También nos dice cómo encontrarlo, o cómo encontrar
+una buena aproximación de él: basta tomar cualquier punto
+$x_{0}\in X$ y considerar la sucesión de iteradas $(\phi
+^{k}(x_{0}))$. La desigualdad (\ref{error}) nos da una estimación
+del error en cada paso de la iteración, es decir, nos dice qué
+tan cerca está $\phi^{k}(x_{0})$ del punto fijo. A este
+método se le conoce como el <em class="textbf">método de aproximaciones
+  sucesivas.</em> Veremos
+algunas aplicaciones en las siguientes secciones.
+</p>
+<p>
+Los siguientes ejemplos muestran que las condiciones del teorema de
+punto fijo de Banach son necesarias.
+</p>
+<p>
+<div class="example">
+  La función $\phi \colon (0,1)\rightarrow (0,1)$&nbsp;dada por\
+  $\phi (t)=\frac{1}{2}t$ es una contracción y no tiene ningún punto
+  fijo en $(0,1)$. Por tanto, para la validez del
+  <em class="emph">Teorema <a href="tul/P_T_02/6.html#pf">6.3</a></em> es necesario que $X$ sea completo.
+</div>
+</p>
+<p>
+<div class="example">
+  La función $\phi \colon \mathbb{R}\rightarrow \mathbb{R}$ dada por\
+  $\phi (t)=t+1$ satisface
+  \begin{equation*}
+    \left\vert \phi (t)-\phi (s)\right\vert =\left\vert t-s\right\vert \qquad\forall t,s\in \mathbb{R}.
+  \end{equation*}
+  Sin embargo, no tiene ningún punto fijo. Por tanto, para la
+  validez del <em class="emph">Teorema <a href="tul/P_T_02/6.html#pf">6.3</a></em> es necesario que el número
+  $\alpha $ de la condición <em class="emph">(\ref{contr})</em> sea estrictamente
+  menor que $1$.
+</div>
+</p>
+<p>
+Esta condición también es necesaria para la unicidad del punto
+fijo [Ejercicio <a href="tul/P_T_02/6.html#pf1">6.22</a>].
+</p>
+<p>
+La siguiente generalización del teorema de punto fijo de Banach
+tiene aplicaciones importantes (ver Teorema <a href="tul/P_T_02/6.html#teovolt">6.12</a>).
+</p>
+<p>
+<div id="pfiter" class="corollary">
+Sea $X$ un espacio métrico completo y $\phi
+  \colon X\rightarrow X $ una función. Si existe $k\in \mathbb{N}$ tal
+  que $\phi^{k}\colon X\rightarrow X$ es una contracción, entonces
+  $\phi $ tiene un único punto fijo.
+</div>
+</p>
+<p>
+<div class="proof">
+  El Teorema <a href="tul/P_T_02/6.html#pf">6.3</a> asegura que $\phi^{k}$ tiene un único punto
+  fijo $x^{\ast }\in X$. Aplicando $\phi $ a la igualdad $\phi
+ ^{k}(x^{\ast })=x^{\ast }$ obtenemos que
+  \begin{equation*}
+    \phi^{k}(\phi (x^{\ast }))=\phi \left( \phi^{k}(x^{\ast })\right) =\phi
+    \left( x^{\ast }\right) ,
+  \end{equation*}
+  es decir, $\phi (x^{\ast })$ es también un punto fijo de $\phi
+ ^{k}$. Como el punto fijo es único, obtenemos que $\phi (x^{\ast
+  })=x^{\ast }$. En consecuencia, $x^{\ast }$ es también un punto
+  fijo de $\phi $. Y es el único, ya que todo punto fijo de $\phi
+  $ es también un punto fijo de $\phi^{k}$.
+</div>
+</p>
+
+<h3 id="sec6-2">Sistemas de ecuaciones lineales</h3>
+<p class="noj">
+Consideremos el sistema de ecuaciones lineales
+\begin{equation}
+  Ax-x=b\label{sl}
+\end{equation}
+donde $A=(a_{ij})$ es una matriz real de $n\times n$ y
+$b=(b_{1},\ldots ,b_{n})\in \mathbb{R}^{n}$. Observa que $x\in
+\mathbb{R}^{n}$ es una solución de este sistema si y sólo si
+$x$ es un punto fijo de la función $\phi
+\colon \mathbb{R}^{n}\rightarrow \mathbb{R}^{n}$ dada por $\phi (x):=Ax-b$.
+De modo que, si $\phi $ es una contracción, podemos aplicar el
+método de aproximaciones sucesivas para encontrar una
+solución. El que $\phi $ sea una contracción depende de la
+métrica que le demos a $\mathbb{R}^{n}$. Por ejemplo, si le damos
+la métrica del Ejemplo <a href="tul/P_T_02/2.html#R1">2.5</a>, inducida por la norma $\left\Vert
+  \cdot \right\Vert_{1}$,&nbsp;obtenemos el siguiente resultado.
+</p>
+<p>
+<div class="theorem">
+  Si existe $\alpha \in (0,1)$ tal que
+  \begin{equation}
+    \sum_{i=1}^{n}\left\vert a_{ij}\right\vert \leq \alpha \qquad\forall j=1,\dots,n,\label{sl1}
+  \end{equation}
+  entonces el sistema <em class="emph">(\ref{sl})</em> tiene solución única
+  para cada $b\in \mathbb{R}^{n}$. La solución $x^{\ast }$
+  satisface
+  \begin{equation*}
+    \left\Vert x^{\ast }+\sum_{m=0}^{k-1}A^{m}b\right\Vert_{1}\leq \frac{\alpha^{k}}{1-\alpha }\left\Vert b\right\Vert_{1}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Para todo $x\in \mathbb{R}^{n}$ se tiene que
+  \begin{equation*}
+    \left\Vert Ax\right\Vert_{1}=\sum_{i=1}^{n}\left\vert
+      \sum_{j=1}^{n}a_{ij}x_{j}\right\vert \leq
+    \sum_{i=1}^{n}\sum_{j=1}^{n}\left\vert a_{ij}\right\vert \left\vert
+      x_{j}\right\vert \leq \alpha \sum_{j=1}^{n}\left\vert x_{j}\right\vert
+    =\alpha \left\Vert x\right\Vert_{1}.
+  \end{equation*}
+  En consecuencia, la función $\phi \colon \mathbb{R}_{1}^{n}\rightarrow
+  \mathbb{R}_{1}^{n}$ dada por $\phi (x)=Ax-b$ satisface
+  \begin{equation*}
+    \left\Vert \phi (x)-\phi (y)\right\Vert_{1}=\left\Vert Ax-Ay\right\Vert
+   _{1}=\left\Vert A(x-y)\right\Vert_{1}\leq \alpha \left\Vert x-y\right\Vert
+   _{1}\qquad\forall x,y\in \mathbb{R}^{n},
+  \end{equation*}
+  es decir, $\phi $ es una contracción. Por el Teorema <a href="tul/P_T_02/6.html#pf">6.3</a>,
+  existe un único $x^{\ast }\in \mathbb{R}^{n}$ tal que $\phi
+  (x^{\ast })=Ax^{\ast }-b=x^{\ast }$. Más aún, como
+  \begin{equation*}
+    \phi^{k}(0)=-\sum_{m=0}^{k-1}A^{m}b,
+  \end{equation*}
+  se tiene que
+  \begin{equation*}
+    \left\Vert x^{\ast }+\sum_{m=0}^{k-1}A^{m}b\right\Vert_{1}\leq \frac{\alpha^{k}}{1-\alpha }\left\Vert b\right\Vert_{1}.
+  \end{equation*}
+  Esto concluye la demostración.
+</div>
+</p>
+<p>
+Si consideramos otras métricas en $\mathbb{R}^{n}$ obtendremos
+condiciones, distintas de (\ref{sl1}), que también garantizan la
+existencia y unicidad de soluciones del sistema (\ref{sl}) para cada
+$b$ [Ejercicio <a href="tul/P_T_02/6.html#ejsl">6.28</a>].
+</p>
+<p>
+Sabemos que el sistema (\ref{sl}) tiene solución única si y
+sólo si $\det (A-I)\neq 0$, donde $I$ es la matriz identidad. En
+consecuencia, la condición (\ref{sl}) y las del Ejercicio
+<a href="tul/P_T_02/6.html#ejsl">6.28</a>&nbsp;garantizan que $\det (A-I)\neq 0$. En este caso, la matriz
+$A-I$&nbsp;es invertible y la solución del sistema está dada por
+$x:=(A-I)^{-1}b$. Sin embargo, en problemas que involucran un
+número grande de variables, encontrar la inversa de una matriz
+tiene un costo prohibitivo, incluso con la potencia de las mejores
+computadoras disponibles. Por ello se utilizan métodos iterativos,
+como el de Jacobi o el de Gauss-Seidel, para encontrar la solución
+mediante aproximaciones sucesivas a partir de una estimación
+inicial. Para ecuaciones no lineales los métodos iterativos son,
+en general, la única opción.
+</p>
+
+<h3 id="sec6-3">Ecuaciones integrales</h3>
+<p class="noj">
+Aplicaremos el teorema de punto fijo de Banach para probar la
+existencia y unicidad de soluciones de dos tipos de ecuaciones
+integrales importantes: la ecuación integral de Fredholm y la
+ecuación integral de Volterra.
+</p>
+<p>
+<h4 id="subsec6-3-1">La ecuación integral de Fredholm del segundo tipo</h4>
+</p>
+<p>
+Sean $\mathcal{K}\colon [a,b]\times [a,b]\rightarrow \mathbb{R}$ &nbsp;y
+$&nbsp;g\colon [a,b]\rightarrow \mathbb{R}$ funciones continuas, y sea $\lambda
+$ un número real. Una ecuación integral de la forma
+\begin{equation}
+  \lambda f(x)-\int_{a}^{b}\mathcal{K}(x,y)f(y)dy=g(x),\qquad x\in
+  [a,b],\label{fred}
+\end{equation}
+se llama una <em class="textbf">ecuación integral de
+  Fredholm</em>.
+Se dice que es <em class="textbf">del
+  primer tipo</em> si $\lambda =0$ y <em class="textbf">del segundo tipo</em> si $\lambda
+\neq 0$.
+<div id="foto:fredholm" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Fredholm.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+    Ivar Fredholm
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    Erik Ivar Fredholm (1866-1927) nació
+    en Estocolmo, Suecia. Obtuvo el doctorado en la Universidad de
+    Uppsala en 1898, bajo la supervisión de Gösta
+    Mittag-Leffler. Fue profesor de la Universidad de Estocolmo. En
+    1903 introdujo la teoría moderna de ecuaciones integrales,
+    que se conoce como teoría de Fredholm.
+  </div>
+</div>
+<p>
+Una función continua $f\colon [a,b]\rightarrow \mathbb{R}$ que satisface
+(\ref{fred}) para todo $x\in [a,b]&nbsp;$se llama una solución
+de (\ref{fred}). Nos preguntamos, ¿para qué
+valores $\lambda $ tiene la ecuación (\ref{fred}) una única
+solución?
+</p>
+<p>
+Queremos expresar este problema como un problema de punto fijo. Es
+decir, queremos encontrar una función $\phi_{\lambda
+}\colon \mathcal{C}^{0}[a,b]\rightarrow \mathcal{C}^{0}[a,b]$ cuyos puntos
+fijos sean las soluciones de la ecuación (\ref{fred}). Para ello,
+procederemos del siguiente modo. A cada $f\in \mathcal{C}^{0}[a,b]$ le
+asociamos la función $\mathfrak{F}f\colon [a,b]\rightarrow \mathbb{R}$
+dada por
+\begin{equation*}
+  \left( \mathfrak{F}f\right) (x):=\int_{a}^{b}\mathcal{K}(x,y)f(y)dy.
+\end{equation*}
+En términos de esta función la ecuación (\ref{fred}) se
+escribe como
+\begin{equation*}
+  \lambda f(x)-\left( \mathfrak{F}f\right) (x)=g(x)\qquad\forall x\in
+  [a,b],
+\end{equation*}
+es decir, $f$ es solución de (\ref{fred}) si y sólo si
+satisface la ecuación funcional
+\begin{equation*}
+  \lambda f-\mathfrak{F}f=g.
+\end{equation*}
+Si $\lambda \neq 0$ esta ecuación es equivalente a
+\begin{equation*}
+  f=\frac{1}{\lambda }(\mathfrak{F}f+g).
+\end{equation*}
+Probaremos que $\mathfrak{F}f\in \mathcal{C}^{0}[a,b]$ (ver Lema <a href="tul/P_T_02/6.html#contxgorro">6.8</a>). Esto nos permite definir una función de
+$\mathcal{C}^{0}[a,b]$ en sí mismo como sigue:
+\begin{equation*}
+  \phi_{\lambda }\colon \mathcal{C}^{0}[a,b]\rightarrow \mathcal{C}^{0}[a,b],\qquad\phi_{\lambda }(f):=\frac{1}{\lambda }(\mathfrak{F}f+g).
+\end{equation*}
+Las soluciones de (\ref{fred}) son justamente los puntos fijos de
+$\phi_{\lambda }$.
+</p>
+<p>
+Para poder aplicar el teorema de punto fijo de Banach requerimos que
+$\mathcal{C}^{0}[a,b]$ sea completo. De acuerdo con el Teorema <a href="tul/P_T_02/5.html#funcacotcompl">5.21</a> este espacio, dotado de la norma uniforme
+\begin{equation*}
+  \left\Vert f\right\Vert_{\infty }=\max_{x\in [a,b]}\left\vert
+    f(x)\right\vert ,
+\end{equation*}
+es un espacio de Banach. Probaremos que para ciertos valores de
+$\lambda $ la función\break $\phi_{\lambda
+}\colon \mathcal{C}^{0}[a,b]\rightarrow \mathcal{C}^{0}[a,b]$ es una
+contracción. El Teorema <a href="tul/P_T_02/6.html#pf">6.3</a> asegura entonces que $\phi
+_{\lambda }$ tiene un único punto fijo, es decir, que la
+ecuación (\ref{fred}) tiene una única solución (ver
+Teorema <a href="tul/P_T_02/6.html#teofred">6.9</a>).  A continuación damos los detalles.
+</p>
+<p>
+<div id="contxgorro" class="lemma">
+Para cada $f\in \mathcal{C}^{0}[a,b]$, la
+  función $\mathfrak{F}f\colon [a,b]\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    \left( \mathfrak{F}f\right) (x):=\int_{a}^{b}\mathcal{K}(x,y)f(y)dy
+  \end{equation*}
+  es continua.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $f\in \mathcal{C}^{0}[a,b]$. Si $f=0$ entonces
+  $\mathfrak{F}f=0$. Supongamos que $f\neq 0$. Como $[a,b]\times
+  [a,b]$ es compacto, el Teorema <a href="tul/P_T_02/4.html#contunif">4.31</a> asegura que
+  $\mathcal{K}$ es uniformemente continua.  En consecuencia, dada
+  $\varepsilon >0$, existe $\delta >0$ tal que
+  \begin{equation*}
+    \left\vert \mathcal{K}(x_{1},y_{1})-\mathcal{K}(x_{2},y_{2})\right\vert \menorque \frac{\varepsilon }{(b-a)\left\Vert f\right\Vert_{\infty }}\qquad\text{ si }\left\vert x_{1}-x_{2}\right\vert \menorque \delta \text{ y }\left\vert
+      y_{1}-y_{2}\right\vert \menorque \delta .
+  \end{equation*}
+  Por tanto,
+  \begin{align*}
+    \left\vert \left( \mathfrak{F}f\right) (x_{1})-\left( \mathfrak{F}f\right)
+      (x_{2})\right\vert &\leq \int_{a}^{b}\left\vert \mathcal{K}(x_{1},y)-\mathcal{K}(x_{2},y)\right\vert \left\vert f(y)\right\vert dy \\
+    &\leq (b-a)\frac{\varepsilon }{(b-a)\left\Vert f\right\Vert_{\infty }}\left\Vert f\right\Vert_{\infty }=\varepsilon\qquad \text{si $\left\vert
+      x_{1}-x_{2}\right\vert \menorque \delta$.}
+  \end{align*}
+  Esto prueba que $\mathfrak{F}f$ es continua.
+</div>
+</p>
+
+<div id="teofred" class="theorem">
+Si $\left\vert \lambda \right\vert >\left\Vert
+    \mathcal{K}\right\Vert_{\infty }(b-a)$ entonces, para cada $g\in
+  \mathcal{C}^{0}[a,b]$, la ecuación integral de Fredholm
+  <em class="emph">(\ref{fred})</em> tiene una única solución.
+</div>
+
+<div class="proof">
+  Dados $\lambda \neq 0$ y $g\in \mathcal{C}^{0}[a,b]$, definimos
+  $\phi_{\lambda }\colon \mathcal{C}^{0}[a,b]\rightarrow
+  \mathcal{C}^{0}[a,b]$ como
+  \begin{equation*}
+    \phi_{\lambda }(f):=\frac{1}{\lambda }\left( \mathfrak{F}f+g\right) .
+  \end{equation*}
+  El lema anterior asegura que $\phi_{\lambda }$ es, efectivamente,
+  una función de $\mathcal{C}^{0}[a,b]$&nbsp;en sí
+  mismo. \newline Veamos que, si $\left\vert \lambda \right\vert
+  >\left\Vert \mathcal{K}\right\Vert_{\infty }(b-a)$, entonces $\phi
+ _{\lambda }$ es una contracción. Sean $f_{1},f_{2}\in
+  \mathcal{C}^{0}[a,b]$. Entonces, para toda $x\in [a,b]$, se
+  tiene que
+  \begin{align*}
+    \left\vert \phi_{\lambda }(f_{1})(x)-\phi_{\lambda }(f_{2})(x)\right\vert
+    &=\frac{1}{\left\vert \lambda \right\vert }\left\vert \mathfrak{F}f_{1}(x)-\mathfrak{F}f_{2}(x)\right\vert \\
+    &\leq \frac{1}{\left\vert \lambda \right\vert }\int_{a}^{b}\left\vert 
+      \mathcal{K}(x,y)\right\vert \left\vert f_{1}(y)-f_{2}(y)\right\vert dy \\
+    &\leq \frac{1}{\left\vert \lambda \right\vert }(b-a)\left\Vert \mathcal{K}\right\Vert_{\infty }\left\Vert f_{1}-f_{2}\right\Vert_{\infty }.
+  \end{align*}
+  Por consiguiente,
+  \begin{equation*}
+    \left\Vert \phi_{\lambda }(f_{1})-\phi_{\lambda }(f_{2})\right\Vert
+   _{\infty }\leq \frac{1}{\left\vert \lambda \right\vert }(b-a)\left\Vert 
+      \mathcal{K}\right\Vert_{\infty }\left\Vert f_{1}-f_{2}\right\Vert_{\infty }\qquad\forall f_{1},f_{2}\in \mathcal{C}^{0}[a,b].
+  \end{equation*}
+  Por hipótesis, $\frac{1}{\left\vert \lambda \right\vert
+  }(b-a)\left\Vert \mathcal{K}\right\Vert_{\infty }\menorque 1$. En
+  consecuencia, $\phi_{\lambda }$ es una contracción.
+</p>
+<p>
+  Dado que $\mathcal{C}^{0}[a,b]$ es completo (ver
+  Teorema <a href="tul/P_T_02/5.html#funcacotcompl">5.21</a>), el Teorema <a href="tul/P_T_02/6.html#pf">6.3</a> asegura que existe
+  una única $f^{\ast }\in \mathcal{C}^{0}[a,b]$ tal que
+  </p>
+  \begin{equation*}
+    f^{\ast }=\phi_{\lambda }(f^{\ast })=\frac{1}{\lambda }\left( \mathfrak{F}f^{\ast }+g\right) .
+  \end{equation*}
+  Es decir, existe una única $f^{\ast }\in \mathcal{C}^{0}[a,b]$
+  que satisface la ecuación integral de Fredholm
+  \begin{equation*}
+    \lambda f^{\ast }=\mathfrak{F}f^{\ast }+g,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+<p>
+Es sencillo comprobar que la función
+$\mathfrak{F}\colon \mathcal{C}^{0}[a,b]\rightarrow \mathcal{C}^{0}[a,b]$,
+que a cada $f$ le asocia $\mathfrak{F}f$,&nbsp;es lineal y continua
+[Ejercicio <a href="tul/P_T_02/6.html#ejopfred">6.30</a>]. Si $g=0$, la ecuación integral de
+Fredholm se convierte en la <em class="textbf">ecuación de valores
+  propios</em>\footnote{Recuerda que $v\in V$ es un <em class="emph">valor propio</em>
+  (llamado también <em class="emph">autovalor</em> o <em class="emph">eigenvalor)</em> de la
+  función lineal $L\colon V\rightarrow V$ si $v\neq 0$ y $Lv=\lambda v$
+  para algún $\lambda \in \mathbb{R}$.}
+\begin{equation*}
+  \mathfrak{F}f=\lambda f
+\end{equation*}
+para el <em class="textbf">operador de Fredholm</em>
+<em class="emph">&nbsp;</em>$\mathfrak{F}$. Nota que la función $f=0$
+satisface esta ecuación. El teorema anterior asegura que ésta
+es la única solución si $\left\vert \lambda \right\vert
+>\left\Vert \mathcal{K}\right\Vert_{\infty }(b-a)$. En consecuencia,
+los valores propios de $\mathfrak{F}$ están contenidos en el
+intervalo cerrado $[-\left\Vert \mathcal{K}\right\Vert_{\infty
+}(b-a)$, $\left\Vert \mathcal{K}\right\Vert_{\infty }(b-a)]$.
+</p>
+<p>
+<h4 id="subsec6-3-2">La ecuación integral de Volterra del segundo tipo</h4>
+</p>
+<p>
+Consideremos ahora la ecuación
+\begin{equation}
+  \lambda f(x)-\int_{a}^{x}\mathcal{K}(x,y)f(y)dy=g(x)\qquad\forall x\in [a,b],\label{volterra}
+\end{equation}
+donde $\mathcal{K}\colon [a,b]\times [a,b]\rightarrow \mathbb{R}$ y
+$g\colon [a,b]\rightarrow \mathbb{R}$ son funciones continuas dadas y
+$\lambda $ es un número real. Nota que ahora la variable $x$
+aparece también en el extremo superior de la integral. Una
+ecuación de este tipo se llama una <em class="textbf">ecuación integral
+  de Volterra</em><em class="emph">.</em> 
+Se dice que es <em class="textbf">del primer tipo</em> si $\lambda =0$ y
+<em class="textbf">del segundo tipo</em> si $\lambda \neq 0$.
+<div id="foto:volterra" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/volterra.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+    Vito Volterra
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Vito Volterra (1860-1940) nació en Ancona,
+  Italia. Estudió en la Universidad de Pisa, bajo la
+  supervisión de Enrico Betti. Fue profesor en las universidades
+  de Turín y Roma.
+  </div>
+</div>
+
+Queremos expresar a las soluciones de (\ref{volterra}) como los puntos
+fijos de una función $\phi_{\lambda
+}\colon \mathcal{C}^{0}[a,b]\rightarrow \mathcal{C}^{0}[a,b]$. Para ello, a
+cada función $f\in \mathcal{C}^{0}[a,b]$ le asociamos la
+función $\mathfrak{V}f\colon [a,b]\rightarrow \mathbb{R}$ dada por
+\begin{equation*}
+  \left( \mathfrak{V}f\right) (x):=\int_{a}^{x}\mathcal{K}(x,y)f(y)dy.
+\end{equation*}
+En términos de esta función, la ecuación (\ref{volterra})
+se escribe como
+\begin{equation*}
+  \lambda f-\mathfrak{V}f=g.
+\end{equation*}
+Probaremos que $\mathfrak{V}f\in \mathcal{C}^{0}[a,b]$ (ver Lema <a href="tul/P_T_02/6.html#contxtilde">6.10</a>). Si $\lambda \neq 0$, podemos entonces definir una
+función de $\mathcal{C}^{0}[a,b]$ en sí mismo como sigue:
+\begin{equation*}
+  \phi_{\lambda }\colon \mathcal{C}^{0}[a,b]\rightarrow \mathcal{C}^{0}[a,b],\qquad\phi_{\lambda }(f):=\frac{1}{\lambda }(\mathfrak{V}f+g).
+\end{equation*}
+Sus puntos fijos son las soluciones de la ecuación
+(\ref{volterra}).  Probaremos que para cada $\lambda \neq 0$ existe
+$k\in \mathbb{N}$ tal que la función $\phi_{\lambda }^{k}$ es una
+contracción (ver Lema <a href="tul/P_T_02/6.html#lemcontriter">6.11</a>). El Corolario <a href="tul/P_T_02/6.html#pfiter">6.6</a> asegura entonces que $\phi_{\lambda }$ tiene un
+único punto fijo, es decir, que la ecuación (\ref{volterra})
+tiene una única solución.
+</p>
+<p>
+<div id="contxtilde" class="lemma">
+Para cada $f\in \mathcal{C}^{0}[a,b]$, la
+  función $\mathfrak{V}f\colon [a,b]\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    \left( \mathfrak{V}f\right) (x):=\int_{a}^{x}\mathcal{K}(x,y)f(y)dy
+  \end{equation*}
+  es continua.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $f\in \mathcal{C}^{0}[a,b]$. Si $\mathcal{K}=0$ o $f=0$ entonces
+  $\mathfrak{V}f=0$. Si $\mathcal{K}\neq 0$ y $f\neq 0$, el
+  Teorema <a href="tul/P_T_02/4.html#contunif">4.31</a> asegura que para cada $\varepsilon >0$ existe
+  $\delta >0$ tal que
+  \begin{equation*}
+    \left\vert \mathcal{K}(x_{1},y_{1})-\mathcal{K}(x_{2},y_{2})\right\vert \menorque \frac{\varepsilon }{2(b-a)\left\Vert f\right\Vert_{\infty }}\qquad\text{ si 
+    }\left\Vert (x_{1},y_{1})-(x_{2},y_{2})\right\Vert \menorque \delta .
+  \end{equation*}
+  En consecuencia, si&nbsp;$\left\vert x_{1}-x_{2}\right\vert \menorque \min
+  \left\{\delta ,\frac{\varepsilon }{2\left\Vert \mathcal{K}\right\Vert
+   _{\infty }\left\Vert f\right\Vert_{\infty }}\right\}$ y $x_{1}\leq
+  x_{2}$, se tiene que
+  \begin{align*}
+    &\left\vert \left( \mathfrak{V}f\right) (x_{1})-\left( \mathfrak{V}f\right)
+      (x_{2})\right\vert\\
+    &\qquad\qquad{}=\biggl\vert\int_{a}^{x_{1}}(\mathcal{K}(x_{1},y)-\mathcal{K}(x_{2},y))f(y)dy
+    -\int_{x_{1}}^{x_{2}}\mathcal{K}(x_{2},y)f(y)dy\biggr\vert \\
+    &\qquad\qquad{}\leq \int_{a}^{x_{1}}\left\vert \mathcal{K}(x_{1},y)-\mathcal{K}(x_{2},y)\right\vert \left\vert f(y)\right\vert
+    dy
+    +\int_{x_{1}}^{x_{2}}\left\vert \mathcal{K}(x_{2},y)\right\vert \left\vert
+      f(y)\right\vert dy \\
+    &\qquad\qquad{}<(x_{1}-a)\frac{\varepsilon }{2(b-a)\left\Vert
+      f\right\Vert_{\infty }}\left\Vert f\right\Vert_{\infty }
+    +\frac{\varepsilon }{2\left\Vert \mathcal{K}\right\Vert_{\infty }\left\Vert f\right\Vert_{\infty }}\left\Vert 
+      \mathcal{K}\right\Vert_{\infty }\left\Vert f\right\Vert_{\infty } \\
+    &\qquad\qquad{}\leq \frac{\varepsilon }{2}+\frac{\varepsilon }{2}=\varepsilon .
+  \end{align*}
+  Esto prueba que $\mathfrak{V}f$ es continua.
+</div>
+</p>
+<p>
+Dados $\lambda \neq 0$ y $g\in \mathcal{C}^{0}[a,b]$, definimos $\phi
+_{\lambda }\colon \mathcal{C}^{0}[a,b]\rightarrow \mathcal{C}^{0}[a,b]$ como
+\begin{equation*}
+  \phi_{\lambda }(f):=\frac{1}{\lambda }\left( \mathfrak{V}f+g\right) .
+\end{equation*}
+El lema anterior asegura que $\phi_{\lambda }$ es, efectivamente, una
+función de $\mathcal{C}^{0}[a,b]$&nbsp;en sí mismo. Probaremos el
+siguiente resultado.
+</p>
+<p>
+<div id="lemcontriter" class="lemma">
+La función $\phi_{\lambda }$ satisface la
+  desigualdad
+  \begin{equation*}
+    \left\Vert \phi_{\lambda }^{k}(f_{1})-\phi_{\lambda
+      }^{k}(f_{2})\right\Vert_{\infty }\leq \left\vert \lambda \right\vert
+   ^{-k}\left\Vert \mathcal{K}\right\Vert_{\infty }^{k}\frac{(b-a)^{k}}{k!}\left\Vert f_{1}-f_{2}\right\Vert_{\infty },
+  \end{equation*}
+  para cualesquiera $f_{1},f_{2}\in \mathcal{C}^{0}[a,b]$, $k\in \mathbb{N}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Probaremos por inducción que
+  \begin{equation}
+    \left\vert \phi_{\lambda }^{k}(f_{1})(x)-\phi_{\lambda
+      }^{k}(f_{2})(x)\right\vert \leq \frac{\left( \left\vert \lambda \right\vert
+       ^{-1}\left\Vert \mathcal{K}\right\Vert_{\infty }(x-a)\right)^{k}}{k!}\left\Vert f_{1}-f_{2}\right\Vert_{\infty }\qquad\forall x\in
+    [a,b].\label{ind}
+  \end{equation}
+  Para $k=1$ se tiene que
+  \begin{align*}
+    \left\vert \phi_{\lambda }(f_{1})(x)-\phi_{\lambda }(f_{2})(x)\right\vert
+    &\leq \frac{1}{\left\vert \lambda \right\vert }\int_{a}^{x}\left\vert 
+      \mathcal{K}(x,y)\right\vert \left\vert f_{1}(y)-f_{2}(y)\right\vert dy \\
+    &\leq \frac{1}{\left\vert \lambda \right\vert }\left\Vert \mathcal{K}\right\Vert_{\infty }(x-a)\left\Vert f_{1}-f_{2}\right\Vert_{\infty }.
+  \end{align*}
+  Supongamos que la desigualdad (\ref{ind}) vale para $k-1$. Entonces
+  \begin{align*}
+    \left\vert \phi_{\lambda }^{k}(f_{1})(x)-\phi_{\lambda
+      }^{k}(f_{2})(x)\right\vert &\leq \frac{1}{\left\vert \lambda \right\vert }\int_{a}^{x}\left\vert \mathcal{K}(x,y)\right\vert \left\vert \phi_{\lambda
+      }^{k-1}(f_{1})(y)-\phi_{\lambda }^{k-1}(f_{2})(y)\right\vert dy \\
+    &\leq \frac{\left\Vert \mathcal{K}\right\Vert_{\infty }}{\left\vert
+        \lambda \right\vert }\int_{a}^{x}\left\vert \phi_{\lambda
+      }^{k-1}(f_{1})(y)-\phi_{\lambda }^{k-1}(f_{2})(y)\right\vert dy \\
+    &\leq \frac{\left\Vert \mathcal{K}\right\Vert_{\infty }^{k}}{\left\vert
+        \lambda \right\vert^{k}}\left\Vert f_{1}-f_{2}\right\Vert_{\infty
+    }\int_{a}^{x}\frac{(y-a)^{k-1}}{(k-1)!}dy \\
+    &=\frac{\left\Vert \mathcal{K}\right\Vert_{\infty }^{k}}{\left\vert
+        \lambda \right\vert^{k}}\left\Vert f_{1}-f_{2}\right\Vert_{\infty }\frac{(x-a)^{k}}{k!}.
+  \end{align*}
+  Esto demuestra la desigualdad (\ref{ind}). De ella se sigue que
+  \begin{equation*}
+    \left\vert \phi_{\lambda }^{k}(f_{1})(x)-\phi_{\lambda
+      }^{k}(f_{2})(x)\right\vert \leq \left\vert \lambda \right\vert
+   ^{-k}\left\Vert \mathcal{K}\right\Vert_{\infty }^{k}\frac{(b-a)^{k}}{k!}\left\Vert f_{1}-f_{2}\right\Vert_{\infty }\qquad\forall x\in
+    [a,b]
+  \end{equation*}
+  y, en consecuencia, que
+  \begin{equation}
+    \left\Vert \phi_{\lambda }^{k}(f_{1})-\phi_{\lambda
+      }^{k}(f_{2})\right\Vert_{\infty }\leq \frac{\left( \left\vert \lambda
+        \right\vert^{-1}\left\Vert \mathcal{K}\right\Vert_{\infty }(b-a)\right)
+     ^{k}}{k!}\left\Vert f_{1}-f_{2}\right\Vert_{\infty },\label{itercontr}
+  \end{equation}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+<div id="teovolt" class="theorem">
+Si $\lambda \neq 0$ entonces, para cada $g\in
+  \mathcal{C}^{0}[a,b]$, la ecuación integral de Volterra
+  <em class="emph">(\ref{volterra})</em> tiene una única solución.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \frac{\left( \left\vert \lambda \right\vert^{-1}\left\Vert \mathcal{K}\right\Vert_{\infty }(b-a)\right)^{k}}{k!}\menorque 1\qquad\forall k\geq
+    k_{0}
+  \end{equation*}
+  (ver Ejercicio <a href="tul/P_T_02/3.html#ejaux">3.61</a>). Por el lema anterior, para $k\geq
+  k_{0}$, la función $\phi_{\lambda
+  }^{k}\colon \mathcal{C}^{0}[a,b]\rightarrow \mathcal{C}^{0}[a,b]$ es una
+  contracción. Del Corolario <a href="tul/P_T_02/6.html#pfiter">6.6</a> se sigue que $\phi
+ _{\lambda }$ tiene un único punto fijo, es decir, la
+  ecuación (\ref{volterra}) tiene solución única.
+</div>
+</p>
+<p>
+Este resultado asegura en particular que, si $\lambda \neq 0$, la
+solución trivial es la única solución de la
+<em class="textbf">ecuación de valores propios</em>
+\begin{equation*}
+  \mathfrak{V}f=\lambda f
+\end{equation*}
+para el <em class="textbf">operador de Volterra</em>
+$\mathfrak{V}$. Es decir, ningún $\lambda \neq 0$ es un valor
+propio de $\mathfrak{V}$. La ecuación integral de Volterra del
+primer tipo, $\mathfrak{V}f=g$, es bastante más complicada y no la
+estudiaremos aquí.
+</p>
+
+<h3 id="sec6-4">El problema de Cauchy</h3>
+<p class="noj">
+Sea $\Omega$ un subconjunto abierto de
+$\mathbb{R}^{n}$. Un campo vectorial en $\Omega
+$ es una función continua de $\Omega $ en $\mathbb{R}^{n}$. Los
+campos vectoriales se utilizan a menudo en la física para
+modelar, por ejemplo, la velocidad de un líquido móvil, o la
+intensidad y la dirección de una cierta fuerza, como la fuerza
+electromagnética.
+</p>
+<p>
+Consideraremos campos vectoriales que cambian continuamente con el
+tiempo, es decir, funciones continuas $\chi \colon (a,b)\times \Omega
+\rightarrow \mathbb{R}^{n}$. El intervalo abierto $(a,b)$ puede ser
+infinito. Las siguientes figuras ilustran el campo vectorial $\chi
+(t,x,y)=(tx-y,x+ty)$ para $t=0$ y $t=1$.
+</p>
+
+<div id="fig:6-1" class="figure">
+  <img src="tul/P_T_02/figuras/campos-vect.svg" height="270">
+  <div class="caption">
+  </div>                
+</div>
+
+<p>
+Dado un tiempo inicial $t_{0}\in (a,b)$ y una posición inicial
+$x_{0}\in \Omega $, nos preguntamos si existe una trayectoria $u(t)$
+en $\Omega $ tal que $u(t_{0})=x_{0}$ cuya velocidad $u^{\prime }(t)$
+en cada tiempo $t$ sea precisamente $\chi (t,u(t))$.
+</p>
+<p>
+<div class="definition">
+  Una <em class="textbf">solución</em> del<em class="emph">&nbsp;</em><em class="textbf">problema de Cauchy
+    </em>
+  \begin{equation}
+      \begin{cases}
+        u^{\prime }=\chi (t,u), \\
+        u(t_{0})=x_{0},
+      \end{cases}\label{cauchy}
+  \end{equation}
+  es una función continuamente diferenciable $u\colon J\rightarrow
+  \Omega $, definida en un subintervalo $J$ de $(a,b)$ que contiene a
+  $t_{0}$, que satisface
+  \begin{equation*}
+    u^{\prime }(t)=\chi (t,u(t))\text{ &nbsp;}\forall t\in J\qquad\text{y}\qquad u(t_{0})=x_{0}.
+  \end{equation*}
+  El punto $(t_{0},x_{0})$ se llama la <em class="textbf">condición inicial\
+    </em>del problema <em class="emph">(\ref{cauchy})</em>.
+</div>
+</p>
+<p>
+Empezaremos mostrando que el problema (\ref{cauchy}) es equivalente a
+una ecuación integral. Dada una función continua
+$f=(f_{1},\dots,f_{n})\colon [a,b]\rightarrow \mathbb{R}^{n}$,&nbsp;denotamos por
+\begin{equation*}
+  \int_{a}^{b}f(t)dt:=\biggl(
+    \int_{a}^{b}f_{1}(t)dt,\dots,\int_{a}^{b}f_{n}(t)dt\biggr) \in \mathbb{R}^{n}
+\end{equation*}
+al vector cuyas componentes son las integrales de las componentes de
+$f$.
+</p>
+<p>
+<div id="int" class="lemma">
+$u\colon [t_{0}-\delta ,t_{0}+\delta ]\rightarrow \Omega $ es
+  solución del problema de Cauchy <em class="emph">(\ref{cauchy})</em> si y
+  sólo si $u$ es continua y satisface
+  \begin{equation}
+    u(t)=\int_{t_{0}}^{t}\chi (s,u(s))ds+x_{0}\qquad\forall t\in [t_{0}-\delta ,t_{0}+\delta ].
+  \label{intcau}
+  \end{equation}
+</div>
+</p>
+<p>
+<div class="proof">
+  Esta afirmación es consecuencia inmediata de los teoremas
+  fundamentales del cálculo, aplicados a cada componente. En
+  efecto, si $u=(u_{1},\dots,u_{n})$ y $\chi =(\chi_{1},\dots,\chi
+ _{n})$,&nbsp;entonces $u_{i}$ es continua y satisface
+  \begin{equation*}
+    u_{i}(t)=\int_{t_{0}}^{t}\chi_{i}(s,u(s))ds+x_{0,i}
+  \end{equation*}
+  si y sólo si $u_{i}$ es continuamente diferenciable y satisface
+  \begin{equation*}
+    u_{i}^{\prime }(t)=\chi_{i}(t,u(t)),\qquad u_{i}(t_{0})=x_{0,i},
+  \end{equation*}
+  para cada $i=1,\dots,n$.
+</div>
+</p>
+<p>
+Queremos expresar la ecuación integral (\ref{intcau}) como un
+problema de punto fijo. Para ello requerimos una condición
+adicional sobre el campo $\chi $. Denotemos por
+\begin{equation*}
+  \bar{B}(x_{0},\delta ):=\left\{x\in \mathbb{R}^{n}:\left\Vert x-x_{0}\right\Vert
+  \leq \delta \right\}
+\end{equation*}
+a la bola cerrada de radio $\delta $ y centro $x_{0}$ en
+$\mathbb{R}^{n}$ con la norma usual.
+</p>
+<p>
+<div id="loclip" class="definition">
+Una función $\chi \colon (a,b)\times \Omega \rightarrow
+  \mathbb{R}^{n}$ es <em class="textbf">localmente Lipschitz continua en la
+    segunda variable</em> si, para cada
+  $t_{0}\in (a,b)$ y $x_{0}\in \Omega $, existen $\delta_{0}>0$ y
+  $C>0$ (que dependen de $t_{0}$ y $x_{0}$) tales que $[t_{0}-\delta
+ _{0},t_{0}+\delta_{0}]\subset (a,b)$, $\bar{B}(x_{0},\delta
+ _{0})\subset \Omega $ y
+  \begin{equation*}
+    \left\Vert \chi (t,x_{1})-\chi (t,x_{2})\right\Vert \leq C\left\Vert
+      x_{1}-x_{2}\right\Vert \qquad\text{ si }\left\vert t-t_{0}\right\vert \leq
+    \delta_{0}\text{ &nbsp;y &nbsp;}x_{1},x_{2}\in \bar{B}(x_{0},\delta_{0}).
+  \end{equation*}
+</div>
+</p>
+<p>
+En el resto de esta sección supondremos que $\chi \colon (a,b)\times
+\Omega \rightarrow \mathbb{R}^{n}$ es localmente Lipschitz continua en
+la segunda variable.
+</p>
+<p>
+Para la condición inicial $(t_{0},x_{0})$ del problema
+(\ref{cauchy}) escogemos $\delta_{0}>0$ y $C>0$ como en la
+Definición <a href="tul/P_T_02/6.html#loclip">6.15</a>.  Escogemos además $M\geq 1$ tal que
+\begin{equation}
+  \left\Vert \chi (t,x)\right\Vert \leq M\qquad\forall (t,x)\in
+  [t_{0}-\delta_{0},t_{0}+\delta_{0}]\times \bar{B}(x_{0},\delta
+ _{0}).\label{defM}
+\end{equation}
+Tal $M$ existe gracias al Corolario <a href="tul/P_T_02/4.html#contencomp">4.11</a>. Finalmente,
+escogemos $\delta \in \left( 0,\min \left\{\frac{1}{C},\frac{\delta
+   _{0}}{M}\right\}\right) $.
+                 <div id="fig:6-2" class="figure">
+                <img src="tul/P_T_02/figuras/lipschitz.svg" height="280">
+                <div class="caption">
+                </div>                
+              </div>
+
+Definimos
+\begin{equation*}
+  X:=\left\{u\in \mathcal{C}^{0}([t_{0}-\delta ,t_{0}+\delta ],\mathbb{R}^{n}):\left\Vert u-x_{0}\right\Vert_{\infty }\leq \delta M\right\}
+\end{equation*}
+donde $x_{0}$ es la función constante con valor $x_{0}$ y
+\begin{equation*}
+  \left\Vert u\right\Vert_{\infty }=\max_{t\in [t_{0}-\delta
+    ,t_{0}+\delta ]}\left\Vert u(t)\right\Vert
+\end{equation*}
+es la norma uniforme en $\mathcal{C}^{0}([t_{0}-\delta ,t_{0}+\delta
+],\mathbb{R}^{n})$.&nbsp;Recuerda que $\mathcal{C}^{0}([t_{0}-\delta
+,t_{0}+\delta ],\mathbb{R}^{n})$ es un espacio de Banach (ver Teorema <a href="tul/P_T_02/5.html#funcacotcompl">5.21</a>). Le damos a $X$ la métrica inducida por esta
+norma.
+</p>
+<div class="lemma">
+</p>
+<p>
+  <ol class="alfa">
+  <li> $X$ es un espacio métrico completo.
+</li>
+  <li> Si $u\in X$, entonces $u(t)\in\bar{B}(x_{0},\delta)\subset\Omega $ para toda $t\in
+    [t_{0}-\delta ,t_{0}+\delta ]$.
+    </li>
+  </ol>
+</div>
+
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Observa que $X$ es la bola cerrada con centro en la
+  función constante $x_{0}$ y radio $\delta M$ en el espacio
+  $\mathcal{C}^{0}([t_{0}-\delta ,t_{0}+\delta ],\mathbb{R}^{n})$ con
+  la norma uniforme.  Por tanto, $X$ es un subconjunto cerrado de
+  $\mathcal{C}^{0}([t_{0}-\delta ,t_{0}+\delta ],\mathbb{R}^{n})$. De
+  la Proposición <a href="tul/P_T_02/5.html#complcerr">5.9</a>$&nbsp;$ se sigue que $X$ es un espacio
+  métrico completo.
+</p>
+<br>
+  <em class="emph">(b):</em> &nbsp;Si $u\in X$ entonces
+  \begin{equation*}
+    \left\Vert u(t)-x_{0}\right\Vert \leq \delta M\menorque \delta_{0}\qquad\forall t\in [t_{0}-\delta ,t_{0}+\delta ].
+  \end{equation*}
+  En consecuencia, $u(t)\in \bar{B}(x_{0},\delta_{0})\subset \Omega $
+  para toda $t\in [t_{0}-\delta ,t_{0}+\delta ]$.
+</div>
+
+<p>
+Para cada $u\in X$ definimos la función $\phi (u)\colon [t_{0}-\delta
+,t_{0}+\delta ]\rightarrow \mathbb{R}^{n}$ como
+\begin{equation*}
+  \phi (u)(t):=\int_{t_{0}}^{t}\chi (s,u(s))ds+x_{0}.
+\end{equation*}
+Nota que el integrando está bien definido porque, de acuerdo con
+el lema anterior, $u(s)\in \Omega $ para todo $s\in [t_{0}-\delta ,t_{0}+\delta ]$. Requerimos la siguiente desigualdad.
+</p>
+<p>
+<div id="lemcotint" class="lemma">
+Para cualquier función continua
+  $f\colon [a,b]\rightarrow \mathbb{R}^{n}$&nbsp;se cumple que
+  \begin{equation*}
+    \biggl\Vert \int_{a}^{b}f(t)dt\biggr\Vert \leq \left\vert b-a\right\vert
+    \left\Vert f\right\Vert_{\infty }.
+  \end{equation*}
+</div>
+</p>
+<p>
+La demostración de esta desigualdad es sencilla y se propone como
+ejercicio [Ejercicio <a href="tul/P_T_02/6.html#cotint">6.34</a>].
+</p>
+<p>
+Probaremos ahora que $\phi $ es una función de $X$ en sí
+mismo.
+</p>
+<p>
+<div class="lemma">
+  $\phi (u)\in X$ para todo $u\in X$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Por el teorema fundamental del cálculo, la $i$-ésima
+  función componente de $\phi (u)$,
+  \begin{equation*}
+    \phi (u)_{i}(t):=\int_{t_{0}}^{t}\chi_{i}(s,u(s))ds+x_{0,i},
+  \end{equation*}
+  es continuamente diferenciable. En particular, $\phi (u)\in
+  \mathcal{C}^{0}([t_{0}-\delta ,t_{0}+\delta
+  ],\mathbb{R}^{n})$. Usando el Lema <a href="tul/P_T_02/6.html#lemcotint">6.17</a> obtenemos
+  además que
+  \begin{equation*}
+    \left\Vert \phi (u)(t)-x_{0}\right\Vert =\left\Vert \int_{t_{0}}^{t}\chi
+      (s,u(s))ds\right\Vert \leq \left\vert t-t_{0}\right\vert M\leq \delta M.
+  \end{equation*}
+  En consecuencia, $\phi(u)\in X$.
+</div>
+</p>
+<div id="foto:lindelof" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Lindelof.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+    Ernst Lindelöf
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Ernst Leonard Lindelöf
+  (1870-1946) nació en Helsinki, Finlandia. Se doctoró en la
+  Universidad de Helsinki y fue profesor en esa
+  universidad.
+  </div>
+</div>
+  <div id="foto:picard" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Charles_Emile_Picard.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+    Émile Picard
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Charles Émile Picard (1856-1941) nació en París. Estudió en
+  la École Normale Supérieure bajo la supervisión de
+  Gaston Darboux. Fue profesor en las universidades de París y
+  Toulouse y de la École Normale.
+  </div>
+</div>
+<p>
+El siguiente teorema es uno de los resultados fundamentales de la
+teoría de ecuaciones diferenciales. Fue publicado por primera vez
+en 1890 por Lindelöf. Simultáneamente, Picard desarrolló un método de
+aproximación sucesiva de soluciones. El método de
+iteración de Picard es justamente el método iterativo del
+teorema de punto fijo de Banach para este caso particular.
+</p>
+<p>
+<div id="pl" class="theorem">[Picard-Lindelöf]
+Sea $\chi
+  \colon (a,b)\times \Omega \rightarrow \mathbb{R}^{n}$ una función
+  continua y localmente Lipschitz continua en la segunda
+  variable. Entonces, dados $t_{0}\in (a,b)$ y $x_{0}\in \Omega $,
+  existe $\delta >0$ tal que el problema de Cauchy
+  <em class="emph">(\ref{cauchy})</em> tiene una única solución en el
+  intervalo $[t_{0}-\delta ,t_{0}+\delta ]$.
+</div>
+</p>
+<div class="proof">
+  El lema anterior asegura que $\phi $ es una función de $X$ en
+  sí mismo. Observa que $u\in X$ satisface la ecuación
+  integral (\ref{intcau}) si y sólo si
+  \begin{equation*}
+    \phi (u)(t):=\int_{t_{0}}^{t}\chi (s,u(s))ds+x_{0}=u(t)\qquad\forall t\in [t_{0}-\delta ,t_{0}+\delta ],
+  \end{equation*}
+  es decir, si y sólo si $u$ es un punto fijo de $\phi\colon X\rightarrow X$.
+</p>
+<p>
+  Probaremos que $\phi $ es una contracción. Sean $u,v\in X$.
+  Usando el Lema <a href="tul/P_T_02/6.html#lemcotint">6.17</a> obtenemos que, para toda $t\in
+  [t_{0}-\delta ,t_{0}+\delta ]$, se cumple que
+  \begin{align*}
+    \left\Vert \phi (u)(t)-\phi (v)(t)\right\Vert &=\left\Vert
+      \int_{t_{0}}^{t}(\chi (s,u(s))-\chi (s,v(s)))ds\right\Vert \\
+    &\leq \left\vert t-t_{0}\right\vert \max_{\left\vert s-t_{0}\right\vert
+      \leq \delta }\left\Vert \chi (s,u(s))-\chi (s,v(s))\right\Vert \\
+    &\leq \left\vert t-t_{0}\right\vert \max_{\left\vert s-t_{0}\right\vert
+      \leq \delta }C\left\Vert u(s)-v(s)\right\Vert \\
+    &\leq \delta C\left\Vert u-v\right\Vert_{\infty }.
+  \end{align*}
+  Por consiguiente,
+  \begin{equation*}
+    \left\Vert \phi (u)-\phi (v)\right\Vert_{\infty }\leq \delta C\left\Vert
+      u-v\right\Vert_{\infty }
+  \end{equation*}
+  y, como hemos elegido $\delta $ tal que $\delta C\menorque 1$, se tiene que
+  $\phi $ es una contracción.
+</p>
+
+  Como $X$ es completo, el Teorema <a href="tul/P_T_02/6.html#pf">6.3</a> asegura que $\phi $ tiene
+  un único punto fijo. Es decir, que existe una única $u^{\ast
+  }\in X$ que satisface la ecuación integral
+  (\ref{intcau}).<em class="emph">&nbsp;</em>Del Lema <a href="tul/P_T_02/6.html#int">6.14</a> se sigue que $u^{\ast }$
+  es la única solución del problema de Cauchy (\ref{cauchy})
+  en el intervalo $[t_{0}-\delta ,t_{0}+\delta ]$.
+</div>
+
+<h3 id="sec6-5">Ejercicios</h3>
+
+<div id="metcont" class="exercise">
+Sea $X=X_{\disc}$ un espacio discreto <em class="emph">(ver
+    Ejemplo <a href="tul/P_T_02/2.html#disc">2.16</a>)</em>. Prueba que $\phi \colon X\rightarrow X$ es una
+  contracción si y sólo si $\phi $ es una función
+  constante.
+</div>
+
+<div class="exercise">
+  <ol class="alfa">
+  <li> Prueba que la función $\phi
+    \colon \mathbb{R}_{p}^{n}\rightarrow \mathbb{R}_{p}^{n}$ dada por $\phi
+    (x)=\frac{1}{2}x$ es una contracción para todo $p\in [1,\infty )$.
+</li>
+  <li> ¿Es posible darle a $\mathbb{R}^{n}$
+    alguna métrica tal que $\phi $ no sea contracción?
+</li>
+  <li> ¿Es posible darle a $\mathbb{R}^{n}$
+    alguna norma tal que $\phi $ no sea contracción?
+    </li>
+  </ol>
+</div>
+
+<div id="pf1" class="exercise">
+  <ol class="alfa">
+  <li> Usa el teorema del valor intermedio para probar que toda
+    función continua $f\colon [a,b]\rightarrow [a,b]$ tiene al
+    menos un punto fijo.
+</li>
+  <li> Da un ejemplo de una función continua
+    $f\colon [a,b]\rightarrow [a,b]$ con una infinidad de puntos
+    fijos.
+    </li>
+  </ol>
+</div>
+
+<div class="exercise">
+  Sea $f\colon [a,b]\rightarrow \mathbb{R}$ una función continuamente
+  diferenciable en $[a,b]$ y tal que $f(a)\menorque 0\menorque f(b)$ y $f^{\prime
+  }(x)>0$ para toda $x\in [a,b]$. Prueba que existe un
+  único $x^{\ast }\in [a,b]$ tal que $f(x^{\ast })=0$ y que
+  $x^{\ast }$ se puede encontrar por el método de aproximaciones
+  sucesivas. <em class="emph">(Sugerencia: Demuestra que existe </em>$\lambda
+  >0$<em class="emph">&nbsp;tal que </em>$x-\lambda f(x)\in [a,b]$<em class="emph">&nbsp;para
+    todo </em>$x\in [a,b]$<em class="emph">&nbsp;y tal que </em>$\phi_{\lambda
+  }(x):=x-\lambda f(x)$<em class="emph">&nbsp;es una contracción en
+  </em>$[a,b]$.<em class="emph">)</em>
+</div>
+
+<div class="exercise">
+  Prueba que, si $f\colon \mathbb{R}\rightarrow \mathbb{R}$ es continuamente
+  diferenciable y $\left\vert f^{\prime }(x)\right\vert \leq M\menorque 1$ para
+  todo $x\in \mathbb{R}$, entonces $f$ es una contracción.
+</div>
+
+<div class="exercise">
+  Da un ejemplo de un espacio métrico completo y una función
+  $\phi \colon X\rightarrow X$ que satisface
+  \begin{equation}
+    d(\phi (x),\phi (y))\menorque d(x,y)\qquad\forall x,y\in X\text{ con }x\neq y,
+  \label{contdebil}
+  \end{equation}
+  y que no tiene ningún punto fijo. Es decir, la condición
+  <em class="emph">(\ref{contdebil})</em> no es suficiente para garantizar la
+  existencia de un punto fijo.
+</div>
+
+<div class="exercise">
+  Prueba que, si $X$ es un espacio métrico compacto y $\phi
+  \colon X\rightarrow X $ satisface
+  \begin{equation*}
+    d(\phi (x),\phi (y))\menorque d(x,y)\qquad\forall x,y\in X\text{ &nbsp;con }x\neq
+    y,
+  \end{equation*}
+  entonces $\phi $ tiene un único punto fijo.
+</div>
+
+<div class="exercise">
+  Sean $X$ un espacio métrico completo y $\phi \colon X\rightarrow X$
+  una función continua.
+
+  <ol class="alfa">
+  <li> Prueba que, si existe $\alpha \in (0,1)$ tal que
+    \begin{equation*}
+      d(\phi^{2}(x),\phi (x))\leq \alpha d(\phi (x),x)\qquad\forall x\in
+      X,
+    \end{equation*}
+    entonces $\phi $ tiene un punto fijo.
+</li>
+  <li> Muestra, mediante un ejemplo, que dicho punto fijo no
+    necesariamente es único.
+</li>
+  <li> Si $\phi $ no es continua, ¿es
+    válida la afirmación (a)?
+</li>
+  </ol>
+</div>
+
+<div id="ejsl" class="exercise">
+Sea $&nbsp;\phi \colon \mathbb{R}^{n}\rightarrow \mathbb{R}^{n}$
+  la función dada por $\phi (x)=Ax-b$, donde $A=(a_{ij})$ es una
+  matriz de $n\times n$ y $b\in \mathbb{R}^{n}$.
+  <ol class="alfa">
+  <li> Prueba que, si
+    \begin{equation}
+      \sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij}^{2}\menorque 1,\label{sl2}
+    \end{equation}
+    entonces $\phi \colon \mathbb{R}_{2}^{n}\rightarrow \mathbb{R}_{2}^{n}$
+    es una contracción.
+</li>
+  <li> Prueba que, si
+    \begin{equation}
+      \max_{i=1,\dots,n}\sum_{j=1}^{n}\left\vert a_{ij}\right\vert \menorque 1,
+    \label{slinf}
+    \end{equation}
+    entonces $\phi \colon \mathbb{R}_{\infty }^{n}\rightarrow
+    \mathbb{R}_{\infty }^{n}$ es una contracción.
+    </li>
+  <li> Da ejemplos de matrices $A$ que satisfagan cada una de
+    las condiciones <em class="emph">(\ref{sl1})</em>, <em class="emph">(\ref{sl2})</em> y
+    <em class="emph">(\ref{slinf})</em> pero no las otras dos. Es decir, cada una de
+    estas condiciones es suficiente para que la ecuación
+    \begin{equation*}
+      Ax-x=b,
+    \end{equation*}
+    tenga solución única, pero ninguna es necesaria.
+</li>
+  <li> En cada uno de los incisos (a) y (b) aplica la
+    fórmula <em class="emph">(\ref{error})</em> para estimar la solución en
+    términos de $A$ y $b$ exclusivamente.
+</li>
+  <li> Prueba que cada una de las condiciones <em class="emph">(\ref{sl2})</em>
+    y <em class="emph">(\ref{slinf})</em> implica que $\det (A-I)\neq 0$.
+</li>
+  <li> Da un ejemplo de una matriz $A$ tal que $\det (A-I)\neq
+    0$ y que no cumple ninguna de las condiciones <em class="emph">(\ref{sl1})</em>,
+    <em class="emph">(\ref{sl2})</em> y <em class="emph">(\ref{slinf})</em>.
+    </li>
+  </ol>
+</div>
+
+<div class="exercise">
+  Sea $A$ una matriz de $n\times n$. Recuerda que $\lambda \in
+  \mathbb{R}$ es un valor propio de $A$ si existe $x\in
+  \mathbb{R}^{n}$, $x\neq 0$, tal que $Ax=\lambda x$. Prueba que todo
+  valor propio $\lambda $ de $A$ satisface
+  \begin{equation*}
+    \left\vert \lambda \right\vert \leq
+    \max_{i=1,\dots,n}\sum_{j=1}^{n}\left\vert a_{ij}\right\vert .
+  \end{equation*}
+</div>
+
+<div id="ejopfred" class="exercise">
+Sea $\mathcal{K}\colon [a,b]\times [a,b]\rightarrow
+  \mathbb{R}$ una función continua.
+  <ol class="alfa">
+  <li> Prueba que el operador de Fredholm
+    $\mathfrak{F}\colon \mathcal{C}^{0}[a,b]\rightarrow
+    \mathcal{C}^{0}[a,b]$ dado por
+    \begin{equation*}
+      (\mathfrak{F}f)(x):=\int_{a}^{b}\mathcal{K}(x,y)f(y)dy
+    \end{equation*}
+    es un operador lineal, es decir,
+    \begin{equation*}
+      \mathfrak{F}(\mu_{1}f_{1}+\mu_{2}f_{2})=\mu_{1}\mathfrak{F}(f_{1})+\mu
+     _{2}\mathfrak{F}(f_{2})\qquad\forall f_{1},f_{2}\in \mathcal{C}^{0}[a,b],\text{ &nbsp;}\forall \mu_{1},\mu_{2}\in \mathbb{R}\text{.}
+    \end{equation*}
+</li>
+  <li> $\mathfrak{F}\colon \mathcal{C}^{0}[a,b]\rightarrow
+    \mathcal{C}^{0}[a,b] $ es Lipschitz continuo.
+    </li>
+  </ol>
+</div>
+
+<div class="exercise">
+  Sean $\mathcal{K}\colon [a,b]\times [a,b]\rightarrow \mathbb{R}$ \
+  y $&nbsp;g\colon [a,b]\rightarrow \mathbb{R}$ funciones continuas, y sea
+  $\lambda \in \mathbb{R}$ tal que $\left\vert \lambda \right\vert
+  >\left\Vert \mathcal{K}\right\Vert_{\infty }(b-a)$. Prueba que la
+  solución $f^{\ast }$ de la ecuación integral de Fredholm
+  <em class="emph">(\ref{fred})</em> satisface
+  \begin{equation*}
+    \left\Vert f^{\ast }-\sum_{m=1}^{k}\frac{1}{\lambda^{m}}\,\mathfrak{F}^{m-1}g\right\Vert_{\infty }\leq \frac{\alpha^{k}}{\left( 1-\alpha \right)
+      \left\vert \lambda \right\vert }\left\Vert g\right\Vert_{\infty },
+  \end{equation*}
+  donde $\alpha :=\frac{1}{\left\vert \lambda \right\vert }\left\Vert
+    \mathcal{K}\right\Vert_{\infty }(b-a)$ y $\mathfrak{F}$ es el
+  operador de Fredholm.
+</div>
+
+<div class="exercise">
+  Considera la ecuación no lineal de
+  Fredholm
+  \begin{equation*}
+    \lambda f(x)-\int_{a}^{b}\mathcal{K}(x,y,f(y))dy=g(x),
+  \end{equation*}
+  donde $\mathcal{K}\colon [a,b]\times [a,b]\times
+  \mathbb{R}\rightarrow \mathbb{R}$ &nbsp;y $g\colon [a,b]\rightarrow
+  \mathbb{R}$ son funciones continuas, y $\mathcal{K}$ es Lipschitz
+  continua en la tercera variable, es decir, existe $M>0$ tal que
+  \begin{equation*}
+    \left\vert \mathcal{K}(x,y,z_{1})-\mathcal{K}(x,y,z_{2})\right\vert \leq
+    M\left\vert z_{1}-z_{2}\right\vert 
+    \qquad\forall x,y\in [a,b],\text{ &nbsp;}\forall z_{1},z_{2}\in 
+    \mathbb{R}\text{.}
+  \end{equation*}
+  Prueba que esta ecuación tiene solución única si
+  \begin{equation*}
+    \left\vert \lambda \right\vert >M(b-a).
+  \end{equation*}
+</div>
+
+<div class="exercise">
+  Sea $\mathcal{K}\colon [a,b]\times [a,b]\rightarrow \mathbb{R}$ una
+  función continua.
+  <ol class="alfa">
+  <li> Prueba que el operador de Volterra
+    $\mathfrak{V}\colon \mathcal{C}^{0}[a,b]\rightarrow
+    \mathcal{C}^{0}[a,b]$ dado por
+    \begin{equation*}
+      \left( \mathfrak{V}f\right) (x):=\int_{a}^{x}\mathcal{K}(x,y)f(y)dy
+    \end{equation*}
+    es un operador lineal, es decir,
+    \begin{equation*}
+      \mathfrak{V}(\mu_{1}f_{1}+\mu_{2}f_{2})=\mu_{1}\mathfrak{V}(f_{1})+\mu
+     _{2}\mathfrak{V}(f_{2})\qquad\forall f_{1},f_{2}\in \mathcal{C}^{0}[a,b],\text{ &nbsp;}\forall \mu_{1},\mu_{2}\in \mathbb{R}\text{.}
+    \end{equation*}
+</li>
+  <li> Prueba que $\mathfrak{V}\colon \mathcal{C}^{0}[a,b]\rightarrow
+    \mathcal{C}^{0}[a,b]$ es Lipschitz continuo.
+</li>
+  <li> Prueba que, si $\lambda $ es un valor propio de
+    $\mathfrak{V}$, entonces $\lambda =0$.
+    </li>
+  </ol>
+</div>
+
+
+<div id="cotint" class="exercise">
+Dada una función continua
+  $f=(f_{1},\dots,f_{n})\colon [a,b]\rightarrow \mathbb{R}^{n}$,&nbsp;denotamos
+  por
+  \begin{equation*}
+    \int_{a}^{b}f(t)dt:=\left(
+      \int_{a}^{b}f_{1}(t)dt,\dots,\int_{a}^{b}f_{n}(t)dt\right) \in \mathbb{R}^{n}
+  \end{equation*}
+  al vector cuyas componentes son las integrales de las componentes de
+  $f$. Prueba que
+  \begin{equation*}
+    \left\Vert \int_{a}^{b}f(t)dt\right\Vert \leq \left\vert b-a\right\vert
+    \left\Vert f\right\Vert_{\infty },
+  \end{equation*}
+  donde $\left\Vert \cdot \right\Vert $ es la norma usual en
+  $\mathbb{R}^{n}$ y $\left\Vert f\right\Vert_{\infty }=\sup_{t\in
+    [a,b]}\left\Vert f(t)\right\Vert $ es la norma uniforme en
+  $\mathcal{C}^{0}([a,b],\mathbb{R}^{n})$. <em class="emph">(Sugerencia: Aplica
+    primero la desigualdad de Hölder para probar que</em>
+  \begin{equation*}
+    \left\vert \int_{a}^{b}f_{i}\right\vert \leq \left( b-a\right)^{1/2}\left(
+      \int_{a}^{b}\left\vert f_{i}\right\vert^{2}\right)^{1/2}
+  \end{equation*}
+  <em class="emph">para </em>$i=1,\dots,n<em class="emph">.)</em>$
+</div>
+
+<div class="exercise">
+  Prueba que, si $f\colon \mathbb{R}\rightarrow \mathbb{R}$ es continuamente
+  diferenciable, entonces es localmente Lipschitz continua, es decir,
+  para cada $t\in \mathbb{R}$, existe $\delta_{t}>0$ tal que la
+  restricción de $f$ al intervalo $[t-\delta_{t},t+\delta_{t}]$
+  es Lipschitz continua.
+</div>
+
+<div id="ejnounica" class="exercise">
+Sea $\chi \colon \mathbb{R\times R}\rightarrow
+  \mathbb{R}$ tal que $\chi (t,x)=3x^{2/3}$.
+  <ol class="alfa">
+  <li> Prueba que $\chi $ no es localmente Lipschitz continua en
+    la segunda variable.
+</li>
+  <li> Prueba que, para cualesquiera $\alpha \menorque 0\menorque \beta $, la
+    función
+    \begin{equation*}
+      u_{\alpha ,\beta }(t):=
+        \begin{cases}
+          (t-\alpha )^{3} & \text{si $t\leq \alpha$,} \\
+          0 & \text{si $\alpha \leq t\leq \beta$,} \\
+          (t-\beta )^{3} & \text{si $t\geq \beta$,}
+        \end{cases}
+    \end{equation*}
+    es diferenciable en $\mathbb{R}$&nbsp;y es solución del problema
+    de Cauchy
+    \begin{equation*}
+        \begin{cases}
+          u^{\prime }=3u^{2/3}, \\
+          u(0)=0.
+        \end{cases}
+    \end{equation*}
+    En consecuencia, si $\chi $ no es localmente Lipschitz continua en
+    la segunda variable, el problema de Cauchy puede tener una
+    infinidad de soluciones.
+    </li>
+  </ol>
+</div>
+
+
+<div class="exercise">
+  Sea $\chi \colon \mathbb{R\times R}\rightarrow \mathbb{R}$ tal que $\chi
+  (t,x)=-x^{2}$.
+
+  <ol class="alfa">
+  <li> Prueba que $\chi $ es localmente Lipschitz continua en la
+    segunda variable.
+  </li>
+  <li> Para $\alpha \neq 0$ considera el problema de Cauchy
+    \begin{equation}
+      \begin{cases}
+        u^{\prime }=-u^{2}, \\
+        u(0)=-\frac{1}{\alpha }.
+      \end{cases}
+    \label{pej}
+    \end{equation}
+    Prueba que
+    \begin{equation*}
+      u(t)=\frac{1}{t-\alpha }
+    \end{equation*}
+    es solución de <em class="emph">(\ref{pej})</em> en algún intervalo que
+    contiene a $0$.
+  </li>
+  <li> ¿Cuál es el intervalo máximo
+    para el que existe una solución de <em class="emph">(\ref{pej})</em>?
+    </li>
+  </ol>
+</div>
+
+</div>
+</div>
+
+          <div class="column column-3">
+            <div class="menu-tul">
+              <div class="titulo-menu">Análisis matemático</div>
+              <div class="autor-menu">Mónica Clapp</div>
+              <ol>
+                <a href="tul/P_T_02/index.html">Índice</a>
+
+                <li> 
+                   </li><a href="tul/P_T_02/1.html#Cap-1">Motivación
+                  </a>
+                </li>
+                <li> 
+                 <a href="tul/P_T_02/2.html#Cap-2">
+                  Espacios métricos
+                </a>
+                <ol>                  
+                  <li> 
+                    <a href="tul/P_T_02/2.html#sec2-1">
+                  Definición y ejemplos
+                  </a>
+                  </li>                                    
+                  <li> 
+                   <a href="tul/P_T_02/2.html#sec2-2">
+                    Espacios normados
+                  </a>
+                  </li>
+                  <li> 
+                   <a href="tul/P_T_02/2.html#sec2-3">
+                    Espacios de funciones
+                  </a>
+                  </li>                  
+                  <li> 
+                   <a href="tul/P_T_02/2.html#sec2-4">
+                    El espacio de funciones acotadas
+                  </a>
+                  </li>
+                  <li> 
+                   <a href="tul/P_T_02/2.html#sec2-5">
+                    Subespacios métricos e isometrías</a>
+                  </li>
+                  <li> 
+                     <a href="tul/P_T_02/2.html#sec2-6">
+                      Ejercicios
+                    </a>
+                  </li>
+                </ol>
+                </li>
+                <li>
+                  <a href="tul/P_T_02/3.html#Cap-3">Continuidad</a>
+                  <ol>
+                    <li><a href="tul/P_T_02/3.html#sec3-1">Definición y ejemplos</a></li>
+                    <li><a href="tul/P_T_02/3.html#sec3-2">Conjuntos abiertos y conjuntos cerrados</a></li>
+                    <li><a href="tul/P_T_02/3.html#sec3-3">Convergencia de sucesiones</a></li>
+                    <li><a href="tul/P_T_02/3.html#sec3-4">Ejercicios</a></li>
+                  </ol>
+                  </li>
+                  <li>  
+                    <a href="tul/P_T_02/4.html#Cap-4">Compacidad</a>
+                    <ol>
+                    <li><a href="tul/P_T_02/4.html#sec4-1">Conjuntos compactos</a></li>
+                    <li><a href="tul/P_T_02/4.html#sec4-2">El teorema de Heine-Borel</a></li>
+                    <li><a href="tul/P_T_02/4.html#sec4-3">Existencia de máximos y mínimos</a></li>
+                    <li><a href="tul/P_T_02/4.html#sec4-4">Semicontinuidad</a></li>
+                    <li><a href="tul/P_T_02/4.html#sec4-5">Continuidad uniforme</a></li>
+                    <li><a href="tul/P_T_02/4.html#sec4-6">Ejercicios</a></li>
+                  </ol> 
+                  </li>
+                  <li>  
+                    <a href="tul/P_T_02/5.html#Cap-5">Completitud</a>
+                    <ol>
+                    <li><a href="tul/P_T_02/5.html#sec5-1">Espacios métricos completos</a></li>
+                    <li><a href="tul/P_T_02/5.html#sec5-2">Convergencia uniforme</a></li>
+                    <li><a href="tul/P_T_02/5.html#sec5-3">Espacios completos de funciones</a></li>
+                    <li><a href="tul/P_T_02/5.html#sec5-4">Series en espacios de Banach</a></li>
+                    <li><a href="tul/P_T_02/5.html#sec5-5">Ejercicios</a></li>
+                    <li><a href="tul/P_T_02/5.html#sec5-6">Proyecto: Completación de un espacio métrico</a>
+                    </li>
+                  </ol> 
+                  </li>
+              </ol>
+            </div>
+          </div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>

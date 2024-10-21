@@ -1,0 +1,2462 @@
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/9.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 8;
+              }
+              </style>
+<h2 id="Cap-9">Diferenciabilidad</h2>
+<p>
+El cálculo diferencial estudia las funciones
+$f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}^{m}$ que se pueden aproximar
+localmente por una función lineal. La derivada de $f$ en un punto
+$x_{0}$ de $\mathbb{R}^{n} $ es la función lineal $f^{\prime
+}(x_{0})\colon \mathbb{R}^{n}\rightarrow \mathbb{R}^{m}$ que mejor aproxima
+a $f$ en dicho punto, en el sentido de que la distancia entre $\
+f(x_{0}+x)$ &nbsp;y $&nbsp;f(x_{0})+f^{\prime }(x_{0})x$ &nbsp;tiende a cero
+más rápidamente que $x$. Dicho de modo preciso,
+\begin{equation*}
+  \lim_{x\rightarrow 0}\frac{\left\Vert f(x_{0}+x)-\left( f(x_{0})+f^{\prime
+        }(x_{0})x\right) \right\Vert }{\left\Vert x\right\Vert }=0.
+\end{equation*}
+Las funciones que admiten tal aproximación se llaman
+diferenciables.
+</p>
+<p>
+La noción de diferenciabilidad se extiende de manera natural a
+funciones $f\colon V\rightarrow W$ entre espacios de Banach con la siguiente
+precaución: además de requerir que $f^{\prime
+}(x_{0})\colon V\rightarrow W$ sea una función lineal es necesario pedir
+que sea continua. Recuerda que las funciones lineales entre espacios
+de Banach de dimensión infinita no son necesariamente
+continuas. La continuidad de $f^{\prime }(x_{0})$ juega un papel
+esencial para la validez de muchas propiedades importantes, como la
+continuidad de las funciones diferenciables o la regla de la
+cadena. El papel de la continuidad queda oculto cuando consideramos
+funciones entre espacios euclidianos: la usamos sin darnos cuenta,
+pues toda función lineal entre espacios de dimensión finita es
+automáticamente continua.
+</p>
+<p>
+En este capítulo introduciremos el concepto de derivada para funciones
+entre espacios de Banach y estudiaremos sus propiedades
+fundamentales. Los resultados que presentaremos son generalizaciones
+inmediatas de los resultados de cálculo que ya conocemos. Sin embargo,
+presentarlos en esta generalidad tiene varias ventajas. Por una parte,
+hay aplicaciones importantes que requieren este nivel de
+generalidad. Por ejemplo, las soluciones de muchas ecuaciones
+diferenciales parciales, que modelan problemas importantes de la
+física, la ingeniería, la biología y otras disciplinas, resultan ser
+puntos críticos de una función diferenciable definida en un espacio de
+funciones\footnote{Consulta, por ejemplo,~\cite{Costa}.}.
+</p>
+<p>
+Por otra parte, este nivel de generalidad permite definir muchos
+conceptos de manera sencilla. Un ejemplo de ello son las derivadas de
+orden superior, cada una de las cuales no es sino la derivada de la
+precedente. Además, la demostración en esta generalidad de los
+resultados que ya conocemos ayuda a comprenderlos mejor y a mayor
+profundidad. Y no perdemos nada, ya que las demostraciones no son ni
+más largas ni más complicadas que las correspondientes para
+espacios euclidianos.
+</p>
+<p>
+<h3 id="sec9-1">El espacio de funciones lineales y continuas</h3>
+</p>
+<p>
+Empezaremos estudiando al espacio de las funciones
+lineales y continuas entre dos espacios de Banach $V=(V,\left\Vert
+  \cdot \right\Vert_{V})$ y $W=(W,\left\Vert \cdot \right\Vert
+_{W})$.
+</p>
+<p>
+La continuidad de una función lineal entre ellos se caracteriza
+como sigue.
+</p>
+<p>
+<div id="lin+cont" class="proposition">
+Si $T\colon V\rightarrow W$ es una función lineal, son
+  equivalentes las siguientes afirmaciones:
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] $T$ es continua
+</p>
+<p>
+  \item[(b)] $T$ es continua en $0$.
+</p>
+<p>
+  \item[(c)] Existe $c\in \mathbb{R}$ tal que $&nbsp;\left\Vert
+      Tv\right\Vert_{W}\leq c\left\Vert v\right\Vert_{V}$ &nbsp;para
+    todo&nbsp;$v\in V$.
+</p>
+<p>
+  \item[(d)] $T$ es Lipschitz continua.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="proof">
+  Las implicaciones <em class="emph">(a)</em>$\Rightarrow $<em class="emph">(b)</em> y
+  <em class="emph">(d)</em>$\Rightarrow $<em class="emph">(a)</em> son evidentes.
+</p>
+<p>
+  <em class="emph">(b)</em>$\Rightarrow $<em class="emph">(c)</em>: Si $T$ es continua en $0$
+  existe $\delta >0$ tal que
+  \begin{equation*}
+    \left\Vert Tv\right\Vert_{W}<1\text{\qquad si }\left\Vert v\right\Vert
+   _{V}<\delta .
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \left\Vert Tv\right\Vert_{W}=\frac{2}{\delta }\left\Vert v\right\Vert
+   _{V}\left\Vert T\left( \frac{\delta }{2}\frac{v}{\left\Vert v\right\Vert_{V}}\right) \right\Vert_{W}<\frac{2}{\delta }\left\Vert v\right\Vert_{V}\text{\qquad }\forall v\in V.
+  \end{equation*}
+</p>
+<p>
+  <em class="emph">(c)</em>$\Rightarrow $<em class="emph">(d)</em>: Si existe $c>0$ tal que $\
+  \left\Vert Tv\right\Vert_{W}\leq c\left\Vert v\right\Vert_{V}$ \
+  para todo&nbsp;$v\in V$, entonces
+  \begin{equation*}
+    \left\Vert Tv_{1}-Tv_{2}\right\Vert_{W}=\left\Vert
+      T(v_{1}-v_{2})\right\Vert_{W}\leq c\left\Vert v_{1}-v_{2}\right\Vert_{V}\text{\qquad }\forall v_{1},v_{2}\in V.
+  \end{equation*}
+  Esto prueba que $T$ es Lipschitz continua.
+</div>
+</p>
+<p>
+<div class="definition">
+  Denotamos por\index{espacio!L (VW)@$\mathcal{L}(V,W)$}
+  \begin{equation*}
+    \mathcal{L}(V,W):=\left\{T\colon V\rightarrow W:T\text{ es lineal y continua}\right\}
+  \end{equation*}
+  y definimos
+  \begin{equation}
+    \left\Vert T\right\Vert_{\mathcal{L}(V,W)}:=\sup_{\substack{ v\in V  \\v\neq 0}}\frac{\left\Vert Tv\right\Vert_{W}}{\left\Vert v\right\Vert_{V}}\text{\qquad }\forall T\in \mathcal{L}(V,W).\label{defnorma}
+  \end{equation}
+</div>
+</p>
+<p>
+Nota que $\mathcal{L}(V,W)$ es un espacio vectorial con las
+operaciones dadas por
+\begin{equation*}
+  (T+S)v:=Tv+Sv,\text{\qquad }(\lambda T)v:=\lambda Tv,
+\end{equation*}
+donde $T,S\in \mathcal{L}(V,W)$, $\lambda \in \mathbb{R}$ y $v\in V$.
+La Proposición~\ref{lin+cont}&nbsp;asegura que $\left\Vert
+  T\right\Vert_{\mathcal{L}(V,W)}<\infty $. Es sencillo comprobar que
+$\left\Vert \cdot \right\Vert_{\mathcal{L}(V,W)}$ es una norma en
+$\mathcal{L}(V,W)$ [Ejercicio~\ref{norma}].
+</p>
+<p>
+Observa que
+\begin{equation}
+  \left\Vert Tv\right\Vert_{W}\leq \left\Vert T\right\Vert_{\mathcal{L}(V,W)}\left\Vert v\right\Vert_{V}\text{\qquad }\forall v\in V,\text{ &nbsp;}\forall T\in \mathcal{L}(V,W).\label{opernorm}
+\end{equation}
+Usaremos con frecuencia esta desigualdad.
+</p>
+<p>
+<div id="lin+contBanach" class="proposition">
+$\mathcal{L}(V,W)$ con la norma definida en
+  <em class="emph">(\ref{defnorma})</em>&nbsp;es un espacio de Banach.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $(T_{k})$ una sucesión de Cauchy en $\mathcal{L}(V,W)$ y
+  $\varepsilon >0$. Entonces existe $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \left\Vert T_{k}-T_{j}\right\Vert_{\mathcal{L}(V,W)}<\varepsilon \text{\qquad }\forall j,k\geq k_{0}.
+  \end{equation*}
+  Por tanto,
+  \begin{equation}
+    \bigl\Vert T_{k}v-T_{j}v\bigr\Vert_{W}<\varepsilon \bigl\Vert v\bigr\Vert
+   _{V}\text{\qquad }\forall j,k\geq k_{0},\text{ &nbsp;}\forall v\in V.
+  \label{punc}
+  \end{equation}
+  Esto implica que, para cada $v\in V$, la sucesión $(T_{k}v)$ es
+  de Cauchy en $W$ y, como $W$ es un espacio de Banach, existe $Tv\in
+  W$ tal que
+  \begin{equation*}
+    T_{k}v\rightarrow Tv\text{\qquad en &nbsp;}W.
+  \end{equation*}
+  Probaremos primero que $T\in \mathcal{L}(V,W)$.
+</p>
+<p>
+  Si $v,w\in V$, $\lambda ,\mu \in \mathbb{R}$, se tiene que
+  \begin{align*}
+    T(\lambda v+\mu w) &=\lim_{k\rightarrow \infty }T_{k}(\lambda v+\mu
+    w)=\lim_{k\rightarrow \infty }(\lambda T_{k}v+\mu T_{k}w) \\
+    &=\lambda \lim_{k\rightarrow \infty }T_{k}v+\mu \lim_{k\rightarrow \infty
+    }T_{k}w=\lambda Tv+\mu Tw.
+  \end{align*}
+  Esto prueba que $T$ es lineal. Por otra parte, haciendo tender
+  $k\rightarrow \infty $ en la desigualdad (\ref{punc}) obtenemos
+  \begin{equation}
+    \bigl\Vert Tv-T_{j}v\bigr\Vert_{W}\leq \varepsilon \bigl\Vert v\bigr\Vert
+   _{V}\qquad\forall j\geq k_{0},\quad\forall v\in V.
+  \label{limpunc}
+  \end{equation}
+  De la Proposición~\ref{lin+cont} se sigue que $T-T_{k_{0}}$ es
+  continua.  Por tanto, $T=(T-T_{k_{0}})+T_{k_{0}}$ es continua.
+</p>
+<p>
+  Finalmente, la desigualdad (\ref{limpunc}) implica que
+  \begin{equation*}
+    \frac{\left\Vert Tv-T_{j}v\right\Vert_{W}}{\bigl\Vert
+        v\bigr\Vert_{V}}\leq \varepsilon 
+    \qquad\forall j\geq k_{0},\quad\forall v\in V,\; v\neq0.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \left\Vert T-T_{j}\right\Vert_{\mathcal{L}(V,W)}\leq \varepsilon\qquad\forall j\geq k_{0}.
+  \end{equation*}
+  Esto prueba que $T_{j}\rightarrow T$ en $\mathcal{L}(V,W)$. En
+  consecuencia, $\mathcal{L}(V,W)$ es un espacio de Banach.
+</div>
+</p>
+<p>
+Recuerda que, si $\dim V<\infty $, cualquier función lineal
+$T\colon V\rightarrow W$ es continua (ver Ejercicio~\ref{ejnorfinequiv}), de
+modo que $\mathcal{L}(V,W)$ es simplemente el espacio de funciones
+lineales de $V$ a $W$. En particular,
+$\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{m})$ es isomorfo a
+$\mathbb{R}^{mn}$ y cualquier isomorfismo resulta ser un homeomorfismo
+para cualquier norma [Ejercicio~\ref{matr}].
+</p>
+<p>
+<h3 id="sec9-2">Diferenciabilidad</h3>
+</p>
+<p>
+Para hablar de diferenciabilidad requerimos la noción de
+límite.
+</p>
+<p>
+<div class="definition">
+  Sean $X,Y$ espacios métricos, $A$ un subconjunto de $X$,
+  $f\colon A\rightarrow Y$ una función, $x_{0}\in \overline{A}$ y
+  $y_{0}\in Y$. Decimos que\index{limite@límite}
+  \begin{equation*}
+    y_{0}=\lim_{x\rightarrow x_{0}}f(x)
+  \end{equation*}
+  si, dada $\varepsilon >0$, existe $\delta >0$ tal que
+  \begin{equation*}
+    d_{Y}(f(x),y_{0})<\varepsilon 
+    \text{\qquad }\forall x\in A\text{ con }d_{X}(x,x_{0})<\delta .
+  \end{equation*}
+</div>
+</p>
+<p>
+Nota que $f$ no necesariamente está definida en $x_{0}$, pero
+$x_{0}$ debe pertenecer a la cerradura del dominio de $f$.
+</p>
+<p>
+Sean $V$ y $W$ espacios de Banach y $\Omega $ un subconjunto abierto
+de $V$.  La noción de derivada de una función entre espacios
+euclidianos se extiende a funciones entre espacios de Banach como
+sigue.
+</p>
+<p>
+<div class="definition">
+  Una función $\varphi \colon \Omega \rightarrow W$ es
+  <em class="textbf">(Fréchet-) diferenciable en el punto</em>
+  \index{función!Frechet@(Fréchet-)diferenciable}$u_{0}\in \Omega $ si
+  existe $T\in \mathcal{L}(V,W)$ tal que
+  \begin{equation}
+    \lim_{v\rightarrow 0}\frac{\left\Vert \varphi (u_{0}+v)-\varphi (u_{0})-Tv\right\Vert_{W}}{\left\Vert v\right\Vert_{V}}=0.\label{derifre}
+  \end{equation}
+  $T$ se llama <em class="textbf">la derivada (de Fréchet)&nbsp;de</em> $\varphi $
+  <em class="textbf">en</em> $u_{0}$ \index{derivada!de Fréchet}y se denota por
+  \begin{equation*}
+    \varphi^{\prime }(u_{0})\text{\qquad o bien&nbsp;por\qquad }D\varphi (u_{0}).
+  \end{equation*}
+</div>
+</p>
+<p>
+Hacemos énfasis en que $\varphi^{\prime }(u_{0})\colon V\rightarrow W$
+es una función lineal y continua. Como es usual en el caso de
+funciones lineales, escribiremos
+\begin{equation*}
+  \varphi^{\prime }(u_{0})v
+\end{equation*}
+en vez de $\varphi^{\prime }(u_{0})\left( v\right) $ para denotar al
+valor de la función $\varphi^{\prime }(u_{0})$ en $v$ y, cuando
+haga falta, usaremos la notación $\varphi^{\prime }(u_{0})[
+  v]$.
+</p>
+<p>
+La condición (\ref{derifre}) afirma que, para cada $\varepsilon
+>0$ existe $\delta >0$ tal que, para cuaquier $v\in V$ con $\left\Vert
+  v\right\Vert_{V}<\delta $ se cumple que
+\begin{equation*}
+  u_{0}+v\in \Omega \hspace{0.5in}\text{y}\hspace{0.5in}\left\Vert \varphi
+    (u_{0}+v)-\varphi (u_{0})-\varphi^{\prime }(u_{0})v\right\Vert
+ _{W}<\varepsilon \left\Vert v\right\Vert_{V}.
+\end{equation*}
+Intuitivamente, esto significa que en una vecindad suficientemente
+pequeña de $0$ la función $v\mapsto \varphi (u_{0}+v)$ se
+parece mucho a la función afín $v\mapsto \varphi
+(u_{0})+\varphi^{\prime }(u_{0})v$. Tanto así, que la norma de
+la diferencia entre los valores en $v$ de ambas funciones $\left\Vert
+  \varphi (u_{0}+v)-\left( \varphi (u_{0})+\varphi^{\prime
+    }(u_{0})v\right) \right\Vert_{W}$ tiende a $0$ más
+rápidamente que la norma de $v$.
+</p>
+<p>
+La siguiente proposición garantiza que la derivada está bien
+definida.
+</p>
+<p>
+<div class="proposition">
+  Si $\varphi $ es diferenciable en $u_{0}$, la función $T\in
+  \mathcal{L}(V,W)$ que cumple <em class="emph">(\ref{derifre})</em> es única.
+</div>
+</p>
+<p>
+<div class="proof">
+  Supongamos que $T_{1},T_{2}\in \mathcal{L}(V,W)$ cumplen
+  (\ref{derifre}).  Entonces, dada $\varepsilon >0$, existe $\delta
+  >0$ tal que
+  \begin{equation*}
+    \left\Vert \varphi (u_{0}+v)-\varphi (u_{0})-T_{i}v\right\Vert_{W}<\frac{\varepsilon }{2}\left\Vert v\right\Vert_{V}\text{\qquad si &nbsp;}\left\Vert
+      v\right\Vert_{V}<\delta ,\text{ &nbsp;}i=1,2.
+  \end{equation*}
+  Por tanto, si&nbsp;$\left\Vert v\right\Vert_{V}<\delta $,
+  \begin{align*}
+    \left\Vert T_{1}v-T_{2}v\right\Vert_{W} &\leq \left\Vert T_{1}v-\varphi
+      (u_{0}+v)+\varphi (u_{0})\right\Vert_{W}+\left\Vert \varphi
+      (u_{0}+v)-\varphi (u_{0})-T_{2}v\right\Vert_{W} \\
+    &<\varepsilon \left\Vert v\right\Vert_{V}\text{.}
+  \end{align*}
+  Si $\left\Vert v\right\Vert_{V}\geq \delta $, escogemos $\lambda
+  \in (0,1)$ tal que $\left\Vert \lambda v\right\Vert_{V}<\delta $.
+  Entonces la desigualdad anterior asegura que
+  \begin{equation*}
+    \left\Vert T_{1}v-T_{2}v\right\Vert_{W}=\frac{1}{\lambda }\left\Vert
+      T_{1}(\lambda v)-T_{2}(\lambda v)\right\Vert_{W}<\frac{\varepsilon }{\lambda }\left\Vert \lambda v\right\Vert_{V}=\varepsilon \left\Vert
+      v\right\Vert_{V}.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \left\Vert T_{1}v-T_{2}v\right\Vert_{W}<\varepsilon \left\Vert v\right\Vert
+   _{V}\text{\qquad }\forall v\in V.
+  \end{equation*}
+  Como $\varepsilon >0$ es arbitraria, necesariamente $T_{1}v=T_{2}v$.
+</div>
+</p>
+<p>
+<div class="definition">
+  &nbsp;$\varphi \colon \Omega \rightarrow W$ es
+  <em class="textbf">(Fréchet-) diferenciable en</em> $\Omega $
+  \index{función!Frechet@(Fréchet-)diferenciable}si lo es en cada
+  punto $u\in \Omega $. La función
+  \begin{equation*}
+    \varphi^{\prime }\colon \Omega \rightarrow \mathcal{L}(V,W),\text{\qquad }u\mapsto \varphi^{\prime }(u),
+  \end{equation*}
+  se llama la <em class="textbf">derivada (de Fréchet) de</em> $\varphi
+  $\index{derivada!de Fréchet}. La denotaremos también por
+  \begin{equation*}
+    D\varphi \colon \Omega \rightarrow \mathcal{L}(V,W).
+  \end{equation*}
+</div>
+</p>
+<p>
+Usualmente diremos que $\varphi \colon \Omega \rightarrow W$ es
+diferenciable en vez de decir que es Fréchet-diferenciable y
+hablaremos de su derivada para referirnos a su derivada de
+Fréchet.
+</p>
+<p>
+<div id="ejder1" class="example">
+Si $\varphi \colon \Omega \rightarrow W$ es constante,
+  entonces es diferenciable en $\Omega $ y $\varphi^{\prime }(u)=0\in
+  \mathcal{L}(V,W)$ para todo $u\in \Omega $, ya que
+  \begin{equation*}
+    \varphi (u+v)-\varphi (u)=0\text{\qquad }\forall v\in V\text{ con }u+v\in \Omega .\text{ }
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="ejder2" class="example">
+Toda función $T\in \mathcal{L}(V,W)$ es
+  diferenciable en $V $ y $T^{\prime }(u)=T$ para todo $u\in V$, ya
+  que
+  \begin{equation*}
+    T(u+v)-Tu-Tv=0\text{\qquad }\forall v\in V.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="ejder3" class="example">
+La función $\varphi \colon \ell_{2}\rightarrow
+  \mathbb{R}$ dada por $\varphi (\overline{x}):=\left\Vert
+    \overline{x}\right\Vert_{\ell_{2}}^{2}=\sum_{k=1}^{\infty
+  }x_{k}^{2}$ es diferenciable en $\ell_{2}$ y
+  \begin{equation*}
+    \varphi^{\prime }(\overline{x})\overline{y}=2\sum_{k=1}^{\infty
+    }x_{k}y_{k}\text{\qquad }\forall \overline{x}=(x_{k}),\text{ }\overline{y}=(y_{k})\in \ell_{2}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Observa que
+  \begin{equation*}
+    \left\Vert \overline{x}+\overline{y}\right\Vert_{\ell_{2}}^{2}=\left\Vert 
+      \overline{x}\right\Vert_{\ell_{2}}^{2}+2\sum_{k=1}^{\infty
+    }x_{k}y_{k}+\left\Vert \overline{y}\right\Vert_{\ell_{2}}^{2}\text{\qquad }\forall \overline{x},\overline{y}\in \ell_{2}.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \frac{\left\vert \varphi (\overline{x}+\overline{y})-\varphi (\overline{x})-2\sum_{k=1}^{\infty }x_{k}y_{k}\right\vert }{\left\Vert \overline{y}\right\Vert_{\ell_{2}}}=\left\Vert \overline{y}\right\Vert_{\ell
+     _{2}}\rightarrow 0\text{\qquad cuando }y\rightarrow 0.
+  \end{equation*}
+</p>
+<p>
+  Fijemos $\overline{x}\in \ell_{2}$. La función $T\colon \ell
+ _{2}\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    T\overline{y}:=2\sum_{k=1}^{\infty }x_{k}y_{k}
+  \end{equation*}
+  es evidentemente lineal. De la desigualdad de Hölder para series
+  (ver Ejercicio~\ref{lholder}) se sigue que
+  \begin{equation*}
+    \left\vert T\overline{y}\right\vert =2\left\vert \sum_{k=1}^{\infty
+      }x_{k}y_{k}\right\vert \leq 2\sum_{k=1}^{\infty }\left\vert
+      x_{k}y_{k}\right\vert \leq 2\left\Vert \overline{x}\right\Vert_{\ell
+     _{2}}\left\Vert \overline{y}\right\Vert_{\ell_{2}}.
+  \end{equation*}
+  En consecuencia$,\mathcal{&nbsp;}T\colon \ell_{2}\rightarrow \mathbb{R}$ es
+  continua (ver Proposición~\ref{lin+cont}). Esto prueba que
+  $\varphi $ es diferenciable en $\overline{x}$ y que $\varphi
+ ^{\prime }(\overline{x})=T$.
+</div>
+</p>
+<p>
+<div class="proposition">
+  Si $\varphi $ es diferenciable en $u_{0}$, entonces $\varphi $ es
+  continua en $u_{0}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $\varphi $ es diferenciable en $u_{0}$, existe $\delta_{1}>0$
+  tal que
+  \begin{equation*}
+    \left\Vert \varphi (u)-\varphi (u_{0})-\varphi^{\prime
+      }(u_{0})(u-u_{0})\right\Vert_{W}<\left\Vert u-u_{0}\right\Vert_{V}\text{\qquad si &nbsp;}\left\Vert u-u_{0}\right\Vert_{V}<\delta_{1}.
+  \end{equation*}
+  Como $\varphi^{\prime }(u_{0})\in \mathcal{L}(V,W)$, usando la
+  desigualdad (\ref{opernorm}) obtenemos
+  \begin{align*}
+    \left\Vert \varphi (u)-\varphi (u_{0})\right\Vert_{W} &\leq \left\Vert
+      \varphi (u)-\varphi (u_{0})-\varphi^{\prime }(u_{0})(u-u_{0})\right\Vert
+   _{W}+\left\Vert \varphi^{\prime }(u_{0})(u-u_{0})\right\Vert_{W} \\
+    &<\left\Vert u-u_{0}\right\Vert_{V}+\left\Vert \varphi^{\prime
+      }(u_{0})\right\Vert_{\mathcal{L}(V,W)}\left\Vert u-u_{0}\right\Vert_{V} \\
+    &=\left( 1+\left\Vert \varphi^{\prime }(u_{0})\right\Vert_{\mathcal{L}(V,W)}\right) \left\Vert u-u_{0}\right\Vert_{V}\text{\qquad si}&nbsp;\
+    \left\Vert u-u_{0}\right\Vert_{V}<\delta_{1}.
+  \end{align*}
+  Dada $\varepsilon >0$, tomemos $\delta :=\min \left\{ \delta
+   _{1},\varepsilon \left( 1+\left\Vert \varphi^{\prime
+        }(u_{0})\right\Vert_{\mathcal{L}(V,W)}\right)^{-1}\right\}
+  $. Entonces,
+  \begin{equation*}
+    \left\Vert \varphi (u)-\varphi (u_{0})\right\Vert_{W}<\varepsilon \text{\qquad si &nbsp;}\left\Vert u-u_{0}\right\Vert_{V}<\delta .
+  \end{equation*}
+  Esto prueba que $\varphi $ es continua en $u_{0}$.
+</div>
+</p>
+<p>
+<div class="proposition">[Linealidad de la derivada]
+  \index{linealidad!de la derivada}Si $\varphi ,\psi \colon \Omega
+  \rightarrow W$ son diferenciables en $u_{0}$ y $\lambda ,\mu \in
+  \mathbb{R}$, entonces $\lambda \varphi +\mu \psi $ es diferenciable
+  en $u_{0}$ y
+  \begin{equation*}
+    (\lambda \varphi +\mu \psi )^{\prime }(u_{0})=\lambda \varphi^{\prime
+    }(u_{0})+\mu \psi^{\prime }(u_{0}).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  La demostración es un ejercicio sencillo [Ejercicio~\ref{linderi}].
+</div>
+</p>
+<p>
+<div class="proposition">[Regla de la cadena]
+\label{regcad}\index{regla de la cadena}Sean $\Omega \subset V$,
+  $\widetilde{\Omega }\subset W$ subconjuntos abiertos. Si $\varphi
+  \colon \Omega \rightarrow W$ es diferenciable en $u_{0}$, $\varphi (v)\in
+  \widetilde{\Omega }$ para todo $v\in \Omega $ y $\psi
+  \colon \widetilde{\Omega }\rightarrow Z$ es diferenciable en
+  $v_{0}:=\varphi (u_{0})$, entonces $\psi \circ \varphi \colon \Omega
+  \rightarrow Z$ es diferenciable en $u_{0}$ y
+  \begin{equation*}
+    (\psi \circ \varphi )^{\prime }(u_{0})=\psi^{\prime }(v_{0})\circ \varphi
+   ^{\prime }(u_{0}).
+  \end{equation*}
+</div>
+<div class="proof">
+  Para $v\in V$ y $w\in W$ tales que $u_{0}+v\in \Omega $ y
+  $v_{0}+w\in \widetilde{\Omega }$, definimos
+  \begin{gather*}
+        o_{1}(v):=\varphi (u_{0}+v)-\varphi (u_{0})-\varphi^{\prime }(u_{0})v, \\
+        o_{2}(w):=\psi (v_{0}+w)-\psi (v_{0})-\psi^{\prime }(v_{0})w.
+  \end{gather*}
+  Se tiene entonces que
+  \begin{align*}
+    (\psi \circ \varphi )(u_{0}+v) &=\psi (\varphi (u_{0}+v)) \\
+    &=\psi (\varphi (u_{0})+\varphi^{\prime }(u_{0})v+o_{1}(v)) \\
+    &=\psi (v_{0})+\psi^{\prime }(v_{0})\left[ \varphi^{\prime
+      }(u_{0})v+o_{1}(v)\right] +o_{2}(\varphi^{\prime }(u_{0})v+o_{1}(v)) \\
+    &=(\psi \circ \varphi )(u_{0})+\left[ \psi^{\prime }(v_{0})\circ \varphi
+     ^{\prime }(u_{0})\right] v+o_{3}(v),
+  \end{align*}
+  donde
+  \begin{equation*}
+    o_{3}(v):=\psi^{\prime }(v_{0})\left[ o_{1}(v)\right] +o_{2}(\varphi
+   ^{\prime }(u_{0})v+o_{1}(v)).
+  \end{equation*}
+  Probaremos a continuación que
+  \begin{equation}
+    \lim_{v\rightarrow 0}\frac{\left\Vert o_{3}(v)\right\Vert_{Z}}{\left\Vert
+        v\right\Vert_{V}}=0.\label{limcadena}
+  \end{equation}
+  Sea $\varepsilon >0$. Denotemos por
+  \begin{gather*}
+    c_{1}:=\left\Vert \varphi^{\prime
+      }(u_{0})\right\Vert_{\mathcal{L}(V,W)}+1,\qquad 
+    c_{2}:=\left\Vert \psi^{\prime }(v_{0})\right\Vert_{\mathcal{L}(W,Z)}+1,\\
+    \varepsilon_{1}:=\min \left\{ \frac{\varepsilon
+      }{2c_{2}},1\right\} ,\qquad 
+    \varepsilon_{2}:=\frac{\varepsilon }{2c_{1}}.
+  \end{gather*}
+  Como $\varphi $ es diferenciable en $u_{0}$ y $\psi $ es
+  diferenciable en $v_{0}$, existen $\delta_{1},\delta_{2}>0$ tales
+  que
+  \begin{alignat*}{2}
+    \left\Vert o_{1}(v)\right\Vert_{W} &<\varepsilon_{1}\left\Vert
+      v\right\Vert_{V} &\quad&\text{si $\left\Vert v\right\Vert_{V}<\delta_{1}$,}
+    \\
+    \left\Vert o_{2}(w)\right\Vert_{Z} &<\varepsilon_{2}\left\Vert
+      w\right\Vert_{W} &&\text{si $\left\Vert w\right\Vert_{W}<\delta_{2}$.}
+  \end{alignat*}
+  Sea $\delta_{3}:=\min \left\{\delta_{1},\frac{\delta_{2}}{c_{1}}\right\}$.
+  Entonces,
+  \begin{align*}
+    \left\Vert \varphi^{\prime }(u_{0})v+o_{1}(v)\right\Vert_{W} &\leq
+   \left\Vert \varphi^{\prime }(u_{0})v\right\Vert_{W}+\left\Vert
+      o_{1}(v)\right\Vert_{W} \\
+    &<\left\Vert \varphi^{\prime }(u_{0})\right\Vert_{\mathcal{L}(V,W)}\left\Vert v\right\Vert_{V}+\varepsilon_{1}\left\Vert v\right\Vert
+   _{V}\leq c_{1}\left\Vert v\right\Vert_{V}\text{&nbsp;&nbsp;si }\left\Vert
+      v\right\Vert_{V}<\delta_{1}.
+  \end{align*}
+  Por tanto, $\left\Vert \varphi^{\prime
+    }(u_{0})v+o_{1}(v)\right\Vert_{W}<\delta_{2}$ &nbsp;si $\left\Vert
+    v\right\Vert_{V}<\delta_{3}$ y, en consecuencia,
+  \begin{align*}
+    \left\Vert o_{2}(\varphi^{\prime }(u_{0})v+o_{1}(v))\right\Vert_{Z}
+    &<\varepsilon_{2}\left\Vert \varphi^{\prime }(u_{0})v+o_{1}(v)\right\Vert
+   _{W} \\
+    &<\varepsilon_{2}c_{1}\left\Vert v\right\Vert_{V}\leq \frac{\varepsilon }{2}\left\Vert v\right\Vert_{V}\text{\qquad si }\left\Vert v\right\Vert
+   _{V}<\delta_{3}.
+  \end{align*}
+  Por otra parte,
+  \begin{align*}
+    \left\Vert \psi^{\prime }(v_{0})\left[ o_{1}(v)\right] \right\Vert_{Z}
+    &\leq \left\Vert \psi^{\prime }(v_{0})\right\Vert_{\mathcal{L}(W,Z)}\left\Vert o_{1}(v)\right\Vert_{W} \\
+    &< c_{2}\varepsilon_{1}\left\Vert v\right\Vert_{V}\leq \frac{\varepsilon }{2}\left\Vert v\right\Vert_{V}\text{\qquad si }\left\Vert v\right\Vert
+   _{V}<\delta_{1}.
+  \end{align*}
+  Concluimos que
+  \begin{equation*}
+    \left\Vert o_{3}(v)\right\Vert_{Z}<\varepsilon \left\Vert v\right\Vert_{V}\text{\qquad si }\left\Vert v\right\Vert_{V}<\delta_{3}.
+  \end{equation*}
+  Esto prueba (\ref{limcadena}) y concluye la demostración de la
+  proposición.
+</div>
+</p>
+<p>
+<h3 id="sec9-3">El teorema del valor medio</h3>
+</p>
+<p>
+Una función lineal $T\colon \mathbb{R}\rightarrow V$
+está totalmente determinada por su valor en $1$, ya que
+\begin{equation*}
+  T[t]=T\left[ t1\right] =tT\left[ 1\right] \text{\qquad }\forall t\in \mathbb{R}.
+\end{equation*}
+La función
+\begin{equation}
+  \iota \colon \mathcal{L}(\mathbb{R},V)\rightarrow V,\text{\qquad }\iota (T):=T\left[ 1\right] ,\label{iso}
+\end{equation}
+es un isomorfismo de espacios vectoriales. Además, es una
+isometría, ya que
+\begin{equation*}
+  \left\Vert T\right\Vert_{\mathcal{L}(\mathbb{R},V)}=\sup_{\substack{ t\in 
+      \mathbb{R}  \\t\neq 0}}\frac{\left\Vert T\left[ t\right] \right\Vert_{V}}{\left\vert t\right\vert }=\sup_{\substack{ t\in \mathbb{R}  \\t\neq 0}}\left\Vert \frac{tT\left[ 1\right] }{t}\right\Vert_{V}=\left\Vert T\left[ 1\right] \right\Vert_{V}\text{\qquad }\forall T\in \mathcal{L}(\mathbb{R},V).
+\end{equation*}
+Esta isometría permite identificar a $\mathcal{L}(\mathbb{R},V)$
+con $V. $
+</p>
+<p>
+Si $\sigma \colon (a,b)\rightarrow V$ es diferenciable en un punto $t_{0}$
+de $(a,b)$, identificaremos en lo sucesivo a la transformación
+lineal $\sigma^{\prime }(t_{0})\in \mathcal{L}(\mathbb{R},V)$ con su
+valor en $1$, y escribiremos simplemente $\sigma^{\prime }(t_{0})$ en
+vez de $\sigma^{\prime }(t_{0})\left[ 1\right] $. Se tiene entonces
+que $\sigma^{\prime }(t_{0})\in V$ y
+\begin{equation*}
+  \lim_{t\rightarrow 0}\left\Vert \frac{\sigma (t+t_{0})-\sigma (t_{0})}{t}-\sigma^{\prime }(t_{0})\right\Vert_{V}=\lim_{t\rightarrow 0}\frac{\left\Vert \sigma (t+t_{0})-\sigma (t_{0})-t\sigma^{\prime
+      }(t_{0})\right\Vert_{V}}{\left\vert t\right\vert }=0.
+\end{equation*}
+Es decir,
+\begin{equation*}
+  \sigma^{\prime }(t_{0})=\lim_{t\rightarrow 0}\frac{\sigma (t+t_{0})-\sigma
+    (t_{0})}{t}\in V.
+\end{equation*}
+</p>
+<p>
+Esta identidad permite interpretar a $\sigma^{\prime }(t_{0})$ como
+la velocidad de la trayectoria\break $\sigma \colon (a,b)\rightarrow V$ en el
+tiempo $t_{0}$, tal y como solemos hacer cuando $V=\mathbb{R}^{n}$.
+Si $V=\mathbb{R} $ entonces $\sigma^{\prime }(t_{0})\in \mathbb{R}$
+es la pendiente de la recta tangente a la gráfica de $\sigma $ en
+el punto $(t_{0},\sigma (t_{0}))$.
+\begin{figure}[htb]
+  \centering
+  \input{./figuras-tikz/derivada.tikz}
+   \caption{}\label{fig:9.1}
+\end{figure}
+</p>
+<p>
+Si $\sigma \colon (a,b)\rightarrow \Omega \subset V$ es diferenciable en
+$t_{0}\in (a,b)$&nbsp;y $\varphi \colon \Omega \rightarrow W$ es diferenciable
+en $u_{0}:=\sigma (t_{0})$, la regla de la 
+cadena\index{regla de la cadena!para funciones de variable real} dice que
+\begin{equation}
+  (\varphi \circ \sigma )^{\prime }(t_{0})=\varphi^{\prime }(u_{0})[\sigma
+ ^{\prime }(t_{0})],\label{rc}
+\end{equation}
+es decir, la derivada de la trayectoria $\varphi \circ \sigma $ en
+$t_{0}$ es el valor de la función $\varphi^{\prime }(u_{0})\in
+\mathcal{L}(V,W)$ en el vector $\sigma^{\prime }(t_{0})\in V$.
+</p>
+<p>
+Uno de los resultados más útiles en análisis es el teorema
+del valor medio. Para funciones reales de variable real éste se
+expresa como una igualdad:  si $f\colon [a,b]\rightarrow \mathbb{R}$ es
+continua en $[a,b]$ y diferenciable en $(a,b)$ entonces existe $c\in
+(a,b)$ tal que $f(b)-f(a)=f^{\prime }(c)(b-a)$. El problema con esta
+formulación clásica es que no existe una igualdad semejante
+para funciones con valores vectoriales. Por otra parte, esta igualdad
+esconde el hecho de que en realidad no sabemos quién es $c$, lo
+único que sabemos es que se trata de algún punto en $(a,b)$.
+Para fines prácticos, lo importante es tener una cota para
+$\left\vert f^{\prime }(c)\right\vert $. Es decir, la verdadera
+naturaleza del teorema del valor medio se obtiene al expresarlo como
+una desigualdad.
+</p>
+<p>
+<div class="theorem">[del valor medio]
+\label{tvm}\index{teorema!del valor medio}Sea $\sigma
+  \colon [a,b]\rightarrow V$ una función continua. Si $\sigma $ es
+  diferenciable en todo punto $t\in (a,b)$ y si existe $M\in
+  \mathbb{R}$ tal que
+  \begin{equation}
+    \left\Vert \sigma^{\prime }(t)\right\Vert_{V}\leq M\text{\qquad }\forall t\in (a,b),\label{deracot}
+  \end{equation}
+  entonces
+  \begin{equation*}
+    \left\Vert \sigma (b)-\sigma (a)\right\Vert_{V}\leq M(b-a).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Probaremos que, para toda $\varepsilon >0$, se cumple que
+  \begin{equation}
+    \left\Vert \sigma (b)-\sigma (a)\right\Vert_{V}\leq M(b-a)+\varepsilon
+    (b-a)+\varepsilon .\label{pd}
+  \end{equation}
+  Esto implica que $\left\Vert \sigma (b)-\sigma (a)\right\Vert
+ _{V}\leq M(b-a)$.
+</p>
+<p>
+  Sea $\varepsilon >0$. Consideremos el conjunto
+  \begin{equation*}
+    S:=\left\{t\in [a,b]:\left\Vert \sigma (t)-\sigma (a)\right\Vert_{V}\leq
+    M(t-a)+\varepsilon (t-a)+\varepsilon \right\}.
+  \end{equation*}
+  Como $\sigma $ es continua en $a$ existe $\gamma >0$ tal que
+  \begin{equation*}
+    \left\Vert \sigma (s)-\sigma (a)\right\Vert_{V}\leq \varepsilon \text{\qquad }\forall s\in [a,a+\gamma ].
+  \end{equation*}
+  Por tanto, $a+\gamma \in S$. &nbsp;Sea $c:=\sup S$. Observa que $c\in S$
+  y $a+\gamma \leq c\leq b$. Probaremos a continuación que $c=b$.
+</p>
+<p>
+  Argumentando por contradicción, supongamos que $c<b$. Entonces
+  $\sigma $ es diferenciable en $c$ y, en consecuencia, existe $\delta
+  \in (0,\min \left\{c-a,b-c\right\})$ tal que
+  \begin{equation*}
+    \left\Vert \sigma (s)-\sigma (c)-\sigma^{\prime }(c)(s-c)\right\Vert
+   _{V}<\varepsilon \left\vert s-c\right\vert \text{\qquad si &nbsp;}\left\vert
+      s-c\right\vert <\delta .
+  \end{equation*}
+  Por tanto, si $s\in (c,c+\delta )$, usando (\ref{deracot}) obtenemos
+  \begin{align}
+    \left\Vert \sigma (s)-\sigma (a)\right\Vert_{V} &\leq \left\Vert \sigma
+      (s)-\sigma (c)\right\Vert_{V}+\left\Vert \sigma (c)-\sigma (a)\right\Vert
+   _{V}  \notag \\
+    &\leq \left\Vert \sigma (s)-\sigma (c)-\sigma^{\prime }(c)(s-c)\right\Vert
+   _{V} \notag \\
+    &\qquad{}+\left\Vert \sigma^{\prime }(c)(s-c)\right\Vert_{V}+\left\Vert \sigma
+      (c)-\sigma (a)\right\Vert_{V}  \notag \\
+    &<\varepsilon (s-c)+\left\Vert \sigma^{\prime }(c)\right\Vert
+   _{V}(s-c)+M(c-a)+\varepsilon (c-a)+\varepsilon  \notag \\
+    &\leq M(s-a)+\varepsilon (s-a)+\varepsilon \text{,}\label{eqvm}
+  \end{align}
+  lo que contradice que $c=\sup S$. En consecuencia, $c=b$. Esto
+  demuestra (\ref{pd}).
+</div>
+</p>
+<p>
+A continuación veremos que el teorema anterior permite acotar la
+diferencia entre dos valores $\varphi (u_{0})$ y $\varphi (u_{1})$ de
+una función diferenciable $\varphi \colon \Omega \rightarrow W$ cuando
+su derivada está acotada en el segmento que une a los puntos
+$u_{0}$ y $u_{1}$.
+\begin{figure}[htb]
+  \centering
+  \input{./figuras-tikz/u0-u1.tikz}
+   \caption{}\label{fig:9.2}
+\end{figure}
+</p>
+<p>
+Un modo de garantizar esto último es pidiendo que la derivada sea
+continua en $\Omega $, lo que nos lleva a introducir el siguiente
+concepto.
+</p>
+<p>
+<div class="definition">
+  Una función $\varphi \colon \Omega \rightarrow W$ es <em class="textbf">de clase</em>
+  $\mathcal{C}^{1}$ (o <em class="textbf">continuamente diferenciable</em>)
+  <em class="textbf">en</em> $\Omega $
+  \index{función!de clase c1@de clase $\mathcal{C}^{1}$}
+  si es diferenciable en
+  $\Omega $ y su derivada
+  \begin{equation*}
+    \varphi^{\prime }\colon \Omega \rightarrow \mathcal{L}(V,W)
+  \end{equation*}
+  es continua.
+</div>
+</p>
+<p>
+Las funciones de los Ejemplos~\ref{ejder1} y~\ref{ejder2}&nbsp;son de
+clase $\mathcal{C}^{1}$ ya que en ambos casos la derivada es una
+función constante. Veamos que la función del Ejemplo
+\ref{ejder3}&nbsp;también es de clase $\mathcal{C}^{1}$.
+</p>
+<p>
+<div id="ejder4" class="example">
+La función $\varphi \colon \ell_{2}\rightarrow
+  \mathbb{R}$ dada por $\varphi (\overline{x}):=\left\Vert
+    \overline{x}\right\Vert_{\ell_{2}}^{2}$ es de clase
+  $\mathcal{C}^{1}$ en $\ell_{2}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  En el Ejemplo~\ref{ejder3}&nbsp;vimos que $\varphi $ es diferenciable y
+  que su derivada es la función $\varphi^{\prime }\colon \ell
+ _{2}\rightarrow \mathcal{L}(\ell_{2},\mathbb{R})$ dada por
+  \begin{equation*}
+    \varphi^{\prime }(\overline{x})\overline{y}=2\sum_{k=1}^{\infty
+    }x_{k}y_{k}\text{\qquad }\forall \overline{x}=(x_{k}),\text{ }\overline{y}=(y_{k})\in \ell_{2}.
+  \end{equation*}
+  Si $\overline{z}=(z_{k})\in \ell_{2}$, aplicando la desigualdad de
+  Hölder para series (ver Ejercicio~\ref{lholder}) obtenemos
+  \begin{equation*}
+    \left\vert \varphi^{\prime }(\overline{z})\overline{y}-\varphi^{\prime }(\overline{x})\overline{y}\right\vert =2\left\vert \sum_{k=1}^{\infty
+      }(z_{k}-x_{k})y_{k}\right\vert \leq 2\left\Vert \overline{z}-\overline{x}\right\Vert_{\ell_{2}}\left\Vert \overline{y}\right\Vert_{\ell_{2}}.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \left\Vert \varphi^{\prime }(\overline{z})-\varphi^{\prime }(\overline{x})\right\Vert_{\mathcal{L}(\ell_{2},\mathbb{R})}=\sup_{\substack{ y\in \ell
+       _{2}  \\y\neq 0}}\frac{\left\vert \varphi^{\prime }(\overline{z})\overline{y}-\varphi^{\prime }(\overline{x})\overline{y}\right\vert }{\left\Vert 
+        \overline{y}\right\Vert_{\ell_{2}}}\leq 2\left\Vert \overline{z}-\overline{x}\right\Vert_{\ell_{2}}\text{\qquad }\forall \overline{x},\overline{z}\in
+    \ell_{2}.
+  \end{equation*}
+  Esto prueba que $\varphi^{\prime }$ es Lipschitz continua.
+</div>
+</p>
+<p>
+Como consecuencia del teorema del valor medio obtenemos el siguiente
+resultado.
+</p>
+<p>
+<div id="cortvm0" class="corollary">
+Si $\Omega $ es abierto en $V$, $\varphi \colon \Omega
+  \rightarrow W $ es de clase $\mathcal{C}^{1}$ en $\Omega $ y
+  $u_{0},u_{1}\in \Omega $ son tales que $u_{t}:=(1-t)u_{0}+tu_{1}\in
+  \Omega $ para toda $t\in [0,1]$, entonces
+  \begin{equation*}
+    \sup_{t\in [0,1]}\left\Vert \varphi^{\prime }(u_{t})\right\Vert_{\mathcal{L}(V,W)}<\infty
+  \end{equation*}
+  y
+  \begin{equation*}
+    \left\Vert \varphi (u_{1})-\varphi (u_{0})\right\Vert_{W}\leq \sup_{t\in
+      [0,1]}\left\Vert \varphi^{\prime }(u_{t})\right\Vert_{\mathcal{L}(V,W)}\left\Vert u_{1}-u_{0}\right\Vert_{V}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\alpha \colon [0,1]\rightarrow \Omega $ la función $\alpha
+  (t):=u_{t}$.  Esta función es diferenciable en $(0,1)$ y su
+  derivada está dada por $\alpha^{\prime }(t)=u_{1}-u_{0}$. La
+  composición $\sigma :=\varphi \circ \alpha \colon [0,1]\rightarrow W$
+  es continua en $[0,1]$. Por la regla de la cadena (ver (\ref{rc})),
+  $\sigma $ es diferenciable en $(0,1)$ y
+  \begin{equation*}
+    \sigma^{\prime }(t)=\varphi^{\prime }(u_{t})\left[ u_{1}-u_{0}\right] .
+  \end{equation*}
+  Se tiene entonces que
+  \begin{equation}
+    \left\Vert \sigma^{\prime }(t)\right\Vert_{W}\leq \left\Vert \varphi
+     ^{\prime }(u_{t})\right\Vert_{\mathcal{L}(V,W)}\left\Vert
+      u_{1}-u_{0}\right\Vert_{V}\text{\qquad }\forall t\in (0,1).\label{sigma}
+  \end{equation}
+  Ahora bien, la función que a cada $t\in [0,1]$ le asocia
+  el valor $\left\Vert \varphi^{\prime }(u_{t})\right\Vert
+ _{\mathcal{L}(V,W)}\in \mathbb{R}$ es una función continua, ya
+  que es la composición de las funciones continuas
+  \begin{equation*}
+    [0,1]\overset{\alpha }{\longrightarrow }\Omega \overset{\varphi
+     ^{\prime }}{\longrightarrow }\mathcal{L}(V,W)\overset{\left\Vert \cdot
+      \right\Vert_{\mathcal{L}(V,W)}}{\longrightarrow }\mathbb{R}\text{.}
+  \end{equation*}
+  Como $[0,1]$ es compacto, concluimos que
+  \begin{equation*}
+    M:=\sup_{t\in [0,1]}\left\Vert \varphi^{\prime }(u_{t})\right\Vert_{\mathcal{L}(V,W)}<\infty .
+  \end{equation*}
+  Por otra parte, de la desigualdad (\ref{sigma}) se sigue que
+  \begin{equation*}
+    \sup_{t\in [0,1]}\left\Vert \sigma^{\prime }(t)\right\Vert_{W}\leq
+    M\left\Vert u_{1}-u_{0}\right\Vert_{V}\text{\qquad }\forall t\in (0,1),
+  \end{equation*}
+  y aplicando el Teorema~\ref{tvm} obtenemos que
+  \begin{equation*}
+    \left\Vert \varphi (u_{1})-\varphi (u_{0})\right\Vert_{W}=\left\Vert \sigma
+      (1)-\sigma (0)\right\Vert_{W}\leq M\left\Vert u_{1}-u_{0}\right\Vert_{V},
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Usaremos a menudo la siguiente consecuencia sencilla del corolario
+anterior.
+</p>
+<p>
+<div id="cortvm" class="corollary">
+Si $\Omega $ es abierto en $V$, $\varphi \colon \Omega
+  \rightarrow W$ es de clase $\mathcal{C}^{1}$ en $\Omega $ y
+  $u_{0},u_{1}\in \Omega $ son tales que $u_{t}:=(1-t)u_{0}+tu_{1}\in
+  \Omega $ para toda $t\in [0,1]$ entonces, para todo $u\in
+  \Omega $,
+  \begin{equation*}
+    \sup_{t\in [0,1]}\left\Vert \varphi^{\prime }(u_{t})-\varphi
+     ^{\prime }(u)\right\Vert_{\mathcal{L}(V,W)}<\infty
+  \end{equation*}
+  y se cumple que
+  \begin{equation*}
+    \left\Vert \varphi (u_{1})-\varphi (u_{0})-\varphi^{\prime }(u)\left[
+        u_{1}-u_{0}\right] \right\Vert_{W}\leq \sup_{t\in [0,1]}\left\Vert
+      \varphi^{\prime }(u_{t})-\varphi^{\prime }(u)\right\Vert_{\mathcal{L}(V,W)}\left\Vert u_{1}-u_{0}\right\Vert_{V}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\psi :=\varphi -\varphi^{\prime }(u)$. Entonces $\psi^{\prime
+  }(v)=\varphi^{\prime }(v)-\varphi^{\prime }(u)$ para toda $v\in
+  \Omega $. Aplicando el Corolario~\ref{cortvm0} obtenemos que
+  \begin{align*}
+    \left\Vert \varphi (u_{1})-\varphi (u_{0})-\varphi^{\prime }(u)\left[
+        u_{1}-u_{0}\right] \right\Vert_{W} &=\left\Vert \psi (u_{1})-\psi
+      (u_{0})\right\Vert_{W} \\
+    &\leq \sup_{t\in [0,1]}\left\Vert \psi^{\prime }(u_{t})\right\Vert
+   _{\mathcal{L}(V,W)}\left\Vert u_{1}-u_{0}\right\Vert_{V} \\
+    &= \sup_{t\in [0,1]}\left\Vert \varphi^{\prime }(u_{t})-\varphi
+     ^{\prime }(u)\right\Vert_{\mathcal{L}(V,W)}\left\Vert
+      u_{1}-u_{0}\right\Vert_{V},
+  \end{align*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+<h3 id="sec9-4">Un criterio de diferenciabilidad</h3>
+</p>
+<p>
+Si $\varphi \colon \Omega \rightarrow W$ es diferenciable en el punto
+$u_{0}$ de $\Omega $ y $v\in V$ entonces, para cada $\varepsilon >0$
+existe $\delta >0$ tal que, para todo $t\in(-\delta,\delta)$,
+\begin{equation*}
+  u_{0}+tv\in \Omega \hspace{0.25in}\text{y}\hspace{0.25in}\left\Vert \varphi
+    (u_{0}+tv)-\varphi (u_{0})-\varphi^{\prime }(u_{0})(tv)\right\Vert
+ _{W}<\varepsilon \left\Vert tv\right\Vert_{V}.
+\end{equation*}
+Dividiendo ambos lados de la desigualdad entre $\left\vert
+  t\right\vert $ obtenemos que
+\begin{equation*}
+  \left\Vert \frac{\varphi (u_{0}+tv)-\varphi (u_{0})}{t}-\varphi^{\prime
+    }(u_{0})v\right\Vert_{W}<\varepsilon \left\Vert v\right\Vert_{V}\text{\qquad si &nbsp;}0<\left\vert t\right\vert <\delta .
+\end{equation*}
+Es decir,
+\begin{equation*}
+  \varphi^{\prime }(u_{0})v=\lim_{t\rightarrow 0}\frac{\varphi
+    (u_{0}+tv)-\varphi (u_{0})}{t}\text{\qquad }\forall v\in V.
+\end{equation*}
+</p>
+<p>
+De este modo obtenemos una condición necesaria para que $\varphi $
+sea diferenciable en $u_{0}$: en primer lugar, para cada $v\in V$ debe
+existir el límite
+\begin{equation}
+  \lim_{t\rightarrow 0}\frac{\varphi (u_{0}+tv)-\varphi (u_{0})}{t}.
+\label{gat}
+\end{equation}
+Este límite se llama la <em class="textbf">derivada direccional de </em>$\varphi
+$<em class="textbf">&nbsp;en </em>$u_{0}$<em class="textbf">&nbsp;en la dirección de</em> $v$.
+\index{derivada!direccional}En segundo lugar, la función
+$\mathcal{G}\varphi (u_{0})\colon V\rightarrow W$ dada por
+\begin{equation}
+  \mathcal{G}\varphi (u_{0})v:=\lim_{t\rightarrow 0}\frac{\varphi (u_{0}+tv)-\varphi (u_{0})}{t}\label{gat2}
+\end{equation}
+debe ser lineal y continua. Esto da lugar al siguiente concepto.
+</p>
+<p>
+<div class="definition">
+  Una función $\varphi \colon \Omega \rightarrow W$ es
+  <em class="textbf">Gâteaux-diferenciable en el punto</em> $u_{0}\in \Omega $
+  \index{función!Gâteaux-diferenciable }si, para cada $v\in
+  V$, existe la derivada direccional de $\varphi $ en $u_{0}$ en la
+  dirección de $v$ y la función $\mathcal{G}\varphi (u_{0})$
+  definida en <em class="emph">(\ref{gat2})</em> pertenece a $\mathcal{L}(V,W)$.
+</p>
+<p>
+  $\varphi $ es <em class="textbf">Gâteaux-diferenciable en</em> $\Omega $ si lo
+  es en todo punto $u\in \Omega $. La función
+  \begin{equation*}
+    \mathcal{G}\varphi \colon \Omega \rightarrow \mathcal{L}(V,W),\text{\qquad }u\mapsto \mathcal{G}\varphi (u),
+  \end{equation*}
+  se llama la <em class="textbf">derivada de Gâteaux\footnote{René
+      Eugène Gâteaux (1889-1914) nació en la Marne,
+      Francia.  Lo mataron en la primera guerra mundial. Parte de su
+      trabajo fue publicado póstumamente por Paul Lévy.</em> de}
+  $\varphi $.&nbsp;\index{derivada!de Gâteaux}
+</div>
+</p>
+<p>
+\begin{bio}[H]
+\centering
+\includegraphics[width=.3\textwidth]{./fotos/calcasdos/Frechet.png}\\[5pt]
+\includegraphics[height=.35\textwidth]{./fotos/calcasdos/gateaux.pdf}\\[5pt]
+ \bfseries René Gâteaux
+\end{bio}
+</p>
+<p>
+Cabe señalar que la existencia de la derivada direccional de
+$\varphi $ en $u_{0}$ en la dirección de $v$ para toda $v\in V$ no
+basta para garantizar que $\mathcal{G}\varphi (u_{0})\in
+\mathcal{L}(V,W)$ [Ejercicio~\ref{noGdif}]. Tampoco basta con que
+$\varphi $ sea Gâteaux-diferenciable para que sea diferenciable,
+como lo muestra el siguiente ejemplo.
+</p>
+<p>
+<div class="example">
+  La función $\varphi \colon \mathbb{R}^{2}\rightarrow \mathbb{R}$ dada
+  por
+  \begin{equation*}
+    \varphi (x,y):=
+      \begin{cases}
+        \frac{x^{3}y}{x^{4}+y^{2}} & \text{si $(x,y)\neq (0,0)$,} \\
+        0 & \text{si $(x,y)=(0,0)$.}
+      \end{cases}
+  \end{equation*}
+  es Gâteaux-diferenciable en $\mathbb{R}^{2}$ pero no es
+  diferenciable en $(0,0)$ <em class="emph">[Ejercicio~\ref{siGnoF}]</em>.
+</div>
+</p>
+<p>
+Sin embargo, se tiene el siguiente resultado.
+</p>
+<p>
+<div id="C1derG" class="theorem">
+$\varphi \colon \Omega \rightarrow W$ es de clase
+  $\mathcal{C}^{1}$ en $\Omega $ si y sólo si $\varphi $ es
+  Gâteaux-diferenciable en $\Omega $ y su derivada de Gâteaux
+  $\mathcal{G}\varphi \colon \Omega \rightarrow \mathcal{L}(V,W)$ es
+  continua. En tal caso, $\varphi^{\prime }=\mathcal{G}\varphi $.
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$: &nbsp;Al inicio de esta sección demostramos que, si
+  $\varphi $ es diferenciable en $u_{0}$, entonces $\varphi $ es
+  Gâteaux-diferenciable en $u_{0}$ y $\mathcal{G}\varphi
+  (u_{0})=\varphi^{\prime }(u_{0})$. En consecuencia, si $\varphi $
+  es de clase $\mathcal{C}^{1}$ en $\Omega $, entonces
+  $\mathcal{G}\varphi =\varphi^{\prime }$ es continua.
+</p>
+<p>
+  $\Leftarrow )$: &nbsp;Supongamos ahora que $\varphi $ es
+  Gâteaux-diferenciable en $\Omega $ y que $\mathcal{G}\varphi
+  \colon \Omega \rightarrow \mathcal{L}(V,W)$ es continua. Sean $u_{0}\in
+  \Omega $ y $\varepsilon >0$. Entonces existe $\delta >0$ tal que
+  $u_{0}+v\in \Omega $ y
+  \begin{equation}
+    \left\Vert \mathcal{G}\varphi (u_{0}+v)-\mathcal{G}\varphi
+      (u_{0})\right\Vert_{\mathcal{L}(V,W)}<\varepsilon \text{\qquad si &nbsp;}\left\Vert v\right\Vert_{V}<\delta .\label{contG}
+  \end{equation}
+  Para cada $v\in V$ con $\left\Vert v\right\Vert_{V}<\delta $
+  definimos $\sigma_{v}\colon [0,1]\rightarrow W$ como
+  \begin{equation*}
+    \sigma_{v}(t):=\varphi (u_{0}+tv)-\varphi (u_{0})-\mathcal{G}\varphi (u_{0})\left[ tv\right] .
+  \end{equation*}
+  Entonces $\sigma_{v}$ es diferenciable en $(0,1)$ y su derivada es
+  \begin{align*}
+    \sigma_{v}^{\prime }(t) &=\lim_{h\rightarrow 0}\frac{\sigma
+     _{v}(t+h)-\sigma_{v}(t)}{h} \\
+    &=\lim_{h\rightarrow 0}\frac{\varphi (u_{0}+tv+hv)-\varphi (u_{0}+tv)-\mathcal{G}\varphi (u_{0})\left[ hv\right] }{h} \\
+    &=\lim_{h\rightarrow 0}\frac{\varphi (u_{0}+tv+hv)-\varphi (u_{0}+tv)}{h}-\mathcal{G}\varphi (u_{0})v \\
+    &=\mathcal{G}\varphi (u_{0}+tv)v-\mathcal{G}\varphi (u_{0})v.
+  \end{align*}
+  Se sigue de (\ref{contG}) que
+  \begin{align*}
+    \left\Vert \sigma_{v}^{\prime }(t)\right\Vert_{W} &\leq \left\Vert 
+      \mathcal{G}\varphi (u_{0}+tv)-\mathcal{G}\varphi (u_{0})\right\Vert_{\mathcal{L}(V,W)}\left\Vert v\right\Vert_{V} \\
+    &<\varepsilon \left\Vert v\right\Vert_{V}\text{\qquad }\forall t\in (0,1).
+  \end{align*}
+  Usando el teorema del valor medio (ver Teorema~\ref{tvm}) concluimos
+  que
+  \begin{align*}
+    \left\Vert \varphi (u_{0}+v)-\varphi (u_{0})-\mathcal{G}\varphi
+      (u_{0})v\right\Vert_{W} &=\left\Vert \sigma_{v}(1)-\sigma
+     _{v}(0)\right\Vert_{W} \\
+    &\leq \varepsilon \left\Vert v\right\Vert_{V}\text{\qquad si &nbsp;}\left\Vert
+      v\right\Vert_{V}<\delta .
+  \end{align*}
+  Esto prueba que $\varphi $ es diferenciable en $u_{0}$ y que
+  $\varphi^{\prime }(u_{0})=\mathcal{G}\varphi (u_{0})$. Como
+  $\mathcal{G}\varphi $ es continua, $\varphi $ es de clase
+  $\mathcal{C}^{1}$ en $\Omega $.
+</div>
+</p>
+<p>
+El teorema anterior proporciona un criterio muy útil para
+verificar la diferenciabilidad de una función y calcular su
+derivada. Veamos un ejemplo.
+</p>
+<p>
+<div class="example">
+  Sea $f\colon \mathbb{R}\rightarrow \mathbb{R}$ una función de clase
+  $\mathcal{C}^{1}$. La función $\varphi
+  \colon \mathcal{C}^{0}[a,b]\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    \varphi (u):=\int_{a}^{b}f(u(t))dt
+  \end{equation*}
+  es de clase $\mathcal{C}^{1}$ en $\mathcal{C}^{0}[a,b]$&nbsp;y su
+  derivada es
+  \begin{equation*}
+    \varphi^{\prime }(u)v:=\int_{a}^{b}f^{\prime }(u(t))v(t)dt.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Probaremos primero que $\varphi $ es Gâteaux-diferenciable. Sean
+  $u,v\in \mathcal{C}^{0}[a,b]$, $v\neq 0$, y $\varepsilon >0$.
+  Denotemos por
+  \begin{equation*}
+    M:=\left\Vert u\right\Vert_{\infty }+\left\Vert v\right\Vert_{\infty }\text{\qquad y\qquad }\tilde{\varepsilon}:=\frac{\varepsilon }{(b-a)\left\Vert v\right\Vert_{\infty }}.
+  \end{equation*}
+  Como $f^{\prime }$ es uniformemente continua en $[-M,M]$ existe
+  $\delta >0$ tal que
+  \begin{equation*}
+    \left\vert f^{\prime }(x)-f^{\prime }(y)\right\vert <\tilde{\varepsilon}\text{\qquad }\forall x,y\in [-M,M]\text{ con }\left\vert
+      x-y\right\vert <\delta .
+  \end{equation*}
+  Del Corolario~\ref{cortvm} y la desigualdad anterior se sigue que,
+  si $x,\,x+hz\in [-M,M]$, $\left\vert hz\right\vert <\delta $
+  y $s\in [0,1]$, entonces
+  \begin{equation}
+    \left\vert f(x+hz)-f(x)-f^{\prime }(x)hz)\right\vert \leq \sup_{s\in [0,1]}\left\vert f^{\prime }(x+shz)-f^{\prime }(x)\right\vert \left\vert
+      hz\right\vert <\tilde{\varepsilon}\left\vert hz\right\vert .\label{ejGat}
+  \end{equation}
+  Observa que
+  \begin{equation*}
+    \left\vert u(t)+hv(t)\right\vert \leq \left\Vert u\right\Vert_{\infty
+    }+\left\Vert v\right\Vert_{\infty }=M\text{\qquad }\forall t\in [a,b],\text{ }h\in [0,1].
+  \end{equation*}
+  Por tanto, podemos aplicar la desigualdad (\ref{ejGat}) a $x:=u(t)$,
+  $z:=v(t) $ y $0<\left\vert h\right\vert <\min \left\{1,\frac{\delta
+  }{\left\Vert v\right\Vert_{\infty }}\right\}$ para obtener
+  \begin{equation*}
+    \left\vert \frac{f(u(t)+hv(t))-f(u(t))}{h}-f^{\prime }(u(t))v(t)\right\vert <\tilde{\varepsilon}\left\vert v(t)\right\vert \leq \frac{\varepsilon }{b-a}\text{\hspace{0.3in}}\forall t\in [a,b].
+  \end{equation*}
+  En consecuencia, si $0<\left\vert h\right\vert <\min
+  \left\{1,\frac{\delta }{\left\Vert v\right\Vert_{\infty }}\right\}$, entonces
+  \begin{multline*}
+    \left\vert \frac{\varphi (u+hv)-\varphi (u)}{h}-\int_{a}^{b}f^{\prime
+      }(u(t))v(t)dt\right\vert \\
+    \leq \int_{a}^{b}\left\vert \frac{f(u(t)+hv(t))-f(u(t))}{h}-f^{\prime
+      }(u(t))v(t)\right\vert dt<\varepsilon .
+  \end{multline*}
+  Esto prueba que
+  \begin{equation*}
+    \int_{a}^{b}f^{\prime }(u(t))v(t)dt=\lim_{h\rightarrow 0}\frac{\varphi
+      (u+hv)-\varphi (u)}{h}=:\mathcal{G}\varphi (u)v.
+  \end{equation*}
+</p>
+<p>
+  La función $\mathcal{G}\varphi
+  (u)\colon \mathcal{C}^{0}[a,b]\rightarrow \mathbb{R}$ es claramente lineal
+  y, como
+  \begin{equation*}
+    \left\vert \mathcal{G}\varphi (u)v\right\vert \leq \biggl(
+      \int_{a}^{b}\left\vert f^{\prime }(u(t))\right\vert dt\biggr) \left\Vert
+      v\right\Vert_{\infty }\text{\qquad }\forall v\in \mathcal{C}^{0}[a,b],
+  \end{equation*}
+  la Proposición~\ref{lin+cont}&nbsp;asegura que $\mathcal{G}\varphi
+  (u)$ es continua. Por tanto, $\varphi $ es Gâteaux-diferenciable
+  en $u$ para todo $u\in \mathcal{C}^{0}[a,b]$.
+</p>
+<p>
+  Probaremos ahora que $\mathcal{G}\varphi
+  \colon \mathcal{C}^{0}[a,b]\rightarrow
+  \mathcal{L}(\mathcal{C}^{0}[a,b],\mathbb{R})$ es continua. Sean
+  $u_{0}\in \mathcal{C}^{0}[a,b]$ y $\varepsilon >0$. Denotemos por
+  $M_{0}:=\left\Vert u_{0}\right\Vert_{\infty }+1$. Como $f^{\prime
+  }$ es uniformemente continua en $[-M_{0},M_{0}]$, existe $\delta \in
+  (0,1)$ tal que
+  \begin{equation*}
+    \left\vert f^{\prime }(x)-f^{\prime }(y)\right\vert <\frac{\varepsilon }{(b-a)}\text{\qquad }\forall x,y\in [-M_{0},M_{0}]\text{ con }\left\vert x-y\right\vert <\delta .
+  \end{equation*}
+  Observa que, si $\left\Vert u-u_{0}\right\Vert_{\infty }<\delta $,
+  entonces
+  \begin{equation*}
+    \left\vert u(t)\right\vert \leq \left\Vert u\right\Vert_{\infty }\leq
+    \left\Vert u_{0}\right\Vert_{\infty }+\left\Vert u-u_{0}\right\Vert
+   _{\infty }\leq \left\Vert u_{0}\right\Vert_{\infty }+\delta <M_{0}\text{\qquad }\forall t\in [a,b].
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \left\vert \mathcal{G}\varphi (u)v-\mathcal{G}\varphi (u_{0})v\right\vert
+    \leq \int_{a}^{b}\left\vert f^{\prime }(u(t))-f^{\prime
+      }(u_{0}(t))\right\vert \left\vert v(t)\right\vert dt<\varepsilon \left\Vert
+      v\right\Vert_{\infty }.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \left\Vert \mathcal{G}\varphi (u)-\mathcal{G}\varphi
+      (u_{0})\right\Vert_{\mathcal{L}(\mathcal{C}^{0}[a,b],\mathbb{R})}=\sup_{\substack{
+        v\in \mathcal{C}^{0}[a,b]  \\v\neq 0}}\frac{\left\vert
+        \mathcal{G}\varphi (u)v-\mathcal{G}\varphi (u_{0})v\right\vert
+    }{\left\Vert v\right\Vert_{\infty }}<\varepsilon 
+  \end{equation*}
+  si $\left\Vert u-u_{0}\right\Vert_{\infty }<\delta$.  Esto prueba
+  que
+  $\mathcal{G}\varphi \colon \mathcal{C}^{0}[a,b]\rightarrow
+  \mathcal{L}(\mathcal{C}^{0}[a,b],\mathbb{R})$ es continua.
+</p>
+<p>
+  Del Teorema~\ref{C1derG}&nbsp;se sigue que $\varphi $ es de clase
+  $\mathcal{C}^{1}$&nbsp;y que $\varphi^{\prime }=\mathcal{G}\varphi $.
+</div>
+</p>
+<p>
+<h3 id="sec9-5">Derivadas parciales</h3>
+</p>
+<p>
+Sean $V_{1},\dots,V_{n},W$ espacios de Banach. El producto cartesiano
+$V_{1}\times \cdots \times V_{n}$ con la norma
+\begin{equation*}
+  \left\Vert (v_{1},\dots,v_{n})\right\Vert_{V_{1}\times \cdots \times
+    V_{n}}:=\max_{j=1,\dots,n}\left\Vert v_{j}\right\Vert_{V_{j}}
+\end{equation*}
+es un espacio de Banach (ver Ejercicio~\ref{prodcompl}). La
+inclusión en el $j$-ésimo factor,
+\begin{equation*}
+  \iota_{j}\colon V_{j}\rightarrow V_{1}\times \cdots \times V_{n},\text{\qquad }\iota_{j}(v):=(0,\dots,0,\underset{j\text{-ésimo}}{\underbrace{v}},0,\dots,0),
+\end{equation*}
+es una función lineal y una isometría. Si $\Omega $ es
+abierto en $V_{1}\times \cdots \times V_{n}$ y $u\in \Omega $,
+entonces
+\begin{equation*}
+  \Omega_{j,u}:=\left\{v\in V_{j}:u+\iota_{j}v\in \Omega \right\}
+\end{equation*}
+es un abierto de $V_{j}$ que contiene a $0$.
+</p>
+<p>
+\begin{figure}[htb]
+  \centering
+  \input{./figuras-tikz/der-par-diag.tikz}
+   \caption{}\label{fig:9.3}
+\end{figure}
+</p>
+<p>
+En lo que resta de esta sección supondremos que $\Omega $ es
+abierto en $V_{1}\times \cdots \times V_{n}$.
+</p>
+<p>
+<div class="definition">
+  Una función $\varphi \colon \Omega \rightarrow W$ es
+  <em class="textbf">parcialmente diferenciable respecto a la
+  </em>$j$<em class="textbf">-ésima variable en el punto</em> $u$<em class="textbf">&nbsp;de
+  </em>$\Omega $\index{función!parcialmente diferenciable} si la
+  función
+  \begin{equation*}
+    \varphi_{j,u}\colon \Omega_{j,u}\rightarrow W,\text{\qquad }\varphi_{j,u}(v):=\varphi (u+\iota_{j}v),
+  \end{equation*}
+  es diferenciable en $0$. La<em class="textbf">&nbsp;derivada parcial de </em>$\varphi
+  $<em class="textbf">&nbsp;respecto a la </em>$j$<em class="textbf">-ésima variable</em>
+  <em class="textbf">en</em> $u$ \index{derivada!parcial}se define como
+  \begin{equation*}
+    \partial_{j}\varphi (u):=\varphi_{j,u}^{\prime }(0)\in \mathcal{L}(V_{j},W).
+  \end{equation*}
+  La función $\varphi $ es <em class="textbf">parcialmente diferenciable
+    respecto a la </em>$j$<em class="textbf">-ésima variable en</em> $\Omega $ si lo
+  es en todo punto $u\in \Omega $, y <em class="textbf">la derivada parcial de
+  </em>$\varphi $<em class="textbf">&nbsp;respecto a la </em>$j$<em class="textbf">-ésima variable</em>
+  en<em class="textbf">&nbsp;</em>$\Omega $ es la función
+  \begin{equation*}
+    \partial_{j}\varphi \colon \Omega \rightarrow \mathcal{L}(V_{j},W),\text{\qquad }u\mapsto \partial_{j}\varphi (u).
+  \end{equation*}
+</div>
+</p>
+<p>
+Si $\varphi \colon \Omega \rightarrow W$ es diferenciable en $u$ entonces,
+por la regla de la cadena, $\varphi $ es parcialmente diferenciable
+respecto a la $j $-ésima variable en $u$ y
+\begin{equation*}
+  \partial_{j}\varphi (u)=\varphi^{\prime }(u)\circ \iota_{j},\text{\qquad }j=1,\dots,n.
+\end{equation*}
+Es decir, $\partial_{j}\varphi (u)$ es la restricción de $\varphi
+^{\prime }(u)$&nbsp;al factor $V_{j}$. Nota que $v=\sum_{j=1}^{n}\iota
+_{j}v_{j}$ si $v=(v_{1},\dots,v_{n})$. En consecuencia,
+\begin{equation}
+  \varphi^{\prime }(u)v=\sum_{j=1}^{n}\partial_{j}\varphi (u)v_{j}.\label{formparc}
+\end{equation}
+</p>
+<p>
+Los siguientes ejemplos relacionan estos conceptos con conceptos bien
+conocidos de cálculo.
+</p>
+<p>
+<div class="example">
+  Si $\Omega $ es abierto en $\mathbb{R}^{n}=\mathbb{R}\times \cdots
+  \times \mathbb{R}$ y $\varphi \colon \Omega \rightarrow \mathbb{R}$ es
+  diferenciable en $x $, entonces $\partial_{j}\varphi (x)\in
+  \mathcal{L}(\mathbb{R},\mathbb{R})\cong \mathbb{R}$. Como en la
+  sección <em class="emph">\ref{sec9-3}</em>, identificamos a la función
+  lineal $\partial_{j}\varphi (x)$ con su valor en $1$. Ésta es
+  la <em class="textbf">derivada parcial de</em> $\varphi $<em class="textbf">&nbsp;respecto a
+  </em>$x_{j}$<em class="textbf">&nbsp;</em>a la que se suele denotar por
+  \begin{equation*}
+    \frac{\partial \varphi }{\partial x_{j}}(x)\in \mathbb{R}.
+  \end{equation*}
+  El <em class="textbf">gradiente de </em>$\varphi $<em class="textbf">&nbsp;en </em>$x$
+  \index{gradiente}es el vector
+  \begin{equation*}
+    \nabla \varphi (x):=\left( 
+      \frac{\partial \varphi }{\partial x_{1}}(x),\dots,\frac{\partial \varphi }{\partial x_{n}}(x)\right) \in \mathbb{R}^{n}.
+  \end{equation*}
+  La fórmula <em class="emph">(\ref{formparc})</em> se escribe entonces como
+  \begin{equation*}
+    \varphi^{\prime }(x)y=\sum_{j=1}^{n}\frac{\partial \varphi }{\partial x_{j}}(x)y_{j}=\nabla \varphi (x)\cdot y,
+  \end{equation*}
+  donde $\nabla \varphi (x)\cdot y$ denota al producto escalar usual
+  de los vectores $\nabla \varphi (x)$ y $y$ en $\mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div class="example">
+  Si $\Omega $ es abierto en $\mathbb{R}^{n}$ y $\varphi =(\varphi
+ _{1},\dots,\varphi_{m})\colon \Omega \rightarrow \mathbb{R}^{m}$ es
+  diferenciable en $x$, entonces la $j$-ésima componente $\varphi
+ _{j}$ de $\varphi $ es la composición $\varphi_{j}:=\pi
+ _{j}\circ \varphi $ con la $j$-ésima proyección
+  \begin{equation*}
+    \pi_{j}\colon \mathbb{R}^{m}\rightarrow \mathbb{R},\text{\qquad }\pi
+   _{j}(z_{1},\dots,z_{m}):=z_{j}.
+  \end{equation*}
+  Como $\pi_{j}$ es lineal, aplicando la regla de la cadena se tiene
+  que
+  \begin{equation*}
+    \varphi_{j}^{\prime }(x)=\pi_{j}\circ \varphi^{\prime }(x),
+  \end{equation*}
+  es decir, $\varphi_{j}^{\prime }(x)$ es la $j$-ésima componente
+  de $\varphi^{\prime }(x)$. Por tanto,
+  \begin{align*}
+    \varphi^{\prime }(x)y &=(\varphi_{1}^{\prime }(x)y,\dots,\varphi
+   _{m}^{\prime }(x)y) \\
+    &=(\nabla \varphi_{1}(x)\cdot y,\dots,\nabla \varphi_{m}(x)\cdot y),
+  \end{align*}
+  es decir, $\varphi^{\prime }(x)$ es la función lineal dada por
+  la matriz
+  \begin{equation*}
+    \varphi^{\prime }(x)= 
+      \begin{pmatrix}
+        \frac{\partial \varphi_{1}}{\partial x_{1}}(x) & \cdots & \frac{\partial
+          \varphi_{1}}{\partial x_{n}}(x) \\
+        \vdots &  & \vdots \\
+        \frac{\partial \varphi_{m}}{\partial x_{1}}(x) & \cdots & \frac{\partial
+          \varphi_{m}}{\partial x_{n}}(x)
+      \end{pmatrix}
+  \end{equation*}
+  que se llama la <em class="textbf">matriz jacobiana&nbsp;d</em>e $\varphi $ <em class="textbf">en</em>
+  $x$.\index{matriz!jacobiana}
+</div>
+</p>
+<p>
+No es cierto, en general, que si $\varphi $ es parcialmente
+diferenciable respecto a cada variable en $u$ entonces $\varphi $ es
+diferenciable en $u$ [Ejercicio~\ref{siGnoF}]. Pero sí lo es si
+se cumple además que $\partial_{j}\varphi $ es continua en
+$\Omega $ para toda $j=1,\dots,n$.
+</p>
+<p>
+<div class="theorem">
+  Una función $\varphi \colon \Omega \rightarrow W$ es de clase
+  $\mathcal{C}^{1}$ en $\Omega $ si y sólo si $\varphi $ es
+  parcialmente diferenciable respecto a la $j$-ésima variable en
+  $\Omega $ y
+  \begin{equation*}
+    \partial_{j}\varphi \colon \Omega \rightarrow \mathcal{L}(V_{j},W)
+  \end{equation*}
+  es continua en $\Omega $ para todo&nbsp;$j=1,\dots,n$.
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$: &nbsp;Ya vimos que, si $\varphi \colon \Omega \rightarrow W$
+  es diferenciable en $u$, entonces $\varphi $ es parcialmente
+  diferenciable respecto a la $j$-ésima variable en $u$ y
+  $\partial_{j}\varphi (u)=\varphi^{\prime }(u)\circ \iota_{j}$.
+  Por tanto, $\partial_{j}\varphi $ es continua si $\varphi $ es de
+  clase $\mathcal{C}^{1}$ en $\Omega $.
+</p>
+<p>
+  $\Leftarrow )$: &nbsp;Supongamos ahora que $\varphi $ es parcialmente
+  diferenciable respecto a la $j$-ésima variable en $\Omega $ y
+  que $\partial_{j}\varphi $ es continua en $\Omega $ para todo\
+  $j=1,\dots,n$.  Basta considerar el caso $n=2$, ya que el caso general
+  se obtiene iterando éste.
+</p>
+<p>
+  Sean $u=(u_{1},u_{2})\in \Omega $ y $\varepsilon >0$. Como $\varphi
+  $ es diferenciable respecto a la primera variable en $u$ y $\partial
+ _{2}\varphi $ es continua en $u$, existe $\delta >0$ tal que
+  \begin{equation*}
+    u+v\in \Omega 
+    \text{\qquad si }v=(v_{1},v_{2})\in V_{1}\times V_{2}\text{ &nbsp;y &nbsp;}\left\Vert v\right\Vert_{V_{1}\times V_{2}}:=\max \left\{\left\Vert
+      v_{1}\right\Vert_{V_{1}},\left\Vert v_{2}\right\Vert_{V_{2}}\right\}<\delta ,
+  \end{equation*}
+  \begin{align}
+    \left\Vert \varphi (u+\iota_{1}v_{1})-\varphi (u)-\partial_{1}\varphi
+      (u)v_{1}\right\Vert_{W} &<\frac{\varepsilon }{4}\left\Vert
+      v_{1}\right\Vert_{V_{1}}\text{\qquad si }\left\Vert v_{1}\right\Vert
+   _{V_{1}}<\delta ,\label{dp1} \\
+    \left\Vert \partial_{2}\varphi (u+v)-\partial_{2}\varphi (u)\right\Vert_{\mathcal{L}(V_{2},W)} &<\frac{\varepsilon }{4}\text{\qquad si }\left\Vert
+      v\right\Vert_{V_{1}\times V_{2}}<\delta .  \notag
+  \end{align}
+  La segunda desigualdad implica que
+  \begin{align}
+    \left\Vert \partial_{2}\varphi (u+\iota_{1}v_{1})v_{2}-\partial
+     _{2}\varphi (u)v_{2}\right\Vert_{W} &\leq \left\Vert \partial_{2}\varphi
+      (u+\iota_{1}v_{1})-\partial_{2}\varphi (u)\right\Vert_{\mathcal{L}(V_{2},W)}\left\Vert v_{2}\right\Vert_{V_{2}}  \notag \\
+    &<\frac{\varepsilon }{4}\left\Vert v_{2}\right\Vert_{V_{2}}\text{\qquad si 
+    }\left\Vert v_{1}\right\Vert_{V_{1}}<\delta ,\label{dp2}
+  \end{align}
+  y también que
+  \begin{align*}
+    &\left\Vert \partial_{2}\varphi (u+\iota_{1}v_{1}+t\iota
+     _{2}v_{2})-\partial_{2}\varphi (u+\iota_{1}v_{1})\right\Vert_{\mathcal{L}(V_{2},W)} \\[4pt]
+    &\quad{}\leq \left\Vert \partial_{2}\varphi (u+\iota_{1}v_{1}+t\iota
+     _{2}v_{2})-\partial_{2}\varphi (u)\right\Vert_{\mathcal{L}(V_{2},W)}+\left\Vert \partial_{2}\varphi (u)-\partial_{2}\varphi (u+\iota
+     _{1}v_{1})\right\Vert_{\mathcal{L}(V_{2},W)} \\[4pt]
+    &\quad{}<\tfrac{\varepsilon }{2}\text{\qquad si }\left\Vert v\right\Vert
+   _{V_{1}\times V_{2}}<\delta \text{ &nbsp;y &nbsp;}t\in [0,1].
+  \end{align*}
+  De esta última desigualdad y el Corolario~\ref{cortvm}&nbsp;se sigue
+  que
+  \begin{align}
+    &\left\Vert \varphi (u+v)-\varphi (u+\iota_{1}v_{1})-\partial_{2}\varphi
+      (u+\iota_{1}v_{1})v_{2}\right\Vert_{W}  \notag \\[4pt]
+    &\quad{}\leq \sup_{t\in [0,1]}\left\Vert \partial_{2}\varphi (u+\iota
+     _{1}v_{1}+t\iota_{2}v_{2})-\partial_{2}\varphi (u+\iota
+     _{1}v_{1})\right\Vert_{\mathcal{L}(V_{2},W)}\left\Vert v_{2}\right\Vert
+   _{V_{2}}  \notag \\[4pt]
+    &\quad{}<\tfrac{\varepsilon }{2}\left\Vert v_{2}\right\Vert_{V_{2}}\text{\qquad si 
+    }\left\Vert v\right\Vert_{V_{1}\times V_{2}}<\delta .\label{dp3}
+  \end{align}
+  Finalmente, de las desigualdades (\ref{dp1}), (\ref{dp2}) y
+  (\ref{dp3}) obtenemos
+  \begin{align*}
+    &\left\Vert \varphi (u+v)-\varphi (u)-\partial_{1}\varphi
+      (u)v_{1}-\partial_{2}\varphi (u)v_{2}\right\Vert \\[4pt]
+    &\quad{}\leq \left\Vert \varphi (u+v)-\varphi (u+\iota_{1}v_{1})-\partial
+     _{2}\varphi (u+\iota_{1}v_{1})v_{2}\right\Vert\\[4pt]
+    &\qquad{}+\left\Vert \partial
+     _{2}\varphi (u+\iota_{1}v_{1})v_{2}-\partial_{2}\varphi (u)v_{2}\right\Vert
+    +\left\Vert \varphi (u+\iota_{1}v_{1})-\varphi (u)-\partial_{1}\varphi
+      (u)v_{1}\right\Vert \\[4pt]
+    &\quad{}\leq \varepsilon \left\Vert v\right\Vert_{V_{1}\times V_{2}}\text{\qquad
+      si }\left\Vert v\right\Vert_{V_{1}\times V_{2}}<\delta .
+  \end{align*}
+  Esto prueba que $\varphi $ es diferenciable en $u$ y que $\varphi
+ ^{\prime }(u)v=\partial_{1}\varphi (u)v_{1}+\partial_{2}\varphi
+  (u)v_{2}$. Por tanto, $\varphi $ es de clase $\mathcal{C}^{1}$ en
+  $\Omega $.
+</div>
+</p>
+<p>
+<h3 id="sec9-6">Derivadas de orden superior</h3>
+</p>
+<p>
+Sean $V$ y $W$ espacios de Banach y $\Omega $ un subconjunto abierto
+de $V$. Si $\varphi \colon \Omega \rightarrow W$ es diferenciable en $\Omega
+$, su derivada es una función que toma valores en el espacio de
+Banach $\mathcal{L}(V,W)$. Tiene pues sentido preguntarnos si $\varphi
+^{\prime }\colon \Omega \rightarrow \mathcal{L}(V,W)$ es, a su vez,
+diferenciable en $\Omega $. Si lo es, decimos que $\varphi $ es dos
+veces diferenciable en $\Omega $. La derivada de $\varphi^{\prime }$
+se llama la segunda derivada de $\varphi $ y se denota por
+\begin{equation*}
+  D^{2}\varphi \colon \Omega \rightarrow \mathcal{L}(V,\mathcal{L}(V,W)),
+\end{equation*}
+o simplemente por $\varphi^{\prime \prime }$. Veremos a
+continuación que el espacio $\mathcal{L}(V,\mathcal{L}(V,W))$
+tiene una representación sencilla: es el espacio de funciones
+bilineales y continuas $V\times V\rightarrow W$.
+</p>
+<p>
+Sean $V_{1},\dots,V_{k},W$ espacios de Banach.
+</p>
+<p>
+<div class="definition">
+  Una función $F\colon V_{1}\times \cdots \times V_{k}\rightarrow W$ es
+  $k$<em class="textbf">-multilineal</em> \index{función!multilineal}si es lineal
+  en cada variable, es decir, si para cada $j\in \left\{1,\ldots ,k\right\}$ y
+  $u_{i}\in V_{i}$, $i\neq j$, la función $V_{j}\rightarrow W$
+  dada por
+  \begin{equation*}
+    v\longmapsto F[u_{1},\dots,u_{j-1},v,u_{j+1},\dots,u_{m}]
+  \end{equation*}
+  es lineal. Si $k=2$ se dice que $F$ es
+  <em class="textbf">bilineal</em>.\index{función!bilineal}
+</div>
+</p>
+<p>
+Denotamos por\index{espacio!L (V1)@$\mathcal{L}(V_{1},\dots,V_{k};W)$}
+\begin{equation*}
+  \mathcal{L}(V_{1},\dots,V_{k};W):=\left\{F\colon V_{1}\times \cdots \times
+  V_{k}\rightarrow W:F\text{ es }k\text{-multilineal y continua}\right\}.
+\end{equation*}
+Si $V_{1}=\cdots =V_{k}=V$ escribimos simplemente
+\index{espacio!L subk VW@$\mathcal{L}_{k}(V,W)$}
+\begin{equation*}
+  \mathcal{L}_{k}(V,W):=\mathcal{L}(\underbrace{V,\dots,V}_{\text{$k$ veces}};W).
+\end{equation*}
+Como en el caso $k=1$ se tiene el siguiente resultado.
+</p>
+<p>
+<div class="proposition">
+  Si $F\colon V_{1}\times \cdots \times V_{k}\rightarrow W$ es
+  $k$-multilineal, entonces $F$ es continua si y sólo si existe
+  $c\in \mathbb{R}$ tal que
+  \begin{equation}
+    \left\Vert F[v]\right\Vert_{W}\leq c\left\Vert v_{1}\right\Vert
+   _{V_{1}}\cdots \left\Vert v_{k}\right\Vert_{V_{k}}\text{\qquad }\forall
+    v=(v_{1},\dots,v_{k})\in V_{1}\times \cdots \times V_{k}.\label{mul}
+  \end{equation}
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$: &nbsp;Si $F$ es continua, existe $\delta >0$ tal que
+  \begin{equation*}
+    \left\Vert F[v]\right\Vert_{W}<1\text{\qquad si }\left\Vert v\right\Vert
+   _{V_{1}\times \cdots \times V_{k}}:=\max_{j=1,\dots,k}\left\Vert
+      v_{j}\right\Vert_{V_{j}}<\delta .
+  \end{equation*}
+  Por tanto, para todo $v=(v_{1},\dots,v_{k})\in V_{1}\times \cdots
+  \times V_{k}, $
+  \begin{equation*}
+    \frac{\delta^{k}}{2^{k}\left\Vert v_{1}\right\Vert_{V_{1}}\cdots
+      \left\Vert v_{k}\right\Vert_{V_{k}}}\left\Vert F[v]\right\Vert
+   _{W}=\left\Vert F\left[ \frac{\delta }{2}\left( \frac{v_{1}}{\left\Vert
+              v_{1}\right\Vert_{V_{1}}},\ldots ,\frac{v_{k}}{\left\Vert v_{k}\right\Vert
+           _{V_{k}}}\right) \right] \right\Vert_{W}<1.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \left\Vert F[v]\right\Vert_{W}\leq \frac{2^{k}}{\delta^{k}}\left\Vert
+      v_{1}\right\Vert_{V_{1}}\cdots \left\Vert v_{k}\right\Vert_{V_{k}}\text{\qquad }\forall v=(v_{1},\dots,v_{k})\in V_{1}\times \cdots \times V_{k}.
+  \end{equation*}
+</p>
+<p>
+  $\Leftarrow )$: &nbsp;Supongamos ahora que se cumple (\ref{mul}). Sean
+  $u,v\in V_{1}\times \cdots \times V_{k}$ y $R:=\left\Vert
+    u\right\Vert_{V_{1}\times \cdots \times V_{k}}+1$. 
+Como $F$ es
+  $k$-multilineal,
+</p>
+<p>
+  \begin{align*}
+    F[v]-F[u] &=F[v_{1}-u_{1},v_{2},\dots,v_{k}] \\[5pt]
+    &\qquad{}+\sum_{i=2}^{k-1}F[u_{1},\dots,u_{i-1},v_{i}-u_{i},v_{i+1},\dots,v_{k}]\\[5pt]
+    &\qquad{}+F[u_{1},\dots,u_{k-1},v_{k}-u_{k}].
+  \end{align*}
+  Aplicando la desigualdad del triángulo y la desigualdad
+  (\ref{mul}) concluimos que
+  \begin{align*}
+    \left\Vert F[v]-F[u]\right\Vert_{W} &\leq{} c\left\Vert
+      v_{1}-u_{1}\right\Vert_{V_{1}}\left\Vert v_{2}\right\Vert_{V_{2}}\cdots
+    \left\Vert v_{k}\right\Vert_{V_{k}} \\[3pt]
+    &\qquad{}+c\sum_{i=2}^{k-1}\left\Vert u_{1}\right\Vert_{V_{1}}\cdots
+    \left\Vert u_{i-1}\right\Vert_{V_{i-1}}\left\Vert v_{i}-u_{i}\right\Vert
+   _{V_{i}}\left\Vert v_{i+1}\right\Vert_{V_{i+1}}\cdots \left\Vert
+      v_{k}\right\Vert_{V_{k}} \\[3pt]
+    &\qquad{}+c\left\Vert u_{1}\right\Vert_{V_{1}}\cdots \left\Vert u_{k-1}\right\Vert
+   _{V_{k-1}}\left\Vert v_{k}-u_{k}\right\Vert_{V_{k}} \\[5pt]
+    &\leq cR^{k-1}\sum_{i=1}^{k}\left\Vert v_{i}-u_{i}\right\Vert
+   _{V_{i}}\text{\qquad si }\left\Vert v-u\right\Vert_{V_{1}\times \cdots
+      \times V_{k}}<1.
+  \end{align*}
+  De esta desigualdad se sigue inmediatamente que $F$ es continua en
+  $u$.
+</div>
+</p>
+<p>
+Para $F\in \mathcal{L}(V_{1},\dots,V_{k};W)$ definimos
+\begin{equation}
+  \left\Vert F\right\Vert_{\mathcal{L}(V_{1},\dots,V_{k};W)}:=\sup_{\substack{ v_{j}\in V_{j}\smallsetminus \left\{0\right\}  \\j=1,\ldots ,k}}\frac{\left\Vert
+      F[v_{1},\dots,v_{k}]\right\Vert_{W}}{\left\Vert v_{1}\right\Vert
+   _{V_{1}}\cdots \left\Vert v_{k}\right\Vert_{V_{k}}}.\label{normul}
+\end{equation}
+Esta es una norma en $\mathcal{L}(V_{1},\dots,V_{k};W)$, que coincide
+con la definida en (\ref{defnorma}) cuando $k=1$.
+</p>
+<p>
+Asociando a cada $F\in \mathcal{L}(V_{1},\dots,V_{k};W)$ la función
+$\hat{F}\in \mathcal{L}(V_{1},\mathcal{L}(V_{2},\dots ,V_{k};W))$
+dada por
+\begin{equation*}
+  (\hat{F}v_{1})[v_{2},\ldots ,v_{k}]:=F[v_{1},v_{2},\ldots ,v_{k}],\text{\qquad }v_{j}\in V_{j},
+\end{equation*}
+obtenemos un isomorfismo de espacios vectoriales
+\begin{equation}
+  \mathcal{L}(V_{1},\dots,V_{k};W)\cong \mathcal{L}(V_{1},\mathcal{L}(V_{2},\dots ,V_{k};W))\label{bil}
+\end{equation}
+que es además una isometría, es decir,
+\begin{equation*}
+  \bigl\Vert F\bigr\Vert_{\mathcal{L}(V_{1},\dots,V_{k};W)}=\bigl\Vert \hat{F}\bigr\Vert_{\mathcal{L}(V_{1},\mathcal{L}(V_{2},\dots ,V_{k};W))}
+\end{equation*}
+[Ejercicio~\ref{multi}]. Iterando estos isomorfismos obtenemos 
+\begin{equation*}
+  \mathcal{L}(V_{1},\dots,V_{k};W)\cong \mathcal{L}(V_{1},\mathcal{L}(V_{2},\cdots ,\mathcal{L}(V_{k-1},\mathcal{L}(V_{k},W))\cdots )).
+\end{equation*}
+En consecuencia, $\mathcal{L}(V_{1},\dots,V_{k};W)$&nbsp;es un espacio de
+Banach (ver Proposición~\ref{lin+contBanach}).
+</p>
+<p>
+Podemos definir ahora las derivadas de orden superior como sigue.
+</p>
+<p>
+<div class="definition">
+  Sea $k\in \mathbb{N}$, $k\geq 2$. Una función $\varphi \colon \Omega
+  \rightarrow W$ es $k$<em class="textbf">-veces diferenciable en</em> $\Omega $ si
+  $\varphi $ es $(k-1)$-veces diferenciable en $\Omega $ y su derivada
+  de orden $k-1$ es diferenciable en $\Omega $. La derivada de
+  $D^{k-1}\varphi \colon \Omega \rightarrow \mathcal{L}_{k-1}(V,W)$ se llama
+  la <em class="textbf">derivada de orden </em>$k $<em class="textbf">&nbsp;de </em>$\varphi $
+  \index{derivada!de orden k@de orden $k$}y se denota
+  \begin{equation*}
+    D^{k}\varphi \colon \Omega \rightarrow \mathcal{L}(V,\mathcal{L}_{k-1}(V,W))\cong 
+    \mathcal{L}_{k}(V,W).
+  \end{equation*}
+  Si $D^{k}\varphi $ es continua en $\Omega $ decimos que $\varphi
+  $<em class="textbf">&nbsp;es de clase </em>$\mathcal{C}^{k}$<em class="textbf">&nbsp;en </em>$\Omega $.
+  \index{función!de clase ck@de clase $\mathcal{C}^{k}$}
+</p>
+<p>
+  Si $D^{j}\varphi $ admite una extensión continua a la cerradura
+  $\overline{\Omega }$ de $\Omega $ para cada $j=0,1,\ldots ,k$, donde
+  $D^{0}\varphi :=\varphi $, decimos que $\varphi $<em class="textbf">&nbsp;es de
+    clase </em>$\mathcal{C}^{k}$<em class="textbf">&nbsp;en</em> $\overline{\Omega }$.
+</p>
+<p>
+  Finalmente, si $\varphi $ es de clase $\mathcal{C}^{k}$<em class="textbf">&nbsp;</em>en
+  $\Omega $ (resp. en $\overline{\Omega }$) para todo $k\in
+  \mathbb{N}$, decimos que $\varphi $<em class="textbf">&nbsp;es de clase
+  </em>$\mathcal{C}^{\infty }$<em class="textbf">&nbsp;en </em>$\Omega $ (resp. en
+  $\overline{\Omega }$).
+</div>
+</p>
+<p>
+Veamos un ejemplo.
+</p>
+<p>
+<div class="example">
+  La función $\varphi \colon \ell_{2}\rightarrow \mathbb{R}$ dada por
+  $\varphi (\overline{x}):=\left\Vert \overline{x}\right\Vert_{\ell
+   _{2}}^{2}$ es de clase $\mathcal{C}^{\infty }$ en $\ell_{2}$,
+  \begin{equation*}
+    D^{2}\varphi (\overline{x})[\overline{y},\overline{z}]=2\sum_{k=1}^{\infty }y_{k}z_{k}\text{\qquad }\forall \overline{x},\overline{y},\overline{z}\in \ell_{2},
+  \end{equation*}
+  y $D^{k}\varphi (\overline{x})=0\in \mathcal{L}_{k}(\ell
+ _{2},\mathbb{R})$ para todo $\overline{x}\in \ell_{2}$, $k\geq 3$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sabemos que $\varphi $ es diferenciable, que su derivada $\varphi
+ ^{\prime }\colon \ell_{2}\rightarrow \mathcal{L}(\ell_{2},\mathbb{R})$
+  está dada por
+  \begin{equation*}
+    \varphi^{\prime }(\overline{x})\overline{z}=2\sum_{k=1}^{\infty
+    }x_{k}z_{k}\text{\qquad }\forall \overline{x}=(x_{k}),\text{ }\overline{z}=(z_{k})\in \ell_{2}
+  \end{equation*}
+  (ver Ejemplo~\ref{ejder3}) y que $\varphi^{\prime }$ es continua
+  (ver Ejemplo~\ref{ejder4}). Observa además que $\varphi^{\prime
+  }$ es lineal, es decir,
+  \begin{equation*}
+    \varphi^{\prime }(\alpha \overline{x}+\beta \overline{y})=\alpha \varphi
+   ^{\prime }(\overline{x})+\beta \varphi^{\prime }(\overline{y})\text{\qquad }\forall \overline{x},\overline{y}\in \ell_{2},\text{ }\forall \alpha ,\beta
+    \in \mathbb{R}.
+  \end{equation*}
+  El Ejemplo~\ref{ejder2}&nbsp;asegura entonces que $D^{2}\varphi
+  (\overline{x})=\varphi^{\prime }$ para todo $\overline{x}\in \ell
+ _{2}$, y usando el isomorfismo (\ref{bil}) obtenemos 
+  \begin{equation*}
+    D^{2}\varphi (\overline{x})[\overline{y},\overline{z}]=\varphi^{\prime }[\overline{y},\overline{z}]=\varphi^{\prime }(\overline{y})\overline{z}=2\sum_{k=1}^{\infty }y_{k}z_{k}\text{\qquad }\forall \overline{x},\overline{y},\overline{z}\in \ell_{2}.
+  \end{equation*}
+  Más aún, como
+  $D^{2}\varphi \colon \ell_{2}\rightarrow
+  \mathcal{L}_{2}(\ell_{2},\mathbb{R})$
+  es constante, el Ejemplo~\ref{ejder1} asegura que
+  $D^{k}\varphi (\overline{x})=0\in
+  \mathcal{L}_{k}(\ell_{2},\mathbb{R})$
+  para todo $\overline{x}\in \ell_{2}$, $k\geq 3$.
+</div>
+</p>
+<p>
+Como ocurre en espacios euclidianos, la derivada de orden $k$ en cada
+punto es simétrica.
+</p>
+<p>
+<div id="sim" class="proposition">
+Si $\varphi \colon \Omega \rightarrow W$ es $k$-veces
+  diferenciable en $\Omega $ entonces, para cada $u\in \Omega $, la
+  $k$-ésima derivada de $\varphi $ en $u$ es simétrica, es
+  decir,
+  \begin{equation*}
+    D^{k}\varphi (u)[v_{1},\ldots ,v_{k}]=D^{k}\varphi (u)[v_{\tau (1)},\ldots
+    ,v_{\tau (k)}]
+  \end{equation*}
+  para cualesquiera $v_{1},\ldots ,v_{k}\in V$ y cualquier
+  permutación $\tau \colon \left\{1,\ldots ,k\right\}\rightarrow \left\{1,\ldots ,k\right\}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Consideramos dos casos.
+</p>
+<p>
+  <em class="textsc">Caso 1: </em>$k=2$.
+</p>
+<p>
+  Sean $u\in \Omega $ y $\varepsilon >0$. Como $\varphi $ es dos veces
+  diferenciable en $u$ existe $\delta >0$ tal que $u+v\in \Omega $ y
+  \begin{equation}
+    \left\Vert \varphi^{\prime }(u+v)-\varphi^{\prime }(u)-D^{2}\varphi
+      (u)v\right\Vert_{\mathcal{L}(V,W)}<\varepsilon \left\Vert v\right\Vert_{V}\text{\qquad si }\left\Vert v\right\Vert_{V}<2\delta .\label{2dif}
+  \end{equation}
+  Sean $v,w\in V$ tales que $\max \left\{\left\Vert v\right\Vert
+ _{V},\left\Vert w\right\Vert_{V}\right\}<\delta $. Definimos $\sigma
+  \colon [0,1]\rightarrow W$ como
+  \begin{equation*}
+    \sigma (t):=\varphi (u+tv+w)-\varphi (u+tv).
+  \end{equation*}
+  Entonces
+  \begin{align*}
+    \sigma^{\prime }(t)-D^{2}\varphi (u)[w,v] &=\left[ \varphi^{\prime
+      }(u+tv+w)v-\varphi^{\prime }(u)v-D^{2}\varphi (u)[tv+w,v]\right] \\
+    &\qquad{}-\left[ \varphi^{\prime }(u+tv)v-\varphi^{\prime }(u)v-D^{2}\varphi
+      (u)[tv,v]\right]
+  \end{align*}
+  y aplicando (\ref{2dif}) obtenemos
+  \begin{align*}
+    &\left\Vert \sigma^{\prime }(t)-D^{2}\varphi
+    (u)[w,v]\right\Vert_{W}\\
+    &\qquad{}\leq
+    \left\Vert \varphi^{\prime }(u+tv+w)-\varphi^{\prime }(u)-D^{2}\varphi
+      (u)[tv+w]\right\Vert_{\mathcal{L}(V,W)}\left\Vert v\right\Vert_{V} \\
+    &\qquad\qquad{}+\left\Vert \varphi^{\prime }(u+tv)-\varphi^{\prime }(u)-D^{2}\varphi
+      (u)(tv)\right\Vert_{\mathcal{L}(V,W)}\left\Vert v\right\Vert_{V} \\
+    &\qquad{}<2\varepsilon \left( \left\Vert v\right\Vert_{V}+\left\Vert w\right\Vert
+     _{V}\right) \left\Vert v\right\Vert_{V}\text{\qquad }\forall t\in [0,1].
+  \end{align*}
+  El Corolario~\ref{cortvm}&nbsp;y la desigualdad anterior implican que
+  \begin{align*}
+    &\left\Vert \sigma (1)-\sigma (0)-D^{2}\varphi
+      (u)[w,v]\right\Vert_{W}\\
+      &\qquad{}\leq\left\Vert \sigma (1)-\sigma (0)-\sigma^{\prime }(0)\right\Vert
+   _{W}
+    +\left\Vert \sigma^{\prime }(0)-D^{2}\varphi (u)[w,v]\right\Vert_{W} \\
+    &\qquad\leq \sup_{t\in [0,1]}\left\Vert \sigma^{\prime }(t)-\sigma
+     ^{\prime }(0)\right\Vert_{W}
+    +\left\Vert \sigma^{\prime }(0)-D^{2}\varphi
+      (u)[w,v]\right\Vert_{W} \\
+    &\qquad{}\leq 3\sup_{t\in [0,1]}\left\Vert \sigma^{\prime }(t)-D^{2}\varphi
+      (u)[w,v]\right\Vert_{W} \\
+    &\qquad{}\leq 6\varepsilon \left( \left\Vert v\right\Vert_{V}+\left\Vert
+        w\right\Vert_{V}\right) \left\Vert v\right\Vert_{V}.
+  \end{align*}
+  Observa que $\sigma (1)-\sigma (0)=\varphi (u+v+w)-\varphi
+  (u+v)-\varphi (u+w)+\varphi (u)$ es simétrica en $v$ y $w$, por
+  lo que intercambiando los papeles de $v$ y $w$ en la desigualdad
+  anterior obtenemos
+  \begin{equation*}
+    \left\Vert \sigma (1)-\sigma (0)-D^{2}\varphi (u)[v,w]\right\Vert_{W}\leq
+    6\varepsilon \left( \left\Vert v\right\Vert_{V}+\left\Vert w\right\Vert
+     _{V}\right) \left\Vert w\right\Vert_{V}.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \left\Vert D^{2}\varphi (u)[v,w]-D^{2}\varphi (u)[w,v]\right\Vert_{W}\leq
+    6\varepsilon \left( \left\Vert v\right\Vert_{V}+\left\Vert w\right\Vert
+     _{V}\right)^{2}
+  \end{equation*}
+  si
+  $\max \left\{\left\Vert v\right\Vert _{V},\left\Vert
+      w\right\Vert_{V}\right\}<\delta$.
+</p>
+<p>
+  Si $v,w\in V$ son arbitrarios, escogemos $\lambda \in (0,1]$ tal que
+  $\max \left\{\left\Vert \lambda v\right\Vert_{V},\left\Vert \lambda
+    w\right\Vert_{V}\right\}<\delta $. De la desigualdad anterior se sigue
+  entonces que
+  \begin{align*}
+    \left\Vert D^{2}\varphi (u)[v,w]-D^{2}\varphi (u)[w,v]\right\Vert_{W} &=\frac{1}{\lambda^{2}}\left\Vert D^{2}\varphi (u)[\lambda v,\lambda
+      w]-D^{2}\varphi (u)[\lambda w,\lambda v]\right\Vert_{W} \\
+    &\leq \frac{1}{\lambda^{2}}6\varepsilon \left( \left\Vert \lambda
+        v\right\Vert_{V}+\left\Vert \lambda w\right\Vert_{V}\right)^{2}\\
+    &=6\varepsilon \left( \left\Vert v\right\Vert_{V}+\left\Vert
+        w\right\Vert_{V}\right)^{2}.
+  \end{align*}
+  Como $\varepsilon >0$ es arbitraria, concluimos que $D^{2}\varphi
+  (u)[v,w]=D^{2}\varphi (u)[w,v]$ para cualesquiera $v,w\in V$.
+</p>
+<p>
+  <em class="textsc">Caso 2: </em>$k>2$.
+</p>
+<p>
+  El resultado se obtiene por inducción usando el caso $k=2$ y el
+  isomorfismo (\ref{bil}).
+</div>
+</p>
+<p>
+<div id="defCk" class="definition">
+Si $V$ y $W$ son espacios de Banach, $\Omega $ es un
+  subconjunto abierto de $V$ y $k\in \mathbb{N}\cup \left\{\infty \right\}$\
+  definimos
+\index{espacio!C alakOmega@$\mathcal{C}^{k}(\Omega ,W)$, $\mathcal{C}^{k}(\Omega )$}
+\index{espacio!C alakOmegaO@ $\mathcal{C}^{k}(\overline{\Omega },W)$, $\mathcal{C}^{k}(\overline{\Omega })$}
+  \begin{align*}
+    \mathcal{C}^{k}(\Omega ,W) &:=\left\{\varphi \colon \Omega \rightarrow W:\varphi \text{
+      es de clase }\mathcal{C}^{k}\text{ en }\Omega \right\}, \\
+    \mathcal{C}^{k}(\overline{\Omega },W) &:=\left\{\varphi \colon \overline{\Omega }\rightarrow W:\varphi \text{ es de clase }\mathcal{C}^{k}\text{ en }\overline{\Omega }\right\}.
+  \end{align*}
+  Si $W=\mathbb{R}$ escribiremos simplemente
+  \begin{align*}
+    \mathcal{C}^{k}(\Omega ) &:=\mathcal{C}^{k}(\Omega ,\mathbb{R}), \\
+    \mathcal{C}^{k}(\overline{\Omega }) &:=\mathcal{C}^{k}(\overline{\Omega },\mathbb{R}).
+  \end{align*}
+</div>
+</p>
+<p>
+<h3 id="sec9-7">La fórmula de Taylor</h3>
+</p>
+<p>
+Si $\varphi $ es diferenciable en $u_{0}$ entonces
+\begin{equation*}
+  \varphi (u_{0}+v)=\varphi (u_{0})+\varphi^{\prime }(u_{0})v+r_{1}(v)
+\end{equation*}
+donde $\lim_{v\rightarrow 0}\frac{\left\Vert r_{1}(v)\right\Vert
+ _{W}}{\left\Vert v\right\Vert_{V}}=0$. Es decir, cerca de $u_{0}$,
+$\varphi $ es la suma de una función constante más una
+función lineal salvo por un término que tiende a cero más
+rápidamente que $\left\Vert v\right\Vert_{V}$. La fórmula de
+Taylor generaliza esta afirmación.  Asegura que si $\varphi $ es
+de clase $\mathcal{C}^{k}$ en $u_{0}$ entonces, cerca de ese punto,
+$\varphi $ es una suma de funciones $j$-multilineales, $j=0,\ldots
+,k$, salvo por un término que tiende a cero más
+rápidamente que $\left\Vert v\right\Vert_{V}^{k}$.
+</p>
+<p>
+El teorema que veremos a continuación es una extensión a
+espacios de Banach del teorema de Taylor\footnote{Brook Taylor
+  (1685-1731) nació Edmonton, Inglaterra. Estudió en la
+  Universidad de Cambridge. Publicó su célebre fórmula en
+  1715, pero su importancia no fue reconocida sino hasta 1772 cuando
+  J. L. Lagrange se dió cuenta de su potencial y la llamó
+  <em class="emph">el fundamento principal del cálculo diferencial</em>.} para
+funciones reales de variable real del cálculo
+diferencial. Usaremos ese resultado para demostrar éste, por lo
+que conviene que revises su demostración [Ejercicio
+\ref{taylorR}].
+\begin{bio}[H]
+\centering
+\includegraphics[width=.3\textwidth]{./fotos/calcasdos/Frechet.png}\\[5pt]
+\includegraphics[width=.25\textwidth]{./fotos/calcasdos/Taylor.pdf}\\[5pt]
+ \bfseries Brook Taylor
+\end{bio}
+</p>
+<p>
+<div class="theorem">[Taylor]
+\label{teotaylor}\index{teorema!de Taylor}Si $V$ es un espacio de
+  Banach, $\Omega $ es un subconjunto abierto de $V$, $u_{0}\in \Omega
+  $ y $v\in V$ satisfacen que $u_{0}+tv\in \Omega $ para todo $t\in
+  [0,1]$, y $\varphi \in \mathcal{C}^{k+1}(\Omega )$, entonces
+  existe $\theta \in (0,1)$ tal que
+  \begin{align*}
+    \varphi (u_{0}+v) &=\varphi (u_{0})+D\varphi (u_{0})v+\frac{1}{2}D^{2}\varphi (u_{0})[v,v]+\cdots \\
+    &\qquad{}+\frac{1}{k!}D^{k}\varphi (u_{0})[\underbrace{v,\ldots
+       ,v}_{\text{$k$ veces}}]
+       +\frac{1}{(k+1)!}D^{k+1}\varphi (u_{0}+\theta v)[\underbrace{v,\ldots ,v}_{\text{$k+1$ veces}}].
+  \end{align*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Observa que la función real de variable real $f(t):=\varphi
+  (u_{0}+tv)$ está definida en algún intervalo abierto que
+  contiene a $[0,1]$, es de clase $\mathcal{C}^{k+1}$ en dicho
+  intervalo y
+  \begin{equation}
+    D^{j}f(t)=D^{j}\varphi (u_{0}+tv)[\underbrace{v,\ldots ,v}_{\text{$j$ veces}}],\text{\qquad }j=1,\dots,k+1.\label{tay}
+  \end{equation}
+  En efecto: por la regla de la cadena, $Df(t)=D\varphi (u_{0}+tv)v$.
+  Argumentando por inducción, si $D^{j-1}f(t)=D^{j-1}\varphi
+  (u_{0}+tv)[v,\ldots ,v]$ para algún $j=2,\dots,k+1$, entonces
+  $D^{j-1}f=\mathcal{E}\circ \left( D^{j-1}\varphi \right) \circ
+  \sigma $, donde $\sigma (t):=u_{0}+tv$ y $\mathcal{E}$ es la
+  función que a cada $F\in \mathcal{L}_{j-1}(V,\mathbb{R})$ le
+  asocia el valor $F[v,\ldots ,v]\in \mathbb{R}$.  Observa que
+  $\mathcal{E}$ es lineal y continua [Ejercicio~\ref{eval}].
+  Entonces, aplicando la regla de la cadena obtenemos
+  \begin{equation*}
+    D^{j}f(t)=\left( D^{j}\varphi (u_{0}+tv)v\right)[\underbrace{v,\ldots ,v}_{\text{$j-1$ veces}}].
+  \end{equation*}
+  Esta función corresponde a (\ref{tay})&nbsp;bajo el isomorfismo
+  (\ref{bil}).
+</p>
+<p>
+  Aplicando el teorema de Taylor para funciones de variable real
+  [Ejercicio~\ref{taylorR}] a la función $f$, concluimos que
+  existe $\theta \in (0,1)$ tal que
+  \begin{align*}
+    \varphi (u_{0}+v) &=f(1)=f(0)+Df(0)+\frac{1}{2}D^{2}f(0)+\cdots\\
+    &\qquad{}+\frac{1}{k!}D^{k}f(0)+\frac{1}{(k+1)!}D^{k+1}f(\theta ) \\
+    &=\varphi (u_{0})+D\varphi (u_{0})v+\frac{1}{2}D^{2}\varphi
+    (u_{0})[v,v]+\cdots \\
+    &\qquad{}+\frac{1}{k!}D^{k}\varphi (u_{0})[\underbrace{v,\ldots ,v}_{\text{$k$ veces}}]+\frac{1}{(k+1)!}D^{k+1}\varphi (u_{0}+\theta v)[\underbrace{v,\ldots ,v}_{\text{$k+1$ veces}}].
+  \end{align*}
+  Esta es la identidad deseada.
+</div>
+</p>
+<p>
+<div class="corollary">[Fórmula de Taylor]
+  \index{fórmula!de Taylor}Si $V$ es un espacio de Banach, $\Omega
+  $ es un subconjunto abierto de $V$, $u_{0}\in \Omega $ y $\varphi
+  \in \mathcal{C}^{k}(\Omega )$, entonces la función
+  \begin{equation}
+    r_{k}(v):=\varphi (u_{0}+v)-\varphi (u_{0})-D\varphi (u_{0})v-\cdots -\frac{1}{k!}D^{k}\varphi (u_{0})[\underbrace{v,\ldots ,v}_{\text{$k$ veces}}]\label{residuo}
+  \end{equation}
+  está definida en una vecindad de $0$ en $V$ y satisface
+  \begin{equation*}
+    \lim_{v\rightarrow 0}\frac{r_{k}(v)}{\left\Vert v\right\Vert_{V}^{k}}=0.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\delta >0$ tal que $B_{V}(u_{0},\delta )\subset \Omega $.
+  Aplicando el Teorema~\ref{teotaylor} con $k$ en vez de $k+1$
+  obtenemos que, para cada $v\in B_{V}(0,\delta )$, existe $\theta
+ _{v}\in (0,1)$ tal que
+  \begin{equation*}
+    \varphi (u_{0}+v)=\sum_{j=0}^{k-1}\frac{1}{j!}D^{j}\varphi
+    (u_{0})[v,\ldots ,v]+\frac{1}{k!}D^{k}\varphi (u_{0}+\theta_{v}v)[v,\ldots
+    ,v].
+  \end{equation*}
+  Por otra parte, de la definición de $r_{k}$ se sigue que
+  \begin{equation*}
+    \varphi (u_{0}+v)=\sum_{j=0}^{k}\frac{1}{j!}D^{j}\varphi
+    (u_{0})[v,\ldots ,v]+r_{k}(v).
+  \end{equation*}
+  Tomando la diferencia de estas identidades obtenemos
+  \begin{equation*}
+    r_{k}(v)=\frac{1}{k!}\left( D^{k}\varphi (u_{0}+\theta_{v}v)-D^{k}\varphi
+      (u_{0})\right) [v,\ldots ,v].
+  \end{equation*}
+  En consecuencia, si $v\neq 0$,
+  \begin{align*}
+    \frac{\left\vert r_{k}(v)\right\vert }{\left\Vert v\right\Vert_{V}^{k}} &=\frac{1}{k!}\frac{\left\vert \left( D^{k}\varphi (u_{0}+\theta
+         _{v}v)-D^{k}\varphi (u_{0})\right) [v,\ldots ,v]\right\vert }{\left\Vert
+        v\right\Vert_{V}^{k}} \\
+    &\leq \frac{1}{k!}\left\Vert D^{k}\varphi (u_{0}+\theta_{v}v)-D^{k}\varphi
+      (u_{0})\right\Vert_{\mathcal{L}_{k}(V,\mathbb{R})}.
+  \end{align*}
+  Dado que $D^{k}\varphi \colon \Omega \rightarrow
+  \mathcal{L}_{k}(V,\mathbb{R})$ es continua en $u_{0}$ y que $\theta
+ _{v}\in (0,1)$, concluimos que $\lim_{v\rightarrow
+    0}\frac{r_{k}(v)}{\left\Vert v\right\Vert_{V}^{k}}=0$.
+</div>
+</p>
+<p>
+La función
+\begin{equation*}
+  P_{k}(v):=\varphi (u_{0})+D\varphi (u_{0})v+\cdots +\frac{1}{k!}D^{k}\varphi
+  (u_{0})[\underbrace{v,\ldots ,v}_{\text{$k$ veces}}]
+\end{equation*}
+se llama la <em class="textbf">expansión de Taylor de grado </em>$k$<em class="textbf">&nbsp;de
+</em>$\varphi $<em class="textbf">&nbsp;alrededor de</em> $u_{0}$.\index{expansión!de
+  Taylor}
+</p>
+<p>
+<h3 id="sec9-8">Ejercicios</h3>
+</p>
+<p>
+<div id="norma" class="exercise">
+Prueba que
+  \begin{equation*}
+    \left\Vert T\right\Vert_{\mathcal{L}(V,W)}:=\sup_{\substack{ v\in V  \\v\neq 0}}\frac{\left\Vert Tv\right\Vert_{W}}{\left\Vert v\right\Vert_{V}}
+  \end{equation*}
+  es una norma en $\mathcal{L}(V,W)$.
+</div>
+</p>
+<p>
+<div id="matr" class="exercise">
+Si identificamos al espacio
+  $\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{m})$ con el espacio
+  $\mathcal{M}_{m\times n}(\mathbb{R})$ de matrices de $m\times n$ de
+  la manera usual, este espacio resulta isomorfo a
+  $\mathbb{R}^{mn}$. Prueba que cualquier isomorfismo de espacios
+  vectoriales
+  \begin{equation*}
+    \iota \colon \mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{m})\rightarrow \mathbb{R}^{mn}
+  \end{equation*}
+  es un homeomorfismo para cualquier norma que le demos a
+  $\mathbb{R}^{mn}$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que, para todo $T\in \mathcal{L}(V,W)$,
+  \begin{equation*}
+    \left\Vert T\right\Vert_{\mathcal{L}(V,W)}=\sup_{v\in \bar{B}_{V}(0,1)}\left\Vert Tv\right\Vert_{W}=\sup_{v\in S_{V}(0,1)}\left\Vert
+      Tv\right\Vert_{W}.
+  \end{equation*}
+  donde $\bar{B}_{V}(0,1):=\left\{v\in V:\left\Vert v\right\Vert_{V}\leq
+  1\right\}$ &nbsp;y $S_{V}(0,1):=\left\{v\in V:\left\Vert v\right\Vert_{V}=1\right\}$.
+</div>
+</p>
+<p>
+<div id="normcomp" class="exercise">
+Sean $V,W,Z$ espacios de Banach. Demuestra las
+  siguientes afirmaciones:
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Si $S\in \mathcal{L}(V,W)$ y $T\in \mathcal{L}(W,Z)$
+    entonces
+    \begin{equation*}
+      \left\Vert T\circ S\right\Vert_{\mathcal{L}(V,Z)}\leq \left\Vert
+        T\right\Vert_{\mathcal{L}(W,Z)}\left\Vert S\right\Vert_{\mathcal{L}(V,W)}.
+    \end{equation*}
+</p>
+<p>
+  \item[(b)] Si $S_{k}\rightarrow S$ en $\mathcal{L}(V,W)$ y
+    $T_{k}\rightarrow T$ en $\mathcal{L}(W,Z)$ entonces $T_{k}\circ
+    S_{k}\rightarrow T\circ S$ en $\mathcal{L}(V,Z)$.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div id="linderi" class="exercise">
+Prueba que, si $\varphi ,\psi \colon \Omega \rightarrow W$
+  son diferenciables en $u_{0}$, entonces $\lambda \varphi +\mu \psi $
+  es diferenciable en $u_{0}$ y
+  \begin{equation*}
+    (\lambda \varphi +\mu \psi )^{\prime }(u_{0})=\lambda \varphi^{\prime
+    }(u_{0})+\mu \psi^{\prime }(u_{0}).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="inclu" class="exercise">
+Sean $V_{1},V_{2}$ espacios de Banach,
+  $(u_{1},u_{2})\in V_{1}\times V_{2}$. Prueba que las funciones
+  \begin{alignat*}{2}
+    &\iota_{1,u_{2}} \colon V_{1}\rightarrow V_{1}\times V_{2},&\qquad&\iota
+   _{1,u_{2}}(v_{1}):=(v_{1},u_{2}), \\
+    &\iota_{2,u_{1}} \colon V_{2}\rightarrow V_{1}\times V_{2},&&\iota
+   _{2,u_{1}}(v_{2}):=(u_{1},v_{2}),
+  \end{alignat*}
+  son diferenciables y calcula su derivada.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que la función $&nbsp;\varphi
+  \colon \mathcal{C}^{0}([0,1],V)\rightarrow V\times V$ &nbsp;dada por
+  \begin{equation*}
+    \varphi (\sigma ):=(\sigma (0),\sigma (1))
+  \end{equation*}
+  es diferenciable y calcula su derivada.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que la función $\varphi \colon \mathcal{C}^{0}[0,1]\rightarrow
+  \mathbb{R}$ dada por
+  \begin{equation*}
+    \varphi (u):=\int_{0}^{1}u^{2}
+  \end{equation*}
+  es diferenciable y calcula su derivada.
+</div>
+</p>
+<p>
+<div class="exercise">
+  <em class="emph">Un subconjunto </em>$A$<em class="emph">&nbsp;de un espacio métrico
+  </em>$X$<em class="emph">&nbsp;es <em class="textbf">conexo</em> </em>\index{conjunto!conexo}<em class="emph">si para
+    cualesquiera </em>$a_{1},a_{2}\in A$<em class="emph">&nbsp;existe una trayectoria de
+  </em>$a_{1}$<em class="emph">&nbsp;a </em>$a_{2}$<em class="emph">&nbsp;en </em>$A$.
+</p>
+<p>
+  Prueba que, si $\Omega $ es un subconjunto abierto y conexo de un
+  espacio de Banach $V$, $\varphi \colon \Omega \rightarrow W$ es
+  diferenciable en $\Omega $ y $\varphi^{\prime }(u)=0$ para todo
+  $u\in \Omega $, entonces $\varphi $ es constante en $\Omega $.
+  <em class="emph">(Sugerencia: Usa el teorema del valor medio.)</em>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\varphi \colon \mathbb{R}^{2}\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    \varphi (x,y):=\left\{ 
+      \begin{array}{cc}
+        \frac{x^{2}y^{2}}{x^{2}+y^{2}} & \text{si }(x,y)\neq (0,0), \\
+        0 & \text{si }(x,y)=(0,0).
+      \end{array}
+    \right.
+  \end{equation*}
+  Prueba que $\varphi $ es diferenciable en $(0,0)$.
+  <em class="emph">(Sugerencia: Usa la desigualdad de Young, Lema~\ref{young}.)</em>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\varphi \colon \mathbb{R}^{2}\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    \varphi (x,y):=\left\{ 
+      \begin{array}{cc}
+        \frac{xy}{x^{2}+y^{2}} & \text{si }(x,y)\neq (0,0), \\
+        0 & \text{si }(x,y)=(0,0).
+      \end{array}
+    \right.
+  \end{equation*}
+  Prueba que existen las derivadas parciales $\frac{\partial \varphi
+  }{\partial x}(0,0)$ y $\frac{\partial \varphi }{\partial y}(0,0)$,
+  pero que no existe ninguna otra derivada direccional en $(0,0)$, es
+  decir, si $xy\neq 0$ no existe el límite
+  \begin{equation*}
+    \lim_{t\rightarrow 0}\frac{\varphi (tx,ty)-\varphi (0,0)}{t}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="noGdif" class="exercise">
+Sea $\varphi \colon \mathbb{R}^{2}\rightarrow \mathbb{R}$
+  dada por
+  \begin{equation*}
+    \varphi (x,y):=\left\{ 
+      \begin{array}{cc}
+        \frac{xy^{2}}{x^{2}+y^{2}} & \text{si }(x,y)\neq (0,0), \\
+        0 & \text{si }(x,y)=(0,0).
+      \end{array}
+    \right.
+  \end{equation*}
+  Prueba que existen todas las derivadas direccionales de $\varphi $
+  en $(0,0)$, pero que $\varphi $ no es Gâteaux-diferenciable en
+  $(0,0)$.
+</div>
+</p>
+<p>
+<div id="siGnoF" class="exercise">
+Prueba que la función $\varphi
+  \colon \mathbb{R}^{2}\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    \varphi (x,y):=\left\{ 
+      \begin{array}{cc}
+        \frac{x^{3}y}{x^{4}+y^{2}} & \text{si }(x,y)\neq (0,0), \\
+        0 & \text{si }(x,y)=(0,0).
+      \end{array}
+    \right.
+  \end{equation*}
+  es Gâteaux-diferenciable en $(0,0)$, pero no es diferenciable en
+  $(0,0)$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Considera las funciones $f_{1},f_{2},f_{\infty
+  }\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ dadas por
+  \begin{equation*}
+    f_{1}(x):=\left\Vert x\right\Vert_{1},\text{\qquad }f_{2}(x):=\left\Vert
+      x\right\Vert_{2},\text{\qquad }f_{\infty }(x):=\left\Vert x\right\Vert
+   _{\infty }.
+  \end{equation*}
+  Investiga en qué puntos son diferenciables y calcula su derivada
+  en dichos puntos.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Considera la función
+  \begin{equation*}
+    \left\Vert \cdot \right\Vert_{1}\colon \ell_{1}\rightarrow \mathbb{R}\text{,\qquad }\left\Vert x\right\Vert_{1}:=\sum_{k=1}^{\infty
+    }\left\vert x_{k}\right\vert .
+  \end{equation*}
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Prueba que $\left\Vert \cdot \right\Vert_{1}$&nbsp;es
+    Gâteaux-diferenciable en $x=(x_{k})$ si y sólo si
+    $x_{k}\neq 0$ para todo $k\in \mathbb{N}$. Calcula, en este caso,
+    su derivada de Gâteaux.
+</p>
+<p>
+  \item[(b)] Prueba que $\left\Vert \cdot \right\Vert_{1}$ no es
+    Fréchet-diferenciable en ningún punto.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $f\in \mathcal{C}^{0}[a,b]$. Prueba que la función $\varphi
+  \colon (a,b)\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    \varphi (t):=\int_{t}^{b}f(s)ds
+  \end{equation*}
+  es de clase $\mathcal{C}^{1}$&nbsp;y su derivada es $\varphi^{\prime
+  }(t)=-f(t). $
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $f\colon [a,b]\times \mathbb{R}\rightarrow \mathbb{R}$ una función
+  continua, cuya derivada parcial respecto a la segunda variable
+  existe y es continua en $[a,b]\times \mathbb{R}$.
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Prueba que la función $\varphi
+    \colon \mathcal{C}^{0}[a,b]\rightarrow \mathbb{R}$ dada por
+    \begin{equation*}
+      \varphi (u):=\int_{a}^{b}f(s,u(s))ds
+    \end{equation*}
+    es de clase $\mathcal{C}^{1}$&nbsp;y su derivada está dada por
+    \begin{equation*}
+      \varphi^{\prime }(u)v=\int_{a}^{b}\partial_{2}f(s,u(s))\left[ v(s)\right]
+      ds.
+    \end{equation*}
+</p>
+<p>
+  \item[(b)] Prueba que la función $\Phi
+    \colon \mathcal{C}^{0}[a,b]\rightarrow \mathcal{C}^{0}[a,b]$ dada por
+    \begin{equation*}
+      \Phi (u)(t):=\int_{a}^{t}f(s,u(s))ds
+    \end{equation*}
+    es de clase $\mathcal{C}^{1}$&nbsp;y su derivada está dada por
+    \begin{equation*}
+      \left( \Phi^{\prime }(u)v\right) (t)=\int_{a}^{t}\partial_{2}f(s,u(s)) 
+      \left[ v(s)\right] ds.
+    \end{equation*}
+  \end{enumerate}
+</div>
+</p>
+<p> 
+<div id="derbil" class="exercise">
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Prueba que toda función $T\in \mathcal{L}(V,W)$ es de
+    clase $\mathcal{C}^{\infty }$ y calcula su derivada de orden $k$
+    para todo $k\in \mathbb{N}$.
+</p>
+<p>
+  \item[(b)] Prueba que toda función $F\in
+    \mathcal{L}(V_{1},V_{2};W)&nbsp;$es de clase $\mathcal{C}^{\infty }$ y
+    calcula su derivada de orden $k$ para todo $k\in \mathbb{N}$.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div id="Q" class="exercise">
+Sea $F\in \mathcal{L}_{2}(V,\mathbb{R})$. Si $F$ es
+  simétrica, es decir, si $F[v_{1},v_{2}]=F[v_{2},v_{1}]$ para
+  cualesquiera $v_{1},v_{2}\in V$, prueba que la función
+  \begin{equation*}
+    Q\colon V\rightarrow \mathbb{R}\text{,\qquad }Q(v)=\frac{1}{2}F[v,v],
+  \end{equation*}
+  es de clase $\mathcal{C}^{\infty }$ y calcula todas sus derivadas.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que la función $\varphi \colon \mathcal{C}^{0}[0,1]\rightarrow
+  \mathcal{C}^{0}[0,1]$ dada por $\varphi (u):=u^{2}$ es de clase
+  $\mathcal{C}^{\infty } $ y calcula todas sus derivadas.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $K\colon [a,b]\times [a,b]\rightarrow \mathbb{R}$ una
+  función continua y simétrica. Prueba que la función
+  $\varphi \colon \mathcal{C}^{0}[a,b]\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    \varphi (u):=\int_{a}^{b}\int_{a}^{b}K(x,y)u(x)u(y)dxdy
+  \end{equation*}
+  es de clase $\mathcal{C}^{\infty }$ y calcula todas sus derivadas.
+</div>
+</p>
+<p>
+<div id="eval" class="exercise">
+Sean $V_{1},\dots,V_{n},W$ espacios de Banach y $v_{j}\in
+  V_{j}$. Prueba que la función
+  \begin{equation*}
+    \mathcal{E}\colon \mathcal{L}(V_{1},\dots,V_{n};W)\rightarrow W,\qquad \mathcal{E}(F):=F[v_{1},\ldots ,v_{n}],
+  \end{equation*}
+  es lineal y continua.
+</div>
+</p>
+<p>
+<div id="multi" class="exercise">
+Considera la función $\iota
+  \colon \mathcal{L}(V_{1},V_{2};W)\rightarrow
+  \mathcal{L}(V_{1},\mathcal{L}(V_{2},W))$ dada por $\iota
+  (F):=\hat{F}$ donde
+  \begin{equation*}
+    (\hat{F}v_{1})v_{2}=F[v_{1},v_{2}],\qquad \forall v_{1}\in V_{1},\text{ }v_{2}\in V_{2}.
+  \end{equation*}
+  Prueba que
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] $\iota $ está bien definida, es decir, $\hat{F}\in
+    \mathcal{L}(V_{1},\mathcal{L}(V_{2},W))$ si $F\in
+    \mathcal{L}(V_{1},V_{2};W)$,
+</p>
+<p>
+  \item[(b)] $\iota $ es un isomorfismo de espacios vectoriales,
+</p>
+<p>
+  \item[(c)] $\iota $ es una isometría, es decir,
+    \begin{equation*}
+      \left\Vert F\right\Vert_{\mathcal{L}(V_{1},V_{2};W)}=\left\Vert \hat{F}\right\Vert_{\mathcal{L}(V_{1},\mathcal{L}(V_{2},W))}\qquad \forall F\in 
+      \mathcal{L}(V_{1},V_{2};W).
+    \end{equation*}
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $V_{1},\dots,V_{n},W$ espacios de Banach, $\Omega $ un
+  subconjunto abierto de $V:=V_{1}\times \cdots \times V_{n}$ y
+  $\varphi \colon \Omega \rightarrow W$.
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Prueba que si $\varphi $ es de clase $\mathcal{C}^{2}$
+    entonces existen las derivadas parciales de orden~$2$,
+    \begin{equation*}
+      \partial_{j}\partial_{i}\varphi (u):=\partial_{j}\left( \partial
+       _{i}\varphi \right) (u)\in \mathcal{L}(V_{j},\mathcal{L}(V_{i},W))\cong 
+      \mathcal{L}(V_{j},V_{i};W),
+    \end{equation*}
+    para cualesquiera $u\in \Omega $, $i,j=1,\ldots ,n$, y que se
+    cumple
+    \begin{equation*}
+      D^{2}\varphi (u)[v,w]=\sum_{i,j=1}^{n}\partial_{j}\partial
+     _{i}\varphi (u)[v_{j},w_{i}]
+    \end{equation*}
+    para cualesquiera $v=(v_{1},\ldots ,v_{n})$, $w=(w_{1},\ldots
+    ,w_{n})\in V$.
+</p>
+<p>
+  \item[(b)] Prueba que, si $\varphi $ es de clase $\mathcal{C}^{2}$,
+    entonces $\partial_{j}\partial_{i}\varphi (u)=\partial
+   _{i}\partial_{j}\varphi (u)$ para cualesquiera $u\in \Omega $,
+    $i,j=1,\ldots ,n$.
+</p>
+<p>
+  \item[(c)] Prueba que, si las derivadas parciales $\partial
+   _{j}\partial_{i}\varphi \colon \Omega \rightarrow
+    \mathcal{L}(V_{j},V_{i};W)$ de orden $2$ existen y son continuas
+    para cualesquiera $i,j=1,\ldots ,n$, entonces $\varphi $ es de
+    clase $\mathcal{C}^{2}$.
+</p>
+<p>
+  \item[(d)] Formula y demuestra los resultados análogos para
+    $\varphi $ de clase $\mathcal{C}^{k}$, $k\geq 2$.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">[Teorema de Taylor para funciones de variable real]
+\label{taylorR}Prueba que si $f\in \mathcal{C}^{k+1}(a,b)$ y $0\in
+  (a,b)$ entonces, para cada $t\in (a,b)$, existe un punto $\theta \in
+  (0,1)$ tal que
+  \begin{equation*}
+    f(t)=f(0)+Df(0)t+\frac{1}{2}D^{2}f(0)t^{2}+\cdots +\frac{1}{k!}D^{k}f(0)t^{k}+\frac{1}{(k+1)!}D^{k+1}f(\theta t)t^{k+1}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $Q\colon V\rightarrow \mathbb{R}$ como en el <em class="emph">Ejercicio~\ref{Q}</em>.
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Para cualesquiera $k\geq 2$ y $u_{0}\in V$, calcula la
+    expansión de Taylor de grado $k$&nbsp;de $Q$&nbsp;alrededor de
+    $u_{0}$.
+</p>
+<p>
+  \item[(b)] Calcula la función $r_{k}$ definida en
+    <em class="emph">(\ref{residuo})</em>.
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\Omega :=\left\{(x,y)\in \mathbb{R}^{2}:x+y\neq 0\right\}$ y sea $\varphi
+  \colon \Omega \rightarrow \mathbb{R}$ la función dada por
+  \begin{equation*}
+    \varphi (x,y):=\frac{x-y}{x+y}.
+  \end{equation*}
+</p>
+<p>
+  \begin{enumerate}
+  \item[(a)] Calcula la expansión de Taylor de grado $2$ de la
+    función $\varphi $ alrededor de $(1,1)$.
+</p>
+<p>
+  \item[(b)] Comprueba directamente que la función $r_{2}$
+    definida en <em class="emph">(\ref{residuo})</em> con $u_{0}=(1,1)$ satisface
+    \begin{equation*}
+      \lim_{(x,y)\rightarrow (1,1)}\frac{r_{2}(x,y)}{x^{2}+y^{2}}=0.
+    \end{equation*}
+  \end{enumerate}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Utiliza una expansión de Taylor de la función $\varphi
+  (x,y):=\cos (x+y)$ para calcular
+  \begin{equation*}
+    \lim_{(x,y)\rightarrow (0,0)}\frac{1-\cos (x+y)}{\sqrt{x^{2}+y^{2}}}.
+  \end{equation*}
+</div>
+</p>
+
+</div>
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>

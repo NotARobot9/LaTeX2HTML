@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/4.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\mathop{\rm id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+//      include_once '/papirhos-web/scripts/menu-top.php';
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 3;
+              }
+              </style>  
+
+
+<h2 id="Cap-4">Compacidad</h2>
+<p>
+Los subconjuntos de $\mathbb{R}^{n}$ que son cerrados y
+acotados tienen una propiedad fundamental: cualquier sucesión de
+puntos en ellos contiene una subsucesión convergente. En general,
+no cualquier subconjunto cerrado y acotado de un espacio métrico
+tiene esta propiedad. A los subconjuntos que la tienen se les llama
+<em class="emph">compactos</em>.  Este término fue introducido por Fréchet en
+1906.
+</p>
+<p>
+La compacidad tiene consecuencias muy importantes. Por ejemplo, toda
+función continua en un espacio métrico compacto alcanza su
+máximo y su mínimo. Veremos que la compacidad permite
+concluir la existencia de una solución de una ecuación
+diferencial tomando el límite de ciertas aproximaciones
+elementales, como ocurre en el teorema de existencia de Peano que
+demostraremos más adelante (ver Teorema <a href="tul/P_T_02/7.html#cp">7.14</a>).
+</p>
+<p>
+Existen varias nociones equivalentes de compacidad en espacios
+métricos.  Una de ellas afirma que un subconjunto $K$ de un
+espacio métrico es compacto si de cualquier familia de conjuntos
+abiertos cuya unión contiene a $K$ podemos extraer una familia
+finita cuya unión también contiene a $K$. Esta es la
+definición que usaremos aquí como punto de partida.
+</p>
+<p>
+<h3 id="sec4-1">Conjuntos compactos</h3>
+</p>
+<p class="noj">
+Sean $X$ un espacio métrico y $A$ un subconjunto de $X$.
+</p>
+<div class="definition">
+  Una <em class="textbf">cubierta</em> de $A$ en $X$ es una familia
+  $\mathfrak{C}=\left\{ X_{i}:i\in \mathcal{I}\,\right\} $ de
+  subconjuntos de $X$ tal que
+  \begin{equation*}
+    A\subset \bigcup_{i\in \mathcal{I}}X_{i}.
+  \end{equation*}
+  Si además $X_{i}$ es abierto en $X$ para toda $i\in
+  \mathcal{I}$, se dice que $\mathfrak{C}$ es una <em class="textbf">cubierta
+    abierta </em>de $A$ en $X$. Un subconjunto
+  $\mathfrak{C}^{\prime } $ de $\mathfrak{C}$ que a su vez es cubierta
+  de $A$ se llama una <em class="textbf">subcubierta</em> de
+  $\mathfrak{C}$.
+</div>
+<div id="6.4.1" class="definition">
+Un subconjunto $K$ de $X$ es <em class="textbf">compacto</em>
+  si cada cubierta abierta\break
+  $\mathfrak{C}=\left\{ X_{i}:i\in \mathcal{I}\,\right\} $ de $K$ en $X$
+  contiene una subcubierta finita, es decir, si existen
+  $X_{i_{1}},\ldots ,X_{i_{m}}\in \mathfrak{C}$ tales que
+  \begin{equation*}
+    K\subset X_{i_{1}}\cup \cdots \cup X_{i_{m}}.
+  \end{equation*}
+</div>
+<p>
+Veamos algunos ejemplos. Denotemos por
+\begin{equation*}
+  B(x_{0},r):=\left\{x\in \mathbb{R}^{n}:\left\Vert x-x_{0}\right\Vert \menorque r\right\}
+\end{equation*}
+a la bola abierta en $\mathbb{R}^{n}$ con centro en $x_{0}$ y radio
+$r$.
+</p>
+<p>
+<div id="6.4.2" class="example">
+$\mathbb{R}^{n}$ no es compacto.
+</div>
+</p>
+
+<div class="proof">
+  $\mathfrak{C}:=\left\{B(0,k):k\in \mathbb{N}\right\}$ es una cubierta abierta
+  de $\mathbb{R}^{n}$, pero ningún subconjunto finito de
+  $\mathfrak{C}$ es cubierta de $\mathbb{R}^{n}$.
+              <div id="fig:4-1" class="figure">
+                <img src="tul/P_T_02/figuras/ejemplo4-3.svg" height="190">
+                <div class="caption">
+                </div>                
+              </div>
+
+<br>
+Por tanto, $\mathbb{R}^{n}$ no es compacto.
+</div>
+
+<div id="6.4.3" class="example">
+La bola abierta $B(0,1)$ en $\mathbb{R}^{n}$ no es
+  compacta.
+</div>
+</p>
+
+<div class="proof">
+  $\mathfrak{C}:=\left\{B(0,1-\frac{1}{k}):k\in \mathbb{N}\right\}$ es una
+  cubierta abierta de $B(0,1)$, pero ningún subconjunto finito de
+  $\mathfrak{C}$ es cubierta de $B(0,1)$.
+              <div id="fig:4-2" class="figure">
+                <img src="tul/P_T_02/figuras/ejemplo4-4.svg" height="190">
+                <div class="caption">
+                </div>                
+              </div>
+<br>
+Por tanto, $B(0,1)$ no es compacta.
+</div>
+
+<p>
+A continuación probaremos algunas propiedades importantes de los
+conjuntos compactos.
+</p>
+<p>
+<div id="compbw" class="proposition">
+Si $K$ es un subconjunto compacto de $X$, entonces
+  toda sucesión $(x_{k})$ de elementos de $K$ contiene una
+  subsucesión que converge en $X$ a un elemento de $K$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $(x_{k})$ una sucesión en $K$. Probaremos primero que existe
+  un punto $y_{0}\in K$ tal que, para cada $\varepsilon >0$, la bola
+  abierta $B_{X}(y_{0},\varepsilon )$ con centro en $y_{0}$ y radio
+  $\varepsilon $ contiene alguna subsucesión de $(x_{k})$.
+</p>
+<p>
+  Argumentando por contradicción, supongamos que para cada $y\in
+  K$ existe $\varepsilon_{y}>0$ tal que $B_{X}(y,\varepsilon_{y})$
+  no contiene ninguna subsucesión de $(x_{k})$. Entonces existe
+  $k_{y}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    x_{k}\notin B_{X}(y,\varepsilon_{y})\qquad \forall k\geq k_{y}.
+  \end{equation*}
+  Como $K$ es compacto y $\mathfrak{C}:=\left\{B_{X}(y,\varepsilon
+ _{y}):y\in K\right\}$ es una cubierta abierta de $K$, existen
+  $y_{1},\dots,y_{m}\in K$ tales que
+  \begin{equation*}
+    K\subset B_{X}(y_{1},\varepsilon_{y_{1}})\cup \cdots \cup
+    B_{X}(y_{m},\varepsilon_{y_{m}}).
+  \end{equation*}
+  Esto implica que $x_{k}\notin K$ para todo $k\geq \max
+  \left\{k_{y_{1}},\dots,k_{y_{m}}\right\}$, lo cual es falso.
+</p>
+<p>
+  En consecuencia, existe $y_{0}\in K$ tal que toda bola abierta con
+  centro en $y_{0}$ contiene a una subsucesión de $(x_{k})$. Esto
+  nos permite escoger, inductivamente, para cada $j\in \mathbb{N}$ un
+  punto $x_{k_{j}}\in B_{X}(y_{0},\frac{1}{j})$ tal que
+  $k_{j}>k_{j-1}$. La sucesión $(x_{k_{j}})$ es una
+  subsucesión de $(x_{k})$ que converge a $y_{0}$.
+</div>
+</p>
+<p>
+Más adelante veremos que el recíproco también es
+válido, es decir, que $K$ es un subconjunto compacto de $X&nbsp;$si y
+sólo si toda sucesión $(x_{k})$ en $K$ contiene una
+subsucesión convergente en $K$ (ver Teorema <a href="tul/P_T_02/7.html#caractcomp">7.4</a>).
+</p>
+<p>
+<div id="defconjacotado" class="definition">
+Un subconjunto $A$ de un espacio métrico
+  $X$ es <em class="textbf">acotado</em> si existen $x\in X$
+  y $\varepsilon >0$ tales que $A\subset B_{X}(x,\varepsilon )$.
+</div>
+</p>
+<p>
+<div id="comphb" class="proposition">
+Si $K$ es un subconjunto compacto de $X$, entonces $K$
+  es cerrado y acotado.
+</div>
+</p>
+
+<div class="proof">
+  Sea $K$ un subconjunto compacto de $X$. Si $x_{0}\in \overline{K}$,
+  existe una sucesión $(x_{k})$ en $K$ que converge a $x_{0} $ en $X$
+  (ver Proposición<a href="tul/P_T_02/3.html#cerrsuc"> 3.32</a>). Por la Proposición<a href="tul/P_T_02/4.html#compbw"> 4.5</a>,
+  $(x_{k})$ contiene una subsucesión $(x_{k_{j}})$ que converge a un
+  punto $y_{0}\in K$. De la Proposición <a href="tul/P_T_02/3.html#unilim">3.29</a> se sigue que
+  $x_{0}=y_{0}\in K$. Esto prueba que $K$ es cerrado.
+<br>
+  Probemos ahora que $K$ es acotado. Fijemos un punto $x_{0}\in X$. El
+  conjunto $\mathfrak{C}:=\left\{B_{X}(x_{0},k):k\in \mathbb{N}\right\}$ es una
+  cubierta abierta de $K$. Como $K$ es compacto, existen
+  $k_{1},\dots,k_{m}\in \mathbb{N}$ tales que
+  \begin{equation*}
+    K\subset B_{X}(x_{0},k_{1})\cup \cdots \cup B_{X}(x_{0},k_{m}).
+  \end{equation*}
+  Sea $k_{0}:=\max \left\{k_{1},\dots,k_{m}\right\}$. Entonces $K\subset
+  B_{X}(x_{0},k_{0})$, es decir, $K$ es acotado.
+</div>
+<p>
+El recíproco no es cierto en general, como lo muestra el
+siguiente ejemplo.
+</p>
+<p>
+<div id="bolanocomp" class="example">
+La bola cerrada $&nbsp;\bar{B}_{\ell
+   _{2}}(0,1):=\left\{(x_{n})\in \ell_{2}:\sum_{n=1}^{\infty
+  }x_{n}^{2}\leq 1\right\}$<em class="textbf">&nbsp;</em> no es compacta en $\ell_{2}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Para cada $k\in \mathbb{N}$ denotemos por $\overline{e}_{k}\in \ell
+ _{2}$ a la sucesión cuyo $k$-ésimo término es $1$ y
+  todos los demás términos son $0$. Claramente
+  $\overline{e}_{k}\in \bar{B}_{\ell_{2}}(0,1)$. Observa que
+  \begin{equation*}
+    \left\Vert \overline{e}_{j}-\overline{e}_{k}\right\Vert_{2}=\sqrt{2}\qquad \forall j\neq k.
+  \end{equation*}
+  Supongamos que una subsucesión $(\overline{e}_{k_{j}})$ converge
+  a $\overline{e}$ en $\ell_{2}$. Entonces existe $j_{0}\in
+  \mathbb{N}$ tal que $\left\Vert
+    \overline{e}_{k_{j}}-\overline{e}\right\Vert
+ _{2}<\frac{\sqrt{2}}{2}$ para todo $j\geq j_{0}$. En consecuencia,
+  \begin{equation*}
+    \left\Vert \overline{e}_{k_{j}}-\overline{e}_{k_{i}}\right\Vert_{2}\leq
+    \left\Vert \overline{e}_{k_{j}}-\overline{e}\right\Vert_{2}+\left\Vert 
+      \overline{e}-\overline{e}_{k_{i}}\right\Vert_{2}<\frac{\sqrt{2}}{2}+\frac{\sqrt{2}}{2}=\sqrt{2}\qquad \forall i,j\geq j_{0},
+  \end{equation*}
+  lo cual es imposible. Esto prueba que $(\overline{e}_{k})$ no
+  contiene ninguna subsucesión convergente. La
+  Proposición<a href="tul/P_T_02/4.html#compbw"> 4.5</a> implica que $\bar{B}_{\ell_{2}}(0,1)$ no es
+  compacta.
+</div>
+</p>
+<p>
+En general, las bolas cerradas en espacios de dimensión infinita
+nunca son compactas (ver Ejercicio <a href="tul/P_T_02/5.html#ejesferacomp">5.39</a>). Veremos en la
+próxima sección que en $\mathbb{R}^{n}$ sí lo son.
+</p>
+<p>
+<div id="compcerr" class="proposition">
+Sea $K$ un subconjunto compacto de $X$. Si $C\subset
+  K$ y $C$ es cerrado en $X$, entonces $C$ es compacto.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $C$ un subconjunto cerrado de un conjunto compacto $K$. Si
+  $\mathfrak{C}=\left\{ U_{i}:i\in \mathcal{I}\right\} $ es una
+  cubierta abierta de $C$ en $X$, entonces $\mathfrak{C}^{\prime
+  }:=\left\{ U_{i}:i\in \mathcal{I}\right\} \cup \left\{
+    X\smallsetminus C\right\} $ es una cubierta abierta de $K$ en $X$.
+  Como $K$ es compacto, existen $U_{i_{1}},\dots,U_{i_{m}}\in
+  \mathfrak{C}$ tales que
+  \begin{equation*}
+    K\subset U_{i_{1}}\cup \cdots \cup U_{i_{m}}\cup (X\smallsetminus C).
+  \end{equation*}
+  En consecuencia, $C\subset U_{i_{1}}\cup \cdots \cup U_{i_{m}}$.
+  Esto prueba que $C$ es compacto.
+</div>
+</p>
+<p>
+La compacidad se preserva bajo funciones continuas, es decir, se
+cumple lo siguiente.
+</p>
+<p>
+<div id="compcont" class="proposition">
+Si $\phi\colon X\rightarrow Y$ es continua y $K$ es un
+  subconjunto compacto de $X$, entonces $\phi (K)$ es un subconjunto
+  compacto de $Y$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\mathfrak{C}=\left\{ V_{i}:i\in \mathcal{I}\right\} $ una
+  cubierta abierta de $\phi (K)$ en $Y$. Como $\phi $ es continua,
+  $\phi^{-1}(V_{i})$ es abierto en $X$ (ver
+  Proposición <a href="tul/P_T_02/3.html#conttop">3.24</a>). Por tanto, $\mathfrak{C}^{\prime
+  }:=\left\{ \phi ^{-1}(V_{i}):i\in \mathcal{I}\right\} $ es una
+  cubierta abierta de $K$ en $X$ y, como $K$ es compacto, existen
+  $\phi ^{-1}(V_{i_{1}}),\dots,\phi^{-1}(V_{i_{m}})\in
+  \mathfrak{C}^{\prime }$ tales que $K\subset \phi^{-1}(V_{i_{1}})\cup
+  \cdots \cup \phi ^{-1}(V_{i_{m}})$. En consecuencia, $\phi
+  (K)\subset V_{i_{1}}\cup \cdots \cup V_{i_{m}}$. Esto prueba que
+  $\phi (K)$ es compacto.
+</div>
+</p>
+<p>
+<div id="contencomp" class="corollary">
+Si $K$ es un espacio métrico compacto y
+  $\phi\colon K\rightarrow X$ es continua, entonces $\phi $ es una función
+  acotada.
+</div>
+</p>
+<p>
+<div class="proof">
+  Por la proposición anterior, $\phi (K)$ es un subconjunto
+  compacto de $X$. La Proposición<a href="tul/P_T_02/4.html#comphb"> 4.7</a> asegura entonces
+  que $\phi (K)$ es acotado, es decir, $\phi $ es una función
+  acotada (ver Definición <a href="tul/P_T_02/2.html#deffuncacot">2.24</a>).
+</div>
+</p>
+<p>
+<h3 id="sec4-2">El teorema de Heine-Borel</h3>
+</p>
+<p>
+Resulta difícil decidir a partir de la definición si un conjunto es
+compacto o no lo es. A continuación daremos una caracterización
+sencilla de los subconjuntos compactos de $\mathbb{R}^{n}$. Probaremos
+que son precisamente aquéllos que son cerrados y acotados. A este
+resultado se le conoce como el teorema de Heine-Borel.
+
+<div id="foto:heine" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/heine.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+   Eduard Heine
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Heinrich Eduard Heine (1821-1881) nació en Berlín. Fue alumno de Dirichlet, a
+  quien dedicó su tesis doctoral. Según P. Dugac [Dug89], la historia
+  del teorema de Heine-Borel empieza con la demostración del resultado
+  que afirma que toda función continua en un intervalo cerrado es
+  uniformemente continua. Dirichlet demostró este resultado en 1862,
+  usando de manera implícita la compacidad del intervalo cerrado, en
+  unas notas de clase publicadas 40 años después. Posteriormente,
+  Heine y Weierstrass usaron técnicas análogas.  
+  </div>
+</div>
+
+<div id="foto:borel" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Emile_Borel.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+    Émile Borel
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Félix Édouard Justin Émile Borel (1871-1956) fue un matemático
+  francés y uno de los pioneros de la teoría de la medida y de la
+  probabilidad. Estudió en la École Normale Supérieure y fue profesor
+  en dicha institución. Borel fue el primero en formular y demostrar
+  en 1895 una versión explícita del resultado que ahora conocemos como
+  el teorema de Heine-Borel para cubiertas numerables.  
+  </div>
+</div>
+
+<p>
+Empezaremos probando la siguiente afirmación.
+</p>
+<p>
+<div id="cubo" class="proposition">
+El cubo cerrado
+  \begin{equation*}
+    Q:=\left\{(x_{1},\dots,x_{n})\in \mathbb{R}^{n}:x_{i}\in [-r,r]\text{, }i=1,\dots,n\right\},\qquad r>0,
+  \end{equation*}
+  es compacto.
+</div>
+</p>
+
+<div class="proof">
+  Argumentando por contradicción, supongamos que $Q$ no es
+  compacto.  Entonces existe una cubierta abierta
+  $\mathfrak{C}=\left\{ U_{i}:i\in \mathcal{I}\right\} $ de $Q$ en
+  $\mathbb{R}^{n}$ tal que ningún subconjunto finito de
+  $\mathfrak{C}$&nbsp;es cubierta de $Q$. En consecuencia, si subdividimos
+  a $Q$ en $2^{n}$ cubos cerrados de lado $r$, se cumple que al menos
+  uno de ellos, llamémoslo $Q_{1}$, no está contenido en la
+  unión de un número finito de elementos de $\mathfrak{C}$.
+  Subdividamos ahora $Q_{1}$ en $2^{n}$ cubos cerrados de lado
+  $\frac{r}{2}$ y repitamos este argumento para obtener una
+  sucesión decreciente de cubos cerrados
+  \begin{equation*}
+    Q\supset Q_{1}\supset \cdots \supset Q_{k}\supset \cdots ,
+  \end{equation*}
+  tales $Q_{k}$ es un cubo de lado $\frac{r}{2^{k-1}}$ y $Q_{k}$ no
+  esta contenido en la unión de ningún subconjunto finito de
+  $\mathfrak{C}$.
+
+              <div id="fig:4-3" class="figure">
+                <img src="tul/P_T_02/figuras/cubo-cerrado.svg" height="190">
+                <div class="caption">
+                </div>                
+              </div>
+
+<br>
+Denotemos por $\xi^{k}=(\xi_{1}^{k},\dots,\xi_{n}^{k})$ al centro
+de $Q_{k}$. Entonces,
+  \begin{equation}
+    \left\vert \xi_{i}^{k}-x_{i}\right\vert \leq \frac{r}{2^{k}}\qquad \forall x=(x_{1},\dots,x_{n})\in Q_{k}.\label{centrcuad}
+  \end{equation}
+  En particular, como $\xi^{j}\in Q_{k}$ para $j\geq k$, se tiene que
+  \begin{equation}
+    \left\vert \xi_{i}^{k}-\xi_{i}^{j}\right\vert \leq \frac{r}{2^{k}}\qquad \forall j\geq k,\text{ &nbsp;}\forall i=1,\dots,n.\label{centrcau}
+  \end{equation}
+  Así pues, para cada $i=1,\dots,n$, la sucesión $(\xi
+ _{i}^{k})$ es de Cauchy en $\mathbb{R}$ y, en consecuencia, existe
+  $\xi_{i}\in \mathbb{R}$ tal que $\xi_{i}^{k}\rightarrow \xi_{i}$
+  en $\mathbb{R}$. &nbsp;Pasando al límite cuando $j\rightarrow
+  \infty $ en la desigualdad (\ref{centrcau}) obtenemos que
+  \begin{equation}
+    \left\vert \xi_{i}^{k}-\xi_{i}\right\vert \leq \frac{r}{2^{k}}\qquad\text{ 
+    }\forall k\in \mathbb{N},\text{ }\forall i=1,\dots,n.\label{centrconv}
+  \end{equation}
+  Dado que $\xi_{i}^{j}\in [-r,r]$, se tiene que $\xi_{i}\in
+  [-r,r]$. Es decir, $\xi =(\xi_{1},\dots,\xi_{n})\in Q$. Y,
+  puesto que $\mathfrak{C}$ es cubierta de $Q$, existe $U_{\ast }\in
+  \mathfrak{C}$ tal que $\xi \in U_{\ast }$.
+
+  Ahora bien, como $U_{\ast }$ es abierto, existe $\varepsilon >0$ tal
+  que $B(\xi ,\varepsilon )\subset U_{\ast }$. Si $x\in Q_{k}$, usando
+  las desigualdades (\ref{centrcuad}) y (\ref{centrconv}) obtenemos
+  \begin{equation*}
+    \left\Vert x-\xi \right\Vert \leq \left\Vert x-\xi^{k}\right\Vert
+    +\left\Vert \xi^{k}-\xi \right\Vert \leq \frac{r\sqrt{n}}{2^{k}}+\frac{r\sqrt{n}}{2^{k}}=\frac{r\sqrt{n}}{2^{k-1}}
+  \end{equation*}
+  y, en consecuencia,
+  \begin{equation*}
+    Q_{k}\subset B(\xi ,\varepsilon )\subset U_{\ast }\qquad\text{ si &nbsp;}\frac{r\sqrt{n}}{2^{k-1}}<\varepsilon \text{.}
+  \end{equation*}
+  Esto contradice nuestra suposición de que $Q_{k}$ no puede ser
+  cubierto por un número finito de elementos de $\mathfrak{C}$. En
+  consecuencia, $Q$ es compacto.
+</div>
+
+<p>
+El teorema de Heine-Borel da una caracterización sencilla de los
+subconjuntos compactos de $\mathbb{R}^{n}$.
+</p>
+
+<div class="theorem" id="hb">[Heine-Borel]
+Sea $K$ un subconjunto de
+  $\mathbb{R}^{n}$. Entonces, $K$ es compacto si y sólo si $K$ es
+  cerrado y acotado.
+</div>
+
+<div class="proof">
+  Por la Proposición<a href="tul/P_T_02/4.html#comphb"> 4.7</a>,&nbsp;si $K$ es compacto entonces es
+  cerrado y acotado. Inversamente, supongamos que $K$ es cerrado y
+  acotado. Entonces existe $r>0$ tal que $K$ está contenido en el
+  cubo
+  \begin{equation*}
+    Q=\left\{(x_{1},\dots,x_{n})\in \mathbb{R}^{n}:x_{i}\in [-r,r]\text{, }i=1,\dots,n\right\},
+  \end{equation*}
+  que es compacto. La Proposición<a href="tul/P_T_02/4.html#compcerr"> 4.9</a> implica que $K$
+  también lo es.
+</div>
+
+<p>
+Otra consecuencia importante de la Proposición<a href="tul/P_T_02/4.html#cubo"> 4.12</a> es el
+siguiente resultado, que se conoce como el teorema de
+Bolzano-Weierstrass.
+</p>
+
+<div id="foto:bolzano" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Bernard_Bolzano.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+    Bernhard Bolzano
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Bernardus Placidus Johann Nepomuk Bolzano (1781-1848)
+  nació en Praga, entonces parte del Imperio Austriaco. Fue uno de
+  los pioneros en proponer un tratamiento riguroso del análisis
+  matemático, pero sus contribuciones sólo fueron conocidas y
+  valoradas muchos años más tarde, ya que fue destituído
+  de su cátedra en la Universidad de Praga por razones
+  políticas y puesto bajo arresto domiciliario con la
+  prohibición de publicar.  
+  </div>
+</div>
+
+<div class="theorem" id="bw">[Bolzano-Weierstrass]
+Toda sucesión
+  acotada en $\mathbb{R}^{n}$ contiene una subsucesión
+  convergente.
+</div>
+
+<div class="proof">
+  Si $(\zeta_{k})$ es una sucesión acotada en $\mathbb{R}^{n}$,
+  entonces existe $r>0$ tal que $\zeta_{k}\in Q$ para todo $k\in
+  \mathbb{N}$, donde $Q$ es el cubo
+  \begin{equation*}
+    Q=\left\{(x_{1},\dots,x_{n})\in \mathbb{R}^{n}:x_{i}\in [-r,r]\text{, }i=1,\dots,n\right\},
+  \end{equation*}
+  que es compacto. Por la Proposición<a href="tul/P_T_02/4.html#compbw"> 4.5</a>, la
+  sucesión $(\zeta_{k})$ contiene una subsucesión
+  convergente.
+</div>
+
+
+<h3 id="sec4-3">Existencia de máximos y mínimos</h3>
+
+<p class="noj">
+Sean $X$ un espacio métrico y $f\colon X\rightarrow \mathbb{R}\cup
+\left\{\infty ,-\infty \right\}$ una función.
+</p>
+<p>
+<div class="definition">
+  Decimos que $f$ <em class="textbf">alcanza su mínimo en </em>$X$ si existe
+  $x_{0}\in X$ tal que
+  \begin{equation*}
+    f(x_{0})\leq f(x)\qquad \forall x\in X.
+  \end{equation*}
+  Decimos que $f$ <em class="textbf">alcanza su máximo en </em>$X$ si existe
+  $x_{1}\in X$ tal que
+  \begin{equation*}
+    f(x_{1})\geq f(x)\qquad \forall x\in X.
+  \end{equation*}
+  El punto $x_{0}$ se llama un <em class="textbf">mínimo</em>
+  de $f$ en $X$ y el punto
+  $x_{1}$ se llama un <em class="textbf">máximo</em> de $f$ en~$X$.
+</div>
+</p>
+<p>
+Una función continua no alcanza, en general, su mínimo o su
+máximo. Veamos un ejemplo.
+</p>
+
+<div class="example">
+  La función $\arctan\colon\mathbb{R}\rightarrow \mathbb{R}$ está
+  acotada inferior y superiormente pero no alcanza ni su mínimo
+  ni su máximo en $\mathbb{R}$.
+
+              <div id="fig:4-4" class="figure">
+                <img src="tul/P_T_02/figuras/arctan.svg" height="190">
+                <div class="caption">
+                </div>                
+              </div>
+</div>
+
+<p>
+Una consecuencia importante de la compacidad es la siguiente.
+</p>
+
+<div id="minmax" class="theorem">
+Si $K$ es un espacio métrico compacto y no
+  vacío, entonces toda función continua $f\colon K\rightarrow
+  \mathbb{R}$ alcanza su mínimo y su máximo en $K$.
+</div>
+
+<div class="proof">
+  El Corolario<a href="tul/P_T_02/4.html#contencomp"> 4.11</a> asegura que $f(K)$ es un subconjunto
+  acotado en $\mathbb{R}$ y, dado que no es vacío, se tiene que
+  \begin{equation*}
+    m_{0}:=\inf_{z\in K}f(z)\in \mathbb{R}.
+  \end{equation*}
+  Escojamos $z_{k}\in K$ tal que
+  \begin{equation}
+    m_{0}\leq f(z_{k})\menorque m_{0}+\tfrac{1}{k}\qquad \forall k\in \mathbb{N}\text{.}\label{mini}
+  \end{equation}
+  Como $K$ es compacto, la Proposición<a href="tul/P_T_02/4.html#compbw"> 4.5</a> asegura que la
+  sucesión $(z_{k})$ contiene una subsucesión $(z_{k_{j}})$
+  que converge a un punto $z_{0}$ en $K$. Dado que $f$ es continua, se
+  tiene entonces que $f(z_{k_{j}})\rightarrow f(z_{0})$ en
+  $\mathbb{R}$. De la desigualdad (\ref{mini}) se sigue que
+  \begin{equation*}
+    m_{0}=\lim_{j\rightarrow \infty }f(z_{k_{j}})=f(z_{0}).
+  \end{equation*}
+  Es decir, $z_{0}$ es un mínimo de $f$.
+<br>
+
+  De manera análoga se prueba que $f$ alcanza su máximo en $K$
+  [Ejercicio<a href="tul/P_T_02/4.html#ejmax"> 4.39</a>].
+</div>
+
+<p>
+En particular, se tiene el siguiente resultado, al que nos referimos
+en el Capítulo <a href="tul/P_T_02/1.html#Cap-1">1</a>.
+</p>
+<p>
+<div id="corminmax" class="corollary">
+Sea $K\neq \emptyset $ un subconjunto cerrado y
+  acotado de $\mathbb{R}^{n}$. Entonces toda función continua
+  $f\colon K\rightarrow \mathbb{R}$ alcanza su máximo y su mínimo
+  en $K$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Esta afirmación es consecuencia inmediata de los
+  Teoremas<a href="tul/P_T_02/4.html#minmax"> 4.17</a> y<a href="tul/P_T_02/4.html#hb"> 4.13</a>.
+</div>
+</p>
+<p>
+Una consecuencia importante del Teorema<a href="tul/P_T_02/4.html#minmax"> 4.17</a> es el siguiente
+resultado.
+</p>
+
+<div id="teonorfinequiv" class="theorem">
+Cualesquiera dos normas en un espacio
+  vectorial de dimensión finita son equivalentes.
+</div>
+
+<div class="proof">
+  Sea $V$ un espacio vectorial de dimensión finita y sea
+  $\left\{e_{1},\dots,e_{n}\right\}$ una base de $V$. Dado $v\in V$ lo expresamos
+  como $v=\sum_{i=1}^{n}x_{i}e_{i}$ con $x_{i}\in \mathbb{R}$, y
+  definimos
+  \begin{equation*}
+    \left\Vert v\right\Vert_{\ast }:=\biggl( \sum_{i=1}^{n}x_{i}^{2}\biggr)
+   ^{1/2}.
+  \end{equation*}
+  Es sencillo comprobar que $\left\Vert \cdot \right\Vert_{\ast }$ es
+  una norma en $V$. Denotemos por $V_{\ast }:=(V,\left\Vert \cdot
+  \right\Vert_{\ast })$ al espacio $V$ provisto de esta
+  norma. Entonces la función $\phi\colon\mathbb{R}^{n}\rightarrow
+  V_{\ast }$ dada por
+  \begin{equation*}
+    \phi (x_{1},\dots,x_{n})=\sum_{i=1}^{n}x_{i}e_{i}
+  \end{equation*}
+  es una isometría (ver Ejercicio <a href="tul/P_T_02/2.html#ejisomdimfin">2.56</a>). Como el
+  conjunto $S:=\left\{v\in V:\left\Vert v\right\Vert_{\ast }=1\right\}$ es la
+  imagen bajo $\phi $ de la esfera unitaria $\mathbb{S}^{n-1}:=\left\{x\in
+  \mathbb{R}^{n}:\left\Vert x\right\Vert =1\right\}$, que es cerrada y
+  acotada en $\mathbb{R}^{n}$, el teorema de Heine-Borel y la
+  Proposición<a href="tul/P_T_02/4.html#compcont"> 4.10</a>&nbsp;aseguran que $S$ es compacto en
+  $V_{\ast }$.
+<br>
+  Sea $\left\Vert \cdot \right\Vert $ una norma en $V$. Para probar la
+  afirmación del teorema, bastará probar que $\left\Vert \cdot
+  \right\Vert_{\ast }$ y $\left\Vert \cdot \right\Vert $ son normas
+  equivalentes.
+<br>
+  Sea $c_{1}:=\biggl( \sum_{i=1}^{n}\left\Vert e_{i}\right\Vert
+   ^{2}\biggr)^{1/2}$. Usando la desigualdad del triángulo para
+  $\left\Vert \cdot \right\Vert $ y la desigualdad de Hölder en
+  $\mathbb{R}^{n}$ con $p=q=2$ (ver Proposición <a href="tul/P_T_02/2.html#Rholder">2.12</a>)
+  obtenemos que
+  \begin{equation}
+    \left\Vert v\right\Vert \leq \sum_{i=1}^{n}\left\vert x_{i}\right\vert
+    \left\Vert e_{i}\right\Vert \leq \biggl( \sum_{i=1}^{n}\left\vert
+        x_{i}\right\vert^{2}\biggr)^{1/2}\biggl( \sum_{i=1}^{n}\left\Vert
+        e_{i}\right\Vert^{2}\biggr)^{1/2}\leq c_{1}\left\Vert v\right\Vert_{\ast
+    }\qquad \forall v\in V.\label{connor}
+  \end{equation}
+  Como consecuencia de esta desigualdad, la función $\left\Vert
+    \cdot \right\Vert \colon V_{\ast }\rightarrow \mathbb{R}$ es Lipschitz
+  continua, ya que
+  \begin{equation*}
+    \bigl\vert \left\Vert w\right\Vert -\left\Vert v\right\Vert \bigr\vert \leq
+    \left\Vert w-v\right\Vert \leq c_{1}\left\Vert w-v\right\Vert_{\ast }\qquad
+    \forall v,w\in V.
+  \end{equation*}
+  Aplicando el Teorema<a href="tul/P_T_02/4.html#minmax"> 4.17</a>&nbsp;concluimos que existe $v_{0}\in
+  S$ tal que $\left\Vert v_{0}\right\Vert \leq \left\Vert v\right\Vert
+  $ para todo $v\in S$, es decir,
+  \begin{equation*}
+    c_{2}:=\left\Vert v_{0}\right\Vert \leq \left\Vert \frac{v}{\left\Vert
+          v\right\Vert_{\ast }}\right\Vert =\frac{\left\Vert v\right\Vert }{\left\Vert v\right\Vert_{\ast }}\qquad \forall v\in V,\text{ }v\neq 0.
+  \end{equation*}
+  O, equivalentemente,
+  \begin{equation}
+    c_{2}\left\Vert v\right\Vert_{\ast }\leq \left\Vert v\right\Vert \qquad
+    \forall v\in V.\label{connor2}
+  \end{equation}
+  Nota que $c_{2}>0$ porque $v_{0}\neq 0$. Las desigualdades
+  (\ref{connor}) y (\ref{connor2}) aseguran que las normas $\left\Vert
+    \cdot \right\Vert_{\ast } $ y $\left\Vert \cdot \right\Vert $ son
+  equivalentes.
+</div>
+
+<p>
+Denotamos por
+\begin{equation}
+  \mathcal{C}^{0}(X,Y):=\left\{\phi \colon X\rightarrow Y:\phi \text{ es continua}\right\}.
+\label{efc}
+\end{equation}
+El
+Corolario<a href="tul/P_T_02/4.html#contencomp"> 4.11</a> asegura que, si $K$ es un espacio
+métrico compacto, entonces $\mathcal{C}^{0}(K,Y)$ está
+contenido en el espacio de funciones acotadas $\mathcal{B}(K,Y)$ (ver
+Sección <a href="tul/P_T_02/2.html#sec2-4">2.4</a>).  Podemos entonces darle a
+$\mathcal{C}^{0}(K,Y)$ la métrica uniforme
+\begin{equation*}
+  d_{\infty }(\phi ,\psi )=\sup_{x\in K}d_{Y}(\phi (x),\psi (x)).
+\end{equation*}
+</p>
+<p>
+Observa que, si $\phi ,\psi \in \mathcal{C}^{0}(K,Y)$, la función
+$f\colon K\rightarrow \mathbb{R}$ dada por $f(x)=d_{Y}(\phi (x),\psi (x))$
+es continua. Si $K$ es compacto y no vacío, esta función
+alcanza su máximo en $K$ y, en consecuencia,
+\begin{equation}
+  d_{\infty }(\phi ,\psi )=\max_{x\in K}d_{Y}(\phi (x),\psi (x)).
+\label{dinfmax}
+\end{equation}
+</p>
+<p>
+<h3 id="sec4-4">Semicontinuidad</h3>
+</p>
+<p>
+Volvamos ahora a nuestro problema de partida, el Problema
+<a href="tul/P_T_02/1.html#probpresentacion"> 1.1</a>,&nbsp;que inquiere lo siguiente: ¿Alcanza la
+función longitud su mínimo en el conjunto de trayectorias
+$\mathcal{T}_{p,q}(X)$?
+</p>
+<p>
+El conjunto $\mathcal{T}_{p,q}(X)$&nbsp;es un espacio métrico con la
+métrica uniforme, pero la función longitud no es continua,
+así que no podemos aplicar el Teorema<a href="tul/P_T_02/4.html#minmax"> 4.17</a>&nbsp;para obtener
+una respuesta a esta pregunta.
+</p>
+<p>
+En cierto sentido las condiciones de compacidad y continuidad son
+opuestas la una de la otra ya que, mientras más abiertos tenga
+$X$, más fácil es que una función $X\rightarrow Y$ resulte
+continua pero más difícil es que $X$ sea compacto. Y
+viceversa. Esta disyuntiva se presenta con frecuencia en las
+aplicaciones. Resulta pues conveniente contar con un resultado de
+existencia de mínimos para funciones que no son continuas.
+</p>
+<p>
+Empecemos extendiendo el concepto de trayectoria a un espacio
+métrico arbitrario $X=(X,d_{X})$.
+</p>
+<div id="deflongitud" class="definition">
+Una <em class="textbf">trayectoria en $X$</em>
+  es una función continua
+  $\sigma\colon [a,b]\rightarrow X$. La <em class="textbf">longitud de $\sigma$</em>
+  se define como
+  \begin{equation*}
+    \mathfrak{L}(\sigma ):=\sup \left\{ \sum_{k=1}^{m}d_{X}(\sigma
+      (t_{k-1}),\sigma (t_{k})):a=t_{0}\leq t_{1}\leq \cdots \leq t_{m}=b,\text{ }m\in \mathbb{N}\right\} .
+  \end{equation*}
+</div>
+
+              <div id="fig:4-4" class="figure">
+                <img src="tul/P_T_02/figuras/def-4-20.svg" height="160">
+                <div class="caption">
+                </div>                
+              </div>
+
+<p>
+La longitud de una trayectoria no es necesariamente finita [Ejercicio
+<a href="tul/P_T_02/4.html#longinf"> 4.48</a>]. Denotemos por
+\begin{equation*}
+  \mathfrak{L}\colon\mathcal{C}^{0}([a,b],X)\rightarrow \mathbb{R}\cup \left\{\infty \right\}
+\end{equation*}
+a la función que a cada trayectoria le asocia su longitud.
+</p>
+<p>
+Sabemos que esta función no es continua en general (ver Ejercicio 
+<a href="tul/P_T_02/3.html#nocontlong">3.48</a>). Esto se debe a que pueden existir trayectorias
+arbitrariamente largas tan cercanas como queramos a una trayectoria
+dada.
+
+              <div id="fig:4-5" class="figure">
+                <img src="tul/P_T_02/figuras/trayectoria-larga.svg" height="90">
+                <div class="caption">
+                </div>                
+              </div>
+</p>
+<p class="noj">
+Sin embargo, no pueden existir trayectorias arbitrariamente cortas tan
+cercanas como queramos a una trayectoria dada, como lo muestra el
+siguiente resultado.
+</p>
+<p>
+<div id="Lsci" class="proposition">
+Dadas $\sigma \in \mathcal{C}^{0}([a,b],X)$ y
+  $c<\mathfrak{L}(\sigma )$, existe $\delta >0$ tal que
+  \begin{equation*}
+    c<\mathfrak{L}(\tau )\qquad\text{ si &nbsp;}d_{\infty }(\tau ,\sigma )<\delta .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $\sigma\colon [a,b]\rightarrow X$ una trayectoria en $X$ y
+  $c<\mathfrak{L}(\sigma )$. Escojamos $\delta_{0}>0$ tal que
+  $c+\delta_{0}<\mathfrak{L}(\sigma )$ y una partición
+  $a=t_{0}\leq t_{1}\leq \cdots \leq t_{m}=b$ &nbsp;tal que
+  \begin{equation*}
+    c+\delta_{0}<\underset{k=1}{\overset{m}{\sum }}d_{X}(\sigma
+    (t_{k-1}),\sigma (t_{k})).
+  \end{equation*}
+  Sea $\delta :=\frac{\delta_{0}}{2m}$. Si $d_{\infty }(\sigma ,\tau
+  )<\delta $, se tiene que
+  \begin{align*}
+    d_{X}(\sigma (t_{k-1}),\sigma (t_{k})) &\leq d_{X}(\sigma (t_{k-1}),\tau
+    (t_{k-1}))+d_{X}(\tau (t_{k-1}),\tau (t_{k}))+d_{X}(\tau (t_{k}),\sigma
+    (t_{k})) \\
+    &<\delta +d_{X}(\tau (t_{k-1}),\tau (t_{k}))+\delta =d_{X}(\tau
+    (t_{k-1}),\tau (t_{k}))+\frac{\delta_{0}}{m}.
+  \end{align*}
+  Sumando estas desigualdades para todo $k=1,\dots,m$ obtenemos que
+  \begin{equation*}
+    c+\delta_{0}<\underset{k=1}{\overset{m}{\sum }}d_{X}(\sigma
+    (t_{k-1}),\sigma (t_{k}))<\underset{k=1}{\overset{m}{\sum }}d_{X}(\tau
+    (t_{k-1}),\tau (t_{k}))+\delta_{0}\leq \mathfrak{L}(\tau )+\delta_{0}.
+  \end{equation*}
+  En consecuencia, $c<\mathfrak{L}(\tau )$.
+</div>
+</p>
+<p>
+A continuación estudiaremos a las funciones que tienen esta
+propiedad.
+</p>
+<p>
+<div id="defsci" class="definition">
+Una función $f\colon X\rightarrow \mathbb{R}\cup \left\{
+    \infty \right\} $ es <em class="textbf">semicontinua inferiormente en el
+    punto</em> $x_{0}\in X$ si, dada $c\menorque f(x_{0})$, existe $\delta >0$ tal
+  que
+  \begin{equation*}
+    c\menorque f(x)\qquad\text{ si &nbsp;}d_{X}(x,x_{0})<\delta .
+  \end{equation*}
+  Se dice que $f$ es <em class="textbf">semicontinua inferiormente (s.c.i.)</em>
+  si lo es en
+  todo punto $x_{0}\in X$.
+</div>
+</p>
+<p>
+Análogamente, se define el siguiente concepto.
+</p>
+<p>
+<div id="defscs" class="definition">
+Una función $f\colon X\rightarrow \mathbb{R}\cup \left\{
+    -\infty \right\} $ es <em class="textbf">semicontinua superiormente en el
+    punto</em> $x_{0}\in X$ si, dada $c>f(x_{0})$, existe $\delta >0$ tal
+  que
+  \begin{equation*}
+    f(x)\menorque c\qquad\text{ si &nbsp;}d_{X}(x,x_{0})<\delta .
+  \end{equation*}
+  Se dice que $f$ es <em class="textbf">semicontinua superiormente (s.c.s.)</em>
+  si lo es en
+  todo punto $x_{0}\in X$.
+</div>
+</p>
+<p>
+Observa que $f\colon X\rightarrow \mathbb{R}$ es continua si y sólo si
+$f$ es s.c.i. y s.c.s. [Ejercicio<a href="tul/P_T_02/4.html#contsc"> 4.43</a>].
+</p>
+<p>
+<div class="example">
+  <ol class="alfa">
+  <li> La función $\left\lceil \cdot \right\rceil
+    \colon \mathbb{R}\rightarrow \mathbb{R}$ dada por
+    \begin{equation*}
+      \left\lceil t\right\rceil :=n\text{ &nbsp;si &nbsp;}n-1\menorque t\leq n,\text{ }n\in \mathbb{Z}.
+    \end{equation*}
+    es s.c.i. pero no es continua.
+    </li>
+  <li> La función parte entera $\left\lfloor \cdot
+    \right\rfloor\colon\mathbb{R}\rightarrow \mathbb{R}$ &nbsp;dada por
+    \begin{equation*}
+      \left\lfloor t\right\rfloor :=n\text{ &nbsp;si &nbsp;}n\leq t\menorque n+1,\text{ }n\in 
+      \mathbb{Z},
+    \end{equation*}
+    es s.c.s. pero no es continua.
+    </li>
+  </ol>
+</div>
+</p>
+<p>
+La demostración es sencilla y se propone como ejercicio [Ejercicio<a href="tul/P_T_02/4.html#step"> 4.44</a>].
+</p>
+<p>
+<div class="example">
+  La <em class="emph">Proposición<a href="tul/P_T_02/4.html#Lsci"> 4.21</a></em> asegura que la función
+  longitud
+  \begin{equation*}
+    \mathfrak{L}\colon\mathcal{C}^{0}([a,b],X)\rightarrow \mathbb{R}\cup \left\{
+      \infty \right\} ,\qquad \sigma \mapsto \mathfrak{L}(\sigma ),
+  \end{equation*}
+  es s.c.i.
+</div>
+</p>
+<p>
+Una caracterización muy útil de la semicontinuidad inferior
+está dada en términos del siguiente concepto.
+</p>
+<p>
+<div id="defliminfsup" class="definition">
+Sea $(t_{k})$ una sucesión en
+  $\mathbb{R}\cup \left\{\infty ,-\infty \right\}$. El <em class="textbf">límite
+    inferior de </em>$(t_{k})$ se define como
+  \begin{equation*}
+    \liminf_{k\rightarrow \infty }t_{k}:=\sup_{m\geq 1}\inf_{k\geq m}t_{k}\in \mathbb{R}\cup \left\{\infty ,-\infty \right\},
+  \end{equation*}
+  y el <em class="textbf">límite superior de </em>$(t_{k})$
+  como
+  \begin{equation*}
+    \limsup_{k\rightarrow \infty }t_{k}:=\inf_{m\geq 1}\sup_{k\geq m}t_{k}\in \mathbb{R}\cup \left\{\infty ,-\infty \right\}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="example">
+  Si $t_{k}:=(-1)^{k}$ entonces la sucesión $(t_{k})$ no converge,
+  y se tiene que
+  \begin{equation*}
+    \liminf_{k\rightarrow \infty }t_{k}=-1\qquad\text{ y\qquad }\limsup_{k\rightarrow \infty }t_{k}=1.
+  \end{equation*}
+</div>
+</p>
+<p>
+Es fácil ver [Ejercicio<a href="tul/P_T_02/4.html#liminflim"> 4.45</a>] que, si una sucesión
+de números reales $(t_{k})$ converge en~$\mathbb{R}$, entonces
+\begin{equation}
+  \liminf_{k\rightarrow \infty }t_{k}=\lim_{k\rightarrow \infty
+  }t_{k}=\limsup_{k\rightarrow \infty }t_{k},\label{limi}
+\end{equation}
+</p>
+<p>
+<div id="sciliminf" class="proposition">
+$f\colon X\rightarrow \mathbb{R}\cup \left\{ \infty
+  \right\} $ es semicontinua inferiormente en $x_{0}$ si y sólo si
+  para cualquier sucesión $(x_{k})$ en $X$ tal que
+  $\underset{k\rightarrow \infty }{\lim }x_{k}=x_{0} $ se cumple que
+  \begin{equation*}
+    f(x_{0})\leq \liminf_{k\rightarrow \infty }f(x_{k}).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$:  Supongamos que $f$ es semicontinua inferiormente
+  en $x_{0}$. Sea $(x_{k})$ una sucesión en $X$ tal que
+  $\underset{k\rightarrow \infty }{\lim }x_{k}=x_{0}$. Entonces, para
+  cada $c\menorque f(x_{0})$, existe $\delta >0$ tal que
+  \begin{equation*}
+    c\menorque f(x)\qquad\text{ si &nbsp;}d_{X}(x,x_{0})<\delta .
+  \end{equation*}
+  Sea $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    x_{k}\in B_{X}(x_{0},\delta )\qquad \forall k\geq k_{0}.
+  \end{equation*}
+  Entonces,
+  \begin{equation*}
+    c\leq \inf_{k\geq k_{0}}f(x_{k})\leq \liminf_{k\rightarrow \infty }f(x_{k}).
+  \end{equation*}
+  Como esta desigualdad se cumple para todo $c\menorque f(x_{0})$, concluimos
+  que
+  \begin{equation*}
+    f(x_{0})\leq \liminf_{k\rightarrow \infty }f(x_{k}).
+  \end{equation*}
+</p>
+<p>
+  $\Leftarrow )$: Supongamos que $f$ no es semicontinua
+  inferiormente en $x_{0}$. Entonces, para algún $c_{0}\menorque f(x_{0})$
+  existe una sucesión $(x_{k})$ en $X$ tal que
+  \begin{equation*}
+    x_{k}\in B_{X}\left(x_{0},\tfrac{1}{k}\right)\qquad\text{ y\qquad }c_{0}\geq f(x_{k})\qquad \forall k\in \mathbb{N}\text{.}
+  \end{equation*}
+  Esto implica que $(x_{k})$ converge a $x_{0}$ en $X$ y que
+  \begin{equation*}
+    \liminf_{k\rightarrow \infty }f(x_{k})\leq c_{0}\menorque f(x_{0}),
+  \end{equation*}
+  lo que demuestra la implicación deseada.
+</div>
+</p>
+<p>
+Dado $a\in \mathbb{R}$, denotamos
+\begin{equation*}
+  f^{\leq a}:=\left\{x\in X:f(x)\leq a\right\}.
+\end{equation*}
+El siguiente resultado tiene aplicaciones importantes. Por lo pronto,
+como la función longitud es s.c.i., nos da esperanzas de obtener
+alguna respuesta al Problema<a href="tul/P_T_02/1.html#probpresentacion"> 1.1</a>.
+</p>
+<p>
+<div id="sci" class="theorem">
+Si $f\colon X\rightarrow \mathbb{R\cup \left\{\infty \right\}}$ s.c.i. y
+  si $f^{\leq a}$ es compacto y no vacío para algún $a\in
+  \mathbb{R}$, entonces $f$ alcanza su mínimo en $X$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $m_{0}:=\inf_{x\in X}f(x)$. Como $f^{\leq a}\neq \emptyset $, se
+  tiene que $-\infty \leq m_{0}\leq a$. Sea $(x_{k})$ una sucesión
+  en $f^{\leq a} $ tal que $f(x_{k})\rightarrow m_{0}$. Como $f^{\leq
+    a}$ es compacto, $(x_{k})$ contiene una subsucesión
+  $(x_{k_{j}})$ tal que $x_{k_{j}}\rightarrow x_{0}$ en $X$. De la
+  proposición anterior y la observación (\ref{limi}) se sigue
+  que
+  \begin{equation*}
+    m_{0}\leq f(x_{0})\leq \liminf_{j\rightarrow \infty
+    }f(x_{k_{j}})=\lim_{j\rightarrow \infty }f(x_{k_{j}})=m_{0}.
+  \end{equation*}
+  Por lo tanto, $f(x_{0})=m_{0}>-\infty$, es decir, $x_{0}$ es un mínimo
+  de $f$.
+</div>
+</p>
+<p>
+Para aplicar este resultado al Problema<a href="tul/P_T_02/1.html#probpresentacion"> 1.1</a>
+deberemos investigar si para algún $a\in \mathbb{R}$ el conjunto de
+trayectorias en $\mathcal{T}_{p,q}(X)$ de longitud a lo más $a$&nbsp;es
+compacto y no vacío. Es sencillo comprobar que no es así
+[Ejercicio<a href="tul/P_T_02/4.html#ejtraynocomp"> 4.49</a>]. Volveremos al
+Problema<a href="tul/P_T_02/1.html#probpresentacion"> 1.1</a> en el Capítulo <a href="tul/P_T_02/7.html#Cap-7">7</a>.
+</p>
+<p>
+<h3 id="sec4-5">Continuidad uniforme</h3>
+</p>
+<p>
+La noción de continuidad de una función es una propiedad
+local, es decir, una función es continua si lo es en cada punto. A
+continuación daremos una noción de continuidad, que no depende
+de cada punto en particular, sino únicamente de la distancia entre
+los puntos. Esta propiedad es importante, por ejemplo, para garantizar
+la continuidad de ciertas funciones definidas en espacios de funciones
+[Ejercicio<a href="tul/P_T_02/4.html#fred1"> 4.52</a>].
+</p>
+<p>
+Sean $(X,d_{X})$ y $(Y,d_{Y})$ espacios métricos.
+</p>
+<p>
+<div class="definition">
+  Una función $\phi\colon X\rightarrow Y$ es <em class="textbf">uniformemente
+    continua</em> si dada
+  $\varepsilon >0$ existe $\delta >0$ (que depende únicamente de
+  $\varepsilon $) tal que, para cualesquiera $x_{1},x_{2}\in X$,
+  \begin{equation*}
+    d_{Y}(\phi (x_{1}),\phi (x_{2}))<\varepsilon 
+    \qquad\text{ si &nbsp;}d_{X}(x_{1},x_{2})<\delta .
+  \end{equation*}
+</div>
+</p>
+<p>
+Claramente toda función uniformemente continua es continua. Pero
+el recíproco no es cierto en general [Ejercicio
+<a href="tul/P_T_02/4.html#contvsunif">4.51</a>]. El siguiente resultado afirma que, si la
+función está definida en un espacio compacto, ambas nociones
+coinciden.
+</p>
+<p>
+<div id="contunif" class="theorem">
+Sea $K$ un espacio métrico compacto. Entonces
+  toda función continua $\phi\colon K\rightarrow Y$ es uniformemente
+  continua.
+</div>
+</p>
+<p>
+<div class="proof">
+  Argumentando por contradicción, supongamos que $K$ es compacto y
+  que $\phi\colon K\rightarrow Y$ es continua pero no es uniformemente
+  continua.  Entonces para algún $\varepsilon_{0}>0$ y para cada
+  $k\in \mathbb{N}$ existen $x_{k},\widetilde{x}_{k}\in K$ tales que
+  \begin{equation*}
+    d_{K}(x_{k},\widetilde{x}_{k})<\tfrac{1}{k}\qquad\text{y}\qquad d_{Y}(\phi
+    (x_{k}),\phi(\widetilde{x}_{k}))\geq \varepsilon_{0}.
+  \end{equation*}
+  Como $K$ es compacto, la sucesión $(x_{k})$ contiene una
+  subsucesión $(x_{k_{j}})$ tal que $x_{k_{j}}\rightarrow x$ en
+  $K$ (ver Proposición<a href="tul/P_T_02/4.html#compbw"> 4.5</a>). De la desigualdad del
+  triángulo
+  \begin{equation*}
+    d_{K}(x,\widetilde{x}_{k_{j}})\leq d_{K}(x,x_{k_{j}})+d_{K}(x_{k_{j}},\widetilde{x}_{k_{j}})
+  \end{equation*}
+  se sigue que $\widetilde{x}_{k_{j}}\rightarrow x$ en $K$ y, como
+  $\phi$ es continua, se cumple entonces que\break $\phi
+  (x_{k_{j}})\rightarrow \phi (x)$ y $\phi
+  (\widetilde{x}_{k_{j}})\rightarrow \phi (x)$ en $Y$ (ver
+  Proposición <a href="tul/P_T_02/3.html#contsuc">3.33</a>). En consecuencia,
+  \begin{equation*}
+    d_{Y}(\phi (x_{k_{j}}),\phi (\widetilde{x}_{k_{j}}))\leq d_{Y}(\phi
+    (x_{k_{j}}),\phi (x))+d_{Y}(\phi (x),\phi (\widetilde{x}_{k_{j}}))<\varepsilon_{0}
+  \end{equation*}
+  para $j$ suficientemente grande. Esto contradice nuestra
+  suposición.
+</div>
+</p>
+<p>
+<h3 id="sec4-6">Ejercicios</h3>
+</p>
+<p>
+<div class="exercise">
+  Sea $V$ un espacio normado y sea $S_{V}:=\left\{x\in V:\left\Vert
+    x\right\Vert =1\right\}$ la esfera unitaria en $V$. En cada uno de los
+  siguientes casos investiga si la esfera unitaria es o no compacta.
+</p>
+<p>
+  <ol class="alfa">
+  <li> $\dim V<\infty$.
+</p>
+<p>
+  <li> $V=\ell_{p}$ con $p\in [1,\infty ]$.
+</p>
+<p>
+  <li> $V=\mathcal{C}_{p}^{0}[0,1]$ con $p\in [1,\infty
+    ]$.
+  </ol>
+</div>
+</p>
+<p>
+<div id="unibolas" class="exercise">
+Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $K$ es un subconjunto compacto de $\mathbb{R}^{n}$,
+    $\delta >0$ y $p\in [1,\infty]$, entonces
+    \begin{equation*}
+      \widehat{K}:=\bigcup_{\xi \in K}\bar{B}_{p}(\xi ,\delta )
+    \end{equation*}
+    es compacto, donde $\bar{B}_{p}(\xi ,\delta ):=\left\{x\in
+    \mathbb{R}^{n}:\left\Vert x-\xi \right\Vert_{p}\leq \delta \right\}$.
+    </li>
+<li> La afirmación anterior no es válida en general en un
+  espacio métrico arbitrario. <em class="emph">(Sugerencia: Toma
+  </em>$K:=\left\{0\right\}$<em class="emph">&nbsp;en </em>$\ell_{2}$<em class="emph">&nbsp;y usa el
+    Ejemplo <a href="tul/P_T_02/4.html#bolanocomp">4.8</a>.)</em>
+    </li>
+  </ol>
+</div>
+</p>
+<p>
+<div id="e6.12" class="exercise">
+¿Es cierto en general que, si $\phi\colon
+  X\rightarrow Y$ es continua y $K$ es un subconjunto compacto de
+  $Y$, entonces $\phi^{-1}(K)$ es un subconjunto compacto de $X$?
+  Justifica tu respuesta.
+</div>
+</p>
+<p>
+<div id="ejcomptop" class="exercise">
+Prueba que, si $\phi\colon X\rightarrow Y$ es un
+  homeomorfismo, entonces $K$ es compacto en $X$ si y sólo si
+  $\phi (K)$ es compacto en $Y$.
+</div>
+</p>
+<p>
+<div id="6.4.4" class="exercise">
+Sea $X$ un espacio discreto. Prueba que $X$ es compacto
+  si y sólo si es finito.
+</div>
+</p>
+<p>
+<div id="comphomeo" class="exercise">
+Prueba que, si $\phi\colon X\rightarrow Y$ es continua y
+  biyectiva y $X$ es compacto, entonces $\phi^{-1}\colon Y\rightarrow X$ es
+  continua (es decir, $\phi$ es un homeomorfismo).
+</div>
+</p>
+
+<div class="exercise">
+  Sea $\mathbb{S}^{1}:=\left\{(x,y)\in \mathbb{R}^{2}:x^{2}+y^{2}=1\right\}$ el
+  círculo unitario en $\mathbb{R}^{2}$. Considera la función
+  \begin{equation*}
+    f\colon [0,2\pi )\rightarrow \mathbb{S}^{1},\qquad f(t)=(\cos
+    t,\sen t).
+  \end{equation*}
+  Prueba que
+
+  <ol class="alfa">
+  <li> $f$ es continua y biyectiva,
+  </li>
+  <li> $f^{-1}\colon\mathbb{S}^{1}\rightarrow [0,2\pi )$ no es
+    continua.
+    </li>
+  </ol>
+  Es decir, la compacidad de $X$ es esencial en la afirmación del
+  ejercicio anterior.
+</div>
+
+<div id="ejmax" class="exercise">
+Prueba que, si un espacio métrico $X$ es compacto y
+  no vacío, entonces toda función continua $f\colon X\rightarrow
+  \mathbb{R}$ alcanza su máximo en $X$.
+</div>
+
+<div id="contdist2" class="exercise">
+Sean $A$ un subconjunto no vacío de un espacio
+  métrico $X$ y $x\in X$. Como en el <em class="emph">Ejercicio <a href="tul/P_T_02/3.html#contdist">3.52</a></em>
+  definimos la distancia de $x$ a $A$ como
+  \begin{equation*}
+    \dist(x,A):=\inf_{y\in A}d_{X}(x,y).
+  \end{equation*}
+
+  <ol class="alfa">
+  <li> Prueba que, si $A$ es compacto, entonces para cada $x\in
+    X$ existe $z\in A$ tal que
+    \begin{equation*}
+      d_{X}(x,z)=\dist(x,A).
+    \end{equation*}
+    </li>
+  <li> ¿Es cierta la afirmación anterior si
+    $A$ es un subconjunto arbitrario de $X$?
+    </li>
+  </ol>
+</div>
+</p>
+<p>
+<div id="dist>0" class="exercise">
+La distancia entre dos subconjuntos no vacíos $A$
+  y $B$ de un espacio métrico $X$ se define como
+  \begin{equation*}
+    \dist(A,B):=\inf \left\{d_{X}(x,y):x\in A,\, y\in B\right\}.
+  \end{equation*}
+</p>
+
+  <ol class="alfa">
+  <li> Prueba que, si $A$ es compacto, $B$ es cerrado y $A\cap
+    B=\emptyset$, entonces $\dist(A,B)>0$.
+    </li>
+  <li> ¿Es cierta la afirmación anterior si
+    $B$ es abierto en vez de cerrado?
+    </li>
+
+  <li> ¿Es cierto en general que la distancia
+    entre dos cerrados ajenos es positiva?
+    </li>
+  </ol>
+</div>
+<p>
+<div id="ejnorfinequiv" class="exercise">
+Sean $V$ y $W$ espacios normados. Demuestra las
+  siguientes afirmaciones:
+</p>
+
+  <ol class="alfa">
+  <li> Si $\dim V=\dim W<\infty $, entonces existe una
+    equivalencia $\phi \colon V\rightarrow W$ que es además un
+    isomorfismo lineal.
+</li>
+  <li> Si $\dim V<\infty $ y $K\subset V$, entonces $K$ es
+    compacto si y sólo si $K$ es cerrado y acotado en $V$.
+</li>
+  <li> Si $\dim V<\infty$, entonces toda transformación lineal
+    $L\colon V\rightarrow W$ es Lipschitz continua. <em class="emph">(Sugerencia:
+      Prueba que existe $c\in \mathbb{R}$ tal que
+      $\left\Vert Lv\right\Vert_{W}\leq c$ si
+      $\left\Vert v\right\Vert_{V}=1$, y demuestra que se cumple la
+      afirmación (c) del Ejercicio <a href="tul/P_T_02/3.html#ejlin+cont">3.36</a>.)</em>
+      </li>
+  </ol>
+</div>
+<p>
+<div id="contsc" class="exercise">
+Sea $x_{0}\in X$. Prueba que $f\colon X\rightarrow
+  \mathbb{R}$ es continua en $x_{0}$ si y sólo si $f$ es s.c.i. y
+  s.c.s. en $x_{0}$.
+</div>
+</p>
+<p>
+<div id="step" class="exercise">
+</p>
+  <ol class="alfa">
+  <li> La función $\left\lceil \cdot \right\rceil
+    \colon\mathbb{R}\rightarrow \mathbb{R}$ dada por
+    \begin{equation*}
+      \left\lceil t\right\rceil :=n\quad\text{si}\quad n-1\menorque t\leq
+      n,\quad n\in \mathbb{Z}.
+    \end{equation*}
+    es s.c.i.
+    </li>
+  <li> La función parte entera $\left\lfloor \cdot
+    \right\rfloor\colon\mathbb{R}\rightarrow \mathbb{R}$ dada por
+    \begin{equation*}
+      \left\lfloor t\right\rfloor :=n\quad \text{si}\quad n\leq t\menorque n+1,\quad n\in 
+      \mathbb{Z},
+    \end{equation*}
+    es s.c.s.
+    </li>
+  </ol>
+</div>
+<p>
+<div id="liminflim" class="exercise">
+Sea $(t_{k})$ una sucesión en en $\mathbb{R}$.
+  Demuestra las siguientes afirmaciones:
+</p>
+
+  <ol class="alfa">
+  <li> Se cumple la siguiente desigualdad:
+    \begin{equation*}
+      \liminf_{k\rightarrow \infty }t_{k}\leq \limsup_{k\rightarrow \infty }t_{k}.
+    \end{equation*}
+    </li>
+  <li> La sucesión $(t_{k})$ converge en $\mathbb{R}$ si y
+    sólo si
+    \begin{equation*}
+      \liminf_{k\rightarrow \infty }t_{k}=\limsup_{k\rightarrow \infty }t_{k},
+    \end{equation*}
+    y, en ese caso,
+    \begin{equation*}
+      \liminf_{k\rightarrow \infty }t_{k}=\lim_{k\rightarrow \infty
+      }t_{k}=\limsup_{k\rightarrow \infty }t_{k}.
+    \end{equation*}
+    </li>
+  </ol>
+</div>
+
+<p>
+<div id="subnivelsci" class="exercise">
+Prueba que son equivalentes las siguientes
+  afirmaciones:
+</p>
+
+  <ol class="alfa">
+  <li> $f$ es s.c.i.
+  </li>
+  <li> $f_{>a}:=\left\{ x\in X:f(x)>a\right\} $ es abierto para
+    toda $a\in \mathbb{R}$.
+</li>
+  <li> $f^{\leq a}:=\left\{ x\in X:f(x)\leq a\right\} $ es
+    cerrado para toda $a\in \mathbb{R}$.
+    </li>
+  </ol>
+</div>
+<div id="scs" class="exercise">
+  <ol class="alfa">
+  <li> Prueba que $f\colon X\rightarrow \mathbb{R}\cup \left\{-\infty \right\}$
+    es s.c.s. si y sólo si $-f\colon X\rightarrow \mathbb{R}\cup
+    \left\{\infty \right\}$ es s.c.i.
+    </li>
+  <li> Para una función s.c.s.
+    $f\colon X\rightarrow \mathbb{R}\cup \left\{-\infty \right\}$
+    enuncia y demuestra los resultados correspondientes al
+    <em class="emph">Ejercicio<a href="tul/P_T_02/4.html#subnivelsci"> 4.46</a></em>, la
+    <em class="emph">Proposición<a href="tul/P_T_02/4.html#sciliminf"> 4.28</a></em>, y el <em class="emph">Teorema<a href="tul/P_T_02/4.html#sci"> 4.29</a></em>.
+    </li>
+  </ol>
+</div>
+<p>
+<div id="longinf" class="exercise">
+Da un ejemplo de una trayectoria $\sigma\colon
+  [0,1]\rightarrow \mathbb{R}^{2}$ de longitud infinita.
+</div>
+</p>
+<p>
+<div id="ejtraynocomp" class="exercise">
+Considera la sucesión de trayectorias
+  $\sigma_{k}\colon [0,1]\rightarrow \mathbb{R}$,
+  \begin{equation*}
+    \sigma_{k}(t)=
+      \begin{cases}
+        2^{k}t & \text{si $0\leq t\leq \frac{1}{2^{k}}$,} \\
+        1 & \text{si $\frac{1}{2^{k}}\leq t\leq 1$.}
+      \end{cases}
+  \end{equation*}
+</p>
+<p>
+  Demuestra las siguientes afirmaciones:
+</p>
+
+  <ol class="alfa">
+  <li> $\sigma_{k}$ es un mínimo de la función
+    longitud $\mathfrak{L}\colon\mathcal{T}_{0,1}(\mathbb{R})\rightarrow
+    \mathbb{R}\cup \left\{\infty \right\}$ para todo $k\in \mathbb{N}$.
+    </li>
+  <li> $(\sigma_{k})$ no contiene ninguna subsucesión
+    convergente en $\mathcal{C}^{0}[0,1]$ <em class="emph">(Sugerencia: Prueba
+      que </em>$\left\Vert \sigma_{j}-\sigma_{k}\right\Vert_{\infty
+    }\geq \frac{1}{2}$<em class="emph">&nbsp;</em>$\forall j\neq k$<em class="emph">).</em>
+    </li>
+  <li> $\mathfrak{L}^{\leq a}:=\left\{\sigma \in
+    \mathcal{T}_{0,1}(\mathbb{R}):\mathfrak{L}(\sigma )\leq a\right\}$ no es
+    un subconjunto compacto de $\mathcal{C}^{0}[0,1]$ para ningún
+    $a\geq 1$.
+    </li>
+  <li> $\mathfrak{L}\colon\mathcal{T}_{0,1}(\mathbb{R})\rightarrow
+    \mathbb{R}\cup \left\{\infty \right\}$ no satisface las hipótesis del
+    <em class="emph">Teorema<a href="tul/P_T_02/4.html#sci"> 4.29</a>.</em>
+    </li>
+  </ol>
+</div>
+<p>
+<div class="exercise">
+  Sean $\mathbb{S}^{1}:=\left\{(x,y)\in \mathbb{R}^{2}:x^{2}+y^{2}=1\right\}$ el
+  círculo unitario en $\mathbb{R}^{2}$, $p=(1,0)$,
+  \begin{equation*}
+    \mathcal{T}_{p,p}(\mathbb{S}^{1}):=\left\{\sigma \in \mathcal{C}^{0}([0,1],\mathbb{S}^{1}):\sigma (0)=p=\sigma (1)\right\}
+  \end{equation*}
+  y $\mathfrak{L}\colon\mathcal{T}_{p,p}(\mathbb{S}^{1})\rightarrow
+  \mathbb{R}\cup \left\{\infty \right\}$ la función
+  longitud. ¿Para qué valores de $a\in
+  \mathbb{R}$ es
+  \begin{equation*}
+    \mathfrak{L}^{\leq a}:=\left\{\sigma \in \mathcal{T}_{p,p}(\mathbb{S}^{1}):\mathfrak{L}(\sigma )\leq a\right\}
+  \end{equation*}
+  un subconjunto compacto de $\mathcal{C}^{0}([0,1],\mathbb{S}^{1})$?
+</div>
+</p>
+
+<div id="contvsunif" class="exercise">
+¿Cuáles de las siguientes
+  funciones son uniformemente continuas?
+</p>
+
+  <ol class="alfa">
+  <li> $f\colon(0,\infty )\rightarrow \mathbb{R},\quad
+    f(t)=\frac{1}{t}$.
+    </li>
+  <li> $f\colon[a,\infty )\rightarrow \mathbb{R},\quad
+    f(t)=\frac{1}{t},\quad \text{con }a>0$.
+    </li>
+  <li> $f\colon X\rightarrow \mathbb{R},\quad
+    f(x):=\dist(x,A),\quad \text{donde } A$ es un subconjunto
+    arbitrario del espacio métrico $X$.
+    </li>
+  </ol>
+</div>
+
+<div id="fred1" class="exercise">
+Sean $\mathcal{K}\colon[a,b]\times [a,b]\rightarrow
+  \mathbb{R} $ y $f\colon[a,b]\rightarrow \mathbb{R}$ funciones
+  continuas. Definimos $\hat{f}\colon[a,b]\rightarrow \mathbb{R}$ como
+  \begin{equation*}
+    \widehat{f}(x):=\int_{a}^{b}\mathcal{K}(x,y)f(y)dy.
+  \end{equation*}
+  Prueba que $\hat{f}$ es continua. <em class="emph">(Sugerencia: Usa la
+    continuidad uniforme de </em>$\mathcal{K}$<em class="emph">.)</em>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Investiga si son falsas o verdaderas las siguientes afirmaciones.
+</p>
+
+  <ol class="alfa">
+  <li> Toda función Lipschitz continua es uniformemente
+    continua.
+    </li>
+  <li> Toda función uniformemente continua es Lipschitz
+    continua.
+    </li>
+  </ol>
+</div>
+
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>
+

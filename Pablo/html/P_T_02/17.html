@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/javascript" src="./tul/P_T_02/refs.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/17.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\sop}{\mathop{\rm sop}} $ 
+    $ \newcommand{\vol}{\mathop{\rm vol}\nolimits} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\graf}{\mathop{\rm graf}} $ 
+    $ \newcommand{\loc}{\mathop{\rm loc}} $ 
+    $ \newcommand{\lin}{\mathop{\rm lin}} $ 
+    $ \newcommand{\undercbrace}{\underbrace} $ 
+    $ \newcommand{\menorque}{\mathrel{<}}$ 
+    $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 16;
+              }
+              </style>
+<h2 id="Cap-17">Encajes de Sobolev</h2>
+<p class="noj">
+Por definición, el espacio de Sobolev $W_{0}^{1,p}(\Omega )$ está
+contenido en $L^{p}(\Omega ).$ En el estudio de problemas no lineales surge
+de manera natural la siguiente pregunta: &iquest;para qué
+valores $q$ se cumple que $W_{0}^{1,p}(\Omega )$ está contenido de
+manera continua en $L^{q}(\Omega )$? En este capítulo estudiaremos esta
+cuestión. Veremos que la respuesta varía, dependiendo de si $p\in
+\lbrack 1,n),$ $p=n$ o $p\in (n,\infty )$.
+</p>
+<p>
+La herramienta fundamental para este análisis son ciertas
+desigualdades que permiten estimar la norma en $L^{q}$ de una
+función $\varphi \in \mathcal{C}_{c}^{\infty }\left(
+  \mathbb{R}^{n}\right) $ en términos de la norma en $L^{p}$&nbsp;de
+su gradiente. A este tipo de desigualdades se les suele llamar
+<em class="emph">desigualdades de Sobolev</em>, en honor al matemático Sergei
+Sobolev a quien se deben algunas de ellas. Estas desigualdades se
+extienden por densidad a $W_{0}^{1,p}(\Omega )$ y permiten obtener
+encajes continuos de éste en otros espacios.
+</p>
+<p>
+Probaremos, en particular, que cuando $p\in [1,n)$, el espacio
+$W_{0}^{1,p}(\Omega )$ está contenido en $L^{q}(\Omega )$ para
+todo $q\in [p,p^{\ast }]$, donde $p^{\ast }:=\frac{np}{n-p}$.
+Este número se llama el<em class="emph">&nbsp;exponente crítico de
+  Sobolev</em>. Más aún, la inclusión $W_{0}^{1,p}(\Omega
+)\subset L^{q}(\Omega )$ resulta ser una función continua.
+</p>
+<p>
+Cuando el dominio $\Omega $ es acotado y $q\menorque p^{\ast }$ se tiene una
+propiedad aún más fuerte: la inclusión $W_{0}^{1,p}(\Omega
+)\subset L^{q}(\Omega )$ resulta ser compacta, es decir, toda
+sucesión acotada en $W_{0}^{1,p}(\Omega )$&nbsp;contiene una
+subsucesión convergente en $L^{q}(\Omega )$. Este resultado,
+debido a Franz Rellich&nbsp;y Vladimir Kondrashov,&nbsp;tiene implicaciones
+muy importantes para la existencia de soluciones de problemas
+elípticos. Lo aplicaremos aquí para probar la existencia de
+una sucesión no acotada de valores propios del operador laplaciano
+en $H_{0}^{1}(\Omega )$ cuando $\Omega $ es un dominio acotado.
+</p>
+<p>
+<h3 id="sec17-1">Desigualdades de Sobolev</h3>
+</p>
+<p>
+En el producto $\left[ L^{p}\left( \mathbb{R}^{n}\right) \right]
+^{n}:=L^{p}\left( \mathbb{R}^{n}\right) \times \cdots \times
+L^{p}\left( \mathbb{R}^{n}\right) $ (con $n$ factores), $p\in [1,\infty )$, consideramos la norma
+\begin{equation*}
+  \left\Vert (f_{1},\ldots ,f_{n})\right\Vert_{p}:=\left( \left\Vert
+      f_{1}\right\Vert_{p}^{p}+\cdots +\left\Vert f_{n}\right\Vert
+   _{p}^{p}\right)^{1/p}
+\end{equation*}
+(ver Ejercicio <a href="tul/P_T_02/2.html#ejnormprod">2.53</a>).
+</p>
+<p>
+Nota que, si $\varphi \in \mathcal{C}_{c}^{\infty }\left(
+  \mathbb{R}^{n}\right) $, su gradiente $\nabla \varphi
+=(\frac{\partial \varphi }{\partial x_{1}},\ldots ,\frac{\partial
+  \varphi }{\partial x_{n}})$ pertenece a $\left[ L^{p}\left(
+    \mathbb{R}^{n}\right) \right]^{n}$ para todo $p\in [1,\infty )$.
+</p>
+<p>
+Nos preguntamos para qué números $p,q\in [1,\infty )$
+es posible acotar uniformemente a $\left\Vert \varphi \right\Vert
+_{q}$ en términos de $\left\Vert \nabla \varphi \right\Vert_{p}$.
+Veamos primero que $p$ y $q$ no pueden ser arbitrarios.
+</p>
+<p>
+<div class="proposition">
+  Sean $p,q\in [1,\infty )$. Si existe una constante $C>0$, que
+  depende únicamente de $n,p$ y $q$, tal que
+  \begin{equation}
+    \left\Vert \varphi \right\Vert_{q}\leq C\left\Vert \nabla \varphi
+    \right\Vert_{p}\qquad \forall \varphi \in \mathcal{C}_{c}^{\infty
+    }\left( \mathbb{R}^{n}\right) ,\label{expcrit}
+  \end{equation}
+  entonces $p<n$ y $q=\frac{np}{n-p}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Para cada $\varphi \in \mathcal{C}_{c}^{\infty }\left(
+    \mathbb{R}^{n}\right) $ y $\lambda >0$ definimos
+  \begin{equation*}
+    \varphi_{\lambda }(x):=\varphi (\lambda x).
+  \end{equation*}
+  Aplicando el teorema de cambio de variable obtenemos
+  \begin{equation*}
+    \left\Vert \varphi_{\lambda }\right\Vert_{q}^{q}=\int_{\mathbb{R}^{n}}\left\vert \varphi (\lambda x)\right\vert^{q}dx=\frac{1}{\lambda^{n}}\int_{\mathbb{R}^{n}}\left\vert \varphi (y)\right\vert^{q}dy=\frac{1}{\lambda^{n}}\left\Vert \varphi \right\Vert_{q}^{q}
+  \end{equation*}
+  y
+  \begin{equation*}
+    \left\Vert \frac{\partial \varphi_{\lambda }}{\partial x_{i}}\right\Vert
+   _{p}^{p}=\lambda^{p}\int_{\mathbb{R}^{n}}\left\vert \frac{\partial \varphi
+        (\lambda x)}{\partial x_{i}}\right\vert^{p}dx=\frac{\lambda^{p}}{\lambda
+     ^{n}}\int_{\mathbb{R}^{n}}\left\vert \frac{\partial \varphi (y)}{\partial
+        x_{i}}\right\vert^{p}dy=\frac{\lambda^{p}}{\lambda^{n}}\left\Vert \frac{\partial \varphi }{\partial x_{i}}\right\Vert_{p}^{p}.
+  \end{equation*}
+  Aplicando la desigualdad (\ref{expcrit}) a la función $\varphi
+ _{\lambda }$ concluimos que
+  \begin{equation*}
+    \frac{1}{\lambda^{n/q}}\left\Vert \varphi \right\Vert_{q}\leq C\frac{\lambda }{\lambda^{n/p}}\left\Vert \nabla \varphi \right\Vert_{p}\qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }\left( \mathbb{R}^{n}\right) ,\text{ }\forall \lambda >0,
+  \end{equation*}
+  es decir,
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{q}\leq C\lambda^{1-\frac{n}{p}+\frac{n}{q}}\left\Vert \nabla \varphi \right\Vert_{p}\qquad \forall \varphi \in 
+    \mathcal{C}_{c}^{\infty }\left( \mathbb{R}^{n}\right) ,\text{ }\forall
+    \lambda >0.
+  \end{equation*}
+  Haciendo tender $\lambda $ a cero si $1-\frac{n}{p}+\frac{n}{q}>0$ o
+  a infinito si $1-\frac{n}{p}+\frac{n}{q}\menorque 0$ vemos que, si
+  $1-\frac{n}{p}+\frac{n}{q}\neq 0$, la desigualdad anterior no se
+  satisface para ninguna $\varphi \neq 0$.
+</p>
+<p>
+  Así que necesariamente $1-\frac{n}{p}+\frac{n}{q}=0$, en cuyo
+  caso $\frac{n}{p}>1$ y $q=\frac{np}{n-p}$, como afirma el enunciado.
+</div>
+</p>
+<p>
+<div class="definition">
+  Si $p\in [1,n)$ se define el <em class="textbf">exponente crítico
+    de Sobolev</em> como
+  \begin{equation*}
+    p^{\ast }:=\frac{np}{n-p}.
+  \end{equation*}
+</div>
+</p>
+<p>
+Nota que $p^{\ast }>p$.
+</p>
+<p>
+Probaremos a continuación que la desigualdad (\ref{expcrit}) se
+cumple cuando $p\in [1,n)$ y $q=p^{\ast }$. Usaremos el
+siguiente lema.
+</p>
+<p>
+<div id="lemSob" class="lemma">
+Sean $n\geq 2$ y $f_{1},\ldots ,f_{n}\in L^{n-1}\left(
+    \mathbb{R}^{n-1}\right) $. Si $x=(x_{1},\dots,x_{n})\in
+  \mathbb{R}^{n}$ denotamos por
+  $\widehat{x}_{i}:=(x_{1},\dots,x_{i-1},x_{i+1},\dots,x_{n})\in
+  \mathbb{R}^{n-1}$ y definimos
+  \begin{equation*}
+    f(x):=\prod_{i=1}^{n}f_{i}(\widehat{x}_{i}).
+  \end{equation*}
+  Entonces $f\in L^{1}(\mathbb{R}^{n})$ y
+  \begin{equation*}
+    \left\Vert f\right\Vert_{L^{1}(\mathbb{R}^{n})}\leq
+    \prod_{i=1}^{n}\left\Vert f_{i}\right\Vert_{L^{n-1}(\mathbb{R}^{n-1})}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Demostraremos esta afirmación por inducción sobre $n$. Si
+  $n=2$ la afirmación es obvia, ya que
+  \begin{equation*}
+    \int_{\mathbb{R}^{2}}\left\vert f(x_{1},x_{2})\right\vert dx_{1}dx_{2}=\int_{\mathbb{R}}\left\vert f_{1}(x_{2})\right\vert dx_{2}\int_{\mathbb{R}}\left\vert f_{2}(x_{1})\right\vert dx_{1}.
+  \end{equation*}
+  Supongámosla cierta para $n$ y demostrémosla para $n+1$.
+</p>
+<p>
+  Sean $f_{1},\ldots ,f_{n+1}\in L^{n}\left( \mathbb{R}^{n}\right) $.
+  Fijemos por un momento el valor de $x_{n+1}$ y definamos
+  $g_{i}(z_{1},\ldots ,z_{n-1}):=\left\vert f_{i}(z_{1},\ldots
+    ,z_{n-1},x_{n+1})\right\vert^{\frac{n}{n-1}}$, $i=1,\dots,n$.
+  Observa que $g_{i}\in L^{n-1}\left( \mathbb{R}^{n-1}\right) $ de
+  modo que, aplicando la hipótesis de inducción, concluimos
+  que la función
+  \begin{equation*}
+    g(y):=\prod_{i=1}^{n}g_{i}(\widehat{y}_{i})=\prod_{i=1}^{n}\left\vert
+      f_{i}(\widehat{y}_{i},x_{n+1})\right\vert^{\frac{n}{n-1}},\qquad y\in \mathbb{R}^{n},
+  \end{equation*}
+  pertenece a $L^{1}(\mathbb{R}^{n})$ y que
+  \begin{equation}
+    \left\Vert g\right\Vert_{L^{1}(\mathbb{R}^{n})}\leq
+    \prod_{i=1}^{n}\left\Vert g_{i}\right\Vert_{L^{n-1}(\mathbb{R}^{n-1})}=\prod_{i=1}^{n}\biggl( \int_{\mathbb{R}^{n-1}}\left\vert
+        f_{i}(z,x_{n+1})\right\vert^{n}dz\biggr)^{\frac{1}{n-1}}.\label{lemSob1}
+  \end{equation}
+  Nota que
+  \begin{equation*}
+    \left\vert f(y,x_{n+1})\right\vert =\left( \prod_{i=1}^{n}\left\vert f_{i}(\widehat{y}_{i},x_{n+1})\right\vert \right) \left\vert f_{n+1}(y)\right\vert
+    =\left\vert g(y)\right\vert^{\frac{n-1}{n}}\left\vert f_{n+1}(y)\right\vert
+    .
+  \end{equation*}
+  Aplicando la desigualdad de Hölder y la desigualdad
+  (\ref{lemSob1}) obtenemos
+  \begin{align}
+    \int_{\mathbb{R}^{n}}\left\vert f(y,x_{n+1})\right\vert dy &\leq \left\Vert
+      g\right\Vert_{L^{1}(\mathbb{R}^{n})}^{\frac{n-1}{n}}\left\Vert
+      f_{n+1}\right\Vert_{L^{n}(\mathbb{R}^{n})}  \notag \\
+    &\leq \prod_{i=1}^{n}\biggl( \int_{\mathbb{R}^{n-1}}\left\vert
+        f_{i}(z,x_{n+1})\right\vert^{n}dz\biggr)^{\frac{1}{n}}\left\Vert
+      f_{n+1}\right\Vert_{L^{n}(\mathbb{R}^{n})}.\label{lemSob2}
+  \end{align}
+  Ahora hagamos variar $x_{n+1}$. Cada una de las funciones
+  \begin{equation*}
+    h_{i}(x_{n+1})\mapsto \biggl( \int_{\mathbb{R}^{n-1}}\left\vert
+        f_{i}(z,x_{n+1})\right\vert^{n}dz\biggr)^{\frac{1}{n}},\qquad i=1,\ldots
+    ,n,
+  \end{equation*}
+  pertenece a $L^{n}(\mathbb{R})$ y su norma en este espacio es
+  \begin{equation*}
+    \left\Vert h_{i}\right\Vert_{L^{n}(\mathbb{R})}=\biggl( \int_{\mathbb{R}}\int_{\mathbb{R}^{n-1}}\left\vert f_{i}(z,x_{n+1})\right\vert
+     ^{n}dz\,dx_{n+1}\biggr)^{\frac{1}{n}}=\left\Vert f_{i}\right\Vert_{L^{n}(\mathbb{R}^{n})}.
+  \end{equation*}
+  Así que, integrando la desigualdad (\ref{lemSob2}) respecto a
+  $x_{n+1}$ y aplicando la desigualdad de Hölder generalizada (ver
+  Ejercicio <a href="tul/P_T_02/14.html#holdergen">14.68</a>), concluimos que $\prod_{i=1}^{n}h_{i}\in
+  L^{1}(\mathbb{R})$ y
+  \begin{align*}
+    \int_{\mathbb{R}^{n+1}}\left\vert f(x)\right\vert dx 
+    &{}\leq \biggl( \int_{\mathbb{R}}\prod_{i=1}^{n}\left\vert h_{i}(x_{n+1})\right\vert
+      dx_{n+1}\biggr) \left\Vert
+      f_{n+1}\right\Vert_{L^{n}(\mathbb{R}^{n})}\\
+    &{}\leq
+    \left( \prod_{i=1}^{n}\left\Vert h_{i}\right\Vert_{L^{n}(\mathbb{R})}\right) \left\Vert f_{n+1}\right\Vert_{L^{n}(\mathbb{R}^{n})} \\
+    &{}=\left( \prod_{i=1}^{n}\left\Vert
+      f_{i}\right\Vert_{L^{n}(\mathbb{R}^{n})}\right) \left\Vert
+      f_{n+1}\right\Vert_{L^{n}(\mathbb{R}^{n})}\\
+    &{}=\prod_{i=1}^{n+1}\left\Vert f_{i}\right\Vert_{L^{n}(\mathbb{R}^{n})}.
+  \end{align*}
+  Ésta es la desigualdad deseada.
+</div>
+
+<div id="foto:gagliardo" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/gagliardo.svg" height="300">
+    <div class="caption">                
+      <div class="tag">
+        Emilio Gagliardo
+      </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+      Emilio
+      Gagliardo (1930-2008) nació en Génova,
+      Italia. Estudió en la Universidad de Génova, donde fue
+      asistente de Guido Stampacchia con quien realizó sus
+      primeros trabajos en ecuaciones diferenciales. Fue profesor en
+      las universidades de Génova y
+      Pavia.
+  </div>
+</div>
+
+<div id="foto:nirenberg" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Nirenberg.svg" height="300">
+    <div class="caption">                
+      <div class="tag">
+        Louis Nirenberg
+      </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+      Louis Nirenberg nació en
+      1925 en Hamilton, Ontario, Canadá. Obtuvo el doctorado en la
+      Universidad de Nueva York bajo la dirección de James
+      Stoker. Es profesor en el Courant Institute of Mathematical
+      Sciences de dicha universidad.
+  </div>
+</div>
+
+</p>
+<p>
+<div id="desSob" class="theorem">
+Existen constantes $C>0$, que dependen únicamente
+  de $n$ y $p$, con las siguientes propiedades:
+</p>
+<p>
+  <ol class="alfa">
+  <li> <em class="textbf">Desigualdad de Gagliardo</em><em class="textbf">-Nirenberg</em><em class="textbf">-Sobolev:</em>
+    Si $p\in [1,n)$ entonces
+    \begin{equation}
+      \left\Vert \varphi \right\Vert_{p^{\ast }}\leq C\left\Vert \nabla \varphi
+      \right\Vert_{p}\qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }\left( \mathbb{R}^{n}\right) .\label{gns}
+    \end{equation}
+</p>
+<p>
+  <li> Si $p\in (n,\infty )&nbsp;$entonces
+    \begin{equation}
+      \left\Vert \varphi \right\Vert_{\infty }\leq C\left\vert \sop(\varphi )\right\vert^{\frac{1}{n}-\frac{1}{p}}\left\Vert \nabla \varphi
+      \right\Vert_{p}\qquad \forall \varphi \in \mathcal{C}_{c}^{\infty
+      }\left( \mathbb{R}^{n}\right) ,\label{m}
+    \end{equation}
+    donde $\left\vert \sop(\varphi )\right\vert $ denota
+    la medida del soporte de $\varphi $.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\varphi \in \mathcal{C}_{c}^{1}\left( \mathbb{R}^{n}\right) $.
+  Como $\varphi $ tiene soporte compacto, el teorema fundamental del
+  cálculo asegura que
+  \begin{equation*}
+    \varphi \left( x\right) =\int_{-\infty }^{x_{i}}\frac{\partial \varphi }{\partial x_{i}}(x_{1},\dots,x_{i-1},t,x_{i+1},\dots,x_{n})dt
+  \end{equation*}
+  para cada $1\leq i\leq n$ &nbsp;y, en consecuencia,
+  \begin{equation}
+    \left\vert \varphi \left( x\right) \right\vert \leq \int_{-\infty }^{\infty
+    }\left\vert \frac{\partial \varphi }{\partial x_{i}}(x_{1},\dots,x_{i-1},t,x_{i+1},\dots,x_{n})\right\vert dt.\label{sob0}
+  \end{equation}
+  Si $n\geq 2$ definimos
+  \begin{equation*}
+    f_{i}(z_{1},,\dots,z_{n-1}):=\biggl( \int_{-\infty }^{\infty }\left\vert \frac{\partial \varphi }{\partial x_{i}}(x_{1},\dots,z_{i-1},t,z_{i},\dots,z_{n-1})\right\vert dt\biggr)^{\frac{1}{n-1}}.
+  \end{equation*}
+  Entonces $f_{1},\ldots ,f_{n}\in L^{n-1}\left(
+    \mathbb{R}^{n-1}\right) $ y
+  \begin{equation*}
+    \left\Vert f_{i}\right\Vert_{L^{n-1}(\mathbb{R}^{n-1})}=\left\Vert \frac{\partial \varphi }{\partial x_{i}}\right\Vert_{L^{1}(\mathbb{R}^{n})}^{\frac{1}{n-1}}.
+  \end{equation*}
+  Elevando las desigualdades (\ref{sob0}) a la $\frac{1}{n-1}$ y
+  tomando el producto de todas ellas obtenemos
+  \begin{equation*}
+    \left\vert \varphi \left( x\right) \right\vert^{\frac{n}{n-1}}\leq
+    \prod_{i=1}^{n}f_{i}(\widehat{x}_{i}),
+  \end{equation*}
+  donde $\widehat{x}_{i}:=(x_{1},\dots,x_{i-1},x_{i+1},\dots,x_{n})\in
+  \mathbb{R}^{n-1}$. Aplicando el Lema <a href="tul/P_T_02/17.html#lemSob">17.3</a> se tiene entonces
+  que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left\vert \varphi \right\vert^{\frac{n}{n-1}}\leq
+    \int_{\mathbb{R}^{n}}\left( \prod_{i=1}^{n}f_{i}(\widehat{x}_{i})\right)
+    \leq \prod_{i=1}^{n}\left\Vert \frac{\partial \varphi }{\partial x_{i}}\right\Vert_{1}^{\frac{1}{n-1}}.
+  \end{equation*}
+  Por tanto,
+  \begin{equation}
+    \left\Vert \varphi \right\Vert_{\frac{n}{n-1}}\leq
+    \prod_{i=1}^{n}\left\Vert \frac{\partial \varphi }{\partial x_{i}}\right\Vert_{1}^{\frac{1}{n}}\label{sob1}
+  \end{equation}
+  y como la media geométrica es menor o igual que la media
+  aritmética concluimos que
+  \begin{equation}
+    \left\Vert \varphi \right\Vert_{\frac{n}{n-1}}\leq \frac{1}{n}\sum_{i=1}^{n}\left\Vert \frac{\partial \varphi }{\partial x_{i}}\right\Vert
+   _{1}=\frac{1}{n}\left\Vert \nabla \varphi \right\Vert_{1}.\label{sob2}
+  \end{equation}
+  Por otra parte, para cada $\gamma >1$, reemplazando a $\varphi $ por
+  $\left\vert \varphi \right\vert^{\gamma -1}\varphi $ en la
+  desigualdad (\ref{sob1}) y aplicando la desigualdad de Hölder,
+  obtenemos
+  \begin{align}
+    \biggl( \int_{\mathbb{R}^{N}}\left\vert \varphi
+    \right\vert^{\frac{n\gamma }{n-1}}\biggr)^{\frac{n-1}{n}} 
+&{}\leq \gamma \prod_{i=1}^{n}\biggl( \int_{\mathbb{R}^{n}}\left\vert \varphi \right\vert^{\gamma -1}\left\vert \frac{\partial
+          \varphi }{\partial x_{i}}\right\vert \biggr)^{\frac{1}{n}}  \notag \\
+    &{}\leq \gamma \biggl( \int_{\mathbb{R}^{n}}\left\vert \varphi \right\vert^{\frac{p\left( \gamma -1\right) }{p-1}}\biggr)^{\frac{p-1}{p}}\prod_{i=1}^{n}\left\Vert \frac{\partial \varphi }{\partial x_{i}}\right\Vert_{p}^{\frac{1}{n}}\label{sob3} \\
+    &{}<\gamma \biggl( \int_{\mathbb{R}^{n}}\left\vert \varphi \right\vert^{\frac{p\left( \gamma -1\right) }{p-1}}\biggr)^{\frac{p-1}{p}}\left\Vert \nabla \varphi \right\Vert_{p},  \notag
+  \end{align}
+  donde la última desigualdad se obtiene aplicando el
+  Ejercicio <a href="tul/P_T_02/2.html#ejRnormequiv">2.42</a>&nbsp;como sigue:
+  \begin{equation*}
+    \prod_{i=1}^{n}\left\Vert \frac{\partial \varphi }{\partial x_{i}}\right\Vert_{p}^{\frac{1}{n}}\leq \frac{1}{n}\sum_{i=1}^{n}\left\Vert \frac{\partial \varphi }{\partial x_{i}}\right\Vert_{p}\leq \frac{n^{\frac{p-1}{p}}}{n}\biggl( \sum_{i=1}^{n}\left\Vert \frac{\partial \varphi }{\partial x_{i}}\right\Vert_{p}^{p}\biggr)^{\frac{1}{p}}<\left\Vert \nabla \varphi
+    \right\Vert_{p}.
+  \end{equation*}
+  Usaremos las desigualdades anteriores para probar las afirmaciones
+  del teorema.
+</p>
+<p>
+  <em class="emph">(a):</em> &nbsp;Supongamos que $p\in [1,n)$. Si $p=1$ entonces
+  $p^{\ast }=\frac{n}{n-1}$ y la desigualdad (\ref{sob2}) es la
+  desigualdad deseada. Si $p\neq 1$ tomamos $\gamma
+  :=\frac{n-1}{n}p^{\ast }$. Nota que $\gamma >1$, que $\frac{p\left(
+      \gamma -1\right) }{p-1}=\frac{n\gamma }{n-1}=p^{\ast }$ y que
+  $\frac{n-1}{n}-\frac{p-1}{p}=\frac{1}{p^{\ast }}$. De la desigualdad
+  (\ref{sob3}) se sigue entonces que
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{p^{\ast }}\leq \gamma \left\Vert \nabla
+      \varphi \right\Vert_{p}.
+  \end{equation*}
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Supongamos que $p\in (n,\infty )$. Si $n=1$, la
+  desigualdad (\ref{sob0}) y el Ejercicio <a href="tul/P_T_02/14.html#restLp">14.66</a>&nbsp;(con $X=$
+  $\sop(\varphi )$) implican que
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{\infty }\leq \left\Vert \varphi^{\prime
+      }\right\Vert_{1}\leq \left\vert \sop(\varphi )\right\vert^{\frac{p-1}{p}}\left\Vert \varphi^{\prime }\right\Vert_{p},
+  \end{equation*}
+  que es la desigualdad deseada.
+</p>
+<p>
+  Si $n\geq 2$ consideramos primero el caso en el que
+  \begin{equation}
+    \left\vert \sop(\varphi )\right\vert =1\qquad\text{y}\qquad \left\Vert \nabla \varphi \right\Vert_{p}=1.\label{sob4}
+  \end{equation}
+  De la desigualdad (\ref{sob3}) y el Ejercicio <a href="tul/P_T_02/14.html#restLp">14.66</a>&nbsp;se sigue
+  entonces que
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{\frac{n\gamma }{n-1}}\leq \gamma^{\frac{1}{\gamma }}\left( \left\Vert \varphi \right\Vert_{\frac{p(\gamma -1)}{p-1}}\right)^{\frac{\gamma -1}{\gamma }}\leq \gamma^{\frac{1}{\gamma }}\left(
+      \left\Vert \varphi \right\Vert_{\frac{p\gamma }{p-1}}\right)^{\frac{\gamma
+        -1}{\gamma }}\qquad \forall \gamma >1.
+  \end{equation*}
+  Tomemos $\gamma :=\frac{n}{n-1}\frac{p-1}{p}$. Nota que $\gamma >1$.
+  Sustituyendo $\gamma $ por $\gamma^{k}$ en la desigualdad anterior
+  y tomando en cuenta que $\frac{p}{p-1}\gamma
+ ^{k}=\frac{n}{n-1}\gamma^{k-1}$ obtenemos
+  \begin{equation}
+    \left\Vert \varphi \right\Vert_{\frac{n}{n-1}\gamma^{k}}\leq \gamma^{\frac{k}{\gamma^{k}}}\left( \left\Vert \varphi \right\Vert_{\frac{n}{n-1}\gamma^{k-1}}\right)^{\frac{\gamma^{k}-1}{\gamma^{k}}}.\label{sob5}
+  \end{equation}
+  Como hemos supuesto que $\left\vert \sop(\varphi )\right\vert
+  =1$ y $\left\Vert \nabla \varphi \right\Vert_{p}=1$, la desigualdad
+  (\ref{sob2}) y el Ejercicio <a href="tul/P_T_02/14.html#vectencajes">14.70</a>&nbsp;aseguran que
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{\frac{n}{n-1}}\leq \frac{1}{n}\left\Vert
+      \nabla \varphi \right\Vert_{1}\leq \frac{1}{n}(n\left\vert \sop(\varphi )\right\vert )^{\frac{p-1}{p}}\left\Vert \nabla \varphi \right\Vert
+   _{p}\menorque 1.
+  \end{equation*}
+  Si $\left\Vert \varphi \right\Vert_{\frac{n}{n-1}\gamma^{k}}\leq 1$
+  para una infinidad de $k\in \mathbb{N}$, el
+  Ejercicio <a href="tul/P_T_02/14.html#limnormLp">14.69</a>&nbsp;garantiza que
+  $\left\Vert \varphi \right\Vert _{\infty }\leq 1$. Si, por el
+  contrario, existe $k_{0}\geq 0$ tal que
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{\frac{n}{n-1}\gamma^{k_{0}}}\leq 1\qquad\text{y}\qquad \left\Vert \varphi \right\Vert_{\frac{n}{n-1}\gamma^{k}}>1\quad \forall k>k_{0},
+  \end{equation*}
+  entonces
+  \begin{equation*}
+    \left( \left\Vert \varphi \right\Vert_{\frac{n}{n-1}\gamma^{k-1}}\right)^{\frac{\gamma^{k}-1}{\gamma^{k}}}\leq \left\Vert \varphi \right\Vert_{\frac{n}{n-1}\gamma^{k-1}}\quad \forall k>k_{0}+1,
+  \end{equation*}
+  e iterando la desigualdad (\ref{sob5}) obtenemos
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{\frac{n}{n-1}\gamma^{k}}\leq \gamma
+   ^{\left( \frac{k}{\gamma k}+\cdots +\frac{k_{0}+1}{\gamma^{k_{0}+1}}\right)
+    }\left( \left\Vert \varphi \right\Vert_{\frac{n}{n-1}\gamma
+       ^{k_{0}}}\right)^{\frac{\gamma^{k_{0}}-1}{\gamma^{k_{0}}}}\leq \gamma
+   ^{\alpha },
+  \end{equation*}
+  donde $\alpha :=\sum_{i=1}^{\infty }\frac{i}{\gamma^{i}}<\infty $,
+  ya que $\gamma >1$. Aplicando nuevamente el
+  Ejercicio <a href="tul/P_T_02/14.html#limnormLp">14.69</a> concluimos que
+  $\left\Vert \varphi \right\Vert _{\infty }\leq \gamma^{\alpha
+  }$. Así pues, si $\varphi $ satisface (\ref{sob4}), entonces
+  \begin{equation}
+    \left\Vert \varphi \right\Vert_{\infty }\leq \gamma^{\alpha }=\gamma
+   ^{\alpha }\left\vert \sop(\varphi )\right\vert^{\frac{p-n}{np}}\left\Vert \nabla \varphi \right\Vert_{p}.\label{sob6}
+  \end{equation}
+</p>
+<p>
+  Para probar la desigualdad (\ref{m}) en el caso general observa
+  primero que, si $\left\vert \sop(\varphi )\right\vert =0$ o
+  $\left\Vert \nabla \varphi \right\Vert_{p}=0$, entonces $\varphi
+  =0$ y la desigualdad se satisface trivialmente. Si $\left\vert
+    \sop(\varphi )\right\vert \neq 0 $ y $\left\Vert \nabla
+    \varphi \right\Vert_{p}\neq 0$, aplicamos la desigualdad
+  (\ref{sob6}) a la función $\theta :=\frac{\psi }{\left\Vert
+      \nabla \psi \right\Vert_{p}}$ donde $\psi (x):=\varphi
+  (\left\vert \sop(\varphi )\right\vert^{1/n}x)$. Nota que
+  $\left\vert \sop(\theta )\right\vert =\left\vert
+    \sop(\psi )\right\vert =1$ y que $\left\Vert \nabla \theta
+  \right\Vert_{p}=1$. Así que, aplicando el caso anterior
+  obtenemos
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{\infty }=\left\Vert \psi \right\Vert
+   _{\infty }\leq \gamma^{\alpha }\left\Vert \nabla \psi \right\Vert
+   _{p}=\gamma^{\alpha }\left\vert \sop(\varphi )\right\vert^{\frac{p-n}{np}}\left\Vert \nabla \varphi \right\Vert_{p},
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+La desigualdad de Gagliardo-Nirenberg-Sobolev se extiende por densidad
+a $W_{0}^{1,p}(\Omega )$. Nota que, si $u\in W_{0}^{1,p}(\Omega )$, su
+gradiente $\nabla \varphi =(D_{1}u,\ldots ,D_{n}u)$ pertenece a
+$\left[ L^{p}\left( \mathbb{R}^{n}\right) \right]^{n}$ y
+\begin{equation*}
+  \left\Vert \nabla u\right\Vert_{p}:=\left( \left\Vert D_{1}u\right\Vert
+   _{p}^{p}+\cdots +\left\Vert D_{n}u\right\Vert_{p}^{p}\right)^{1/p}.
+\end{equation*}
+</p>
+<p>
+<div id="cordesSob" class="corollary">
+Si $\Omega $ es un subconjunto abierto de
+  $\mathbb{R}^{n}$ y $p\in [1,n)$, entonces $W_{0}^{1,p}(\Omega
+  )\subset L^{p^{\ast }}\left( \Omega \right) $ y existe una constante
+  $C>0$, que depende únicamente de $n$ y $p$, tal que
+  \begin{equation*}
+    \left\Vert u\right\Vert_{p^{\ast }}\leq C\left\Vert \nabla u\right\Vert_{p}\qquad \forall u\in W_{0}^{1,p}(\Omega ).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $u\in W_{0}^{1,p}(\Omega )$ y $\left( \varphi_{k}\right) $ es
+  una sucesión en $\mathcal{C}_{c}^{\infty }(\Omega )$ que
+  converge a $u$ en $W^{1,p}(\Omega )$, entonces $\left\Vert \varphi
+   _{k}-u\right\Vert_{p}\rightarrow 0$ y $\left\Vert \nabla \varphi
+   _{k}-\nabla u\right\Vert_{p}\rightarrow 0$. Por otra parte, de la
+  desigualdad (\ref{gns}) se sigue que
+  \begin{equation*}
+    \left\Vert \varphi_{k}-\varphi_{j}\right\Vert_{p^{\ast }}\leq C\left\Vert
+      \nabla \varphi_{k}-\nabla \varphi_{j}\right\Vert_{p}\leq C\left\Vert
+      \varphi_{k}-\varphi_{j}\right\Vert_{W^{1,p}(\Omega )}\qquad \forall k,j\in \mathbb{N}.
+  \end{equation*}
+  Por tanto, $\left( \varphi_{k}\right) $ es una sucesión de Cauchy en
+  $L^{p^{\ast }}(\Omega )$ y, en consecuencia,
+  $\varphi _{k}\rightarrow v$ en $L^{p^{\ast }}(\Omega )$. Como además
+  $\varphi_{k}\rightarrow u$ en $L^{p}(\Omega )$, el
+  Teorema <a href="tul/P_T_02/14.html#convLppunt">14.28</a> asegura que una subsucesión de
+  $(\varphi_{k})$ converge tanto a $u$ como a $v$ c.d. en $\Omega
+  $.
+  Por tanto, $u\left( x\right) =v\left( x\right) $ p.c.t.
+  $x\in \Omega $. Esto implica que $u\in L^{p^{\ast }}(\Omega )$ y,
+  usando de nueva cuenta la desigualdad (\ref{gns}), obtenemos
+  \begin{equation*}
+    \left\Vert u\right\Vert_{p^{\ast }}=\lim_{n\rightarrow \infty }\left\Vert
+      \varphi_{k}\right\Vert_{p^{\ast }}\leq C\lim_{n\rightarrow \infty
+    }\left\Vert \nabla \varphi_{k}\right\Vert_{p}=C\left\Vert \nabla
+      u\right\Vert_{p},
+  \end{equation*}
+  que es la desigualdad deseada.
+</div>
+</p>
+<p>
+La desigualdad anterior tiene la siguiente consecuencia importante.
+</p>
+<p>
+<div class="theorem" id="encajeSob">[de encaje de Sobolev]
+  Si $\Omega $ es
+  un subconjunto abierto de $\mathbb{R}^{n}$ y $p\in [1,n)$,
+  entonces
+  \begin{equation*}
+    W_{0}^{1,p}(\Omega )\subset L^{q}\left( \Omega \right) \qquad \forall q\in
+    [p,p^{\ast }]
+  \end{equation*}
+  y esta inclusión es continua.
+</div>
+</p>
+<p>
+<div class="proof">
+  El Corolario <a href="tul/P_T_02/17.html#cordesSob">17.5</a> afirma que $W_{0}^{1,p}(\Omega )\subset
+  L^{p^{\ast }}\left( \Omega \right) $ y que existe una constante
+  $C>0$ tal que
+  \begin{equation}
+    \left\Vert u\right\Vert_{p^{\ast }}\leq C\left\Vert \nabla u\right\Vert
+   _{p}\leq C\left\Vert u\right\Vert_{W^{1,p}(\Omega )}\qquad \forall u\in W_{0}^{1,p}(\Omega ).\label{sob}
+  \end{equation}
+  Como además $W_{0}^{1,p}(\Omega )\subset L^{p}(\Omega )$ y
+  $\left\Vert u\right\Vert_{p}\leq \left\Vert u\right\Vert
+ _{W^{1,p}(\Omega )}$, la desigualdad de interpolación (ver
+  Ejercicio <a href="tul/P_T_02/14.html#interpolacion">14.67</a>) asegura que $u\in L^{q}\left(
+    \mathbb{R}^{n}\right) $ para todo $u\in W_{0}^{1,p}(\Omega )$ y
+  $q\in [p,p^{\ast }]$ y que
+  \begin{equation*}
+    \left\Vert u\right\Vert_{q}\leq \left\Vert u\right\Vert_{p}^{1-\alpha
+    }\left\Vert u\right\Vert_{p^{\ast }}^{\alpha }\leq C^{\alpha }\left\Vert
+      u\right\Vert_{W^{1,p}(\Omega )}^{1-\alpha }\left\Vert u\right\Vert
+   _{W^{1,p}(\Omega )}^{\alpha }=C^{\alpha }\left\Vert u\right\Vert
+   _{W^{1,p}(\Omega )},
+  \end{equation*}
+  donde $\alpha \in [0,1]$ cumple que
+  $\frac{1}{q}=\frac{1-\alpha }{p}+\frac{\alpha }{p^{\ast }}$. Esto
+  prueba que $W_{0}^{1,p}(\Omega )\subset L^{q}\left( \Omega \right) $
+  y que esta inclusión es continua.
+</div>
+</p>
+<p>
+Vale la pena hacer notar lo siguiente.
+</p>
+<p>
+<div class="obss">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $\varphi $ no tiene soporte compacto la desigualdad
+    <em class="emph">(\ref{gns})</em> no es válida en general: ciertamente&nbsp;no se
+    cumple para la función constante $\varphi \equiv 1$.
+</p>
+<p>
+  <li> Si $p=n$ se cumple que $W_{0}^{1,n}(\Omega )\subset
+    L^{q}(\Omega ) $ para todo $q\in [n,\infty )$ y esta
+    inclusión es continua.  Proponemos la demostración de esta
+    afirmación como ejercicio <em class="emph">[Ejercicio <a href="tul/P_T_02/17.html#p=n">17.23</a>]</em>.
+</p>
+<p>
+  <li> Para $p\in (n,\infty )$ se cumple que $W_{0}^{1,p}(\Omega
+    )\subset L^{\infty }(\Omega )\cap \mathcal{C}^{0}(\Omega )$ y esta
+    inclusión es continua\footnote{Consulta, por ejemplo,~\cite{Bre}, Corolario IX.13.}.
+</p>
+<p>
+  <li> La inclusión $W^{1,p}(\Omega )\subset L^{p^{\ast
+      }}\left( \Omega \right) $ se tiene bajo ciertas condiciones, por
+    ejemplo, si $\Omega $ es de clase $\mathcal{C}^{1}$ y su frontera
+    está acotada\footnote{Consulta~\cite{Bre}, Corolario IX.14.}.
+  </ol>
+</div>
+</p>
+<p>
+Cuando $\Omega $ es acotado es posible acotar a $\left\Vert
+  u\right\Vert_{q} $ en términos de $\left\Vert \nabla
+  u\right\Vert_{p}$&nbsp;y de la medida de $\Omega $ para un rango mayor
+de valores de $p$ y $q$. La siguiente desigualdad se conoce como la
+desigualdad de Poincaré.
+</p>
+
+<div id="foto:poincare" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Henri_Poincare.svg" height="300">
+    <div class="caption">                
+      <div class="tag">
+        Henri Poincaré
+      </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Jules Henri Poincaré
+  (1854-1912) nació en Nancy, Francia. Estudió en la École
+  Polytechnique, donde fue alumno de Charles Hermite. Fue profesor de
+  la Universidad de París (la Sorbonne). Realizó contribuciones
+  fundamentales en diversos campos de la matemática.
+  </div>
+</div>  
+
+<p>
+<div class="theorem" id="desPoincare">[Desigualdad de Poincaré]
+Sea $\Omega $
+  un subconjunto abierto y acotado de $\mathbb{R}^{n}$. Existe una
+  constante $C>0$, que depende sólo de $n,p$ y $q$, tal que
+  \begin{equation}
+    \left\Vert u\right\Vert_{q}\leq C\left\vert \Omega \right\vert^{\frac{1}{q}+\frac{1}{n}-\frac{1}{p}}\left\Vert \nabla u\right\Vert_{p}\qquad \forall u\in W_{0}^{1,p}(\Omega ),\label{desPoin}
+  \end{equation}
+  si alguna de las siguientes tres condiciones se satisface:
+</p>
+<p>
+  <ol class="alfa">
+  <li> $p\in [1,n)\quad\text{y}\quad q\in [1,p^{\ast
+    }]$.
+</p>
+<p>
+  <li> $p=n\quad\text{y}\quad q\in [1,\infty )$.
+</p>
+<p>
+  <li> $p\in (n,\infty )\quad\text{y}\quad q\in [1,\infty ]$.
+  </ol>
+</p>
+<p>
+  En consecuencia,
+</p>
+<p>
+  <ul class="cuadrito">
+  <li> si $p\in [1,n)$ entonces $W_{0}^{1,p}\left( \Omega
+    \right) \subset L^{q}(\Omega )$ para cada $q\in [1,p^{\ast
+    }]$&nbsp;y la inclusión es continua,
+</p>
+<p>
+ <li>$W_{0}^{1,n}\left( \Omega \right) \subset L^{q}(\Omega )$ para
+    cada $q\in [1,\infty )$&nbsp;y la inclusión es continua,
+</p>
+<p>
+  <li> y, más aún, si $p\in (n,\infty )$ entonces, módulo la elección de
+    un representante, $W_{0}^{1,p}\left( \Omega \right) \subset
+    \mathcal{C}^{0}(\overline{\Omega })$ y la inclusión es
+    continua.
+  </ul>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Si $p\in [1,n)$ y $q\in [1,p^{\ast }]$,
+  aplicando las desigualdades de la Proposición <a href="tul/P_T_02/14.html#encajes">14.31</a> y el
+  Corolario <a href="tul/P_T_02/17.html#cordesSob">17.5</a>&nbsp;obtenemos que
+  \begin{equation*}
+    \left\Vert u\right\Vert_{q}\leq \left\vert \Omega \right\vert^{\frac{1}{q}-\frac{1}{p^{\ast }}}\left\Vert u\right\Vert_{p^{\ast }}\leq C\left\vert
+      \Omega \right\vert^{\frac{1}{q}+\frac{1}{n}-\frac{1}{p}}\left\Vert \nabla
+      u\right\Vert_{p}\qquad \forall u\in W_{0}^{1,p}(\Omega ).
+  \end{equation*}
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Sean $p=n$ y $q\in [1,\infty )$. Si $n=1$ se
+  sigue de (\ref{sob0}) que
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{q}=\biggl( \int_{\Omega }\left\vert \varphi
+        (x)\right\vert^{q}dx\biggr)^{\frac{1}{q}}\leq \biggl( \int_{\Omega
+      }\left\Vert \varphi^{\prime }\right\Vert_{1}^{q}\biggr)^{\frac{1}{q}}=\left\vert \Omega \right\vert^{\frac{1}{q}}\left\Vert \varphi^{\prime
+      }\right\Vert_{1}\qquad \forall \varphi \in \mathcal{C}_{c}^{\infty
+    }(\Omega ).
+  \end{equation*}
+  Argumentando como en el Corolario <a href="tul/P_T_02/17.html#cordesSob">17.5</a>&nbsp;concluimos que
+  \begin{equation*}
+    \left\Vert u\right\Vert_{q}\leq \left\vert \Omega \right\vert^{\frac{1}{q}}\left\Vert Du\right\Vert_{1}\qquad \forall u\in W_{0}^{1,1}(\Omega
+    ).
+  \end{equation*}
+  Si $n\geq 2$ definimos $r:=\max
+  \left\{\frac{nq}{n+q},1\right\}$.
+  Observa que $r\in [1,n)$. Nota además que $r^{\ast }=q$ si
+  $r=\frac{nq}{n+q}$ y que $q\leq \frac{n}{n-1}$ si $r=1$. En
+  consecuencia, de la afirmación <em class="emph">(a)</em>, la
+  Proposición <a href="tul/P_T_02/14.html#encajes">14.31</a> y el Ejercicio <a href="tul/P_T_02/14.html#vectencajes">14.70</a> se sigue
+  que, para toda $u\in W_{0}^{1,n}(\Omega )$,
+  \begin{alignat*}{2}
+    \left\Vert u\right\Vert_{q} 
+    \leq C\left\Vert \nabla u\right\Vert_{r}&\leq
+    Cn^{\frac{1}{q}}\left\vert \Omega \right\vert^{\frac{1}{q}}\left\Vert
+      \nabla u\right\Vert_{n}&&\qquad\text{si }r=\frac{nq}{n+q},\\[5pt]
+    \left\Vert u\right\Vert_{q} 
+      \leq 
+      \left\vert \Omega
+      \right\vert^{\frac{1}{q}-\frac{n-1}{n}}\left\Vert
+      u\right\Vert_{\frac{n}{n-1}}
+      &{}\leq C\left\vert
+        \Omega \right\vert^{\frac{1}{q}-\frac{n-1}{n}}\left\Vert \nabla
+        u\right\Vert_{1}\\
+      &{}\leq Cn^{\frac{n-1}{n}}\left\vert \Omega 
+        \right\vert^{\frac{1}{q}}\left\Vert \nabla
+        u\right\Vert_{n}&&\qquad\text{si }r=1.
+    \end{alignat*}
+</p>
+<p>
+  <em class="emph">(c):</em> &nbsp;Sean $p\in (n,\infty )$ y $q\in [1,\infty ]$.
+  De la desigualdad (\ref{m})&nbsp;se sigue que
+  \begin{equation}
+    \left\Vert \varphi \right\Vert_{\infty }\leq C\left\vert \Omega \right\vert
+   ^{\frac{1}{n}-\frac{1}{p}}\left\Vert \nabla \varphi \right\Vert_{p}\qquad
+    \forall \varphi \in \mathcal{C}_{c}^{\infty }\left( \Omega \right) ,
+\label{m2}
+  \end{equation}
+  Recuerda que $\mathcal{C}^{0}(\overline{\Omega })$ con la norma
+  $\left\Vert \cdot \right\Vert_{\infty }$ es un espacio de Banach
+  (ver Teorema <a href="tul/P_T_02/5.html#funcacotcompl">5.21</a>). Así que, argumentando como
+  en el Corolario <a href="tul/P_T_02/17.html#cordesSob">17.5</a> se prueba que cada $u\in
+  W_{0}^{1,p}(\Omega )$ coincide c.d. con una función que
+  pertenece a $\mathcal{C}^{0}(\overline{\Omega })$ y que la
+  desigualdad (\ref{m2}) es válida para $u$. Combinando esa
+  desigualdad con la Proposición <a href="tul/P_T_02/14.html#encajes">14.31</a> obtenemos
+  \begin{equation*}
+    \left\Vert u\right\Vert_{q}\leq \left\vert \Omega \right\vert^{\frac{1}{q}}\left\Vert u\right\Vert_{\infty }\leq C\left\vert \Omega \right\vert^{\frac{1}{q}+\frac{1}{n}-\frac{1}{p}}\left\Vert \nabla u\right\Vert_{p},
+  \end{equation*}
+  que es la desigualdad deseada.
+</div>
+</p>
+<p>
+La desigualdad de Poincaré permite reemplazar a la norma de
+$W_{0}^{1,p}(\Omega )$ por $\left\Vert \nabla u\right\Vert
+_{p}$. Más precisamente, se cumple lo siguiente.
+</p>
+<p>
+<div id="normSobequiv" class="corollary">
+Sea $p\in [1,\infty )$. Si $\Omega $ es
+  un subconjunto abierto y acotado de $\mathbb{R}^{n}$ entonces
+  \begin{equation*}
+    \left\Vert u\right\Vert :=\left\Vert \nabla u\right\Vert_{p}
+  \end{equation*}
+  es una norma en $W_{0}^{1,p}(\Omega )$, equivalente a la norma
+  $\left\Vert \cdot \right\Vert_{W^{1,p}\left( \Omega \right) }$.
+</p>
+<p>
+  En consecuencia, $W_{0}^{1,p}(\Omega )$ con esta nueva norma
+  también es un espacio de Banach. Si $p=2$ esta norma está
+  inducida por el producto escalar
+  \begin{equation*}
+    \left\langle u,v\right\rangle :=\int_{\Omega }\nabla u\cdot \nabla
+    v=\sum_{i=1}^{n}\int_{\Omega }\left( D_{i}u\right) \left( D_{i}v\right) ,\qquad u,v\in H_{0}^{1}(\Omega ).
+  \end{equation*}
+  De modo que $H_{0}^{1}(\Omega )$ con este producto escalar resulta
+  ser un espacio de Hilbert.
+</div>
+</p>
+<p>
+<div class="proof">
+  El Teorema <a href="tul/P_T_02/17.html#desPoincare">17.8</a> asegura que existe una constante $C$,
+  que depende sólo de $n$ y $p$, tal que
+  \begin{equation*}
+    \left\Vert u\right\Vert_{p}\leq C\left\vert \Omega \right\vert^{\frac{1}{n}}\left\Vert \nabla u\right\Vert_{p}\qquad \forall u\in
+    W_{0}^{1,p}(\Omega ).
+  \end{equation*}
+  Tomando $C_{0}:=C\left\vert \Omega \right\vert^{\frac{1}{n}}$
+  obtenemos
+  \begin{equation*}
+    \left\Vert u\right\Vert \leq \left\Vert u\right\Vert_{W^{1,p}\left( \Omega
+      \right) }=\left( \left\Vert u\right\Vert_{p}^{p}+\left\Vert \nabla
+        u\right\Vert_{p}^{p}\right)^{\frac{1}{p}}\leq \left( C_{0}^{p}+1\right)
+   ^{1/p}\left\Vert u\right\Vert \qquad \forall u\in W_{0}^{1,p}(\Omega
+    ).
+  \end{equation*}
+  Estas desigualdades implican, en particular, que
+  \begin{equation*}
+    \left\Vert u\right\Vert =0\quad \Leftrightarrow \quad \left\Vert
+      u\right\Vert_{W^{1,p}\left( \Omega \right) }=0\quad \Leftrightarrow \quad
+    u=0.
+  \end{equation*}
+  Así que $\left\Vert \cdot \right\Vert $ satisface la propiedad
+  (N1) de la Definición <a href="tul/P_T_02/2.html#defnor">2.9</a>. Las propiedades (N2) y (N3)
+  se prueban como en la Proposición <a href="tul/P_T_02/16.html#normaSob">16.12</a>. Las mismas
+  desigualdades aseguran que las normas $\left\Vert \cdot \right\Vert
+  $ y $\left\Vert \cdot \right\Vert_{W^{1,p}\left( \Omega \right) }$
+  son equivalentes.
+</div>
+</p>
+<p>
+<h3 id="sec17-2">El teorema de Rellich-Kondrashov</h3>
+</p>
+<p>
+Cuando $\Omega $ es acotado y $q\menorque p^{\ast }$ la inclusión
+$W_{0}^{1,p}(\Omega )\subset L^{q}(\Omega )$ tiene una propiedad
+adicional: es un operador compacto. En esta sección probaremos
+esta afirmación.
+</p>
+<p>
+<div class="definition">
+  Una función $F\colon X\rightarrow Y$ entre espacios métricos es
+  <em class="textbf">compacta</em> si para cualquier subconjunto acotado $A$ de $X$
+  el conjunto $F(A):=\left\{F(a):a\in A\right\}$ es relativamente compacto en
+  $Y$.
+</div>
+</p>
+<p>
+Equivalentemente, una función $F\colon X\rightarrow Y$ entre espacios
+métricos es compacta si para cualquier sucesión acotada
+$(x_{k})$ en $X$, la sucesión $(F(x_{k}))$ contiene una
+subsucesión convergente en $Y$ [Ejercicio <a href="tul/P_T_02/17.html#compsuc">17.19</a>].
+</p>
+<p>
+Empezaremos probando el siguiente lema.
+</p>
+<p>
+<div id="lemrk" class="lemma">
+Si $u\in W^{1,1}(\mathbb{R}^{n})$ y $\xi \in
+  \mathbb{R}^{n}$ entonces
+  \begin{equation*}
+    \left\Vert \mathrm{T}_{\xi }u-u\right\Vert_{1}\leq \left\Vert \nabla
+      u\right\Vert_{1}\left\Vert \xi \right\Vert ,
+  \end{equation*}
+  donde $\mathrm{T}_{\xi }u$ denota a la traslación de $u$ por
+  $\xi $, es decir, $\left( \mathrm{T}_{\xi }u\right) (x)=u(x-\xi )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $\varphi \in \mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$ y
+  $x,\xi \in \mathbb{R}^{n}$. Aplicando el teorema del valor medio a
+  la función $f(t):=\varphi (x-t\xi )$, $t\in \mathbb{R}$,
+  obtenemos que existe $t_{0}\in (0,1)$ tal que
+  \begin{equation*}
+    \varphi (x-\xi )-\varphi (x)=f(1)-f(0)=f^{\prime }(t_{0})=-\nabla \varphi
+    (x-t_{0}\xi )\cdot \xi .
+  \end{equation*}
+  Por tanto,
+  \begin{align*}
+    \left\vert \varphi (x-\xi )-\varphi (x)\right\vert 
+    &{}=\left\vert \nabla
+      \varphi (x-t_{0}\xi )\cdot \xi \right\vert \\
+    &{}\leq \sum_{i=1}^{n}\left\vert \frac{\partial \varphi }{\partial x_{i}}(x-t_{0}\xi )\right\vert \left\vert \xi_{i}\right\vert \leq \left(
+      \sum_{i=1}^{n}\left\vert \frac{\partial \varphi }{\partial x_{i}}(x-t_{0}\xi )\right\vert \right) \left\Vert \xi \right\Vert .
+  \end{align*}
+  &nbsp;Integrando esta desigualdad respecto a $x$ concluimos que
+  \begin{align*}
+    \left\Vert \mathrm{T}_{\xi }\varphi -\varphi \right\Vert_{1} 
+    &{}=\int_{\mathbb{R}^{n}}\left\vert \varphi (x-\xi )-\varphi (x)\right\vert dx \\
+    &{}\leq \biggl( \sum_{i=1}^{n}\int_{\mathbb{R}^{n}}\left\vert \frac{\partial
+          \varphi }{\partial x_{i}}(x-t_{0}\xi )\right\vert dx\biggr) \left\Vert \xi
+    \right\Vert \\
+    &{}=\biggl( \sum_{i=1}^{n}\left\Vert \frac{\partial \varphi }{\partial x_{i}}\right\Vert_{1}\biggr) \left\Vert \xi \right\Vert =\left\Vert \nabla
+      \varphi \right\Vert_{1}\left\Vert \xi \right\Vert .
+  \end{align*}
+  Si $u\in W^{1,1}(\mathbb{R}^{n})$, tomamos una sucesión
+  $(\varphi_{k})$ en $\mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$ tal
+  que $\varphi_{k}\rightarrow u$ en $W^{1,1}(\mathbb{R}^{n})$.
+  Entonces $\left\Vert \varphi_{k}-u\right\Vert_{1}\rightarrow 0$,
+  $\left\Vert \mathrm{T}_{\xi }\varphi_{k}-\mathrm{T}_{\xi
+    }u\right\Vert_{1}\rightarrow 0$ y $\left\Vert \nabla \varphi
+   _{k}-\nabla u\right\Vert_{1}\rightarrow 0$. De la desigualdad
+  anterior se sigue que
+  \begin{equation*}
+    \left\Vert \mathrm{T}_{\xi }u-u\right\Vert_{1}=\lim_{k\rightarrow \infty
+    }\left\Vert \mathrm{T}_{\xi }\varphi_{k}-\varphi_{k}\right\Vert_{1}\leq
+    \lim_{k\rightarrow \infty }\left\Vert \nabla \varphi_{k}\right\Vert
+   _{1}\left\Vert \xi \right\Vert =\left\Vert \nabla u\right\Vert
+   _{1}\left\Vert \xi \right\Vert ,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+El siguiente resultado, debido a Franz Rellich y Vladimir Kondrashov, juega un papel crucial en la demostración de la
+existencia de soluciones de ciertas ecuaciones diferenciales.
+</p>
+
+<div id="foto:rellich" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Rellich.svg" height="300">
+    <div class="caption">                
+      <div class="tag">
+        Franz Rellich
+      </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    Franz Rellich
+  (1906-1955) nació en Tramin, en el norte de Italia. Estudió
+  en la Universidad de Göttingen, donde fue alumno de Richard
+  Courant. En 1933 se vió forzado a abandonar esa universidad
+  debido a la posición activa que adoptó frente al
+  nazismo. Regresó en 1946 y, como director del Instituto de
+  Matemáticas, jugó un papel importante en su
+  reconstrucción.
+  </div>
+</div>
+<div id="foto:kondrashov" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/kondrashov.svg" height="300">
+    <div class="caption">                
+      <div class="tag">
+        Vladimir Kondrashov
+      </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    Vladimir
+  Iosifovich Kondrashov (1909-1971) nació en
+  Moscú. Estudió en la Universidad Estatal de Moscú, donde
+  fue alumno de Sergei Sobolev con quien continuó colaborando a lo
+  largo de su vida. Fue profesor del Departamento de Alta
+  Matemática del Instituto de Física de la Ingeniería de
+  Moscú.
+  </div>
+</div>
+
+<p>
+<div class="theorem" id="teork">[Rellich-Kondrashov]
+Si $\Omega $ es un
+  subconjunto abierto y acotado de $\mathbb{R}^{n}$, $p\in [1,n)$ y $q\in [1,p^{\ast })$, entonces la inclusión
+  $W_{0}^{1,p}(\Omega )\subset L^{q}(\Omega )$ es compacta, es decir,
+  toda sucesión acotada en $W_{0}^{1,p}(\Omega )$ contiene una
+  subsucesión que converge en $L^{q}(\Omega )$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\mathcal{A}$ un subconjunto acotado de $W_{0}^{1,p}(\Omega )$.
+  La desigualdad de Poincaré (ver Teorema <a href="tul/P_T_02/17.html#desPoincare">17.8</a>)
+  implica que $\mathcal{A}$ un subconjunto acotado de $L^{q}(\Omega )$
+  para todo $q\in [1,p^{\ast }]$. Como de costumbre,
+  identificamos a una función definida en un abierto con su
+  extensión trivial a todo $\mathbb{R}^{n}$, definida en
+  (<a href="tul/P_T_02/12.html#exten">12.21</a>). Probaremos que $\mathcal{A}$ satisface las
+  hipótesis <em class="emph">(i)</em> y <em class="emph">(ii)</em> del Corolario <a href="tul/P_T_02/14.html#compLp">14.47</a>
+  cuando $q\in [1,p^{\ast })$.
+</p>
+<p>
+  Sean $\varepsilon >0$ y $\omega $ un abierto tal que
+  $\omega \subset \subset \Omega $. Sea $C>0$ tal que
+  $\left\Vert u\right\Vert _{p^{\ast }}\leq C$ para todo
+  $u\in \mathcal{A}$. Como la integral es invariante bajo traslaciones
+  se tiene que
+  $\left\Vert \mathrm{T}_{\xi }u\right\Vert_{p^{\ast }}\leq C$ para
+  todo $u\in \mathcal{A}$ y $\xi \in \mathbb{R}^{n}$. Usando la
+  desigualdad de interpolación (ver Ejercicio <a href="tul/P_T_02/14.html#interpolacion">14.67</a>), el
+  Lema <a href="tul/P_T_02/17.html#lemrk">17.11</a> y el Ejercicio <a href="tul/P_T_02/14.html#vectencajes">14.70</a>, concluimos que
+  existe $C_{1}>0$ tal que
+  \begin{align*}
+    \left\Vert \mathrm{T}_{\xi }u-u\right\Vert_{q} 
+    &{}\leq \left\Vert \mathrm{T}_{\xi }u-u\right\Vert_{1}^{\alpha }\left\Vert \mathrm{T}_{\xi
+      }u-u\right\Vert_{p^{\ast }}^{1-\alpha } \\
+    &{}\leq (2C)^{1-\alpha }\left\Vert \mathrm{T}_{\xi }u-u\right\Vert
+   _{1}^{\alpha }\leq (2C)^{1-\alpha }\left\Vert \nabla u\right\Vert
+   _{1}^{\alpha }\left\Vert \xi \right\Vert^{\alpha } \\
+    &{}\leq (2C)^{1-\alpha }\left( n\left\vert \Omega \right\vert \right)^{\frac{\alpha (p-1)}{p}}\left\Vert \nabla u\right\Vert_{p}^{\alpha
+    }\left\Vert \xi \right\Vert^{\alpha }\leq C_{1}\left\Vert \xi \right\Vert
+   ^{\alpha }\quad \forall u\in \mathcal{A}\text{,}
+  \end{align*}
+  donde $\alpha $ satisface $\frac{1}{q}=\alpha +\frac{1-\alpha
+  }{p^{\ast }}$. Observa que $\alpha >0$ si $q\in [1,p^{\ast
+  })$. En consecuencia, tomando $\delta \in (0$,dist$(\omega
+  ,\mathbb{R}^{n}\smallsetminus \Omega ))$ tal que $\delta
+  <(\frac{\varepsilon }{C_{1}})^{\frac{1}{\alpha }}$ se tiene que
+  \begin{equation*}
+    \left\Vert \mathrm{T}_{\xi }u-u\right\Vert_{q}<\varepsilon \qquad \forall \xi \in \mathbb{R}^{n}\text{ con }\left\Vert \xi \right\Vert <\delta 
+    \quad\text{y}\quad \forall u\in \mathcal{A}\text{.}
+  \end{equation*}
+  Así pues, $\mathcal{A}$ satisface la hipótesis <em class="emph">(i)</em>
+  del Corolario <a href="tul/P_T_02/14.html#compLp">14.47</a>&nbsp;cuando $q\in [1,p^{\ast })$.
+</p>
+<p>
+  Por otra parte, la Proposición <a href="tul/P_T_02/14.html#encajes">14.31</a> asegura que, para
+  cualquier abierto $\omega \subset \Omega $,
+  \begin{equation*}
+    \left\Vert u\right\Vert_{L^{q}(\Omega \smallsetminus \omega )}\leq
+    \left\Vert u\right\Vert_{L^{p^{\ast }}(\Omega \smallsetminus \omega
+      )}\left\vert \Omega \smallsetminus \omega \right\vert^{\frac{1}{q}-\frac{1}{p^{\ast }}}\leq C\left\vert \Omega \smallsetminus \omega \right\vert^{\frac{1}{q}-\frac{1}{p^{\ast }}}\quad \forall u\in \mathcal{A}\text{.}
+  \end{equation*}
+  Puesto que $\Omega $ es acotado y $\beta
+  :=\frac{1}{q}-\frac{1}{p^{\ast }}>0$, podemos elegir un abierto
+  $\omega \subset \subset \Omega $ tal que $\left\vert \Omega
+    \smallsetminus \omega \right\vert <(\frac{\varepsilon
+  }{C})^{\frac{1}{\beta }}$. Se tiene entonces que
+  \begin{equation*}
+    \left\Vert u\right\Vert_{L^{q}(\Omega \smallsetminus \omega )}<\varepsilon 
+    \qquad \forall u\in \mathcal{A}\text{.}
+  \end{equation*}
+  Es decir, $\mathcal{A}$ satisface la hipótesis <em class="emph">(ii)</em> del
+  Corolario <a href="tul/P_T_02/14.html#compLp">14.47</a>&nbsp;cuando $q\in [1,p^{\ast })$.
+</p>
+<p>
+  En consecuencia, $\mathcal{A}$&nbsp;es relativamente compacto en
+  $L^{q}(\Omega ). $
+</div>
+</p>
+<p>
+Si $\Omega $ es un subconjunto abierto y acotado de $\mathbb{R}^{n}$
+se tiene también que$&nbsp;$la inclusión $W_{0}^{1,n}(\Omega
+)\subset L^{q}(\Omega )$ es compacta para todo $q\in [1,\infty
+)$ y que la inclusión $W_{0}^{1,p}(\Omega )\subset
+\mathcal{C}^{0}(\overline{\Omega })$ es compacta para $p\in (n,\infty
+)$. Proponemos estas afirmaciones como ejercicio [Ejercicio <a href="tul/P_T_02/17.html#ejrk">17.25</a>].
+</p>
+<p>
+Los siguientes ejemplos muestran que el teorema de Rellich-Kondrashov
+no es válido en general si $\Omega $ no es acotado o si $q=p^{\ast
+}$.
+</p>
+<p>
+<div class="example">
+  Sea $p\in [1,n)$. La inclusión $W^{1,p}\left(
+    \mathbb{R}^{n}\right) \hookrightarrow L^{q}\left(
+    \mathbb{R}^{n}\right) $ no es compacta para ningún $q\in
+  [p,p^{\ast }]$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $\varphi \in \mathcal{C}_{c}^{\infty }(\mathbb{R}^{n})$,
+  $\varphi \neq 0$,&nbsp;y $(\xi_{k})$ una sucesión en
+  $\mathbb{R}^{n}$ tal que $\left\Vert \xi_{k}\right\Vert \rightarrow
+  \infty $. Definimos $\varphi_{k}(x):=\varphi (x-\xi_{k})$.
+  Claramente,
+  \begin{equation*}
+    \left\Vert \varphi_{k}\right\Vert_{W^{1,p}\left( \mathbb{R}^{n}\right)
+    }=\left\Vert \varphi \right\Vert_{W^{1,p}\left( \mathbb{R}^{n}\right) }\qquad\text{y}\qquad \left\Vert \varphi_{k}\right\Vert_{q}=\left\Vert
+      \varphi \right\Vert_{q}.
+  \end{equation*}
+  Observa que $\varphi_{k}(x)\rightarrow 0$ para cada
+  $x\in \mathbb{R}^{n}$. Si alguna subsucesión $(\varphi_{k_{j}})$ de
+  $(\varphi_{k})$&nbsp;convergiese a $v$ en
+  $L^{q}\left( \mathbb{R}^{n}\right) $, una subsucesión de ella
+  convergería a $v$ c.d. en $\mathbb{R}^{n}$ (ver
+  Teorema <a href="tul/P_T_02/14.html#convLppunt">14.28</a>) y, en consecuencia, $v=0$ c.d. en
+  $\mathbb{R}^{n}$. Pero también se tendría que
+  \begin{equation*}
+    \left\Vert v\right\Vert_{q}=\lim_{j\rightarrow \infty }\left\Vert \varphi
+     _{k_{j}}\right\Vert_{q}=\left\Vert \varphi \right\Vert_{q}\neq 0,
+  \end{equation*}
+  lo cual es una contradicción. En consecuencia, ninguna
+  subsucesión de $(\varphi_{k})$ converge en $L^{q}\left(
+    \mathbb{R}^{n}\right) $.
+</div>
+</p>
+<p>
+Denotamos por
+\begin{equation*}
+  B^{n}(0,r):=\left\{x\in \mathbb{R}^{n}:\left\vert x\right\vert \menorque r\right\}.
+\end{equation*}
+</p>
+<p>
+<div class="example">
+  Sean $\Omega $ un subconjunto abierto y acotado de $\mathbb{R}^{n}$
+  y $p\in [1,n)$. Entonces la inclusión $W_{0}^{1,p}\left(
+    \Omega \right) \hookrightarrow L^{p^{\ast }}\left( \Omega \right)
+  $ no es compacta.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sin perder generalidad podemos suponer que $0\in \Omega $. Elegimos
+  $r>0$ de modo que $B^{n}(0,r)\subset \Omega $ y tomamos $\varphi \in
+  \mathcal{C}_{c}^{\infty }(B^{n}(0,r))$ tal que $\varphi \neq
+  0$. Para cada $k\in \mathbb{N}$ definimos $\varphi
+ _{k}(x):=k^{(n-p)/p}\varphi (kx)$. Entonces $\sop(\varphi
+ _{k})\subset B^{n}(0,\frac{r}{k})\subset \Omega $ y, en
+  consecuencia, $\varphi_{k}\in W_{0}^{1,p}\left( \Omega \right) $ y
+  $\varphi_{k}(x)\rightarrow 0$ para cada $x\neq 0$.
+</p>
+<p>
+  Mediante el cambio de variable $kx=y$ se obtiene que
+  \begin{equation*}
+    \left\Vert \varphi_{k}\right\Vert_{p^{\ast }}^{p^{\ast }}=\int_{\Omega
+    }k^{n}\left\vert \varphi (kx)\right\vert^{p^{\ast }}dx=\int_{\Omega
+    }\left\vert \varphi (y)\right\vert^{p^{\ast }}dy=\left\Vert \varphi
+    \right\Vert_{p^{\ast }}^{p^{\ast }}
+  \end{equation*}
+  y
+  \begin{equation*}
+    \left\Vert \nabla \varphi_{k}\right\Vert
+   _{p}^{p}=\sum_{i=1}^{n}\int_{\Omega }k^{n}\left\vert \frac{\partial \varphi 
+      }{\partial x_{i}}(kx)\right\vert^{p}dx=\sum_{i=1}^{n}\int_{\Omega
+    }\left\vert \frac{\partial \varphi }{\partial x_{i}}(y)\right\vert
+   ^{p}dy=\left\Vert \nabla \varphi \right\Vert_{p}^{p}.
+  \end{equation*}
+  El Corolario <a href="tul/P_T_02/17.html#normSobequiv">17.9</a> asegura entonces que $(\varphi
+ _{k})$ está acotada en $W_{0}^{1,p}\left( \Omega \right) $. Si
+  una subsucesión $(\varphi_{k_{j}})$ de $(\varphi_{k})$
+  convergiese a una función $u$ en $L^{p^{\ast }}(\Omega )$, se
+  tendría que
+  \begin{equation*}
+    \left\Vert u\right\Vert_{p^{\ast }}=\lim_{j\rightarrow \infty }\left\Vert
+      \varphi_{k_{j}}\right\Vert_{p^{\ast }}=\left\Vert \varphi \right\Vert
+   _{p^{\ast }}\neq 0
+  \end{equation*}
+  y que una subsucesión de $(\varphi_{k_{j}})$ convergería
+  puntualmente a $u$ c.d. en $\Omega $ (ver
+  Teorema <a href="tul/P_T_02/14.html#convLppunt">14.28</a>). Pero $\varphi_{k}(x)\rightarrow 0$ para
+  cada $x\neq 0$. Por tanto, $u=0$ c.d. en $\Omega $. Esta es una
+  contradicción; lo que prueba que $(\varphi_{k})$ no contiene ninguna
+  subsucesión convergente en $L^{p^{\ast }}(\Omega )$.
+</div>
+</p>
+<p>
+A continuación daremos una aplicación importante del teorema
+de Rellich-Kondrashov.
+</p>
+<p>
+<h3 id="sec17-3">Valores propios del laplaciano</h3>
+</p>
+<p>
+En toda esta sección $\Omega $ denotará a un subconjunto
+abierto y acotado de $\mathbb{R}^{n}$.
+</p>
+<p>
+Consideremos el problema de valores propios
+\begin{equation}
+  \left\{ 
+    \begin{alignedat}{2}
+      -\Delta u&{}=\lambda u &\quad& \text{en }\Omega , \\
+      u&{}=0 && \text{sobre }\partial \Omega .
+    \end{alignedat}
+  \right.\label{ev}
+\end{equation}
+Nos preguntamos para qué valores de $\lambda \in \mathbb{R}$
+existe una solución no trivial de este problema.
+</p>
+<p>
+Argumentando como en la Proposición <a href="tul/P_T_02/16.html#clasdeb">16.27</a> vemos que, si
+$u\in \mathcal{C}^{2}(\overline{\Omega })$ satisface $-\Delta
+u=\lambda u$, entonces
+\begin{equation*}
+  \int_{\Omega }\nabla u\cdot \nabla \varphi =\lambda \int_{\Omega }u\varphi 
+  \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ).
+\end{equation*}
+Esto motiva la definición de solución débil.
+</p>
+<p>
+<div class="definition">
+  Una solución débil de <em class="emph">(\ref{ev})</em> es una pareja
+  $(\lambda ,u)$ con $\lambda \in \mathbb{R}$ y $u\in H_{0}^{1}(\Omega
+  )$ que satisface
+  \begin{equation}
+    \int_{\Omega }\nabla u\cdot \nabla v=\lambda \int_{\Omega }uv\qquad \forall
+    v\in H_{0}^{1}(\Omega ).\label{vpd}
+  \end{equation}
+</p>
+<p>
+  $\lambda \in \mathbb{R}$ es un <em class="textbf">valor propio de </em>$-\Delta
+  $<em class="textbf">&nbsp;en</em> $H_{0}^{1}(\Omega )$&nbsp;si existe
+  $e\in H_{0}^{1}(\Omega )$, $e\neq 0$, tal que $(\lambda ,e)$ es
+  solución débil de <em class="emph">(\ref{ev})</em>. Se dice entonces que
+  $e$ es una <em class="textbf">función propia de </em>$-\Delta $<em class="textbf">&nbsp;en
+  </em>$H_{0}^{1}(\Omega )$<em class="textbf">&nbsp;con valor propio </em>$\lambda
+  $.
+</div>
+</p>
+<p>
+La definición anterior sugiere considerar el producto escalar
+\begin{equation*}
+  \left\langle u,v\right\rangle :=\int_{\Omega }\nabla u\cdot \nabla v
+\end{equation*}
+en $H_{0}^{1}(\Omega )$, que induce la norma
+\begin{equation*}
+  \left\Vert u\right\Vert :=\left\Vert \nabla u\right\Vert_{2}.
+\end{equation*}
+El Corolario <a href="tul/P_T_02/17.html#normSobequiv">17.9</a> asegura que esta norma es equivalente
+a la definida en (<a href="tul/P_T_02/16.html#normH1">16.6</a>) y que $H_{0}^{1}(\Omega )$ un espacio
+de Hilbert con este nuevo producto escalar.
+</p>
+<p>
+Denotamos por
+\begin{equation*}
+  \left\langle u,v\right\rangle_{2}:=\int_{\Omega }uv
+\end{equation*}
+al producto escalar en $L^{2}(\Omega )$. Podemos entonces reescribir
+la condición (\ref{vpd}) como
+\begin{equation*}
+  \left\langle u,v\right\rangle =\lambda \left\langle u,v\right\rangle
+ _{2}\qquad \forall v\in H_{0}^{1}(\Omega ).
+\end{equation*}
+</p>
+<p>
+Observa que, si $e$ es una función propia con valor propio
+$\lambda $ entonces cualquier múltiplo $te$ de $e$ con $t\in
+\mathbb{R}\smallsetminus \left\{0\right\}$ es una función propia con valor
+propio $\lambda $.  Basta pues buscar funciones propias en el conjunto
+\begin{equation*}
+  \Sigma :=\left\{ u\in H_{0}^{1}(\Omega ):\left\Vert u\right\Vert
+   _{2}=1\right\} ,
+\end{equation*}
+donde $\left\Vert u\right\Vert_{2}$ es la norma en $L^{2}(\Omega )$.
+</p>
+<p>
+Nota además que, si $e\in \Sigma $ es una función propia con
+valor propio $\lambda $, tomando $u=v=e$ en la ecuación
+(\ref{vpd}), se obtiene que
+\begin{equation}
+  \left\Vert e\right\Vert^{2}=\lambda .\label{lambda}
+\end{equation}
+</p>
+<p>
+<div id="propvp" class="proposition">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Los valores propios de $-\Delta $ en $H_{0}^{1}(\Omega )$
+    están acotados inferiormente por una constante positiva.
+</p>
+<p>
+  <li> Si $\lambda $ y $\mu $ son valores propios distintos de
+    $-\Delta $ en $H_{0}^{1}(\Omega )$, y $e_{\lambda }$ y $e_{\mu }$
+    son funciones propias con valores propios $\lambda $ y $\mu $
+    respectivamente, entonces
+    \begin{equation*}
+      \left\langle e_{\lambda },e_{\mu }\right\rangle =0=\left\langle e_{\lambda
+        },e_{\mu }\right\rangle_{2}.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $\left\{e_{k}\in \Sigma :k\in \mathbb{N}\right\}$ es un conjunto
+    de funciones propias de $-\Delta $ en $H_{0}^{1}(\Omega )$ que es
+    ortonormal en $L^{2}(\Omega )$, entonces el conjunto de sus
+    valores propios 
+    \begin{equation*}
+      \bigl\{\lambda_{k}=\left\Vert e_{k}\right\Vert
+        ^{2}:k\in \mathbb{N}\bigr\}
+    \end{equation*}
+    no está acotado.
+</p>
+<p>
+  <li> Para cada $\lambda \in \mathbb{R}$ el espacio
+    \begin{equation*}
+      E_{\lambda }:=\left\{u\in H_{0}^{1}(\Omega ):(\lambda ,u)\text{ es solución débil de }(\ref{ev})\right\}
+    \end{equation*}
+    es de dimensión finita. Su dimensión se llama la
+    <em class="textbf">multiplicidad de</em><em class="emph">&nbsp;</em>$\lambda $.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a): </em> Si $\lambda $ es un valor propio y $e\in \Sigma $ es
+  una función propia con valor propio $\lambda $, la desigualdad
+  de Poincaré asegura que existe $C>0$, independiente de $\lambda
+  $ y de $e$, tal que
+  \begin{equation*}
+    1=\left\Vert e\right\Vert_{2}^{2}\leq C\left\Vert e\right\Vert
+   ^{2}=C\lambda .
+  \end{equation*}
+  Por tanto, $\lambda \geq \frac{1}{C}>0$.
+</p>
+<p>
+  <em class="emph">(b): </em> Si $e_{\lambda }$ y $e_{\mu }$ son funciones propias
+  con valores propios $\lambda $ y $\mu $,&nbsp;entonces
+  \begin{equation*}
+    \lambda \left\langle e_{\lambda },e_{\mu }\right\rangle_{2}=\left\langle
+      e_{\lambda },e_{\mu }\right\rangle =\mu \left\langle e_{\lambda },e_{\mu
+      }\right\rangle_{2}.
+  \end{equation*}
+  Por tanto, si $\lambda \neq \mu $, necesariamente $\left\langle
+    e_{\lambda },e_{\mu }\right\rangle_{2}=0$ y, en consecuencia,
+  $\left\langle e_{\lambda },e_{\mu }\right\rangle =0$.
+</p>
+<p>
+  <em class="emph">(c):</em> &nbsp;Como $e_{k}\in \Sigma $ se cumple que $\left\Vert
+    e_{k}\right\Vert^{2}=\lambda_{k}$. De modo que, si $(\lambda
+ _{k})$ está acotada, entonces $(e_{k})$ es una sucesión
+  acotada en $H_{0}^{1}(\Omega )$. Por el Teorema de
+  Rellich-Kondrashov (Teorema <a href="tul/P_T_02/17.html#teork">17.12</a>), $(e_{k})$ contiene una
+  subsucesión convergente en $L^{2}(\Omega )$. Ahora bien, como
+  $\left\{e_{k}\right\}$ es ortonormal en $L^{2}(\Omega )$, se tiene que
+  \begin{equation*}
+    \left\Vert e_{k}-e_{m}\right\Vert_{2}^{2}=\left\Vert e_{k}\right\Vert
+   _{2}^{2}+\left\Vert e_{m}\right\Vert_{2}^{2}=2.
+  \end{equation*}
+  En consecuencia, ninguna subsucesión de $(e_{k})$ es de Cauchy
+  en $L^{2}(\Omega )$. Esto es una contradicción.
+</p>
+<p>
+  <em class="emph">(d): </em> Argumentando por contradicción, si
+  $\dim E_{\lambda }=\infty $, entonces $E_{\lambda }$ contiene un
+  subconjunto $\left\{e_{k}\in \Sigma :k\in \mathbb{N}\right\}$
+  ortonormal en $L^{2}(\Omega )$ (ver Ejercicio <a href="tul/P_T_02/17.html#ex:ortGram-Schmidt">15.44</a>). Para cada
+  $k\in \mathbb{N}$, $e_{k}$ es una función propia de $-\Delta $ en
+  $H_{0}^{1}(\Omega )$ con valor propio $\lambda $, lo cual contradice
+  la afirmación <em class="emph">(c).</em>
+</div>
+</p>
+<p>
+Definimos $I\colon H_{0}^{1}(\Omega )\rightarrow \mathbb{R}$ como
+\begin{equation*}
+  I(u):=\left\Vert u\right\Vert^{2}.
+\end{equation*}
+La siguiente proposición nos permite obtener funciones propias
+mediante un proceso de minimización.
+</p>
+<p>
+<div id="lemvp" class="proposition">
+Sea $H\neq \left\{ 0\right\} $ un subespacio vectorial
+  de $H_{0}^{1}(\Omega )$.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Se tiene que
+    \begin{equation*}
+      \lambda :=\inf_{v\in \Sigma \cap H}I(v)>0.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $e$ es un mínimo de $I$ en $\Sigma \cap H$
+    entonces
+    \begin{equation*}
+      \left\langle e,v\right\rangle =\lambda \left\langle e,v\right\rangle_{2}\qquad \forall v\in H.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $H$ es cerrado en $H_{0}^{1}(\Omega )$ entonces la
+    función $I$ alcanza su mínimo en $\Sigma \cap H$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a): </em> La desigualdad de Poincaré para $p=q=2$ (ver
+  Teorema <a href="tul/P_T_02/17.html#desPoincare">17.8</a>) asegura que existe $C>0$ tal que
+  \begin{equation*}
+    \left\Vert u\right\Vert_{2}\leq C\left\vert \Omega \right\vert^{\frac{1}{n}}\left\Vert u\right\Vert \qquad \forall u\in H_{0}^{1}(\Omega ).
+  \end{equation*}
+  En consecuencia, $\lambda \geq C^{-2}\left\vert \Omega \right\vert
+ ^{-\frac{2}{n}}>0$.
+</p>
+<p>
+  <em class="emph">(b): </em> Sea $e$ un mínimo de $I$ en $\Sigma \cap H$ y sea
+  $v\in H$. Tomemos $\varepsilon >0$ suficientemente pequeña de
+  modo que $\left\Vert e+tv\right\Vert_{2}\neq 0$ para todo $t\in
+  (-\varepsilon ,\varepsilon )$, y consideremos la función
+  $h\colon (-\varepsilon ,\varepsilon )\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    h(t):=I\left( \frac{e+tv}{\left\Vert e+tv\right\Vert_{2}}\right) =\frac{\left\Vert e+tv\right\Vert^{2}}{\left\Vert e+tv\right\Vert_{2}^{2}}=\frac{\left\Vert e\right\Vert^{2}+2\left\langle e,v\right\rangle t+\left\Vert
+        v\right\Vert^{2}t^{2}}{\left\Vert e\right\Vert_{2}^{2}+2\left\langle
+        e,v\right\rangle_{2}t+\left\Vert v\right\Vert_{2}^{2}t^{2}}.
+  \end{equation*}
+  Esta función es diferenciable y su derivada está dada por
+  \begin{equation*}
+    h^{\prime }(t)=\frac{2\left\Vert e+tv\right\Vert_{2}^{2}\left( \left\langle
+          e,v\right\rangle +\left\Vert v\right\Vert^{2}t\right) -2I(e+tv)\left(
+        \left\langle e,v\right\rangle_{2}+\left\Vert v\right\Vert_{2}^{2}t\right) 
+    }{\left\Vert e+tv\right\Vert_{2}^{4}}.
+  \end{equation*}
+  Como $0$ es un mínimo de $h$, se tiene que
+  \begin{equation*}
+    0=h^{\prime }(0)=2\left( \left\langle e,v\right\rangle -\lambda \left\langle
+        e,v\right\rangle_{2}\right) \text{.}
+  \end{equation*}
+  Esto demuestra la afirmación.
+</p>
+<p>
+  <em class="emph">(c): </em> Sea $(u_{k})$ una sucesión en $\Sigma \cap H$ tal que
+  $I(u_{k})=\left\Vert u_{k}\right\Vert^{2}\rightarrow \lambda $.
+  Entonces $(u_{k})$ está acotada en $H_{0}^{1}(\Omega )$. Aplicando
+  el Teorema <a href="tul/P_T_02/15.html#acotcd">15.29</a>, el teorema de Rellich-Kondrashov
+  (Teorema <a href="tul/P_T_02/17.html#teork">17.12</a>) y el Ejercicio <a href="tul/P_T_02/15.html#unicld">15.51</a>, concluimos que
+  $(u_{k})$ contiene una subsucesión $(u_{k_{j}})$ tal que
+  \begin{alignat*}{2}
+    u_{k_{j}} &\rightharpoonup e&\quad&\text{débilmente en }H_{0}^{1}(\Omega ), \\[5pt]
+    u_{k_{j}} &\rightarrow e && \text{ fuertemente en }L^{2}(\Omega ).
+  \end{alignat*}
+  En consecuencia, $\left\Vert e\right\Vert_{2}=1$, es decir, $e\in
+  \Sigma $. Más aún, como $H$ es débilmente cerrado en
+  $H_{0}^{1}(\Omega )$ (ver Ejercicio <a href="tul/P_T_02/15.html#cerradodebil">15.54</a>), se tiene
+  que $e\in H$. Usando el Corolario <a href="tul/P_T_02/15.html#normsci">15.27</a> concluimos que
+  \begin{equation*}
+    \lambda \leq I(e)=\left\Vert e\right\Vert^{2}\leq \liminf_{j\rightarrow
+      \infty }\left\Vert u_{k_{j}}\right\Vert^{2}=\liminf_{j\rightarrow \infty
+    }I(u_{k_{j}})=\lambda .
+  \end{equation*}
+  Esto prueba que $e$ es un mínimo de $I$ en $\Sigma \cap H$.
+</div>
+</p>
+<p>
+<div id="teovp" class="theorem">
+Existe un subconjunto $\mathcal{B}=\left\{e_{k}:k\in
+  \mathbb{N}\right\}$ de $H_{0}^{1}(\Omega )$ con las siguientes
+  propiedades:
+</p>
+<p>
+  <ol class="alfa">
+  <li> $e_{k}\in \Sigma &nbsp;$es una función propia de $-\Delta
+    $ en $H_{0}^{1}(\Omega )$ con valor propio $\lambda
+   _{k}:=I(e_{k})$,
+</p>
+<p>
+  <li> $\left\langle e_{k},e_{m}\right\rangle =0$ si $k\neq m$,
+</p>
+<p>
+  <li> $0<\lambda_{1}\leq \lambda_{2}\leq \cdots $ $\leq
+    \lambda_{k}\leq \cdots \qquad \text{y}\qquad \lim_{k\rightarrow \infty
+    }\lambda_{k}=\infty $,
+</p>
+<p>
+  <li> $\mathcal{B}$ es una base de Hilbert de $L^{2}(\Omega )$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  Usando la Proposición <a href="tul/P_T_02/17.html#lemvp">17.17</a> definimos $(e_{k})$
+  inductivamente como sigue: escogemos $e_{1}\in \Sigma $ tal que
+  \begin{equation*}
+    I(e_{1})=\inf_{u\in \Sigma }I(u).
+  \end{equation*}
+  Sean $W_{2}:= \lin\left\{e_{1}\right\}$ el subespacio de $H_{0}^{1}(\Omega )$
+  generado por $e_{1}$ y 
+  \begin{equation*}
+    H_{2}:=\left\{v\in H_{0}^{1}(\Omega
+      ):\left\langle e_{1},v\right\rangle =0\right\}
+  \end{equation*}
+ su complemento ortogonal
+  en $H_{0}^{1}(\Omega )$.  Escogemos $e_{2}\in \Sigma \cap H_{2}$ tal
+  que
+  \begin{equation*}
+    I(e_{2})=\inf_{u\in \Sigma \cap H_{2}}I(u).
+  \end{equation*}
+  Continuando de este modo, definimos
+  \begin{equation*}
+    W_{k}:=\lin\left\{e_{1},\dots,e_{k-1}\right\},\qquad H_{k}:=\left\{v\in
+    H_{0}^{1}(\Omega ):\left\langle w,v\right\rangle =0\text{ &nbsp;}\forall w\in
+    W_{k}\right\},
+  \end{equation*}
+  y escogemos $e_{k}\in \Sigma \cap H_{k}$&nbsp;tal que
+  \begin{equation}
+    I(e_{k})=\inf_{u\in \Sigma \cap H_{k}}I(u).\label{inf1}
+  \end{equation}
+  Se tiene entonces que
+  \begin{equation}
+    H_{i}\supset H_{k}\qquad\text{y}\qquad \left\langle
+      e_{k},e_{i}\right\rangle =0\qquad \forall i=1,\dots,k-1,\label{inf2}
+  \end{equation}
+  y usando la Proposición <a href="tul/P_T_02/17.html#lemvp">17.17</a> concluimos que
+  \begin{equation}
+    0<\lambda_{1}\leq \lambda_{2}\leq \cdots \leq \lambda_{k}\leq \cdots ,
+\label{inf3}
+  \end{equation}
+  donde $\lambda_{k}:=I(e_{k})$, y que
+  \begin{equation}
+    \left\langle e_{k},v\right\rangle =\lambda_{k}\left\langle
+      e_{k},v\right\rangle_{2}\qquad \forall v\in H_{k}.\label{inf4}
+  \end{equation}
+  De (\ref{inf2}) y (\ref{inf4}) se sigue que $0=\left\langle
+    e_{i},e_{k}\right\rangle =\lambda_{i}\left\langle
+    e_{i},e_{k}\right\rangle_{2}&nbsp;$para todo $i=1,\dots,k-1$ y, dado
+  que $\lambda_{i}>0$, esta igualdad implica que
+  \begin{equation}
+    0=\left\langle e_{i},e_{k}\right\rangle =\left\langle
+      e_{i},e_{k}\right\rangle_{2}\qquad \forall i=1,\dots,k-1.\label{inf5}
+  \end{equation}
+  Como $H_{0}^{1}(\Omega )=W_{k}\oplus H_{k}$, las afirmaciones
+  (\ref{inf4}) y (\ref{inf5}) nos permiten concluir que
+  \begin{equation*}
+    \left\langle e_{k},v\right\rangle =\lambda_{k}\left\langle
+      e_{k},v\right\rangle_{2}\qquad \forall v\in H_{0}^{1}(\Omega ),
+  \end{equation*}
+  es decir, la sucesión $(e_{k})$ satisface <em class="emph">(a)</em>. La
+  afirmación (\ref{inf5}) asegura que se cumple <em class="emph">(b)</em> y, como
+  $e_{k}\in \Sigma $, asegura también que
+  $\mathcal{B}:=\left\{e_{k}:k\in \mathbb{N}\right\}$ es ortonormal en
+  $L^{2}(\Omega )$. La afirmación <em class="emph">(c)</em> se sigue entonces de
+  (\ref{inf3}) y de la Proposición <a href="tul/P_T_02/17.html#propvp">17.16</a>.
+</p>
+<p>
+  Para obtener <em class="emph">(d)</em> resta probar que la cerradura de
+  $\lin(\mathcal{B})=\cup_{k=1}^{\infty }W_{k}$ en $L^{2}(\Omega )$ es
+  $L^{2}(\Omega )$. Para ello basta demostrar que
+  $\mathcal{C}_{c}^{\infty }(\Omega )$ está contenido en la
+  cerradura de $\lin(\mathcal{B})$, ya que $L^{2}(\Omega )$ es la
+  cerradura de $\mathcal{C}_{c}^{\infty }(\Omega )$ en $L^{2}(\Omega
+  )$ (ver Teorema <a href="tul/P_T_02/14.html#aproxsuave">14.44</a>).
+</p>
+<p>
+  Sea $\varphi \in \mathcal{C}_{c}^{\infty }(\Omega )\smallsetminus
+  \lin(\mathcal{B})$. Denotemos por $w_{k}$ a la proyección
+  ortogonal de $\varphi $ sobre $W_{k}$ con respecto al producto
+  escalar de $L^{2}(\Omega )$. Entonces $\left\langle \varphi
+    -w_{k},w\right\rangle_{2}=0$ para todo $w\in W_{k}$. En
+  consecuencia,
+  \begin{equation*}
+    \left\langle \varphi -w_{k},e_{i}\right\rangle =\lambda_{i}\left\langle
+      \varphi -w_{k},e_{i}\right\rangle_{2}=0\qquad \forall i=1,\dots,k-1.
+  \end{equation*}
+  Esto prueba que $\left\langle \varphi -w_{k},w\right\rangle =0$ para
+  todo $w\in W_{k}$. Como $\varphi \neq w_{k}$ se tiene que
+  $\frac{\varphi -w_{k}}{\left\Vert \varphi -w_{k}\right\Vert_{2}}\in
+  \Sigma \cap H_{k}$ y la identidad (\ref{inf1}) implica que
+  \begin{equation*}
+    \lambda_{k}\leq I\left( \frac{\varphi -w_{k}}{\left\Vert \varphi
+          -w_{k}\right\Vert_{2}}\right) .
+  \end{equation*}
+  Observa además que
+  \begin{align*}
+    I(\varphi ) &{}= I(\varphi -w_{k}+w_{k})=\left\Vert \varphi -w_{k}\right\Vert
+   ^{2}+2\left\langle \varphi -w_{k},w_{k}\right\rangle +\left\Vert
+      w_{k}\right\Vert^{2} \\
+    &{}= \left\Vert \varphi -w_{k}\right\Vert^{2}+\left\Vert w_{k}\right\Vert
+   ^{2}\geq \left\Vert \varphi -w_{k}\right\Vert^{2}=I(\varphi -w_{k}).
+  \end{align*}
+  En consecuencia,
+  \begin{equation*}
+    \left\Vert \varphi -w_{k}\right\Vert_{2}^{2}\leq \lambda_{k}^{-1}I(\varphi
+    -w_{k})\leq \lambda_{k}^{-1}I(\varphi ).
+  \end{equation*}
+  Como $\lambda_{k}\rightarrow \infty $ concluimos que
+  $w_{k}\rightarrow \varphi $ en $L^{2}(\Omega )$. Esto prueba que
+  $\mathcal{C}_{c}^{\infty }(\Omega )$ está contenido en la
+  cerradura de $\lin(\mathcal{B})$ en $L^{2}(\Omega )$.
+</div>
+</p>
+<p>
+Observa que
+\begin{equation*}
+  \lambda_{1}=\inf_{\substack{ u\in H_{0}^{1}(\Omega )  \\u\neq 0}}\frac{\left\Vert u\right\Vert^{2}}{\left\Vert u\right\Vert_{2}^{2}},
+\end{equation*}
+es decir, $\lambda_{1}^{-1/2}$ es la constante óptima para la
+desigualdad de Poincaré
+\begin{equation*}
+  \left\Vert u\right\Vert_{2}\leq \lambda_{1}^{-1/2}\left\Vert u\right\Vert ,\qquad u\in H_{0}^{1}(\Omega ).
+\end{equation*}
+</p>
+<p>
+El teorema anterior asegura la existencia de soluciones débiles
+$(\lambda_{k},e_{k})$ del problema (\ref{ev}). El mismo razonamiento
+que usamos para probar la Proposición <a href="tul/P_T_02/16.html#debilreg=clas">16.31</a>
+demuestra que, si $\Omega $ es de clase $\mathcal{C}^{1}$ y $e_{k}\in
+\mathcal{C}^{2}(\overline{\Omega })$, entonces $(\lambda_{k},e_{k})$
+es solución clásica de (\ref{ev}) [Ejercicio <a href="tul/P_T_02/17.html#regvp">17.27</a>].
+</p>
+<p>
+Se tiene también un resultado de regularidad que asegura que, si
+$\Omega $ es de clase $\mathcal{C}^{\infty }$ y $(\lambda_{k},e_{k})$
+es solución débil de (\ref{ev})$,&nbsp;$entonces $e_{k}\in
+\mathcal{C}^{\infty }(\overline{\Omega })$\footnote{Consulta, por
+  ejemplo,~\cite{Gilbarg}, Teorema 8.13.}.
+</p>
+<p>
+<h3 id="sec17-4">Ejercicios</h3>
+</p>
+<p>
+<div id="compsuc" class="exercise">
+Prueba que una función $F\colon X\rightarrow Y$ entre
+  espacios métricos es compacta si y sólo si para cualquier
+  sucesión acotada $(x_{k})$ en $X$, la sucesión $(F(x_{k}))$
+  contiene una subsucesión convergente en $Y$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $F\colon X\rightarrow Y$ una función lineal y continua entre
+  espacios de Banach. Demuestra las siguientes afirmaciones.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $\dim X<\infty $ entonces $F$ es compacta.
+</p>
+<p>
+  <li> Si $\dim Y<\infty $ entonces $F$ es compacta.
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que, si $\dim X=\infty $, la identidad $I\colon X\rightarrow X$ no
+  es compacta.
+</div>
+</p>
+<p>
+<div class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Sea $\varphi \in \mathcal{C}_{c}^{\infty }(\Omega )$.
+    Prueba que existe una constante $C>0$, que depende sólo de
+    $n$, $\left\Vert \varphi \right\Vert_{\infty },\left\Vert
+      \frac{\partial \varphi }{\partial x_{1}}\right\Vert_{\infty
+    },\ldots ,\left\Vert \frac{\partial \varphi }{\partial
+        x_{n}}\right\Vert_{\infty }$, tal que
+    \begin{equation*}
+      \left\Vert u\varphi \right\Vert_{W^{1,p}(\Omega )}^{p}\leq C\int_{\Omega
+      }\left( \left\vert u\right\vert^{p}+\left\vert D_{1}u\right\vert
+       ^{p}+\cdots +\left\vert D_{n}u\right\vert^{p}\right) \qquad \forall
+      u\in W^{1,p}(\mathbb{R}^{n}),
+    \end{equation*}
+    <em class="emph">(Sugerencia: Usa el Ejercicio <a href="tul/P_T_02/16.html#ejerprod">16.42</a>.)</em>
+</p>
+<p>
+  <li> Si $\omega $ es abierto y $\omega \subset \subset \Omega
+    $, prueba que existe una constante $C>0$ que depende sólo de
+    $n,p,\omega $ y $\Omega $, tal que
+    \begin{equation}
+      \biggl( \int_{\omega }\left\vert u\right\vert^{p^{\ast }}\biggr)^{p/p^{\ast
+        }}\leq C\int_{\Omega }\left( \left\vert u\right\vert^{p}+\left\vert
+          D_{1}u\right\vert^{p}+\cdots +\left\vert D_{n}u\right\vert^{p}\right) 
+      \quad \forall u\in W^{1,p}(\mathbb{R}^{n}).\label{sobrel}
+    \end{equation}
+    <em class="emph">(Sugerencia: Prueba que existe </em>$\varphi \in
+    \mathcal{C}_{c}^{\infty }(\Omega )$<em class="emph">&nbsp;tal que </em>$\varphi
+    (x)=1$<em class="emph">&nbsp;para todo </em>$x\in \omega $<em class="emph">&nbsp;y aplica el
+      problema anterior y el Teorema <a href="tul/P_T_02/17.html#sob">Verificar</a>.)</em>
+</p>
+<p>
+  <li> Si $\omega $ es abierto, $\omega \subset \subset \Omega
+    $, y $C$ satisface <em class="emph">(\ref{sobrel})</em>, prueba que para esa
+    misma $C$ se cumple que
+    \begin{equation*}
+      \biggl( \int_{\omega +\xi }\left\vert u\right\vert^{p^{\ast }}\biggr)
+     ^{p/p^{\ast }}\leq C\int_{\Omega +\xi }\left( \left\vert u\right\vert
+       ^{p}+\left\vert D_{1}u\right\vert^{p}+\cdots +\left\vert D_{n}u\right\vert
+       ^{p}\right)
+    \end{equation*}
+    para cualesquiera
+    $ u\in W^{1,p}(\mathbb{R}^{n}), \xi \in \mathbb{R}^{n}$, donde
+    $X+\xi :=\left\{x+\xi :x\in X\right\}$.
+  </ol>
+</div>
+</p>
+<p>
+<div id="p=n" class="exercise">
+Si $\Omega $ es un subconjunto abierto de
+  $\mathbb{R}^{n}$, prueba que $W_{0}^{1,n}\left( \Omega \right)
+  \subset L^{q}\left( \Omega \right) $ para todo $q\in [n,\infty )$ y que esta inclusión es continua. <em class="emph">(Sugerencia:
+    Usa la desigualdad (\ref{sob3}) y la de Young para demostrar que,
+    si </em>$\gamma >1$,<em class="emph">&nbsp;existe una constante </em>$C_{\gamma }$,
+  <em class="emph">que depende sólo de </em>$\gamma $<em class="emph">, tal que</em>
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{\frac{n\gamma }{n-1}}\leq C_{\gamma }\left(
+      \left\Vert \varphi \right\Vert_{\frac{n(\gamma -1)}{n-1}}+\left\Vert \nabla
+        \varphi \right\Vert_{n}\right) \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }\left( \mathbb{R}^{n}\right) .
+  \end{equation*}
+  <em class="emph">Aplica esta desigualdad con </em>$\gamma =n+i$,<em class="emph">
+  </em>$i=0,1,2,\dots,j$,<em class="emph">&nbsp;para concluir que existe una constante</em>
+  $C_{n,j}$, <em class="emph">que depende sólo de </em>$n$ y $j$<em class="emph">, tal que</em>
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{\frac{n(n+j)}{n-1}}\leq C_{n,j}\left\Vert
+      \varphi \right\Vert_{W^{1,n}\left( \mathbb{R}^{n}\right) }\qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }\left( \mathbb{R}^{n}\right) ,
+  \end{equation*}
+  <em class="emph">y aplica la desigualdad de interpolación para probar que</em>
+  \begin{equation*}
+    \left\Vert \varphi \right\Vert_{q}\leq C_{n,j}\left\Vert \varphi
+    \right\Vert_{W^{1,n}\left( \mathbb{R}^{n}\right) }\qquad \forall
+    \varphi \in \mathcal{C}_{c}^{\infty }\left( \mathbb{R}^{n}\right)
+  \end{equation*}
+  <em class="emph">si</em> $q\in [n,\frac{n(n+j)}{n-1}]$<em class="emph">.)</em>
+</div>
+</p>
+<p>
+<div class="exercise" id="ejSobos">[Espacios de Sobolev de orden superior]
+  <em class="emph">Sean </em>$\Omega $<em class="emph">&nbsp;un
+    subconjunto abierto de </em>$\mathbb{R}^{n}$<em class="emph">, </em>$m\in
+  \mathbb{N}$<em class="emph">, </em>$m\geq 2$<em class="emph">&nbsp;y </em>$p\in [1,\infty
+  ]$.<em class="emph">&nbsp;Se definen recursivamente</em>
+  \begin{equation*}
+    W^{m,p}(\Omega ):=\left\{u\in L^{p}(\Omega ):u\in W^{1,p}(\Omega )\text{ y }D_{i}u\in W^{m-1,p}(\Omega ),\text{ }i=1,\dots,n\right\},
+  \end{equation*}
+  \begin{equation*}
+    \left\Vert u\right\Vert_{W^{m,p}\left( \Omega \right) }:=\left( \left\Vert
+        u\right\Vert_{p}^{p}+\left\Vert D_{1}u\right\Vert_{W^{m-1,p}\left( \Omega
+        \right) }^{p}+\cdots +\left\Vert D_{n}u\right\Vert_{W^{m-1,p}\left( \Omega
+        \right) }^{p}\right)^{1/p}.
+  \end{equation*}
+  <em class="emph">Es decir, </em>$u\in W^{m,p}(\Omega )$<em class="emph">&nbsp;si sus derivadas
+    débiles de orden </em>$\leq m$,
+  \begin{equation*}
+    D^{\alpha }u:=D_{1}^{\alpha_{1}}\cdots D_{n}^{\alpha_{n}}u
+  \end{equation*}
+  con $\alpha =(\alpha_{1},\dots,\alpha_{n})\in \left( \mathbb{N}\cup
+      \left\{0\right\}\right)^{n}$,
+  $\left\vert \alpha \right\vert :=\alpha_{1}+\cdots +\alpha_{n}\leq
+  m$, <em class="emph">existen y pertenecen a </em>$L^{p}(\Omega )$,<em class="emph">&nbsp;donde</em>
+  \begin{equation*}
+    D_{i}^{0}u:=u\qquad\text{y}\qquad D_{i}^{\alpha_{i}}u:=\underset{\alpha_{i}\text{ veces}}{\undercbrace{D_{i}\cdots D_{i}}}u\quad\text{si }\alpha_{i}\geq 1.
+  \end{equation*}
+  <em class="emph">(Nota que todas las derivadas débiles de orden </em>$\leq
+  m$<em class="emph">&nbsp;son de esta forma, ver Ejercicio <a href="tul/P_T_02/16.html#simetriadd">16.46</a>). Usando
+    esta notación,</em>
+  \begin{equation*}
+    \left\Vert u\right\Vert_{W^{m,p}\left( \Omega \right) }=\Biggl(
+      \sum_{\left\vert \alpha \right\vert \leq m}\left\Vert D^{\alpha
+        }u\right\Vert_{p}^{p}\Biggr)^{1/p}.
+  \end{equation*}
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que $\left\Vert u\right\Vert_{W^{m,p}\left(
+        \Omega \right) }$ es una norma en $W^{m,p}(\Omega )$ y que
+    $W^{m,p}(\Omega )$ con dicha norma es un espacio de Banach.
+  </ol>
+</p>
+<p>
+  <em class="emph">Se define</em>
+  \begin{equation*}
+    W_{0}^{m,p}(\Omega ):=\text{cerradura de }\mathcal{C}_{c}^{\infty }\left( \mathbb{R}^{n}\right) \text{ en }W^{m,p}(\Omega ).
+  \end{equation*}
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que, si $p\in [1,\frac{n}{m})$, entonces
+    \begin{equation*}
+      W_{0}^{m,p}(\Omega )\subset L^{q}(\Omega )\qquad\text{con }q:=\frac{np}{n-mp}
+    \end{equation*}
+    y esta inclusión es continua.
+</p>
+<p>
+  <li> Prueba que, si $\Omega $ está acotado y $p\in
+    (\frac{n}{m},\infty )$, entonces
+    \begin{equation*}
+      W_{0}^{m,p}(\Omega )\subset \mathcal{C}^{k}(\overline{\Omega })\qquad\text{con }k:=m-\left[ \frac{n}{p}\right] -1
+    \end{equation*}
+    y esta inclusión es continua, donde la norma en
+    $\mathcal{C}^{k}(\overline{\Omega })$ es la definida en el
+    <em class="emph">Ejercicio <a href="tul/P_T_02/5.html#mvecesdif">5.48</a></em>.
+  </ol>
+</div>
+</p>
+<p>
+<div id="ejrk" class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que, si $\Omega $ es un subconjunto abierto y
+    acotado de $\mathbb{R}^{n}$, entonces$&nbsp;$la inclusión
+    $W_{0}^{1,n}(\Omega )\subset L^{q}(\Omega )$ es compacta para todo
+    $q\in [1,\infty )$. <em class="emph">(Sugerencia: Reduce esta
+      situación al caso </em>$p\in [1,n)$<em class="emph">&nbsp;y usa el
+      Teorema <a href="tul/P_T_02/17.html#teork">17.12</a>.)</em>
+</p>
+<p>
+  <li> Prueba que, si $\Omega $ es un subconjunto abierto y
+    acotado de $\mathbb{R}^{n}$ y $p\in (n,\infty )$, entonces la
+    inclusión $W_{0}^{1,p}(\Omega )\subset
+    \mathcal{C}^{0}(\overline{\Omega })$ es
+    compacta. <em class="emph">(Sugerencia: Usa el Corolario <a href="tul/P_T_02/7.html#coraa">7.10</a>.)</em>
+</p>
+<p>
+  <li> Formula y demuestra las afirmaciones correspondientes a
+    éstas y a la del <em class="emph">Teorema <a href="tul/P_T_02/17.html#teork">17.12</a></em> para los espacios
+    de Sobolev de orden superior $W_{0}^{m,p}(\Omega )$ definidos en
+    el <em class="emph">Ejercicio <a href="tul/P_T_02/17.html#ejSobos">17.24</a></em>.
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $\Omega $ un subconjunto abierto y acotado de $\mathbb{R}^{n}$,
+  $\lambda \in \mathbb{R}$ y $u\in H_{0}^{1}(\Omega )$. Prueba que
+  \begin{equation*}
+    \int_{\Omega }\nabla u\cdot \nabla \varphi =\lambda \int_{\Omega }u\varphi 
+    \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega )
+  \end{equation*}
+  si y sólo si
+  \begin{equation*}
+    \int_{\Omega }\nabla u\cdot \nabla v=\lambda \int_{\Omega }uv\qquad \forall
+    v\in H_{0}^{1}(\Omega ).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="regvp" class="exercise">
+Prueba que, si $\Omega $ es de clase $\mathcal{C}^{1}$,
+  toda solución débil $(\lambda ,u)$ del problema
+  <em class="emph">(\ref{ev})</em> tal que $u\in \mathcal{C}^{2}(\overline{\Omega
+  })$, es solución clásica de <em class="emph">(\ref{ev}),</em> es decir,
+  \begin{equation*}
+    -\Delta u(x)=\lambda u(x)\text{ &nbsp;}\forall x\in \Omega \qquad\text{y}\qquad u(x)=0\text{ &nbsp;}\forall x\in \partial \Omega .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="normequiv" class="exercise">
+Sean $\Omega $ un subconjunto abierto y acotado de
+  $\mathbb{R}^{n}$ y $\lambda_{1}$ es el primer valor propio de
+  $-\Delta $ en $H_{0}^{1}(\Omega )$.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que, para cada $\lambda >-\lambda_{1}$,
+    \begin{equation*}
+      \left\Vert u\right\Vert_{H_{0}^{1}(\Omega ),\lambda }:=\left( \lambda
+        \int_{\Omega }u^{2}+\int_{\Omega }\left\vert \nabla u\right\vert^{2}\right)
+     ^{1/2}
+    \end{equation*}
+    es una norma en $H_{0}^{1}(\Omega )$ y que está inducida por
+    el producto escalar
+    \begin{equation*}
+      \left\langle u,v\right\rangle_{H_{0}^{1}(\Omega ),\lambda }:=\lambda
+      \int_{\Omega }uv+\int_{\Omega }\nabla u\cdot \nabla v.
+    \end{equation*}
+</p>
+<p>
+  <li> Prueba que todas estas normas son equivalentes. En
+    consecuencia, $H_{0}^{1}(\Omega )$ es completo con cualquiera de
+    estas normas.
+</p>
+<p>
+  <li> Si $\lambda =-\lambda_{1}$, ¿es cierto
+    que
+    \begin{equation*}
+      \left\Vert u\right\Vert_{H_{0}^{1}(\Omega ),-\lambda_{1}}:=\left( -\lambda
+       _{1}\int_{\Omega }u^{2}+\int_{\Omega }\left\vert \nabla u\right\vert
+       ^{2}\right)^{1/2}
+    \end{equation*}
+    es una norma en $H_{0}^{1}(\Omega )$? Justifica tu respuesta.
+  </ol>
+</div>
+</p>
+
+<div class="exercise">
+  Prueba que, si $\Omega \subset \mathbb{R}^{n}$ es acotado, $f\in
+  L^{2}(\Omega )$ y $\lambda >-\lambda_{1}$, el problema
+  \begin{equation*}
+    \left\{ 
+      \begin{alignedat}{2}
+        -\Delta u+\lambda u&{}=f &\quad& \text{en }\Omega , \\
+        u&{}=0 && \text{sobre }\partial \Omega .
+      \end{alignedat}
+    \right.
+  \end{equation*}
+  tiene una única solución débil, es decir, existe una
+  única función $u\in H_{0}^{1}(\Omega )$ tal que
+  \begin{equation*}
+    \int_{\Omega }\nabla u\cdot \nabla \varphi +\lambda \int_{\Omega }u\varphi
+    =\int_{\Omega }f\varphi \qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ).
+  \end{equation*}
+  Además, esta función minimiza el funcional $&nbsp;J_{\lambda
+  }\colon H_{0}^{1}(\Omega )\rightarrow \mathbb{R}$ &nbsp;dado por
+  \begin{equation*}
+    J_{\lambda }(v)=\frac{1}{2}\int_{\Omega }\left( \left\vert \nabla
+        v\right\vert^{2}+\lambda v^{2}\right) -\int_{\Omega }fv.
+  \end{equation*}
+  A la ecuación $-\Delta u=f$ se le llama la <em class="textbf">ecuación
+    de Poisson</em>.
+</div>
+
+
+</div>
+
+
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+</html>

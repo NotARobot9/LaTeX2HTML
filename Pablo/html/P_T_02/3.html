@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/3.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\mathop{\rm id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\cerr}{\mathop{\rm cerr}} $ 
+    $ \newcommand{\opnorm}[2][]{%
+  \mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+  #2
+  \mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+} $
+    $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+//      include_once '/papirhos-web/scripts/menu-top.php';
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 2;
+              }
+              </style>  
+
+<h2 id="Cap-3">Continuidad</h2>
+<p class="noj">
+A principios del siglo XIX Augustin Louis Cauchy y Bernard Bolzano
+dieron, de manera independiente, una definición de
+continuidad. Llamaron <em class="emph">continua</em> a una función que tomaba
+valores arbitrariamente cercanos para valores suficientemente cercanos
+de la variable. Esta definición es exacta pero imprecisa. La
+definición usual hoy en día, en términos de $\varepsilon
+$&rsquo;s y $\delta $&rsquo;s, fue introducida por Karl Weierstrass a finales
+del siglo XIX.
+</p>
+
+<div id="foto:weierstrass" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Weierstrass.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+   Karl Weierstrass
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    Karl Theodor Wilhelm Weierstrass&nbsp;(1815-1897) nació en Ostenfelde,
+  Westfalia (actualmente Alemania). Estudió matemáticas en la
+  Universidad de Münster. Fue profesor en la Universidad de
+  Berlín y tuvo entre sus discípulos a Georg Cantor,
+  Ferdinand Georg Frobenius y Sofia Kovalévskaya. Llamado el
+  <em class="emph">padre del análisis moderno</em>, Weierstrass dio las
+  definiciones de continuidad, límite y derivada de una
+  función, que continúan vigentes hoy en día.
+  </div>
+</div>
+
+<p>
+La noción de continuidad de una función entre espacios
+métricos es formalmente idéntica a la de continuidad de una
+función entre espacios euclidianos que ya conocemos. En este
+capítulo estudiaremos este concepto y daremos varias
+caracterizaciones de la continuidad.
+</p>
+<p>
+<h3 id="sec3-1">Definiciones y ejemplos</h3>
+</p>
+<p>
+Sean $X=(X,d_{X})$ y $Y=(Y,d_{Y})$ espacios métricos.
+</p>
+<p>
+<div id="2.1.1" class="definition">
+Una función $\phi\colon X\rightarrow Y$ es
+  <em class="textbf">continua en el punto&nbsp;</em>$x_{0}\in X$ si, para cada
+  $\varepsilon >0$, existe $\delta >0$ (que depende de $x_{0}$ y de
+  $\varepsilon $) tal que
+  \begin{equation*}
+    d_{Y}(\phi (x),\phi (x_{0}))<\varepsilon \qquad\text{si &nbsp;}d_{X}(x,x_{0})<\delta.
+  \end{equation*}
+  Decimos que $\phi $ es <em class="textbf">continua</em>
+   si lo es en todo punto de $X$.
+</div>
+</p>
+<p>
+La continuidad de $\phi $ depende de las métricas que estamos
+considerando en $X$ y $Y$. Para hacer énfasis en ello usaremos en
+ocasiones la notación
+\begin{equation*}
+  \phi\colon (X,d_{X})\rightarrow (Y,d_{Y})
+\end{equation*}
+en vez de $\phi\colon X\rightarrow Y$. Veamos algunos ejemplos.
+</p>
+<p>
+<div id="idR" class="example">
+La identidad $\id\colon \mathbb{R}_{p}^{n}\rightarrow
+  \mathbb{R}_{r}^{n}$ es una función continua para cualesquiera
+  $p,r\in [1,\infty ]$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Observa que $\left( \max \left\{ a_{1}^{r},\ldots ,a_{n}^{r}\right\}
+  \right)^{1/r}=\max \left\{ a_{1},\ldots ,a_{n}\right\} $ si $r\in
+  [1,\infty ) $ y $a_{1},\ldots ,a_{n}\geq 0$. En consecuencia,
+  para cualesquiera $p,r\in [1,\infty )$ y $x=(x_{1},\ldots
+  ,x_{n})\in \mathbb{R}^{n}$ se tiene que
+  \begin{equation*}
+  \begin{aligned}
+        &\left\Vert x\right\Vert_{r}=\biggl( \sum_{i=1}^{n}\left\vert
+            x_{i}\right\vert^{r}\biggr)^{1/r}\leq \left( n\max_{i=1,\ldots
+            ,n}\left\vert x_{i}\right\vert^{r}\right)^{1/r}=n^{1/r}\max_{i=1,\ldots
+          ,n}\left\vert x_{i}\right\vert =n^{1/r}\left\Vert x\right\Vert_{\infty },
+        \\
+        &\left\Vert x\right\Vert_{\infty }=\max_{i=1,\ldots ,n}\left\vert
+          x_{i}\right\vert =\left( \max_{i=1,\ldots ,n}\left\vert x_{i}\right\vert
+         ^{p}\right)^{1/p}\leq \biggl( \sum_{i=1}^{n}\left\vert
+            x_{i}\right\vert^{p}\biggr)^{1/p}=\left\Vert x\right\Vert_{p}.
+      \end{aligned}
+  \end{equation*}
+  Combinando ambas desigualdades obtenemos
+  \begin{equation}
+    \left\Vert x\right\Vert_{r}\leq n^{1/r}\left\Vert x\right\Vert_{p},\quad\left\Vert x\right\Vert_{\infty }\leq \left\Vert x\right\Vert
+   _{p},\quad\forall x\in \mathbb{R}^{n},\text{ &nbsp;}p\in [1,\infty ],\text{ &nbsp;}r\in [1,\infty ).\label{Rn}
+  \end{equation}
+  Dados $x_{0}\in \mathbb{R}^{n}$ y $\varepsilon >0$ definimos $\delta
+  :=n^{-1/r}\varepsilon $ si $r\in [1,\infty )$ &nbsp;y $\delta
+  :=\varepsilon $ si $r=\infty $. De las desigualdades (\ref{Rn}) se
+  sigue que
+  \begin{equation*}
+    \left\Vert x-x_{0}\right\Vert_{r}<\varepsilon \qquad\text{si }\left\Vert
+      x-x_{0}\right\Vert_{p}<\delta .
+  \end{equation*}
+  Esto prueba que $\id\colon\mathbb{R}_{p}^{n}\rightarrow
+  \mathbb{R}_{r}^{n}$ es continua.
+</div>
+</p>
+<p>
+<div id="idC1inf" class="example">
+La identidad $\id\colon\mathcal{C}_{\infty
+  }^{0}[0,1]\rightarrow \mathcal{C}_{1}^{0}[0,1]$ es continua,
+  mientras que la identidad $\id\colon\mathcal{C}_{1}^{0}[0,1]\rightarrow
+  \mathcal{C}_{\infty }^{0}[0,1]$ no lo es.
+</div>
+</p>
+<p>
+<div class="proof">
+  La Proposición&nbsp;<a href="tul/P_T_02/2.html#compinorm">2.23</a> asegura que
+  \begin{equation*}
+    \left\Vert f\right\Vert_{1}\leq \left\Vert f\right\Vert_{\infty }\qquad\text{}\forall f\in \mathcal{C}^{0}[0,1].
+  \end{equation*}
+  En consecuencia, dadas $f_{0}\in \mathcal{C}^{0}[0,1]$ y
+  $\varepsilon >0$, para $\delta =\varepsilon $ se cumple que
+  \begin{equation*}
+    \left\Vert f-f_{0}\right\Vert_{1}<\varepsilon \qquad\text{si }\left\Vert
+      f-f_{0}\right\Vert_{\infty }<\delta .
+  \end{equation*}
+  Esto prueba que $\id\colon\mathcal{C}_{\infty }^{0}[0,1]\rightarrow
+  \mathcal{C}_{1}^{0}[0,1]$ es continua.
+</p>
+<p>
+  Denotemos por $0$ a la función constante con valor $0$ en
+  $[0,1]$. Probaremos que $\id\colon\mathcal{C}_{1}^{0}[0,1]\rightarrow
+  \mathcal{C}_{\infty }^{0}[0,1]$ no es continua en $0$ (de hecho no
+  lo es en ningún punto de $\mathcal{C}^{0}[0,1]$). Sea
+  $\varepsilon :=\frac{1}{2}$. Afirmamos que para cualquier $\delta
+  \in (0,1)$ existe $g_{\delta }\in \mathcal{C}^{0}[0,1]$ tal que
+  $\left\Vert g_{\delta }\right\Vert_{1}<\delta $ y $\left\Vert
+    g_{\delta }\right\Vert_{\infty }=1>\varepsilon $. En efecto, la
+  función
+  \begin{equation*}
+    g_{\delta }(x)=
+      \begin{cases}
+        1-\frac{1}{\delta }x & \text{si $0\leq x\leq \delta$,} \\
+        0 & \text{si $\delta \leq x\leq 1$,}
+      \end{cases}
+  \end{equation*}
+  tiene estas propiedades.
+</p>
+
+              <div id="fig:3-1" class="figure">
+                <img src="tul/P_T_02/figuras/g-un-cuarto.svg" height="190">
+                <div class="caption">
+                </div>                
+              </div>
+
+  Por tanto, la identidad $\id\colon\mathcal{C}_{1}^{0}[0,1]\rightarrow
+  \mathcal{C}_{\infty }^{0}[0,1]$ no es continua en $0$.
+</div>
+
+<p>
+<div class="definition">
+  Una función $\phi\colon X\rightarrow Y$ es un <em class="textbf">homeomorfismo</em>
+   si $\phi $ es continua y biyectiva y su inversa
+  $\phi^{-1}\colon Y\rightarrow X$ es continua. Se dice que $X$ y $Y$ son
+  <em class="textbf">homeomorfos</em> si existe un homeomorfismo entre ellos.
+</div>
+</p>
+<p>
+Los ejemplos anteriores afirman que $\id\colon\mathbb{R}_{p}^{n}\rightarrow
+\mathbb{R}_{r}^{n}$ es un homeomorfismo para cualesquiera $p,r\in
+[1,\infty ]$, mientras que $\id\colon\mathcal{C}_{\infty
+}^{0}[a,b]\rightarrow \mathcal{C}_{1}^{0}[a,b]$ no lo es.
+</p>
+<p>
+<div id="homeocont" class="proposition">
+Sean $\phi\colon X\rightarrow Y$ y $\psi\colon Y\rightarrow
+  Z$ funciones entre espacios métricos.
+</p>
+<p>
+  <ol class="alfa">
+  <li>   Si $\phi $ y $\psi $ son continuas entonces la
+    composición $\psi \circ \phi\colon X\rightarrow Z$ es continua.
+  </li>
+  <li>   Si $\phi $ es un homeomorfismo, entonces $\psi $ es
+    continua si y sólo si $\psi \circ \phi $ es continua.
+  </li>
+  <li>   Si $\psi $ es un homeomorfismo, entonces $\phi $ es
+    continua si y sólo si $\psi \circ \phi $ es continua.
+    </li></ol>
+</div>
+</p>
+
+<div class="proof">
+  <em class="emph">(a):</em> Sean $x_{0}\in X$ y $\varepsilon >0$. Como $\psi $ es
+  continua en $y_{0}:=\phi (x_{0})$, existe $\gamma >0$ tal que
+  \begin{equation*}
+    d_{Z}(\psi (y),\psi (y_{0}))<\varepsilon 
+    \qquad\text{si &nbsp;}d_{Y}(y,y_{0})<\gamma .
+  \end{equation*}
+  Y, como $\phi $ es continua en $x_{0}$, existe $\delta >0$ tal que
+  \begin{equation*}
+    d_{Y}(\phi (x),\phi (x_{0}))<\gamma \qquad\text{si &nbsp;}d_{X}(x,x_{0})<\delta
+    .
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    d_{Z}(\psi (\phi (x)),\psi (\phi (x_{0})))<\varepsilon \qquad\text{si &nbsp;}d_{X}(x,x_{0})<\delta .
+  \end{equation*}
+  Es decir, $\psi \circ \phi\colon X\rightarrow Z$ es continua.
+
+<br>
+  <em class="emph">(b):</em> Si $\phi $ es un homeomorfismo, de la afirmación
+  <em class="emph">(a)</em> se sigue que $\psi \circ \phi $ es continua si y sólo
+  si $\left( \psi \circ \phi \right) \circ \phi^{-1}=\psi $ lo es.
+
+<br>
+  <em class="emph">(c):</em> Análogamente, si $\psi $ es un homeomorfismo,
+  entonces $\psi \circ \phi $ es continua si y sólo si $\psi
+ ^{-1}\circ \left( \psi \circ \phi \right) =\phi $ lo es.
+</div>
+
+<p>
+La proposición anterior nos permite concluir que
+$f\colon\mathbb{R}^{n}\rightarrow \mathbb{R}^{m}$ es continua si y sólo
+si $f\colon\mathbb{R}_{p}^{n}\rightarrow \mathbb{R}_{r}^{m}$ es continua
+para cualesquiera $p,r\in [1,\infty ]$ [Ejercicio
+&nbsp;<a href="tul/P_T_02/3.html#contRn">3.38</a>].
+</p>
+<p>
+Algunas propiedades importantes de los espacios métricos, como la
+completitud (que estudiaremos más adelante), no se preservan bajo
+homeomorfismos. Por ello conviene introducir los siguientes conceptos.
+</p>
+<p>
+<div class="definition">
+  Una función $\phi\colon X\rightarrow Y$ es <em class="textbf">Lipschitz
+    continua</em>,  si existe $c>0$
+  tal que
+  \begin{equation*}
+    d_{Y}(\phi (x),\phi (y))\leq c\,d_{X}(x,y)\qquad\text{}\forall x,y\in X.
+  \end{equation*}
+  La constante $c$ se llama una <em class="textbf">constante de
+    Lipschitz</em> para $\phi $.
+</p>
+<p>
+  La función $\phi $ es una <em class="textbf">equivalencia</em>
+   si $\phi $ es Lipschitz continua y biyectiva y
+  su inversa $\phi^{-1}\colon Y\rightarrow X$ es Lipschitz continua.
+</div>
+</p>
+<p>
+
+<div id="foto:Lipschitz" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Lipschitz.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+   Rudolf Lipschitz
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    Rudolf Otto Sigismund Lipschitz (1832-1903)
+    nació en Königsberg (entonces parte de Alemania). Se
+    doctoró en Berlín bajo la supervisión de Lejeune
+    Dirichlet. Fue profesor en la Universidad de Bonn.
+  </div>
+</div>
+
+Esta noción es más fuerte que la de continuidad, es decir, se
+cumple lo siguiente.
+</p>
+<p>
+<div id="lip-cont" class="proposition">
+Si $\phi $ es Lipschitz continua entonces $\phi $ es
+  continua.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $c>0$ una constante de Lipschitz para $\phi $. Entonces, dada
+  $\varepsilon >0$, para $\delta :=\frac{\varepsilon }{c}>0$ se cumple
+  que
+  \begin{equation*}
+    d_{Y}(\phi (x),\phi (x_{0}))<\varepsilon \qquad\text{si }d_{X}(x,x_{0})<\delta .
+  \end{equation*}
+  Por tanto, $\phi $ es continua.
+</div>
+</p>
+<p>
+Nota que en este caso $\delta $ no depende del punto $x_{0}\in X$. El
+inverso no es cierto en general, es decir, no toda función
+continua es Lipschitz continua [Ejercicio&nbsp;<a href="tul/P_T_02/3.html#lip">3.45</a>].
+</p>
+<p>
+<div class="definition">
+  Dos métricas $d_{1}$ y $d_{2}$ en un conjunto $X$ son
+  <em class="textbf">equivalentes</em>  si la
+  identidad $\id\colon (X,d_{1})\rightarrow (X,d_{2})$ es una equivalencia,
+  es decir, si existen constantes $c_{1},c_{2}>0$ tales que
+  \begin{equation*}
+    c_{1}\,d_{2}(x,y)\leq d_{1}(x,y)\leq c_{2}\,d_{2}(x,y)\qquad\text{}\forall x,y\in X.
+  \end{equation*}
+  Análogamente, dos normas $\left\Vert \cdot \right\Vert_{1}$ y
+  $\left\Vert \cdot \right\Vert_{2}$ en un espacio vectorial $V$ son
+  <em class="textbf">equivalentes</em>  si las métricas
+  inducidas son equivalentes, es decir, si existen constantes
+  $c_{1},c_{2}>0$ tales que
+  \begin{equation*}
+    c_{1}\,\left\Vert v\right\Vert_{2}\leq \left\Vert v\right\Vert_{1}\leq
+    c_{2}\,\left\Vert v\right\Vert_{2}\qquad\text{}\forall v\in V.
+  \end{equation*}
+</div>
+</p>
+<p>
+Las desigualdades (\ref{Rn}) muestran que $\left\Vert \cdot
+\right\Vert_{p}$ y $\left\Vert \cdot \right\Vert_{r}$ son normas
+equivalentes en $\mathbb{R}^{n}$ para cualesquiera $p,r\in [1,\infty ]$, mientras que el Ejemplo&nbsp;<a href="tul/P_T_02/3.html#idC1inf">3.3</a> muestra que
+$\left\Vert \cdot \right\Vert_{1}$ y $\left\Vert \cdot \right\Vert
+_{\infty }$ no son normas equivalentes en $\mathcal{C}^{0}[0,1]$. De
+hecho, $\left\Vert \cdot \right\Vert_{p}$ y $\left\Vert \cdot
+\right\Vert_{r}$ no son normas equivalentes en $\mathcal{C}^{0}[a,b]$
+para ningún par de números $1\leq p\menorque r\leq \infty $ [Ejercicio
+&nbsp;<a href="tul/P_T_02/3.html#ejidC">3.47</a>].
+</p>
+<p>
+La siguiente noción nos permite visualizar el concepto de
+continuidad.
+</p>
+<p>
+<div id="defbolaab" class="definition">
+Sean $X=(X,d_{X})$ un espacio métrico,
+  $x_{0}\in X$ y $\varepsilon >0$. La <em class="textbf">bola abierta
+  </em> en $X$ con
+  centro en $x_{0}$&nbsp;y radio $\varepsilon $ es el conjunto
+  \begin{equation*}
+    B_{X}(x_{0},\varepsilon ):=\left\{ x\in X:d_{X}(x,x_{0})<\varepsilon
+    \right\} .
+  \end{equation*}
+</div>
+</p>
+<p>
+Dados un subconjunto $A$ de $X$ y una función $\phi\colon X\rightarrow
+Y$, denotamos por
+\begin{equation*}
+  \phi (A):=\left\{ \phi (x)\in Y:x\in A\right\}
+\end{equation*}
+a la <em class="textbf">imagen de</em> $A$ <em class="textbf">bajo</em> $\phi $.  Con estos conceptos podemos
+reformular la definición de continuidad como sigue:
+</p>
+<p>
+$\phi\colon X\rightarrow Y$ <em class="emph">es</em> <em class="textbf">continua en el punto</em> $x_{0}$
+<em class="emph">de</em> $X$ <em class="emph">si, dada </em>$\varepsilon >0$,<em class="emph">&nbsp;existe </em>$\delta
+>0$<em class="emph">&nbsp;tal que</em>
+\begin{equation}
+  \phi (B_{X}(x_{0},\delta ))\subset B_{Y}(\phi (x_{0}),\varepsilon ).
+\label{carcont}
+\end{equation}
+
+              <div id="fig:3-2" class="figure">
+                <img src="tul/P_T_02/figuras/continuidad.svg" height="200">
+                <div class="caption">
+                </div>                
+              </div>
+
+</p>
+<p>
+Revisemos algunos de los ejemplos anteriores bajo esta nueva
+óptica.
+</p>
+<p>
+<div id="Rbolas" class="example">
+Denotemos por $B_{p}(x_{0},\varepsilon )$ a la bola
+  abierta en $\mathbb{R}_{p}^{n}$ con centro en $x_{0}$ y radio
+  $\varepsilon $.
+
+              <div id="fig:3-3" class="figure">
+                <img src="tul/P_T_02/figuras/Rbolas.svg" height="200">
+                <div class="caption">
+                </div>                
+              </div>
+
+</p>
+<p class="noj">
+  De las desigualdades <em class="emph">(\ref{Rn})</em> se sigue que existe $c>0$
+  (que depende de $n$ y $r$) tal que
+  \begin{equation*}
+    B_{p}(x_{0},c\varepsilon )\subset B_{r}(x_{0},\varepsilon )\qquad
+    \forall p,r\in [1,\infty ],\text{ &nbsp;}\forall x_{0}\in \mathbb{R}^{n}.
+  \end{equation*}
+  La caracterización <em class="emph">(\ref{carcont})</em> de la continuidad
+  asegura entonces que $\id\colon\mathbb{R}_{p}^{n}\rightarrow
+  \mathbb{R}_{r}^{n}$ es un homeomorfismo.
+</div>
+</p>
+<p>
+<div id="Cbolas" class="example">
+Denotemos por $B_{p}(f_{0},\varepsilon )$ a la bola
+  abierta en $\mathcal{C}_{p}^{0}[0,1]$ con centro en la función
+  continua $f_{0}\colon [0,1]\rightarrow \mathbb{R}$ y radio $\varepsilon $.
+  Si $p=\infty $,
+  \begin{equation*}
+    B_{\infty }(f_{0},\varepsilon )=\left\{f\in \mathcal{C}^{0}[0,1]:\left\vert
+      f(x)-f_{0}(x)\right\vert <\varepsilon \text{ &nbsp;}\forall x\in [0,1]\right\},
+  \end{equation*}
+  es decir, $B_{\infty }(f_{0},\varepsilon )$ es el conjunto de las
+  funciones continuas cuya gráfica está contenida en la franja
+  $\left\{ (x,y)\in \mathbb{R}^{2}:x\in [0,1],\; 
+\left\vert y-f_{0}(x)\right\vert <\varepsilon \right\}$.
+
+              <div id="fig:3-4" class="figure">
+                <img src="tul/P_T_02/figuras/Cinfbola.svg" height="190">
+                <div class="caption">
+                </div>                
+              </div>
+
+</p>
+<p class="noj">
+  Por otra parte, si $p=1$,
+  \begin{equation*}
+    B_{1}(f_{0},\varepsilon )=\left\{g\in \mathcal{C}^{0}[0,1]:\int_{0}^{1}\left\vert
+      g(x)-f_{0}(x)\right\vert dx<\varepsilon \right\}
+  \end{equation*}
+  es el conjunto de las funciones continuas $g$ tales que el área
+  de la región comprendida entre las gráficas de $g$ y $f_{0}$
+  es menor que $\varepsilon $.
+</p>
+<p>
+  Resulta claro entonces que $B_{\infty }(f_{0},\varepsilon )\subset
+  B_{1}(f_{0},\varepsilon )$. Y también que, para cada
+  $\varepsilon >0$ y cada $\delta >0$, podemos encontrar una
+  función continua $g$ tal que $g\in B_{1}(f_{0},\delta )$ pero
+  $g\notin B_{\infty }(f_{0},\varepsilon )$:
+
+              <div id="fig:3-2" class="figure">
+                <img src="tul/P_T_02/figuras/Cinfvs1.svg" height="200">
+                <div class="caption">
+                </div>                
+              </div>
+
+</p>
+<p class="noj">
+  De la caracterización <em class="emph">(\ref{carcont})</em> de la continuidad
+  se sigue que $\id\colon \mathcal{C}_{\infty }^{0}[0,1]\rightarrow
+  \mathcal{C}_{1}^{0}[0,1]$ es continua y que
+  $\id\colon \mathcal{C}_{1}^{0}[0,1]\rightarrow \mathcal{C}_{\infty
+  }^{0}[0,1]$ no lo es.
+</div>
+</p>
+<p>
+<h3 id="sec3-2">Conjuntos abiertos y conjuntos cerrados</h3>
+</p>
+<p>
+Sea $X=(X,d)$ un espacio métrico y sea $A$ un subconjunto de $X$.
+</p>
+<p>
+<div id="defint" class="definition">
+Un punto $x\in X$ se llama un <em class="textbf">punto interior</em>
+   <em class="textbf">de</em> $A$ si existe $\varepsilon >0$ tal
+  que $B_{X}(x,\varepsilon )\subset A$. El conjunto de todos los
+  puntos interiores de $A$ se llama el <em class="textbf">interior de
+  </em>$A$<em class="textbf">&nbsp;en </em>$X$ y se denota $\Int_{X}(A)$, o simplemente
+  $\Int(A)$. Decimos que $A$ es <em class="textbf">abierto</em>
+   <em class="textbf">en</em> $X$ si $A=\Int(A)$.
+</div>
+</p>
+<p>
+Observa que $\Int_{X}(A)\subset A$. Veamos que la bola abierta es un
+abierto en este sentido.
+</p>
+<p>
+<div id="bolaabab" class="proposition">
+En cualquier espacio métrico $X=(X,d)$, la bola
+  abierta
+  \begin{equation*}
+    B_{X}(x_{0},\varepsilon ):=\left\{ x\in X:d(x,x_{0})<\varepsilon \right\}
+  \end{equation*}
+  con centro en $x_{0}$ y radio $\varepsilon $ es un subconjunto
+  abierto de $X. $
+</div>
+</p>
+<div class="proof">
+  Sea $x\in B_{X}(x_{0},\varepsilon )$. Tomemos $\delta :=\varepsilon
+  -d(x,x_{0})>0$. Para todo $z\in B_{X}(x,\delta )$, se cumple que
+  \begin{equation*}
+    d(z,x_{0})\leq d(z,x)+d(x,x_{0})<\delta +d(x,x_{0})=\varepsilon ,
+  \end{equation*}
+  es decir, $z\in B_{X}(x_{0},\varepsilon )$. Por tanto,
+  $B_{X}(x,\delta )\subset B_{X}(x_{0},\varepsilon )$.
+
+              <div id="fig:3-4" class="figure">
+                <img src="tul/P_T_02/figuras/bolaab.svg" height="200">
+                <div class="caption">
+                </div>                
+              </div>
+
+<br>
+  Esto muestra que $x\in\Int(B_{X}(x_{0},\varepsilon ))$ para todo
+  $x\in B_{X}(x_{0},\varepsilon )$. En consecuencia
+  $B_{X}(x_{0},\varepsilon )=\Int(B_{X}(x_{0},\varepsilon ))$.
+</div>
+
+<p>
+<div id="intab" class="corollary">
+El interior $\Int(A)$ de cualquier subconjunto
+  $A$ de $X$ es abierto en $X$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $x\in\Int(A)$. Entonces existe $\varepsilon >0$ tal que
+  $B_{X}(x,\varepsilon )\subset A$. Probaremos ahora que
+  $B_{X}(x,\varepsilon )\subset\Int A$. En efecto, por la
+  Proposición&nbsp;<a href="tul/P_T_02/3.html#bolaabab">3.13</a>, para cada $z\in B_{X}(x,\varepsilon
+  )$ existe $\delta >0$ tal que $B_{X}(z,\delta )\subset
+  B_{X}(x,\varepsilon )\subset A$. Por tanto, $z\in\Int A$.
+</div>
+</p>
+<p>
+Es fácil ver que $\Int(A)$ es el mayor subconjunto abierto de $X$
+contenido en $A$ [Ejercicio&nbsp;<a href="tul/P_T_02/3.html#ejmaxint">3.65</a>].
+</p>
+<p>
+El que un subconjunto $A$ de $X$ sea abierto en $X$ o no lo sea
+depende de la métrica que le demos a $X$. Veamos un ejemplo.
+</p>
+<p>
+<div class="example">
+  El conjunto
+  \begin{equation*}
+    A:=\left\{f\in \mathcal{C}^{0}[0,1]:\left\vert f(x)\right\vert <\tfrac{1}{2}\text{
+      &nbsp;}\forall x\in [0,1]\right\}
+  \end{equation*}
+  es abierto en $\mathcal{C}_{\infty }^{0}[0,1]$, pero no es abierto
+  en $\mathcal{C}_{1}^{0}[0,1]$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Observa que $A=B_{\mathcal{C}_{\infty
+    }^{0}[0,1]}(0,\frac{1}{2})$. La Proposición&nbsp;<a href="tul/P_T_02/3.html#bolaabab">3.13</a>
+  asegura que $A$ es abierto en $\mathcal{C}_{\infty }^{0}[0,1]$.
+</p>
+<p>
+  Probaremos ahora que $A$ no es abierto en
+  $\mathcal{C}_{1}^{0}[0,1]$. Para cada $0<\delta \menorque 1$ consideremos la
+  función
+  \begin{equation*}
+    g_{\delta }(x)=
+      \begin{cases}
+        1-\frac{1}{\delta }x & \text{si $0\leq x\leq \delta$,} \\
+        0 & \text{si $\delta \leq x\leq 1$.}
+      \end{cases}
+  \end{equation*}
+  Entonces $\left\Vert g_{\delta }\right\Vert_{1}=\frac{\delta }{2}$
+  y $\left\Vert g_{\delta }\right\Vert_{\infty }=1$. Por tanto,
+  $g_{\delta }\in B_{\mathcal{C}_{1}^{0}[0,1]}(0,\delta )$, pero
+  $g_{\delta }\not\in A$.
+
+              <div id="fig:3-5" class="figure">
+                <img src="tul/P_T_02/figuras/bolanoab.svg" height="200">
+                <div class="caption">
+                </div>                
+              </div>
+
+</p>
+<p class="noj">
+  Es decir, $B_{\mathcal{C}_{1}^{0}[0,1]}(0,\delta )$ no está
+  contenida en $A$ para ningún $\delta >0$. En consecuencia, la
+  función $0$ no es un punto interior de $A$ en
+  $\mathcal{C}_{1}^{0}[0,1]$.
+</div>
+</p>
+<p>
+De hecho, el conjunto $A$ del ejemplo anterior tiene interior
+vacío en $\mathcal{C}_{1}^{0}[0,1]$ &nbsp;[Ejercicio&nbsp;<a href="tul/P_T_02/3.html#ejintbola">3.59</a>].
+</p>
+<p>
+<div id="defcerradura" class="definition">
+Un punto $x\in X$ se llama un <em class="textbf">punto de
+    contacto de</em> $A$  si $B_{X}(x,\varepsilon
+  )\cap A\neq \emptyset $ para toda $\varepsilon >0$. El conjunto de
+  todos los puntos de contacto de $A $ se llama la <em class="textbf">cerradura</em>
+  <em class="textbf">de</em>
+  $A$ <em class="textbf">en</em> $X$ y se denota $\cerr_{X}(A)$, o simplemente
+  $\overline{A}$. Decimos que $A$ es <em class="textbf">cerrado en</em> $X$
+   si $A=\overline{A}$.
+</div>
+</p>
+<p>
+Nota que todo punto de $A$ es punto de contacto de $A$, es decir,
+$A\subset \overline{A}$.
+</p>
+<p>
+<div class="definition">
+  La <em class="textbf">bola cerrada</em> en $X$&nbsp; con centro en $x_{0}$&nbsp;y radio
+  $\varepsilon $ es el conjunto
+  \begin{equation*}
+    \bar{B}_{X}(x_{0},\varepsilon ):=\left\{ x\in X:d(x,x_{0})\leq \varepsilon
+    \right\} .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proposition">
+  $\bar{B}_{X}(x_{0},\varepsilon )$ es un subconjunto cerrado de $X$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $x\in \overline{\bar{B}_{X}(x_{0},\varepsilon )}$. Entonces,
+  para todo $\delta >0$, existe $x_{\delta }\in B_{X}(x,\delta )\cap
+  \bar{B}_{X}(x_{0},\varepsilon )$. De la desigualdad del
+  triángulo se sigue que
+  \begin{equation*}
+    d(x,x_{0})\leq d(x,x_{\delta })+d(x_{\delta },x_{0})<\delta +\varepsilon 
+    \qquad\text{}\forall \delta >0.
+  \end{equation*}
+  En consecuencia $d(x,x_{0})\leq \varepsilon $, es decir, $x\in
+  \bar{B}_{X}(x_{0},\varepsilon )$.
+</div>
+</p>
+<p>
+Denotaremos por $X\smallsetminus A$ al <em class="textbf">complemento</em>
+ <em class="textbf">de</em> $A$ <em class="textbf">en</em> $X$, es decir,
+\begin{equation*}
+  X\smallsetminus A:=\left\{ x\in X:x\notin A\right\} .
+\end{equation*}
+Los abiertos y los cerrados son duales en el siguiente sentido.
+</p>
+<p>
+<div id="abcer" class="proposition">
+Para cualquier subconjunto $A$ de un espacio
+  métrico $X$ se cumple que
+  \begin{equation*}
+    X\smallsetminus 
+    \overline{A}=\Int(X\smallsetminus A).
+  \end{equation*}
+  En consecuencia, $A$ es cerrado en $X$ si y sólo si
+  $X\smallsetminus A$ es abierto en $X$.
+</div>
+</p>
+
+<div class="proof">
+  La primera afirmación es inmediata. En efecto,
+  $x\in\Int(X\smallsetminus A)$ si y sólo si existe $\varepsilon >0$
+  tal que $B_{X}(x,\varepsilon )\cap A=\emptyset $, es decir, si y
+  sólo si $x\in X\smallsetminus \overline{A}$.
+<br>
+  En consecuencia, si $A$ es cerrado, entonces $X\smallsetminus
+  A=X\smallsetminus \overline{A}=\Int(X\smallsetminus A)$, es decir,
+  $X\smallsetminus A$ es abierto. E inversamente, si $X\smallsetminus
+  A$ es abierto, entonces $X\smallsetminus A=\Int(X\smallsetminus
+  A)=X\smallsetminus \overline{A}$ y, en consecuencia,
+  $A=\overline{A}$, es decir, $A$ es cerrado.
+</div>
+
+<p>
+<div class="corollary">
+  La cerradura $\overline{A}$ de cualquier subconjunto $A$ de $X$ es
+  cerrada en $X$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Por el Corolario&nbsp;<a href="tul/P_T_02/3.html#intab">3.14</a> sabemos que $\Int(X\smallsetminus A)$ esabcer
+  abierto en $X$. En consecuencia, por la Proposición&nbsp;<a href="tul/P_T_02/3.html#abcer">3.19</a>,
+  se tiene que $\overline{A}=X\smallsetminus\Int(X\smallsetminus
+  A)$ es cerrado en $X$.
+</div>
+</p>
+<p>
+Es sencillo comprobar que $\overline{A}$ es el menor subconjunto
+cerrado de $X$ que contiene a~$A$ [Ejercicio&nbsp;<a href="tul/P_T_02/3.html#ejmincer">3.66</a>].
+</p>
+<p>
+Existen subconjuntos que no son ni abiertos ni cerrados. Por ejemplo,
+el intervalo $[a,b)$ no es ni abierto ni cerrado en
+$\mathbb{R}$. Más aún, un subconjunto puede ser
+simultáneamente abierto y cerrado como lo muestra el siguiente
+ejemplo.
+</p>
+<p>
+<div class="example">
+  Todo subconjunto de un espacio métrico discreto $X_{\disc}$ es
+  abierto en $X_{\disc}$. En consecuencia, todo subconjunto de
+  $X_{\disc}$ es cerrado en $X_{\disc}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Observemos que, para cada punto $x\in X$,
+  \begin{equation*}
+    B_{\disc}(x,1):=\left\{y\in X:d_{\disc}(y,x)\menorque 1\right\}=\left\{x\right\}.
+  \end{equation*}
+  Para cualquier subconjunto $A$ de $X$ se tiene entonces que
+  $B_{\disc}(x,1)\subset A$ para todo $x\in A$. Por tanto, $A$ es
+  abierto en $X_{\disc}$. De la Proposición&nbsp;<a href="tul/P_T_02/3.html#abcer">3.19</a> se sigue
+  que $A$ también es cerrado en $X_{\disc}$.
+</div>
+</p>
+<p>
+En general no es cierto que la cerradura de una bola abierta sea la
+correspondiente bola cerrada. Veamos un ejemplo.
+</p>
+<p>
+<div id="discabcer" class="example">
+Si $X_{\disc}$ es un espacio métrico discreto
+  con al menos dos puntos entonces, puesto que todos los subconjuntos
+  de $X_{\disc}$ son cerrados, se tiene que
+  \begin{equation*}
+    \overline{B_{\disc}(x,1)}=B_{\disc}(x,1)=\left\{x\right\}\qquad\text{}\forall x\in X.
+  \end{equation*}
+  Por otra parte,
+  \begin{equation*}
+    \bar{B}_{\disc}(x,1):=\left\{y\in X:d_{\disc}(y,x)\leq 1\right\}=X\qquad\text{}\forall
+    x\in X.
+  \end{equation*}
+</div>
+</p>
+<p>
+Esto no ocurre en un espacio normado.
+</p>
+<p>
+<div id="evnbolacer" class="proposition">
+Si $V=(V,\left\Vert \cdot \right\Vert )$ es un
+  espacio normado, entonces la cerradura de la bola abierta
+  $B(v_{0},\varepsilon ):=\left\{ v\in V:\left\Vert v-v_{0}\right\Vert
+    <\varepsilon \right\} $ es la bola cerrada
+  $\bar{B}(v_{0},\varepsilon ):=\left\{ v\in V:\left\Vert
+      v-v_{0}\right\Vert \leq \varepsilon \right\} $.
+</div>
+</p>
+
+<div class="proof">
+  Como $\bar{B}(v_{0},\varepsilon )$ es cerrado y contiene a
+  $B(v_{0},\varepsilon )$ se tiene que $\overline{B(v_{0},\varepsilon
+    )}\subset \bar{B}(v_{0},\varepsilon )$ [Ejercicio&nbsp;<a href="tul/P_T_02/3.html#ejmincer">3.66</a>].
+<br>
+  Probaremos ahora que $\bar{B}(v_{0},\varepsilon )\subset
+  \overline{B(v_{0},\varepsilon )}$. Es decir, probaremos que, para
+  todo $v\in \bar{B}(v_{0},\varepsilon )$ y $\delta >0$, se cumple que
+  $B(v,\delta )\cap B(v_{0},\varepsilon )\neq \emptyset $. Sin perder
+  generalidad podemos tomar $\delta \menorque 2\varepsilon $. El punto
+  \begin{equation*}
+    v_{\delta }:=v+\frac{\delta }{2\varepsilon }(v_{0}-v)\in V
+  \end{equation*}
+  satisface
+  \begin{align*}
+    \left\Vert v_{\delta }-v\right\Vert &=\frac{\delta }{2\varepsilon }\left\Vert v_{0}-v\right\Vert \leq \frac{\delta }{2}<\delta ,\text{ &nbsp;y} \\
+    \left\Vert v_{\delta }-v_{0}\right\Vert &=\left(1-\frac{\delta }{2\varepsilon }\right)\left\Vert v-v_{0}\right\Vert \leq \left(1-\frac{\delta }{2\varepsilon }\right)\varepsilon <\varepsilon .
+  \end{align*}
+
+              <div id="fig:3-6" class="figure">
+                <img src="tul/P_T_02/figuras/evnbolacer.svg" height="200">
+                <div class="caption">
+                </div>                
+              </div>
+
+<br>
+  Por tanto, $v_{\delta }\in B(v,\delta )\cap B(v_{0},\varepsilon )$.
+</div>
+
+<p>
+Daremos ahora una caracterización de la continuidad en
+términos de conjuntos abiertos y conjuntos cerrados. La
+<em class="textbf">imagen inversa</em> de un subconjunto $B$ de $Y$ bajo la función
+$\phi\colon X\rightarrow Y$ es el conjunto
+\begin{equation*}
+  \phi^{-1}(B):=\left\{ x\in X:\phi (x)\in B\right\} .
+\end{equation*}
+</p>
+
+<div id="conttop" class="proposition">
+Sean $X$ y $Y$ espacios métricos, y sea $\phi\colon
+  X\rightarrow Y$ una función. Las siguientes afirmaciones son
+  equivalentes:
+
+  <ol class="alfa">
+  <li>   $\phi\colon X\rightarrow Y$ es continua.
+  </li>
+  <li>   $\phi^{-1}(U)$ es abierto en $X$ para todo subconjunto
+    abierto $U $ de $Y$.
+  </li>
+  <li>   $\phi^{-1}(C)$ es cerrado en $X$ para todo subconjunto
+    cerrado $C $ de $Y$.
+    </li></ol>
+</div>
+
+<div class="proof">
+  <em class="emph">(a) </em>$\Rightarrow $ <em class="emph">(b)</em>: &nbsp;Sea $U$ un subconjunto
+  abierto de $Y$. Para cada $x\in \phi^{-1}(U)$ tomemos $\varepsilon
+  >0$ tal que $B_{Y}(\phi (x),\varepsilon )\subset U$. Como $\phi $ es
+  continua, existe $\delta >0$ tal que $\phi (B_{X}(x,\delta ))\subset
+  B_{Y}(\phi (x),\varepsilon )$. Entonces $B_{X}(x,\delta )\subset
+  \phi^{-1}(U)$. Esto prueba que $\phi^{-1}(U)$ es abierto en $X$.
+
+<br>
+  <em class="emph">(b) </em>$\Rightarrow $ <em class="emph">(a)</em>: &nbsp;Sean $x\in X$ y
+  $\varepsilon >0$. Como $B_{Y}(\phi (x),\varepsilon )$ es abierta en
+  $Y$, se tiene que $\phi^{-1}(B_{Y}(\phi (x),\varepsilon ))$ es
+  abierto en $X$. En particular, existe $\delta >0$ tal que
+  $B_{X}(x,\delta )\subset \phi^{-1}(B_{Y}(\phi (x),\varepsilon ))$,
+  es decir, $\phi (B_{X}(x,\delta ))\subset B_{Y}(\phi (x),\varepsilon
+  )$. Esto prueba que $\phi $ es continua en $x$.
+
+<br>
+  <em class="emph">(b) </em>$\Leftrightarrow $ <em class="emph">(c)</em>: &nbsp;Observa que
+  $X\smallsetminus \phi^{-1}(B)=\phi^{-1}(Y\smallsetminus B)$ para
+  todo subconjunto $B$ de $Y$. La equivalencia entre <em class="emph">(b) </em>y
+  <em class="emph">(c)</em> es consecuencia inmediata de la
+  Proposición&nbsp;<a href="tul/P_T_02/3.html#abcer">3.19</a>. En efecto, si $\phi $ satisface <em class="emph">(b)</em>
+  y $C$ es cerrado en $Y$, entonces $Y\smallsetminus C$ es abierto en
+  $Y$. En consecuencia, $\phi^{-1}(Y\smallsetminus C)=X\smallsetminus
+  \phi^{-1}(C) $ es abierto en $X$ y, por tanto $\phi^{-1}(C)$ es
+  cerrado en $X$. Esto prueba que <em class="emph">(b) </em>$\Rightarrow $
+  <em class="emph">(c).</em> La otra implicación se demuestra de manera análoga.
+</div>
+
+<div class="example">
+  Cualquier función $\phi\colon X_{\disc}\rightarrow Y$ de un espacio
+  métrico discreto a un espacio métrico cualquiera $Y$ es
+  continua, ya que todo subconjunto de $X_{\disc}$ es abierto
+  <em class="emph">(ver Ejemplo&nbsp;<a href="tul/P_T_02/3.html#discabcer">3.22</a>)</em>.
+</div>
+
+<p>
+Para finalizar esta sección veamos algunas propiedades importantes
+de los abiertos.
+</p>
+
+<div id="top" class="proposition">
+En cualquier espacio métrico $X=(X,d)$ se cumple lo
+  siguiente:
+
+  <ol class="alfa">
+  <li>  El conjunto vacío $\emptyset $ es abierto en $X$.
+ </li>
+  <li>  $X$ es abierto en $X$.
+ </li>
+  <li>  La unión $\bigcup_{i\in \mathcal{I}}U_{i}$ de
+    cualquier familia $\left\{U_{i}:i\in \mathcal{I}\right\}$ de subconjuntos
+    abiertos de $X$ es abierta en $X$.
+ </li>
+  <li>  La intersección $U\cap V$ de dos subconjuntos
+    abiertos $U$ y $V$ de $X$ es abierta en $X$.
+   </li></ol>
+</div>
+
+<div class="proof">
+  <em class="emph">(a)</em> se cumple por vacuidad: todo punto de $\emptyset $ es
+  punto interior de $\emptyset $.
+<br>
+  <em class="emph">(b):</em> $&nbsp;B_{X}(x,\varepsilon )\subset X$ para cualquier
+  $x\in X$ y cualquier $\varepsilon >0$, es decir, cualquier $x\in X$
+  es punto interior de $X$.
+<br>
+  <em class="emph">(c):</em> &nbsp;Si $x\in \bigcup_{i\in \mathcal{I}}U_{i}$ entonces
+  $x\in U_{i_{0}}$ para algún $i_{0}\in \mathcal{I}$ y, como
+  $U_{i_{0}}$ es abierto, existe $\varepsilon >0$ tal que
+  $B_{X}(x,\varepsilon )\subset U_{i_{0}}$. Pero entonces
+  $B_{X}(x,\varepsilon )\subset \bigcup_{i\in \mathcal{I}}U_{i}$. Esto
+  prueba que $x\in $ int$\left( \bigcup_{i\in \mathcal{I}}U_{i}\right)
+  $.
+<br>
+  <em class="emph">(d):</em> &nbsp;Si $x\in U\cap V$, como $U$ y $V$ son abiertos,
+  existen $\varepsilon_{1},\varepsilon_{2}>0$ tales que
+  $B_{X}(x,\varepsilon_{1})\subset U$ y $B_{X}(x,\varepsilon
+ _{2})\subset V$. Tomando $\varepsilon :=\min \left\{\varepsilon
+ _{1},\varepsilon_{2}\right\}$ se tiene que $B_{X}(x,\varepsilon )\subset
+  (U\cap V)$. Esto prueba que $x\in $ int$(U\cap V)$.
+</div>
+
+<p>
+Dado que los subconjuntos cerrados de $X$ son los complementos de los
+abiertos, las afirmaciones duales son ciertas para dichos subconjuntos
+[Ejercicio&nbsp;<a href="tul/P_T_02/3.html#ejtopcer">3.64</a>].
+</p>
+<p>
+Las propiedades <em class="emph">(a)-(d)</em> se usan como definición
+de los <em class="emph">abiertos</em>&nbsp;de un espacio topológico. 
+Como la continuidad se puede caracterizar
+en términos de abiertos (ver Proposición&nbsp;<a href="tul/P_T_02/3.html#conttop">3.24</a>), los
+espacios topológicos son el ámbito natural para estudiar la
+continuidad.
+</p>
+<p>
+<h3 id="sec3-3">Convergencia de sucesiones</h3>
+</p>
+<p>
+Como ocurre en $\mathbb{R}^{n}$, es posible dar una
+caracterización de la continuidad en términos de sucesiones en
+un espacio métrico.
+</p>
+<p>
+<div id="2.3.1" class="definition">
+ Una
+  <em class="textbf">sucesión</em>  en un espacio métrico
+  $X=(X,d)$ es una función $\overline{x}\colon\mathbb{N}\rightarrow X$.
+  El valor de dicha función en $k$ se llama el
+  <em class="textbf">$k$-ésimo término</em> de la sucesión y se denota
+  por $x_{k}:=\overline{x}(k)$. Una sucesión se suele denotar
+  simplemente por $\overline{x}=(x_{k})$.
+</p>
+<p>
+  Decimos que $(x_{k})$ <em class="textbf">converge a</em>
+   un punto $x\in X$ si, dada
+  $\varepsilon >0$, existe $k_{0}\in \mathbb{N}$ tal que
+  $d(x_{k},x)<\varepsilon $ para todo $k\geq k_{0}$. El punto $x$ se
+  llama el <em class="textbf">límite</em>  de la sucesión $(x_{k})$.
+</div>
+</p>
+<p>
+Usaremos la notación
+\begin{equation*}
+  x_{k}\rightarrow x\text{ &nbsp;en }X,\qquad\text{o bien}\qquad\lim_{k\rightarrow \infty }x_{k}=x,
+\end{equation*}
+para decir que $(x_{k})$ converge a $x$ en $X$. Observa que
+\begin{equation*}
+  x_{k}\rightarrow x\text{ en }X\quad \Longleftrightarrow \quad
+  d(x_{k},x)\rightarrow 0\text{ &nbsp;en }\mathbb{R}\text{.}
+\end{equation*}
+</p>
+<p>
+<div class="definition">
+  Una <em class="textbf">subsucesión</em>  de
+  $\overline{x}=(x_{k})$ es la composición de $\overline{x}$ con
+  una función estrictamente creciente $k\colon\mathbb{N}\rightarrow
+  \mathbb{N}$. Su $j\text{-ésimo}$ término se denota por
+  $x_{k_{j}}:=\overline{x}(k(j))$.
+</div>
+</p>
+<p>
+<div id="unilim" class="proposition">
+Se cumple lo siguiente:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  El límite de una sucesión convergente es
+    único.
+ </li>
+  <li>  Si $(x_{k})$ converge a $x$ en $X$ entonces cualquier
+    subsucesión $(x_{k_{j}})$ converge a $x$ en~$X$.
+   </li></ol>
+</div>
+</p>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Si $x_{k}\rightarrow x$ y $x_{k}\rightarrow y$ en
+  $X$ entonces
+  \begin{equation*}
+    0\leq d(x,y)\leq d(x_{k},x)+d(x_{k},y)&nbsp;\rightarrow 0\text{ en }\mathbb{R}.
+  \end{equation*}
+  Por tanto, $d(x,y)=0$, es decir, $x=y$.
+<br>
+
+  <em class="emph">(b):</em> &nbsp;Sean $(x_{k_{j}})$ una subsucesión de $(x_{k})$
+  y $\varepsilon >0$. Como $k\colon\mathbb{N}\rightarrow \mathbb{N}$ es
+  estrictamente creciente, $k_{j}\geq j$ para todo $j\in \mathbb{N}$.
+  Y, como $x_{k}\rightarrow x$, existe $k_{0}\in \mathbb{N}$ tal que
+  $d(x_{k},x)<\varepsilon $ para todo $k\geq k_{0}$. Por tanto,
+  $d(x_{k_{j}},x)<\varepsilon $ para todo $j\geq k_{0}$.
+</div>
+
+<div class="definition">
+  Una sucesión $(x_{k})$ en $X$ está <em class="textbf">acotada</em>
+   si existen $x\in X$ y $c\in \mathbb{R}$
+  tales que $d(x_{k},x)\leq c$ para todo $k\in \mathbb{N}$.
+</div>
+
+<div id="succonvacot" class="proposition">
+Toda sucesión convergente está acotada.
+</div>
+
+<div class="proof">
+  Si $x_{k}\rightarrow x$ en $X$ entonces existe $k_{0}\in \mathbb{N}$
+  tal que $d(x_{k},x)\menorque 1$ para todo $k\geq k_{0.}$ Tomando $c:=\max
+  \left\{d(x_{1},x),\dots,d(x_{k_{0}-1},x),1\right\}$ obtenemos que $d(x_{k},x)\leq
+  c$ para todo $k\in \mathbb{N}$.
+</div>
+<p>
+Daremos ahora una caracterización de la cerradura de un conjunto
+en términos de sucesiones en dicho conjunto.
+</p>
+
+<div id="cerrsuc" class="proposition">
+Sea $A$ un subconjunto de $X$ y sea $x\in X$.
+  Entonces $x\in \overline{A}$ si y sólo si existe una
+  sucesión $(x_{k})$ tal que $x_{k}\in A$ para todo $k\in
+  \mathbb{N}$ y $x_{k}\rightarrow x$ en $X$.
+</div>
+
+<div class="proof">
+  Si $x\in \overline{A}$ entonces existe $x_{k}\in
+  B(x,\frac{1}{k})\cap A$ para cada $k\in \mathbb{N}$. Es decir,
+  $x_{k}\in A$ y $0\leq d(x_{k},x)\leq \frac{1}{k}$ para toda $k\in
+  \mathbb{N}$. En consecuencia, $x_{k}\rightarrow x$ en $X$.
+<br>
+  Inversamente, sea $(x_{k})$ una sucesión de puntos en $A$ tal
+  que $x_{k}\rightarrow x$ en $X$. Sea $\varepsilon >0$. Entonces
+  existe $k_{0}\in \mathbb{N}$ tal que $d(x_{k},x)<\varepsilon $ para
+  todo $k\geq k_{0}$. En particular, $x_{k_{0}}\in B_{X}(x,\varepsilon
+  )\cap A$. 
+<br>
+  Por tanto, $x\in \overline{A}$.
+</div>
+
+<p>
+Podemos caracterizar la continuidad de una función en términos
+de sucesiones como sigue.
+</p>
+
+<div id="contsuc" class="proposition">
+$\phi\colon X\rightarrow Y$ es continua en el punto $x\in
+  X$ si y sólo si para cualquier sucesión $(x_{k})$ en $X$ tal
+  que $x_{k}\rightarrow x$ en $X$ se cumple que $\phi
+  (x_{k})\rightarrow \phi (x)$ en $Y$.
+</div>
+
+<div class="proof">
+  Supongamos que $\phi $ es continua en $x$ y que $x_{k}\rightarrow x$
+  en $X$. Sea $\varepsilon >0$. Entonces, como $\phi $ es continua,
+  existe $\delta >0$ tal que $\phi (B_{X}(x,\delta ))\subset
+  B_{Y}(\phi (x),\varepsilon )$ y, como $x_{k}\rightarrow x$, existe
+  $k_{0}\in \mathbb{N}$ tal que $x_{k}\in B_{X}(x,\delta )&nbsp;$para todo
+  $k\geq k_{0}$. Por lo tanto $\phi (x_{k})\in B_{Y}(\phi
+  (x),\varepsilon )$ para todo $k\geq k_{0}$. Esto prueba que $\phi
+  (x_{k})\rightarrow \phi (x)$.
+<br>
+  Inversamente, supongamos que $\phi $ no es continua en $x$. Entonces
+  existe $\varepsilon_{0}>0$ con la siguiente propiedad: para cada
+  $k\in \mathbb{N}$ hay un punto $x_{k}\in B_{X}(x,\frac{1}{k})$ tal
+  que $\phi (x_{k})\notin B_{Y}(\phi (x),\varepsilon_{0})$. En
+  consecuencia, $(x_{k})$ converge a $x$ en $X$ pero $(\phi (x_{k}))$
+  no converge a $\phi (x)$ en $Y$.
+</div>
+
+<div class="example">
+  Consideremos las funciones continuas $f_{k}\colon [0,1]\rightarrow
+  \mathbb{R}$ dadas por
+  \begin{equation*}
+    f_{k}(x)=
+      \begin{cases}
+        1-kx & \text{si $0\leq x\leq \frac{1}{k}$,} \\
+        0 & \text{si $\frac{1}{k}\leq x\leq 1$.}
+      \end{cases}
+  \end{equation*}
+  Entonces $f_{k}\rightarrow 0$ en $\mathcal{C}_{1}^{0}\left[
+    0,1\right] $, pero $(f_{k})$&nbsp;no converge en $\mathcal{C}_{\infty
+  }^{0}\left[ 0,1\right] $. Esto demuestra que
+  $\id\colon\mathcal{C}_{1}^{0}\left[ 0,1\right] \rightarrow
+  \mathcal{C}_{\infty }^{0}\left[ 0,1\right] $ no es continua en $0$.
+</div>
+
+<div class="proof">
+  Se tiene que
+  \begin{equation*}
+    \left\Vert f_{k}\right\Vert_{1}=\int_{0}^{1}\left\vert f_{k}(x)\right\vert
+    dx=\frac{1}{2k}\rightarrow 0.
+  \end{equation*}
+  Por tanto, $f_{k}\rightarrow 0$ en $\mathcal{C}_{1}^{0}\left[
+    0,1\right] $.
+<br>
+  Supongamos que $f_{k}\rightarrow f$ en $\mathcal{C}_{\infty
+  }^{0}\left[ 0,1\right] $. Entonces, como
+  \begin{equation*}
+    \left\vert f_{k}(x)-f(x)\right\vert \leq \left\Vert f_{k}-f\right\Vert
+   _{\infty }\qquad\text{para cada &nbsp;}x\in [0,1],
+  \end{equation*}
+  se tiene que la sucesión de números reales $(f_{k}(x))$
+  converge a $f(x)$ en $\mathbb{R}$ para cada $x\in [0,1]$. En
+  consecuencia
+  \begin{equation*}
+    f(x)=\lim_{k\rightarrow \infty }f_{k}(x)=
+      \begin{cases}
+        1 & \text{si $x=0$,}\\
+        0 & \text{si $0 \menorque x\leq 1$.}
+      \end{cases}
+  \end{equation*}
+  Esta función no es continua en $[0,1]$, lo que contradice
+  nuestra suposición.
+</div>
+
+<h3 id="sec3-4">Ejercicios</h3>
+</p>
+<p>
+<div class="exercise">
+  Prueba que en la definición de continuidad se puede reemplazar
+  la desigualdad estricta por la no estricta, es decir, prueba que una
+  función $\phi\colon X\rightarrow Y$ es continua en $x_{0}$ si, dada
+  $\varepsilon >0$, existe $\delta >0$ (que depende de $x_{0}$ y de
+  $\varepsilon $) tal que
+  \begin{equation*}
+    d_{Y}(\phi (x),\phi (x_{0}))\leq \varepsilon \qquad\text{si &nbsp;}d_{X}(x,x_{0})<\delta .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="ejlin+cont" class="exercise">
+Sean $V=(V,\left\Vert \cdot \right\Vert_{V})$ y
+  $W=(W,\left\Vert \cdot \right\Vert_{W})$ espacios normados, y sea
+  $L\colon V\rightarrow W$ una transformación lineal. Prueba que las
+  siguientes afirmaciones son equivalentes:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  $L$ es continua.
+ </li>
+  <li>  $L$ es continua en $0$.
+ </li>
+  <li>  Existe $c>0$ tal que $&nbsp;\left\Vert Lv\right\Vert_{W}\leq
+    c\left\Vert v\right\Vert_{V}$ &nbsp;para todo&nbsp;$v\in V$.
+ </li>
+  <li>  $L$ es Lipschitz continua.
+   </li></ol>
+</div>
+</p>
+<p>
+<div id="e2.16" class="exercise">
+Sea $X$ un espacio métrico.
+</p>
+<p>
+  <ol class="alfa">
+  <li>  Prueba que, si $f,g\colon X\rightarrow \mathbb{R}$ son
+    continuas, entonces las funciones $&nbsp;\max \left\{f,g\right\}$, $\min
+    \left\{f,g\right\}\colon X\rightarrow \mathbb{R}$ &nbsp;dadas por
+    \begin{equation*}
+      (\max \left\{f,g\right\})(x):=\max \left\{f(x),g(x)\right\},\quad (\min \left\{f,g\right\})(x):=\min
+      \left\{f(x),g(x)\right\}),
+    \end{equation*}
+    son continuas.
+ </li>
+  <li>  ¿Es cierto que, si $f,g\colon X\rightarrow
+    \mathbb{R}$ son Lipschitz continuas, $\max \left\{f,g\right\}$ y $\min
+    \left\{f,g\right\}$ son Lipschitz continuas?
+   </li></ol>
+</div>
+</p>
+<p>
+<div id="contRn" class="exercise">
+Prueba que $f\colon\mathbb{R}^{n}\rightarrow
+  \mathbb{R}^{m}$ es continua si y sólo si
+  $f\colon\mathbb{R}_{p}^{n}\rightarrow \mathbb{R}_{r}^{m} $ es continua
+  para cualesquiera $p,r\in [1,\infty ]$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $g_{0}\in \mathcal{C}^{0}[a,b]$. Prueba que, para toda $p\in
+  [1,\infty ]$, la función $\phi\colon
+  \mathcal{C}_{p}^{0}[a,b]\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    \phi (f):=\int_{a}^{b}fg_{0}
+  \end{equation*}
+  es Lipschitz continua. <em class="emph">(Sugerencia: Usa la desigualdad de
+    Hölder para integrales.)</em>
+</div>
+</p>
+<p>
+<div id="e2.5" class="exercise">
+Prueba que, si $1\leq p\leq r\leq \infty $, entonces la
+  inclusión $\iota\colon\ell_{p}\hookrightarrow \ell_{r}$ es Lipschitz
+  continua.
+</div>
+</p>
+<p>
+<div id="e2.6" class="exercise">
+Prueba que, para toda $p\in [1,\infty ]$, la
+  <em class="textbf">$k$-ésima proyección</em>
+  \begin{equation*}
+    \pi_{k}\colon\ell_{p}\rightarrow \mathbb{R},\qquad\text{}\pi_{k}(x)=x_{k},
+  \end{equation*}
+  con $x=(x_{k})\in \ell_{p}$, es Lipschitz continua.
+</div>
+</p>
+<p>
+<div id="ejrestriccion" class="exercise">
+Dados dos conjuntos $S$ y $S^{\prime }$, una
+  función $\phi\colon S^{\prime }\rightarrow S$ y un espacio
+  métrico $X$, considera la función $\phi^{\ast
+  }\colon\mathcal{B}(S,X)\rightarrow \mathcal{B}(S^{\prime },X)$ dada por
+  la composición
+  \begin{equation*}
+    \phi^{\ast }(f):=f\circ \phi .
+  \end{equation*}
+  Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  $\phi^{\ast }$ está bien definida (es decir, que
+    $f\circ \phi $ es acotada si $f$ lo es) y es Lipschitz continua.
+ </li>
+  <li>  Si $\phi $ es suprayectiva, entonces $\phi^{\ast }$ es
+    una isometría.
+   </li></ol>
+</div>
+</p>
+<p>
+<div id="ejcompLip" class="exercise">Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  Toda isometría es Lipschitz continua.
+ </li>
+  <li>  Si $\phi\colon X\rightarrow Y$ y $\psi\colon Y\rightarrow Z$ son
+    Lipschitz continuas entonces la composición $\psi \circ \phi
+    \colon X\rightarrow Z$ es Lipschitz continua.
+ </li>
+  <li>  Si $\phi\colon X\rightarrow Y$ es una equivalencia, entonces
+    $\psi\colon Y\rightarrow Z$ es Lipschitz continua si y sólo si
+    $\psi \circ \phi\colon X\rightarrow Z$ lo es.
+ </li>
+  <li>  Si $\psi\colon Y\rightarrow Z$ es una equivalencia, entonces
+    $\phi\colon X\rightarrow Y$ es Lipschitz continua si y sólo si
+    $\psi \circ \phi\colon X\rightarrow Z$ lo es.
+   </li></ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\mathcal{I}$ un intervalo en $\mathbb{R}$ (abierto, cerrado,
+  finito o infinito). Prueba que, si $f\colon\mathcal{I}\rightarrow
+  \mathbb{R}$ es continuamente diferenciable en $\mathcal{I}$ y existe
+  $C\in \mathbb{R}$ tal que $\left\vert f^{\prime }(t)\right\vert \leq
+  C$ para todo $t\in \mathcal{I} $, entonces $f$ es Lipschitz
+  continua.
+</div>
+</p>
+<p>
+<div id="lip" class="exercise">
+¿Cuáles de las siguientes funciones
+  son Lipschitz continuas y cuáles son equivalencias?
+</p>
+<p>
+  <ol class="alfa">
+  <li>  $\phi\colon\mathbb{R}\rightarrow \mathbb{R}$, $&nbsp;\phi
+    (x)=x^{2}$.
+ </li>
+  <li>  $\phi\colon[0,\infty )\rightarrow \mathbb{R}$, $&nbsp;\phi
+    (x)=\sqrt{x}$.
+ </li>
+  <li>  $\phi\colon\mathbb{R}\rightarrow (-\frac{\pi }{2},\frac{\pi
+    }{2})$, &nbsp;$\phi (x)=\arctan x$.
+   </li></ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Dada $f\in \mathcal{C}^{1}[0,1]$ definimos
+  \begin{align*}
+    \opnorm[\big]{f}_{1} &:=\bigl\Vert f^{\prime }\bigr\Vert_{\infty }, \\
+    \opnorm[\big]{f}_{2} &:=\bigl\vert f(0)\bigr\vert +\bigl\Vert f^{\prime
+      }\bigr\Vert_{\infty }, \\
+    \opnorm[\big]{f}_{3} &:=\max \left\{ \left\vert \int_{0}^{1}f(x)dx\right\vert
+      ,\bigl\Vert f^{\prime }\bigr\Vert_{\infty }\right\} , \\
+    \opnorm[\big]{f}_{4} &:=\left( \bigl\Vert f\bigr\Vert_{2}+\bigl\Vert f^{\prime
+        }\bigr\Vert_{2}\right)^{1/2}.
+  \end{align*}
+</p>
+<p>
+  <ol class="alfa">
+  <li>  ¿Es $\opnorm{f}_{i}$ una norma en
+    $\mathcal{C}^{1}[0,1]$? Responde esta pregunta para cada
+    $i=1,\dots,4$.
+ </li>
+  <li>  Si $\opnorm{f}_{i}$ es una norma, ¿es
+    $\opnorm{f}_{i}$ equivalente a la norma
+    \begin{equation*}
+      \bigl\Vert f\bigr\Vert_{1,\infty }:=\bigl\Vert f\bigr\Vert_{\infty
+      }+\bigl\Vert f^{\prime }\bigr\Vert_{\infty }
+    \end{equation*}
+    del  </li><em class="emph">Ejercicio&nbsp;<a href="tul/P_T_02/2.html#ejCr">2.51</a></em>?
+</p>
+<p>
+  <li>  Considera la función
+    $D\colon\mathcal{C}^{1}[0,1]\rightarrow \mathcal{C}^{0}[0,1]$ que a
+    cada $f\in \mathcal{C}^{1}[0,1]$ le asocia su derivada $f^{\prime
+    }\in \mathcal{C}^{0}[0,1]$. Prueba que
+    \begin{equation*}
+      D\colon(\mathcal{C}^{1}[0,1],\left\Vert \cdot \right\Vert_{1,\infty
+      })\rightarrow \mathcal{C}_{\infty }^{0}[0,1]
+    \end{equation*}
+    es continua.
+ </li>
+  <li>  Para aquellas $\opnorm{\cdot }_{i}$ que sí son normas
+    investiga si
+    \begin{equation*}
+      D\colon(\mathcal{C}^{1}[0,1],\opnorm{\cdot }_{i})\rightarrow \mathcal{C}_{\infty
+      }^{0}[0,1]
+    \end{equation*}
+    es o no una función continua.
+   </li></ol>
+</div>
+</p>
+<p>
+<div id="ejidC" class="exercise">
+Sean $p,r\in [1,\infty ]$.
+</p>
+<p>
+  <ol class="alfa">
+  <li>  Investiga en qué casos $\id\colon C_{p}^{0}[0,1]\rightarrow
+    C_{r}^{0}[0,1]$ es Lipschitz continua y en qué casos no lo es.
+ </li>
+  <li>  Investiga en qué casos $\id\colon C_{p}^{0}[0,1]\rightarrow
+    C_{r}^{0}[0,1]$ es continua y en qué casos no lo es.
+ </li>
+  <li>  ¿En qué casos es
+    $\id\colon C_{p}^{0}[0,1]\rightarrow C_{r}^{0}[0,1]$ una equivalencia?
+ </li>
+  <li>  ¿En qué casos es
+    $\id\colon C_{p}^{0}[0,1]\rightarrow C_{r}^{0}[0,1]$ un homeomorfismo?
+   </li></ol>
+</div>
+</p>
+<p>
+<div id="nocontlong" class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li>  Considera las trayectorias $\sigma_{k},\sigma\colon
+    [0,1]\rightarrow \mathbb{R}^{2}$ dadas por
+    \begin{equation*}
+      \sigma_{k}(x)=\left(x,\frac{1}{\sqrt{k}}\sen(\pi kx)\right),\qquad \sigma
+      (x)=(x,0).
+    \end{equation*}
+
+              <div id="fig:3-7" class="figure">
+                <img src="tul/P_T_02/figuras/senos-crop.svg" height="170">
+                <div class="caption">
+                </div>                
+              </div>    
+
+    Prueba que $\sigma_{k}\rightarrow \sigma$ en
+    $\mathcal{B}([0,1],\mathbb{R}^{2})$.
+ </li>
+  <li>  Sea $\mathcal{T}_{(0,0),(1,0)}^{\ast }(\mathbb{R}^{2})$ \
+    el conjunto de todas las trayectorias de longitud finita&nbsp;de
+    $(0,0)$ a $(1,0)$ en $\mathbb{R}^{2}$ con la métrica uniforme
+    \begin{equation*}
+      d_{\infty }(\sigma ,\tau )=\max_{t\in [0,1]}\left\Vert \sigma
+        (t)-\tau (t)\right\Vert ,\qquad\text{}\sigma ,\tau \in \mathcal{T}_{(0,0),(1,0)}^{\ast }(\mathbb{R}^{2}),
+    \end{equation*}
+     </li><em class="emph">(ver Ejemplo&nbsp;<a href="tul/P_T_02/2.html#ejemplomettray">2.27</a>)</em>. Prueba que la
+    función longitud
+    \begin{equation*}
+      \mathfrak{L}\colon\mathcal{T}_{(0,0),(1,0)}^{\ast }(\mathbb{R}^{2})\rightarrow 
+      \mathbb{R}\text{,}
+    \end{equation*}
+    definida en <em class="emph">(<a href="tul/P_T_02/1.html#long">1.1</a>)</em>,&nbsp;no es continua.
+  </ol>
+</div>
+</p>
+<p>
+<div id="distcont" class="exercise">
+Sean $X=(X,d_{X})$, $Y=(Y,d_{Y})$ y $Z=(Z,d_{Z})$
+  espacios métricos.
+</p>
+<p>
+  <ol class="alfa">
+  <li>  Prueba que todas las métricas del
+     </li><em class="emph">Ejercicio&nbsp;<a href="tul/P_T_02/2.html#ejnormprod">2.53</a></em> en el producto cartesiano
+    $X\times Y:=\left\{(x,y):x\in X, y\in Y \right\}$ son
+    equivalentes. En adelante a $X\times Y$ con cualquiera de estas
+    métricas lo llamaremos el <em class="textbf">producto de los espacios
+      métricos</em> $X$ y $Y$. 
+</p>
+<p>
+  <li>  Prueba que las proyecciones
+    \begin{align*}
+      \pi_{X} &\colon X\times Y\rightarrow X,\qquad\text{}\pi_{X}(x,y)=x, \\
+      \pi_{Y} &\colon X\times Y\rightarrow Y,\qquad\text{}\pi_{Y}(x,y)=y,
+    \end{align*}
+    son Lipschitz continuas.
+ </li>
+  <li>  Prueba que $\phi\colon Z\rightarrow X\times Y$ es continua si
+    y sólo si las composiciones
+    \begin{equation*}
+      \pi_{X}\circ \phi\colon Z\rightarrow X\qquad\text{y\qquad }\pi_{Y}\circ \phi
+      \colon Z\rightarrow Y
+    \end{equation*}
+    son continuas.
+ </li>
+  <li>  Prueba que la distancia $d_{X}\colon X\times X\rightarrow
+    \mathbb{R}$ es continua.
+   </li></ol>
+</div>
+</p>
+<p>
+<div id="contopev" class="exercise">
+Sea $(V,\left\Vert \cdot \right\Vert )$ un espacio
+  normado.
+</p>
+<p>
+  <ol class="alfa">
+  <li>  Demuestra que las siguientes funciones son continuas.
+    \begin{align*}
+      V\times V &\rightarrow V,\qquad\text{}(v,w)\mapsto v+w, \\
+      \mathbb{R}\times V &\rightarrow V,\qquad\text{}(\lambda ,v)\mapsto \lambda
+      v, \\
+      V &\rightarrow \mathbb{R},\qquad\text{}v\mapsto \left\Vert v\right\Vert .
+    \end{align*}
+ </li>
+  <li>  ¿Cuáles de ellas son Lipschitz
+    continuas?
+   </li></ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $V$ un espacio vectorial y $d$ una métrica en $V$.
+  Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  Si $d$ satisface
+    \begin{equation}
+      d(v+z,w+z)=d(v,w)\qquad\text{}\forall v,w,z\in V,\label{invtras}
+    \end{equation}
+    entonces la suma &nbsp;$V\times V\rightarrow V$, $(v,w)\mapsto v+w$,
+    es continua.
+ </li>
+  <li>  Si $d$ satisface  </li><em class="emph">(\ref{invtras})</em> y
+    \begin{equation}
+      d(\lambda v,\lambda w)=\left\vert \lambda \right\vert d(v,w)\qquad\text{}\forall v,w\in V,\text{ &nbsp;}\forall \lambda \in \mathbb{R},\label{invdil}
+    \end{equation}
+    entonces el producto por un escalar &nbsp;$\mathbb{R}\times
+    V\rightarrow V$,&nbsp;$(\lambda ,v)\mapsto \lambda v$, &nbsp;es continuo.
+</p>
+<p>
+  <li>  Si $d$ satisface  </li><em class="emph">(\ref{invtras})</em> y
+    <em class="emph">(\ref{invdil})</em>, entonces existe una norma $\left\Vert \cdot
+    \right\Vert $ en $V$ que induce a la métrica $d$.
+  </ol>
+</div>
+</p>
+<p>
+<div id="contdist" class="exercise">
+Sean $X=(X,d)$ un espacio métrico, $A$ un
+  subconjunto no vacío de $X$ y $x\in X$. Definimos la distancia
+  de $x$ a $A$ como
+  \begin{equation*}
+    \dist(x,A):=\inf_{y\in A}d(x,y).
+  \end{equation*}
+  Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  La función $f\colon X\rightarrow \mathbb{R}$ dada por
+    $f(x)=\dist(x,A)$ es Lipschitz continua. \
+     </li><em class="emph">(Sugerencia: Usa el Ejercicio&nbsp;<a href="tul/P_T_02/2.html#ejdifdist">2.32</a>)</em>.
+</p>
+<p>
+  <li>  Si $A$ es un subconjunto cerrado de $X$, entonces
+    $\dist(x,A)=0$ si y sólo si $x\in A$.
+   </li></ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $A$ y $B$ subconjuntos cerrados no vacíos de un espacio
+  métrico $X$ tales que $A\cap B=\emptyset $. Demuestra las
+  siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  Existe una función continua $\eta\colon X\rightarrow
+    [0,1]$ tal que $\eta^{-1}(0)=A$ y $\eta^{-1}(1)=B$, donde
+    $\eta^{-1}(a):=\left\{ x\in X:\eta (x)=a\right\} $.
+     </li><em class="emph">(Sugerencia: Considera la función </em>
+    \begin{equation*}
+      \eta (x):=\frac{\dist(x,A)}{\dist(x,A)+\dist(x,B)}.
+    \end{equation*}
+    <em class="emph">Prueba que está bien definida y que tiene las
+      propiedades deseadas.)</em>
+</p>
+<p>
+  <li>  Existen subconjuntos abiertos $V$ y $W$ de $X$ tales que
+    $A\subset V$, $B\subset W$ y $V\cap W=\emptyset $.
+   </li></ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $X$ un espacio métrico y $Y$ un subespacio métrico de
+  $X$.  Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  Si $U$ es abierto en $X$ entonces $U\cap Y$ es abierto en
+    $Y$.
+ </li>
+  <li>  Si $A$ es cerrado en $X$ entonces $A\cap Y$ es cerrado en
+    $Y$.
+   </li></ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $X=(X,d)$ un espacio métrico, $x_{0}\in X$ y $r>0$. Prueba
+  que la esfera
+  \begin{equation*}
+    S_{X}(x_{0},r):=\left\{x\in X:d(x_{0},x)=r\right\}
+  \end{equation*}
+  es un subconjunto cerrado de $X$. &nbsp;<em class="emph">(Sugerencia: Usa el
+    Ejercicio&nbsp;<a href="tul/P_T_02/3.html#contdist">3.52</a> y la Proposición&nbsp;<a href="tul/P_T_02/3.html#conttop">3.24</a>)</em>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $p\in [1,\infty ]$. Demuestra las siguientes
+  afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  $U$ es abierto en $\mathbb{R}^{n}$ si y sólo si $U$
+    es abierto en $\mathbb{R}_{p}^{n}$.
+ </li>
+  <li>  $C$ es cerrado en $\mathbb{R}^{n}$ si y sólo si $C$
+    es cerrado en $\mathbb{R}_{p}^{n}$.
+   </li></ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $X=[-1,1]$ con la métrica inducida por la de $\mathbb{R}$.
+</p>
+<p>
+  <ol class="alfa">
+  <li>  Describe las bolas abiertas $B_{X}(1,\varepsilon )$ y
+    $B_{X}(-1,\varepsilon )$, $\varepsilon >0$.
+ </li>
+  <li>  ¿Cuál es el interior en $X$ de los
+    siguientes conjuntos?
+    \begin{equation*}
+      (0,1],\qquad[0,1],\qquad
+      \left(0,\tfrac{1}{2}\right),
+      \qquad\left[0,\tfrac{1}{2}\right),\qquad[-1,1].
+    \end{equation*}
+    Observa que el interior de estos conjuntos en $X$ a veces no
+    coincide con su interior en $\mathbb{R}$.
+ </li>
+  <li>  ¿Cuáles de estos conjuntos son
+    abiertos en $X $?
+ </li>
+  <li>  ¿Cuáles de ellos son cerrados en
+    $X$?
+   </li></ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li>  ¿Para cuáles $p\in [1,\infty
+    ]$ es
+    \begin{equation*}
+      A_{1}:=\left\{g\in \mathcal{C}^{0}\left[ 0,1\right] :\int_{0}^{1}\left\vert
+        g(x)\right\vert dx \menorque 1\right\}
+    \end{equation*}
+    un subconjunto abierto de $\mathcal{C}_{p}^{0}\left[ 0,1\right] $?
+    </li>
+  <li>  ¿Para cuáles $p\in [1,\infty
+    ]$ es
+    \begin{equation*}
+      A_{2}:=\left\{g\in \mathcal{C}^{0}\left[ 0,1\right] :\int_{0}^{1}\left\vert
+        g(x)\right\vert dx\leq 1\right\}
+    \end{equation*}
+    un subconjunto cerrado de $\mathcal{C}_{p}^{0}\left[ 0,1\right] $?
+   </li>
+   </ol>
+</p>
+<p>
+    <em class="emph">(Sugerencia: Usa la Proposición&nbsp;<a href="tul/P_T_02/3.html#conttop">3.24</a>.)</em>
+</p>
+<p>
+</div>
+</p>
+<p>
+<div id="ejintbola" class="exercise">
+Para cada $p\in [1,\infty ]$ calcula el
+  interior y la cerradura de los siguientes conjuntos en
+  $\mathcal{C}_{p}^{0}[0,1]$.
+</p>
+<p>
+  <ol class="alfa">
+  <li>  $A_{3}:=\left\{f\in \mathcal{C}^{0}[0,1]:\left\vert
+      f(x)\right\vert \leq 1\:\forall x\in [0,1]\right\}$.
+ </li>
+  <li>  $A_{4}:=\left\{f_{k}:k\in \mathbb{N}\right\}$ &nbsp;donde $f_{k}\in
+    \mathcal{C}^{0}[0,1]$ es la función
+    \begin{equation*}
+      f_{k}(x)=
+        \begin{cases}
+          1-kx & \text{si $x\in [0,\frac{1}{k}]$,} \\
+          0 & \text{si $x\in [\frac{1}{k},1]$.}
+        \end{cases}
+    \end{equation*}
+   </li></ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que una sucesión $(x_{k})$ en un espacio métrico
+  discreto $X_{\disc}$ converge a $x$ en $X_{\disc}$ si y sólo si
+  existe $k_{0}\in \mathbb{N}$ tal que $x_{k}=x$ para todo $k\geq
+  k_{0}$.
+</div>
+</p>
+<p>
+<div id="ejaux" class="exercise">
+Sea $c>0$. Prueba que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\frac{c^{k}}{k!}=0.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="ejintab" class="exercise">
+Prueba que en cualquier espacio métrico $X$ la
+  intersección de un número finito de subconjuntos abiertos
+  $U_{1}\cap \cdots \cap U_{m}$ es abierta en $X$.
+</div>
+</p>
+<p>
+<div id="ejintnum" class="exercise">
+Da un ejemplo de una familia numerable de abiertos
+  $\left\{U_{k}:k\in \mathbb{N}\right\}$&nbsp;en $\mathbb{R}$ cuya intersección
+  $\bigcap_{k\in \mathbb{N}}U_{k}$ no es abierta en $\mathbb{R}$.
+</div>
+</p>
+<p>
+<div id="ejtopcer" class="exercise">
+Demuestra que en cualquier espacio métrico
+  $X=(X,d)$ se cumple lo siguiente:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  $X$ es cerrado en $X$.
+ </li>
+  <li>  El conjunto vacío $\emptyset $ es cerrado en $X$.
+ </li>
+  <li>  La intersección $\bigcap_{i\in \mathcal{I}}C_{i}$ de
+    cualquier familia $\left\{C_{i}:i\in \mathcal{I}\right\}$ de subconjuntos
+    cerrados de $X $ es cerrada en $X$.
+ </li>
+  <li>  La unión $C\cup D$ de dos subconjuntos cerrados $C$ y
+    $D$ de $X$ es cerrada en $X$.
+   </li></ol>
+</p>
+<p>
+  <em class="emph">(Sugerencia: Aplica las Proposiciones&nbsp;<a href="tul/P_T_02/3.html#top">3.26</a>
+    y&nbsp;<a href="tul/P_T_02/3.html#abcer">3.19</a>)</em>.
+</div>
+</p>
+<p>
+<div id="ejmaxint" class="exercise">
+Sean $A$ y $B$ subconjuntos de un espacio
+  métrico $X$. Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  $\Int(B)\subset\Int(A)$ si $B\subset A$.
+ </li>
+  <li>  $\Int(A)$ es el máximo subconjunto abierto de
+    $X$ contenido en $A$.
+   </li></ol>
+</div>
+</p>
+<p>
+<div id="ejmincer" class="exercise">
+  Sean $A$ y $B$ subconjuntos de un espacio
+  métrico $X$. Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li>  $\overline{B}\subset\overline{A}$ si $B\subset A$.
+ </li>
+  <li>  $\overline{A}$ es el mínimo subconjunto cerrado de
+    $X$ que contiene a $A$.
+   </li></ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $A$ un subconjunto de un espacio métrico $X$. La
+  <em class="textbf">frontera</em> de $A$ en $X$  es el conjunto
+  \begin{equation*}
+    \partial A:=\overline{A}\smallsetminus \text{int}(A).
+  \end{equation*}
+  Prueba que $x\in \partial A$ si y sólo si $B_{X}(x,\varepsilon
+  )\cap A\neq \emptyset $ y $B_{X}(x,\varepsilon )\cap
+  (X\smallsetminus A)\neq \emptyset $ para todo $\varepsilon >0$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que la frontera $\partial A$ de cualquier subconjunto $A$ de
+  $X$ es un subconjunto cerrado de $X$.
+</div>
+<div class="exercise">
+  <ol class="alfa">
+  <li>  ¿Es cierto que la frontera de la bola
+    abierta $B_{V}(v_{0},r)$ en un espacio normado $V$ es la esfera
+    \begin{equation*}
+      S_{V}(v_{0},r):=\left\{v\in V:\left\Vert v-v_{0}\right\Vert =r\right\}\text{?}
+    \end{equation*}
+ </li>
+  <li>  ¿Es cierto que la frontera de la bola
+    abierta $B_{X}(x_{0},r)$ en un espacio métrico arbitrario $X$
+    es la esfera
+    \begin{equation*}
+      S_{X}(x_{0},r):=\left\{x\in X:d_{X}(x,x_{0})=r\right\}\text{?}
+    \end{equation*}
+   </li>
+   </ol>
+
+</div>
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>

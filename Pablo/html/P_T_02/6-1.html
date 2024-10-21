@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+  include_once '../../scripts/menu-top.php';
+  the_head_tul('TUL-Análisis Matemático');
+  ?>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function () {
+    document.getElementById("espera").style.visibility = "";
+    document.getElementById("relojito").style.display = "none";
+  });   
+
+  MathJax.Hub.Config({ 
+  tex2jax: {
+  inlineMath: [["$","$"],["\\(","\\)"]],
+  processEscapes: true,
+},
+"HTML-CSS": { 
+preferredFont: "TeX", 
+availableFonts: ["STIX","TeX"], 
+styles: {".MathJax": {color: "#456"}} 
+},
+TeX: {equationNumbers: {autoNumber: "AMS",
+formatURL: function (id) {return 'tul/P_T_02/6.html'+'#'+escape(id) }
+},
+}
+});
+</script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+  <div id="contenedor">
+    <?php 
+    //      include_once '/papirhos-web/scripts/menu-top.php';
+    el_menu('');
+    ?>
+    <div id="contenido">
+      <div class="row">
+        <div class="column column-9">
+          <div id="relojito">
+          </div>
+          <div class="texto-tul" id="espera" style="visibility: hidden">
+            <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 5;
+              }
+            </style>  
+
+            <h2 id="Cap-6">El teorema de punto fijo de Banach y aplicaciones</h2>
+            <p class="noj">
+              El teorema de punto fijo de Banach, también llamado el
+              <em class="emph">principio de contracción</em>,
+              garantiza la existencia 
+              y unicidad de puntos fijos
+              de ciertas funciones de un espacio métrico completo en sí
+              mismo. A diferencia de otros teoremas de punto fijo, éste da un
+              método constructivo para obtenerlo mediante un proceso de
+              iteración.
+            </p>
+            <p>
+              El teorema de punto fijo de Banach tiene multitud de aplicaciones a
+              resultados de existencia y unicidad de soluciones de ecuaciones
+              numéricas, ecuaciones diferenciales y ecuaciones
+              integrales. Daremos aquí algunos ejemplos.
+            </p>
+            <p>
+              Una de las aplicaciones más importantes es el teorema de
+              Picard-Lindelöf que asegura la existencia y unicidad de la
+              solución de un sistema de ecuaciones diferenciales ordinarias que
+              satisface una condición inicial prescrita. A este problema se le
+              conoce como el <em class="emph">problema de Cauchy</em> y es uno de los problemas
+              fundamentales de la teoría de ecuaciones diferenciales.
+            </p>
+
+            <h3 id="sec6-1">El teorema de punto fijo de Banach</h3>
+            <p class="noj">
+              Sea $X=(X,d)$ un espacio métrico.
+            </p>
+            <p>
+              <div class="definition">
+                Una función $\phi \colon X\rightarrow X$ se llama una
+                <em class="textbf">contracción</em> si existe $\alpha
+                \in (0,1)$ tal que
+                \begin{equation}
+                d(\phi (x),\phi (y))\leq \alpha d(x,y)\qquad\forall x,y\in X.\label{contr}
+                \end{equation}
+              </div>
+            </p>
+            <p>
+              Es decir, una contracción es una función de un espacio
+              métrico en sí mismo que es Lipschitz continua con constante
+              de Lipschitz estrictamente menor que $1$. Es importante observar que
+              el que $\phi \colon X\rightarrow X$ sea o no contracción depende de la
+              métrica que le demos a $X$ [Ejercicio <a href="tul/P_T_02/6.html#metcont">6.20</a>].
+            </p>
+            <p>
+              <div class="definition">
+                Un punto $x^{\ast }\in X$ se llama un <em class="textbf">punto fijo
+              </em>de la función $\phi \colon X\rightarrow X$ si $\phi
+              (x^{\ast })=x^{\ast }$.
+            </div>
+          </p>
+          <p>
+            Denotamos por $\phi^{k}$ a la composición
+            \begin{equation*}
+            \phi^{k}:=\underset{k\text{ veces}}{\underbrace{\phi \circ \cdots \circ \phi }}\quad\text{ si }k\in \mathbb{N},\qquad\phi^{0}:=\id_{X},
+            \end{equation*}
+            donde $\id_{X}\colon X\rightarrow X$ es la función identidad. El
+            siguiente resultado sencillo y profundo de Stefan
+            Banach tiene aplicaciones muy importantes.
+          </p>
+
+          <div style="text-align: center;">
+          <video width="400" controls>
+            <source src="tul/P_T_02/figuras/avec-regulateur.mp4" type="video/mp4">
+            </video>
+            </div>
+            <div id="foto:banach" class="figure">
+              <div class="foto">
+                <img src="tul/P_T_02/figuras/fotos/Banach.svg" height="300">
+                <div class="caption">
+                  <div class="tag">            
+                   Stefan Banach
+                 </div>
+               </div>
+             </div>
+             <div class="leyenda-foto">
+               Stefan Banach (1892-1945) nació en Cracovia,
+               Polonia. Fue básicamente autodidacta y su genio fue descubierto
+               accidentalmente por el matemático Hugo Steinhaus. Se le
+               considera fundador del análisis funcional moderno. Muchos
+               conceptos y resultados notables llevan su nombre.
+             </div>
+           </div>
+           <p>
+            <div id="pf" class="theorem">[de punto fijo de Banach]
+              Sea $X$ un espacio
+              métrico completo, no vacío, y sea $\phi \colon X\rightarrow X$
+              una contracción.  Entonces se cumple lo siguiente:
+            </p>
+            <p>
+              <ol class="alfa">
+                <li> $\phi $ tiene un único punto fijo $x^{\ast }$.
+                </li>
+                <li> Para cualquier $x_{0}\in X$ la sucesión $(\phi
+                 ^{k}(x_{0}))$ converge a $x^{\ast }$ en $X$, y se cumple que
+                 \begin{equation}
+                 d(\phi^{k}(x_{0}),x^{\ast })\leq 
+                 \frac{\alpha^{k}}{1-\alpha }d(\phi (x_{0}),x_{0}),\label{error}
+                 \end{equation}
+                 donde $\alpha \in (0,1)$ satisface <em class="emph">(\ref{contr})</em>.
+               </li>
+             </ol>
+           </div>
+         </p>
+         <p>
+          <div class="proof">
+            <em class="emph">(a):</em> &nbsp;Sea $x_{0}$ un punto cualquiera de $X$ y denotemos por
+            \begin{equation*}
+            x_{k}:=\phi^{k}(x_{0}).
+            \end{equation*}
+            Demostraremos primero que la sucesión $(x_{k})$ es de Cauchy en
+            $X$.  Nota que, si $\phi $ satisface (\ref{contr}), entonces
+            \begin{equation*}
+            d(x_{k+1},x_{k})=d(\phi^{k}(x_{1}),\phi^{k}(x_{0}))\leq \alpha
+            ^{k}d(x_{1},x_{0})\qquad\forall k\in \mathbb{N}.
+            \end{equation*}
+            Además, para cualesquiera $y,z\in X$, se cumple que
+            \begin{align*}
+            d(y,z) &\leq d(y,\phi (y))+d(\phi (y),\phi (z))+d(\phi (z),z) \\
+            &\leq d(y,\phi (y))+\alpha d(y,z)+d(\phi (z),z),
+            \end{align*}
+            es decir,
+            \begin{equation*}
+            (1-\alpha )d(y,z)\leq d(y,\phi (y))+d(\phi (z),z).
+            \end{equation*}
+            Tomando $y:=x_{k}$ y $z:=x_{j}$ obtenemos
+            \begin{equation}
+            d(x_{k},x_{j})\leq \frac{d(x_{k+1},x_{k})+d(x_{j+1},x_{j})}{1-\alpha }\leq 
+            \frac{\alpha^{k}+\alpha^{j}}{1-\alpha }d(x_{1},x_{0}).\label{eqpf1}
+            \end{equation}
+            Sea $\varepsilon >0$. Como $\alpha \in (0,1)$ existe $k_{0}\in
+            \mathbb{N}$ tal que
+            \begin{equation}
+            \frac{\alpha^{k}}{1-\alpha }d(x_{1},x_{0})\menorque \frac{\varepsilon }{2}\qquad\forall k\geq k_{0}.\label{eqpf2}
+            \end{equation}
+            En consecuencia,
+            \begin{equation*}
+            d(x_{k},x_{j})\menorque \varepsilon \qquad\forall j,k\geq k_{0}.
+            \end{equation*}
+            Esto demuestra que la sucesión $(x_{k})$ es de Cauchy en $X$.
+          </p>
+          <p>
+            Como $X$ es completo, existe $x^{\ast }\in X$ tal que
+            $x_{k}\rightarrow x^{\ast }$ en $X$ y, como $\phi $ es continua, se
+            tiene entonces que $x_{k+1}=\phi (x_{k})\rightarrow \phi (x^{\ast
+          })$ en $X$. Como el límite de una sucesión es único,
+          concluimos que $\phi (x^{\ast })=x^{\ast }$, es decir, $x^{\ast }$
+          es un punto fijo de $\phi $.
+        </p>
+        <p>
+          Veamos ahora que es único. Si $x_{1}^{\ast }$ y $x_{2}^{\ast }$
+          son puntos fijos de $\phi $ entonces
+        </p>
+        \begin{equation*}
+        d(x_{1}^{\ast },x_{2}^{\ast })=d(\phi (x_{1}^{\ast }),\phi (x_{2}^{\ast
+      }))\leq \alpha d(x_{1}^{\ast },x_{2}^{\ast }).
+      \end{equation*}
+      Como $\alpha \menorque 1$, esta desigualdad implica que $d(x_{1}^{\ast
+    },x_{2}^{\ast })=0$, es decir, $x_{1}^{\ast }=x_{2}^{\ast }$.
+    <br>
+    <em class="emph">(b):</em> &nbsp;Por último, haciendo tender $j\rightarrow \infty $
+    en la desigualdad (\ref{eqpf1}) obtenemos que
+    \begin{equation*}
+    d(x_{k},x^{\ast })=\lim_{j\rightarrow \infty }d(x_{k},x_{j})\leq \frac{\alpha^{k}}{1-\alpha }d(x_{1},x_{0})\qquad\forall k\in \mathbb{N}\text{.}
+    \end{equation*}
+    Esto concluye la demostración.
+  </div>
+
+  <p>
+    El teorema anterior no sólo afirma la existencia de un único
+    punto fijo para una contracción $\phi \colon X\rightarrow
+    X$. También nos dice cómo encontrarlo, o cómo encontrar
+    una buena aproximación de él: basta tomar cualquier punto
+    $x_{0}\in X$ y considerar la sucesión de iteradas $(\phi
+    ^{k}(x_{0}))$. La desigualdad (\ref{error}) nos da una estimación
+    del error en cada paso de la iteración, es decir, nos dice qué
+    tan cerca está $\phi^{k}(x_{0})$ del punto fijo. A este
+    método se le conoce como el <em class="textbf">método de aproximaciones
+    sucesivas.</em> Veremos
+    algunas aplicaciones en las siguientes secciones.
+  </p>
+  <p>
+    Los siguientes ejemplos muestran que las condiciones del teorema de
+    punto fijo de Banach son necesarias.
+  </p>
+  <p>
+    <div class="example">
+      La función $\phi \colon (0,1)\rightarrow (0,1)$&nbsp;dada por
+      $\phi (t)=\frac{1}{2}t$ es una contracción y no tiene ningún punto
+      fijo en $(0,1)$. Por tanto, para la validez del
+      <em class="emph">Teorema <a href="tul/P_T_02/6.html#pf">6.3</a></em> es necesario que $X$ sea completo.
+    </div>
+  </p>
+  <p>
+    <div class="example">
+      La función $\phi \colon \mathbb{R}\rightarrow \mathbb{R}$ dada por
+      $\phi (t)=t+1$ satisface
+      \begin{equation*}
+      \left\vert \phi (t)-\phi (s)\right\vert =\left\vert t-s\right\vert \qquad\forall t,s\in \mathbb{R}.
+      \end{equation*}
+      Sin embargo, no tiene ningún punto fijo. Por tanto, para la
+      validez del <em class="emph">Teorema <a href="tul/P_T_02/6.html#pf">6.3</a></em> es necesario que el número
+      $\alpha $ de la condición <em class="emph">(\ref{contr})</em> sea estrictamente
+      menor que $1$.
+    </div>
+  </p>
+  <p>
+    Esta condición también es necesaria para la unicidad del punto
+    fijo [Ejercicio <a href="tul/P_T_02/6.html#pf1">6.22</a>].
+  </p>
+  <p>
+    La siguiente generalización del teorema de punto fijo de Banach
+    tiene aplicaciones importantes (ver Teorema <a href="tul/P_T_02/6.html#teovolt">6.12</a>).
+  </p>
+  <p>
+    <div id="pfiter" class="corollary">
+      Sea $X$ un espacio métrico completo y $\phi
+      \colon X\rightarrow X $ una función. Si existe $k\in \mathbb{N}$ tal
+      que $\phi^{k}\colon X\rightarrow X$ es una contracción, entonces
+      $\phi $ tiene un único punto fijo.
+    </div>
+  </p>
+  <p>
+    <div class="proof">
+      El Teorema <a href="tul/P_T_02/6.html#pf">6.3</a> asegura que $\phi^{k}$ tiene un único punto
+      fijo $x^{\ast }\in X$. Aplicando $\phi $ a la igualdad $\phi
+      ^{k}(x^{\ast })=x^{\ast }$ obtenemos que
+      \begin{equation*}
+      \phi^{k}(\phi (x^{\ast }))=\phi \left( \phi^{k}(x^{\ast })\right) =\phi
+      \left( x^{\ast }\right) ,
+      \end{equation*}
+      es decir, $\phi (x^{\ast })$ es también un punto fijo de $\phi
+      ^{k}$. Como el punto fijo es único, obtenemos que $\phi (x^{\ast
+    })=x^{\ast }$. En consecuencia, $x^{\ast }$ es también un punto
+    fijo de $\phi $. Y es el único, ya que todo punto fijo de $\phi
+    $ es también un punto fijo de $\phi^{k}$.
+  </div>
+</p>
+
+
+</div>
+</div>
+
+<div class="column column-3">
+  <div class="menu-tul">
+    <div class="titulo-menu">Análisis matemático</div>
+    <div class="autor-menu">Mónica Clapp</div>
+    <ol>
+      <a href="tul/P_T_02/index.html">Índice</a>
+
+      <li> 
+      </li><a href="tul/P_T_02/1.html#Cap-1">Motivación
+    </a>
+  </li>
+  <li> 
+   <a href="tul/P_T_02/2.html#Cap-2">
+    Espacios métricos
+  </a>
+  <ol>                  
+    <li> 
+      <a href="tul/P_T_02/2.html#sec2-1">
+        Definición y ejemplos
+      </a>
+    </li>                                    
+    <li> 
+     <a href="tul/P_T_02/2.html#sec2-2">
+      Espacios normados
+    </a>
+  </li>
+  <li> 
+   <a href="tul/P_T_02/2.html#sec2-3">
+    Espacios de funciones
+  </a>
+</li>                  
+<li> 
+ <a href="tul/P_T_02/2.html#sec2-4">
+  El espacio de funciones acotadas
+</a>
+</li>
+<li> 
+ <a href="tul/P_T_02/2.html#sec2-5">
+  Subespacios métricos e isometrías</a>
+</li>
+<li> 
+ <a href="tul/P_T_02/2.html#sec2-6">
+  Ejercicios
+</a>
+</li>
+</ol>
+</li>
+<li>
+  <a href="tul/P_T_02/3.html#Cap-3">Continuidad</a>
+  <ol>
+    <li><a href="tul/P_T_02/3.html#sec3-1">Definición y ejemplos</a></li>
+    <li><a href="tul/P_T_02/3.html#sec3-2">Conjuntos abiertos y conjuntos cerrados</a></li>
+    <li><a href="tul/P_T_02/3.html#sec3-3">Convergencia de sucesiones</a></li>
+    <li><a href="tul/P_T_02/3.html#sec3-4">Ejercicios</a></li>
+  </ol>
+</li>
+<li>  
+  <a href="tul/P_T_02/4.html#Cap-4">Compacidad</a>
+  <ol>
+    <li><a href="tul/P_T_02/4.html#sec4-1">Conjuntos compactos</a></li>
+    <li><a href="tul/P_T_02/4.html#sec4-2">El teorema de Heine-Borel</a></li>
+    <li><a href="tul/P_T_02/4.html#sec4-3">Existencia de máximos y mínimos</a></li>
+    <li><a href="tul/P_T_02/4.html#sec4-4">Semicontinuidad</a></li>
+    <li><a href="tul/P_T_02/4.html#sec4-5">Continuidad uniforme</a></li>
+    <li><a href="tul/P_T_02/4.html#sec4-6">Ejercicios</a></li>
+  </ol> 
+</li>
+<li>  
+  <a href="tul/P_T_02/5.html#Cap-5">Completitud</a>
+  <ol>
+    <li><a href="tul/P_T_02/5.html#sec5-1">Espacios métricos completos</a></li>
+    <li><a href="tul/P_T_02/5.html#sec5-2">Convergencia uniforme</a></li>
+    <li><a href="tul/P_T_02/5.html#sec5-3">Espacios completos de funciones</a></li>
+    <li><a href="tul/P_T_02/5.html#sec5-4">Series en espacios de Banach</a></li>
+    <li><a href="tul/P_T_02/5.html#sec5-5">Ejercicios</a></li>
+    <li><a href="tul/P_T_02/5.html#sec5-6">Proyecto: Completación de un espacio métrico</a>
+    </li>
+  </ol> 
+</li>
+</ol>
+</div>
+</div>
+
+</div>
+</div>
+<?php
+pie(); 
+?>
+</div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>

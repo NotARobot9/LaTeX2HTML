@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/javascript" src="./tul/P_T_02/refs.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/15.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\sop}{\mathop{\rm sop}} $ 
+    $ \newcommand{\vol}{\mathop{\rm vol}\nolimits} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\graf}{\mathop{\rm graf}} $ 
+    $ \newcommand{\loc}{\mathop{\rm loc}} $ 
+    $ \newcommand{\lin}{\mathop{\rm lin}} $ 
+    $ \newcommand{\undercbrace}{\underbrace} $ 
+    $ \newcommand{\menorque}{\mathrel{<}}$ 
+    $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 14;
+              }
+              </style>
+<h2 id="Cap-15">Espacios de Hilbert</h2>
+
+<p class="noj">
+Entre los espacios de Banach tienen especial importancia aquéllos
+cuya norma está inducida por un producto escalar. Se llaman
+<em class="emph">espacios de Hilbert</em> y son la extensión más natural
+del espacio euclidiano a dimensión infinita. Los conceptos y
+resultados de la geometría euclidiana se generalizan de manera
+natural a estos espacios: allí vale el teorema de Pitágoras y
+la ley del paralelogramo, y podemos definir la proyección
+ortogonal sobre un subespacio y su complemento ortogonal siempre y
+cuando dicho subespacio sea cerrado.
+</p>
+<p>
+La existencia de la proyección ortogonal tiene una consecuencia
+bien importante: tal y como ocurre en $\mathbb{R}^{n}$, en un espacio
+de Hilbert $H$ cualquier función lineal y continua $\eta
+\colon H\rightarrow \mathbb{R}$ se puede expresar como el producto escalar
+por un elemento $u_{0}$ de $H$, es decir,
+\begin{equation*}
+  \eta u=\left\langle u_{0},u\right\rangle \qquad \forall u\in H.
+\end{equation*}
+A este resultado se le conoce como el teorema de representación de
+Fréchet-Riesz y tiene aplicaciones muy importantes (ver Teorema
+<a href="tul/P_T_02/16.html#existenciasd">16.29</a>).
+</p>
+<p>
+Los espacios de Hilbert son el ambiente natural para muchas
+aplicaciones.  Veremos en los próximos capítulos que la
+existencia de soluciones a ciertas ecuaciones en derivadas parciales
+se puede plantear en términos de la existencia del mínimo de
+un funcional sobre un hiperplano o sobre una esfera en un espacio de
+Hilbert. Dichos subconjuntos no son compactos, por lo que el problema
+de minimización no resulta trivial.
+</p>
+<p>
+En este capítulo introduciremos una nueva noción de
+convergencia, llamada <em class="emph">convergencia débil</em>, que, a
+diferencia de la convergencia usual, tiene la propiedad de que
+cualquier sucesión acotada contiene una subsucesión
+convergente en el sentido débil. Este concepto es muy útil
+para abordar problemas de minimización ya que proporciona un
+candidato para el mínimo: el límite débil de una
+sucesión minimizante. Resta probar, en cada situación
+concreta, que éste es efectivamente el mínimo que
+buscamos. Daremos aplicaciones importantes de este método en los
+próximos capítulos.
+</p>
+<p>
+<h3 id="sec15-1">Conceptos y propiedades básicas</h3>
+</p>
+<p>
+Comencemos recordando el concepto de producto escalar y sus
+propiedades básicas.
+</p>
+<p>
+<div class="definition">
+  Sea $V$ un espacio vectorial sobre $\mathbb{R}$. Un <em class="textbf">producto
+    escalar</em> en $V$ es una función
+  $\left\langle \cdot ,\cdot \right\rangle \colon V\times V\rightarrow
+  \mathbb{R}$ con las siguientes propiedades:
+</p>
+<p>
+  <dl>
+  <dt>(PE1)</dt> <dd> $\left\langle \lambda v_{1}+\mu v_{2},w\right\rangle
+    =\lambda \left\langle v_{1},w\right\rangle +\mu \left\langle
+      v_{2},w\right\rangle $ &nbsp;para cualesquiera $v_{1},v_{2},w\in V$,
+    $\lambda ,\mu \in \mathbb{R}$.</dd>
+
+  <dt>(PE2)</dt> <dd> $\left\langle v,w\right\rangle =\left\langle
+      w,v\right\rangle $ &nbsp;para cualesquiera $v,w\in V$.</dd>
+
+  <dt>(PE3)</dt> <dd> $\left\langle v,v\right\rangle >0$ &nbsp;para todo $v\in
+    V$, $v\neq 0$.</dd>
+  </dl>
+</div>
+</p>
+
+Definimos
+\begin{equation}
+  \left\Vert v\right\Vert :=\sqrt{\left\langle v,v\right\rangle }.\label{normpe}
+\end{equation}
+
+<div id="foto:schwarz" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Schwarz.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Hermann Schwarz
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+      Karl Hermann
+      Amandus Schwarz (1843-1921) nació en Hermsdorf, Silesia,
+      entonces parte de Prusia y hoy de Polonia. Estudió en
+      Berlín, donde fue alumno de Ernst Kummer y Karl
+      Weierstrass. Fue profesor en la Universidad de
+      Göttingen.
+  </div>
+</div>
+
+<p>
+<div id="despe" class="proposition">
+Se cumplen las siguientes relaciones.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Desigualdad de Cauchy-Schwarz:
+    \begin{equation*}
+      \left\vert \left\langle v,w\right\rangle \right\vert \leq \left\Vert
+        v\right\Vert \left\Vert w\right\Vert 
+      \qquad \forall v,w\in V.
+    \end{equation*}
+</p>
+<p>
+  <li> Desigualdad del triángulo:
+    \begin{equation*}
+      \left\Vert v+w\right\Vert \leq \left\Vert v\right\Vert +\left\Vert
+        w\right\Vert 
+      \qquad \forall v,w\in V.
+    \end{equation*}
+</p>
+<p>
+  <li> Identidad del paralelogramo:
+    \begin{equation*}
+      \left\Vert v+w\right\Vert^{2}+\left\Vert v-w\right\Vert^{2}=2(\left\Vert
+        v\right\Vert^{2}+\left\Vert w\right\Vert^{2})\qquad \forall v,w\in V.
+    \end{equation*}
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a): </em> Para cualesquiera $v,w\in V$, $\lambda \in \mathbb{R}$
+  se cumple
+  \begin{equation*}
+    0\leq \left\langle v+\lambda w,v+\lambda w\right\rangle =\left\Vert
+      v\right\Vert^{2}+2\lambda \left\langle v,w\right\rangle +\lambda
+   ^{2}\left\Vert w\right\Vert^{2}.
+  \end{equation*}
+  Si $w\neq 0$, tomando $\lambda :=-\frac{\left\langle
+      v,w\right\rangle }{\left\Vert w\right\Vert^{2}}$ obtenemos
+  \begin{equation*}
+    0\leq \left\Vert v\right\Vert^{2}-2\frac{\left\langle v,w\right\rangle^{2}}{\left\Vert w\right\Vert^{2}}+\frac{\left\langle v,w\right\rangle^{2}}{\left\Vert w\right\Vert^{2}}=\left\Vert v\right\Vert^{2}-\frac{\left\langle v,w\right\rangle^{2}}{\left\Vert w\right\Vert^{2}}.
+  \end{equation*}
+  Multiplicando esta desigualdad por $\left\Vert w\right\Vert^{2}$
+  concluimos que
+  \begin{equation*}
+    \left\langle v,w\right\rangle^{2}\leq \left\Vert v\right\Vert
+   ^{2}\left\Vert w\right\Vert^{2},
+  \end{equation*}
+  y sacando raíz cuadrada obtenemos la desigualdad deseada. Nota
+  que ésta se satisface trivialmente si $w=0$.
+</p>
+<p>
+  <em class="emph">(b): </em> Usando la desigualdad de Cauchy-Schwarz obtenemos
+  \begin{align*}
+    \left\Vert v+w\right\Vert^{2} &=\left\Vert v\right\Vert^{2}+2\left\langle
+      v,w\right\rangle +\left\Vert w\right\Vert^{2} \\
+    &\leq \left\Vert v\right\Vert^{2}+2\left\Vert v\right\Vert \left\Vert
+      w\right\Vert +\left\Vert w\right\Vert^{2}=\left( \left\Vert v\right\Vert
+      +\left\Vert w\right\Vert \right)^{2}.
+  \end{align*}
+  Sacando raíz cuadrada obtenemos la desigualdad del
+  triángulo.
+</p>
+<p>
+  <em class="emph">(c)</em> se obtiene mediante un cálculo directo. Proponemos su
+  demostración como ejercicio [Ejercicio <a href="tul/P_T_02/15.html#lp">15.34</a>].
+</div>
+</p>
+<p>
+Las desigualdades anteriores tienen las siguientes consecuencias.
+</p>
+<p>
+<div class="proposition">
+  $\left\Vert v\right\Vert :=\sqrt{\left\langle v,v\right\rangle }$ es
+  una norma en $V$.
+</div>
+</p>
+<p>
+<div class="proof">
+  La desigualdad del triángulo se probó en la
+  Proposición <a href="tul/P_T_02/15.html#despe">15.2</a>. Las otras propiedades son consecuencia
+  inmediata de la definición del producto escalar.
+</div>
+</p>
+<p>
+La norma (\ref{normpe}) se llama la <em class="textbf">norma inducida</em>
+<em class="textbf">por el producto
+  escalar</em> $\left\langle \cdot ,\cdot \right\rangle $. Un cálculo
+sencillo muestra que el producto escalar se expresa en términos de
+la norma inducida como sigue:
+\begin{equation}
+  \left\langle v,w\right\rangle =\frac{1}{4}\left( \left\Vert v+w\right\Vert^{2}-\left\Vert v-w\right\Vert
+   ^{2}\right) \qquad \forall v,w\in V.\label{penorm}
+\end{equation}
+</p>
+<p>
+<div class="proposition" id="contpe">[Continuidad del producto escalar]
+Si $w_{k}\rightarrow w$ en $V$, entonces
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\langle v,w_{k}\right\rangle =\left\langle
+      v,w\right\rangle \qquad \forall v\in V.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  De la desigualdad de Cauchy-Schwarz se sigue que
+  \begin{equation*}
+    \left\vert \left\langle v,w\right\rangle -\left\langle v,w_{k}\right\rangle
+    \right\vert =\left\vert \left\langle v,w-w_{k}\right\rangle \right\vert \leq
+    \left\Vert v\right\Vert \left\Vert w-w_{k}\right\Vert ,
+  \end{equation*}
+  para cualesquiera $v,w,w_{k}\in V$. En consecuencia, $\left\langle
+    v,w_{k}\right\rangle \rightarrow \left\langle v,w\right\rangle $
+  si $w_{k}\rightarrow w$.
+</div>
+</p>
+
+<div id="foto:hilbert" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Hilbert.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      David Hilbert
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+    David Hilbert (1862-1943)
+    nació en Königsberg en la provincia de Prusia, hoy parte
+    de Rusia. Estudió en la Universidad de Königsberg y fue
+    profesor en la Universidad de Göttingen. Es reconocido como
+    uno de los matemáticos más universales e influyentes del
+    siglo XIX y principios del XX.
+  </div>
+</div>
+
+<p>
+<div class="definition">
+  Un <em class="textbf">espacio de Hilbert</em>es un
+  espacio vectorial $H$ con un producto escalar $\left\langle \cdot
+    ,\cdot \right\rangle $ que es completo respecto a la norma
+  inducida <em class="emph">(\ref{normpe})</em>.
+</div>
+</p>
+<p>
+Veamos algunos ejemplos.
+</p>
+<p>
+<div id="ejemHilbert" class="example">
+</p>
+<p>
+  <ol class="alfa">
+  <li> $\mathbb{R}^{n}$ es un espacio de Hilbert con el producto
+    escalar usual
+    \begin{equation*}
+      x\cdot y:=x_{1}y_{1}+\cdots +x_{n}y_{n},\qquad x=(x_{1},\dots,x_{n}),\text{ }y=(y_{1},\dots,y_{n}).
+    \end{equation*}
+</p>
+<p>
+  <li> El espacio $\ell_{2}$ de todas las sucesiones
+    $\overline{x}=(x_{k})$ de números reales tales que la serie
+    $\sum_{k=1}^{\infty }\left\vert x_{k}\right\vert^{2}$converge,
+    con el producto escalar
+    \begin{equation}
+      \left\langle \overline{x},\overline{y}\right\rangle_{\ell
+       _{2}}:=\sum_{k=1}^{\infty }x_{k}y_{k},\qquad \overline{x}=(x_{k}),\text{ }\overline{y}=(y_{k})\in \ell_{2},\label{pel2}
+    \end{equation}
+    es un espacio de Hilbert.
+</p>
+<p>
+  <li> Para cualquier abierto $\Omega $ de $\mathbb{R}^{n}$, el
+    espacio $L^{2}(\Omega )$ con el producto escalar
+    \begin{equation}
+      \left\langle f,g\right\rangle_{2}:=\int_{\Omega }fg,\qquad f,g\in
+      L^{2}(\Omega ),\label{peL2}
+    \end{equation}
+    es un espacio de Hilbert.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a)</em> es bien conocido.
+</p>
+<p>
+  <em class="emph">(b): </em> La convergencia de la serie (\ref{pel2})&nbsp;se sigue de
+  la desigualdad de Hölder para series con $p=2$ (ver
+  Ejercicio <a href="tul/P_T_02/2.html#lholder">2.43</a>). Es sencillo comprobar que (\ref{pel2}) es
+  un producto escalar que induce la norma de $\ell_{2}$. Sabemos que
+  este espacio es completo (ver Ejercicio <a href="tul/P_T_02/5.html#ejlpcompl">5.33</a>).
+</p>
+<p>
+  <em class="emph">(c): </em> La desigualdad de Hölder (ver Proposición <a href="tul/P_T_02/14.html#holder">14.21</a>)
+  implica que $fg$ es integrable si $f,g\in L^{2}(\Omega )$. Es
+  sencillo comprobar que (\ref{peL2}) es un producto escalar que
+  induce la norma de $L^{2}(\Omega )$. Sabemos que este espacio es
+  completo (ver Teorema <a href="tul/P_T_02/14.html#teoLpBanach">14.27</a>).
+</div>
+</p>
+<p>
+<div class="example" id="sumdir">[Suma directa de espacios de Hilbert]
+Si $H_{i}$ es un espacio vectorial con producto
+  escalar $\left\langle \cdot ,\cdot \right\rangle_{i}$, $i=1,2$,
+  entonces
+  \begin{equation*}
+    \left\langle (v_{1},v_{2}),(w_{1},w_{2})\right\rangle_{H_{1}\oplus
+      H_{2}}:=\left\langle v_{1},w_{1}\right\rangle_{1}+\left\langle
+      v_{2},w_{2}\right\rangle_{2},\quad v_{1},w_{1}\in H_{1},\text{ &nbsp;}v_{2},w_{2}\in H_{2},
+  \end{equation*}
+  es un producto escalar en la suma directa $H_{1}\oplus H_{2}$. Si
+  $H_{1}$ y $H_{2}$ son espacios de Hilbert, entonces $H_{1}\oplus
+  H_{2}$&nbsp;es un espacio de Hilbert.
+</div>
+</p>
+<p>
+<div class="proof">
+  Es sencillo comprobar que éste es un producto escalar en
+  $H_{1}\oplus H_{2}$. La norma inducida es
+  \begin{equation*}
+    \left\Vert (v_{1},v_{2})\right\Vert =\sqrt{\left\Vert v_{1}\right\Vert_{1}^{2}+\left\Vert v_{2}\right\Vert
+     _{2}^{2}}.
+  \end{equation*}
+  En consecuencia, $H_{1}\oplus H_{2}$ es un espacio de Hilbert si
+  $H_{1}$ y $H_{2}$ lo son (ver Ejercicio <a href="tul/P_T_02/5.html#prodcompl">5.37</a>).
+</div>
+</p>
+<p>
+No cualquier subespacio vectorial de un espacio de Hilbert resulta ser
+un espacio de Hilbert. Veamos un ejemplo.
+</p>
+<p>
+<div class="example">
+  $\mathcal{C}_{c}^{0}(\Omega )$ con el producto escalar de
+  $L^{2}(\Omega )$ no es un espacio de Hilbert.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $f\in L^{2}(\Omega )\smallsetminus \mathcal{C}_{c}^{0}(\Omega
+  )$. Por la Proposición <a href="tul/P_T_02/14.html#contdens">14.33</a>, existe una sucesión
+  $(g_{k})$ en $\mathcal{C}_{c}^{0}(\Omega )$ tal que
+  $g_{k}\rightarrow f$ en $L^{2}(\Omega )$. Entonces, la sucesión
+  $(g_{k})$ es de Cauchy pero no converge en
+  $\mathcal{C}_{c}^{0}(\Omega )$.
+</div>
+</p>
+<p>
+Recuerda que un subespacio $A$ de un espacio métrico completo $X$
+es completo si y sólo si $A$ es cerrado en $X$ (ver
+Proposición <a href="tul/P_T_02/5.html#complcerr">5.9</a>), de modo que se tiene lo siguiente.
+</p>
+<p>
+<div id="cerrhilbert" class="proposition">
+Un subespacio vectorial $V$ de un espacio de
+  Hilbert $H$ es un espacio de Hilbert si y sólo si $V$ es cerrado
+  en $H$.
+</div>
+</p>
+<p>
+<h3 id="sec15-2">Complemento ortogonal</h3>
+</p>
+<p>
+Sea $H$ un espacio de Hilbert con producto escalar $\left\langle \cdot
+  ,\cdot \right\rangle $.
+</p>
+<p>
+<div id="esport" class="definition">
+Si $V$ es un subespacio vectorial de $H$, el
+  <em class="textbf">espacio ortogonal a</em> $V$ <em class="textbf">en</em> $H$
+  se define como
+  \begin{equation*}
+    V^{\perp }:=\left\{ w\in H:\left\langle v,w\right\rangle =0\text{ &nbsp;}\forall v\in V\right\} .
+  \end{equation*}
+</div>
+</p>
+<p>
+Es claro que $V^{\perp }$ es un subespacio vectorial de $H$. Nota que
+$V\subset (V^{\perp })^{\perp }$ pero, a diferencia de lo que ocurre
+en $\mathbb{R}^{n}$, no necesariamente se cumple que $V=(V^{\perp
+})^{\perp }$, como lo muestra el siguiente ejemplo.
+</p>
+<p>
+<div id="ejemnoco" class="example">
+El espacio ortogonal a $\mathcal{C}_{c}^{0}(\Omega
+  )$ en $L^{2}(\Omega )$ es $\left\{0\right\}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $f\in \mathcal{C}_{c}^{0}(\Omega )^{\perp }$ se cumple que
+  \begin{equation*}
+    \int_{\Omega }f\varphi =0\qquad \forall \varphi \in \mathcal{C}_{c}^{\infty }(\Omega ).
+  \end{equation*}
+  La Proposición <a href="tul/P_T_02/14.html#testL1loc">14.49</a> asegura entonces que $f=0$ en
+  $L^{2}(\Omega )$.
+</div>
+</p>
+<p>
+La siguiente afirmación implica que una condición necesaria
+para que $V=(V^{\perp })^{\perp }$ es que $V$ sea cerrado en $H$. De
+hecho, esta condición también es suficiente [Ejercicio
+<a href="tul/P_T_02/15.html#Vortort=V">15.39</a>].
+</p>
+<p>
+<div id="complort" class="proposition">
+$V^{\perp }$ es un subespacio cerrado de $H$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $(w_{k})$ es una sucesión en $V^{\perp }$ que converge a $w$
+  en $H$, entonces
+  \begin{equation*}
+    \left\langle v,w\right\rangle =\lim_{k\rightarrow \infty }\left\langle
+      v,w_{k}\right\rangle =0\qquad \forall v\in V
+  \end{equation*}
+  (ver Proposición <a href="tul/P_T_02/15.html#contpe">15.4</a>). Por tanto, $w\in V^{\perp }$.
+  Esto prueba que $V^{\perp }$ es cerrado en $H$.
+</div>
+</p>
+<p>
+El espacio ortogonal se puede describir del siguiente modo.
+</p>
+<p>
+<div id="lemport" class="proposition">
+Sean $V$ un subespacio vectorial de $H$ y $w\in H$.
+  Entonces
+  \begin{equation*}
+    w\in V^{\perp }\quad \Longleftrightarrow \quad \left\Vert
+      w\right\Vert =\inf_{v\in V}\left\Vert w-v\right\Vert .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$: &nbsp;Si $w\in V^{\perp }$ entonces $\left\Vert
+    w-v\right\Vert^{2}=\left\Vert w\right\Vert^{2}+\left\Vert
+    v\right\Vert^{2}$ para todo $v\in V$. En consecuencia,
+  $\left\Vert w\right\Vert \leq \left\Vert w-v\right\Vert $ y, como
+  $\left\Vert w\right\Vert =\left\Vert w-0\right\Vert \geq \inf_{v\in
+    V}\left\Vert w-v\right\Vert $, concluimos que
+  \begin{equation*}
+    \left\Vert w\right\Vert =\inf_{v\in V}\left\Vert w-v\right\Vert .
+  \end{equation*}
+  $\Leftarrow )$: &nbsp;Supongamos ahora que $\left\Vert w\right\Vert
+  =\inf_{v\in V}\left\Vert w-v\right\Vert $. Para cada $v\in V$ con
+  $\left\Vert v\right\Vert =1$ definimos $f_{v}\colon \mathbb{R}\rightarrow
+    \mathbb{R}$ como
+  \begin{equation*}
+    f_{v}(t):=\left\Vert w-tv\right\Vert^{2}=\left\Vert w\right\Vert
+   ^{2}-2\left\langle w,v\right\rangle t+t^{2}.
+  \end{equation*}
+  Esta función es diferenciable y $t_{v}:=\left\langle
+    w,v\right\rangle $ es el único punto crítico de $f_{v}$.
+  Por hipótesis, se tiene que
+  \begin{equation*}
+    f_{v}(0)=\left\Vert w\right\Vert^{2}\leq \inf_{t\in \mathbb{R}}\left\Vert
+      w-tv\right\Vert^{2}=\inf_{t\in \mathbb{R}}f_{v}(t).
+  \end{equation*}
+  Es decir, $0$ es un mínimo de $f_{v}$. En consecuencia,
+  $0=\left\langle w,v\right\rangle $ para todo $v\in V$.
+</div>
+</p>
+<p>
+Probaremos ahora que, si $V$ es cerrado, el ínfimo se alcanza y
+es único.
+</p>
+<p>
+<div id="teoport" class="proposition">
+Sea $V$ un subespacio vectorial cerrado de $H$.
+  Entonces, para cada $u\in H$, existe un único $v\in V$ tal que
+  \begin{equation}
+    \left\Vert u-v\right\Vert =\inf_{w\in V}\left\Vert u-w\right\Vert .
+\label{inf}
+  \end{equation}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $u\in H$. Denotemos por
+  \begin{equation*}
+    d:=\inf_{w\in V}\left\Vert u-w\right\Vert .
+  \end{equation*}
+  Observa que para cualesquiera $w,\tilde{w}\in V$ se cumple que
+  \begin{equation}
+    \left\Vert w+\tilde{w}-2u\right\Vert =2\left\Vert \frac{w+\tilde{w}}{2}-u\right\Vert \geq 2d,\label{dp}
+  \end{equation}
+  ya que $\frac{1}{2}\left( w+\tilde{w}\right) \in V$. Tomemos una
+  sucesión $\left( v_{k}\right) $ en $V$ tal que
+  $\lim_{k\rightarrow \infty }\left\Vert u-v_{k}\right\Vert =d$. Dada
+  $\varepsilon >0$ elegimos $k_{0}\in \mathbb{N}$ tal que
+  \begin{equation*}
+    \left\Vert u-v_{k}\right\Vert^{2}\menorque d^{2}+\frac{\varepsilon }{4}\qquad \forall k\geq k_{0}.
+  \end{equation*}
+  Aplicando la identidad del paralelogramo y la desigualdad (\ref{dp})
+  obtenemos
+  \begin{align*}
+    \left\Vert v_{j}-v_{k}\right\Vert^{2} &=\left\Vert \left( v_{j}-u\right)
+      +\left( u-v_{k}\right) \right\Vert^{2} \\
+    &=2\left( \left\Vert u-v_{k}\right\Vert^{2}+\left\Vert u-v_{j}\right\Vert
+     ^{2}\right) -\left\Vert \left( v_{j}-u\right) -\left( u-v_{k}\right)
+    \right\Vert^{2} \\
+    &\menorque 4d^{2}+\varepsilon -4d^{2}=\varepsilon \qquad\text{ si }j,k\geq k_{0}.
+  \end{align*}
+  Esto prueba que $\left( v_{k}\right) $ es una sucesión de Cauchy en
+  $V$. Dado que $V$ es de Hilbert (ver Proposición <a href="tul/P_T_02/15.html#cerrhilbert">15.9</a>),
+  existe $v\in V$ tal que $v_{k}\rightarrow v$ en $H$. En
+  consecuencia,
+  \begin{equation*}
+    \left\Vert u-v\right\Vert =\lim_{k\rightarrow \infty }\left\Vert
+      u-v_{k}\right\Vert =d.
+  \end{equation*}
+  Probaremos ahora que $v$ es único. Si $\tilde{v}\in V$ cumple
+  que $\left\Vert \tilde{v}-u\right\Vert =d$ entonces, aplicando de
+  nuevo la identidad del paralelogramo y la desigualdad (\ref{dp})
+  obtenemos
+  \begin{equation*}
+    \left\Vert v-\tilde{v}\right\Vert^{2}=2(\left\Vert v-u\right\Vert
+   ^{2}+\left\Vert \tilde{v}-u\right\Vert^{2})-\left\Vert v+\tilde{v}-2u\right\Vert^{2}\leq 4d^{2}-4d^{2}=0.
+  \end{equation*}
+  Por tanto, $\tilde{v}=v$.
+</div>
+</p>
+<p>
+<div id="port" class="definition">
+Sea $V$ un subespacio vectorial cerrado de $H$. La
+  <em class="textbf">proyección ortogonal de</em> $H$ <em class="textbf">sobre</em> $V$
+  es la función
+  \begin{equation*}
+    P_{V}\colon H\rightarrow V
+  \end{equation*}
+  que a cada $u\in H$ le asocia el único elemento $P_{V}u$ de $V$
+  tal que
+  \begin{equation*}
+    \left\Vert u-P_{V}u\right\Vert =\inf_{w\in V}\left\Vert u-w\right\Vert .
+  \end{equation*}
+</div>
+</p>
+<p>
+Las proposiciones anteriores proporcionan la siguiente
+caracterización de la proyección ortogonal.
+</p>
+<p>
+<div id="corport" class="corollary">
+Si $V$ es un subespacio cerrado de $H$ y $u\in H$,
+  entonces $P_{V}u$ es el único elemento de $V$ tal que
+  \begin{equation*}
+    u-P_{V}u\in V^{\perp }.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $v\in V$ la Proposición <a href="tul/P_T_02/15.html#lemport">15.13</a> asegura que
+  \begin{equation*}
+    u-v\in V^{\perp }\quad \Longleftrightarrow \quad \left\Vert u-v\right\Vert
+    =\inf_{w\in V}\left\Vert u-v-w\right\Vert =\inf_{z\in V}\left\Vert
+      u-z\right\Vert .
+  \end{equation*}
+  De la Proposición <a href="tul/P_T_02/15.html#teoport">15.14</a> se sigue que tal $v$ existe y es
+  única y, por definición, $v=P_{V}u$.
+</div>
+</p>
+<p>
+El Ejemplo <a href="tul/P_T_02/15.html#ejemnoco">15.11</a> muestra que la suma directa de $V$ y
+$V^{\perp }$ no necesariamente es todo $H$. Probaremos a
+continuación que $V\oplus V^{\perp }$ coincide con $H$ si $V$ es
+cerrado. En este caso el espacio $V^{\perp }$ se llama el
+<em class="textbf">complemento ortogonal de</em> $V$ <em class="textbf">en</em>
+$H$.
+</p>
+<p>
+En lo que sigue $\left\Vert \cdot \right\Vert_{\mathcal{L}(H,V)}$ denota a la norma definida en (<a href="tul/P_T_02/9.html#defnorma">9.1</a>).
+</p>
+
+<div class="theorem" id="teoport2">[Complemento ortogonal]
+Sea $V$ un
+  subespacio vectorial cerrado de $H$. Se cumple lo siguiente:
+
+
+  <ol class="alfa">
+  <li> La proyección ortogonal $P_{V}\colon H\rightarrow V$ es la
+    única función lineal de $H$ en $V$ que cumple:
+
+    <dl>
+    <dt>(a.1)</dt> <dd>$P_{V}\circ P_{V}=P_{V}$,</dd>
+    <dt>(a.2)</dt> <dd>$\ker P_{V}=V^{\perp }$.</dd>
+    </dl>
+
+  <li> $P_{V}$ es continua y $\left\Vert P_{V}\right\Vert
+   _{\mathcal{L}(H,V)}=1$ si $V\neq \left\{0\right\}$.
+
+  <li> La función $\iota \colon V\oplus V^{\perp }\rightarrow H$
+    dada por $\iota (v,w):=v+w$ es un isomorfismo lineal y una
+    isometría.
+  </ol>
+</div>
+
+<p>
+<div class="proof">
+  <em class="emph">(a): </em> Probaremos primero que $P_{V}$ es lineal. Sean
+  $u,\tilde{u}\in H$, $\lambda ,\mu \in \mathbb{R}$. Entonces,
+  $\lambda P_{V}u+\mu P_{V}\tilde{u}\in V$ y
+  \begin{equation*}
+    \lambda u+\mu \tilde{u}-\left( \lambda P_{V}u+\mu P_{V}\tilde{u}\right)
+    =\lambda \left( u-P_{V}u\right) +\mu \left( \tilde{u}-P_{V}\tilde{u}\right)
+    \in V^{\perp }.
+  \end{equation*}
+  Del Corolario <a href="tul/P_T_02/15.html#corport">15.16</a> se sigue que $P_{V}\left( \lambda u+\mu
+    \tilde{u}\right) =\lambda P_{V}u+\mu P_{V}\tilde{u}$.
+</p>
+<p>
+  El Corolario <a href="tul/P_T_02/15.html#corport">15.16</a> implica además que $P_{V}v=v$ para
+  todo $v\in V$. En consecuencia, $P_{V}(P_{V}u)=P_{V}u$ para todo
+  $u\in H$, es decir, $P_{V}$ satisface <em class="emph">(a.1). </em>La
+  afirmación <em class="emph">(a.2)</em> es consecuencia inmediata del mismo
+  corolario.
+</p>
+<p>
+  Si $T\colon H\rightarrow V$ es una función lineal que satisface
+  <em class="emph">(a.1)</em> entonces, para todo $u\in H$, se cumple que
+  $T(u-Tu)=0$. Si además $T$ satisface <em class="emph">(a.2),</em> entonces
+  $u-Tu\in V^{\perp }$ y el Corolario <a href="tul/P_T_02/15.html#corport">15.16</a> asegura que
+  $Tu=P_{V}u$. Esto demuestra la unicidad.
+</p>
+<p>
+  <em class="emph">(b): </em>Dado que $u=P_{V}u+(u-P_{V}u)$ y $\left\langle
+    u-P_{V}u,P_{V}u\right\rangle =0$, se tiene que
+  \begin{equation}
+    \left\Vert u\right\Vert^{2}=\left\Vert P_{V}u\right\Vert^{2}+\left\Vert
+      u-P_{V}u\right\Vert^{2}.\label{cort3}
+  \end{equation}
+  En particular,
+  \begin{equation*}
+    \left\Vert P_{V}u\right\Vert \leq \left\Vert u\right\Vert \qquad \forall u\in H,
+  \end{equation*}
+  lo que implica que $P_{V}$ es continua y, además, que
+  \begin{equation*}
+    \left\Vert P_{V}\right\Vert_{\mathcal{L}(H,V)}:=\sup_{u\in H\smallsetminus
+      \left\{0\right\}}\frac{\left\Vert P_{V}u\right\Vert }{\left\Vert u\right\Vert }\leq 1.
+  \end{equation*}
+  Por otra parte, si $v\in V$ y $v\neq \left\{0\right\}$, entonces $P_{V}v=v$ y
+  \begin{equation*}
+    \frac{\left\Vert P_{V}v\right\Vert }{\left\Vert v\right\Vert }=1.
+  \end{equation*}
+  Concluimos que $\left\Vert P_{V}\right\Vert_{\mathcal{L}(H,V)}=1$.
+</p>
+<p>
+  <em class="emph">(c): </em> La función $\iota \colon V\oplus V^{\perp }\rightarrow H$
+  dada por $\iota (v,w):=v+w$ es claramente lineal y la función
+  \begin{equation*}
+    H\rightarrow V\oplus V^{\perp },\qquad u\mapsto (P_{V}u,\text{ }u-P_{V}u),
+  \end{equation*}
+  es su inverso. De modo que $\iota $ es un isomorfismo de espacios
+  vectoriales. La identidad (\ref{cort3}) prueba que $\iota $ es una
+  isometría para la métrica de $V\oplus V^{\perp }$ definida
+  en el Ejemplo <a href="tul/P_T_02/15.html#sumdir">15.7</a>.
+</div>
+</p>
+<p>
+<h3 id="sec15-3">El teorema de representación de Fréchet-Riesz</h3>
+</p>
+<p>
+El objetivo de esta sección es describir al espacio
+$\mathcal{L}(H,\mathbb{R})$ de las funciones lineales y continuas de
+un espacio de Hilbert $H$ a $\mathbb{R}$ (ver
+sección <a href="tul/P_T_02/9.html#sec9-1">9.1</a>). A este espacio se le llama el <em class="textbf">dual
+  topológico de</em> $H$.
+</p>
+<p>
+<div id="eta_w" class="proposition">
+Para cada $w\in H$ la función
+  \begin{equation*}
+    T_{w}\colon H\rightarrow \mathbb{R},\qquad T_{w}u:=\left\langle w,u\right\rangle ,
+  \end{equation*}
+  es lineal y continua y cumple que
+  \begin{equation}
+    \left\Vert T_{w}\right\Vert_{\mathcal{L}(H,\mathbb{R})}=\left\Vert
+      w\right\Vert .\label{riesz2}
+  \end{equation}
+</div>
+</p>
+<p>
+<div class="proof">
+  Las propiedades (PE1) y (PE2) aseguran que $T_{w}$ es lineal y la
+  Proposición <a href="tul/P_T_02/15.html#contpe">15.4</a> asegura que $T_{w}$ es continua. Si
+  $w=0$ entonces (\ref{riesz2}) se satisface trivialmente. Si $w\neq
+  0$, usando la desigualdad de Cauchy-Schwarz obtenemos que
+  \begin{equation*}
+    \left\Vert w\right\Vert =\frac{\left\vert T_{w}w\right\vert }{\left\Vert
+        w\right\Vert }\leq \sup_{u\in H\smallsetminus \left\{0\right\}}\frac{\left\vert
+        T_{w}u\right\vert }{\left\Vert u\right\Vert }\leq \sup_{u\in H\smallsetminus
+      \left\{0\right\}}\frac{\left\Vert w\right\Vert \left\Vert u\right\Vert }{\left\Vert
+        u\right\Vert }=\left\Vert w\right\Vert .
+  \end{equation*}
+  Esto prueba que $\left\Vert w\right\Vert =\left\Vert
+    T_{w}\right\Vert_{\mathcal{L}(H,\mathbb{R})}$.
+</div>
+</p>
+<p>
+El teorema de representación de Fréchet-Riesz 
+da una descripción completa del dual topológico de
+$H$. Afirma que las funciones $T_{w}$ son los únicos elementos de
+$\mathcal{L}(H,\mathbb{R})$.
+</p>
+
+<div id="foto:riesz" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Riesz.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Frigyes Riesz
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Frigyes
+  Riesz (1880-1956) nació en Gy\H{o}r, en el reino de
+  Hungría, entonces parte del imperio
+  Austro-Húngaro. Estudió en la Universidad de Budapest. Junto
+  con Haar fundó en 1922 el Instituto de Matemáticas János
+  Bolyai de la Universidad de Szeged, de la que fue profesor y
+  rector.
+  </div>
+</div>
+
+<p>
+<div class="theorem" id="teofr">[de representación de Fréchet-Riesz]
+Sean $H$ un
+  espacio de Hilbert y $T\colon H\rightarrow \mathbb{R}$ una función
+  lineal y continua. Entonces existe un único $w\in H$ tal que
+  \begin{equation}
+    Tu=\left\langle w,u\right\rangle =:T_{w}u\qquad \forall u\in H.\label{riesz}
+  \end{equation}
+  Más aún, la función $\iota \colon H\rightarrow
+  \mathcal{L}(H,\mathbb{R})$ dada por&nbsp;$\iota w:=T_{w}$ es un
+  isomorfismo lineal y una isometría.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $T\in \mathcal{L}(H,\mathbb{R})$ y denotemos por $V:=\ker T$.
+  Como $T$ es continua, $V$ es un subespacio cerrado de $H$. Si $V=H$,
+  entonces $T=0$ y $w=0$ cumple (\ref{riesz}). Si $V\neq H$, el
+  Teorema <a href="tul/P_T_02/15.html#teoport2">15.17</a> asegura que $V^{\perp }\neq \left\{0\right\}$. Escojamos
+  $w_{0}\in V^{\perp }$ tal que $\left\Vert w_{0}\right\Vert =1$.
+  Entonces $Tw_{0}\neq 0$. Definimos
+  \begin{equation*}
+    w:=\left( Tw_{0}\right) w_{0}.
+  \end{equation*}
+  Observa que
+  \begin{equation*}
+    T\left( u-\frac{Tu}{Tw_{0}}w_{0}\right) =Tu-\frac{Tu}{Tw_{0}}Tw_{0}=0\qquad \forall u\in H.
+  \end{equation*}
+  Por tanto, $u-\frac{Tu}{Tw_{0}}w_{0}\in V$, de lo cual concluimos
+  que
+  \begin{equation*}
+    \left\langle w,u\right\rangle =\left\langle w,u-\frac{Tu}{Tw_{0}}w_{0}\right\rangle +\frac{Tu}{Tw_{0}}\left\langle w,w_{0}\right\rangle
+    =\left( Tu\right) \left\langle w_{0},w_{0}\right\rangle =Tu\qquad \forall u\in H.
+  \end{equation*}
+  Si algún otro $\tilde{w}\in H$ cumple (\ref{riesz}), entonces
+  $\left\langle w-\tilde{w},u\right\rangle =0$ para todo $u\in H$, en
+  particular para $u=w-\tilde{w}$. Por tanto, $\left\Vert
+    w-\tilde{w}\right\Vert^{2}=0$, lo que implica que $\tilde{w}=w$.
+</p>
+<p>
+  Por último, de la bilinealidad del producto escalar se sigue
+  que   \begin{equation*}
+    \iota (\lambda w_{1}+\mu w_{2})u=\left\langle \lambda w_{1}+\mu
+      w_{2},u\right\rangle =\lambda \left\langle w_{1},u\right\rangle +\mu
+    \left\langle w_{2},u\right\rangle =\left[ \lambda \left( \iota w_{1}\right)
+      +\mu (\iota w_{2})\right] u
+  \end{equation*}
+  para todo $u\in H$. Por tanto $\iota $ es lineal. De la primera
+  afirmación de este teorema se sigue que $\iota $ es biyectiva, y
+  la identidad (\ref{riesz2}) asegura que $\iota $ es una
+  isometría.
+</div>
+</p>
+<p>
+El teorema de representación de Fréchet-Riesz tiene
+aplicaciones muy importantes. Permite, por ejemplo, definir el
+gradiente de una función diferenciable $\varphi \colon H\rightarrow
+\mathbb{R}$ [Ejercicio <a href="tul/P_T_02/15.html#gradHilbert">15.42</a>] o probar la existencia y
+unicidad de soluciones de ciertas ecuaciones en derivadas parciales
+con condicion de frontera (ver Teorema <a href="tul/P_T_02/15.html#existenciasd">16.29</a>).
+</p>
+<p>
+El siguiente resultado afirma que el elemento $w\in H$ dado por el
+teorema anterior es el mínimo de un funcional\footnote{A las
+  funciones definidas en un espacio de Banach que toman valores reales
+  se les suele llamar funcionales en vez de
+  funciones.}. A esta propiedad se le conoce como el
+principio de Dirichlet.
+</p>
+
+  <div id="foto:dirichlet" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Dirichlet.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Gustav Dirichlet
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Johann Peter Gustav Lejeune Dirichlet
+  (1805-1859) nació en Düren, entonces parte del imperio
+  francés y actualmente de Alemania. Estudió en el Collège
+  de France y en la Facultad de Ciencias de París. Fue profesor en las
+  universidades de Berlín y de Göttingen.
+  </div>
+</div>
+
+<p>
+<div class="proposition" id="dir">[Principio de Dirichlet]
+Sean $V$ un espacio
+  vectorial con producto escalar y $T\in \mathcal{L}(V,\mathbb{R})$.
+  Entonces, $w\in V$ satisface
+  \begin{equation*}
+    \left\langle w,u\right\rangle =Tu\qquad \forall u\in V
+  \end{equation*}
+  si y sólo si $w$ es un mínimo del funcional $J\colon V\rightarrow
+  \mathbb{R}$ dado por
+  \begin{equation*}
+    J(u):=\tfrac{1}{2}\left\Vert u\right\Vert^{2}-Tu.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  $\Rightarrow )$: &nbsp;Si $\left\langle w,u\right\rangle =Tu$ para todo
+  $u\in V$, entonces
+  \begin{align*}
+    J(u)-J(w) &=\tfrac{1}{2}\left\Vert u\right\Vert ^{2}-T(u)-\tfrac{1}{2}
+                \left\Vert w\right\Vert ^{2}+Tw \\
+              &=\tfrac{1}{2}\left\Vert u\right\Vert ^{2}-\left\langle w,u\right\rangle +
+                \tfrac{1}{2}\left\Vert w\right\Vert ^{2} \\
+              &=\tfrac{1}{2}\left\Vert u-w\right\Vert ^{2}\geq
+                0\qquad \forall u\in V.
+  \end{align*}
+  $\Leftarrow )$: &nbsp;Supongamos ahora que $w$ es un mínimo de $J$.
+  Para cada $u\in V$ consideremos la función
+  $J_{u}\colon \mathbb{R}\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    J_{u}(t):=J(w+tu)=\tfrac{1}{2}\left\Vert w\right\Vert^{2}+\left\langle
+      w,u\right\rangle t+\tfrac{1}{2}\left\Vert u\right\Vert^{2}t^{2}-Tw-(Tu)t.
+  \end{equation*}
+  Esta función es diferenciable y su derivada es
+  \begin{equation*}
+    J_{u}^{\prime }(t)=\left\langle w,u\right\rangle +\left\Vert u\right\Vert
+   ^{2}t-Tu.
+  \end{equation*}
+  Como $w$ es un mínimo de $J$, se tiene que$&nbsp;0$ es un
+  mínimo $J_{u}$. Por tanto, $J_{u}^{\prime }(0)=\left\langle
+    w,u\right\rangle -Tu=0$ para todo $u\in V$.
+</div>
+</p>
+<p>
+<h3 id="sec15-4">Bases de Hilbert</h3>
+</p>
+<p>
+Dado un subconjunto $\mathcal{X}$ de $H$, denotamos por
+$\lin(\mathcal{X})$ al
+subespacio vectorial de $H$ generado por $\mathcal{X}$, es decir,
+\begin{equation}
+  \lin(\mathcal{X}):=\left\{ \sum_{i=1}^{m}\alpha
+   _{i}v_{i}:\alpha_{i}\in \mathbb{R}\text{, }v_{i}\in \mathcal{X},\text{ }m\in \mathbb{N}\right\} .\label{linX}
+\end{equation}
+</p>
+<p>
+<div class="definition">
+  Un subconjunto $\mathcal{O}$ de un espacio de Hilbert $H$ se llama
+  un <em class="textbf">conjunto ortogonal</em> si
+  \begin{equation*}
+    \left\langle u,v\right\rangle =0\qquad \forall u,v\in \mathcal{O},\text{ }u\neq v.
+  \end{equation*}
+  Si además
+  \begin{equation*}
+    \left\Vert u\right\Vert =1\qquad \forall u\in \mathcal{O},
+  \end{equation*}
+  se dice que $\mathcal{O}$ es un <em class="textbf">conjunto
+    ortonormal.</em>.
+</p>
+<p>
+  Un subconjunto $\mathcal{B}$ de $H$ se llama una <em class="textbf">base de
+    Hilbert de</em> $H$ si es ortonormal y
+  <em class="emph">lin</em>$(\mathcal{B})$ es denso en $H$, es decir,
+  \begin{equation*}
+    H=\overline{\text{<em class="emph">lin</em>}(\mathcal{B})}.
+  \end{equation*}
+</div>
+</p>
+<p>
+Observa que, en general, una base de Hilbert de $H$ no es una base de
+$H$ en el sentido del álgebra lineal, es decir, $\lin(\mathcal{B})$
+no necesariamente coincide con $H$, como lo muestra el siguiente
+ejemplo.
+</p>
+<p>
+<div class="example">
+  Sea $\overline{e}_{k}=(e_{k,j})$ la sucesión cuyos términos
+  son $e_{k,k}=1$ y $e_{k,j}=0$ si $k\neq j$. Entonces
+  $\mathcal{B}:=\left\{\overline{e}_{k}:k\in \mathbb{N}\right\}$ es una base de
+  Hilbert de $\ell_{2}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Claramente $\mathcal{B}:=\left\{\overline{e}_{k}:k\in \mathbb{N}\right\}$ es un
+  subconjunto ortonormal de $\ell_{2}$. Los elementos de
+  $\lin(\mathcal{B})$ son combinaciones lineales finitas de elementos
+  de $\mathcal{B}$, en consecuencia
+  \begin{equation*}
+    \lin(\mathcal{B})=\left\{(x_{k})\in \ell_{2}:\text{existe }k_{0}\in 
+    \mathbb{N}\text{&nbsp;tal que }x_{k}=0\text{ }\forall k\geq k_{0}\right\}.
+  \end{equation*}
+  De modo que $\lin(\mathcal{B})\neq \ell_{2}$. Veamos que $\ell
+ _{2}=$ $\overline{\lin(\mathcal{B})}$. En efecto: dado
+  $\overline{x}=(x_{j})\in \ell_{2}$, si denotamos por
+  $\overline{x}_{k}$ a la sucesión cuyos términos son
+  $\overline{x}_{k,j}:=x_{j}$ si $j\leq k$ y $\overline{x}_{k,j}:=0$
+  si $j>k$, entonces $\overline{x}_{k}\in \lin(\mathcal{B})$ y
+  $\overline{x}_{k}\rightarrow \overline{x}$ en $\ell_{2}$.
+</div>
+</p>
+<p>
+<h3 id="sec15-5">Convergencia débil</h3>
+Vimos que, a diferencia de lo que ocurre en $\mathbb{R}^{n}$, en
+cualquier espacio de Banach de dimensión infinita existen
+sucesiones acotadas que no contienen ninguna subsucesión
+convergente (ver Ejercicio <a href="tul/P_T_02/15.html#ejesferacomp">5.39</a>). Introduciremos a
+continuación una noción de convergencia, más débil que
+la usual, para la cual se cumple que cualquier sucesión acotada
+contiene una subsucesión convergente. En los próximos
+capítulos daremos aplicaciones importantes de este resultado.
+</p>
+<p>
+Sea $H$ un espacio de Hilbert.
+</p>
+<p>
+<div id="defcd" class="definition">
+Una sucesión $(u_{k})$ en $H$ <em class="textbf">converge
+    débilmente a </em>$u$<em class="textbf">&nbsp;en</em> $H$
+  si, para cada $v\in H$, se cumple que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\langle u_{k},v\right\rangle =\left\langle
+      u,v\right\rangle .
+  \end{equation*}
+  Se dice entonces que $u$ <em class="textbf">es el límite débil de</em>
+  $(u_{k})$ <em class="textbf">en</em> $H$.  Se escribe $u_{k}\rightharpoonup u$ para denotar que
+  $(u_{k})$ converge débilmente a $u$.
+</div>
+</p>
+<p>
+Es sencillo comprobar que el límite débil de una
+sucesión, de existir, es único [Ejercicio <a href="tul/P_T_02/15.html#propconvdeb">15.49</a>].
+</p>
+<p>
+<div class="notation">
+  Cuando la notación anterior se pueda prestar a confusión,
+  escribiremos
+  \begin{equation*}
+    u_{k}\rightharpoonup u\text{ débilmente en }H
+  \end{equation*}
+  si $(u_{k})$ converge débilmente a $u$ en $H$ y, si $(u_{k})$
+  converge a $u$ en $H$ en el sentido usual,
+  escribiremos
+  \begin{equation*}
+    u_{k}\rightarrow u\text{ fuertemente en }H.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proposition">
+  Si $u_{k}\rightarrow u$ fuertemente en $H$, entonces
+  $u_{k}\rightharpoonup u$ débilmente en $H$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Si $u_{k}\rightarrow u$ fuertemente en $H$ entonces la
+  Proposición <a href="tul/P_T_02/15.html#contpe">15.4</a> asegura que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\langle u_{k},v\right\rangle =\left\langle
+      u,v\right\rangle \qquad \forall v\in H,
+  \end{equation*}
+  es decir, $u_{k}\rightharpoonup u$ débilmente en $H$.
+</div>
+</p>
+<p>
+En espacios de dimensión finita ambas nociones de convergencia
+coinciden [Ejercicio <a href="tul/P_T_02/15.html#c=cd">15.50</a>]. No así en espacios de
+dimensión infinita, como lo muestra el siguiente ejemplo.
+</p>
+<p>
+<div id="cdvsc" class="example">
+Si $\mathcal{O}=\left\{e_{k}:k\in \mathbb{N}\right\}$ es un
+  subconjunto ortonormal de $H$, entonces $e_{k}\rightharpoonup 0$
+  débilmente en $H$ pero $(e_{k})$ no converge fuertemente en $H$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $v\in H$.
+</p>
+<p>
+  <em class="textsc">Caso 1:</em> &nbsp;$v\in \lin(\mathcal{O})$.
+</p>
+<p>
+  Si $v=\sum_{i=1}^{m}\alpha_{i}e_{i}$ con $\alpha_{i}\in
+  \mathbb{R}$ entonces $\left\langle e_{k},v\right\rangle =0$ para
+  todo $k>m$. Por tanto,
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\langle e_{k},v\right\rangle =0\qquad \forall v\in \lin(\mathcal{O}).
+  \end{equation*}
+</p>
+<p>
+  <em class="textsc">Caso 2:</em> &nbsp;$v\in V:=$ $\overline{\lin(\mathcal{O})}$.
+</p>
+<p>
+  Dada $\varepsilon >0$ escogemos $w\in \lin(\mathcal{O})$ y
+  $k_{0}\in \mathbb{N}$ tales que
+  \begin{equation*}
+    \left\Vert v-w\right\Vert <\frac{\varepsilon }{2}\qquad\text{ y\qquad }\left\vert \left\langle e_{k},w\right\rangle \right\vert <\frac{\varepsilon 
+    }{2}\text{ &nbsp;}\forall k\geq k_{0}.
+  \end{equation*}
+  Entonces, como $\left\Vert e_{k}\right\Vert =1$, utilizando la
+  desigualdad de Cauchy-Schwarz obtenemos
+  \begin{equation*}
+    \left\vert \left\langle e_{k},v\right\rangle \right\vert \leq \left\vert
+      \left\langle e_{k},v-w\right\rangle \right\vert +\left\vert \left\langle
+        e_{k},w\right\rangle \right\vert \leq \left\Vert e_{k}\right\Vert \left\Vert
+      v-w\right\Vert +\left\vert \left\langle e_{k},w\right\rangle \right\vert
+    <\varepsilon \text{ &nbsp;}\forall k\geq k_{0}.
+  \end{equation*}
+  Esto prueba que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\langle e_{k},v\right\rangle =0\qquad \forall v\in V.
+  \end{equation*}
+</p>
+<p>
+  <em class="textsc">Caso 3:</em> $&nbsp;v\in V^{\perp }$.
+</p>
+<p>
+  En este caso $\left\langle e_{k},v\right\rangle =0$ para todo $k\in
+  \mathbb{N}$.
+</p>
+<p>
+  <em class="textsc">Caso 4:</em> $&nbsp;v\in H$ arbitrario.
+</p>
+<p>
+  Como $V$ es un subespacio cerrado de $H$, el Teorema <a href="tul/P_T_02/15.html#teoport2">15.17</a>   asegura que $v=v_{1}+v_{2}$ con $v_{1}\in V$ y $v_{2}\in V^{\perp
+  }$. De los dos casos anteriores se sigue entonces que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\langle e_{k},v\right\rangle
+    =\lim_{k\rightarrow \infty }\left\langle e_{k},v_{1}\right\rangle
+    +\lim_{k\rightarrow \infty }\left\langle e_{k},v_{2}\right\rangle
+    =0=\left\langle 0,v\right\rangle \qquad \forall v\in H.
+  \end{equation*}
+  Esto prueba que $e_{k}\rightharpoonup 0$ débilmente en $H$.
+</p>
+<p>
+  Finalmente observa que
+  \begin{equation*}
+    \bigl\Vert e_{k}-e_{j}\bigr\Vert^{2}=\bigl\Vert
+    e_{k}\bigr\Vert^{2}
+    +\bigl\Vert e_{j}\bigr\Vert^{2}=2\qquad \forall k\neq j.
+  \end{equation*}
+  En consecuencia $(e_{k})$ no converge fuertemente en $H$.
+</div>
+</p>
+<p>
+<div id="normsci" class="proposition">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $(u_{k})$ converge débilmente a $u$ en $H$,
+    entonces
+    \begin{equation}
+      \left\Vert u\right\Vert \leq \liminf_{k\rightarrow \infty }\left\Vert
+        u_{k}\right\Vert .\label{eqnormsci}
+    \end{equation}
+</p>
+<p>
+  <li> Si $(u_{k})$ converge débilmente a $u$ en $H$,
+    entonces $(u_{k})$ converge fuertemente a $u$ en $H$ si y sólo
+    si
+    \begin{equation}
+      \left\Vert u\right\Vert =\lim_{k\rightarrow \infty }\left\Vert
+        u_{k}\right\Vert .\label{c}
+    \end{equation}
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Supongamos que $(u_{k})$ converge débilmente a $u$
+  en $H$. Si $u=0$, la desigualdad (\ref{eqnormsci}) se cumple
+  trivialmente. Si $u\neq 0$, de la desigualdad de Cauchy-Schwarz se
+  sigue que
+  \begin{equation*}
+    \frac{\left\langle u_{k},u\right\rangle }{\left\Vert u\right\Vert }\leq
+    \left\Vert u_{k}\right\Vert \qquad \forall k\in \mathbb{N}.
+  \end{equation*}
+  Como $\left\langle u_{k},u\right\rangle \rightarrow \left\Vert
+    u\right\Vert^{2}$, tomando límites inferiores concluimos que
+  \begin{equation*}
+    \left\Vert u\right\Vert =\lim_{k\rightarrow \infty }\frac{\left\langle
+        u_{k},u\right\rangle }{\left\Vert u\right\Vert }=\liminf_{k\rightarrow
+      \infty }\frac{\left\langle u_{k},u\right\rangle }{\left\Vert u\right\Vert }\leq \liminf_{k\rightarrow \infty }\left\Vert u_{k}\right\Vert .
+  \end{equation*}
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Si $(u_{k})$ converge débilmente a $u$ en $H$,
+  entonces $\left\langle u_{k},u\right\rangle \rightarrow \left\Vert
+    u\right\Vert^{2}$. De la identidad
+  \begin{equation*}
+    \left\Vert u_{k}-u\right\Vert^{2}=\left\Vert u_{k}\right\Vert
+   ^{2}-2\left\langle u_{k},u\right\rangle +\left\Vert u\right\Vert^{2},\qquad k\in \mathbb{N},
+  \end{equation*}
+  se sigue entonces que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\Vert u_{k}-u\right\Vert^{2}=0\quad
+    \Longleftrightarrow \quad \lim_{k\rightarrow \infty }\left\Vert
+      u_{k}\right\Vert =\left\Vert u\right\Vert ,
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Probaremos a continuación que toda sucesión acotada en $H$
+contiene una subsucesión débilmente convergente. Requerimos el
+siguiente lema.
+</p>
+<p>
+<div id="propacotcd" class="lemma">
+Sea $(u_{k})$ una sucesión acotada en $H$ tal
+  que la sucesión $(\left\langle u_{k},v\right\rangle )$ converge
+  en $\mathbb{R}$ para cada $v\in H$. Entonces existe $u\in H$ tal que
+  $u_{k}\rightharpoonup u$ débilmente en $H$.
+</div>
+</p>
+<p>
+<div class="proof">
+  La función $T\colon H\rightarrow \mathbb{R}$ dada por
+  \begin{equation*}
+    Tv:=\lim_{k\rightarrow \infty }\left\langle u_{k},v\right\rangle
+  \end{equation*}
+  es claramente lineal. Sea $c\in \mathbb{R}$ tal que $\left\Vert
+    u_{k}\right\Vert \leq c$ para todo $k\in \mathbb{N}$. De la
+  desigualdad de Cauchy-Schwarz se sigue que
+  \begin{equation*}
+    \left\vert \left\langle u_{k},v\right\rangle \right\vert \leq \left\Vert
+      u_{k}\right\Vert \left\Vert v\right\Vert \leq c\left\Vert v\right\Vert \qquad \forall k\in \mathbb{N}\text{, &nbsp;}\forall v\in H.
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \left\vert Tv\right\vert =\lim_{k\rightarrow \infty }\left\vert \left\langle
+        u_{k},v\right\rangle \right\vert \leq c\left\Vert v\right\Vert \qquad \forall v\in H.
+  \end{equation*}
+  Esto prueba que $T$ es continua. Por el teorema de
+  representación de Fréchet-Riesz (Teorema <a href="tul/P_T_02/15.html#teofr">15.19</a>) existe
+  $u\in H$ tal que
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\left\langle u_{k},v\right\rangle
+    =:Tv=\left\langle u,v\right\rangle \qquad \forall v\in H.
+  \end{equation*}
+  Esto prueba que $u_{k}\rightharpoonup u$ débilmente en $H$.
+</div>
+</p>
+<p>
+La propiedad fundamental de la convergencia débil es la siguiente.
+</p>
+<p>
+<div id="acotcd" class="theorem">
+Toda sucesión acotada en $H$ contiene una
+  subsucesión débilmente convergente en $H$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $(u_{k})$ una sucesión acotada en $H$ y sea $c\in
+  \mathbb{R}$ tal que $\left\Vert u_{k}\right\Vert \leq c$ para todo
+  $k\in \mathbb{N}$. De la desigualdad de Cauchy-Schwarz se sigue que
+  \begin{equation*}
+    \left\vert \left\langle u_{k},u_{1}\right\rangle \right\vert \leq \left\Vert
+      u_{k}\right\Vert \left\Vert u_{1}\right\Vert \leq c\left\Vert
+      u_{1}\right\Vert .
+  \end{equation*}
+  Es decir, la sucesión de números reales $(\left\langle
+    u_{k},u_{1}\right\rangle )$ está acotada y, por tanto, existe
+  una subsucesión $(u_{k}^{1})$ de $(u_{k})$&nbsp;tal que
+  $(\left\langle u_{k}^{1},u_{1}\right\rangle )$ converge en
+  $\mathbb{R}$. La sucesión $(\left\langle
+    u_{k}^{1},u_{2}\right\rangle )$ también está acotada y,
+  por tanto, existe una subsucesión $(u_{k}^{2})$ de
+  $(u_{k}^{1})$&nbsp;tal que $(\left\langle u_{k}^{2},u_{2}\right\rangle
+  )$ converge en $\mathbb{R}$.  Continuando de este modo obtenemos,
+  para cada $m\in \mathbb{N}$, una subsucesión $(u_{k}^{m})$ de
+  $(u_{k}^{m-1})$ tal que $(\left\langle u_{k}^{m},u_{m}\right\rangle
+  )$ converge en $\mathbb{R}$ cuando $k\rightarrow \infty $. Definimos
+  $w_{k}:=u_{k}^{k}$. La sucesión $(w_{k}) $ es una
+  subsucesión de $(u_{k})$. Probaremos que $(w_{k})$ converge
+  débilmente en $H$. De acuerdo con el Lema <a href="tul/P_T_02/15.html#propacotcd">15.28</a> basta
+  probar que la sucesión $(\left\langle w_{k},v\right\rangle )$
+  converge en $\mathbb{R}$ para cada $v\in H$. Consideramos cuatro
+  casos.
+</p>
+<p>
+  <em class="textsc">Caso 1:</em> $&nbsp;v=u_{m}$.
+</p>
+<p>
+  Observa que la subsucesión $(w_{m},w_{m+1},\dots)$ de $(w_{k})$ es
+  una subsucesión de $(u_{j}^{m})$. En consecuencia,
+  $(\left\langle w_{k},u_{m}\right\rangle )$ converge en $\mathbb{R}$
+  cuando $k\rightarrow \infty $.
+</p>
+<p>
+  <em class="textsc">Caso 2:</em> $&nbsp;v\in V:= \lin(\left\{u_{m}:m\in \mathbb{N}\right\})$.
+</p>
+<p>
+  Del caso anterior y la bilinealidad del producto escalar se sigue
+  que $(\left\langle w_{k},v\right\rangle )$ converge en $\mathbb{R}$.
+</p>
+<p>
+  <em class="textsc">Caso 3:</em> $&nbsp;v\in \overline{V}$.
+</p>
+<p>
+  Dada $\varepsilon >0$ elegimos $w\in V$ tal que $\left\Vert
+    v-w\right\Vert <\frac{\varepsilon }{4c}$. El caso anterior asegura
+  que la sucesión $(\left\langle w_{k},w\right\rangle )$ es de
+  Cauchy en $\mathbb{R}$. Por tanto, existe $k_{0}\in \mathbb{N}$ tal
+  que $\left\vert \left\langle w_{k}-w_{j},w\right\rangle \right\vert
+  <\frac{\varepsilon }{2}$ si $k,j\geq k_{0}$. En consecuencia,
+  \begin{align*}
+    \left\vert \left\langle w_{k}-w_{j},v\right\rangle \right\vert 
+    &\leq \left\vert \left\langle w_{k}-w_{j},v-w\right\rangle \right\vert
+      +\left\vert \left\langle w_{k}-w_{j},w\right\rangle \right\vert \\[4pt]
+    &\leq \left\Vert w_{k}-w_{j}\right\Vert \left\Vert v-w\right\Vert
+      +\left\vert \left\langle w_{k}-w_{j},w\right\rangle \right\vert \\[4pt]
+    &\leq \left( \left\Vert w_{k}\right\Vert +\left\Vert w_{j}\right\Vert
+      \right) \left\Vert v-w\right\Vert +\left\vert \left\langle
+      w_{k}-w_{j},w\right\rangle \right\vert \\[4pt]
+    &\menorque 2c\frac{\varepsilon }{4c}+\frac{\varepsilon }{2}=\varepsilon \qquad\text{
+      si }k,j\geq k_{0}.
+  \end{align*}
+  Esto prueba que la sucesión $(\left\langle w_{k},v\right\rangle
+  )$ es de Cauchy en $\mathbb{R}$ y, por tanto, converge.
+</p>
+<p>
+  <em class="textsc">Caso 4:</em> $&nbsp;v\in H$ arbitrario.
+</p>
+<p>
+  Como $\overline{V}$ es cerrado en $H$, el Teorema <a href="tul/P_T_02/15.html#teoport2">15.17</a>   asegura que $v=w+z$ con $w\in \overline{V}$ y $z\in
+  \overline{V}^{\perp }$. Por tanto,
+  \begin{equation*}
+    \left\langle w_{k},v\right\rangle =\left\langle w_{k},w\right\rangle
+    +\left\langle w_{k},z\right\rangle =\left\langle w_{k},w\right\rangle .
+  \end{equation*}
+  Aplicando el caso anterior concluimos que la sucesión
+  $(\left\langle w_{k},v\right\rangle )$ converge.
+</div>
+</p>
+<p>
+Para concluir, probaremos que toda sucesión débilmente
+convergente está acotada. Usaremos el siguiente resultado de
+Baire.
+</p>
+
+<div id="foto:baire" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Baire.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      René-Louis Baire
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  René-Louis Baire (1874-1932) nació en
+  París. Estudió en la École Normale Supérieure y fue
+  profesor de la Universidad de Borgoña en Dijon.
+  </div>
+</div>  
+
+<p>
+<div class="lemma">[de Baire]
+  Si $X$ es un espacio métrico completo no
+  vacío y $X_{1},X_{2},\ldots $ es una sucesión de
+  subconjuntos cerrados de $X$ tales que
+  \begin{equation}
+    X=\bigcup_{m=1}^{\infty }X_{m},\label{union}
+  \end{equation}
+  entonces <em class="emph">int</em>$(X_{m_{0}})\neq \emptyset $ para algún
+  $m_{0}\in \mathbb{N}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Argumentando por contradicción, supongamos que
+  int$(X_{m})=\emptyset $ para todo $m\in \mathbb{N}$. Tomemos
+  $x_{1}\in X$ y $r_{1}\in (0,\frac{1}{2})$. Como
+  $B_{X}(x_{1},r_{1})\cap (X\smallsetminus X_{1})\neq \emptyset $,
+  existen $x_{2}\in X$ y $r_{2}\in (0,\frac{1}{4})$ tales que
+  $\bar{B}_{X}(x_{2},r_{2})\subset B_{X}(x_{1},r_{1})\cap
+  (X\smallsetminus X_{1})$. Continuando de este modo obtenemos
+  $x_{m}\in X$ y $r_{m}\in (0,\frac{1}{2^{m}})$ tales que
+  \begin{equation}
+    \bar{B}_{X}(x_{m},r_{m})\subset B_{X}(x_{m-1},r_{m-1})\cap (X\smallsetminus
+    X_{m-1})\qquad \forall m>1.\label{encaje}
+  \end{equation}
+  Se tiene entonces que
+  \begin{equation}
+    d_{X}(x_{i},x_{m})\menorque r_{m}<\tfrac{1}{2^{m}}\qquad \forall i\geq m\geq 1.
+\label{cau}
+  \end{equation}
+  En consecuencia, la sucesión $(x_{i})$ es de Cauchy en $X$ y,
+  como $X$ es completo, $x_{i}\rightarrow x$ en $X$. Haciendo tender
+  $i\rightarrow \infty $ en (\ref{cau}) obtenemos que
+  \begin{equation*}
+    d_{X}(x,x_{m})\leq r_{m}\qquad \forall m\in \mathbb{N}.
+  \end{equation*}
+  Se sigue de (\ref{encaje}) que $x\in X\smallsetminus X_{m}$ para
+  todo $m\in \mathbb{N}$, lo cual contradice (\ref{union}).
+</div>
+</p>
+<p>
+<div class="proposition">
+  Si $u_{k}\rightharpoonup u$ débilmente en $H$ entonces $(u_{k})$
+  está acotada en $H$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Para cada $m\in \mathbb{N}$ definimos
+  \begin{equation*}
+    X_{m}:=\left\{w\in H:\left\vert \left\langle u_{k},w\right\rangle \right\vert
+    \leq m\text{ &nbsp;}\forall k\in \mathbb{N}\right\}.
+  \end{equation*}
+  Claramente, $X_{m}$ es cerrado en $H$. Además, como para cada
+  $w\in H$ la sucesión $(\left\langle u_{k},w\right\rangle )$
+  está acotada en $\mathbb{R}$, se tiene que
+  \begin{equation*}
+    H=\bigcup_{m=1}^{\infty }X_{m}.
+  \end{equation*}
+  Por el lema de Baire, existen $m_{0}\in \mathbb{N}$, $w_{0}\in
+  X_{m_{0}}$ y $\delta >0$ tales que $B_{H}(w_{0},\delta )\subset
+  X_{m_{0}}$. 
+Entonces, si $\left\Vert
+u_{k}\right\Vert \neq 0$, se cumple que $w_{0}+\frac{\delta }{2}
+\frac{u_{k}}{\left\Vert u_{k}\right\Vert }\in X_{m_{0}}$ y, por tanto,
+\begin{equation*}
+\frac{\delta }{2}\left\Vert u_{k}\right\Vert =\left\langle u_{k},\frac{
+\delta }{2}\frac{u_{k}}{\left\Vert u_{k}\right\Vert }\right\rangle \leq
+\left\vert \left\langle u_{k},w_{0}+\frac{\delta }{2}\frac{u_{k}}{\left\Vert
+u_{k}\right\Vert }\right\rangle \right\vert +\left\vert \left\langle
+u_{k},w_{0}\right\rangle \right\vert \leq 2m_{0}.
+\end{equation*}
+Esto implica que $\left\Vert u_{k}\right\Vert \leq \frac{4}{\delta }m_{0}$
+para todo $k\in \mathbb{N}$.
+</div>
+</p>
+<p>
+<h3 id="sec15-6">Ejercicios</h3>
+</p>
+<p>
+<div class="exercise">
+  ¿Es
+  \begin{equation*}
+    \left\langle f,g\right\rangle :=\int_{0}^{1/2}fg
+  \end{equation*}
+  un producto escalar en $\mathcal{C}^{0}[0,1]$?
+</div>
+</p>
+<p>
+<div class="exercise">[Teorema de Pitágoras]
+  Prueba que, si $V$ es un espacio
+  vectorial con producto escalar y $\left\langle v,w\right\rangle =0$,
+  entonces
+  \begin{equation*}
+    \left\Vert v+w\right\Vert^{2}=\left\Vert v\right\Vert^{2}+\left\Vert
+      w\right\Vert^{2}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise" id="lp">[Identidad del paralelogramo]
+Demuestra que, si $\left\Vert \cdot \right\Vert $ es la
+  norma inducida por un producto escalar en $V$, entonces
+  \begin{equation*}
+    \left\Vert v+w\right\Vert^{2}+\left\Vert v-w\right\Vert^{2}=2(\left\Vert
+      v\right\Vert^{2}+\left\Vert w\right\Vert^{2})\qquad \forall v,w\in V.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $(V,\left\Vert \cdot \right\Vert )$ un espacio normado. Prueba
+  que, si la norma cumple la ley del paralelogramo
+  \begin{equation*}
+    \left\Vert v+w\right\Vert^{2}+\left\Vert v-w\right\Vert^{2}=2(\left\Vert
+      v\right\Vert^{2}+\left\Vert w\right\Vert^{2})\qquad \forall v,w\in
+    V,
+  \end{equation*}
+  entonces
+  \begin{equation*}
+    \left\langle v,w\right\rangle :=\frac{1}{4}\left( \left\Vert v+w\right\Vert
+     ^{2}-\left\Vert v-w\right\Vert^{2}\right)
+  \end{equation*}
+  es un producto escalar en $V$ tal que $\left\Vert v\right\Vert
+ ^{2}=\left\langle v,v\right\rangle $ para todo $v\in V$.
+  <em class="emph">(Sugerencia: Para probar que </em>$\left\langle \lambda
+    v,w\right\rangle =\lambda \left\langle v,w\right\rangle $<em class="emph">     demuéstralo primero para </em>$\lambda \in \mathbb{Q}$<em class="emph">&nbsp;y
+    usa la continuidad para demostrarlo para </em>$\lambda \in
+  \mathbb{R}$.<em class="emph">)</em>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $V_{i}$ espacio vectorial con producto escalar $\left\langle
+    \cdot ,\cdot \right\rangle_{i}$, $i=1,2$. Prueba que, si $\iota
+  \colon V_{1}\rightarrow V_{2}$ es una isometría lineal, entonces
+  \begin{equation*}
+    \left\langle \iota v,\iota w\right\rangle_{2}=\left\langle v,w\right\rangle
+   _{1}\qquad \forall v,w\in V_{1}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Demuestra que las normas de los siguientes espacios no están
+  inducidas por ningún producto escalar.
+</p>
+<p>
+  <ol class="alfa">
+  <li> $\mathbb{R}_{p}^{n}=(\mathbb{R}^{n},\left\Vert \cdot
+    \right\Vert_{p})$ con $p\in [1,\infty ]$, $p\neq 2$
+    <em class="emph">(ver (<a href="tul/P_T_02/2.html#Rnp">2.4</a>))</em>.
+</p>
+<p>
+  <li> $\ell_{p}$ con $p\in [1,\infty ]$, $p\neq 2$
+    <em class="emph">(ver Proposición <a href="tul/P_T_02/2.html#l-p">2.15</a>)</em>.
+</p>
+<p>
+  <li> $L^{p}(\Omega )$ con $p\in [1,\infty ]$, $p\neq 2$
+    <em class="emph">(ver Definiciones <a href="tul/P_T_02/14.html#defLp">14.18</a> y <a href="tul/P_T_02/14.html#defLinf">14.19</a>)</em>.
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que todo subespacio vectorial de dimensión finita de un
+  espacio de Hilbert $H$ es cerrado en $H$.
+</div>
+</p>
+<p>
+<div id="Vortort=V" class="exercise">
+Sea $V$ un subespacio vectorial de un espacio de
+  Hilbert $H$. Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> $(\overline{V})^{\perp }=V^{\perp }$.
+</p>
+<p>
+  <li> Si $V$ es cerrado en $H$, entonces $(V^{\perp })^{\perp
+    }=V$.
+</p>
+<p>
+  <li> $(V^{\perp })^{\perp }=\overline{V}$.
+</p>
+<p>
+  <li> Si $V$ es denso en $H$ entonces $V^{\perp }=\left\{0\right\}$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Prueba que, si $f\in L^{2}(\Omega )\smallsetminus
+  \mathcal{C}_{c}^{0}(\Omega )$, no existe ningún $g\in
+  \mathcal{C}_{c}^{0}(\Omega )$ tal que
+  \begin{equation*}
+    \left\Vert f-g\right\Vert_{2}=\inf_{h\in \mathcal{C}_{c}^{0}(\Omega
+      )}\left\Vert f-h\right\Vert_{2}.
+  \end{equation*}
+  Es decir, la <em class="emph">Proposición <a href="tul/P_T_02/15.html#teoport">15.14</a></em>&nbsp;no es válida,
+  en general, si $V$ no es cerrado en $H$.
+</div>
+</p>
+<p>
+Un subconjunto $C$ de un espacio vectorial es
+<em class="textbf">convexo</em> si $(1-t)x+ty\in C$ para
+cualesquiera $x,y\in C$ y $t\in [0,1]$.
+</p>
+<p>
+<div class="exercise">
+  Prueba que, si $C$ es un subconjunto cerrado y convexo de un espacio
+  de Hilbert $H$ y $u\in H$, entonces existe un único $v\in C   $tal que
+  \begin{equation*}
+    \left\Vert u-v\right\Vert =\inf_{w\in C}\left\Vert u-w\right\Vert .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise" id="gradHilbert">[Gradiente de una función diferenciable]
+  Sean $U$&nbsp;un subconjunto abierto de $H$ y
+  $\varphi \colon U\rightarrow \mathbb{R}$&nbsp;una función diferenciable.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que, para cada $u\in U$, existe un único
+    elemento $\nabla \varphi (u)\in H$&nbsp;tal que
+    \begin{equation*}
+      \varphi^{\prime }(u)v=\left\langle \nabla \varphi (u),v\right\rangle 
+      \qquad \forall v\in H.
+    \end{equation*}
+    $\nabla \varphi (u)$ se llama el <em class="textbf">gradiente de</em> $\varphi $     <em class="textbf">en</em> $u$.&nbsp;
+</p>
+<p>
+  <li> Prueba que $\varphi $ es de clase $\mathcal{C}^{1}$ si y
+    sólo si la función
+    \begin{equation*}
+      \nabla \varphi \colon U\rightarrow H,\qquad u\mapsto \nabla \varphi (u),
+    \end{equation*}
+    es continua.
+</p>
+<p>
+  <li> Si $\varphi $ es de clase $\mathcal{C}^{1}$, prueba que
+    $c\in \mathbb{R}$&nbsp;es un valor regular de $\varphi $&nbsp;si y
+    sólo si $\nabla \varphi (u)\neq 0$&nbsp;para todo $u\in M:=\varphi
+   ^{-1}(c)$.   </ol>
+</p>
+<p>
+  En las siguientes afirmaciones supondremos que $\varphi$ es de clase
+  $\mathcal{C}^{1}$, que $c\in \mathbb{R}$ es un valor
+    regular de $\varphi $ y que $M:=\varphi^{-1}(c)$.
+    Recuerda que, en ese caso,$M$ es una subvariedad de clase
+  $\mathcal{C}^{1}$ de $H$. Las definiciones necesarias
+    se encuentran en el <em class="emph">Capítulo <a href="tul/P_T_02/10.html#Cap-10">10</a>.</em>
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que el espacio tangente a $M$&nbsp;en el punto $u\in
+    M$&nbsp;es el espacio ortogonal a $\nabla \varphi (u)$,&nbsp;es decir,
+    \begin{equation*}
+      T_{u}M=\left\{v\in H:\left\langle \nabla \varphi (u),v\right\rangle =0\right\}.
+    \end{equation*}
+</p>
+<p>
+  <li> (<em class="textbf">Multiplicador de Lagrange</em>)
+    Sea $\psi \colon U\rightarrow \mathbb{R}$&nbsp;una función
+    de clase $\mathcal{C}^{1}$. Prueba que $u$ es un punto
+    crítico de $\psi $ en $M$ si y sólo si existe $\lambda
+    \in \mathbb{R}$ tal que
+    \begin{equation*}
+      \nabla \psi (u)=\lambda \nabla \varphi (u).
+    \end{equation*}
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  En un espacio de Hilbert $H$ considera la función $\phi
+  \colon H\rightarrow \mathbb{R}$ dada por $\phi (u):=\left\Vert
+    u\right\Vert^{2}$.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que $\phi $ es de clase $\mathcal{C}^{\infty }$ y
+    calcula sus derivadas.
+</p>
+<p>
+  <li> Calcula $\nabla \phi (u)$ para todo $u\in H$.
+</p>
+<p>
+  <li> Prueba que la esfera unitaria
+    \begin{equation*}
+      \Sigma :=\left\{u\in H:\left\Vert u\right\Vert =1\right\}
+    \end{equation*}
+    es una subvariedad de clase $\mathcal{C}^{\infty }$ de $H$ y que
+    el espacio tangente a $\Sigma $ en $u$ es
+    \begin{equation*}
+      T_{u}\Sigma =\left\{v\in H:\left\langle u,v\right\rangle =0\right\}.
+    \end{equation*}
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">[Ortonormalización de Gram-Schmidt]
+  Sea
+  $\mathcal{X}=\left\{v_{k}:k\in \mathbb{N}\right\}$ un subconjunto linealmente
+  independiente de $H$, es decir, para $\alpha_{1},\ldots ,\alpha
+ _{m}\in \mathbb{R}$ se cumple que
+  \begin{equation*}
+    \alpha_{1}v_{1}+\cdots +\alpha_{m}v_{m}=0\quad \Longleftrightarrow \quad
+    \alpha_{1}=\cdots =\alpha_{m}=0.
+  \end{equation*}
+  Definimos $e_{1}:=\frac{v_{1}}{\left\Vert v_{1}\right\Vert }$, y
+  para $k>1$ definimos inductivamente
+  \begin{equation*}
+    w_{k}:=v_{k}-\sum_{j=1}^{k-1}\left\langle v_{k},e_{j}\right\rangle
+    e_{j}\qquad \text{y}\qquad e_{k}:=\frac{w_{k}}{\left\Vert w_{k}\right\Vert }.
+  \end{equation*}
+  Prueba que $\mathcal{O}=\left\{e_{k}:k\in \mathbb{N}\right\}$ es un subconjunto
+  ortonormal de $H$ y que $\lin(\mathcal{O})=\lin(\mathcal{X})$.\label{ex:ortGram-Schmidt}
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\mathcal{B}$ un subconjunto ortonormal de $H$. Demuestra que
+  son equivalentes las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> $\mathcal{B}$&nbsp;es una base de Hilbert de $H$.
+</p>
+<p>
+  <li> $\mathcal{B}$ es un subconjunto ortonormal maximal de
+    $H$, es decir, si $\mathcal{B}^{\prime }$ es un subconjunto
+    ortonormal de $H$ y $\mathcal{B}\subset \mathcal{B}^{\prime }$
+    entonces $\mathcal{B}=\mathcal{B}^{\prime }$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\mathcal{B}=\left\{e_{k}:k\in \mathbb{N}\right\}$ un subconjunto
+  ortonormal de $H$. Prueba que $\mathcal{B}$ es una base de Hilbert
+  de $H$ si y sólo si
+  \begin{equation*}
+    \sum_{k=1}^{\infty }\left\langle u,e_{k}\right\rangle
+    e_{k}:=\lim_{m\rightarrow \infty }\sum_{k=1}^{m}\left\langle
+      u,e_{k}\right\rangle e_{k}=u\qquad \forall u\in H.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="exercise">[Polinomios de Legendre]
+</p>
+<p>
+  <ol class="alfa">
+  <li> Sea $\mathcal{P}[-1,1]$ el conjunto de todas las
+    funciones $p\colon [-1,1]\rightarrow \mathbb{R}$ de la forma
+    \begin{equation*}
+      p(x)=a_{0}+a_{1}x+\cdots +a_{m}x^{m}\text{,\qquad }a_{i}\in \mathbb{R},\text{
+        &nbsp;}m\in \mathbb{N}\cup \left\{0\right\}.
+    \end{equation*}
+    Prueba que $\mathcal{P}[-1,1]$ es denso en $L^{2}(-1,1)$.
+    <em class="emph">(Sugerencia: Usa el Teorema <a href="tul/P_T_02/15.html#teoaproxw">8.3</a>.)</em>
+</p>
+<p>
+  <li> Sea
+    \begin{equation*}
+      e_{k}(x):=\left( k+\frac{1}{2}\right)^{1/2}P_{k}(x)\qquad\text{ con }P_{k}(x):=\frac{1}{2^{k}k!}\left( \frac{d}{dx}\right)^{k}(x^{2}-1)^{k}.
+    \end{equation*}
+    $P_{k}$&nbsp;se llama el $k$<em class="textbf">-ésimo polinomio de Legendre</em>.
+    
+</p>
+<p>
+Prueba que $\mathcal{B}:=\left\{e_{k}:k\in
+    \mathbb{N}\cup \left\{0\right\}\right\}$ es un subconjunto ortonormal de
+    $L^{2}(-1,1)$ y que
+    \begin{equation*}
+      \lin(\mathcal{B})=\mathcal{P}[-1,1].
+    \end{equation*}
+    <em class="emph">(Sugerencia: Observa que </em>$\mathcal{B}$ <em class="emph">se obtiene
+      aplicando el proceso de ortonormalización de Gram-Schmidt al
+      conjunto</em> $\left\{p_{k}:k\in \mathbb{N}\cup \left\{0\right\}\right\}<em class="emph">,</em>$
+    <em class="emph">donde </em>$p_{k}(x):=x^{k}.<em class="emph">)</em>$
+</p>
+<p>
+  <li> Prueba que $\mathcal{B}$ es una base de Hilbert para
+    $L^{2}(-1,1). $
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">[Serie de Fourier]
+  Sean
+  \begin{equation*}
+    e_{1}(x):=\frac{1}{\sqrt{2\pi }},\qquad e_{2m}(x):=\frac{1}{\sqrt{\pi }}\sen mx,\qquad e_{2m+1}(x):=\frac{1}{\sqrt{\pi }}\cos mx.
+  \end{equation*}
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que $\mathcal{B}=\left\{e_{k}:k\in \mathbb{N}\right\}$ es una
+    base de Hilbert de $L^{2}(-\pi ,\pi )$.
+</p>
+<p>
+  <li> Prueba que, para toda función $f\in L^{2}(-\pi ,\pi
+    )$,
+    \begin{equation*}
+      f=\sum_{k=1}^{\infty }\biggl( \int_{-\pi }^{\pi }fe_{k}\biggr) e_{k}.
+    \end{equation*}
+    Esta serie se llama la <em class="textbf">serie de Fourier de</em> $f$.
+  </ol>
+</div>
+</p>
+<p>
+<div id="propconvdeb" class="exercise">
+Sea $H$ un espacio de Hilbert.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que el límite débil de una sucesión
+    débilmente convergente en $H$ es único.
+</p>
+<p>
+  <li> Prueba que, si $u_{k}\rightharpoonup u$ débilmente en
+    $H$, entonces toda subsucesión de $(u_{k})$ converge
+    débilmente a $u$ en $H$.
+</p>
+<p>
+  <li> Prueba que $u_{k}\rightharpoonup u$ débilmente en $H$
+    si y sólo si $Tu_{k}\rightarrow Tu$ en $\mathbb{R}$ para todo
+    $T\in \mathcal{L}(H,\mathbb{R})$.
+</p>
+<p>
+  <li> Prueba que, si $u_{k}\rightharpoonup u$ y
+    $v_{k}\rightharpoonup v$&nbsp;débilmente en $H$ y $\lambda ,\mu
+    \in \mathbb{R}$, entonces $\lambda u_{k}+\mu v_{k}\rightharpoonup
+    \lambda u+\mu v$ débilmente en $H$.
+  </ol>
+</div>
+</p>
+<p>
+<div id="c=cd" class="exercise">
+Prueba que toda sucesión débilmente convergente
+  en $\mathbb{R}^{n}$ es convergente.
+</div>
+</p>
+<p>
+<div id="unicld" class="exercise">
+Sean $H_{1}$ y $H_{2}$ espacios de Hilbert.
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que, si $T\colon H_{1}\rightarrow H_{2}$ es una
+    función lineal y continua y $u_{k}\rightharpoonup u$
+    débilmente en $H_{1}$, entonces $Tu_{k}\rightharpoonup Tu$
+    débilmente en $H_{2}$.
+</p>
+<p>
+  <li> Prueba que, si $T\colon H_{1}\rightarrow H_{2}$ es una
+    función lineal y continua, $u_{k}\rightharpoonup u$
+    débilmente en $H_{1}$ y $Tu_{k}\rightharpoonup v$
+    débilmente en $H_{2}$, entonces $v=Tu$.
+</p>
+<p>
+  <li> Da un ejemplo de una función continua $\varphi
+    \colon H_{1}\rightarrow H_{2}$ y una sucesión $(u_{k})$
+    débilmente convergente en $H_{1}$ tal que $(\varphi (u_{k}))$
+    no converge débilmente en $H_{2}$.
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $f_{k}(x):=\sen kx$. Prueba que la sucesión $(f_{k})$
+  converge débilmente a $0$ en $L^{2}(-\pi ,\pi )$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $g\in C_{c}^{0}(\mathbb{R}^{n})$ tal que $\sop(g)\subset
+  \bar{B}^{n}(0,\frac{1}{2})$ y $\int_{\mathbb{R}^{n}}g^{2}=1$. Para
+  cada $k\in \mathbb{N}$, definimos
+  \begin{equation*}
+    g_{k}(x_{1},\dots,x_{n}):=g(x_{1}+k,\dots,x_{n}).
+  \end{equation*}
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que $g_{k}\rightharpoonup 0$ débilmente en
+    $L^{2}(\mathbb{R}^{n})$ y que $(g_{k})$ no converge en
+    $L^{2}(\mathbb{R}^{n})$. <em class="emph">(Sugerencia: Demuestra que</em>
+    $\left\{g_{k}:k\in \mathbb{N}\right\}$<em class="emph">&nbsp;es un subconjunto ortonormal de
+    </em>$L^{2}(\mathbb{R}^{n})$.<em class="emph">)</em>
+</p>
+<p>
+  <li> Sea $h_{k}:=kg_{k}$. ¿Converge $(h_{k})$
+    débilmente en $L^{2}(\mathbb{R}^{n})$?
+  </ol>
+</div>
+</p>
+<p>
+Se dice que un subconjunto $A$ de
+  $H$ es <em class="textbf">débilmente
+      cerrado</em> en $H$
+    si para cualquier sucesión $(u_{k})$ en $A$
+    tal que $u_{k}\rightharpoonup u$ débilmente en
+  $H$ se cumple que $u\in A$.
+</p>
+<p>
+<div id="cerradodebil" class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que, si $A$ es débilmente cerrado en $H$,
+    entonces $A$ es cerrado en $H$.
+</p>
+<p>
+  <li> Prueba que, si $H$ es un espacio de Hilbert de
+    dimensión infinita, la esfera unitaria
+    \begin{equation*}
+      S:=\left\{v\in H:\left\Vert v\right\Vert =1\right\}
+    \end{equation*}
+    es cerrada pero no es débilmente cerrada en $H$.
+</p>
+<p>
+  <li> Prueba que todo subespacio vectorial cerrado $V$ de un
+    espacio de Hilbert $H$ es débilmente cerrado.
+  </ol>
+</div>
+</p>
+<p>
+<div id="topdebil" class="exercise">
+Prueba que, si $H$ es un espacio de Hilbert,
+</p>
+<p>
+  <ol class="alfa">
+  <li> $\emptyset $ y $H$ son débilmente cerrados en $H$,
+</p>
+<p>
+  <li> si $A_{1}$ y $A_{2}$ son débilmente cerrados en $H$,
+    entonces $A_{1}\cup A_{2}$ es débilmente cerrado en $H$,
+</p>
+<p>
+  <li> si $A_{i}$ es débilmente cerrado en $H$ para todo
+    $i\in \mathcal{I}$, entonces $\bigcap_{i\in \mathcal{I}}A_{i}$ es
+    débilmente cerrado en $H$.
+  </ol>
+</p>
+<p>
+  <em class="emph">El Ejercicio <a href="tul/P_T_02/15.html#topdebil">15.55</a> afirma que el conjunto
+  $\left\{H\smallsetminus A:A\text{ es débilmente cerrado en
+  $H$}\right\}$ es una topología\footnote{Para la definición
+    de topología consulta, por ejemplo,~\cite{Prieto}.} en
+  $H$. Esta topología se llama la <em class="textbf">topología
+      débil</em>.</em>
+</div>
+</p>
+<p>
+<div id="ejcdint" class="exercise">
+Sean $H$ un espacio de Hilbert, $\left\{e_{k}:k\in
+  \mathbb{N}\right\}$ un subconjunto ortonormal de $H$ y $\alpha \in [0,1]$. Definimos
+  \begin{equation*}
+    v_{k}:=\left( 
+      \sqrt{1-\alpha^{2}}\right) e_{k}+\alpha e_{1},\qquad k\geq 2.
+  \end{equation*}
+</p>
+<p>
+  <ol class="alfa">
+  <li> Calcula $\left\Vert v_{k}\right\Vert $ para $k\geq 2$.
+</p>
+<p>
+  <li> Prueba que $v_{k}\rightharpoonup \alpha e_{1}$
+    débilmente en $H$.
+  </ol>
+</div>
+</p>
+<p>
+  La <em class="textbf">cerradura
+      débil</em> de un subconjunto
+  $A$ de un espacio de Hilbert $H$ es el conjunto de
+    los puntos $u\in H$ para los cuales existe una
+    sucesión $\left( v_{k}\right) $ en $A$ tal
+    que $v_{k}\rightharpoonup u$ débilmente en $H$.
+</p>
+<div class="exercise">
+  Prueba que, si $H$ es un espacio de Hilbert de dimensión
+  infinita, la cerradura débil de la esfera unitaria
+  \begin{equation*}
+    S:=\left\{v\in H:\left\Vert v\right\Vert =1\right\}
+  \end{equation*}
+  es la bola unitaria
+  \begin{equation*}
+    B:=\left\{u\in H:\left\Vert u\right\Vert \leq 1\right\}.
+  \end{equation*}
+  <em class="emph">(Sugerencia: Usa el Ejercicio <a href="tul/P_T_02/15.html#ejcdint">15.56</a>.)</em>
+</div>
+
+
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+</html>

@@ -1,0 +1,2073 @@
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_T_02/11.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ 
+    $ \newcommand{\disc}{\mathop{\rm disc}} $ 
+    $ \newcommand{\id}{\operatorname{id}} $ 
+    $ \newcommand{\Int}{\mathop{\rm int}} $ 
+    $ \newcommand{\sop}{\mathop{\rm sop}} $ 
+    $ \newcommand{\undercbrace}{\underbrace} $ 
+    $ \newcommand{\dist}{\mathop{\rm dist}} $ 
+    $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+              <style type="text/css">
+              .texto-tul {
+                counter-increment: capnum 10;
+              }
+              </style>
+<h2 id="Cap-11">La integral de una función continua con soporte compacto</h2>
+<p class="noj">
+La teoría de integración moderna fue iniciada por Henri
+Lebesgue en 1902. La integral de Lebesgue es una de las piedras
+angulares del análisis matemático y tiene aplicaciones muy
+importantes en ecuaciones diferenciales, probabilidad y muchas otras
+ramas de las matemáticas.
+</p>
+<p>
+La noción de integrabilidad de Lebesgue es más general que la
+de Riemann en el sentido de que abarca a muchas más
+funciones. Pero su principal virtud es que permite intercambiar el
+límite por la integral bajo condiciones mucho menos restrictivas
+que las que requiere la integral de Riemann.
+</p>
+<p>
+Hay muchas maneras de introducir la integral de Lebesgue. La que
+daremos aquí tiene como punto de partida a la integral de Riemann
+de una función real continua en un intervalo cerrado, tal y como
+se define en los primeros cursos de cálculo. Supondremos que el
+lector está familiarizado con ella y con sus propiedades.
+</p>
+<p>
+En este capítulo definiremos la integral de funciones continuas
+$f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ que se anulan fuera de
+algún subconjunto compacto de $\mathbb{R}^{n}$. Para este tipo de
+funciones, la integral que aquí introduciremos coincide con la de
+Riemann. Pero no hace falta usar sumas de Riemann: basta definir la
+integral mediante un proceso iterativo, integrando respecto a cada una
+de las variables. Esto no sólo tiene la ventaja de reducir el
+cálculo de la integral de una función de varias variables al
+de integrales de funciones de una sola variable, sino que permite
+además obtener las propiedades básicas de la integral de
+manera sencilla a partir de las propiedades correspondientes para
+funciones de una sola variable.
+</p>
+<p>
+Probaremos que la integral es una medida de Haar, es decir, que es
+lineal, monótona e invariante bajo traslaciones, y que cualquier
+medida de Haar es un múltiplo de la integral. Este hecho permite
+establecer fácilmente la invariancia de la integral bajo
+isometrías lineales y obtener una fórmula de
+transformación de la integral de una función bajo un cambio de
+variable dado por un isomorfismo lineal. Partiendo de este resultado,
+obtendremos una fórmula análoga cuando el cambio de variable
+está dado por un difeomorfismo.
+</p>
+<p>
+En el próximo capítulo extenderemos esta integral a una
+familia mucho más amplia de funciones, y en el capítulo
+subsecuente demostraremos los teoremas fundamentales de la teoría
+de integración de Lebesgue.
+</p>
+<h3 id="sec11-1">Definición y propiedades básicas</h3>
+<p class="noj">
+Definiremos la integral de funciones cada vez más generales
+partiendo de la integral de Riemann
+ de una función continua
+$f\colon [a,b]\rightarrow \mathbb{R}$. Supondremos que el lector está
+familiarizado con dicha integral y con sus propiedades.
+</p>
+
+<div id="foto:riemann" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Riemann.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Bernhard Riemann
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Georg Friedrich Bernhard
+  Riemann (1826-1866) nació en Breselenz, en el Reino de Hanover,
+  actualmente Alemania. Estudió en la Universidad de
+  Göttingen, donde fue alumno de Gauss. Más tarde fue profesor
+  en esa universidad. Entre sus muchas aportaciones fundó el campo
+  de la geometría riemanniana.
+  </div>
+</div>
+
+<p>
+<div class="definition">
+  Un <em class="textbf">rectángulo en</em> $\mathbb{R}^{n}$
+  es un producto $Q=[a_{1},b_{1}]\times \cdots
+  \times [a_{n},b_{n}]$ de $n$ intervalos cerrados en
+  $\mathbb{R}$, es decir,
+  \begin{equation*}
+    Q=\left\{ (x_{1},\dots,x_{n})\in \mathbb{R}^{n}:a_{i}\leq x_{i}\leq b_{i}\text{ }\forall i=1,\dots,n\right\} ,
+  \end{equation*}
+  con $-\infty <a_{i}\leq b_{i}<\infty $, $i=1,\dots,n$.
+</div>
+</p>
+<p>
+Primero definiremos la integral de una función continua en un
+rectángulo mediante un proceso de iteración. Para ello
+requerimos comprobar que la función que se obtiene integrando
+respecto a la primera variable es continua respecto a las variables
+restantes.
+</p>
+<p>
+<div id="basico" class="lemma">
+Sea $f\colon Q\rightarrow \mathbb{R}$ una función
+  continua en un rectángulo $Q=[a_{1},b_{1}]\times \cdots \times
+  [a_{n},b_{n}]$. Entonces la función
+  $f_{1}\colon [a_{2},b_{2}]\times \cdots \times [a_{n},b_{n}]\rightarrow \mathbb{R}$, dada por
+  \begin{equation*}
+    f_{1}(x_{2},\dots,x_{n}):=\int_{a_{1}}^{b_{1}}f(x_{1},x_{2},\dots,x_{n})dx_{1},
+  \end{equation*}
+  es continua.
+</div>
+</p>
+<p>
+<div class="proof">
+  El Teorema <a href="tul/P_T_02/4.html#contunif">4.31</a> asegura que $f$ es uniformemente continua
+  en $Q$. Por tanto, dada $\varepsilon >0$, existe $\delta >0$ tal que
+  \begin{equation*}
+    \left\vert f(x)-f(y)\right\vert <\frac{\varepsilon }{b_{1}-a_{1}+1}\text{\qquad si &nbsp;}\bigl\Vert x-y\bigr\Vert <\delta .
+  \end{equation*}
+  Sean $\tilde{x}=(x_{2},\dots,x_{n}),\tilde{y}=(y_{2},\dots,y_{n})\in
+  [a_{2},b_{2}]\times \cdots \times [a_{n},b_{n}]$. Si
+  $\bigl\Vert \tilde{x}-\tilde{y}\bigr\Vert <\delta $, entonces,
+  \begin{equation*}
+    \left\vert f_{1}(\tilde{x})-f_{1}(\tilde{y})\right\vert \leq
+    \int_{a_{1}}^{b_{1}}\left\vert
+      f(x_{1},x_{2},\dots,x_{n})-f(x_{1},y_{2},\dots,y_{n})\right\vert
+    dx_{1}<\varepsilon .
+  \end{equation*}
+  Esto prueba que $f_{1}$ es continua.
+</div>
+</p>
+<p>
+Si integramos ahora $f_{1}$ respecto a la variable $x_{2}$,
+obtendremos una función continua de las $n-2$ variables
+restantes. Repitiendo este proceso para cada variable obtenemos un
+número real.
+</p>
+<p>
+<div id="defintrectangulo" class="definition">
+La <em class="textbf">integral de una función
+    continua</em> $f\colon Q\rightarrow \mathbb{R}$ <em class="textbf">en un
+    rectángulo</em> $Q=[a_{1},b_{1}]\times \cdots \times [a_{n},b_{n}]$ se define como
+  \begin{equation*}
+    \int_{Q}f:=\int_{a_{n}}^{b_{n}}\cdots \biggl( \int_{a_{2}}^{b_{2}}\biggl(
+        \int_{a_{1}}^{b_{1}}f(x_{1},x_{2},\dots,x_{n})dx_{1}\biggr) dx_{2}\biggr)
+    \cdots dx_{n}.
+  \end{equation*}
+</div>
+</p>
+<p>
+Usaremos ahora esta integral para definir la integral de funciones
+continuas $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ que se anulan fuera
+de algún rectángulo.
+</p>
+<p>
+<div id="defsop" class="definition">
+El <em class="textbf">soporte</em> de una función
+  continua $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es la cerradura en
+  $\mathbb{R}^{n}$ del conjunto $\left\{x\in \mathbb{R}^n :f(x)\neq 0\right\}$. Lo
+  denotamos
+  \begin{equation*}
+    \sop(f):=\overline{\left\{x\in \mathbb{R}^{n}:f(x)\neq 0\right\}}.
+  \end{equation*}
+  Denotaremos por
+  \begin{equation*}
+    \mathcal{C}_{c}^{0}(\mathbb{R}^{n}):=\left\{f\in \mathcal{C}^{0}(\mathbb{R}^{n}):\sop(f)\text{ es compacto}\right\},
+  \end{equation*}
+    donde
+  $\mathcal{C}^{0}(\mathbb{R}^{n})$ es el conjunto de todas las
+  funciones continuas $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$.
+</div>
+</p>
+<p>
+Observa que $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ es un subespacio
+vectorial de $\mathcal{C}^{0}(\mathbb{R}^{n})$ (ver Ejercicio
+<a href="tul/P_T_02/11.html#sop">11.33</a>).
+</p>
+<p>
+<div id="defintsopcomp" class="definition">
+Sea $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$.
+  Definimos <em class="textbf">la integral de</em> $f$ <em class="textbf">en</em> $\mathbb{R}^{n}$
+  como
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f:=\int_{Q}f,
+  \end{equation*}
+  donde $Q$ es algún rectángulo que contiene a
+  $\sop(f)$.
+</div>
+</p>
+<p>
+Es sencillo comprobar que la definición anterior no depende del
+rectángulo elegido. Lo proponemos como ejercicio [Ejercicio
+<a href="tul/P_T_02/11.html#ejdefint">11.30</a>].
+</p>
+<p>
+<div class="notation">
+  Denotaremos a la integral de $f$ en $\mathbb{R}^{n}$ de cualquiera
+  de las siguientes formas:
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f=\int_{\mathbb{R}^{n}}f(x)dx=\int_{\mathbb{R}^{n}}f(x_{1},x_{2},\dots,x_{n})dx_{1}\cdots dx_{n}.
+  \end{equation*}
+  La última notación pone en evidencia el orden en el que consideramos
+  a las variables de integración en la
+  <em class="emph">Definición <a href="tul/P_T_02/11.html#defintrectangulo">11.3</a></em>. Más adelante veremos que
+  el orden es irrelevante <em class="emph">(ver Corolario <a href="tul/P_T_02/11.html#orden">11.18</a>)</em>.
+</div>
+</p>
+<p>
+Dados $\xi \in \mathbb{R}^{n}$ y $f\colon \mathbb{R}^{n}\rightarrow
+\mathbb{R}$, denotamos por $\mathrm{T}_{\xi
+}f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ a la función
+\begin{equation}
+  \left( \mathrm{T}_{\xi }f\right) (x):=f(x-\xi ).\label{tralacion}
+\end{equation}
+$\mathrm{T}_{\xi }f$ se llama la <em class="textbf">traslación de</em> $f$
+<em class="textbf">por</em> $\xi $.
+</p>
+<p>
+<div id="haar" class="theorem">
+La integral tiene las siguientes propiedades:
+</p>
+<p>
+  <div class="description">[font=\normalfont]
+  \item[(Linealidad)] Si $f,g\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$
+    y $\lambda ,\mu \in \mathbb{R}$, entonces $\lambda f+\mu g\in
+    \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}\left( \lambda f+\mu g\right) =\lambda \int_{\mathbb{R}^{n}}f+\mu \int_{\mathbb{R}^{n}}g.
+    \end{equation*}
+</p>
+<p>
+  \item[(Monotonía)] Si $f,g\in
+    \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y $f\leq g$ (es decir,
+    $f(x)\leq g(x)$ para todo $x\in \mathbb{R}^{n}$), entonces
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}f\leq \int_{\mathbb{R}^{n}}g.
+    \end{equation*}
+</p>
+<p>
+  \item[(Invariancia bajo traslaciones)] Si $\xi \in \mathbb{R}^{n}$ y
+    $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, entonces
+    $\mathrm{T}_{\xi }f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y
+    \begin{equation*}
+      \int_{\mathbb{R}^{n}}\mathrm{T}_{\xi }f=\int_{\mathbb{R}^{n}}f.
+    \end{equation*}
+  </div>
+</div>
+</p>
+<p>
+<div class="proof">
+  Las primeras dos propiedades son consecuencia inmediata de las
+  propiedades correspondientes para funciones de variable real
+  [Ejercicios <a href="tul/P_T_02/11.html#sop">11.33</a> y <a href="tul/P_T_02/11.html#lincubo">11.31</a>]. Probaremos la invariancia
+  bajo traslaciones. Sean $\xi \in \mathbb{R}^{n}$, $f\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$.
+</p>
+<p>
+  Si $n=1$ y $\sop(f)\subset [a,b]$, entonces
+  $\sop(\mathrm{T}_{\xi }f)\subset [a+\xi ,b+\xi ]$ y usando el
+  teorema de cambio de variable para funciones de variable real
+  [Ejercicio <a href="tul/P_T_02/11.html#cv1">11.32</a>] obtenemos que
+  \begin{equation*}
+    \int_{\mathbb{R}}f=\int_{a}^{b}f(x)dx=\int_{a+\xi }^{b+\xi }f(x-\xi
+    )dx=\int_{a+\xi }^{b+\xi }(\mathrm{T}_{\xi }f)(x)dx=\int_{\mathbb{R}}\mathrm{T}_{\xi }f.
+  \end{equation*}
+  Si $n>1$ y $\sop(f)\subset [a_{1},b_{1}]\times \cdots \times
+  [a_{n},b_{n}]$, entonces $\sop(\mathrm{T}_{\xi }f)\subset
+  [a_{1}+\xi_{1},b_{1}+\xi_{1}]\times \cdots \times [a_{n}+\xi_{n},b_{n}+\xi_{n}]$. Aplicando el caso $n=1$ y
+  argumentando por inducción obtenemos
+  \begin{align*}
+    \int_{\mathbb{R}^{n}}f &=\int_{\mathbb{R}^{n-1}}\biggl( \int_{\mathbb{R}}f(x_{1},x_{2},\dots,x_{n})dx_{1}\biggr) dx_{2}\cdots dx_{n} \\
+    &=\int_{\mathbb{R}^{n-1}}\biggl( \int_{\mathbb{R}}f(x_{1}-\xi
+     _{1},x_{2},\dots,x_{n})dx_{1}\biggr) dx_{2}\cdots dx_{n} \\
+    &=\int_{\mathbb{R}^{n-1}}\biggl( \int_{\mathbb{R}}f(x_{1}-\xi_{1},x_{2}-\xi
+     _{2},\dots,x_{n}-\xi_{n})dx_{1}\biggr) dx_{2}\cdots dx_{n} \\
+    &=\int_{\mathbb{R}^{n}}\mathrm{T}_{\xi }f,
+  \end{align*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Una consecuencia de la invariancia bajo traslaciones es que la
+integral del límite puntual de una sucesión de funciones no
+coincide, en general, con el límite de las integrales de dichas
+funciones, como lo muestra el siguiente ejemplo.
+</p>
+<p>
+<div id="ejeminvtras" class="example">
+Existe una sucesión $(f_{k})$ en
+  $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ que converge puntualmente a
+  $0$, tal que $\bigl( \int_{\mathbb{R}^{n}}f_{k}\bigr) $ no converge
+  a $0$. En consecuencia,
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}\neq \int_{\mathbb{R}^{n}}\lim_{k\rightarrow \infty }f_{k}(x)dx.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $g\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que
+  $\int_{\mathbb{R}^{n}}g\neq 0$ y $\sop(g)\subset [0,1]^{n}$.
+  Definimos $f_{k}:=\mathrm{T}_{\xi_{k}}g$, donde $\xi
+ _{k}=(k,0,\dots,0)\in \mathbb{R}^{n}$. Entonces $\sop(f_{k})\subset
+  [k,k+1]\times [0,1]^{n-1}$ y, por tanto,
+  $\lim_{k\rightarrow \infty }f_{k}(x)=0$ para cada $x\in
+  \mathbb{R}^{n}$.
+
+<div id="fig:11-1" class="figure">
+  <img src="tul/P_T_02/figuras/Cap11-T-xi.svg" height="110">
+  <div class="caption">
+  </div>                
+</div>
+
+  Por otra parte, de la invariancia de la integral bajo traslaciones
+  se sigue que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f_{k}=\int_{\mathbb{R}^{n}}g\qquad \forall k\in 
+    \mathbb{N}.
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }\int_{\mathbb{R}^{n}}f_{k}=\int_{\mathbb{R}^{n}}g\neq 0=\int_{\mathbb{R}^{n}}\lim_{k\rightarrow \infty }f_{k}(x),
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Más adelante daremos condiciones razonables que permiten
+intercambiar la integral con el límite puntual de funciones (ver
+Teorema <a href="tul/P_T_02/13.html#teocd">13.26</a>).
+</p>
+<h3 id="sec11-2">Unicidad de la integral</h3>
+<p class="noj">
+En esta sección veremos que las propiedades de linealidad,
+monotonía e invariancia bajo traslaciones determinan a la
+integral, salvo por una constante. Este hecho será de utilidad
+para probar la invariancia de la integral bajo isometrías
+lineales y el teorema de cambio de variable.
+</p>
+<p>
+<div class="definition">
+  Una <em class="textbf">medida de Haar</em> en $\mathbb{R}^{n}$ es una función
+  $J\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow \mathbb{R}$ con
+  las siguientes tres propiedades:
+</p>
+<p>
+  <div class="description">[font=\normalfont]
+  \item[(Linealidad)] $J\left( \lambda f+\mu g\right) =\lambda
+    J(f)+\mu J(g)$ para cualesquiera $f,g\in
+    \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y $\lambda ,\mu \in
+    \mathbb{R}$,
+</p>
+<p>
+  \item[(Monotonía)] $J(f)\leq J(g)$ &nbsp;para cualesquiera $f,g\in
+    \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ con $f\leq g$,
+</p>
+<p>
+  \item[(Invariancia bajo traslaciones)] $J(\mathrm{T}_{\xi }f)=J(f)$
+    para cualesquiera $\xi \in \mathbb{R}^{n}$ y $f\in
+    \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$.
+  </div>
+</div>
+</p>
+<p>
+El Teorema <a href="tul/P_T_02/11.html#haar">11.7</a>&nbsp;afirma que la integral es una medida de
+Haar. El siguiente
+resultado afirma que ésta es esencialmente la única medida de
+Haar en $\mathbb{R}^{n}$.
+</p>
+
+<div id="foto:haar" class="figure">
+  <div class="foto">
+    <img src="tul/P_T_02/figuras/fotos/Haar.svg" height="300">
+    <div class="caption">
+    <div class="tag">            
+      Alfréd Haar
+    </div>
+    </div>
+  </div>
+  <div class="leyenda-foto">
+  Alfréd Haar (1885-1933) nació en Budapest,
+  Hungría. Estudió el doctorado en la Universidad de
+  Göttingen donde fue alumno de Hilbert.  Fue profesor de la
+  Universidad de Szeged. Junto con Riesz, contribuyó a formar en
+  ella un centro importante de matemáticas.
+  </div>
+</div>
+
+
+<p>
+<div class="theorem" id="comphaar">[Comparación de medidas de Haar]
+  Si $J\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow
+  \mathbb{R}$ es una medida de Haar, entonces existe una constante
+  $c\geq 0$ tal que
+  \begin{equation*}
+    J(f)=c\int_{\mathbb{R}^{n}}f\qquad \forall f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n}).
+  \end{equation*}
+</div>
+</p>
+<p>
+Para demostrar este teorema veremos primero que, bajo hipótesis
+adecuadas, una medida de Haar conmuta con el límite uniforme de
+funciones en $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$. Observa que toda
+función $f$ en $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ está
+acotada, así que su norma uniforme en
+$\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$,
+\begin{equation*}
+  \left\Vert f\right\Vert_{\infty }:=\sup_{x\in \mathbb{R}^{n}}\left\vert
+    f(x)\right\vert ,
+\end{equation*}
+está bien definida.
+</p>
+<p>
+<div id="lemhaar1" class="lemma">
+Sea
+  $J\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow \mathbb{R}$ una
+  función lineal y monótona. Si $(f_{k})$ es una sucesión
+  en $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que existe un compacto
+  $K $ en $\mathbb{R}^{n}$ que contiene a $\sop(f_{k})$ para
+  todo $k\in \mathbb{N}$ y $f_{k}\rightarrow f$ uniformemente en
+  $\mathbb{R}^{n}$, entonces $f\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y
+  \begin{equation*}
+    \lim_{k\rightarrow \infty }J(f_{k})=J(f).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Del Teorema <a href="tul/P_T_02/5.html#contlimuni">5.14</a> se sigue que $f$ es continua y, como
+  $f_{k}(x)\rightarrow f(x)$ para todo $x\in \mathbb{R}^{n}$, se tiene
+  que $\sop(f)\subset K$. En consecuencia, $f\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$.
+</p>
+<p>
+  Sea $g\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que $g(x)=1$ para
+  todo $x\in K$ y $g(x)\geq 0$ para todo $x\in \mathbb{R}^{n}$
+  [Ejercicio <a href="tul/P_T_02/11.html#cototo">11.38</a>]. Como &nbsp;$\sop(f-f_{k})\subset K$, se tiene
+  que
+  \begin{equation*}
+    -\left\Vert f-f_{k}\right\Vert_{\infty }g\leq f-f_{k}\leq \left\Vert
+      f-f_{k}\right\Vert_{\infty }g
+  \end{equation*}
+  y, como $J$ es lineal y monótona, concluimos que
+  \begin{equation*}
+    -\left\Vert f-f_{k}\right\Vert_{\infty }J(g)\leq J(f)-J(f_{k})\leq
+    \left\Vert f-f_{k}\right\Vert_{\infty }J(g).
+  \end{equation*}
+  es decir,
+  \begin{equation*}
+    \left\vert J(f)-J(f_{k})\right\vert \leq c\left\Vert f-f_{k}\right\Vert
+   _{\infty }
+  \end{equation*}
+  con $c:=J(g)$. 
+  La Proposición <a href="tul/P_T_02/5.html#convB=cu">5.15</a> asegura que
+  $\Vert f-f_k\Vert_\infty\to0$. 
+En consecuencia, $\left\vert J(f)-J(f_{k})\right\vert \rightarrow 0$.
+</div>
+</p>
+<p>
+Vale la pena observar que la afirmación del Lema <a href="tul/P_T_02/11.html#lemhaar1">11.11</a>
+no es cierta si sustituimos convergencia uniforme por convergencia
+puntual, como lo muestra el siguiente ejemplo.
+</p>
+<p>
+<div id="ejemintnoconv" class="example">
+La sucesión de funciones
+  $f_{k}\colon \mathbb{R}\rightarrow \mathbb{R}$ dadas por
+  \begin{equation*}
+    f_{k}(x):=\max \left\{ k^{2}-k^{3}\left\vert x-\tfrac{1}{k}\right\vert
+      ,0\right\}
+  \end{equation*}
+  converge puntualmente a $0$ en $\mathbb{R}$ y
+  $\sop(f_{k})\subset [0,2]$ para todo $k\in \mathbb{N}$,
+  pero $\int_{\mathbb{R}}f_{k}=k\rightarrow \infty $.
+
+<div id="fig:11-2" class="figure">
+  <img src="tul/P_T_02/figuras/Cap11-ejemplo-12.svg" height="230">
+  <div class="caption">
+  </div>                
+</div>
+
+</div>
+</p>
+<p>
+Veremos ahora que toda función $f\in
+\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ se puede expresar como el
+límite uniforme de combinaciones lineales de traslaciones y
+dilataciones de una única función $\Theta $ que definiremos a
+continuación.
+</p>
+<p>
+Sea $\theta \colon \mathbb{R}\rightarrow \mathbb{R}$ la función dada por
+\begin{equation*}
+  \theta (t):=
+    \begin{cases}
+      1-\left\vert t\right\vert & \text{si $\left\vert t\right\vert \leq 1$,} \\
+      0 & \text{si $\left\vert t\right\vert \geq 1$.}
+    \end{cases}
+\end{equation*}
+Definimos $\Theta \colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ como
+\begin{equation}
+  \Theta (x_{1},\dots,x_{n}):=\theta (x_{1})\cdots \theta (x_{n})
+\label{defTheta}
+\end{equation}
+y, para cada $\delta >0$, definimos
+\begin{equation}
+  \Theta_{\delta }(x):=\Theta \left( \frac{x}{\delta }\right) .
+\label{Thetasubdelta}
+\end{equation}
+</p>
+<div id="fig:11-3" class="figure">
+  <img src="tul/P_T_02/figuras/Cap11-Theta.png" height="200">
+  <div class="caption">
+  </div>                
+</div>
+
+<p>
+Esta función es continua y tiene las siguientes propiedades.
+</p>
+<p>
+<div id="piramides" class="lemma">
+</p>
+<p>
+  <ol class="alfa">
+  <li> $\sop(\Theta_{\delta })=[-\delta ,\delta ]^{n}$.
+</p>
+<p>
+  <li> $(\mathrm{T}_{\delta \xi }\Theta_{\delta })(x)=\left(
+      \mathrm{T}_{\xi }\Theta \right) (\frac{x}{\delta })$\quad para
+    cualesquiera $x\in \mathbb{R}^{n}$, $\xi \in \mathbb{R}^{n}$.
+</p>
+<p>
+  <li> $\sum_{m\in \mathbb{Z}^{n}}\mathrm{T}_{\delta m}\Theta
+   _{\delta }=1$,\quad donde $\mathbb{Z}^{n}$ denota a los puntos de
+    $\mathbb{R}^{n}$ de coordenadas enteras.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  La afirmación <em class="emph">(a)</em> es inmediata, pues $\sop(\Theta
+  )=[-1,1]^{n}$. La afirmación <em class="emph">(b)</em> también es clara, ya
+  que\
+  \begin{equation*}
+    (\mathrm{T}_{\delta \xi }\Theta_{\delta })(x)=\Theta_{\delta }(x-\delta
+    \xi )=\Theta (\tfrac{x}{\delta }-\xi )=(\mathrm{T}_{\xi }\Theta )(\tfrac{x}{\delta }).
+  \end{equation*}
+  Para probar <em class="emph">(c)</em> observa primero que, si $t\in [j-1,j]$
+  con $j\in \mathbb{Z}$, entonces
+  \begin{equation*}
+    \sum_{k\in \mathbb{Z}}\theta (t-k)=\theta (t-(j-1))+\theta
+    (t-j)=1-(t-j+1)+1-(j-t)=1.
+  \end{equation*}
+
+<div id="fig:11-4" class="figure">
+  <img src="tul/P_T_02/figuras/Cap11-lema-13.svg" height="140">
+  <div class="caption">
+  </div>                
+</div>
+
+Por tanto,
+  \begin{equation*}
+    \sum_{k\in \mathbb{Z}}\mathrm{T}_{k}\theta =1.
+  \end{equation*}
+  En consecuencia, si $m=(m_{1},\dots,m_{n})\in \mathbb{Z}^{n}$, dado
+  que
+  \begin{equation*}
+    \left( \mathrm{T}_{m}\Theta \right) (x_{1},\dots,x_{n})=\left( \mathrm{T}_{m_{1}}\theta \right) (x_{1})\cdots \left( \mathrm{T}_{m_{n}}\theta \right)
+    (x_{n}),
+  \end{equation*}
+  se cumple que
+  \begin{equation*}
+    \sum_{m\in \mathbb{Z}^{n}}\left( \mathrm{T}_{m}\Theta \right)
+    (x_{1},\dots,x_{n})=\biggl( \sum_{m_{1}\in \mathbb{Z}}\left( \mathrm{T}_{m_{1}}\theta \right) (x_{1})\biggr) \cdots \biggl( \sum_{m_{n}\in \mathbb{Z}}\left( \mathrm{T}_{m_{n}}\theta \right) (x_{n})\biggr) =1,
+  \end{equation*}
+  es decir,
+  \begin{equation*}
+    \sum_{m\in \mathbb{Z}^{n}}\mathrm{T}_{m}\Theta =1.
+  \end{equation*}
+  De esta identidad y la identidad <em class="emph">(b) </em>se sigue inmediatamente
+  <em class="emph">(c).</em>
+</div>
+</p>
+<p>
+Observa que, si $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, entonces
+$f(\delta m)\neq 0$ únicamente para un número finito de $m\in
+\mathbb{Z}^{n}$. Por tanto, la función
+\begin{equation*}
+  \sum_{m\in \mathbb{Z}^{n}}f(\delta m)\mathrm{T}_{\delta m}\Theta_{\delta }
+\end{equation*}
+es una suma finita de funciones continuas con soporte compacto y, en
+consecuencia, pertenece a $\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$.
+</p>
+<p>
+<div id="lemhaar2" class="lemma">
+Para cada $f\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$,
+  \begin{equation*}
+    \lim_{\delta \rightarrow 0}\left\Vert f-\sum_{m\in \mathbb{Z}^{n}}f(\delta
+      m)\mathrm{T}_{\delta m}\Theta_{\delta }\right\Vert_{\infty }=0.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $\varepsilon >0$. Como $f$ tiene soporte compacto, $f$ es
+  uniformemente continua en $\mathbb{R}^{n}$
+  [Ejercicio <a href="tul/P_T_02/11.html#sopcompesunifcont">11.39</a>]. Por tanto, existe $\rho >0$ tal
+  que
+  \begin{equation*}
+    \left\vert f(x)-f(y)\right\vert <\varepsilon \text{\qquad si }\left\Vert
+      x-y\right\Vert <\rho .
+  \end{equation*}
+  Sea $\delta <\frac{\rho }{\sqrt{n}}$. Usando la afirmación
+  <em class="emph">(c)</em> del Lema <a href="tul/P_T_02/11.html#piramides">11.13</a>, para cada $x\in \mathbb{R}^{n}$
+  obtenemos
+  \begin{align}
+    f(x)-\sum_{m\in \mathbb{Z}^{n}}f(\delta m)(\mathrm{T}_{\delta m}\Theta
+   _{\delta })(x) &=\sum_{m\in \mathbb{Z}^{n}}\left( f(x)-f(\delta m)\right) (\mathrm{T}_{\delta m}\Theta_{\delta })(x)  \notag \\
+    &=\sum_{m\in S(x)}\left( f(x)-f(\delta m)\right) (\mathrm{T}_{\delta
+      m}\Theta_{\delta })(x),\label{suma}
+  \end{align}
+  donde $S(x):=\left\{m\in \mathbb{Z}^{n}:x\in\sop(\mathrm{T}_{\delta
+    m}\Theta_{\delta })\right\}$. Nota que $S(x)$ es un conjunto
+  finito. Ahora bien, como
+  \begin{equation*}
+    \sop(\mathrm{T}_{\delta m}\Theta_{\delta })=\left\{x\in \mathbb{R}^{n}:x-\delta m\in [-\delta ,\delta ]^{n}\right\},
+  \end{equation*}
+  se tiene que
+  \begin{equation*}
+    \left\Vert x-\delta m\right\Vert \leq \sqrt{n}\delta <\rho \qquad \forall m\in S(x).
+  \end{equation*}
+  Aplicando la desigualdad del triángulo a (\ref{suma}) concluimos
+  que
+  \begin{align*}
+    \left\vert f(x)-\sum_{m\in \mathbb{Z}^{n}}f(\delta m)(\mathrm{T}_{\delta
+        m}\Theta_{\delta })(x)\right\vert &\leq \sum_{m\in S(x)}\left\vert
+      f(x)-f(\delta m)\right\vert (\mathrm{T}_{\delta m}\Theta_{\delta })(x) \\
+    &<\varepsilon \sum_{m\in S(x)}(\mathrm{T}_{\delta m}\Theta_{\delta
+    })(x)\leq \varepsilon \text{\qquad si &nbsp;}\delta <\frac{\rho }{\sqrt{n}}.
+  \end{align*}
+  En consecuencia,
+  \begin{equation*}
+    \left\Vert f-\sum_{m\in \mathbb{Z}^{n}}f(\delta m)\mathrm{T}_{\delta
+        m}\Theta_{\delta }\right\Vert_{\infty }\leq \varepsilon \text{\qquad si &nbsp;}\delta <\frac{\rho }{\sqrt{n}}.
+  \end{equation*}
+  Esto concluye la demostración.
+</div>
+</p>
+<p>
+Finalmente, calcularemos $J(\Theta_{2^{-k}})$ en términos de
+$J(\Theta )$.
+</p>
+<p>
+<div id="lemhaar3" class="lemma">
+Sea
+  $J\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow \mathbb{R}$ una
+  función lineal e invariante bajo traslaciones. Entonces, para
+  cada $\delta >0$, se cumple que
+  \begin{equation*}
+    2^{n}J(\Theta_{\delta })=J(\Theta_{2\delta }).
+  \end{equation*}
+  En consecuencia,
+  \begin{equation*}
+    2^{nk}J(\Theta_{2^{-k}})=J(\Theta )\qquad \forall k\in \mathbb{N}\text{.}
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Un cálculo directo, que proponemos como ejercicio
+  [Ejercicio <a href="tul/P_T_02/11.html#dilatacion">11.40</a>] y aquí ilustramos con una figura,
+  muestra que
+  \begin{equation*}
+    \tfrac{1}{2}\,\theta (2t+1)+\theta (2t)+\tfrac{1}{2}\,\theta (2t-1)=\theta
+    (t)\qquad \forall t\in \mathbb{R}\text{.}
+  \end{equation*}
+
+<div id="fig:11-5" class="figure">
+  <img src="tul/P_T_02/figuras/Cap11-lema-15.svg" height="150">
+  <div class="caption">
+  </div>                
+</div>
+
+  Reemplazando $t$ por $\frac{t}{2\delta }$ en la identidad anterior
+  obtenemos
+  \begin{align*}
+    \theta_{2\delta }(t) =\theta \left( \tfrac{t}{2\delta }\right) &=\tfrac{1}{2}\,\theta \left( \tfrac{t+\delta }{\delta }\right) +\theta \left( \tfrac{t}{\delta }\right) +\tfrac{1}{2}\,\theta \left( \tfrac{t-\delta }{\delta }\right)
+    \\
+    &=\tfrac{1}{2}(\mathrm{T}_{-\delta }\theta_{\delta })(t)+\theta_{\delta
+    }(t)+\tfrac{1}{2}(\mathrm{T}_{\delta }\theta_{\delta })(t)\qquad \forall
+    t\in \mathbb{R}.
+  \end{align*}
+  Es decir,
+  \begin{equation*}
+    \theta_{2\delta }=\sum_{\nu \in \Gamma }\left( \tfrac{1}{2}\right)
+   ^{\left\vert \nu \right\vert }\mathrm{T}_{\nu \delta }\theta_{\delta
+    },\qquad \text{con &nbsp;}\Gamma :=\left\{-1,0,1\right\}.
+  \end{equation*}
+  Por tanto,
+  \begin{align}
+    \Theta_{2\delta }(x_{1},\dots,x_{n}) &=\theta_{2\delta }(x_{1})\cdots
+    \theta_{2\delta }(x_{n})  \notag \\
+    &=\sum_{\gamma \in \Gamma^{n}}c_{\gamma }(\mathrm{T}_{\gamma \delta
+    }\Theta_{\delta })(x_{1},\dots,x_{n}),\label{dil}
+  \end{align}
+  donde
+  \begin{equation*}
+    c_{\gamma }=\prod_{i=1}^{n}\left( \tfrac{1}{2}\right)^{\left\vert \gamma
+       _{i}\right\vert }\text{\qquad con }\gamma =(\gamma_{1},\dots,\gamma_{n})\in
+    \Gamma^{n}.
+  \end{equation*}
+  Observa que
+  \begin{equation*}
+    \sum_{\gamma \in \Gamma^{n}}c_{\gamma }=\left( \tfrac{1}{2}+1+\tfrac{1}{2}\right) \sum_{\gamma \in \Gamma^{n-1}}c_{\gamma }=\left( \tfrac{1}{2}+1+\tfrac{1}{2}\right)^{n}=2^{n}.
+  \end{equation*}
+</p>
+<p>
+  Como $J$ es lineal e invariante bajo traslaciones, aplicando $J$ a
+  la identidad (\ref{dil}) concluimos que
+  \begin{equation*}
+    J(\Theta_{2\delta })=\sum_{\gamma \in \Gamma^{n}}c_{\gamma }J(\Theta
+   _{\delta })=2^{n}J(\Theta_{\delta }).
+  \end{equation*}
+  Esta es la primera identidad del enunciado.
+</p>
+<p>
+  Para probar la segunda aplicamos ésta $k$ veces, con $\delta
+  =2^{-1},2^{-2},\dots,2^{-k}$ respectivamente, para obtener
+  \begin{equation*}
+    J(\Theta )=2^{n}J(\Theta_{2^{-1}})=2^{2n}J(\Theta_{2^{-2}})=\cdots
+    =2^{kn}J(\Theta_{2^{-k}}).
+  \end{equation*}
+  Esto concluye la demostración.
+</div>
+</p>
+<p>
+<div class="proof">[Demostración del Teorema <a href="tul/P_T_02/11.html#comphaar">11.10</a>.] Sea
+$J\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow \mathbb{R}$ una
+medida de Haar y sea $c:=J(\Theta )$, donde $\Theta $ es la
+función definida en (\ref{defTheta}). Denotemos por
+$I\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow \mathbb{R} $ a la
+función
+\begin{equation*}
+  I(f):=\int_{\mathbb{R}^{n}}f.
+\end{equation*}
+Probaremos que
+\begin{equation*}
+  J(f)=cI(f)\qquad \forall f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n}).
+\end{equation*}
+</p>
+<p>
+Usando el Ejercicio <a href="tul/P_T_02/11.html#intprodtens">11.37</a>&nbsp;obtenemos
+\begin{equation*}
+  I(\Theta )=\biggl( \int_{\mathbb{R}}\theta \biggr)^{n}=1.
+\end{equation*}
+Aplicando el Lema <a href="tul/P_T_02/11.html#lemhaar3">11.15</a> tanto a $I$ como a $J$ concluimos que
+\begin{equation*}
+  J(\Theta_{2^{-k}})=2^{-kn}J(\Theta )=2^{-kn}cI(\Theta )=cI(\Theta
+ _{2^{-k}}).
+\end{equation*}
+Sea $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$. De los Lemas
+<a href="tul/P_T_02/11.html#lemhaar1">11.11</a> y <a href="tul/P_T_02/11.html#lemhaar2">11.14</a> se sigue que
+\begin{align*}
+  J(f) &=\lim_{k\rightarrow \infty }J\biggl( \sum_{m\in \mathbb{Z}^{n}}f(2^{-k}m)\mathrm{T}_{2^{-k}m}\Theta_{2^{-k}}\biggr) \\
+  &=\lim_{k\rightarrow \infty }\sum_{m\in \mathbb{Z}^{n}}f(2^{-k}m)J(\Theta
+ _{2^{-k}}) \\
+  &=c\lim_{k\rightarrow \infty }\sum_{m\in \mathbb{Z}^{n}}f(2^{-k}m)I(\Theta
+ _{2^{-k}}) \\
+  &=c\lim_{k\rightarrow \infty }I\biggl( \sum_{m\in \mathbb{Z}^{n}}f(2^{-k}m)\mathrm{T}_{2^{-k}m}\Theta_{2^{-k}}\biggr) =cI(f).
+\end{align*}
+Esto concluye la demostración.
+</div>
+</p>
+
+<h3 id="sec11-3">Invariancia bajo isometrías</h3>
+<p class="noj">
+Sea $GL(n,\mathbb{R})$ el conjunto de todas las matrices invertibles
+de $n\times n$ con coeficientes reales, es decir, de las matrices cuyo
+determinante es distinto de cero. Si identificamos a una matriz $A$
+con la transformación lineal $A\colon \mathbb{R}^{n}\rightarrow
+\mathbb{R}^{n}$ definida por ella, de la manera usual, entonces
+$GL(n,\mathbb{R})$ es el conjunto de isomorfismos lineales
+$\mathcal{H}(\mathbb{R}^{n},\mathbb{R}^{n}) $ definido en la
+Sección <a href="tul/P_T_02/10.html#sec10-3">10.3</a>.
+</p>
+<p>
+$GL(n,\mathbb{R})$ con el producto de matrices (o la composición
+de transformaciones lineales) es un grupo, que se llama <em class="textbf">grupo
+  lineal general</em>.
+</p>
+<p>
+Observa lo siguiente.
+</p>
+<p>
+<div id="newhaar" class="lemma">
+Si $J\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow
+  \mathbb{R}$ es una medida de Haar en $\mathbb{R}^{n}$&nbsp;y $A\in
+  GL(n,\mathbb{R})$, entonces la función
+  $J_{A}\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow \mathbb{R}$
+  dada por
+  \begin{equation*}
+    J_{A}(f):=J(f\circ A)
+  \end{equation*}
+  está bien definida y es una medida de Haar en $\mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $A\in GL(n,\mathbb{R})$ y $f\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$. Puesto que&nbsp;$\sop(f\circ
+  A)=A^{-1}(\sop(f))$, se tiene que $\sop(f\circ A)$&nbsp;es compacto (ver
+  Proposición <a href="tul/P_T_02/4.html#compcont">4.10</a>). Así que $f\circ A\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$. Esto prueba que $J_{A}$
+  está bien definida.
+</p>
+<p>
+  La linealidad y la monotonía de $J_{A}$ son consecuencia
+  inmediata de las propiedades correspondientes de $J$. Probemos la
+  invariancia bajo traslaciones.
+</p>
+<p>
+  Sean $\xi \in \mathbb{R}^{n}$ y $f\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$. Para todo $x\in
+  \mathbb{R}^{n}$ se tiene que
+  \begin{align*}
+    \left( \left( \mathrm{T}_{\xi }f\right) \circ A\right) (x)=\left(
+    \mathrm{T}_{\xi }f\right) (Ax)&=f(Ax-\xi )\\
+ &=f(A(x-A^{-1}\xi ))=(\mathrm{T}_{A^{-1}\xi
+   }(f\circ A))(x).
+  \end{align*}
+  Como $J$ es invariante bajo traslaciones concluimos que
+  \begin{equation*}
+    J_{A}(\mathrm{T}_{\xi }f)=J(\left( \mathrm{T}_{\xi }f\right) \circ A)=J(\mathrm{T}_{A^{-1}\xi }(f\circ A))=J(f\circ A)=J_{A}(f),
+  \end{equation*}
+  es decir, $J_{A}$ es invariante bajo traslaciones.
+</div>
+</p>
+<p>
+Una matriz $A\in GL(n,\mathbb{R})$ se llama <em class="textbf">ortogonal</em>
+si es una isometría, es decir, si
+\begin{equation*}
+  \left\Vert Ax\right\Vert =\left\Vert x\right\Vert 
+  \qquad \forall x\in \mathbb{R}^{n}.
+\end{equation*}
+Si $A$ es una matriz ortogonal entonces $\det A=\pm 1$. El conjunto de
+todas las matrices ortogonales de $n\times n$ es un subgrupo de
+$GL(n,\mathbb{R})$, llamado el <em class="textbf">grupo ortogonal,</em>
+que se denota por $O(n)$.
+</p>
+<p>
+Usaremos el Teorema <a href="tul/P_T_02/11.html#comphaar">11.10</a> para probar que la integral es
+invariante bajo isometrías.
+</p>
+<p>
+<div class="theorem" id="inviso">[Invariancia bajo isometrías]
+  Para cualesquiera $A\in O(n)$, $\zeta \in
+  \mathbb{R}^{n}$ y $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ se
+  cumple que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f(Ax+\zeta )dx=\int_{\mathbb{R}^{n}}f(y)dy.
+  \end{equation*}
+</div>
+</p>
+<p>
+
+<div class="proof">
+  Sean $I,I_{A}\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow
+  \mathbb{R}$ las funciones dadas por
+  \begin{equation*}
+    I(f):=\int_{\mathbb{R}^{n}}f,\qquad I_{A}(f):=I(f\circ A).
+  \end{equation*}
+  Ambas son medidas de Haar en $\mathbb{R}^{n}$ (ver
+  Lema <a href="tul/P_T_02/11.html#newhaar">11.16</a>). Por el Teorema <a href="tul/P_T_02/11.html#comphaar">11.10</a>, existe una
+  constante $c\geq 0$ tal que
+  \begin{equation}
+    I_{A}(f)=cI(f)\qquad \forall f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n}).
+\label{haarI}
+  \end{equation}
+  Probaremos que $c=1$. Para ello, considera la función
+  \begin{equation*}
+    f_{0}(x):=
+      \begin{cases}
+        1-\left\Vert x\right\Vert & \text{si $\left\Vert x\right\Vert \leq 1$,} \\
+        0 & \text{si $\left\Vert x\right\Vert \geq 1$.}
+      \end{cases}
+  \end{equation*}
+
+  <div id="fig:11-6" class="figure">
+  <img src="tul/P_T_02/figuras/Cap11-cono.png" height="200">
+  <div class="caption">
+  </div>                
+</div>
+
+  </p>
+<p class="noj">
+  Como $\left\Vert Ax\right\Vert =\left\Vert x\right\Vert $ para todo
+  $x\in \mathbb{R}^{n}$, se tiene que $f_{0}=f_{0}\circ A$. En
+  consecuencia,
+  \begin{equation*}
+    cI(f_{0})=I_{A}(f_{0})=I(f_{0}\circ A)=I(f_{0}),
+  \end{equation*}
+  y como $I(f_{0})\neq 0$ [Ejercicio <a href="tul/P_T_02/11.html#posi">11.36</a>] concluimos que $c=1$.
+  Sustituyendo este valor en la identidad (\ref{haarI}) obtenemos
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f\circ A=\int_{\mathbb{R}^{n}}f\qquad \forall
+    f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n}).
+  \end{equation*}
+  Por último, usamos la invariancia de la integral bajo
+  traslaciones para concluir que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}(\mathrm{T}_{-\zeta }f)\circ A=\int_{\mathbb{R}^{n}}\mathrm{T}_{-\zeta }f=\int_{\mathbb{R}^{n}}f\qquad \forall f\in 
+    \mathcal{C}_{c}^{0}(\mathbb{R}^{n}).
+  \end{equation*}
+  Ésta es la identidad deseada.
+</div>
+</p>
+<p>
+Una consecuencia sencilla pero importante del Teorema <a href="tul/P_T_02/11.html#inviso">11.17</a> es
+que la integral no depende del orden de las variables.
+</p>
+<p>
+<div id="orden" class="corollary">
+Para cualquier permutación $(i_{1},\dots,i_{n})$ de
+  $(1,\dots,n) $ se cumple que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f(x_{1},x_{2},\dots,x_{n})dx_{1}\cdots dx_{n}=\int_{\mathbb{R}^{n}}f(x_{1},x_{2},\dots,x_{n})dx_{i_{1}}\cdots dx_{i_{n}}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea $A$ la matriz que permuta coordenadas como sigue:
+  \begin{equation*}
+    A(x_{1},x_{2},\dots,x_{n})=(y_{1},y_{2},\dots,y_{n}),\text{\qquad donde &nbsp;}y_{k}:=x_{j}\text{ si }i_{j}=k.
+  \end{equation*}
+  Claramente, $\left\Vert Ax\right\Vert =\left\Vert x\right\Vert $
+  para todo $x\in \mathbb{R}^{n}$, por tanto $A\in O(n)$. Aplicando el
+  Teorema <a href="tul/P_T_02/11.html#inviso">11.17</a>&nbsp;obtenemos
+  \begin{align*}
+    \int_{\mathbb{R}^{n}}f(x_{1},x_{2},\dots,x_{n})dx_{1}\cdots dx_{n} &=\int_{\mathbb{R}^{n}}(f\circ A)(x_{1},x_{2},\dots,x_{n})dx_{1}\cdots dx_{n} \\
+    &=\int_{\mathbb{R}^{n}}f(y_{1},y_{2},\dots,y_{n})dy_{i_{1}}\cdots dy_{i_{n}},
+  \end{align*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+El Teorema <a href="tul/P_T_02/11.html#inviso">11.17</a> se extiende como sigue.
+</p>
+<p>
+<div id="cvlin" class="theorem">
+Para cualesquiera $A\in GL(n,\mathbb{R})$, $\zeta \in
+  \mathbb{R}^{n}$ y $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ se
+  cumple que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f(Ax+\zeta )\left\vert \det A\right\vert dx=\int_{\mathbb{R}^{n}}f(y)dy.
+  \end{equation*}
+</div>
+</p>
+<p>
+Para demostrar este teorema usaremos el siguiente caso particular de
+él.
+</p>
+<p>
+<div id="diag" class="lemma">
+Si $A$ es una matriz diagonal de $n\times n$ tal que
+  $\det A\neq 0$, entonces para toda $f\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ se cumple que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f(Ax)\left\vert \det A\right\vert dx=\int_{\mathbb{R}^{n}}f(y)dy.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Sea
+  \begin{equation*}
+    A=
+      \begin{pmatrix}
+        \lambda_{1} & \cdots & 0 \\
+        \vdots & \ddots & \vdots \\
+        0 & \cdots & \lambda_{n}
+      \end{pmatrix}.
+  \end{equation*}
+  tal que $\det A=\lambda_{1}\cdots \lambda_{n}\neq 0$. Consida la
+  medida de Haar $I_{A}\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow
+  \mathbb{R}$ dada por
+  \begin{equation*}
+    I_{A}(f):=\int_{\mathbb{R}^{n}}f\circ A
+  \end{equation*}
+  (ver Lema <a href="tul/P_T_02/11.html#newhaar">11.16</a>). Por el Teorema <a href="tul/P_T_02/11.html#comphaar">11.10</a>&nbsp;existe
+  $c\geq 0$ tal que
+  \begin{equation}
+    I_{A}(f)=c\int_{\mathbb{R}^{n}}f\qquad \forall f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n}).\label{diaghaar}
+  \end{equation}
+  Para determinar $c$ basta calcular el valor de $I_{A}$ en la
+  función $\Theta $ definida en (\ref{defTheta}). Nota que, para
+  $\lambda\neq0$,
+  \begin{equation*}
+    \theta (\lambda t)=
+      \begin{cases}
+        1-\left\vert \lambda t\right\vert & \text{si $\left\vert t\right\vert \leq 
+        \frac{1}{\left\vert \lambda \right\vert }$,} \\
+        0 & \text{si $\left\vert t\right\vert \geq \frac{1}{\left\vert \lambda
+          \right\vert }$.}
+      \end{cases}
+  \end{equation*}
+  Por tanto,
+  \begin{equation*}
+    \int_{\mathbb{R}}\theta (\lambda t)dt=\frac{1}{\left\vert \lambda
+      \right\vert }
+  \end{equation*}
+  y, en consecuencia,
+  \begin{align*}
+    \int_{\mathbb{R}^{n}}\Theta \circ A &=\int_{\mathbb{R}^{n}}\theta (\lambda
+   _{1}x_{1})\cdots \theta (\lambda_{n}x_{n})dx_{1}\cdots dx_{n} \\
+    &=\frac{1}{\left\vert \lambda_{1}\right\vert }\cdots \frac{1}{\left\vert
+        \lambda_{n}\right\vert }=\frac{1}{\left\vert \det A\right\vert }.
+  \end{align*}
+  Como $\int_{\mathbb{R}^{n}}\Theta =1$ concluimos que
+  \begin{equation*}
+    \frac{1}{\left\vert \det A\right\vert }=I_{A}(\Theta )=c\int_{\mathbb{R}^{n}}\Theta =c.
+  \end{equation*}
+  Sustituyendo este valor en la identidad (\ref{diaghaar}) obtenemos
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f\circ A=\frac{1}{\left\vert \det A\right\vert }\int_{\mathbb{R}^{n}}f\qquad \forall f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n}),
+  \end{equation*}
+  como afirma el enunciado.
+</div>
+</p>
+<p>
+Usaremos el siguiente resultado de algebra lineal\footnote{Consulta,
+  por ejemplo,~\cite{Friedberg} (Theorem 6.27).} para probar el Teorema <a href="tul/P_T_02/11.html#cvlin">11.19</a>.
+</p>
+<p>
+<div class="theorem" id="svd">[Descomposición en valores singulares]
+  Sea $A$ una matriz de $n\times n$ con coeficientes
+  reales.  Entonces existen $U_{1},U_{2}\in O(n)$ y una matriz
+  diagonal $D$ con coeficientes no negativos tales que
+   $A=U_{1}DU_{2}$.
+  \begin{equation*}
+    A=U_{1}DU_{2}.
+  \end{equation*}
+</div>
+</p>
+<p>
+Proponemos la demostración de este resultado como ejercicio
+[Ejercicio <a href="tul/P_T_02/11.html#ejersvd">11.46</a>].
+</p>
+<p>
+<div class="proof">[Demostración del Teorema <a href="tul/P_T_02/11.html#cvlin">11.19</a>.] Sean $A\in
+GL(n,\mathbb{R})$, $\zeta \in \mathbb{R}^{n}$ y $f\in
+\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$. Por el Teorema <a href="tul/P_T_02/11.html#svd">11.21</a>,
+existen $U_{1},U_{2}\in O(n)$ y una matriz diagonal $D$ tales que
+\begin{equation*}
+  A=U_{1}DU_{2}.
+\end{equation*}
+En particular, $\left\vert \det D\right\vert =\left\vert \det
+  A\right\vert \neq 0$. Usando el Teorema <a href="tul/P_T_02/11.html#inviso">11.17</a>, el Lema
+<a href="tul/P_T_02/11.html#diag">11.20</a>&nbsp;y la invariancia de la integral bajo traslaciones,
+obtenemos
+\begin{align*}
+  \int_{\mathbb{R}^{n}}f(x)dx &=\int_{\mathbb{R}^{n}}f(U_{1}x)dx=\int_{\mathbb{R}^{n}}f(U_{1}Dx)\left\vert \det D\right\vert dx \\
+  &=\int_{\mathbb{R}^{n}}f(U_{1}DU_{2}x)\left\vert \det D\right\vert dx=\int_{\mathbb{R}^{n}}f(Ax)\left\vert \det A\right\vert dx \\
+  &=\int_{\mathbb{R}^{n}}f(Ax+\zeta )\left\vert \det A\right\vert dx,
+\end{align*}
+como afirma el enunciado.
+</div>
+</p>
+
+<h3 id="sec11-4">El teorema de cambio de variable</h3>
+<p class="noj">
+Ahora nuestro objetivo es extender el Teorema <a href="tul/P_T_02/11.html#cvlin">11.19</a>,
+reemplazando a la transformación $x\mapsto Ax+\zeta &nbsp;$por una
+función $\varphi $ que localmente se parece a ella. Empezaremos
+precisando lo que esto significa.
+</p>
+<p>
+A lo largo de esta sección $\Omega $ denotará a un subconjunto
+abierto de $\mathbb{R}^{n}$.
+</p>
+<p>
+<div class="definition">
+  Sea $f\in \mathcal{C}^{0}(\Omega )$. El <em class="textbf">soporte de</em> $f$
+  es la cerradura en $\mathbb{R}^{n}$ del conjunto
+  $\left\{x\in \Omega :f(x)\neq 0\right\}$. Lo denotamos $\sop(f)$.
+</div>
+</p>
+<p>
+Nota que el soporte de una función $f\in \mathcal{C}^{0}(\Omega )$
+no necesariamente está contenido en $\Omega $. Por ejemplo, si
+$f(x)=1$ para todo $x\in \Omega $ entonces $\sop(f)=\overline{\Omega
+}$, que no está contenido en $\Omega $ si $\Omega \neq
+\mathbb{R}^{n}$.
+</p>
+<p>
+Definimos
+\begin{equation*}
+  \mathcal{C}_{c}^{0}(\Omega ):=\left\{f\in \mathcal{C}^{0}(\Omega ) :
+    \sop(f)\text{ es compacto y }\sop(f)\subset \Omega \right\}.
+\end{equation*}
+Nota que $\mathcal{C}_{c}^{0}(\Omega )$ es un subespacio vectorial de
+$\mathcal{C}^{0}(\Omega )$ (ver Ejercicio <a href="tul/P_T_02/11.html#sop">11.33</a>).
+Si $\Omega =\mathbb{R}^{n}$
+este espacio coincide con el de la Definición <a href="tul/P_T_02/11.html#defsop">11.4</a>.
+</p>
+<p>
+Dada una función $f\colon \Omega \rightarrow \mathbb{R}$, denotamos por
+$\bar{f}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ a la función
+\begin{equation*}
+  \bar{f}(x):=
+    \begin{cases}
+      f(x) & \text{si $x\in \Omega$,} \\
+      0 & \text{si $x\in \mathbb{R}^{n}\smallsetminus \Omega$.}
+    \end{cases}
+\end{equation*}
+Es sencillo comprobar que, si $f\in \mathcal{C}_{c}^{0}(\Omega )$,
+entonces $\bar{f}$ es continua en todo $\mathbb{R}^{n}$ y pertenece a
+$\mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ [Ejercicio <a href="tul/P_T_02/11.html#ext">11.48</a>].
+</p>
+<p>
+<div class="definition">
+  Si $f\in \mathcal{C}_{c}^{0}(\Omega )$ definimos <em class="textbf">la integral
+    de</em> $f$ <em class="textbf">en</em> $\Omega $
+  como
+  \begin{equation*}
+    \int_{\Omega }f:=\int_{\mathbb{R}^{n}}\bar{f}.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="definition">
+  Sean $\Omega $ y $\Omega^{\prime }$ subconjuntos abiertos de
+  $\mathbb{R}^{n}$. Una función $\varphi \colon \Omega \rightarrow
+  \Omega^{\prime }$ es un <em class="textbf">difeomorfismo de clase</em>
+  $\mathcal{C}^{1}$ si $\varphi $ es de clase $\mathcal{C}^{1}$ en
+  $\Omega $, $\varphi $ es biyectiva y su inverso $\varphi
+ ^{-1}\colon \Omega^{\prime }\rightarrow \Omega $ es de clase
+  $\mathcal{C}^{1}$ en $\Omega^{\prime }$.
+</div>
+</p>
+<p>
+Si $\varphi $ es un difeomorfismo de clase $\mathcal{C}^{1}$, la regla
+de la cadena asegura que
+\begin{equation*}
+  (\varphi^{-1})^{\prime }(\varphi (\xi ))\circ \varphi^{\prime }(\xi )=\id\qquad\text{y}\qquad \varphi^{\prime }(\xi )\circ (\varphi^{-1})^{\prime
+  }(\varphi (\xi ))=\id\qquad \forall \xi \in \Omega ,
+\end{equation*}
+donde $\id\colon \mathbb{R}^{n}\rightarrow \mathbb{R}^{n}$ es la
+identidad. Por tanto, $\varphi^{\prime }(\xi )\in GL(n,\mathbb{R})$
+para todo $\xi \in \Omega $. En una vecindad pequeña de $\xi $, la
+función $\varphi $ es muy cercana a la función
+\begin{equation*}
+  \alpha_{\xi }(x):=\varphi (\xi )+\varphi^{\prime }(\xi )[x-\xi]=\varphi
+ ^{\prime }(\xi )x+\left[ \varphi (\xi )-\varphi^{\prime }(\xi )\xi \right] ,
+\end{equation*}
+para la cual vale el Teorema <a href="tul/P_T_02/11.html#cvlin">11.19</a>. Probaremos la siguiente
+extensión de ese resultado.
+</p>
+<p>
+<div class="theorem" id="cv">[de cambio de variable]
+Sean $\Omega $ y $\Omega^{\prime }$ subconjuntos abiertos
+  de $\mathbb{R}^{n}$, $\varphi \colon \Omega \rightarrow \Omega^{\prime }$
+  un difeomorfismo de clase $\mathcal{C}^{1}$ y $f\in
+  \mathcal{C}_{c}^{0}(\Omega^{\prime })$. Entonces $(f\circ \varphi
+  )\left\vert \det \varphi^{\prime }\right\vert \in
+  \mathcal{C}_{c}^{0}(\Omega )$ y
+  \begin{equation*}
+    \int_{\Omega }f(\varphi (x))\left\vert \det \varphi^{\prime }(x)\right\vert
+    dx=\int_{\Omega^{\prime }}f(y)dy.
+  \end{equation*}
+</div>
+</p>
+<p>
+La idea de la demostración es aproximar localmente a $\varphi $
+por la función $\alpha_{\xi }$ y aplicar el Teorema
+<a href="tul/P_T_02/11.html#cvlin">11.19</a>. Dedicaremos el resto de esta sección a la
+demostracion de este resultado. Usaremos el siguiente lema.
+</p>
+<p>
+<div id="omega" class="lemma">
+Sean $K=(K,d_{K})$ un espacio métrico compacto,
+  $X=(X,d_{X}) $ un espacio métrico y $\varphi \colon K\rightarrow X$
+  una función continua. Entonces existe una función no
+  decreciente $\omega \colon [0,\infty )\rightarrow [0,\infty )$ tal
+  que $\lim_{t\rightarrow 0^{+}}\omega (t)=0$ y
+  \begin{equation*}
+    d_{X}(\varphi (x),\varphi (y))\leq \omega (d_{K}(x,y))\qquad \forall
+    x,y\in K.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div class="proof">
+  Para cada $t\in [0,\infty )$ definimos
+  \begin{equation}
+    \omega (t):=\sup \left\{d_{X}(\varphi (x),\varphi (y)):x,y\in K,\text{ }d_{K}(x,y)\leq t\right\}.\label{mod}
+  \end{equation}
+  Como la función $h\colon K\times K\rightarrow \mathbb{R}$ dada por
+  $h(x,y):=d_{X}(\varphi (x),\varphi (y))$ es continua (ver
+  Ejercicio <a href="tul/P_T_02/3.html#distcont">3.49</a>) y $K\times K$ es compacto (ver
+  Ejercicio <a href="tul/P_T_02/7.html#prodcomp">7.28</a>), se tiene que $h$ es acotada. Por tanto,
+  $\omega (t)\in [0,\infty )$ para todo $t\in [0,\infty )$.
+  Claramente, $\omega (t)\leq \omega (s)$ si $t\leq s$. Además, como
+  $\varphi $ es uniformemente continua en $K$, dada $\varepsilon >0$,
+  existe $\delta >0$ tal que
+  \begin{equation*}
+    d_{X}(\varphi (x),\varphi (y))<\varepsilon \text{\qquad si &nbsp;}d_{K}(x,y)<\delta .
+  \end{equation*}
+  En consecuencia, $\omega (t)\in [0,\varepsilon ]$ si $t\in
+  [0,\delta )$, es decir, $\lim_{t\rightarrow 0^{+}}\omega
+  (t)=0$. Por último, si $x,y\in K$ y $t:=d_{K}(x,y)$, de la
+  definición de $\omega $ se sigue que
+  \begin{equation*}
+    d_{X}(\varphi (x),\varphi (y))\leq \omega (t)=\omega (d_{K}(x,y)).
+  \end{equation*}
+  Esto concluye la demostración.
+</div>
+</p>
+<p>
+La función $\omega $ definida en (\ref{mod}) es la función
+óptima para la cual se cumple la desigualdad del lema. Se le llama
+el <em class="emph">módulo de continuidad uniforme</em> de $\varphi $.
+</p>
+<p>
+Para $x=(x_{1},\dots,x_{n})\in \mathbb{R}^{n}$ denotamos por
+\begin{align*}
+  \left\Vert x\right\Vert_{\infty } &:=\max_{i=1,\dots,n}\left\vert
+    x_{i}\right\vert , \\
+  Q(x,\delta ) &:=\left\{y\in \mathbb{R}^{n}:\left\Vert y-x\right\Vert_{\infty
+  }\leq \delta \right\}.
+\end{align*}
+Recuerda que $\left\Vert \cdot \right\Vert_{\infty }$ es una norma en
+$\mathbb{R}^{n}$ que cumple
+\begin{equation}
+  \tfrac{1}{\sqrt{n}}\left\Vert x\right\Vert \leq \left\Vert x\right\Vert
+ _{\infty }\leq \left\Vert x\right\Vert \qquad \forall x\in \mathbb{R}^{n}\label{compnormas}
+\end{equation}
+(ver Ejercicio <a href="tul/P_T_02/2.html#ejRnormequiv">2.42</a>). A continuación introduciremos
+los conjuntos y las constantes que usaremos en los siguientes lemas y
+en la demostración del Teorema <a href="tul/P_T_02/11.html#cv">11.25</a>.
+</p>
+<p>
+<div class="notation">
+  Sean $\Omega $ y $\Omega^{\prime }$ abiertos en $\mathbb{R}^{n}$,
+  $\varphi \colon \Omega \rightarrow \Omega^{\prime }$ un difeomorfismo de
+  clase $\mathcal{C}^{1}$ y $f\in \mathcal{C}_{c}^{0}(\Omega^{\prime
+  })$. Definimos
+  \begin{equation*}
+    K^{\prime }:=\sop(f)\qquad\text{y}\qquad K:=\varphi^{-1}(K^{\prime
+    }).
+  \end{equation*}
+  Como $K$ y $K^{\prime }$ son subconjuntos compactos de $\Omega $ y
+  $\Omega^{\prime }$ respectivamente, las distancias de $K$ a
+  $\mathbb{R}^{n}\smallsetminus \Omega $ y de $K^{\prime }$ a
+  $\mathbb{R}^{n}\smallsetminus \Omega^{\prime }$ son positivas
+  <em class="emph">(ver Ejercicio <a href="tul/P_T_02/4.html#dist>0">4.41</a>)</em>. Por tanto, existe $\delta
+ _{1}>0$ tal que
+  \begin{alignat*}{2}
+    Q(\xi ,\delta_{1}) &\subset \Omega &\qquad&\forall \xi \in K, \\
+    Q(\zeta ,\delta_{1}) &\subset \Omega^{\prime }&&\forall \zeta
+    \in K^{\prime }.
+  \end{alignat*}
+</p>
+<p>
+  Sean
+  \begin{equation*}
+    K_{1}:=\bigcup_{\xi \in K}Q(\xi ,\delta_{1})\qquad\text{y}\qquad K_{1}^{\prime }:=\bigcup_{\zeta \in K^{\prime }}Q(\zeta ,\delta_{1}).
+  \end{equation*}
+
+  <div id="fig:11-7" class="figure">
+  <img src="tul/P_T_02/figuras/Cap11-notacion-27.svg" height="170">
+  <div class="caption">
+  </div>                
+</div>
+  </p>
+<p class="noj">
+  $K_{1}$ y $K_{1}^{\prime }$ son subconjuntos compactos de $\Omega $
+  y $\Omega^{\prime }$ respectivamente <em class="emph">(ver
+    Ejercicio <a href="tul/P_T_02/4.html#unibolas">4.33</a>)</em>.  Por tanto, como $\varphi^{\prime }$
+  es continua en $K_{1}$ y $(\varphi^{-1})^{\prime }$ es continua en
+  $K_{1}^{\prime }$, existe $M\in \mathbb{R}$ tal que
+  \begin{equation*}
+    \sup_{x\in K_{1}}\left\Vert \varphi^{\prime }(x)\right\Vert_{\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{n})}\leq M\qquad\text{y}\qquad \sup_{y\in
+      K_{1}^{\prime }}\left\Vert (\varphi^{-1})^{\prime }(y)\right\Vert_{\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{n})}\leq M.
+  \end{equation*}
+  Definimos &nbsp;$c_{0}:=M\sqrt{n}$ &nbsp;y &nbsp;$\delta_{2}:=\min \left\{\delta
+ _{1},\frac{\delta_{1}}{c_{0}}\right\}$.
+</div>
+</p>
+<p>
+<div id="cubos" class="lemma">
+Para cada $\delta \in (0,\delta_{1})$, $\xi \in K$ y
+  $x\in \Omega $ se cumple lo siguiente:
+</p>
+<p>
+  <ol class="alfa">
+  <li> Si $\left\Vert \varphi (x)-\varphi (\xi )\right\Vert
+   _{\infty }\leq \delta $, entonces $\left\Vert x-\xi \right\Vert
+   _{\infty }\leq c_{0}\delta $.
+</p>
+<p>
+  <li> Si $\left\Vert \varphi^{\prime }(\xi )\left[ x-\xi
+      \right] \right\Vert_{\infty }\leq \delta $, entonces
+    $\left\Vert x-\xi \right\Vert_{\infty }\leq c_{0}\delta $.
+  </ol>
+</div>
+</p>
+<p>
+<div class="proof">
+  <em class="emph">(a):</em> &nbsp;Si
+  $\left\Vert \varphi (x)-\varphi (\xi )\right\Vert _{\infty }\leq
+  \delta $,
+  entonces
+  $y_{t}:=(1-t)\varphi (\xi )+t\varphi (x)\in Q(\varphi (\xi ),\delta
+  )\subset K_{1}^{\prime }$
+  para cada $t\in [0,1]$. Usando las desigualdades (\ref{compnormas})
+  y el teorema del valor medio (ver Corolario <a href="tul/P_T_02/9.html#cortvm0">9.17</a>) obtenemos
+  \begin{align*}
+    \left\Vert x-\xi \right\Vert_{\infty } &\leq \left\Vert x-\xi \right\Vert
+    =\left\Vert \varphi^{-1}(\varphi (x))-\varphi^{-1}(\varphi (\xi
+      ))\right\Vert \\
+    &\leq \sup_{t\in [0,1]}\left\Vert (\varphi^{-1})^{\prime
+      }(y_{t})\right\Vert_{\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{n})}\left\Vert
+      \varphi (x)-\varphi (\xi )\right\Vert \\
+    &\leq M\sqrt{n}\left\Vert \varphi (x)-\varphi (\xi )\right\Vert_{\infty }
+    \\
+    &\leq c_{0}\delta .
+  \end{align*}
+</p>
+<p>
+  <em class="emph">(b):</em> &nbsp;Si $\left\Vert \varphi^{\prime }(\xi )(x-\xi
+    )\right\Vert_{\infty }\leq \delta $, usando las desigualdades
+  (\ref{compnormas}) y (\ref{opernorm}) obtenemos
+  \begin{align*}
+    \left\Vert x-\xi \right\Vert_{\infty } &\leq \left\Vert x-\xi \right\Vert
+    =\left\Vert (\varphi^{-1})^{\prime }(\varphi (\xi ))\left[ \varphi^{\prime
+        }(\xi )\left[ x-\xi \right] \right] \right\Vert \\
+    &\leq \left\Vert (\varphi^{-1})^{\prime }\left[ \varphi (\xi )\right]
+    \right\Vert_{\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{n})}\left\Vert \varphi
+     ^{\prime }(\xi )\left[ x-\xi \right] \right\Vert \\
+    &\leq M\sqrt{n}\left\Vert \varphi^{\prime }(\xi )\left[ x-\xi \right]
+    \right\Vert_{\infty } \\
+    &\leq c_{0}\delta .
+  \end{align*}
+  Esto concluye la demostración.
+</div>
+</p>
+<p>
+
+Considera la función $\Theta_{\delta }\colon \mathbb{R}^{n}\rightarrow
+\mathbb{R}$ definida en (\ref{Thetasubdelta}). Es sencillo comprobar
+que
+\begin{equation}
+  \left\vert (\mathrm{T}_{\zeta }\Theta_{\delta })(x)-(\mathrm{T}_{\zeta
+    }\Theta_{\delta })(y)\right\vert \leq \frac{n}{\delta }\left\Vert
+    x-y\right\Vert_{\infty }\qquad \forall x,y\in \mathbb{R}^{n}.
+\label{TTheta}
+\end{equation}
+Proponemos esta desigualdad como ejercicio [Ejercicio <a href="tul/P_T_02/11.html#ThetaLip">11.47</a>].
+</p>
+<p>
+<div id="lemcv" class="lemma">
+Si $\zeta \in K^{\prime }$ y $\delta \in (0,\delta
+ _{2})$, entonces
+  \begin{equation*}
+    \sop(\mathrm{T}_{\zeta }\Theta_{\delta })\subset K_{1}^{\prime
+    }\qquad \text{y}\qquad \sop((\mathrm{T}_{\zeta }\Theta_{\delta
+    })\circ \varphi )\subset K_{1}.
+  \end{equation*}
+  Además, existe una función $\omega \colon [0,\infty )\rightarrow
+  [0,\infty )$ tal que $\lim_{t\rightarrow 0^{+}}\omega (t)=0$
+  y
+  \begin{equation*}
+    \left\vert \int_{\Omega }(\mathrm{T}_{\zeta }\Theta_{\delta })(\varphi
+      (x))\left\vert \det \varphi^{\prime }(x)\right\vert dx-\int_{\Omega
+       ^{\prime }}(\mathrm{T}_{\zeta }\Theta_{\delta })(y)dy\right\vert \leq
+    \omega (\delta )\delta^{n}
+  \end{equation*}
+para cualesquiera $\zeta \in K^{\prime }$, $\delta \in (0,\delta_{2})$. 
+</div>
+</p>
+<p>
+<div class="proof">
+  Sean $\zeta \in K^{\prime }$, $\xi :=\varphi^{-1}(\zeta )\in K$ y
+  $\delta \in (0,\delta_{2})$. Denotemos por $\alpha_{\xi
+  }\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ a la función $\alpha
+ _{\xi }(x):=\varphi (\xi )+\varphi^{\prime }(\xi )\left[ x-\xi
+  \right] $. Como $\sop(\mathrm{T}_{\zeta }\Theta_{\delta })=Q(\zeta
+  ,\delta )$ y $c_{0}\delta <\delta_{1}$, del Lema <a href="tul/P_T_02/11.html#cubos">11.28</a>&nbsp;se
+  sigue que
+  \begin{align}
+    \sop((\mathrm{T}_{\zeta }\Theta_{\delta })\circ \varphi ) &\subset
+    Q(\xi ,c_{0}\delta )\subset K_{1},\label{sop1} \\
+    \sop((\mathrm{T}_{\zeta }\Theta_{\delta })\circ \alpha_{\xi })
+    &\subset Q(\xi ,c_{0}\delta )\subset K_{1}.\label{sop2}
+  \end{align}
+  Por otra parte, como $\varphi^{\prime }(\xi )\in GL(n,\mathbb{R})$,
+  aplicando el Teorema <a href="tul/P_T_02/11.html#cvlin">11.19</a> obtenemos
+  \begin{equation*}
+    \int_{\Omega }\left( \mathrm{T}_{\zeta }\Theta_{\delta }\right) (\alpha
+   _{\xi }(x))\left\vert \det \varphi^{\prime }(\xi )\right\vert
+    dx=\int_{\Omega^{\prime }}\left( \mathrm{T}_{\zeta }\Theta_{\delta
+      }\right) (y)dy.
+  \end{equation*}
+  En consecuencia, bastará probar que existe una función
+  $\omega \colon [0,\infty )\rightarrow [0,\infty )$ tal que
+  $\lim_{t\rightarrow 0^{+}}\omega (t)=0$ y
+  \begin{equation}
+    \left\vert \int_{\Omega }(\mathrm{T}_{\zeta }\Theta_{\delta })(\varphi
+      (x))\left\vert \det \varphi^{\prime }(x)\right\vert dx-\int_{\Omega }(\mathrm{T}_{\zeta }\Theta_{\delta })(\alpha_{\xi }(x))\left\vert \det
+        \varphi^{\prime }(\xi )\right\vert dx\right\vert \leq \omega (\delta
+    )\delta^{n}.\label{zz}
+  \end{equation}
+</p>
+<p>
+  Sea $x\in Q(\xi ,c_{0}\delta )$. Como $x_{t}:=(1-t)\xi +tx\in Q(\xi
+  ,c_{0}\delta )\subset K_{1}$ para cualquier $t\in [0,1]$, el
+  teorema del valor medio (ver Corolario <a href="tul/P_T_02/9.html#cortvm">9.18</a>) asegura que
+  \begin{align*}
+    \left\Vert \varphi (x)-\alpha_{\xi }(x)\right\Vert &=\left\Vert \varphi
+      (x)-\varphi (\xi )-\varphi^{\prime }(\xi )\left[ x-\xi \right] \right\Vert
+    \\
+    &\leq \sup_{t\in [0,1]}\left\Vert \varphi^{\prime }(x_{t})-\varphi
+     ^{\prime }(\xi )\right\Vert_{\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{n})}\left\Vert x-\xi \right\Vert \\
+    &\leq \sup_{t\in [0,1]}\left\Vert \sqrt{n}\varphi^{\prime }(x_{t})-\sqrt{n}\varphi^{\prime }(\xi )\right\Vert_{\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{n})}\left\Vert x-\xi \right\Vert_{\infty }.
+  \end{align*}
+  Aplicando el Lema <a href="tul/P_T_02/11.html#omega">11.26</a>&nbsp;a la función $\sqrt{n}\varphi
+ ^{\prime }\colon K_{1}\rightarrow
+  \mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{n})$ obtenemos una
+  función no decreciente $\omega_{1}\colon [0,\infty )\rightarrow
+  [0,\infty )$ tal que $\lim_{t\rightarrow 0^{+}}\omega
+ _{1}(t)=0$ y
+  \begin{equation*}
+    \left\Vert \sqrt{n}\varphi^{\prime }(y)-\sqrt{n}\varphi^{\prime
+      }(z)\right\Vert_{\mathcal{L}(\mathbb{R}^{n},\mathbb{R}^{n})}\leq \omega
+   _{1}(\left\Vert y-z\right\Vert_{\infty })\qquad \forall y,z\in K_{1}.
+  \end{equation*}
+  Por tanto,
+  \begin{equation}
+    \left\Vert \varphi (x)-\alpha_{\xi }(x)\right\Vert_{\infty }\leq
+    \sup_{t\in [0,1]}\omega_{1}(\left\Vert x_{t}-\xi \right\Vert
+   _{\infty })\left\Vert x-\xi \right\Vert_{\infty }\leq \omega
+   _{1}(c_{0}\delta )c_{0}\delta .\label{afin}
+  \end{equation}
+  De las desigualdades (\ref{TTheta}) y (\ref{afin}) se sigue que
+  \begin{equation}
+    \left\vert (\mathrm{T}_{\zeta }\Theta_{\delta })(\varphi (x))-(\mathrm{T}_{\zeta }\Theta_{\delta })(\alpha_{\xi }(x))\right\vert \leq \frac{n}{\delta }\left\Vert \varphi (x)-\alpha_{\xi }(x)\right\Vert_{\infty }\leq
+    c_{0}n\omega_{1}(c_{0}\delta ).\label{omega1}
+  \end{equation}
+  Por otra parte, aplicando el Lema <a href="tul/P_T_02/11.html#omega">11.26</a>&nbsp;a la función
+  $\left\vert \det \varphi^{\prime }\right\vert \colon K_{1}\rightarrow
+  \mathbb{R}$ obtenemos una función no decreciente $\omega
+ _{2}\colon [0,\infty )\rightarrow [0,\infty )$ tal que
+  $\lim_{t\rightarrow 0^{+}}\omega_{2}(t)=0$ y
+  \begin{equation}
+    \left\vert \,\left\vert \det \varphi^{\prime
+        }(x)\right\vert -\left\vert \det \varphi^{\prime }(\xi )\right\vert \,\right\vert \leq \omega_{2}(\left\Vert x-\xi \right\Vert
+   _{\infty })\leq \omega_{2}(c_{0}\delta ).\label{det}
+  \end{equation}
+  Usando la desigualdad del triángulo y las desigualdades
+  (\ref{omega1}) y (\ref{det}) concluimos que
+  \begin{align}
+    &\left\vert \,(\mathrm{T}_{\zeta }\Theta_{\delta
+      })(\varphi (x))\left\vert \det \varphi^{\prime }(x)\right\vert -(\mathrm{T}_{\zeta }\Theta_{\delta })(\alpha_{\xi }(x))\left\vert \det \varphi
+       ^{\prime }(\xi )\right\vert \,\right\vert  \notag \\
+    &\qquad{}\leq \left\vert \det \varphi^{\prime }(x)\right\vert
+      \,\left\vert (\mathrm{T}_{\zeta }\Theta_{\delta })(\varphi
+      (x))-(\mathrm{T}_{\zeta }\Theta_{\delta })(\alpha_{\xi
+      }(x))\right\vert \notag \\
+    &\qquad\qquad{}+\left\vert \,\left\vert \det \varphi^{\prime }(x)\right\vert -\left\vert
+        \det \varphi^{\prime }(\xi )\right\vert \,\right\vert \,(\mathrm{T}_{\zeta }\Theta_{\delta })(\alpha_{\xi }(x))  \notag
+    \\
+    &\qquad{}\leq M_{1}c_{0}n\omega_{1}(c_{0}\delta )+\omega_{2}(c_{0}\delta
+    )=:\omega_{3}(\delta )\label{w3}
+  \end{align}
+  para toda $x\in Q(\xi ,c_{0}\delta )$, donde $M_{1}:=\sup_{x\in
+    K_{1}}\left\vert \det \varphi^{\prime }(x)\right\vert $.
+</p>
+<p>
+  Por último, usando el Ejercicio <a href="tul/P_T_02/11.html#valabs">11.35</a>, las afirmaciones
+  (\ref{sop1}) y (\ref{sop2}), la desigualdad (\ref{w3}) y el
+  Ejercicio <a href="tul/P_T_02/11.html#lincubo">11.31</a>&nbsp;obtenemos
+  \begin{align*}
+    &\left\vert \int_{\Omega }(\mathrm{T}_{\zeta }\Theta_{\delta })(\varphi
+      (x))\left\vert \det \varphi^{\prime }(x)\right\vert dx-\int_{\Omega }(\mathrm{T}_{\zeta }\Theta_{\delta })(\alpha_{\xi }(x))\left\vert \det
+        \varphi^{\prime }(\xi )\right\vert dx\right\vert \\
+    &\qquad{}\leq \int_{\Omega }\left\vert \text{&nbsp; }(\mathrm{T}_{\zeta }\Theta
+     _{\delta })(\varphi (x))\left\vert \det \varphi^{\prime }(x)\right\vert -(\mathrm{T}_{\zeta }\Theta_{\delta })(\alpha_{\xi }(x))\left\vert \det
+        \varphi^{\prime }(\xi )\right\vert \text{&nbsp; }\right\vert dx \\
+    &\qquad{}=\int_{Q(\xi ,c_{0}\delta )}\left\vert \text{&nbsp; }(\mathrm{T}_{\zeta }\Theta_{\delta })(\varphi (x))\left\vert \det \varphi^{\prime
+        }(x)\right\vert -(\mathrm{T}_{\zeta }\Theta_{\delta })(\alpha_{\xi
+      }(x))\left\vert \det \varphi^{\prime }(\xi )\right\vert \text{&nbsp; }\right\vert dx \\
+    &\qquad{}\leq \int_{Q(\xi ,c_{0}\delta )}\omega_{3}(\delta )dx=\omega_{3}(\delta
+    )(2c_{0}\delta )^{n}=\omega (\delta )\delta^{n},
+  \end{align*}
+  donde $\omega (\delta ):=(2c_{0})^{n}\omega_{3}(\delta )$. Esto
+  demuestra la afirmación (\ref{zz}).
+</div>
+</p>
+<p>
+<div class="proof">[Demostración del Teorema <a href="tul/P_T_02/11.html#cv">11.25</a>.] Sea $f\in
+\mathcal{C}_{c}^{0}(\Omega^{\prime })&nbsp;$ y sea
+$\:g:=(f\circ \varphi )\left\vert \det \varphi^{\prime }\right\vert$.
+\begin{equation*}
+  g:=(f\circ \varphi )\left\vert \det \varphi^{\prime }\right\vert .
+\end{equation*}
+Entonces $\sop(g)=\varphi^{-1}(\sop(f))$. Por tanto, $g\in
+\mathcal{C}_{c}^{0}(\Omega )$.
+</p>
+<p>
+Para cada $\delta \in (0,\delta_{2})$, denotemos por
+\begin{align*}
+  f_{\delta } &:=\sum_{m\in \mathbb{Z}^{n}}f(\delta m)\mathrm{T}_{\delta
+    m}\Theta_{\delta }, \\
+  g_{\delta } &:=(f_{\delta }\circ \varphi )\left\vert \det \varphi^{\prime
+    }\right\vert =\sum_{m\in \mathbb{Z}^{n}}f(\delta m)((\mathrm{T}_{\delta
+    m}\Theta_{\delta })\circ \varphi )\left\vert \det \varphi^{\prime
+    }\right\vert .
+\end{align*}
+El Lema <a href="tul/P_T_02/11.html#lemcv">11.29</a>&nbsp;asegura que $\sop(f_{\delta }\circ \varphi
+)\subset K_{1} $ y $\sop(f_{\delta })\subset K_{1}^{\prime }$. Por otra
+parte, el Lema <a href="tul/P_T_02/11.html#lemhaar2">11.14</a> asegura que
+\begin{equation*}
+  \lim_{\delta \rightarrow 0}\left\Vert f-f_{\delta }\right\Vert_{\infty }=0.
+\end{equation*}
+Como
+\begin{equation*}
+  \left\Vert g-g_{\delta }\right\Vert_{\infty }=\sup_{x\in K_{1}}\left\vert
+    f(\varphi (x))-f_{\delta }(\varphi (x))\right\vert \left\vert \det \varphi
+   ^{\prime }(x)\right\vert \leq \left\Vert f-f_{\delta }\right\Vert_{\infty
+  }\sup_{x\in K_{1}}\left\vert \det \varphi^{\prime }(x)\right\vert ,
+\end{equation*}
+concluimos que
+$\:\lim_{\delta \rightarrow 0}\left\Vert g-g_{\delta }\right\Vert_{\infty }=0$.
+\begin{equation*}
+  \lim_{\delta \rightarrow 0}\left\Vert g-g_{\delta }\right\Vert_{\infty }=0.
+\end{equation*}
+</p>
+<p>
+Del Lema <a href="tul/P_T_02/11.html#lemhaar1">11.11</a> se sigue entonces que
+\begin{align*}
+  \int_{\Omega }g(x)dx &=\lim_{\delta \rightarrow 0}\int_{\Omega }g_{\delta
+  }(x)dx\\
+  &=\lim_{\delta \rightarrow 0}\sum_{m\in \mathbb{Z}^{n}}f(\delta
+  m)\int_{\Omega }(\mathrm{T}_{\delta m}\Theta_{\delta })(\varphi
+  (x))\left\vert \det \varphi^{\prime }(x)\right\vert dx, \\
+  \int_{\Omega^{\prime }}f(y)dy &=\lim_{\delta \rightarrow 0}\int_{\Omega
+   ^{\prime }}f_{\delta }(y)dy\\
+  &=\lim_{\delta \rightarrow 0}\sum_{m\in \mathbb{Z}^{n}}f(\delta m)\int_{\Omega^{\prime }}(\mathrm{T}_{\delta m}\Theta
+ _{\delta })(y)dy.
+\end{align*}
+Sea $r\in \mathbb{N}$ tal que $\sop(f)\subset [-r,r]^{n}$.
+Aplicando el Lema <a href="tul/P_T_02/11.html#lemcv">11.29</a>&nbsp;obtenemos que
+\begin{align*}
+  &\left\vert \sum_{m\in \mathbb{Z}^{n}}f(\delta m)\biggl( \int_{\Omega }(\mathrm{T}_{\delta m}\Theta_{\delta })(\varphi (x))\left\vert \det \varphi
+       ^{\prime }(x)\right\vert dx-\int_{\Omega^{\prime }}(\mathrm{T}_{\delta
+        m}\Theta_{\delta })(y)dy\biggr) \right\vert \\
+  &\qquad{}\leq \sum_{m\in \mathbb{Z}^{n}}\left\vert f(\delta m)\right\vert
+  \left\vert \int_{\Omega }(\mathrm{T}_{\delta m}\Theta_{\delta })(\varphi
+    (x))\left\vert \det \varphi^{\prime }(x)\right\vert dx-\int_{\Omega
+     ^{\prime }}(\mathrm{T}_{\delta m}\Theta_{\delta })(y)dy\right\vert \\
+  &\qquad{}\leq \left\Vert f\right\Vert_{\infty }\left( \frac{2r}{\delta }+1\right)
+ ^{n}\omega (\delta )\delta^{n}=\left\Vert f\right\Vert_{\infty }\left(
+    2r+\delta \right)^{n}\omega (\delta ),
+\end{align*}
+donde $\lim_{\delta \rightarrow 0^{+}}\omega (\delta )=0$. En
+consecuencia,
+\begin{equation*}
+  \left\vert \int_{\Omega }g(x)dx-\int_{\Omega^{\prime }}f(y)dy\right\vert
+  \leq \lim_{\delta \rightarrow 0^{+}}\left\Vert f\right\Vert_{\infty }\left(
+    2r+\delta \right)^{n}\omega (\delta )=0.
+\end{equation*}
+Esto concluye la demostración.
+</div>
+</p>
+
+<h3 id="sec11-5">Ejercicios</h3>
+<p class="noj">
+<div id="ejdefint" class="exercise">
+Prueba que, si $f\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y $Q_{1}$ y $Q_{2}$ son dos
+  rectángulos que contienen a $\sop(f)$, entonces
+  \begin{equation*}
+    \int_{Q_{1}}f=\int_{Q_{2}}f.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="lincubo" class="exercise">
+Sea $Q$ un rectángulo en
+  $\mathbb{R}^{n}$. Demuestra las siguientes afirmaciones:
+</p>
+<p>
+  <ol class="alfa">
+  <li> Para cualesquiera $f,g\in \mathcal{C}^{0}(Q)$, $\lambda
+    ,\mu \in \mathbb{R}$,
+    \begin{equation*}
+      \int_{Q}\lambda f+\mu g=\lambda \int_{Q}f+\mu \int_{Q}g.
+    \end{equation*}
+</p>
+<p>
+  <li> Para cualesquiera $f,g\in \mathcal{C}^{0}(Q)$ con $f\leq
+    g$,
+    \begin{equation*}
+      \int_{Q}f\leq \int_{Q}g.
+    \end{equation*}
+</p>
+<p>
+  <li> Si $c\colon Q\rightarrow \mathbb{R}$ es una función
+    constante, entonces
+    \begin{equation*}
+      \int_{Q}c=c\prod_{i=1}^{n}(b_{i}-a_{i}).
+    \end{equation*}
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise" id="cv1">[Cambio de variable para funciones de variable real]
+Sean $g\colon [a,b]\rightarrow \mathbb{R}$ una función de
+  clase $\mathcal{C}^{1}$ en $[a,b]$ y $f\colon [\alpha ,\beta ]\rightarrow
+  \mathbb{R}$ una función continua. Si $g(t)\in [\alpha
+  ,\beta ]$ para todo $t\in [a,b]$, prueba que
+  \begin{equation*}
+    \int_{a}^{b}f(g(t))g^{\prime }(t)dt=\int_{g(a)}^{g(b)}f(x)dx.
+  \end{equation*}
+  <em class="emph">(Sugerencia: Usa los teoremas fundamentales del cálculo y
+    la regla de la cadena.)</em>
+</div>
+<div id="sop" class="exercise">
+Prueba que, para cualesquiera
+  $f,g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$, $\lambda \in
+  \mathbb{R}\smallsetminus \left\{0\right\}$ y $\xi \in \mathbb{R}^{n}$,
+</p>
+<p>
+  <ol class="alfa">
+  <li> $\sop(f+g)\subset\sop(f)\cup\sop(g)$,
+</p>
+<p>
+  <li> $\sop(\lambda f)=\sop(f)$,
+</p>
+<p>
+  <li> $\sop(\mathrm{T}_{\xi }f)=\sop(f)+\xi
+    :=\left\{x+\xi :x\in \sop(f)\right\}$,
+</p>
+<p>
+  <li> $\sop(fg)\subset \sop(f)$ $\cap
+    \sop(g)$,
+</p>
+<p>
+  <li> $\sop(f)=\sop(\left\vert f\right\vert )$.
+  </ol>
+</p>
+<p>
+  ¿Es válida, en general, la igualdad en los
+  incisos (a) y (d)?
+</div>
+</p>
+<p>
+<div id="minmaxenCc" class="exercise">
+Dadas $f,g\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$
+  definimos $\min \left\{f,g\right\}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ y\\
+  $\max \left\{f,g\right\}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ como
+  \begin{equation*}
+    \left( \min \left\{f,g\right\}\right) (x):=\min \left\{f(x),g(x)\right\},\qquad \left( \max
+      \left\{f,g\right\}\right) (x):=\max \left\{f(x),g(x)\right\}.
+  \end{equation*}
+  Prueba que, si $f,g\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$,
+  entonces $\min \left\{f,g\right\}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y
+  $\max \left\{f,g\right\}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$.
+  <em class="emph">(Sugerencia: Usa las identidades (\ref{idmin}) y
+    (\ref{idmax}).)</em>
+</div>
+</p>
+<p>
+<div id="valabs" class="exercise">
+Prueba que
+  \begin{equation*}
+    \left\vert \int_{\mathbb{R}^{n}}f\right\vert \leq \int_{\mathbb{R}^{n}}\left\vert f\right\vert \qquad \forall f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n}).
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="posi" class="exercise">
+Prueba que, si $f\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, $f\geq 0$ y $f(x_{0})>0$ para
+  algún $x_{0}\in \mathbb{R}^{n}$, entonces
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f>0.
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="intprodtens" class="exercise">
+Sean $1\leq m\leq n$, $g\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{m})$ y $h\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n-m})$. Definimos $g\odot
+  h\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ como
+  \begin{equation*}
+    \left( g\odot h\right)
+    (x_{1},x_{2},\dots,x_{n}):=g(x_{1},\dots,x_{m})h(x_{m+1},\dots,x_{n}).
+  \end{equation*}
+  Prueba que $g\odot h\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}\left( g\odot h\right) =\biggl( \int_{\mathbb{R}^{m}}g\biggr) \biggl( \int_{\mathbb{R}^{n-m}}h\biggr) .
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="cototo" class="exercise">
+Sea $K$ un subconjunto compacto de
+  $\mathbb{R}^{n}$. Da un ejemplo de una función $g\in
+  \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ tal que $g(x)=1$ para todo
+  $x\in K$ &nbsp;y $&nbsp;g(x)\geq 0$ para todo $x\in \mathbb{R}^{n}$.
+</div>
+</p>
+<p>
+<div id="sopcompesunifcont" class="exercise">
+Prueba que, si
+  $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$, entonces $f$ es
+  uniformemente continua en $\mathbb{R}^{n}$. <em class="emph">(Sugerencia: Usa
+    el Teorema <a href="tul/P_T_02/4.html#contunif">4.31</a>.)</em>
+</div>
+</p>
+<p>
+<div id="dilatacion" class="exercise">
+Prueba que
+  \begin{equation*}
+    \frac{1}{2}\,\theta (2t+1)+\theta (2t)+\frac{1}{2}\,\theta (2t-1)=\theta
+    (t)\qquad \forall t\in \mathbb{R}\text{.}
+  \end{equation*}
+</div>
+</p>
+<p>
+<div id="multhaar" class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que, si
+    $J\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow \mathbb{R}$ es
+    una medida de Haar, entonces para cualquier $a\geq 0$ la
+    función $aJ\colon \mathcal{C}_{c}^{0}(\mathbb{R}^{n})\rightarrow
+    \mathbb{R}$ dada por
+    \begin{equation*}
+      (aJ)(f):=aJ(f)
+    \end{equation*}
+    es una medida de Haar.
+</p>
+<p>
+  <li> ¿Es cierta la afirmación anterior si
+    $a<0$?
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea
+  \begin{equation*}
+    \mathcal{C}_{per}^{0}(\mathbb{R}^{n}):=\left\{f\in \mathcal{C}^{0}(\mathbb{R}^{n}):f(x+m)=f(x)\text{ &nbsp;}\forall x\in \mathbb{R}^{n},\text{ }\forall m\in 
+    \mathbb{Z}^{n}\right\}
+  \end{equation*}
+  el espacio de las funciones continuas de periodo $1$ en cada
+  variable $x_{1},\dots,x_{n}$. Prueba que
+</p>
+<p>
+  <ol class="alfa">
+  <li> $\mathcal{C}_{per}^{0}(\mathbb{R}^{n})$ es un subespacio
+    vectorial de $\mathcal{C}^{0}(\mathbb{R}^{n})$,
+</p>
+<p>
+  <li> $\mathrm{T}_{\xi }f\in
+    \mathcal{C}_{per}^{0}(\mathbb{R}^{n})$ para toda $f\in
+    \mathcal{C}_{per}^{0}(\mathbb{R}^{n})$ y $\xi \in \mathbb{R}^{n}$,
+</p>
+<p>
+  <li> la función
+    $I_{per}\colon \mathcal{C}_{per}^{0}(\mathbb{R}^{n})\rightarrow
+    \mathbb{R}$ dada por
+    \begin{equation*}
+      I_{per}(f):=\int_{Q}f,
+    \end{equation*}
+    donde $Q:=[0,1]^{n}$, es lineal, monótona e invariante bajo
+    traslaciones.
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sea $\mathbb{S}^{1}:=\left\{z\in \mathbb{C}:\left\vert z\right\vert
+  =1\right\}$. El producto de números complejos le da a
+  $\mathbb{S}^{1}$&nbsp;la estructura de grupo abeliano. El
+  $n$<em class="textbf">-toro</em>
+  \begin{equation*}
+    \mathbb{T}^{n}:=\underset{n\text{ veces}}{\undercbrace{\mathbb{S}^{1}\times
+        \cdots \times \mathbb{S}^{1}}}
+  \end{equation*}
+  es también un grupo abeliano con la multiplicación
+  \begin{equation*}
+    (z_{1},\dots,z_{n})(w_{1},\dots,w_{n}):=(z_{1}w_{1},\dots,z_{n}w_{n}).
+  \end{equation*}
+  La <em class="textbf">función exponencial</em> $\exp \colon \mathbb{R}^{n}\rightarrow
+  \mathbb{T}^{n}$, definida como
+  \begin{equation*}
+    \exp (x_{1},\dots,x_{n}):=(e^{2\pi ix_{1}},\dots,e^{2\pi ix_{n}}),
+  \end{equation*}
+  es un homomorfismo de grupos, es decir, $\exp (x+y)=\exp (x)\exp
+  (y)$.
+</p>
+<p>
+  Dados $\zeta \in \mathbb{T}^{n}$ y $f\in
+  \mathcal{C}^{0}(\mathbb{T}^{n})$, la <em class="textbf">traslación de</em> $f$
+  <em class="textbf">por</em> $\zeta $ es la función $\mathrm{T}_{\zeta }f\in
+  \mathcal{C}^{0}(\mathbb{T}^{n})$ dada por
+  \begin{equation}
+    \left( \mathrm{T}_{\zeta }f\right) (z):=f\left( \zeta^{-1}z\right) ,\qquad z\in \mathbb{T}^{n}.\label{trastoro}
+  \end{equation}
+  Prueba que
+</p>
+<p>
+  <ol class="alfa">
+  <li> $f\in \mathcal{C}^{0}(\mathbb{T}^{n})$ si y sólo si
+    $f\circ \exp \in \mathcal{C}_{per}^{0}(\mathbb{R}^{n})$,
+</p>
+<p>
+  <li> la función
+    $I_{\mathbb{T}^{n}}\colon \mathcal{C}^{0}(\mathbb{T}^{n})\rightarrow
+    \mathbb{R}$, dada por
+    \begin{equation*}
+      I_{\mathbb{T}^{n}}(f):=I_{per}(f\circ \exp ),
+    \end{equation*}
+    donde $I_{per}\colon \mathcal{C}_{per}^{0}(\mathbb{R}^{n})\rightarrow
+    \mathbb{R}$ es la función definida en el ejercicio anterior,
+    es una <em class="textbf">medida de Haar en</em> $\mathbb{T}^{n}$, es decir, es
+    lineal, monótona e invariante bajo la traslación definida
+    en <em class="emph">(\ref{trastoro}) </em>)\footnote{Si quieres aprender más
+      sobre medidas de Haar consulta~\cite{Nachbin}.}.
+  </ol>
+</div>
+</p>
+<p>
+<div id="calculo" class="exercise">
+Sea $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ la
+  función
+  \begin{equation*}
+    f(x):=
+      \begin{cases}
+        \sqrt{1-\left\Vert x\right\Vert^{2}} & \text{si $\left\Vert x\right\Vert
+        \leq 1$,} \\
+        0 & \text{si $\left\Vert x\right\Vert \geq 1$.}
+      \end{cases}
+  \end{equation*}
+  Prueba que $f\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$ y que
+  \begin{equation*}
+    \int_{\mathbb{R}^{n}}f>0.
+  \end{equation*}
+</div>
+</p>
+
+<div class="exercise">
+  <ol class="alfa">
+  <li> Si $A$ es una matriz de $n\times n$ demuestra que son
+    equivalentes las siguientes cuatro afirmaciones:
+
+    <ol>
+    <li> $A$ es ortogonal, i.e. $\left\Vert Ax\right\Vert
+      =\left\Vert x\right\Vert $ para todo $x\in \mathbb{R}^{n}$.
+
+    <li> $A$ preserva el producto escalar, i.e. $Ax\cdot
+      Ay=x\cdot y$ para todos $x,y\in \mathbb{R}^{n}$.
+
+  <li> Los renglones de $A$ son vectores ortonormales.
+
+    <li> Las columnas de $A$ son vectores ortonormales.
+    </ol>
+
+  <li> Prueba que cualquiera de estas afirmaciones implica que
+    $\det A=\pm 1$.
+
+  <li> ¿Es cierto que si $A$ es una matriz de
+    $n\times n $ y $\det A=\pm 1$ entonces $A$ es ortogonal?
+  </ol>
+</div>
+
+<p>
+<div id="ejersvd" class="exercise">
+Demuestra el <em class="emph">Teorema <a href="tul/P_T_02/11.html#svd">11.21</a></em>.
+</div>
+</p>
+<p>
+<div id="ThetaLip" class="exercise">
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que
+    \begin{equation*}
+      \left\vert \Theta (x)-\Theta (y)\right\vert \leq n\left\Vert x-y\right\Vert
+     _{\infty }\qquad \forall x,y\in \mathbb{R}^{n}.
+    \end{equation*}
+    <em class="emph">(Sugerencia: Usa inducción sobre </em>$n$<em class="emph">.)</em>
+</p>
+<p>
+  <li> Prueba que, para todo $\delta >0$ y todo $\zeta \in
+    \mathbb{R}^{n}$,
+    \begin{equation*}
+      \left\vert (\mathrm{T}_{\zeta }\Theta_{\delta })(x)-(\mathrm{T}_{\zeta
+        }\Theta_{\delta })(y)\right\vert \leq \frac{n}{\delta }\left\Vert
+        x-y\right\Vert_{\infty }\qquad \forall x,y\in \mathbb{R}^{n}.
+    \end{equation*}
+  </ol>
+</div>
+</p>
+<p>
+<div id="ext" class="exercise">
+Sea $\Omega $ un subconjunto abierto de $\mathbb{R}^{n}$.
+  Prueba que, si $f\in \mathcal{C}_{c}^{0}(\Omega )$ y
+  $\bar{f}\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es la función
+  \begin{equation*}
+    \bar{f}(x):=
+      \begin{cases}
+        f(x) & \text{si $x\in \Omega$,} \\
+        0 & \text{si $x\in \mathbb{R}^{n}\smallsetminus \Omega$,}
+      \end{cases}
+  \end{equation*}
+  entonces $\bar{f}\in \mathcal{C}_{c}^{0}(\mathbb{R}^{n})$.
+</div>
+</p>
+<p>
+<div class="exercise">
+  Sean $\Omega :=\mathbb{R}^{2}\smallsetminus \left\{(x,0):x\geq 0\right\}$ y
+  $\Omega^{\prime }:=(0,\infty )\times (0,2\pi )$. Prueba que, para
+  toda $f\in \mathcal{C}_{c}^{0}(\Omega )$,
+  \begin{equation*}
+    \int_{\Omega }f(x,y)dx\,dy=\int_{\Omega^{\prime }}f(r\cos \vartheta ,r\sen
+    \vartheta )r\,dr\,d\vartheta .
+  \end{equation*}
+</div>
+</p>
+<p>
+En los ejercicios siguientes denotaremos por
+\begin{equation*}
+  \mathcal{C}_{c}^{k}(\Omega ):=\mathcal{C}_{c}^{0}(\Omega )\cap \mathcal{C}^{k}(\Omega )
+\end{equation*}
+al conjunto de las funciones $f\colon \Omega \rightarrow \mathbb{R}$ de
+clase $\mathcal{C}^{k}$ con soporte compacto en $\Omega $.
+</p>
+<p>
+<div class="exercise" id="partes">[Integración por partes]
+</p>
+<p>
+  <ol class="alfa">
+  <li> Prueba que, si $f\in \mathcal{C}_{c}^{1}(\Omega )$,
+    entonces $\frac{\partial f}{\partial x_{i}}\in
+    \mathcal{C}_{c}^{0}(\Omega )$ y
+    \begin{equation*}
+      \int_{\Omega }\frac{\partial f}{\partial x_{i}}=0\qquad \forall
+      i=1,\dots,n.
+    \end{equation*}
+</p>
+<p>
+  <li> Prueba que, si $f\in \mathcal{C}^{1}(\Omega )$, $g\in
+    \mathcal{C}_{c}^{1}(\Omega )$, entonces $\frac{\partial
+      f}{\partial x_{i}}g$, $f\frac{\partial g}{\partial x_{i}}\in
+    \mathcal{C}_{c}^{0}(\Omega )$ y
+    \begin{equation*}
+      \int_{\Omega }\frac{\partial f}{\partial x_{i}}g=-\int_{\Omega }f\frac{\partial g}{\partial x_{i}}\qquad \forall i=1,\dots,n.
+    \end{equation*}
+    <em class="emph">(Sugerencia: Aplica</em> (a) <em class="emph">a la función
+    </em>$fg$.<em class="emph">)</em>
+  </ol>
+</div>
+</p>
+<p>
+<div class="exercise">[Fórmula de Green]
+  Sea $f\in \mathcal{C}^{2}(\Omega )$. El <em class="textbf">laplaciano de</em> $f$
+  es la función
+  \begin{equation*}
+    \Delta f:=\sum_{i=1}^{n}\frac{\partial^{2}f}{\partial x_{i}^{2}}.
+  \end{equation*}
+  Prueba que, si $f\in \mathcal{C}^{2}(\Omega )$ y $g\in
+  \mathcal{C}_{c}^{2}(\Omega )$, entonces $(\Delta f)g$, $\nabla
+  f\cdot \nabla g$, $f(\Delta g)\in \mathcal{C}_{c}^{0}(\Omega )$ y
+  \begin{equation*}
+    \int_{\Omega }(\Delta f)g=-\int_{\Omega }\nabla f\cdot \nabla g=\int_{\Omega
+    }f(\Delta g).
+  \end{equation*}
+  <em class="emph">(Sugerencia: Aplica el Ejercicio <a href=tul/P_T_02/11.html#partes>11.50</a>)</em>
+</div>
+</p>
+
+
+</div>
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>
+

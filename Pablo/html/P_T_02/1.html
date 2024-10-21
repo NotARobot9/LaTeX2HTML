@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="http://papirhos.matem.unam.mx/" target="_self">
+  <?php
+    include_once '../../scripts/menu-top.php';
+    the_head_tul('TUL-Análisis Matemático');
+  ?>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function () {
+        document.getElementById("espera").style.visibility = "";
+        document.getElementById("relojito").style.display = "none";
+      });   
+ 
+      MathJax.Hub.Config({ 
+        tex2jax: {
+          inlineMath: [["$","$"],["\\(","\\)"]],
+          processEscapes: true,
+        },
+        "HTML-CSS": { 
+          preferredFont: "TeX", 
+          availableFonts: ["STIX","TeX"], 
+          styles: {".MathJax": {color: "#456"}} 
+        },
+        TeX: {equationNumbers: {autoNumber: "AMS",
+          formatURL: function (id) {return 'tul/P_I_02/1.html'+'#'+escape(id) }
+          },
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+</head>
+
+<body>
+  <div style="display:none">
+    $ \newcommand{\sen}{\mathop{\rm sen}} $ $ \newcommand{\menorque}{\mathrel{
+    <}}$ $ \newcommand{\mayorque}{\mathrel{>}}$
+  </div>
+<div id="contenedor">
+    <?php 
+//      include_once '/papirhos-web/scripts/menu-top.php';
+      el_menu('');
+    ?>
+      <div id="contenido">
+        <div class="row">
+          <div class="column column-9">
+            <div id="relojito">
+            </div>
+            <div class="texto-tul" id="espera" style="visibility: hidden">
+<h2 id="Cap-1">Motivación</h2>
+<p class="noj">
+El siguiente problema guiará el desarrollo de la primera parte de este
+texto.
+</p>
+<p>
+<div id="probpresentacion" class="problem">
+Dados un subconjunto $X$ de $\mathbb{R}^{n}$
+  y dos puntos $p,q\in X$, ¿existe una trayectoria de
+  $p$ a $q$ en $X$ de longitud mínima?
+</div>
+</p>
+<p>
+Precisemos esta pregunta. Una <em class="emph">trayectoria</em> de $p$ a $q$ en $X$
+es una función continua $\sigma \colon [0,1]\rightarrow \mathbb{R}^{n}$
+tal que
+\begin{equation*}
+  \sigma (0)=p,\quad\sigma (1)=q\qquad\text{y}\qquad\sigma(t)\in X\quad\forall t\in [0,1].
+\end{equation*}
+Su <em id="long" class="emph">longitud</em> se define como
+\begin{equation}
+  \mathfrak{L}(\sigma):=\sup \Biggl\{ \sum_{k=1}^{m}\left\Vert \sigma
+      (t_{k-1})-\sigma (t_{k})\right\Vert :0=t_{0}\leq t_{1}\leq \cdots \leq
+    t_{m}=1,\:\: m\in \mathbb{N}\Biggr\},  \label{long}
+\end{equation}
+donde $\left\Vert x-y\right\Vert :=\sqrt{(x_{1}-y_{1})^{2}+\cdots
+  +(x_{n}-y_{n})^{2}}$  denota la distancia de $x$ a $y$.
+
+              <div id="fig:1-1" class="figure">
+                <img src="tul/P_T_02/figuras/longitud.svg" height="160">
+                <div class="caption">
+                </div>                
+              </div>
+
+Observa que $\mathfrak{L}(\sigma )\geq \left\Vert p-q\right\Vert $.
+</p>
+<p>
+Una trayectoria de $p$ a $q$ en $X$ es <em class="emph">de longitud mínima</em>
+si su longitud es menor o igual a la de todas las demás. Por
+ejemplo, si $X=\mathbb{R}^{n}$, la trayectoria $\sigma (t)=(1-t)p+tq$
+cumple que $\mathfrak{L}(\sigma )=\left\Vert p-q\right\Vert $. De modo
+que $\sigma $ es una trayectoria de longitud mínima de $p$ a $q$
+en $\mathbb{R}^{n}$.
+
+              <div id="fig:1-2" class="figure">
+                <img src="tul/P_T_02/figuras/trayectoriamin.svg" height="160">
+                <div class="caption">
+                </div>                
+              </div>
+
+</p>
+<p>
+Sin embargo, si $X\neq \mathbb{R}^{n}$ no siempre existe una
+trayectoria de longitud mínima, como lo muestra el siguiente
+ejemplo. Recuerda que, si $\sigma $ es continuamente diferenciable,
+entonces la longitud de $\sigma $ está dada por la
+integral
+\begin{equation*}
+  \mathfrak{L}(\sigma)=\int_{0}^{1}\left\Vert \sigma^{\prime }(t)\right\Vert
+  dt.
+\end{equation*}
+</p>
+<p>
+<div class="example">
+  No existe una trayectoria de longitud mínima de $p=(0,0)$ a
+  $q=(1,0)$ en $X=\left\{(x,y)\in \mathbb{R}^{2}:(x,y)\neq
+  \bigl(\frac{1}{2},0\bigr)\right\}$.
+</div>
+</p>
+
+<div class="proof">
+  Considera las trayectorias $\sigma_{k}(t)=\bigl(t,\frac{1}{k}\sen\pi
+  t\bigr)$, $k\in \mathbb{N}$. Su longitud satisface
+  \begin{align*}
+    \mathfrak{L}(\sigma_{k}) &=\int_{0}^{1}\left\Vert \sigma_{k}^{\prime
+      }\right\Vert =\int_{0}^{1}\sqrt{1+\left( \frac{\pi }{k}\right)^{2}\cos
+     ^{2}\pi t}\text{ }dt \\
+    &<\int_{0}^{1}\left( 1+\frac{\pi }{k}\left\vert \cos \pi t\right\vert
+    \right) dt=1+\frac{2}{k}.
+  \end{align*}
+
+              <div id="fig:1-3" class="figure">
+                <img src="tul/P_T_02/figuras/notrayectoriamin.svg" height="170">
+                <div class="caption">
+                </div>
+              </div>
+
+Por tanto, $\lim_{k\rightarrow \infty }\mathfrak{L}(\sigma_{k})=1$.
+De modo que, si existiera una trayectoria de longitud mínima de $p$ a
+$q $ en $X$, ésta debería tener longitud $1$. Pero cualquier
+trayectoria de $p$ a $q$ en $\mathbb{R}^{2}$ de longitud $1$ pasa por
+el punto $(\frac{1}{2},0)$, que no pertenece a $X$.
+</div>
+
+<p>
+Este ejemplo muestra que el Problema&nbsp;<a href="tul/P_T_02/1.html#probpresentacion">1.1</a> no es un
+problema trivial. Para intentar resolverlo, empezaremos
+expresándolo como un problema de minimización.
+</p>
+<p>
+Denotemos por $\mathcal{T}_{p,q}(X)$ al conjunto de todas las
+trayectorias de $p$ a $q$ en $X$. Podemos entonces considerar a la
+longitud como una función definida en dicho conjunto, es decir,
+\begin{equation*}
+  \mathfrak{L}\colon \mathcal{T}_{p,q}(X)\rightarrow \mathbb{R\cup \left\{\infty
+    \right\}},\qquad
+  \mathfrak{L}(\sigma):=\text{longitud de $\sigma$.}
+\end{equation*}
+Diremos que la función $\mathfrak{L}$ <em class="emph">alcanza su mínimo
+  en</em> $\mathcal{T}_{p,q}(X)$ si existe una trayectoria $\sigma_{0}\in
+\mathcal{T}_{p,q}(X)$ tal que
+\begin{equation*}
+  \mathfrak{L}(\sigma_{0})\leq \mathfrak{L}(\sigma )\qquad\forall
+  \sigma \in \mathcal{T}_{p,q}(X).
+\end{equation*}
+En estos términos el Problema&nbsp;<a href="tul/P_T_02/1.html#probpresentacion">1.1</a> se expresa
+como sigue.
+</p>
+<p>
+<div class="problem">
+  ¿Alcanza $\mathfrak{L}$ su mínimo en
+  $\mathcal{T}_{p,q}(X)$?
+</div>
+</p>
+<p>
+En los cursos de cálculo diferencial e integral tratamos un
+problema parecido y vimos el siguiente
+resultado.
+</p>
+<p>
+<div id="teocalculo" class="theorem">
+Si $f\colon \mathbb{R}^{n}\rightarrow \mathbb{R}$ es una
+  función continua y $K$ es un subconjunto compacto no vacío
+  de $\mathbb{R}^{n}$, entonces $f$ alcanza su mínimo en $K$, es
+  decir, existe $x_{0}\in K$ tal que
+  \begin{equation*}
+    f(x_{0})\leq f(x)\qquad\forall x\in K.
+  \end{equation*}
+</div>
+</p>
+<p>
+Ahora bien, como $\mathcal{T}_{p,q}(X)$ es un conjunto de funciones y
+no de puntos en $\mathbb{R}^{n}$, no tiene sentido aplicar este
+teorema al problema que nos interesa. Pero sí podemos inspirarnos
+en él. El gran matemático francés Henri Poincaré
+afirmó lo siguiente:
+
+<p>
+<em class="emph">&ldquo;La matemática es el arte de nombrar de la misma manera cosas 
+distintas.&rdquo;</em>
+</p>
+<p>
+Entonces, ¿será posible pensar a las trayectorias
+como si fuesen puntos? ¿El Teorema&nbsp;<a href="tul/P_T_02/1.html#teocalculo">1.4</a>
+tendrá algún sentido para la función longitud?
+¿Qué querría decir que la función
+$\mathfrak{L}\colon \mathcal{T}_{p,q}(X)\rightarrow \mathbb{R\cup \left\{\infty
+  \right\}}$ 
+  es continua o que un subconjunto de $\mathcal{T}_{p,q}(X)$ es
+compacto?
+</p>
+<p>
+El análisis matemático da respuesta a este tipo de preguntas.
+Profundiza en los conceptos y los resultados que aprendimos en
+cálculo, captura su esencia, y los extiende a otros espacios
+distintos del euclidiano. Muy especialmente, a espacios de funciones,
+como el conjunto de trayectorias $\mathcal{T}_{p,q}(X)$. Y a funciones
+como $\mathfrak{L}$, cuyo dominio no es un subconjunto de
+$\mathbb{R}^{n}$ sino un conjunto de funciones.
+</p>
+<p>
+Los espacios de funciones aparecen de manera natural en muchos
+problemas de las matemáticas y de sus aplicaciones. Por ejemplo,
+las soluciones de una ecuación diferencial son funciones. Veremos
+que el análisis matemático nos permite demostrar la existencia
+de soluciones de ecuaciones diferenciales.
+</p>
+<p>
+En la primera parte de estas notas introduciremos y estudiaremos los
+conceptos de <em class="emph">continuidad</em>, <em class="emph">compacidad</em> y
+<em class="emph">completitud</em> en espacios muy generales. Estas nociones se
+definen a partir de un concepto muy sencillo: el concepto de
+distancia. Los conjuntos provistos de una distancia se llaman
+<em class="emph">espacios métricos</em> y son el objeto del siguiente
+capítulo. Veremos aplicaciones interesantes de esos conceptos y
+daremos una respuesta al Problema&nbsp;<a href="tul/P_T_02/1.html#probpresentacion">1.1</a>.
+</p>
+
+</div>
+</div>
+
+<div class="column column-3">
+  <?php
+  include_once './indice-cont.php';
+  ?>
+</div>
+
+</div>
+</div>
+      <?php
+      pie(); 
+    ?>
+  </div>
+<div id="bibdiv">
+</div>
+</body>
+
+</html>
