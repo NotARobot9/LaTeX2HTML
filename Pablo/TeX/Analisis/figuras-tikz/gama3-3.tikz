@@ -1,0 +1,17 @@
+\begin{tikzpicture}[scale=3]
+  \draw (0,0)--(1,0);
+  \draw (0,0)--(0,1);
+
+  \draw[very thick] plot[samples=100, domain=0:1](\x, {(\x)^3});
+  \draw (0.5,-0.2) node[below] {$\gamma_{3,3}(t)=t^3$};
+  
+  \foreach \x in {0.5, 1}{
+               \draw[thin] (\x,-0.025)--(\x,0.025);
+               \draw[thin] (-.025,\x)--(0.025,\x);
+};
+  \draw (0,-.025) node[below] {$0$};
+%  \draw (.5,-.025) node[below] {$\frac{1}{2}$};
+  \draw (1,-.025) node[below] {$1$};
+%  \draw (-.025,.5) node[left] {$\frac{1}{2}$};
+  \draw (-.025,1) node[left] {$1$};
+\end{tikzpicture}

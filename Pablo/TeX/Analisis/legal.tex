@@ -1,0 +1,44 @@
+\begin{document}
+\footnotesize\parindent0pt\parskip0pt
+\pagestyle{empty}
+\vbox to\textheight{\vskip\fill
+\fbox{%
+\parbox{\linewidth}{\scriptsize\sffamily%
+\textbf{Catalogación en la publicación UNAM. Dirección General de Bibliotecas}\\[2pt]
+\textbf{Nombres:} Clapp, M., autor. | Rosell González, Pablo, ilustrador. \\
+\textbf{Título:} Análisis matemático / Mónica Clapp; ilustraciones, Pablo Rosell González. \\
+\textbf{Descripción:} 3a. reimpresión de la 3a. edición. | Ciudad de México: Universidad Nacional Autónoma de México,\\ 
+  Instituto de Matemáticas, 2019. | Serie: Colección Papirhos. Serie Textos; 2. \\
+\textbf{Identificadores:} LIBRUNAM 2053218 | ISBN 9786073021388.\\
+\textbf{Temas:} Análisis matemático\\
+\textbf{Clasificación:} LCC QA300.C49 2019 | DDC 515—dc23
+% Clapp, M., autor.\\
+% Análisis matemático / Mónica Clapp; ilustraciones Pablo Rosell González. -- 2a. reimpresión de la 2a. edición.\\
+% xviii, 465 páginas: ilustraciones. --  (Colección papirhos. Serie Textos; 2).\\
+% ISBN 978-607-02-9111-1 (Colección papirhos).\\
+% ISBN 978-607-02-9118-0 (Análisis matemático).\\
+% 1. Análisis matemático. I. Rosell González, Pablo, ilustrador. II. Título. III. Serie.\\
+% QA300.C49 2018\\
+% LIBRUNAM 1945248
+}}
+
+%\vspace*{4ex}
+
+\vfill
+
+\begin{flushleft}
+  <%=meta['legal_autores']%>\vspace*{2ex}
+  <%=meta['ediciones_latex']%>\\[2ex]
+  ISBN: <%=meta['isbn_coleccion']%> (Colección Papirhos)\\
+  ISBN: <%=meta['isbn_libro']%> (<%=meta['titulo']%>)\\[2ex]
+  Esta edición y sus características son propiedad de la Universidad Nacional Autónoma de México.\\
+  Prohibida la reproducción total o parcial por cualquier medio sin la autorización escrita del titular de los derechos patrimoniales.\\[2ex]
+  Impreso y hecho en México / Printed and made in Mexico\\[2ex]
+  Edición:\\
+  Instituto de Matemáticas, UNAM\\
+  {\scriptsize Av. Universidad 3000\\
+  04510, Ciudad de México\\[2ex]}
+%  <%=meta['legal_apoyo']%>\\[1ex]
+  Correo electrónico: \texttt{papirhos@im.unam.mx}
+\end{flushleft}}
+\end{document}

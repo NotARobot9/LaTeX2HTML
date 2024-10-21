@@ -1,0 +1,10 @@
+\begin{tikzpicture}[scale=5]
+  \draw[very thin] (-.2,0)--(0.8,0);
+  \draw[very thin] (0,-.2)--(0,.65);
+  \draw[thick] plot[samples=100, domain=-0.2:.8](\x, {\x-(\x)^3});
+  \draw[thick] plot[domain=-0.6:.4]({(\x)+0.4},{(0.52*\x)+0.336});
+  \draw[very thin] plot[domain=-0.6:.4]({(\x)+0.4},{(0.2*\x)+0.336});
+  \draw[very thin] plot[domain=-0.6:.4]({(\x)+0.4},{(0.8*\x)+0.336});
+  \draw[mark=*, mark size=.2pt] plot coordinates {(0.4,0.336)};
+  \node[below right] at (0.38,0.336) {$(t_0,\sigma(t_0))$};
+\end{tikzpicture}

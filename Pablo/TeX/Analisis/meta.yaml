@@ -1,0 +1,74 @@
+---
+##### información general (usar \\ en títulos largos si es necesario)
+
+nombre: mca
+titulo: Análisis matemático
+autores: Mónica Clapp
+legal_autores: |
+  Autora:\\
+  Mónica Clapp\\
+  {\scriptsize \hspace{2ex}Instituto de Matemáticas, UNAM\\
+  \hspace{2ex}Av. Universidad 3000, Circuito Exterior S/N\\ 
+  \hspace{2ex}Cuidad Universitaria, Alcaldía de Coyoacán,\\ 
+  \hspace{2ex}04510, Ciudad de México\\[5ex]}
+  Ilustraciones:\\
+  Pablo Rosell González\\[1ex]
+  Ilustración de la portada: pintura ``La Luna'' de Fernando Olivera\\[5ex]  
+ediciones:
+  - |
+    3a. Reimpresión de la 3a. Edición, 2023\\[2pt]
+    3a. Edición, 2019\\
+    Colección \emph{papirhos}, Serie \emph{Textos}, Núm.~2\\
+    Fecha de edición: agosto de 2019\\[2ex]
+    2a. Edición, 2017\\
+    1a. Edición, 2015\\[2ex]
+    D.R. © 2019 UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO\\ 
+    \hspace{3.15em}Ciudad Universitaria, Alcaldía de Coyoacán, C.P. 04510, Ciudad de México
+fecha_impresion: octubre de 2023
+isbn_coleccion: 978-607-02-9375-7
+isbn_libro: 978-607-30-2138-8
+numero_ejemplares: 150
+# elegir uno de digital, offset
+tipo_impresion: digital
+# eligir una de mixbaal, icosaedro, textos, notas, monografias:
+serie: Textos
+
+legal_apoyo: |
+#  Este volumen se imprimió con el apoyo financiero de
+#  DGAPA (UNAM) mediante el proyecto de PAPIME RR101813.
+
+presentacion: |
+  \noindent
+  Como parte del Comité Editorial de \emph{papirhos,} es un gusto
+  presentar este libro y agradecer a todas las personas que
+  colaboraron en su edición. Por supuesto, reconocemos en primer lugar
+  a Mónica Clapp quien, con su vasta experiencia en docencia e
+  investigación, escribió este libro con gran pasión, esmero y
+  dedicación. Su incansable compromiso con la formación de estudiantes
+  se ve claramente reflejado en este texto tan esperado por los
+  lectores.
+  
+  Queremos expresar nuestra gratitud a Nils Ackermann, quien estuvo
+  muy presente en la corrección y la formación inicial del libro, y a
+  Pablo Rosell quien hizo un trabajo sumamente cuidadoso en las figuras
+  e imágenes que acompañan el texto, así como en la formación y cuidado
+  de la edición.
+
+  Asimismo, agradecemos a Helena Lluis por participar en el cuidado de
+  la edición y la corrección de estilo de las páginas preliminares,
+  así como a Leonardo Espinosa y a Celia Osorio de la Sección de
+  Publicaciones por el apoyo permanente y comprometido con esta
+  colección.
+
+  Por último, agradecemos al pintor oaxaqueño Fernando Olivera el que nos
+  haya permitido hacer uso de su hermosa obra “La Luna” que
+  adorna la portada de este libro, así como a Karla López por su
+  valioso apoyo.
+
+  A todos ellos, ¡nuestro más sincero agradecimiento!
+
+##### opciones de procesamiento (no/yes)
+
+multiples_de_ocho: no
+
+##### listas de figuras

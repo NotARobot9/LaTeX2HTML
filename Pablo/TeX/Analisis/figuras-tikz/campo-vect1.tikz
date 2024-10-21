@@ -1,0 +1,23 @@
+\begin{tikzpicture}[scale=.7]
+    \begin{axis}[
+%        title={$x \exp(-x2-y^2)$ and its gradient},
+      axis lines=middle,
+        domain=-4:4,
+        view={0}{90},
+        axis background/.style={fill=white},
+        axis equal,
+        yticklabels={},
+        xticklabels={}
+    ]
+        \addplot3[
+            quiver={
+             u={-y},
+             v={x},
+             scale arrows=0.1,
+            },
+            -latex',samples=11]
+%                {exp(0-x^2-y^2)*x};
+                {0};
+\end{axis}
+\draw (3.5,-0.25) node[below] {$\chi(0,x,y)=(-y,x)$};
+\end{tikzpicture}

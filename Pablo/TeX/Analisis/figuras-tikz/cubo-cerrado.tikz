@@ -1,0 +1,10 @@
+\begin{tikzpicture}[scale=.6]
+  \draw[thick,fill=gray!10] (0,0) rectangle (8,8);
+  \draw[thick,fill=gray!25] (0,0) rectangle (4,4);
+  \draw[thick,fill=gray!50] (2,2) rectangle (4,4);
+  \draw[thick,fill=gray!75] (2,3)  rectangle (3,4);
+  \draw[dashed] (0,2) -- (2,2) -- (2,0);
+  \draw[dashed] (3,2) -- (3,3) -- (4,3);
+  \draw[dashed] (4,8) -- (4,4) -- (8,4);
+  \draw (2.5,3.5) node {$Q_k$};
+\end{tikzpicture}

@@ -1,0 +1,19 @@
+\begin{tikzpicture} 
+  \begin{axis}[view={20}{60},z buffer=sort, data cs=polar,
+%    view/az=45,
+%    view/el=15,
+%    axis lines=none,
+    colormap={bw}{gray(0cm)=(0.3); gray(1cm)=(0.7)}]
+    \addplot3[data cs=cart,surf,domain=-1.5:1.5,y domain=-1.5:1.5,samples=2] {0};    
+%    \addplot3[surf,domain=-2:2,y domain=-2:2, shader=faceted interp] {1-(x^2+y^2)^(1/2)};
+    \addplot3 [
+%    data cs=polar, 
+    surf,
+    domain=0:360, 
+    domain y=0:1,
+    samples=30, 
+    samples y=10,
+    shader=faceted interp
+    ] {-y+1};
+  \end{axis} 
+\end{tikzpicture}

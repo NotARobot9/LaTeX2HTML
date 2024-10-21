@@ -1,0 +1,34 @@
+\begin{tikzpicture}[scale=0.75]
+  \pgfmathsetmacro{\izq}{0}
+  \pgfmathsetmacro{\verizq}{0}
+  \pgfmathsetmacro{\verizqK}{0.1}
+  \pgfmathsetmacro{\der}{6}
+  \pgfmathsetmacro{\rectizqx}{.3}
+  \pgfmathsetmacro{\rectizqy}{.8}
+  \pgfmathsetmacro{\rectderx}{6.9}
+  \pgfmathsetmacro{\rectdery}{0.3}
+% Para la Omega 
+  \draw[fill=gray!25] plot[smooth cycle, tension=.9]
+  coordinates{(\izq-1,\verizq+0.7) (\izq+0.4,\verizq-0.9) (\izq+2,\verizq+.45) (\izq+0.6,\verizq+1.8)};
+% Para la Omega' 
+  \draw[fill=gray!25] plot[smooth cycle, tension=.9]
+  coordinates{(\der-1.5,-1) (\der+0, -1) (\der+1.5,-0.65) (\der+2,1.45) (\der+0.3,1.6) (\der-1.3,1.3)};
+% Para la K 
+  \draw[very thin,fill=gray!50] plot[smooth cycle, tension=.9]
+  coordinates{(\izq-0.1,\verizqK+0.05) (\izq+0.5,\verizqK+0.1) (\izq+1.1,\verizqK-0.05) (\izq+.8,\verizqK+.75) (\izq+0,\verizqK+0.8)};
+% Para la K' 
+  \draw[very thin,fill=gray!50] plot[smooth cycle, tension=.9]
+  coordinates{(\der-0.6,0.05) (\der+.15,-0.05) (\der+0.5, 0.2)
+    (\der+1.1,-0.05) (\der+1,.55) (\der-0.5,0.8)};
+% Los cuadrados
+  \draw[very thin] (\rectizqx+0,\rectizqy+0) rectangle (\rectizqx+.4,\rectizqy+.4);
+  \draw[very thin] (\rectderx+0,\rectdery+0) rectangle (\rectderx+.4,\rectdery+.4);
+% La flecha
+  \draw[-latex'] (1,.7) .. controls (2.2,1.2) and (4.3,1.2) .. 
+  node[above] {$\varphi$} (5.2,.7);
+% Las etiquetas
+  \node at (\izq+0.35,0.45) {$K$};
+  \node at (\der-0.1,0.3) {$K'$};
+  \node at (\izq+1,-0.45) {$\Omega$};
+  \node at (\der+1.1,-0.6) {$\Omega'$};
+\end{tikzpicture}

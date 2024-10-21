@@ -1,0 +1,21 @@
+\begin{tikzpicture}[scale=.4]
+%  \draw[very thin,scale=1.3] (-3,4) -- (5,-1);
+%  \draw[very thin,scale=1.4] (-2.2,3.5) -- (4.2,-0.5);
+  \draw[very thin,scale=1.4] (-1.8,3.25) -- (3.8,-0.25);
+
+  \draw[fill={white}, fill opacity=0.95] (0,0) circle ({sqrt(13)});
+%  \draw[very thin,scale=1.3] (5,-1) -- (3,-4) -- (-5,1) -- (-3,4) -- cycle;
+%  \draw[very thin,scale=1.4] (4.2,-0.5) -- (3,-4) -- (-5,1) --
+  \draw[very thin,scale=1.4] (3.8,-0.25) -- (3,-4) -- (-5,1) --
+  (-1.8,3.25);
+
+  \draw[thick,-latex'] (0,0) -- (2,3);
+  \draw (.2,.3) -- (.5,.1) -- (.3,-.2);
+
+  \draw[dashed, cm={cos(33.7), -sin(33.7), sin(33.7), cos(33.7), (0,0)}]
+  (0,0) ellipse ({0.38*sqrt(89)} and {0.38*sqrt(13)});
+
+  \draw (2.3,2.9) node[above] {$\xi$};
+  \draw[scale=1.3] (3.6,-2.5) node[right] {$T_\xi M$};
+
+\end{tikzpicture} 

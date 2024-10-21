@@ -1,0 +1,15 @@
+\begin{tikzpicture}
+  \begin{axis}[%footnotesize,
+    axis lines=middle,
+%    axis lines=none,
+   axis line style={-latex'},
+   xmin=-3, xmax=3, ymin=-0.2,ymax=1.2,
+%   xtickmax=3,
+   xtick={-2,-1,1,2}, ytick={0.5,1},
+   yticklabels={},
+   xticklabels={},
+   width=10cm, height=4cm]
+    \addplot[samples=500, very thick,smooth]{(exp( -1 / (\x^2)))};
+  \end{axis}
+
+\end{tikzpicture}

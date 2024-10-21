@@ -1,0 +1,9 @@
+\begin{tikzpicture}[scale=1]
+\foreach \x in {0,.8}
+\draw[dashed] plot[smooth, tension=0.7] coordinates{(-2,{\x + 2.1}) (-1,{\x + 2.5}) (1,{\x + 1.5}) (2,{\x + 1.9})};
+\draw plot[smooth,tension=0.7] coordinates{(-2,{.4 + 2.1}) (-1,{.4 + 2.5}) (1,{.4 + 1.5}) (2,{.4 + 1.9})};
+\draw[thick] plot[mark=*, mark size=1pt,ScalePlotMarksOff] coordinates {(-2,1) (2,1)};
+\node[below] at (-2,.95) {$0$};
+\node[below] at (2,.95) {$1$};
+
+\end{tikzpicture}

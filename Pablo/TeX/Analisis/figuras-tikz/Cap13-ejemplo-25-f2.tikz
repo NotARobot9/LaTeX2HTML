@@ -1,0 +1,14 @@
+\begin{tikzpicture}[scale=1.4]
+  \pgfmathsetmacro{\xO}{1}
+  \draw[very thin] (-1,0)--(3,0);
+  \draw[very thin] (0,0)--(0,2.1);
+
+  \draw[thick] (-1,0)--(0,0)--(.5,2)--(1,0)--(3,0);
+  \foreach \x in {-1,0,1,2,3}
+  { \draw[very thin] (\x,0.05)--(\x,-0.05) node[below] {$\x$};
+  };
+  \foreach \x in {0.5,1,1.5,2}
+  { \draw[very thin] (0.05,\x)--(-0.05,\x) node[left] {$\x$};
+  };
+
+\end{tikzpicture}

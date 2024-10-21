@@ -1,0 +1,19 @@
+\begin{tikzpicture}[scale=2]
+  \draw (0,0)--(1,0);
+  \draw (0,0)--(0,1);
+
+  \draw[very thick] (0,0)--(.25,1)--(.5,0)--(1,0);
+  \draw (0.5,-0.35) node[below] {$y=f_k(x)$};
+  
+  \foreach \x in {0.5, 1}{
+               \draw[thin] (\x,-0.025)--(\x,0.025);
+               \draw[thin] (-.025,\x)--(0.025,\x);
+};
+\draw[dashed] (.25,0) -- (.25,1);
+  \draw (0,-.025) node[below] {$0$};
+  \draw (.25,-.025) node[below] {$\frac{1}{k}$};
+  \draw (.5,-.025) node[below] {$\frac{2}{k}$};
+  \draw (1,-.025) node[below] {$1$};
+%  \draw (-.025,.5) node[left] {$\frac{1}{2}$};
+  \draw (-.025,1) node[left] {$1$};
+\end{tikzpicture}

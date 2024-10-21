@@ -1,0 +1,20 @@
+\begin{tikzpicture}[domain=-.1:1.2,scale=2]
+  \draw (-.05,0)--(1.1,0);
+  \draw (0,-.05)--(0,1.1);
+  \draw[very thick] (0,1)--(.25,0)--(1,0);
+  \foreach \x in {0.25, 0.5, 0.75, 1}{
+               \draw[thin] (\x,-0.05)--(\x,0);
+               \draw[thin] (-.05,\x)--(0,\x);
+};
+\draw (.15,.6) node[right] {$y=g_{\delta}(x)$};
+% \draw (0,-.05) node[below] {$0$};
+ \draw (.25,-.05) node[below] {$\delta$};
+% \draw (.5,-.05) node[below] {$\frac{1}{2}$};
+% \draw (.75,-.05) node[below] {$\frac{3}{4}$};
+% \draw (1,-.05) node[below] {$1$};
+% \draw (-.05,0) node[left] {$0$};
+% \draw (-.05,.25) node[left] {$\frac{1}{4}$};
+% \draw (-.05,.5) node[left] {$\frac{1}{2}$};
+% \draw (-.05,.75) node[left] {$\frac{3}{4}$};
+% \draw (-.05,1) node[left] {$1$};
+\end{tikzpicture}

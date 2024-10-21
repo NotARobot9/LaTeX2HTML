@@ -1,0 +1,13 @@
+\begin{tikzpicture}[scale=.3]
+  \pgfmathsetmacro{\xO}{1}
+  \draw[very thin,-latex'] (-6,0)--(6,0);
+  \draw[very thin, -latex'] (0,-6)--(0,6);
+
+  \draw[very thin, dashed] (0,0)--(3,4);
+  \draw[very thin, dashed] (3,0)--(3,4);
+
+  \draw[thick] (0,0) circle (5);
+  \draw[thick] (-3,4)--(3,4);
+  \draw[mark=*,mark size=3pt] (-.5,4) node[below] {$t$};
+  \draw plot[mark=*,mark size=3pt] coordinates{(0,4)};
+\end{tikzpicture}

@@ -1,0 +1,28 @@
+\begin{tikzpicture} 
+  \begin{axis}[view={25}{65},
+%    width=600pt,
+%    height=600pt,
+%    x=1cm,
+%    y=1cm,
+%    z=1cm,
+    plot box ratio = 1 1 1,
+    xmin=-2, xmax=2,
+    ymin=-2, ymax=2,
+    zmin=0, zmax=2,
+    z buffer=sort,
+    % view/az=45,
+    % view/el=15,
+    axis lines=none,
+    colormap={bw}{gray(0cm)=(0.2); gray(1cm)=(0.9)}]
+% Cono
+    \addplot3[surf,domain=-1.5:1.5,y domain=-1.5:1.5,very thin,samples=31,
+    shader=faceted interp] {1-(x^2+y^2)^(1/2)};
+% Plano
+%    \addplot3[surf,domain=-1.5:1.5,very thin,y
+%    domain=-1.5:1.5,samples=31, shader=faceted interp] {0};    
+%    \addplot3[surf,domain=-2:2,y domain=-2:2,very thin,samples=31, shader=faceted interp] {1-(x^2+y^2)^(1/2)};
+% Circunferencia
+    \addplot3 [data cs=polar,domain=0:360, samples y=0, samples=50, very thin, z buffer=auto]
+    (x,1,0);
+  \end{axis} 
+\end{tikzpicture}

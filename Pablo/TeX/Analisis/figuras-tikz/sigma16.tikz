@@ -1,0 +1,15 @@
+\begin{tikzpicture}[scale=2]
+\pgfmathsetmacro{\SDSEIS}{0.25}
+\pgfmathsetmacro{\TPDS}{1/32}
+\draw (0,-0.5)--(0,0.5);
+\draw (0,0)--(1.05,0);
+\draw (0,0) sin (\TPDS,\SDSEIS) cos (2*\TPDS,0) sin (3*\TPDS,-\SDSEIS) cos (4*\TPDS,0)
+ sin (5*\TPDS,\SDSEIS) cos (6*\TPDS,0) sin (7*\TPDS,-\SDSEIS) cos (8*\TPDS,0)
+ sin (9*\TPDS,\SDSEIS) cos (10*\TPDS,0) sin (11*\TPDS,-\SDSEIS) cos (12*\TPDS,0)
+ sin (13*\TPDS,\SDSEIS) cos (14*\TPDS,0) sin (15*\TPDS,-\SDSEIS) cos (16*\TPDS,0)
+ sin (17*\TPDS,\SDSEIS) cos (18*\TPDS,0) sin (19*\TPDS,-\SDSEIS) cos (20*\TPDS,0)
+ sin (21*\TPDS,\SDSEIS) cos (22*\TPDS,0) sin (23*\TPDS,-\SDSEIS) cos (24*\TPDS,0)
+ sin (25*\TPDS,\SDSEIS) cos (26*\TPDS,0) sin (27*\TPDS,-\SDSEIS) cos (28*\TPDS,0)
+ sin (29*\TPDS,\SDSEIS) cos (30*\TPDS,0) sin (31*\TPDS,-\SDSEIS) cos (32*\TPDS,0);
+\node[below] at (0.5,-0.5) {$\sigma_{16}$};
+\end{tikzpicture}

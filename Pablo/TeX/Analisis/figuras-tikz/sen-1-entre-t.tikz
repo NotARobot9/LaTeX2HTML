@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale=0.9]
+  \begin{axis}[ axis y line=left, axis x line=middle, ymin=-1.1, ymax=1.1,
+    every inner x axis line/.append style={|-latex'},
+    every inner y axis line/.append style={|-latex'},
+    xticklabel style={/pgf/number format/frac, /pgf/number
+      format/frac},
+    xtick parsed={1/2, 1},
+    yticklabel style={/pgf/number format/frac, /pgf/number
+      format/frac},
+    width=10cm,
+    height=5cm
+]
+  \addplot[smooth, domain=0.02:1, thick, samples=5000]{sin(deg(1/x))};
+\end{axis}
+
+\end{tikzpicture}

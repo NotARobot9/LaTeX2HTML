@@ -1,0 +1,11 @@
+\begin{tikzpicture}[domain=-6:6,scale=.6]
+  \pgfmathsetmacro{\mypi}{3.14159}
+  \draw[-latex'] (-6,0) -- (6,0);
+  \draw[-latex'] (0,-2) -- (0,2);
+  \draw[very thick] plot[samples=100](\x, {rad(atan(\x))});
+  \draw[very thin,dashed] (-6,{\mypi/2}) -- (6,{\mypi/2});
+  \draw[very thin,dashed] (-6,{-\mypi/2}) -- (6,{-\mypi/2});
+
+  \draw (0,-2.2) node[below] {$y=\tan^{-1}(x)$};
+
+\end{tikzpicture}

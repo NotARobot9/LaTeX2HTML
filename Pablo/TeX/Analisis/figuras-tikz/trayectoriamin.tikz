@@ -1,0 +1,11 @@
+\begin{tikzpicture}[yscale=.7]
+  \coordinate (c1) at (1,1);
+  \coordinate (c2) at (3,2.4);
+  \draw[-latex'] (-.2,0)--(4,0);
+  \draw[-latex'] (0,-.2)--(0,3);
+  \draw[thick] (c1) -- (c2);
+  \draw[only marks, mark=*, mark size=1pt, ScalePlotMarksOff] plot 
+  coordinates{(c1) (c2)};
+  \draw (c1) node[inner sep=1.5pt, below left]{$p$};
+  \draw (c2) node[inner sep=3pt, right]{$q$};
+\end{tikzpicture}

@@ -1,0 +1,33 @@
+\begin{tikzpicture}[scale=1.4]
+  \pgfmathsetmacro{\escX}{2}
+  \pgfmathsetmacro{\Xcub}{\escX*.8*.8*.8}
+  \draw[very thin] (-2,0)--(2,0);
+  \draw[very thin] (0,-2)--(0,2);
+
+%  \draw[dashed] (0,-0.1)--(0,0.8);
+%  \draw[dashed] (\lI,-0.1)--(\lI,0.8);
+%  \draw[dashed] ({\lI+\lz},-0.1)--({\lI+\lz},0.8);
+
+  \foreach \x in {-1,1} do 
+  {
+    \draw[very thin] (\x, 0.05)--(\x, -0.05);
+  };
+  \draw (0.1, -0.05) node[below] {$0$};
+  \draw (-1,-0.05) node[below] {$-k$};
+  \draw (1,-0.05) node[below] {$k$};
+
+  \foreach \x in {-1, 1 } do 
+  {
+    \draw[very thin] (0.05,\x)--(-0.05, \x);
+%    \draw[very thin,dashed] (\x,0)--(\x,0.7);
+  };
+  \draw (-0.05,-1) node[left] {$-k$};
+  \draw (-0.05,1) node[left] {$k$};
+
+\draw[very thick] (-2,0)--(-1,0);
+\draw[very thick] (1,0)--(2,0);
+\draw[domain=-1:1] plot ({\x},{\escX*\x*\x*\x});
+\draw[domain=-.8:.8, very thick] plot ({\x},{\escX*\x*\x*\x});
+\draw[very thick] (-1,-\Xcub)--(-.8,-\Xcub);
+\draw[very thick] (1,\Xcub)--(.8,\Xcub);
+\end{tikzpicture}

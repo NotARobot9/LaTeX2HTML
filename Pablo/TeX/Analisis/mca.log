@@ -1,0 +1,3791 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.21)  26 SEP 2023 18:02
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**mca.tex
+(./mca.tex
+LaTeX2e <2023-06-01> patch level 1
+L3 programming layer <2023-08-29>
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrbook.cls
+Document Class: scrbook 2023/07/07 v3.41 KOMA-Script document class (book)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2023/07/07 v3.41 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2023/07/07 v3.41 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2023/07/07 v3.41 KOMA-Script package (file load hooks)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+Package: scrlfile-hook 2023/07/07 v3.41 KOMA-Script package (using LaTeX hooks)
+
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrlogo.sty
+Package: scrlogo 2023/07/07 v3.41 KOMA-Script package (logo)
+)))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+Applying: [2021/05/01] Usage of raw or classic option list on input line 252.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line
+ 368.
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2023/07/07 v3.41 KOMA-Script package (handling toc-files)
+\scr@dte@tocline@numberwidth=\skip48
+\scr@dte@tocline@numbox=\box51
+)
+Package tocbasic Info: omitting babel extension for `toc'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `toc' on input line 135.
+Package scrbook Info: You've used standard option `10pt'.
+(scrbook)             This is correct!
+(scrbook)             Internally I'm using `fontsize=10pt'.
+(scrbook)             If you'd like to set the option with \KOMAoptions,
+(scrbook)             you'd have to use `fontsize=10pt' there
+(scrbook)             instead of `10pt', too.
+Class scrbook Info: File `scrsize10pt.clo' used to setup font sizes on input li
+ne 2691.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrsize10pt.clo
+File: scrsize10pt.clo 2023/07/07 v3.41 KOMA-Script font size class option (10pt
+)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/typearea.sty
+Package: typearea 2023/07/07 v3.41 KOMA-Script package (type area)
+\ta@bcor=\skip49
+\ta@div=\count185
+\ta@hblk=\skip50
+\ta@vblk=\skip51
+\ta@temp=\skip52
+\footheight=\skip53
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 8
+(typearea)             BCOR = 0.0pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 373.44246pt
+(typearea)              DIV departure   = -4%
+(typearea)              \evensidemargin = 77.107pt
+(typearea)              \oddsidemargin  = 2.4185pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 538.0pt
+(typearea)              \topmargin      = 0.36087pt
+(typearea)              \headheight     = 15.0pt
+(typearea)              \headsep        = 18.0pt
+(typearea)              \topskip        = 10.0pt
+(typearea)              \footskip       = 42.0pt
+(typearea)              \baselineskip   = 12.0pt
+(typearea)              on input line 1799.
+)
+\c@part=\count186
+\c@chapter=\count187
+\c@section=\count188
+\c@subsection=\count189
+\c@subsubsection=\count190
+\c@paragraph=\count191
+\c@subparagraph=\count192
+\scr@dte@chapter@maxnumwidth=\skip54
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\chapter on input line 5990.
+\scr@dte@section@maxnumwidth=\skip55
+Class scrbook Info: using compatibility default `runin=bysign'
+(scrbook)           for `\section on input line 6001.
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\section on input line 6001.
+\scr@dte@part@maxnumwidth=\skip56
+Class scrbook Info: using compatibility default `afterindent=true'
+(scrbook)           for `\part on input line 6010.
+\scr@dte@subsection@maxnumwidth=\skip57
+Class scrbook Info: using compatibility default `runin=bysign'
+(scrbook)           for `\subsection on input line 6020.
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\subsection on input line 6020.
+\scr@dte@subsubsection@maxnumwidth=\skip58
+Class scrbook Info: using compatibility default `runin=bysign'
+(scrbook)           for `\subsubsection on input line 6030.
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\subsubsection on input line 6030.
+\scr@dte@paragraph@maxnumwidth=\skip59
+Class scrbook Info: using compatibility default `runin=bysign'
+(scrbook)           for `\paragraph on input line 6041.
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\paragraph on input line 6041.
+\scr@dte@subparagraph@maxnumwidth=\skip60
+Class scrbook Info: using compatibility default `runin=bysign'
+(scrbook)           for `\subparagraph on input line 6051.
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\subparagraph on input line 6051.
+\abovecaptionskip=\skip61
+\belowcaptionskip=\skip62
+\c@pti@nb@sid@b@x=\box52
+Package tocbasic Info: omitting babel extension for `lof'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lof' on input line 7242.
+\scr@dte@figure@maxnumwidth=\skip63
+\c@figure=\count193
+Package tocbasic Info: omitting babel extension for `lot'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lot' on input line 7259.
+\scr@dte@table@maxnumwidth=\skip64
+\c@table=\count194
+Class scrbook Info: Redefining `\numberline' on input line 7430.
+\bibindent=\dimen140
+)
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 8
+(typearea)             BCOR = 0.0pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 373.44246pt
+(typearea)              DIV departure   = -4%
+(typearea)              \evensidemargin = 77.107pt
+(typearea)              \oddsidemargin  = 2.4185pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 538.0pt
+(typearea)              \topmargin      = 0.36087pt
+(typearea)              \headheight     = 15.0pt
+(typearea)              \headsep        = 18.0pt
+(typearea)              \topskip        = 10.0pt
+(typearea)              \footskip       = 42.0pt
+(typearea)              \baselineskip   = 12.0pt
+(typearea)              on input line 15.
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 14
+(typearea)             BCOR = 42.67912pt
+(typearea)             \paperwidth      = 483.69684pt
+(typearea)              \textwidth      = 346.51396pt
+(typearea)              DIV departure   = 0%
+(typearea)              \evensidemargin = -9.26749pt
+(typearea)              \oddsidemargin  = 1.91039pt
+(typearea)             \paperheight     = 654.41338pt
+(typearea)              \textheight     = 490.0pt
+(typearea)              \topmargin      = -25.52618pt
+(typearea)              \headheight     = 15.0pt
+(typearea)              \headsep        = 18.0pt
+(typearea)              \topskip        = 10.0pt
+(typearea)              \footskip       = 42.0pt
+(typearea)              \baselineskip   = 12.0pt
+(typearea)              on input line 17.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrlayer-scrpage.sty
+Package: scrlayer-scrpage 2023/07/07 v3.41 KOMA-Script package (end user interf
+ace for scrlayer)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrlayer.sty
+Package: scrlayer 2023/07/07 v3.41 KOMA-Script package (defining layers and pag
+e styles)
+Package scrlayer Info: patching LaTeX kernel macro \pagestyle on input line 218
+3.
+)
+Package scrlayer-scrpage Info: Makeing stand-alone element `pagehead' from
+(scrlayer-scrpage)             alias to `pageheadfoot' on input line 1106.
+)
+
+Package scrlayer-scrpage Warning: replacing deprecated \clearscrheadfoot by
+(scrlayer-scrpage)                \clearpairofpagestyles on input line 25.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/psnfss/helvet.sty
+Package: helvet 2020/03/25 PSNFSS-v9.3 (WaS) 
+)
+(/usr/local/texlive/texmf-local/tex/latex/mtpro2/mtpro2.sty
+Package: mtpro2 2009/4/27 v2.3 MathTimePro II - added arc accents MathTimePro I
+I - fixed rbrace problem with straightbraces and morphedbraces options MathTime
+Pro II - fix bug with z = \backslash widetilde{\backslash sum_{x }}MathTimePro 
+II v2 font support (PCTeX/WaS)MathTimePro II v2.1a Allowed alternate form of I 
+in Math Script Fonts (MS)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/psnfss/t1ptm.fd
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
+)
+\c@mv@heavy=\count195
+Now handling font encoding LMP1 ...
+... no UTF-8 mapping file for font encoding LMP1
+Now handling font encoding LMP2 ...
+... no UTF-8 mapping file for font encoding LMP2
+Now handling font encoding LMP3 ...
+... no UTF-8 mapping file for font encoding LMP3
+\pointcount@=\count196
+LaTeX Info: Redefining \mathfrak on input line 215.
+\prePbox@=\box53
+\Pbox@=\box54
+\LRbox@=\box55
+\HATbox@=\box56
+\TDbox@=\box57
+\CHbox@=\box58
+\ARCbox@=\box59
+\preSbox@=\box60
+\Sbox@=\box61
+\SQcount@=\count197
+\SQRTbox@=\box62
+\UPROOT@=\count198
+\LEFTROOT@=\count199
+\limtype@=\count266
+\xlfont@=\count267
+\xlposition@=\count268
+\xlposition@ii=\count269
+\optype@=\count270
+\x@count=\count271
+\maxXLscripts@=\dimen141
+\symAMSa=\mathgroup4
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks18
+\inpenc@posthook=\toks19
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2023/09/12 v3.94 The Babel package
+\babel@savecnt=\count272
+\U@D=\dimen142
+\l@unhyphenated=\language87
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count273
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel-spanish/spanish.ldf
+Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
+\es@quottoks=\toks20
+\es@quotdepth=\count274
+Package babel Info: Making " an active character on input line 570.
+))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel/locale/es/babel-spanish.t
+ex
+Package babel Info: Importing font and identification data for spanish
+(babel)             from babel-es.ini. Reported on input line 11.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2022-09-14 v5.2n context-sensitive quotations (JAW)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count275
+)
+\csq@reset=\count276
+\csq@gtype=\count277
+\csq@glevel=\count278
+\csq@qlevel=\count279
+\csq@maxlvl=\count280
+\csq@tshold=\count281
+\csq@ltx@everypar=\toks21
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2022-09-14 v5.2n csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+)
+Package csquotes Info: Redefining alias 'spanish' -> 'spanish/spanish'.
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip65
+\enit@outerparindent=\dimen143
+\enit@toks=\toks22
+\enit@inbox=\box63
+\enit@count@id=\count282
+\enitdp@description=\count283
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2023/05/13 v2.17o AMS math features
+\@mathmargin=\skip66
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks23
+\ex@=\dimen144
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen145
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count284
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count285
+\leftroot@=\count286
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count287
+\DOTSCASE@=\count288
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box64
+\strutbox@=\box65
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen146
+\macc@depth=\count289
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count290
+\dotsspace@=\muskip16
+\c@parentequation=\count291
+\dspbrk@lvl=\count292
+\tag@help=\toks24
+\row@=\count293
+\column@=\count294
+\maxfields@=\count295
+\andhelp@=\toks25
+\eqnshift@=\dimen147
+\alignsep@=\dimen148
+\tagshift@=\dimen149
+\tagwidth@=\dimen150
+\totwidth@=\dimen151
+\lineht@=\dimen152
+\@envbody=\toks26
+\multlinegap=\skip67
+\multlinetaggap=\skip68
+\mathdisplay@stack=\toks27
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks28
+\thm@bodyfont=\toks29
+\thm@headfont=\toks30
+\thm@notefont=\toks31
+\thm@headpunct=\toks32
+\thm@preskip=\skip69
+\thm@postskip=\skip70
+\thm@headsep=\skip71
+\dth@everypar=\toks33
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/xpatch/xpatch.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2023-08-29 L3 programming layer (loader) 
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count296
+\l__pdf_internal_box=\box66
+))
+Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2023-08-29 L3 Experimental document command parser
+))
+Class scrbook Info: amsthm's \deferred@thm@head patched.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amscls/upref.sty
+Package: upref 2007/03/14 v2.04
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/exscale.sty
+Package: exscale 2018/09/24 v2.1i Standard LaTeX package exscale
+\big@size=\dimen153
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2022/06/29 v1.29 mathematical typesetting tools
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count297
+\calc@Bcount=\count298
+\calc@Adimen=\dimen154
+\calc@Bdimen=\dimen155
+\calc@Askip=\skip72
+\calc@Bskip=\skip73
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count299
+\calc@Cskip=\skip74
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
+)
+\g_MT_multlinerow_int=\count300
+\l_MT_multwidth_dim=\dimen156
+\origjot=\skip75
+\l_MT_shortvdotswithinadjustabove_dim=\dimen157
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen158
+\l_MT_above_intertext_sep=\dimen159
+\l_MT_below_intertext_sep=\dimen160
+\l_MT_above_shortintertext_sep=\dimen161
+\l_MT_below_shortintertext_sep=\dimen162
+\xmathstrut@box=\box67
+\xmathstrut@dim=\dimen163
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
+\c@tracingmulticols=\count301
+\mult@box=\box68
+\multicol@leftmargin=\dimen164
+\c@unbalance=\count302
+\c@collectmore=\count303
+\doublecol@number=\count304
+\multicoltolerance=\count305
+\multicolpretolerance=\count306
+\full@width=\dimen165
+\page@free=\dimen166
+\premulticols=\dimen167
+\postmulticols=\dimen168
+\multicolsep=\skip76
+\multicolbaselineskip=\skip77
+\partial@page=\box69
+\last@line=\box70
+\mc@boxedresult=\box71
+\maxbalancingoverflow=\dimen169
+\mult@rightbox=\box72
+\mult@grightbox=\box73
+\mult@firstbox=\box74
+\mult@gfirstbox=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\@tempa=\box103
+\@tempa=\box104
+\@tempa=\box105
+\@tempa=\box106
+\@tempa=\box107
+\@tempa=\box108
+\@tempa=\box109
+\@tempa=\box110
+\@tempa=\box111
+\c@minrows=\count307
+\c@columnbadness=\count308
+\c@finalcolumnbadness=\count309
+\last@try=\dimen170
+\multicolovershoot=\dimen171
+\multicolundershoot=\dimen172
+\mult@nat@firstbox=\box112
+\colbreak@box=\box113
+\mc@col@check@num=\count310
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count311
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+\c@tabx@nest=\count312
+\c@listtotal=\count313
+\c@listcount=\count314
+\c@liststart=\count315
+\c@liststop=\count316
+\c@citecount=\count317
+\c@citetotal=\count318
+\c@multicitecount=\count319
+\c@multicitetotal=\count320
+\c@instcount=\count321
+\c@maxnames=\count322
+\c@minnames=\count323
+\c@maxitems=\count324
+\c@minitems=\count325
+\c@citecounter=\count326
+\c@maxcitecounter=\count327
+\c@savedcitecounter=\count328
+\c@uniquelist=\count329
+\c@uniquename=\count330
+\c@refsection=\count331
+\c@refsegment=\count332
+\c@maxextratitle=\count333
+\c@maxextratitleyear=\count334
+\c@maxextraname=\count335
+\c@maxextradate=\count336
+\c@maxextraalpha=\count337
+\c@abbrvpenalty=\count338
+\c@highnamepenalty=\count339
+\c@lownamepenalty=\count340
+\c@maxparens=\count341
+\c@parenlevel=\count342
+\blx@tempcnta=\count343
+\blx@tempcntb=\count344
+\blx@tempcntc=\count345
+\c@blx@maxsection=\count346
+\blx@maxsegment@0=\count347
+\blx@notetype=\count348
+\blx@parenlevel@text=\count349
+\blx@parenlevel@foot=\count350
+\blx@sectionciteorder@0=\count351
+\blx@sectionciteorderinternal@0=\count352
+\blx@entrysetcounter=\count353
+\blx@biblioinstance=\count354
+\labelnumberwidth=\skip78
+\labelalphawidth=\skip79
+\biblabelsep=\skip80
+\bibitemsep=\skip81
+\bibnamesep=\skip82
+\bibinitsep=\skip83
+\bibparsep=\skip84
+\bibhang=\skip85
+\blx@bcfin=\read3
+\blx@bcfout=\write3
+\blx@langwohyphens=\language88
+\c@mincomprange=\count355
+\c@maxcomprange=\count356
+\c@mincompwidth=\count357
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'alphabetic.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count358
+\c@savedafterword=\count359
+\c@annotator=\count360
+\c@savedannotator=\count361
+\c@author=\count362
+\c@savedauthor=\count363
+\c@bookauthor=\count364
+\c@savedbookauthor=\count365
+\c@commentator=\count366
+\c@savedcommentator=\count367
+\c@editor=\count368
+\c@savededitor=\count369
+\c@editora=\count370
+\c@savededitora=\count371
+\c@editorb=\count372
+\c@savededitorb=\count373
+\c@editorc=\count374
+\c@savededitorc=\count375
+\c@foreword=\count376
+\c@savedforeword=\count377
+\c@holder=\count378
+\c@savedholder=\count379
+\c@introduction=\count380
+\c@savedintroduction=\count381
+\c@namea=\count382
+\c@savednamea=\count383
+\c@nameb=\count384
+\c@savednameb=\count385
+\c@namec=\count386
+\c@savednamec=\count387
+\c@translator=\count388
+\c@savedtranslator=\count389
+\c@shortauthor=\count390
+\c@savedshortauthor=\count391
+\c@shorteditor=\count392
+\c@savedshorteditor=\count393
+\c@labelname=\count394
+\c@savedlabelname=\count395
+\c@institution=\count396
+\c@savedinstitution=\count397
+\c@lista=\count398
+\c@savedlista=\count399
+\c@listb=\count400
+\c@savedlistb=\count401
+\c@listc=\count402
+\c@savedlistc=\count403
+\c@listd=\count404
+\c@savedlistd=\count405
+\c@liste=\count406
+\c@savedliste=\count407
+\c@listf=\count408
+\c@savedlistf=\count409
+\c@location=\count410
+\c@savedlocation=\count411
+\c@organization=\count412
+\c@savedorganization=\count413
+\c@origlocation=\count414
+\c@savedoriglocation=\count415
+\c@origpublisher=\count416
+\c@savedorigpublisher=\count417
+\c@publisher=\count418
+\c@savedpublisher=\count419
+\c@language=\count420
+\c@savedlanguage=\count421
+\c@origlanguage=\count422
+\c@savedoriglanguage=\count423
+\c@pageref=\count424
+\c@savedpageref=\count425
+\shorthandwidth=\skip86
+\shortjournalwidth=\skip87
+\shortserieswidth=\skip88
+\shorttitlewidth=\skip89
+\shortauthorwidth=\skip90
+\shorteditorwidth=\skip91
+\locallabelnumberwidth=\skip92
+\locallabelalphawidth=\skip93
+\localshorthandwidth=\skip94
+\localshortjournalwidth=\skip95
+\localshortserieswidth=\skip96
+\localshorttitlewidth=\skip97
+\localshortauthorwidth=\skip98
+\localshorteditorwidth=\skip99
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+\c@textcitecount=\count426
+\c@textcitetotal=\count427
+\c@textcitemaxnames=\count428
+\c@biburlbigbreakpenalty=\count429
+\c@biburlbreakpenalty=\count430
+\c@biburlnumpenalty=\count431
+\c@biburlucpenalty=\count432
+\c@biburllcpenalty=\count433
+\biburlbigskip=\muskip18
+\biburlnumskip=\muskip19
+\biburlucskip=\muskip20
+\biburllcskip=\muskip21
+\c@smartand=\count434
+)
+Package biblatex Info: Trying to load bibliography style 'alphabetic'...
+Package biblatex Info: ... file 'alphabetic.bbx' found.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/biblatex/bbx/alphabetic.bbx
+File: alphabetic.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count435
+\c@bbx:relatedtotal=\count436
+))
+Package biblatex Info: Trying to load citation style 'alphabetic'...
+Package biblatex Info: ... file 'alphabetic.cbx' found.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/biblatex/cbx/alphabetic.cbx
+File: alphabetic.cbx 2023/03/05 v3.19 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Document encoding is UTF8 ....
+Package biblatex Info: ... and expl3
+(biblatex)             2023-08-29 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
+Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/nowidow/nowidow.sty
+Package: nowidow 2011/09/20 1.0 Easily prevent widows and orphans
+Package: nowidow 
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2023/03/13 v3.1a Micro-typographical refinements (RS)
+\MT@toks=\toks34
+\MT@tempbox=\box114
+\MT@count=\count437
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1059.
+LaTeX Info: Redefining \leftprotrusion on input line 1060.
+\MT@prot@toks=\toks35
+LaTeX Info: Redefining \rightprotrusion on input line 1078.
+LaTeX Info: Redefining \textls on input line 1368.
+\MT@outer@kern=\dimen173
+LaTeX Info: Redefining \textmicrotypecontext on input line 1988.
+\MT@listname@count=\count438
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2023/03/13 v3.1a Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 902.
+LaTeX Info: Redefining \lslig on input line 902.
+\MT@outer@space=\skip100
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2023/03/13 v3.1a microtype main configuration file (RS)
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrhack.sty
+Package: scrhack 2023/07/07 v3.41 KOMA-Script package (hacking other packages)
+Package scrhack Info: loading setspace hack on input line 199.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/setspace.hak
+File: setspace.hak 2023/07/07 v3.41 KOMA-Script scrhack part (hacking package s
+etspace)
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/imakeidx/imakeidx.sty
+Package: imakeidx 2016/10/15 v1.3e Package for typesetting indices in a synchro
+nous mode
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks36
+\XKV@tempa@toks=\toks37
+)
+\XKV@depth=\count439
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+))
+\mca@idxfile=\write4
+\openout4 = `mca.idx'.
+
+
+Writing index file mca.idx
+(/usr/local/texlive/2023/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count440
+\float@exts=\toks38
+\float@box=\box115
+\@float@everytoks=\toks39
+\@floatcapt=\box116
+)
+Package scrhack Info: loading float hack on input line 147.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/float.hak
+File: float.hak 2023/07/07 v3.41 KOMA-Script scrhack part (hacking package floa
+t)
+Package scrhack Info: redefining \newfloat on input line 163.
+Package scrhack Info: redefining \listof on input line 163.
+Package scrhack Info: undefining \float@addtolists on input line 163.
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks40
+\pgfutil@tempdima=\dimen174
+\pgfutil@tempdimb=\dimen175
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box117
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen176
+\Gin@req@width=\dimen177
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks41
+\pgfkeys@temptoks=\toks42
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfil
+tered.code.tex
+\pgfkeys@tmptoks=\toks43
+))
+\pgf@x=\dimen178
+\pgf@y=\dimen179
+\pgf@xa=\dimen180
+\pgf@ya=\dimen181
+\pgf@xb=\dimen182
+\pgf@yb=\dimen183
+\pgf@xc=\dimen184
+\pgf@yc=\dimen185
+\pgf@xd=\dimen186
+\pgf@yd=\dimen187
+\w@pgf@writea=\write5
+\r@pgf@reada=\read4
+\c@pgf@counta=\count441
+\c@pgf@countb=\count442
+\c@pgf@countc=\count443
+\c@pgf@countd=\count444
+\t@pgf@toka=\toks44
+\t@pgf@tokb=\toks45
+\t@pgf@tokc=\toks46
+\pgf@sys@id@count=\count445
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+)))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count446
+\pgfsyssoftpath@bigbuffer@items=\count447
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
+Package xcolor Info: Model `RGB' extended on input line 1369.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1371.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen188
+\pgfmath@count=\count448
+\pgfmath@box=\box118
+\pgfmath@toks=\toks47
+\pgfmath@stack@operand=\toks48
+\pgfmath@stack@operation=\toks49
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count449
+)) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen189
+\pgf@picmaxx=\dimen190
+\pgf@picminy=\dimen191
+\pgf@picmaxy=\dimen192
+\pgf@pathminx=\dimen193
+\pgf@pathmaxx=\dimen194
+\pgf@pathminy=\dimen195
+\pgf@pathmaxy=\dimen196
+\pgf@xx=\dimen197
+\pgf@xy=\dimen198
+\pgf@yx=\dimen199
+\pgf@yy=\dimen256
+\pgf@zx=\dimen257
+\pgf@zy=\dimen258
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen259
+\pgf@path@lasty=\dimen260
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen261
+\pgf@shorten@start@additional=\dimen262
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box119
+\pgf@hbox=\box120
+\pgf@layerbox@main=\box121
+\pgf@picture@serial@count=\count450
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen263
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen264
+\pgf@pt@y=\dimen265
+\pgf@pt@temp=\dimen266
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen267
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen268
+\pgf@sys@shading@range@num=\count451
+\pgf@shadingcount=\count452
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box122
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
+tex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box123
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen269
+\pgf@nodesepend=\dimen270
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen271
+\pgffor@skip=\dimen272
+\pgffor@stack=\toks50
+\pgffor@toks=\toks51
+))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex
+File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@plot@mark@count=\count453
+\pgfplotmarksize=\dimen273
+)
+\tikz@lastx=\dimen274
+\tikz@lasty=\dimen275
+\tikz@lastxsaved=\dimen276
+\tikz@lastysaved=\dimen277
+\tikz@lastmovetox=\dimen278
+\tikz@lastmovetoy=\dimen279
+\tikzleveldistance=\dimen280
+\tikzsiblingdistance=\dimen281
+\tikz@figbox=\box124
+\tikz@figbox@bg=\box125
+\tikz@tempbox=\box126
+\tikz@tempbox@bg=\box127
+\tikztreelevel=\count454
+\tikznumberofchildren=\count455
+\tikznumberofcurrentchild=\count456
+\tikz@fig@count=\count457
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex
+File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfmatrixcurrentrow=\count458
+\pgfmatrixcurrentcolumn=\count459
+\pgf@matrix@numberofcolumns=\count460
+)
+\tikz@expandcount=\count461
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks52
+\t@pgfplots@tokb=\toks53
+\t@pgfplots@tokc=\toks54
+\pgfplots@tmpa=\dimen282
+\c@pgfplots@coordindex=\count462
+\c@pgfplots@scanlineindex=\count463
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric
+.code.tex))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.c
+ode.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplot
+soldpgfsupp_loader.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.cod
+e.tex)
+Package pgfplots: loading complementary utilities for your pgf version...
+\t@pgf@toka=\toks55
+\t@pgf@tokb=\toks56
+\t@pgf@tokc=\toks57
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplot
+soldpgfsupp_pgfutil-common-lists.tex))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code
+.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+liststructure.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+liststructureext.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+array.code.tex
+\c@pgfplotsarray@tmp=\count464
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+matrix.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable
+shared.code.tex
+\c@pgfplotstable@counta=\count465
+\t@pgfplotstable@a=\toks58
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+deque.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.co
+de.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.da
+ta.code.tex))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb
+.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplot
+s.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count466
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots
+.surfshading.pgfsys-pdftex.def)))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.
+code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.cod
+e.tex))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.c
+ode.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.c
+ode.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandle
+r.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.
+code.tex)))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.
+tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessin
+g.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.cod
+e.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.
+tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.te
+x)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarydecorations.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmoduledecoration
+s.code.tex
+\pgfdecoratedcompleteddistance=\dimen283
+\pgfdecoratedremainingdistance=\dimen284
+\pgfdecoratedinputsegmentcompleteddistance=\dimen285
+\pgfdecoratedinputsegmentremainingdistance=\dimen286
+\pgf@decorate@distancetomove=\dimen287
+\pgf@decorate@repeatstate=\count467
+\pgfdecorationsegmentamplitude=\dimen288
+\pgfdecorationsegmentlength=\dimen289
+)
+\tikz@lib@dec@box=\box128
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarydecorations.pathmorphing.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/decorations/pgfli
+brarydecorations.pathmorphing.code.tex))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarydecorations.pathreplacing.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/decorations/pgfli
+brarydecorations.pathreplacing.code.tex))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
+ts.contourlua.code.tex)
+\pgfplots@numplots=\count468
+\pgfplots@xmin@reg=\dimen290
+\pgfplots@xmax@reg=\dimen291
+\pgfplots@ymin@reg=\dimen292
+\pgfplots@ymax@reg=\dimen293
+\pgfplots@zmin@reg=\dimen294
+\pgfplots@zmax@reg=\dimen295
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmar
+ks.code.tex
+File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
+code.tex
+File: pgflibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\arrowsize=\dimen296
+))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+\c@theorem=\count469
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/newfloat/newfloat.sty
+Package: newfloat 2019/09/02 v1.1l Defining new floating environments (AR)
+)
+Package newfloat Info: New float `bio' with options ` placement=H, within=none,
+ ' on input line 265.
+\c@bio=\count470
+Package newfloat Info: float type `bio'=4 on input line 265.
+Package tocbasic Info: setting babel extension for `lobio' on input line 265.
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'spanish'.
+ (./mca.aux
+LaTeX Info: Redefining \. on input line 7.
+LaTeX Info: Redefining \% on input line 7.
+)
+\openout1 = `mca.aux'.
+
+LaTeX Info: Redefining \. on input line 303.
+LaTeX Info: Redefining \% on input line 303.
+LaTeX Info: Command `\dddot' is already robust on input line 303.
+LaTeX Info: Command `\ddddot' is already robust on input line 303.
+Package biblatex Info: Trying to load language 'spanish'...
+Package biblatex Info: ... file 'spanish.lbx' found.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/biblatex/lbx/spanish.lbx
+File: spanish.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+Package biblatex Info: Input encoding 'ascii' forced by
+(biblatex)             'safeinputenc' option.
+\openout3 = `mca.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'mca.bbl' found.
+
+(./mca.bbl)
+Package biblatex Info: Reference section=0 on input line 303.
+Package biblatex Info: Reference segment=0 on input line 303.
+LaTeX Info: Redefining \microtypecontext on input line 303.
+Package microtype Info: Applying patch `item' on input line 303.
+Package microtype Info: Applying patch `toc' on input line 303.
+Package microtype Info: Applying patch `eqnum' on input line 303.
+Package microtype Info: Applying patch `footnote' on input line 303.
+Package microtype Info: Applying patch `verbatim' on input line 303.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 303.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-ptm.cfg
+File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
+) (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count471
+\scratchdimen=\dimen297
+\scratchbox=\box129
+\nofMPsegments=\count472
+\nofMParguments=\count473
+\everyMPshowfont=\toks59
+\MPscratchCnt=\count474
+\MPscratchDim=\dimen298
+\MPnumerator=\count475
+\makeMPintoPDFobject=\count476
+\everyMPtoPDFconversion=\toks60
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package pgfplots notification 'compat/show suggested version=true': you might b
+enefit from \pgfplotsset{compat=1.18} (current compat level: 1.10).
+
+Package newfloat Info: `float' package detected.
+[1
+
+
+
+{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
+al/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2]
+chapter without number
+(/usr/local/texlive/2023/texmf-dist/tex/latex/psnfss/t1phv.fd
+File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `phv' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+(/usr/local/texlive/texmf-local/tex/latex/mtpro2/umt2hrb.fd
+File: umt2hrb.fd 2009/1/30 v2.2 MathTimePro II Holey Roman Bold (PCTeX/WaS)
+) [11
+
+
+]
+LaTeX Info: Redefining \. on input line 423.
+LaTeX Info: Redefining \% on input line 423.
+ [12] [13]
+[14
+
+
+]
+Package tocbasic Info: character protrusion at toc deactivated on input line 44
+2.
+ (./mca.toc
+LaTeX Info: Redefining \sptext on input line 1.
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+Package tocbasic Info: Using my definition of `\numberline' on input line 2.
+Package tocbasic Info: Using my definition of `\numberline' on input line 3.
+Package tocbasic Info: Using my definition of `\numberline' on input line 4.
+Package tocbasic Info: Using my definition of `\numberline' on input line 5.
+Package tocbasic Info: Using my definition of `\numberline' on input line 6.
+Package tocbasic Info: Using my definition of `\numberline' on input line 7.
+Package tocbasic Info: Using my definition of `\numberline' on input line 8.
+Package tocbasic Info: Using my definition of `\numberline' on input line 9.
+Package tocbasic Info: Using my definition of `\numberline' on input line 10.
+Package tocbasic Info: Using my definition of `\numberline' on input line 11.
+Package tocbasic Info: Using my definition of `\numberline' on input line 12.
+Package tocbasic Info: Using my definition of `\numberline' on input line 13.
+Package tocbasic Info: Using my definition of `\numberline' on input line 14.
+Package tocbasic Info: Using my definition of `\numberline' on input line 15.
+Package tocbasic Info: Using my definition of `\numberline' on input line 16.
+Package tocbasic Info: Using my definition of `\numberline' on input line 17.
+Package tocbasic Info: Using my definition of `\numberline' on input line 18.
+Package tocbasic Info: Using my definition of `\numberline' on input line 19.
+Package tocbasic Info: Using my definition of `\numberline' on input line 20.
+Package tocbasic Info: Using my definition of `\numberline' on input line 21.
+Package tocbasic Info: Using my definition of `\numberline' on input line 22.
+Package tocbasic Info: Using my definition of `\numberline' on input line 23.
+Package tocbasic Info: Using my definition of `\numberline' on input line 24.
+Package tocbasic Info: Using my definition of `\numberline' on input line 25.
+ [15]
+Package tocbasic Info: Using my definition of `\numberline' on input line 26.
+Package tocbasic Info: Using my definition of `\numberline' on input line 27.
+Package tocbasic Info: Using my definition of `\numberline' on input line 28.
+Package tocbasic Info: Using my definition of `\numberline' on input line 29.
+Package tocbasic Info: Using my definition of `\numberline' on input line 30.
+Package tocbasic Info: Using my definition of `\numberline' on input line 34.
+Package tocbasic Info: Using my definition of `\numberline' on input line 35.
+Package tocbasic Info: Using my definition of `\numberline' on input line 36.
+Package tocbasic Info: Using my definition of `\numberline' on input line 37.
+Package tocbasic Info: Using my definition of `\numberline' on input line 40.
+Package tocbasic Info: Using my definition of `\numberline' on input line 41.
+Package tocbasic Info: Using my definition of `\numberline' on input line 42.
+Package tocbasic Info: Using my definition of `\numberline' on input line 43.
+Package tocbasic Info: Using my definition of `\numberline' on input line 44.
+Package tocbasic Info: Using my definition of `\numberline' on input line 45.
+Package tocbasic Info: Using my definition of `\numberline' on input line 46.
+Package tocbasic Info: Using my definition of `\numberline' on input line 47.
+Package tocbasic Info: Using my definition of `\numberline' on input line 48.
+Package tocbasic Info: Using my definition of `\numberline' on input line 51.
+Package tocbasic Info: Using my definition of `\numberline' on input line 52.
+Package tocbasic Info: Using my definition of `\numberline' on input line 53.
+Package tocbasic Info: Using my definition of `\numberline' on input line 54.
+Package tocbasic Info: Using my definition of `\numberline' on input line 55.
+
+Overfull \hbox (2.49997pt too wide) detected at line 55
+ []\T1/ptm/b/n/12 167
+ []
+
+Package tocbasic Info: Using my definition of `\numberline' on input line 56.
+Package tocbasic Info: Using my definition of `\numberline' on input line 57.
+Package tocbasic Info: Using my definition of `\numberline' on input line 58.
+Package tocbasic Info: Using my definition of `\numberline' on input line 59.
+Package tocbasic Info: Using my definition of `\numberline' on input line 60.
+Package tocbasic Info: Using my definition of `\numberline' on input line 61.
+Package tocbasic Info: Using my definition of `\numberline' on input line 62.
+Package tocbasic Info: Using my definition of `\numberline' on input line 63.
+Package tocbasic Info: Using my definition of `\numberline' on input line 64.
+Package tocbasic Info: Using my definition of `\numberline' on input line 65.
+Package tocbasic Info: Using my definition of `\numberline' on input line 66.
+LaTeX Info: Redefining \sptext on input line 67.
+LaTeX Info: Redefining \. on input line 67.
+LaTeX Info: Redefining \% on input line 67.
+[16]
+Package tocbasic Info: Using my definition of `\numberline' on input line 67.
+Package tocbasic Info: Using my definition of `\numberline' on input line 68.
+Package tocbasic Info: Using my definition of `\numberline' on input line 69.
+Package tocbasic Info: Using my definition of `\numberline' on input line 70.
+Package tocbasic Info: Using my definition of `\numberline' on input line 71.
+
+Overfull \hbox (2.49997pt too wide) detected at line 71
+ []\T1/ptm/b/n/12 227
+ []
+
+Package tocbasic Info: Using my definition of `\numberline' on input line 72.
+Package tocbasic Info: Using my definition of `\numberline' on input line 73.
+Package tocbasic Info: Using my definition of `\numberline' on input line 74.
+Package tocbasic Info: Using my definition of `\numberline' on input line 75.
+Package tocbasic Info: Using my definition of `\numberline' on input line 76.
+Package tocbasic Info: Using my definition of `\numberline' on input line 77.
+Package tocbasic Info: Using my definition of `\numberline' on input line 78.
+Package tocbasic Info: Using my definition of `\numberline' on input line 79.
+Package tocbasic Info: Using my definition of `\numberline' on input line 80.
+Package tocbasic Info: Using my definition of `\numberline' on input line 81.
+Package tocbasic Info: Using my definition of `\numberline' on input line 82.
+Package tocbasic Info: Using my definition of `\numberline' on input line 83.
+Package tocbasic Info: Using my definition of `\numberline' on input line 84.
+Package tocbasic Info: Using my definition of `\numberline' on input line 85.
+Package tocbasic Info: Using my definition of `\numberline' on input line 86.
+Package tocbasic Info: Using my definition of `\numberline' on input line 87.
+Package tocbasic Info: Using my definition of `\numberline' on input line 88.
+Package tocbasic Info: Using my definition of `\numberline' on input line 89.
+Package tocbasic Info: Using my definition of `\numberline' on input line 90.
+Package tocbasic Info: Using my definition of `\numberline' on input line 91.
+Package tocbasic Info: Using my definition of `\numberline' on input line 92.
+Package tocbasic Info: Using my definition of `\numberline' on input line 93.
+Package tocbasic Info: Using my definition of `\numberline' on input line 94.
+Package tocbasic Info: Using my definition of `\numberline' on input line 95.
+Package tocbasic Info: Using my definition of `\numberline' on input line 96.
+Package tocbasic Info: Using my definition of `\numberline' on input line 97.
+Package tocbasic Info: Using my definition of `\numberline' on input line 98.
+Package tocbasic Info: Using my definition of `\numberline' on input line 99.
+LaTeX Info: Redefining \sptext on input line 100.
+LaTeX Info: Redefining \. on input line 100.
+LaTeX Info: Redefining \% on input line 100.
+[17]
+Package tocbasic Info: Using my definition of `\numberline' on input line 100.
+Package tocbasic Info: Using my definition of `\numberline' on input line 101.
+Package tocbasic Info: Using my definition of `\numberline' on input line 102.
+Package tocbasic Info: Using my definition of `\numberline' on input line 103.
+Package tocbasic Info: Using my definition of `\numberline' on input line 104.
+Package tocbasic Info: Using my definition of `\numberline' on input line 105.
+Package tocbasic Info: Using my definition of `\numberline' on input line 106.
+Package tocbasic Info: Using my definition of `\numberline' on input line 107.
+Package tocbasic Info: Using my definition of `\numberline' on input line 108.
+Package tocbasic Info: Using my definition of `\numberline' on input line 109.
+Package tocbasic Info: Using my definition of `\numberline' on input line 110.
+Package tocbasic Info: Using my definition of `\numberline' on input line 111.
+Package tocbasic Info: Using my definition of `\numberline' on input line 114.
+Package tocbasic Info: Using my definition of `\numberline' on input line 115.
+Package tocbasic Info: Using my definition of `\numberline' on input line 116.
+Package tocbasic Info: Using my definition of `\numberline' on input line 117.
+Package tocbasic Info: Using my definition of `\numberline' on input line 118.
+Package tocbasic Info: Using my definition of `\numberline' on input line 119.
+Package tocbasic Info: Using my definition of `\numberline' on input line 120.
+Package tocbasic Info: Using my definition of `\numberline' on input line 121.
+)
+\tf@toc=\write6
+\openout6 = `mca.toc'.
+
+LaTeX Info: Redefining \. on input line 445.
+LaTeX Info: Redefining \% on input line 445.
+ [18]
+part I.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 447.
+[1
+
+
+
+
+] [2]
+chapter 1.
+(/usr/local/texlive/texmf-local/tex/latex/mtpro2/umt2mf.fd
+File: umt2mf.fd 2009/1/30 v2.2 MathTimePro II Fraktur (PCTeX/WaS)
+)
+(./figuras-tikz/longitud.tikz) (./figuras-tikz/trayectoriamin.tikz) [3
+
+
+]
+(./figuras-tikz/notrayectoriamin.tikz)
+LaTeX Info: Redefining \. on input line 545.
+LaTeX Info: Redefining \% on input line 545.
+ [4] [5]
+LaTeX Info: Redefining \. on input line 619.
+LaTeX Info: Redefining \% on input line 619.
+ [6]
+chapter 2.
+<./fotos/calcasdos/Frechet.pdf, id=69, 602.44672pt x 733.97711pt>
+File: ./fotos/calcasdos/Frechet.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Frechet.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Frechet.pdf  used on input line 640.
+
+(pdftex.def)             Requested size: 103.95525pt x 126.64478pt.
+[7
+
+
+ <./fotos/calcasdos/Frechet.pdf>]
+LaTeX Info: Redefining \. on input line 728.
+LaTeX Info: Redefining \% on input line 728.
+ [8]
+LaTeX Info: Redefining \. on input line 794.
+LaTeX Info: Redefining \% on input line 794.
+ [9]
+LaTeX Info: Redefining \. on input line 846.
+LaTeX Info: Redefining \% on input line 846.
+ [10]
+LaTeX Info: Redefining \. on input line 907.
+LaTeX Info: Redefining \% on input line 907.
+ [11]
+(./figuras-tikz/e-a-la-x.tikz)
+Underfull \vbox (badness 1668) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 975.
+LaTeX Info: Redefining \% on input line 975.
+ [12]
+<./fotos/calcasdos/Young_2.pdf, id=104, 603.69638pt x 666.98784pt>
+File: ./fotos/calcasdos/Young_2.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Young_2.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Young_2.pdf  used on input line 999.
+
+(pdftex.def)             Requested size: 114.35023pt x 126.33208pt.
+<./fotos/calcasdos/Hoelder_Otto.pdf, id=105, 602.57623pt x 606.71468pt>
+File: ./fotos/calcasdos/Hoelder_Otto.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Hoelder_Otto.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Hoelder_Otto.pdf  used on input line
+ 1005.
+(pdftex.def)             Requested size: 124.74522pt x 125.59932pt.
+LaTeX Info: Redefining \. on input line 1015.
+LaTeX Info: Redefining \% on input line 1015.
+
+[13 <./fotos/calcasdos/Young_2.pdf> <./fotos/calcasdos/Hoelder_Otto.pdf>]
+LaTeX Info: Redefining \. on input line 1075.
+LaTeX Info: Redefining \% on input line 1075.
+
+[14]
+Underfull \vbox (badness 1527) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 1136.
+LaTeX Info: Redefining \% on input line 1136.
+ [15]
+LaTeX Info: Redefining \. on input line 1202.
+LaTeX Info: Redefining \% on input line 1202.
+
+[16]
+LaTeX Info: Redefining \. on input line 1273.
+LaTeX Info: Redefining \% on input line 1273.
+ [17]
+LaTeX Info: Redefining \. on input line 1328.
+LaTeX Info: Redefining \% on input line 1328.
+ [18]
+<./fotos/calcasdos/minkowski.pdf, id=131, 494.36996pt x 620.2071pt>
+File: ./fotos/calcasdos/minkowski.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/minkowski.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/minkowski.pdf  used on input line 13
+34.
+(pdftex.def)             Requested size: 86.62848pt x 108.67035pt.
+LaTeX Info: Redefining \. on input line 1377.
+LaTeX Info: Redefining \% on input line 1377.
+ [19 <./fotos/calcasdos/minkowski.pdf>]
+LaTeX Info: Redefining \. on input line 1448.
+LaTeX Info: Redefining \% on input line 1448.
+ [20]
+(./figuras-tikz/f4.tikz
+Missing character: There is no ; in font nullfont!
+) (./figuras-tikz/f8.tikz
+Missing character: There is no ; in font nullfont!
+)
+LaTeX Info: Redefining \. on input line 1507.
+LaTeX Info: Redefining \% on input line 1507.
+ [21]
+LaTeX Info: Redefining \. on input line 1575.
+LaTeX Info: Redefining \% on input line 1575.
+ [22]
+LaTeX Info: Redefining \. on input line 1645.
+LaTeX Info: Redefining \% on input line 1645.
+ [23]
+LaTeX Info: Redefining \. on input line 1710.
+LaTeX Info: Redefining \% on input line 1710.
+ [24]
+LaTeX Info: Redefining \. on input line 1802.
+LaTeX Info: Redefining \% on input line 1802.
+ [25]
+LaTeX Info: Redefining \. on input line 1871.
+LaTeX Info: Redefining \% on input line 1871.
+ [26]
+LaTeX Info: Redefining \. on input line 1937.
+LaTeX Info: Redefining \% on input line 1937.
+ [27]
+LaTeX Info: Redefining \. on input line 2000.
+LaTeX Info: Redefining \% on input line 2000.
+ [28]
+LaTeX Info: Redefining \. on input line 2071.
+LaTeX Info: Redefining \% on input line 2071.
+ [29]
+LaTeX Info: Redefining \. on input line 2117.
+LaTeX Info: Redefining \% on input line 2117.
+ [30]
+chapter 3.
+<./fotos/calcasdos/Weierstrass.pdf, id=175, 602.45474pt x 752.02655pt>
+File: ./fotos/calcasdos/Weierstrass.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Weierstrass.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Weierstrass.pdf  used on input line 
+2137.
+(pdftex.def)             Requested size: 103.95525pt x 129.75914pt.
+[31
+
+
+ <./fotos/calcasdos/Weierstrass.pdf>]
+Overfull \hbox (5.43983pt too wide) in paragraph at lines 2178--2183
+\T1/ptm/m/n/10 (-20) y $\LMP1/mtt/m/it/10 a[]; [] ; a[] \LMP2/mtt/m/n/10 ^^U \L
+MP1/mtt/m/it/10 0$\T1/ptm/m/n/10 (-20) . En con-se-cuen-cia, pa-ra cua-les-quie
+-ra $\LMP1/mtt/m/it/10 p; r \LMP2/mtt/m/n/10 2 \LMP1/mtt/m/it/10 å1; \LMP2/mtt/
+m/n/10 1\LMP1/mtt/m/it/10 /$ \T1/ptm/m/n/10 (-20) y $\LMP1/mtt/m/it/10 x \LMP2/
+mtt/m/n/10 D \LMP1/mtt/m/it/10 .x[]; [] ; x[]/ \LMP2/mtt/m/n/10 2
+ []
+
+LaTeX Info: Redefining \. on input line 2218.
+LaTeX Info: Redefining \% on input line 2218.
+[32] (./figuras-tikz/g-un-cuarto.tikz
+Missing character: There is no ; in font nullfont!
+)
+LaTeX Info: Redefining \. on input line 2286.
+LaTeX Info: Redefining \% on input line 2286.
+ [33]
+<./fotos/calcasdos/Lipschitz.pdf, id=190, 517.11694pt x 629.54294pt>
+File: ./fotos/calcasdos/Lipschitz.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Lipschitz.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Lipschitz.pdf  used on input line 23
+46.
+(pdftex.def)             Requested size: 103.95525pt x 126.54996pt.
+
+Underfull \vbox (badness 1057) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 2349.
+LaTeX Info: Redefining \% on input line 2349.
+ [34]
+LaTeX Info: Redefining \. on input line 2411.
+LaTeX Info: Redefining \% on input line 2411.
+
+[35 <./fotos/calcasdos/Lipschitz.pdf>] (./figuras-tikz/continuidad.tikz)
+(./figuras-tikz/Rbolas.tikz)
+LaTeX Info: Redefining \. on input line 2458.
+LaTeX Info: Redefining \% on input line 2458.
+ [36] (./figuras-tikz/Cinfbola.tikz)
+(./figuras-tikz/Cinfvs1.tikz)
+LaTeX Info: Redefining \. on input line 2511.
+LaTeX Info: Redefining \% on input line 2511.
+ [37] (./figuras-tikz/bolaab.tikz)
+LaTeX Info: Redefining \. on input line 2574.
+LaTeX Info: Redefining \% on input line 2574.
+ [38]
+(./figuras-tikz/bolanoab.tikz)
+LaTeX Info: Redefining \. on input line 2638.
+LaTeX Info: Redefining \% on input line 2638.
+ [39]
+LaTeX Info: Redefining \. on input line 2722.
+LaTeX Info: Redefining \% on input line 2722.
+ [40] (./figuras-tikz/evnbolacer.tikz
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryintersections.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryinterse
+ctions.code.tex
+\pgf@intersect@solutions=\count477
+)))
+LaTeX Info: Redefining \. on input line 2780.
+LaTeX Info: Redefining \% on input line 2780.
+ [41]
+LaTeX Info: Redefining \. on input line 2842.
+LaTeX Info: Redefining \% on input line 2842.
+ [42]
+LaTeX Info: Redefining \. on input line 2921.
+LaTeX Info: Redefining \% on input line 2921.
+ [43]
+LaTeX Info: Redefining \. on input line 2994.
+LaTeX Info: Redefining \% on input line 2994.
+ [44]
+LaTeX Info: Redefining \. on input line 3078.
+LaTeX Info: Redefining \% on input line 3078.
+ [45]
+Overfull \hbox (1.35199pt too wide) detected at line 3124
+\LMP1/mtt/m/it/10 .[] []/.x/ \LMP2/mtt/m/n/10 WD [] [] \LMP1/mtt/m/it/10 ;  .[]
+ []/.x/ \LMP2/mtt/m/n/10 WD [] []\LMP1/mtt/m/it/10 /;
+ []
+
+LaTeX Info: Redefining \. on input line 3146.
+LaTeX Info: Redefining \% on input line 3146.
+[46]
+LaTeX Info: Redefining \. on input line 3223.
+LaTeX Info: Redefining \% on input line 3223.
+ [47]
+LaTeX Info: Redefining \. on input line 3286.
+LaTeX Info: Redefining \% on input line 3286.
+ [48] (./figuras-tikz/sigma8.tikz) (./figuras-tikz/sigma16.tikz)
+(./figuras-tikz/sigma32.tikz)
+LaTeX Info: Redefining \. on input line 3348.
+LaTeX Info: Redefining \% on input line 3348.
+ [49]
+LaTeX Info: Redefining \. on input line 3417.
+LaTeX Info: Redefining \% on input line 3417.
+ [50]
+LaTeX Info: Redefining \. on input line 3500.
+LaTeX Info: Redefining \% on input line 3500.
+ [51]
+LaTeX Info: Redefining \. on input line 3571.
+LaTeX Info: Redefining \% on input line 3571.
+ [52]
+LaTeX Info: Redefining \. on input line 3654.
+LaTeX Info: Redefining \% on input line 3654.
+ [53]
+LaTeX Info: Redefining \. on input line 3658.
+LaTeX Info: Redefining \% on input line 3658.
+ [54]
+chapter 4.
+[55
+
+
+] (./figuras-tikz/ejemplo4-3.tikz) (./figuras-tikz/ejemplo4-4.tikz)
+LaTeX Info: Redefining \. on input line 3759.
+LaTeX Info: Redefining \% on input line 3759.
+ [56]
+LaTeX Info: Redefining \. on input line 3825.
+LaTeX Info: Redefining \% on input line 3825.
+
+[57]
+LaTeX Info: Redefining \. on input line 3908.
+LaTeX Info: Redefining \% on input line 3908.
+ [58]
+<./fotos/calcasdos/heine.pdf, id=274, 452.9201pt x 612.47018pt>
+File: ./fotos/calcasdos/heine.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/heine.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/heine.pdf  used on input line 3947.
+(pdftex.def)             Requested size: 79.69672pt x 107.7633pt.
+<./fotos/calcasdos/Emile_Borel.pdf, id=275, 550.35715pt x 741.98604pt>
+File: ./fotos/calcasdos/Emile_Borel.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Emile_Borel.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Emile_Borel.pdf  used on input line 
+3953.
+(pdftex.def)             Requested size: 79.69672pt x 107.4437pt.
+LaTeX Info: Redefining \. on input line 3956.
+LaTeX Info: Redefining \% on input line 3956.
+ [59 <./fotos/calcasdos/heine.pdf> <./fotos/calcasdos/Emile_Borel.pdf>] (./figu
+ras-tikz/cubo-cerrado.tikz)
+LaTeX Info: Redefining \. on input line 4020.
+LaTeX Info: Redefining \% on input line 4020.
+ [60]
+<./fotos/calcasdos/Bernard_Bolzano.pdf, id=288, 508.87917pt x 676.83865pt>
+File: ./fotos/calcasdos/Bernard_Bolzano.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Bernard_Bolzano.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Bernard_Bolzano.pdf  used on input l
+ine 4079.
+(pdftex.def)             Requested size: 103.95525pt x 138.25708pt.
+LaTeX Info: Redefining \. on input line 4082.
+LaTeX Info: Redefining \% on input line 4082.
+ [61] (./figuras-tikz/arctan.tikz)
+LaTeX Info: Redefining \. on input line 4134.
+LaTeX Info: Redefining \% on input line 4134.
+
+[62 <./fotos/calcasdos/Bernard_Bolzano.pdf>]
+LaTeX Info: Redefining \. on input line 4190.
+LaTeX Info: Redefining \% on input line 4190.
+ [63]
+LaTeX Info: Redefining \. on input line 4258.
+LaTeX Info: Redefining \% on input line 4258.
+ [64]
+(./figuras-tikz/def-4-20.tikz)
+LaTeX Info: Redefining \. on input line 4322.
+LaTeX Info: Redefining \% on input line 4322.
+ [65] (./figuras-tikz/trayectoria-larga.tikz)
+LaTeX Info: Redefining \. on input line 4377.
+LaTeX Info: Redefining \% on input line 4377.
+
+[66]
+LaTeX Info: Redefining \. on input line 4454.
+LaTeX Info: Redefining \% on input line 4454.
+ [67]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 4514.
+LaTeX Info: Redefining \% on input line 4514.
+ [68]
+LaTeX Info: Redefining \. on input line 4569.
+LaTeX Info: Redefining \% on input line 4569.
+
+[69]
+LaTeX Info: Redefining \. on input line 4637.
+LaTeX Info: Redefining \% on input line 4637.
+ [70]
+LaTeX Info: Redefining \. on input line 4715.
+LaTeX Info: Redefining \% on input line 4715.
+ [71]
+LaTeX Info: Redefining \. on input line 4792.
+LaTeX Info: Redefining \% on input line 4792.
+ [72]
+LaTeX Info: Redefining \. on input line 4868.
+LaTeX Info: Redefining \% on input line 4868.
+ [73]
+LaTeX Info: Redefining \. on input line 4948.
+LaTeX Info: Redefining \% on input line 4948.
+ [74]
+chapter 5.
+<./fotos/calcasdos/Augustin-Louis_Cauchy.pdf, id=337, 617.3655pt x 854.47931pt>
+
+File: ./fotos/calcasdos/Augustin-Louis_Cauchy.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Augustin-Louis_Cauchy.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Augustin-Louis_Cauchy.pdf  used on i
+nput line 4988.
+(pdftex.def)             Requested size: 103.95525pt x 143.8775pt.
+[75
+
+
+] (./figuras-tikz/fk.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+)
+LaTeX Info: Redefining \. on input line 5044.
+LaTeX Info: Redefining \% on input line 5044.
+ [76 <./fotos/calcasdos/Augustin-Louis_Cauchy.pdf>]
+LaTeX Info: Redefining \. on input line 5091.
+LaTeX Info: Redefining \% on input line 5091.
+ [77]
+(./figuras-tikz/arctancontit.tikz)
+LaTeX Info: Redefining \. on input line 5161.
+LaTeX Info: Redefining \% on input line 5161.
+ [78]
+LaTeX Info: Redefining \. on input line 5228.
+LaTeX Info: Redefining \% on input line 5228.
+ [79] (./figuras-tikz/x-cuadrada.tikz
+Missing character: There is no ; in font nullfont!
+) (./figuras-tikz/x-cuarta.tikz
+Missing character: There is no ; in font nullfont!
+) (./figuras-tikz/x-sexta.tikz
+Missing character: There is no ; in font nullfont!
+) (./figuras-tikz/tienda.tikz
+Missing character: There is no ; in font nullfont!
+)
+LaTeX Info: Redefining \. on input line 5292.
+LaTeX Info: Redefining \% on input line 5292.
+ [80]
+LaTeX Info: Redefining \. on input line 5337.
+LaTeX Info: Redefining \% on input line 5337.
+ [81]
+LaTeX Info: Redefining \. on input line 5398.
+LaTeX Info: Redefining \% on input line 5398.
+ [82]
+LaTeX Info: Redefining \. on input line 5467.
+LaTeX Info: Redefining \% on input line 5467.
+ [83]
+Overfull \hbox (0.4709pt too wide) detected at line 5516
+\LMP1/mtt/m/it/10 d[].f[].z/; f[].z// \LMP2/mtt/m/n/10 ^^T \LMP1/mtt/m/it/10 d[
+].f[].z/; f.z// \LMP2/mtt/m/n/10 C \LMP1/mtt/m/it/10 d[].f.z/; f[].z// < " \LMP
+2/mtt/m/n/10 8\LMP1/mtt/m/it/10 j; k \LMP2/mtt/m/n/10 ^^U \LMP1/mtt/m/it/10 k[]
+[]\LMP2/mtt/m/n/10 8\LMP1/mtt/m/it/10 z \LMP2/mtt/m/n/10 2 \LMP1/mtt/m/it/10 S:
+
+ []
+
+LaTeX Info: Redefining \. on input line 5526.
+LaTeX Info: Redefining \% on input line 5526.
+[84]
+LaTeX Info: Redefining \. on input line 5590.
+LaTeX Info: Redefining \% on input line 5590.
+ [85]
+LaTeX Info: Redefining \. on input line 5644.
+LaTeX Info: Redefining \% on input line 5644.
+ [86]
+LaTeX Info: Redefining \. on input line 5708.
+LaTeX Info: Redefining \% on input line 5708.
+ [87]
+LaTeX Info: Redefining \. on input line 5765.
+LaTeX Info: Redefining \% on input line 5765.
+ [88]
+LaTeX Info: Redefining \. on input line 5830.
+LaTeX Info: Redefining \% on input line 5830.
+ [89]
+LaTeX Info: Redefining \. on input line 5881.
+LaTeX Info: Redefining \% on input line 5881.
+ [90]
+LaTeX Info: Redefining \. on input line 5965.
+LaTeX Info: Redefining \% on input line 5965.
+ [91]
+LaTeX Info: Redefining \. on input line 6041.
+LaTeX Info: Redefining \% on input line 6041.
+ [92]
+LaTeX Info: Redefining \. on input line 6114.
+LaTeX Info: Redefining \% on input line 6114.
+ [93]
+LaTeX Info: Redefining \. on input line 6184.
+LaTeX Info: Redefining \% on input line 6184.
+ [94]
+(./figuras-tikz/e-menosunosobrexcuadrada.tikz)
+LaTeX Info: Redefining \. on input line 6236.
+LaTeX Info: Redefining \% on input line 6236.
+ [95]
+Overfull \hbox (0.54005pt too wide) in paragraph at lines 6289--6294
+\T1/ptm/m/it/10 (-20) un es-pa-cio de Ba-nach? \T1/ptm/m/n/10 (-20) (Su-ge-ren-
+cia: Con-si-de-ra la su-ce-siÛn de po-li-no-mios $\LMP1/mtt/m/it/10 p[].x/ \LMP
+2/mtt/m/n/10 D
+ []
+
+LaTeX Info: Redefining \. on input line 6294.
+LaTeX Info: Redefining \% on input line 6294.
+[96]
+LaTeX Info: Redefining \. on input line 6360.
+LaTeX Info: Redefining \% on input line 6360.
+ [97]
+LaTeX Info: Redefining \. on input line 6425.
+LaTeX Info: Redefining \% on input line 6425.
+ [98]
+LaTeX Info: Redefining \. on input line 6425.
+LaTeX Info: Redefining \% on input line 6425.
+ [99] [100
+
+
+]
+chapter 6.
+[101]
+<./fotos/calcasdos/Banach.pdf, id=429, 401.69173pt x 502.07175pt>
+File: ./fotos/calcasdos/Banach.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Banach.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Banach.pdf  used on input line 6488.
+
+(pdftex.def)             Requested size: 103.95525pt x 129.93034pt.
+LaTeX Info: Redefining \. on input line 6520.
+LaTeX Info: Redefining \% on input line 6520.
+ [102 <./fotos/calcasdos/Banach.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 6581.
+LaTeX Info: Redefining \% on input line 6581.
+ [103]
+LaTeX Info: Redefining \. on input line 6649.
+LaTeX Info: Redefining \% on input line 6649.
+
+[104]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 6697.
+LaTeX Info: Redefining \% on input line 6697.
+ [105]
+<./fotos/calcasdos/Fredholm.pdf, id=446, 602.49591pt x 752.99918pt>
+File: ./fotos/calcasdos/Fredholm.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Fredholm.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Fredholm.pdf  used on input line 674
+0.
+(pdftex.def)             Requested size: 93.56024pt x 116.93196pt.
+
+Underfull \vbox (badness 6412) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 6743.
+LaTeX Info: Redefining \% on input line 6743.
+ [106]
+Underfull \vbox (badness 8075) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 6792.
+LaTeX Info: Redefining \% on input line 6792.
+ [107 <./fotos/calcasdos/Fredholm.pdf>]
+LaTeX Info: Redefining \. on input line 6857.
+LaTeX Info: Redefining \% on input line 6857.
+ [108]
+LaTeX Info: Redefining \. on input line 6908.
+LaTeX Info: Redefining \% on input line 6908.
+ [109]
+<./fotos//calcasdos/volterra.pdf, id=462, 556.25217pt x 751.01274pt>
+File: ./fotos//calcasdos/volterra.pdf Graphic file (type pdf)
+<use ./fotos//calcasdos/volterra.pdf>
+Package pdftex.def Info: ./fotos//calcasdos/volterra.pdf  used on input line 69
+23.
+(pdftex.def)             Requested size: 103.95525pt x 140.3447pt.
+
+Underfull \vbox (badness 5036) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 6944.
+LaTeX Info: Redefining \% on input line 6944.
+ [110 <./fotos//calcasdos/volterra.pdf>]
+LaTeX Info: Redefining \. on input line 7003.
+LaTeX Info: Redefining \% on input line 7003.
+ [111]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 7055.
+LaTeX Info: Redefining \% on input line 7055.
+ [112]
+(./figuras-tikz/campo-vect1.tikz
+
+Package pgfplots Warning: Axis range for axis z is approximately empty; enlargi
+ng it (it is [0.0:0.0]) on input line 21.
+
+ [warning /pgfplots/warning/approx empty range enlarged]
+) (./figuras-tikz/campo-vect2.tikz
+
+Package pgfplots Warning: Axis range for axis z is approximately empty; enlargi
+ng it (it is [0.0:0.0]) on input line 21.
+
+ [warning /pgfplots/warning/approx empty range enlarged]
+)
+LaTeX Info: Redefining \. on input line 7119.
+LaTeX Info: Redefining \% on input line 7119.
+ [113]
+LaTeX Info: Redefining \. on input line 7162.
+LaTeX Info: Redefining \% on input line 7162.
+ [114]
+<./figuras-tikz/lipschitz.pdf, id=482, 232.11719pt x 147.30031pt>
+File: ./figuras-tikz/lipschitz.pdf Graphic file (type pdf)
+<use ./figuras-tikz/lipschitz.pdf>
+Package pdftex.def Info: ./figuras-tikz/lipschitz.pdf  used on input line 7214.
+
+(pdftex.def)             Requested size: 232.11661pt x 147.29994pt.
+LaTeX Info: Redefining \. on input line 7233.
+LaTeX Info: Redefining \% on input line 7233.
+ [115]
+LaTeX Info: Redefining \. on input line 7273.
+LaTeX Info: Redefining \% on input line 7273.
+ [116 <./figuras-tikz/lipschitz.pdf>]
+<./fotos/calcasdos/Lindelof.pdf, id=502, 602.40059pt x 732.93121pt>
+File: ./fotos/calcasdos/Lindelof.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Lindelof.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Lindelof.pdf  used on input line 730
+6.
+(pdftex.def)             Requested size: 103.95525pt x 126.4755pt.
+<./fotos/calcasdos/Charles_Emile_Picard.pdf, id=503, 602.45578pt x 722.90579pt>
+
+File: ./fotos/calcasdos/Charles_Emile_Picard.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Charles_Emile_Picard.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Charles_Emile_Picard.pdf  used on in
+put line 7311.
+(pdftex.def)             Requested size: 103.95525pt x 124.73447pt.
+LaTeX Info: Redefining \. on input line 7329.
+LaTeX Info: Redefining \% on input line 7329.
+ [117 <./fotos/calcasdos/Lindelof.pdf> <./fotos/calcasdos/Charles_Emile_Picard.
+pdf>]
+Underfull \vbox (badness 4954) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 7384.
+LaTeX Info: Redefining \% on input line 7384.
+ [118]
+LaTeX Info: Redefining \. on input line 7468.
+LaTeX Info: Redefining \% on input line 7468.
+
+[119]
+LaTeX Info: Redefining \. on input line 7527.
+LaTeX Info: Redefining \% on input line 7527.
+ [120]
+Overfull \hbox (2.26312pt too wide) detected at line 7545
+\U/mt2mf/m/n/10 F\LMP1/mtt/m/it/10 .^^V[]f[] \LMP2/mtt/m/n/10 C \LMP1/mtt/m/it/
+10 ^^V[]f[]/ \LMP2/mtt/m/n/10 D \LMP1/mtt/m/it/10 ^^V[]\U/mt2mf/m/n/10 F\LMP1/m
+tt/m/it/10 .f[]/ \LMP2/mtt/m/n/10 C \LMP1/mtt/m/it/10 ^^V[]\U/mt2mf/m/n/10 F\LM
+P1/mtt/m/it/10 .f[]/[]\LMP2/mtt/m/n/10 8\LMP1/mtt/m/it/10 f[]; f[] \LMP2/mtt/m/
+n/10 2 \OMS/cmsy/m/n/10 C[]\LMP1/mtt/m/it/10 åa; bç; []\LMP2/mtt/m/n/10 8\LMP1/
+mtt/m/it/10 ^^V[]; ^^V[] \LMP2/mtt/m/n/10 2 \U/mt2hrb/m/n/10 R[]
+ []
+
+LaTeX Info: Redefining \. on input line 7595.
+LaTeX Info: Redefining \% on input line 7595.
+[121]
+Overfull \hbox (4.66313pt too wide) detected at line 7605
+\U/mt2mf/m/n/10 V\LMP1/mtt/m/it/10 .^^V[]f[] \LMP2/mtt/m/n/10 C \LMP1/mtt/m/it/
+10 ^^V[]f[]/ \LMP2/mtt/m/n/10 D \LMP1/mtt/m/it/10 ^^V[]\U/mt2mf/m/n/10 V\LMP1/m
+tt/m/it/10 .f[]/ \LMP2/mtt/m/n/10 C \LMP1/mtt/m/it/10 ^^V[]\U/mt2mf/m/n/10 V\LM
+P1/mtt/m/it/10 .f[]/[]\LMP2/mtt/m/n/10 8\LMP1/mtt/m/it/10 f[]; f[] \LMP2/mtt/m/
+n/10 2 \OMS/cmsy/m/n/10 C[]\LMP1/mtt/m/it/10 åa; bç; []\LMP2/mtt/m/n/10 8\LMP1/
+mtt/m/it/10 ^^V[]; ^^V[] \LMP2/mtt/m/n/10 2 \U/mt2hrb/m/n/10 R[]
+ []
+
+LaTeX Info: Redefining \. on input line 7680.
+LaTeX Info: Redefining \% on input line 7680.
+[122]
+LaTeX Info: Redefining \. on input line 7723.
+LaTeX Info: Redefining \% on input line 7723.
+ [123] [124
+
+
+]
+chapter 7.
+[125]
+LaTeX Info: Redefining \. on input line 7838.
+LaTeX Info: Redefining \% on input line 7838.
+ [126]
+LaTeX Info: Redefining \. on input line 7902.
+LaTeX Info: Redefining \% on input line 7902.
+ [127]
+LaTeX Info: Redefining \. on input line 7966.
+LaTeX Info: Redefining \% on input line 7966.
+ [128]
+LaTeX Info: Redefining \. on input line 8045.
+LaTeX Info: Redefining \% on input line 8045.
+ [129] (./figuras-tikz/fk-cap7.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+)
+<./fotos/calcasdos/Giulio_ascoli.pdf, id=562, 459.9624pt x 579.34044pt>
+File: ./fotos/calcasdos/Giulio_ascoli.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Giulio_ascoli.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Giulio_ascoli.pdf  used on input lin
+e 8069.
+(pdftex.def)             Requested size: 85.2812pt x 107.41847pt.
+<./fotos/calcasdos/Arzela.pdf, id=563, 602.41664pt x 716.83507pt>
+File: ./fotos/calcasdos/Arzela.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Arzela.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Arzela.pdf  used on input line 8075.
+
+(pdftex.def)             Requested size: 90.26666pt x 107.41847pt.
+LaTeX Info: Redefining \. on input line 8078.
+LaTeX Info: Redefining \% on input line 8078.
+ [130 <./fotos/calcasdos/Giulio_ascoli.pdf> <./fotos/calcasdos/Arzela.pdf>]
+Overfull \hbox (6.16034pt too wide) in paragraph at lines 8123--8128
+\T1/ptm/m/n/10 (-20) Definimos $\LMP1/mtt/m/it/10 ^^N \LMP2/mtt/m/n/10 WD [] []
+$\T1/ptm/m/n/10 (-20) . Da-da $\LMP1/mtt/m/it/10 f \LMP2/mtt/m/n/10 2 \OMS/cmsy
+/m/n/10 H$ \T1/ptm/m/n/10 (-20) exis-te $\LMP1/mtt/m/it/10 i \LMP2/mtt/m/n/10 2
+ []$ \T1/ptm/m/n/10 (-20) tal que $\LMP1/mtt/m/it/10 d[].f; g[]/ <
+ []
+
+LaTeX Info: Redefining \. on input line 8150.
+LaTeX Info: Redefining \% on input line 8150.
+[131]
+Overfull \hbox (0.64783pt too wide) in paragraph at lines 8161--8165
+\T1/ptm/m/n/10 (-20) Denotemos por $\LMP1/mtt/m/it/10 S$ \T1/ptm/m/n/10 (-20) a
+l con-jun-to (fi-ni-to) de to-das las fun-cio-nes $\LMP1/mtt/m/it/10 ^^[ [] [] 
+ [] \LMP2/mtt/m/n/10 ! []$\T1/ptm/m/n/10 (-20) .
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 8210.
+LaTeX Info: Redefining \% on input line 8210.
+ [132]
+LaTeX Info: Redefining \. on input line 8286.
+LaTeX Info: Redefining \% on input line 8286.
+
+[133]
+LaTeX Info: Redefining \. on input line 8342.
+LaTeX Info: Redefining \% on input line 8342.
+ [134]
+LaTeX Info: Redefining \. on input line 8415.
+LaTeX Info: Redefining \% on input line 8415.
+ [135] (./figuras-tikz/lema7-13.tikz)
+LaTeX Info: Redefining \. on input line 8475.
+LaTeX Info: Redefining \% on input line 8475.
+ [136]
+Underfull \hbox (badness 1776) in paragraph at lines 8482--8490
+\T1/ptm/m/n/10 (+20) Esta es la afir-ma-ciÛn \T1/ptm/m/it/10 (+20) (b)\T1/ptm/m
+/n/10 (+20) . Cla-ra-men-te, $\LMP1/mtt/m/it/10 u[]$ \T1/ptm/m/n/10 (+20) es co
+n-ti-nua-men-te di-fe-ren-cia-ble en
+ []
+
+<./fotos/calcasdos/Giuseppe_Peano.pdf, id=603, 602.42668pt x 762.05203pt>
+File: ./fotos/calcasdos/Giuseppe_Peano.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Giuseppe_Peano.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Giuseppe_Peano.pdf  used on input li
+ne 8529.
+(pdftex.def)             Requested size: 93.56024pt x 118.3494pt.
+LaTeX Info: Redefining \. on input line 8537.
+LaTeX Info: Redefining \% on input line 8537.
+[137 <./fotos/calcasdos/Giuseppe_Peano.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 8603.
+LaTeX Info: Redefining \% on input line 8603.
+ [138]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 8643.
+LaTeX Info: Redefining \% on input line 8643.
+ [139]
+LaTeX Info: Redefining \. on input line 8703.
+LaTeX Info: Redefining \% on input line 8703.
+
+[140] (./figuras-tikz/lema7-19.tikz)
+LaTeX Info: Redefining \. on input line 8787.
+LaTeX Info: Redefining \% on input line 8787.
+ [141]
+LaTeX Info: Redefining \. on input line 8839.
+LaTeX Info: Redefining \% on input line 8839.
+ [142]
+LaTeX Info: Redefining \. on input line 8913.
+LaTeX Info: Redefining \% on input line 8913.
+ [143]
+LaTeX Info: Redefining \. on input line 8976.
+LaTeX Info: Redefining \% on input line 8976.
+ [144]
+LaTeX Info: Redefining \. on input line 9045.
+LaTeX Info: Redefining \% on input line 9045.
+ [145]
+LaTeX Info: Redefining \. on input line 9119.
+LaTeX Info: Redefining \% on input line 9119.
+ [146]
+LaTeX Info: Redefining \. on input line 9202.
+LaTeX Info: Redefining \% on input line 9202.
+
+[147]
+LaTeX Info: Redefining \. on input line 9280.
+LaTeX Info: Redefining \% on input line 9280.
+ [148]
+LaTeX Info: Redefining \. on input line 9330.
+LaTeX Info: Redefining \% on input line 9330.
+ [149]
+LaTeX Info: Redefining \. on input line 9356.
+LaTeX Info: Redefining \% on input line 9356.
+ [150]
+chapter 8.
+[151
+
+
+]
+Underfull \vbox (badness 7832) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 9436.
+LaTeX Info: Redefining \% on input line 9436.
+ [152]
+(./figuras-tikz/gama3-3.tikz
+Missing character: There is no ; in font nullfont!
+) (./figuras-tikz/gama3-2.tikz
+Missing character: There is no ; in font nullfont!
+) (./figuras-tikz/gama3-1.tikz
+Missing character: There is no ; in font nullfont!
+) (./figuras-tikz/gama3-0.tikz
+Missing character: There is no ; in font nullfont!
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+<./fotos/calcasdos/Snbernstein.pdf, id=659, 602.43471pt x 803.18668pt>
+File: ./fotos/calcasdos/Snbernstein.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Snbernstein.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Snbernstein.pdf  used on input line 
+9469.
+(pdftex.def)             Requested size: 93.56024pt x 124.73776pt.
+
+Underfull \vbox (badness 1137) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 9472.
+LaTeX Info: Redefining \% on input line 9472.
+ [153]
+LaTeX Info: Redefining \. on input line 9522.
+LaTeX Info: Redefining \% on input line 9522.
+
+[154 <./fotos/calcasdos/Snbernstein.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 9560.
+LaTeX Info: Redefining \% on input line 9560.
+ [155]
+LaTeX Info: Redefining \. on input line 9617.
+LaTeX Info: Redefining \% on input line 9617.
+
+[156] (./figuras-tikz/sen-1-entre-t.tikz)
+LaTeX Info: Redefining \. on input line 9668.
+LaTeX Info: Redefining \% on input line 9668.
+ [157]
+<./fotos/calcasdos/Stone_3.pdf, id=679, 602.79004pt x 643.59244pt>
+File: ./fotos/calcasdos/Stone_3.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Stone_3.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Stone_3.pdf  used on input line 9697
+.
+(pdftex.def)             Requested size: 103.95525pt x 110.99034pt.
+LaTeX Info: Redefining \. on input line 9716.
+LaTeX Info: Redefining \% on input line 9716.
+ [158 <./fotos/calcasdos/Stone_3.pdf>]
+LaTeX Info: Redefining \. on input line 9792.
+LaTeX Info: Redefining \% on input line 9792.
+ [159]
+LaTeX Info: Redefining \. on input line 9871.
+LaTeX Info: Redefining \% on input line 9871.
+ [160]
+Overfull \hbox (4.99643pt too wide) in paragraph at lines 9880--9884
+\T1/ptm/m/n/10 (-20) Como $[]$ sa-tis-fa-ce la pro-pie-dad \T1/ptm/m/it/10 (-20
+) (a)\T1/ptm/m/n/10 (-20) , el le-ma an-te-rior im-pli-ca que $[] [] \LMP1/mtt/
+m/it/10 ; [] [] \LMP2/mtt/m/n/10 2
+ []
+
+LaTeX Info: Redefining \. on input line 9937.
+LaTeX Info: Redefining \% on input line 9937.
+[161]
+LaTeX Info: Redefining \. on input line 10006.
+LaTeX Info: Redefining \% on input line 10006.
+ [162]
+LaTeX Info: Redefining \. on input line 10073.
+LaTeX Info: Redefining \% on input line 10073.
+ [163]
+LaTeX Info: Redefining \. on input line 10151.
+LaTeX Info: Redefining \% on input line 10151.
+ [164]
+LaTeX Info: Redefining \. on input line 10160.
+LaTeX Info: Redefining \% on input line 10160.
+ [165] [166
+
+
+]
+part II.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 10160.
+[167] [168]
+chapter 9.
+
+Underfull \vbox (badness 2253) has occurred while \output is active []
+
+ [169
+
+
+]
+LaTeX Info: Redefining \. on input line 10271.
+LaTeX Info: Redefining \% on input line 10271.
+
+[170]
+Underfull \vbox (badness 1163) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 10333.
+LaTeX Info: Redefining \% on input line 10333.
+ [171]
+LaTeX Info: Redefining \. on input line 10393.
+LaTeX Info: Redefining \% on input line 10393.
+
+[172]
+LaTeX Info: Redefining \. on input line 10459.
+LaTeX Info: Redefining \% on input line 10459.
+ [173]
+LaTeX Info: Redefining \. on input line 10530.
+LaTeX Info: Redefining \% on input line 10530.
+ [174]
+LaTeX Info: Redefining \. on input line 10600.
+LaTeX Info: Redefining \% on input line 10600.
+ [175]
+LaTeX Info: Redefining \. on input line 10676.
+LaTeX Info: Redefining \% on input line 10676.
+ [176] (./figuras-tikz/derivada.tikz)
+LaTeX Info: Redefining \. on input line 10739.
+LaTeX Info: Redefining \% on input line 10739.
+ [177]
+LaTeX Info: Redefining \. on input line 10785.
+LaTeX Info: Redefining \% on input line 10785.
+ [178]
+(./figuras-tikz/u0-u1.tikz)
+LaTeX Info: Redefining \. on input line 10844.
+LaTeX Info: Redefining \% on input line 10844.
+ [179]
+LaTeX Info: Redefining \. on input line 10917.
+LaTeX Info: Redefining \% on input line 10917.
+ [180]
+LaTeX Info: Redefining \. on input line 10986.
+LaTeX Info: Redefining \% on input line 10986.
+ [181]
+Underfull \vbox (badness 4531) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 11036.
+LaTeX Info: Redefining \% on input line 11036.
+ [182]
+<./fotos/calcasdos/gateaux.pdf, id=773, 429.79471pt x 536.21025pt>
+File: ./fotos/calcasdos/gateaux.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/gateaux.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/gateaux.pdf  used on input line 1105
+1.
+(pdftex.def)             Requested size: 97.21117pt x 121.282pt.
+LaTeX Info: Redefining \. on input line 11096.
+LaTeX Info: Redefining \% on input line 11096.
+
+[183 <./fotos/calcasdos/gateaux.pdf>]
+LaTeX Info: Redefining \. on input line 11154.
+LaTeX Info: Redefining \% on input line 11154.
+ [184]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 11210.
+LaTeX Info: Redefining \% on input line 11210.
+ [185]
+Underfull \vbox (badness 1215) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 11274.
+LaTeX Info: Redefining \% on input line 11274.
+ [186]
+(./figuras-tikz/der-par-diag.tikz)
+LaTeX Info: Redefining \. on input line 11322.
+LaTeX Info: Redefining \% on input line 11322.
+ [187]
+LaTeX Info: Redefining \. on input line 11374.
+LaTeX Info: Redefining \% on input line 11374.
+ [188]
+Overfull \hbox (0.88322pt too wide) detected at line 11429
+\LMP1/mtt/m/it/10 u \LMP2/mtt/m/n/10 C \LMP1/mtt/m/it/10 v \LMP2/mtt/m/n/10 2 \
+LMP1/mtt/m/it/10 
+[]v \LMP2/mtt/m/n/10 D \LMP1/mtt/m/it/10 .v[]; v[]/ \LMP2/mtt/m/n/10 2 \LMP1/mt
+t/m/it/10 V[] \LMP2/mtt/m/n/10 ^^B \LMP1/mtt/m/it/10 V[][] [][] \LMP2/mtt/m/n/1
+0 WD [] [] \LMP1/mtt/m/it/10 < ^^N;
+ []
+
+
+Overfull \hbox (4.44698pt too wide) detected at line 11455
+[]
+ []
+
+LaTeX Info: Redefining \. on input line 11455.
+LaTeX Info: Redefining \% on input line 11455.
+[189]
+LaTeX Info: Redefining \. on input line 11514.
+LaTeX Info: Redefining \% on input line 11514.
+ [190]
+LaTeX Info: Redefining \. on input line 11576.
+LaTeX Info: Redefining \% on input line 11576.
+ [191]
+LaTeX Info: Redefining \. on input line 11624.
+LaTeX Info: Redefining \% on input line 11624.
+ [192]
+LaTeX Info: Redefining \. on input line 11694.
+LaTeX Info: Redefining \% on input line 11694.
+ [193]
+LaTeX Info: Redefining \. on input line 11773.
+LaTeX Info: Redefining \% on input line 11773.
+ [194]
+LaTeX Info: Redefining \. on input line 11824.
+LaTeX Info: Redefining \% on input line 11824.
+ [195]
+<./fotos/calcasdos/Taylor.pdf, id=819, 603.6141pt x 780.26608pt>
+File: ./fotos/calcasdos/Taylor.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Taylor.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Taylor.pdf  used on input line 11863
+.
+(pdftex.def)             Requested size: 86.62848pt x 111.97485pt.
+LaTeX Info: Redefining \. on input line 11873.
+LaTeX Info: Redefining \% on input line 11873.
+ [196 <./fotos/calcasdos/Taylor.pdf>]
+LaTeX Info: Redefining \. on input line 11920.
+LaTeX Info: Redefining \% on input line 11920.
+
+[197]
+LaTeX Info: Redefining \. on input line 11981.
+LaTeX Info: Redefining \% on input line 11981.
+ [198]
+LaTeX Info: Redefining \. on input line 12045.
+LaTeX Info: Redefining \% on input line 12045.
+ [199]
+LaTeX Info: Redefining \. on input line 12123.
+LaTeX Info: Redefining \% on input line 12123.
+ [200]
+LaTeX Info: Redefining \. on input line 12196.
+LaTeX Info: Redefining \% on input line 12196.
+ [201]
+LaTeX Info: Redefining \. on input line 12263.
+LaTeX Info: Redefining \% on input line 12263.
+ [202]
+LaTeX Info: Redefining \. on input line 12334.
+LaTeX Info: Redefining \% on input line 12334.
+ [203]
+LaTeX Info: Redefining \. on input line 12379.
+LaTeX Info: Redefining \% on input line 12379.
+ [204]
+chapter 10.
+(./figuras-tikz/hip-c-menor.tikz) (./figuras-tikz/hip-c-mayor.tikz)
+(./figuras-tikz/hip-c-igual.tikz) (./figuras-tikz/figuraCap10-1.tikz) [205
+
+
+]
+<./paraboloide-crop.png, id=855, 196.8153pt x 144.54pt>
+File: ./paraboloide-crop.png Graphic file (type png)
+<use ./paraboloide-crop.png>
+Package pdftex.def Info: ./paraboloide-crop.png  used on input line 12448.
+(pdftex.def)             Requested size: 196.81482pt x 144.53963pt.
+LaTeX Info: Redefining \. on input line 12459.
+LaTeX Info: Redefining \% on input line 12459.
+
+[206 <./paraboloide-crop.png>] (./figuras-tikz/ejemplo10-1.tikz)
+LaTeX Info: Redefining \. on input line 12519.
+LaTeX Info: Redefining \% on input line 12519.
+ [207]
+LaTeX Info: Redefining \. on input line 12568.
+LaTeX Info: Redefining \% on input line 12568.
+ [208]
+LaTeX Info: Redefining \. on input line 12643.
+LaTeX Info: Redefining \% on input line 12643.
+
+[209]
+LaTeX Info: Redefining \. on input line 12709.
+LaTeX Info: Redefining \% on input line 12709.
+ [210]
+LaTeX Info: Redefining \. on input line 12771.
+LaTeX Info: Redefining \% on input line 12771.
+ [211]
+LaTeX Info: Redefining \. on input line 12849.
+LaTeX Info: Redefining \% on input line 12849.
+ [212]
+Underfull \hbox (badness 3179) in paragraph at lines 12907--12916
+[]\T1/ptm/b/n/10 (+20) Teorema 10.14 \T1/ptm/m/n/10 (+20) (mul-ti-pli-ca-do-res
+ de La-gran-ge)\T1/ptm/b/n/10 (+20) . []\T1/ptm/m/it/10 (+20) Sean $\LMP1/mtt/m
+/it/10 
+$ \T1/ptm/m/it/10 (+20) un abier-to de $\U/mt2hrb/m/n/10 R[]$\T1/ptm/m/it/10 (+
+20) ,
+ []
+
+LaTeX Info: Redefining \. on input line 12930.
+LaTeX Info: Redefining \% on input line 12930.
+[213]
+LaTeX Info: Redefining \. on input line 12992.
+LaTeX Info: Redefining \% on input line 12992.
+ [214]
+LaTeX Info: Redefining \. on input line 13041.
+LaTeX Info: Redefining \% on input line 13041.
+ [215]
+LaTeX Info: Redefining \. on input line 13107.
+LaTeX Info: Redefining \% on input line 13107.
+ [216]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 13176.
+LaTeX Info: Redefining \% on input line 13176.
+ [217]
+LaTeX Info: Redefining \. on input line 13246.
+LaTeX Info: Redefining \% on input line 13246.
+
+[218]
+LaTeX Info: Redefining \. on input line 13316.
+LaTeX Info: Redefining \% on input line 13316.
+ [219]
+Overfull \hbox (2.84068pt too wide) in paragraph at lines 13324--13328
+\T1/ptm/m/n/10 (-20) La afir-ma-ciÛn \T1/ptm/m/it/10 (-20) (iii) \T1/ptm/m/n/10
+ (-20) del Le-ma 10.18[] ase-gu-ra en-ton-ces que $\LMP1/mtt/m/it/10 f.v/ \LMP2
+/mtt/m/n/10 D \LMP1/mtt/m/it/10  [].f.v// \LMP2/mtt/m/n/10 2 \LMP1/mtt/m/it/10 
+B[].w[]; ^^Q/$\T1/ptm/m/n/10 (-20) .
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 13377.
+LaTeX Info: Redefining \% on input line 13377.
+ [220]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 13432.
+LaTeX Info: Redefining \% on input line 13432.
+ [221]
+Underfull \hbox (badness 2980) in paragraph at lines 13457--13463
+[]\T1/ptm/m/n/10 (+20) Sean $\LMP1/mtt/m/it/10 ^^N; ^^Q > 0$ \T1/ptm/m/n/10 (+2
+0) co-mo en el Le-ma 10.18[] y
+ []
+
+LaTeX Info: Redefining \. on input line 13495.
+LaTeX Info: Redefining \% on input line 13495.
+[222]
+LaTeX Info: Redefining \. on input line 13584.
+LaTeX Info: Redefining \% on input line 13584.
+ [223]
+LaTeX Info: Redefining \. on input line 13670.
+LaTeX Info: Redefining \% on input line 13670.
+ [224]
+LaTeX Info: Redefining \. on input line 13729.
+LaTeX Info: Redefining \% on input line 13729.
+ [225] [226
+
+
+]
+part III.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 13729.
+[227] [228]
+chapter 11.
+[229
+
+
+]
+<./fotos/calcasdos/Riemann.pdf, id=932, 602.47484pt x 851.35864pt>
+File: ./fotos/calcasdos/Riemann.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Riemann.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Riemann.pdf  used on input line 1379
+3.
+(pdftex.def)             Requested size: 86.62848pt x 122.41107pt.
+LaTeX Info: Redefining \. on input line 13823.
+LaTeX Info: Redefining \% on input line 13823.
+ [230 <./fotos/calcasdos/Riemann.pdf>]
+LaTeX Info: Redefining \. on input line 13887.
+LaTeX Info: Redefining \% on input line 13887.
+ [231]
+LaTeX Info: Redefining \. on input line 13957.
+LaTeX Info: Redefining \% on input line 13957.
+ [232]
+(./figuras-tikz/Cap11-T-xi-0-g.tikz
+Missing character: There is no ; in font nullfont!
+) (./figuras-tikz/Cap11-T-xi-1-g.tikz
+Missing character: There is no ; in font nullfont!
+) (./figuras-tikz/Cap11-T-xi-2-g.tikz
+Missing character: There is no ; in font nullfont!
+)
+LaTeX Info: Redefining \. on input line 14019.
+LaTeX Info: Redefining \% on input line 14019.
+ [233]
+<./fotos/calcasdos/Haar.pdf, id=981, 602.85327pt x 740.17128pt>
+File: ./fotos/calcasdos/Haar.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Haar.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Haar.pdf  used on input line 14066.
+(pdftex.def)             Requested size: 79.69672pt x 97.8407pt.
+LaTeX Info: Redefining \. on input line 14069.
+LaTeX Info: Redefining \% on input line 14069.
+ [234]
+LaTeX Info: Redefining \. on input line 14133.
+LaTeX Info: Redefining \% on input line 14133.
+ [235 <./fotos/calcasdos/Haar.pdf>]
+(./figuras-tikz/Cap11-ejemplo-12.tikz)
+<./figuras-tikz/Cap11-Theta.pdf, id=991, 517.935pt x 332.2011pt>
+File: ./figuras-tikz/Cap11-Theta.pdf Graphic file (type pdf)
+<use ./figuras-tikz/Cap11-Theta.pdf>
+Package pdftex.def Info: ./figuras-tikz/Cap11-Theta.pdf  used on input line 141
+83.
+(pdftex.def)             Requested size: 173.25697pt x 111.1271pt.
+LaTeX Info: Redefining \. on input line 14187.
+LaTeX Info: Redefining \% on input line 14187.
+ [236] (./figuras-tikz/Cap11-lema-13.tikz)
+LaTeX Info: Redefining \. on input line 14234.
+LaTeX Info: Redefining \% on input line 14234.
+ [237 <./figuras-tikz/Cap11-Theta.pdf>]
+LaTeX Info: Redefining \. on input line 14289.
+LaTeX Info: Redefining \% on input line 14289.
+ [238]
+(./figuras-tikz/Cap11-lema-15-1.tikz
+Missing character: There is no ; in font nullfont!
+) (./figuras-tikz/Cap11-lema-15-2.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 14342.
+LaTeX Info: Redefining \% on input line 14342.
+ [239]
+LaTeX Info: Redefining \. on input line 14400.
+LaTeX Info: Redefining \% on input line 14400.
+
+[240]
+LaTeX Info: Redefining \. on input line 14449.
+LaTeX Info: Redefining \% on input line 14449.
+ [241]
+LaTeX Info: Redefining \. on input line 14518.
+LaTeX Info: Redefining \% on input line 14518.
+ [242]
+<./figuras-tikz/Cap11-cono.pdf, id=1018, 520.58492pt x 336.05548pt>
+File: ./figuras-tikz/Cap11-cono.pdf Graphic file (type pdf)
+<use ./figuras-tikz/Cap11-cono.pdf>
+Package pdftex.def Info: ./figuras-tikz/Cap11-cono.pdf  used on input line 1453
+6.
+(pdftex.def)             Requested size: 173.25697pt x 111.84216pt.
+LaTeX Info: Redefining \. on input line 14566.
+LaTeX Info: Redefining \% on input line 14566.
+ [243 <./figuras-tikz/Cap11-cono.pdf>]
+LaTeX Info: Redefining \. on input line 14628.
+LaTeX Info: Redefining \% on input line 14628.
+ [244]
+LaTeX Info: Redefining \. on input line 14691.
+LaTeX Info: Redefining \% on input line 14691.
+ [245]
+LaTeX Info: Redefining \. on input line 14751.
+LaTeX Info: Redefining \% on input line 14751.
+ [246]
+LaTeX Info: Redefining \. on input line 14830.
+LaTeX Info: Redefining \% on input line 14830.
+
+[247] (./figuras-tikz/Cap11-notacion-27.tikz)
+LaTeX Info: Redefining \. on input line 14896.
+LaTeX Info: Redefining \% on input line 14896.
+ [248]
+LaTeX Info: Redefining \. on input line 14973.
+LaTeX Info: Redefining \% on input line 14973.
+ [249]
+LaTeX Info: Redefining \. on input line 15051.
+LaTeX Info: Redefining \% on input line 15051.
+ [250]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 15123.
+LaTeX Info: Redefining \% on input line 15123.
+ [251]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 15183.
+LaTeX Info: Redefining \% on input line 15183.
+ [252]
+LaTeX Info: Redefining \. on input line 15235.
+LaTeX Info: Redefining \% on input line 15235.
+
+[253]
+LaTeX Info: Redefining \. on input line 15319.
+LaTeX Info: Redefining \% on input line 15319.
+ [254]
+LaTeX Info: Redefining \. on input line 15392.
+LaTeX Info: Redefining \% on input line 15392.
+ [255]
+LaTeX Info: Redefining \. on input line 15477.
+LaTeX Info: Redefining \% on input line 15477.
+ [256]
+LaTeX Info: Redefining \. on input line 15554.
+LaTeX Info: Redefining \% on input line 15554.
+ [257]
+LaTeX Info: Redefining \. on input line 15565.
+LaTeX Info: Redefining \% on input line 15565.
+ [258]
+chapter 12.
+[259
+
+
+] (./figuras-tikz/Cap12-ejemplo-1.tikz
+Missing character: There is no ; in font nullfont!
+)
+Underfull \vbox (badness 1596) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 15660.
+LaTeX Info: Redefining \% on input line 15660.
+ [260]
+<./fotos/calcasdos/Dini.pdf, id=1078, 602.9195pt x 833.54012pt>
+File: ./fotos/calcasdos/Dini.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Dini.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Dini.pdf  used on input line 15693.
+(pdftex.def)             Requested size: 86.62848pt x 119.76004pt.
+LaTeX Info: Redefining \. on input line 15706.
+LaTeX Info: Redefining \% on input line 15706.
+
+[261 <./fotos/calcasdos/Dini.pdf>]
+LaTeX Info: Redefining \. on input line 15772.
+LaTeX Info: Redefining \% on input line 15772.
+ [262]
+Overfull \hbox (2.67711pt too wide) in paragraph at lines 15800--15808
+[]\T1/ptm/m/n/10 (-20) Fija $\LMP1/mtt/m/it/10 k \LMP2/mtt/m/n/10 2 \U/mt2hrb/m
+/n/10 N$ \T1/ptm/m/n/10 (-20) y, pa-ra ca-da $\LMP1/mtt/m/it/10 j \LMP2/mtt/m/n
+/10 2 \U/mt2hrb/m/n/10 N$\T1/ptm/m/n/10 (-20) , con-si-de-ra la fun-ciÛn $\LMP1
+/mtt/m/it/10 h[] \LMP2/mtt/m/n/10 WD [] []$\T1/ptm/m/n/10 (-20) .
+ []
+
+LaTeX Info: Redefining \. on input line 15836.
+LaTeX Info: Redefining \% on input line 15836.
+[263]
+LaTeX Info: Redefining \. on input line 15913.
+LaTeX Info: Redefining \% on input line 15913.
+ [264] (./figuras-tikz/Cap12-g-nu.tikz)
+Underfull \vbox (badness 3977) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 15961.
+LaTeX Info: Redefining \% on input line 15961.
+ [265]
+LaTeX Info: Redefining \. on input line 16031.
+LaTeX Info: Redefining \% on input line 16031.
+
+[266]
+LaTeX Info: Redefining \. on input line 16098.
+LaTeX Info: Redefining \% on input line 16098.
+ [267]
+LaTeX Info: Redefining \. on input line 16162.
+LaTeX Info: Redefining \% on input line 16162.
+ [268]
+LaTeX Info: Redefining \. on input line 16237.
+LaTeX Info: Redefining \% on input line 16237.
+ [269]
+LaTeX Info: Redefining \. on input line 16312.
+LaTeX Info: Redefining \% on input line 16312.
+ [270]
+LaTeX Info: Redefining \. on input line 16378.
+LaTeX Info: Redefining \% on input line 16378.
+ [271]
+LaTeX Info: Redefining \. on input line 16426.
+LaTeX Info: Redefining \% on input line 16426.
+ [272]
+LaTeX Info: Redefining \. on input line 16491.
+LaTeX Info: Redefining \% on input line 16491.
+ [273]
+Overfull \hbox (7.83589pt too wide) in paragraph at lines 16517--16521
+[]\T1/ptm/m/it/10 (-20) Sea $\LMP1/mtt/m/it/10 '.x/ \LMP2/mtt/m/n/10 D \LMP1/mt
+t/m/it/10 Ax \LMP2/mtt/m/n/10 C \LMP1/mtt/m/it/10 ^^P$ \T1/ptm/m/it/10 (-20) co
+n $\LMP1/mtt/m/it/10 A \LMP2/mtt/m/n/10 2 \LMP1/mtt/m/it/10 GL.n; \U/mt2hrb/m/n
+/10 R\LMP1/mtt/m/it/10 /$\T1/ptm/m/it/10 (-20) , $\LMP1/mtt/m/it/10 ^^P \LMP2/m
+tt/m/n/10 2 \U/mt2hrb/m/n/10 R[]$\T1/ptm/m/it/10 (-20) . En-ton-ces $\LMP1/mtt/
+m/it/10 '.X/ \LMP2/mtt/m/n/10 WD []$
+ []
+
+LaTeX Info: Redefining \. on input line 16558.
+LaTeX Info: Redefining \% on input line 16558.
+[274]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 16609.
+LaTeX Info: Redefining \% on input line 16609.
+ [275]
+<./fotos/calcasdos/Cavalieri.pdf, id=1130, 603.01286pt x 733.45319pt>
+File: ./fotos/calcasdos/Cavalieri.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Cavalieri.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Cavalieri.pdf  used on input line 16
+658.
+(pdftex.def)             Requested size: 86.62848pt x 105.35753pt.
+LaTeX Info: Redefining \. on input line 16683.
+LaTeX Info: Redefining \% on input line 16683.
+
+[276] (./figuras-tikz/Cap12-ejemplo-25.tikz)
+LaTeX Info: Redefining \. on input line 16728.
+LaTeX Info: Redefining \% on input line 16728.
+ [277 <./fotos/calcasdos/Cavalieri.pdf>]
+LaTeX Info: Redefining \. on input line 16765.
+LaTeX Info: Redefining \% on input line 16765.
+ [278]
+LaTeX Info: Redefining \. on input line 16829.
+LaTeX Info: Redefining \% on input line 16829.
+ [279]
+Underfull \vbox (badness 1983) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 16885.
+LaTeX Info: Redefining \% on input line 16885.
+ [280]
+<./fotos/calcasdos/Lebesgue.pdf, id=1150, 602.51196pt x 780.10747pt>
+File: ./fotos/calcasdos/Lebesgue.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Lebesgue.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Lebesgue.pdf  used on input line 169
+38.
+(pdftex.def)             Requested size: 103.95525pt x 134.59248pt.
+LaTeX Info: Redefining \. on input line 16963.
+LaTeX Info: Redefining \% on input line 16963.
+
+[281]
+LaTeX Info: Redefining \. on input line 17004.
+LaTeX Info: Redefining \% on input line 17004.
+ [282 <./fotos/calcasdos/Lebesgue.pdf>]
+LaTeX Info: Redefining \. on input line 17061.
+LaTeX Info: Redefining \% on input line 17061.
+ [283]
+LaTeX Info: Redefining \. on input line 17108.
+LaTeX Info: Redefining \% on input line 17108.
+ [284]
+LaTeX Info: Redefining \. on input line 17174.
+LaTeX Info: Redefining \% on input line 17174.
+ [285]
+LaTeX Info: Redefining \. on input line 17257.
+LaTeX Info: Redefining \% on input line 17257.
+ [286]
+LaTeX Info: Redefining \. on input line 17317.
+LaTeX Info: Redefining \% on input line 17317.
+ [287]
+LaTeX Info: Redefining \. on input line 17381.
+LaTeX Info: Redefining \% on input line 17381.
+
+[288]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 17439.
+LaTeX Info: Redefining \% on input line 17439.
+ [289]
+LaTeX Info: Redefining \. on input line 17504.
+LaTeX Info: Redefining \% on input line 17504.
+
+[290]
+LaTeX Info: Redefining \. on input line 17575.
+LaTeX Info: Redefining \% on input line 17575.
+ [291]
+LaTeX Info: Redefining \. on input line 17639.
+LaTeX Info: Redefining \% on input line 17639.
+ [292]
+LaTeX Info: Redefining \. on input line 17701.
+LaTeX Info: Redefining \% on input line 17701.
+ [293]
+LaTeX Info: Redefining \. on input line 17784.
+LaTeX Info: Redefining \% on input line 17784.
+ [294]
+LaTeX Info: Redefining \. on input line 17841.
+LaTeX Info: Redefining \% on input line 17841.
+ [295]
+LaTeX Info: Redefining \. on input line 17921.
+LaTeX Info: Redefining \% on input line 17921.
+ [296]
+LaTeX Info: Redefining \. on input line 17980.
+LaTeX Info: Redefining \% on input line 17980.
+ [297]
+LaTeX Info: Redefining \. on input line 17989.
+LaTeX Info: Redefining \% on input line 17989.
+ [298]
+chapter 13.
+[299
+
+
+]
+LaTeX Info: Redefining \. on input line 18090.
+LaTeX Info: Redefining \% on input line 18090.
+ [300]
+LaTeX Info: Redefining \. on input line 18152.
+LaTeX Info: Redefining \% on input line 18152.
+ [301]
+LaTeX Info: Redefining \. on input line 18209.
+LaTeX Info: Redefining \% on input line 18209.
+ [302]
+LaTeX Info: Redefining \. on input line 18279.
+LaTeX Info: Redefining \% on input line 18279.
+ [303]
+LaTeX Info: Redefining \. on input line 18339.
+LaTeX Info: Redefining \% on input line 18339.
+ [304]
+LaTeX Info: Redefining \. on input line 18412.
+LaTeX Info: Redefining \% on input line 18412.
+ [305]
+<./fotos/calcasdos/Fubini.pdf, id=1234, 602.56717pt x 807.4406pt>
+File: ./fotos/calcasdos/Fubini.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Fubini.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Fubini.pdf  used on input line 18475
+.
+(pdftex.def)             Requested size: 97.02348pt x 130.00629pt.
+LaTeX Info: Redefining \. on input line 18478.
+LaTeX Info: Redefining \% on input line 18478.
+ [306]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 18527.
+LaTeX Info: Redefining \% on input line 18527.
+ [307 <./fotos/calcasdos/Fubini.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 18588.
+LaTeX Info: Redefining \% on input line 18588.
+ [308]
+LaTeX Info: Redefining \. on input line 18640.
+LaTeX Info: Redefining \% on input line 18640.
+
+[309]
+<./fotos/calcasdos/Levi.pdf, id=1251, 602.46082pt x 836.45898pt>
+File: ./fotos/calcasdos/Levi.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Levi.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Levi.pdf  used on input line 18660.
+(pdftex.def)             Requested size: 86.62848pt x 120.26875pt.
+LaTeX Info: Redefining \. on input line 18680.
+LaTeX Info: Redefining \% on input line 18680.
+ [310 <./fotos/calcasdos/Levi.pdf>]
+LaTeX Info: Redefining \. on input line 18758.
+LaTeX Info: Redefining \% on input line 18758.
+ [311]
+<./fotos/calcasdos/Fatou.pdf, id=1261, 603.46254pt x 795.19685pt>
+File: ./fotos/calcasdos/Fatou.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Fatou.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Fatou.pdf  used on input line 18830.
+
+(pdftex.def)             Requested size: 86.62848pt x 114.14182pt.
+LaTeX Info: Redefining \. on input line 18832.
+LaTeX Info: Redefining \% on input line 18832.
+ [312]
+LaTeX Info: Redefining \. on input line 18876.
+LaTeX Info: Redefining \% on input line 18876.
+ [313 <./fotos/calcasdos/Fatou.pdf>] (./figuras-tikz/Cap13-ejemplo-25.tikz)
+LaTeX Info: Redefining \. on input line 18928.
+LaTeX Info: Redefining \% on input line 18928.
+ [314]
+LaTeX Info: Redefining \. on input line 18984.
+LaTeX Info: Redefining \% on input line 18984.
+ [315]
+Overfull \hbox (2.95221pt too wide) in paragraph at lines 19036--19040
+\T1/ptm/m/n/10 (-20) el teo-re-ma de con-ver-gen-cia mo-nÛ-to-na (ver Teo-re-ma
+ 13.20[]) ase-gu-ra que $\LMP2/mtt/m/n/10 j\LMP1/mtt/m/it/10 f\LMP2/mtt/m/n/10 
+j  D  [][] j\LMP1/mtt/m/it/10 f[]\LMP2/mtt/m/n/10 j$
+ []
+
+LaTeX Info: Redefining \. on input line 19047.
+LaTeX Info: Redefining \% on input line 19047.
+[316]
+LaTeX Info: Redefining \. on input line 19105.
+LaTeX Info: Redefining \% on input line 19105.
+ [317]
+LaTeX Info: Redefining \. on input line 19157.
+LaTeX Info: Redefining \% on input line 19157.
+ [318]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 19217.
+LaTeX Info: Redefining \% on input line 19217.
+ [319]
+LaTeX Info: Redefining \. on input line 19278.
+LaTeX Info: Redefining \% on input line 19278.
+
+[320]
+LaTeX Info: Redefining \. on input line 19349.
+LaTeX Info: Redefining \% on input line 19349.
+ [321]
+LaTeX Info: Redefining \. on input line 19425.
+LaTeX Info: Redefining \% on input line 19425.
+ [322]
+Underfull \vbox (badness 5036) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 19486.
+LaTeX Info: Redefining \% on input line 19486.
+ [323]
+LaTeX Info: Redefining \. on input line 19549.
+LaTeX Info: Redefining \% on input line 19549.
+
+[324]
+LaTeX Info: Redefining \. on input line 19612.
+LaTeX Info: Redefining \% on input line 19612.
+ [325]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 19662.
+LaTeX Info: Redefining \% on input line 19662.
+ [326]
+Underfull \vbox (badness 1184) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 19722.
+LaTeX Info: Redefining \% on input line 19722.
+ [327]
+LaTeX Info: Redefining \. on input line 19800.
+LaTeX Info: Redefining \% on input line 19800.
+
+[328]
+LaTeX Info: Redefining \. on input line 19876.
+LaTeX Info: Redefining \% on input line 19876.
+ [329]
+LaTeX Info: Redefining \. on input line 19955.
+LaTeX Info: Redefining \% on input line 19955.
+ [330]
+LaTeX Info: Redefining \. on input line 20018.
+LaTeX Info: Redefining \% on input line 20018.
+ [331]
+LaTeX Info: Redefining \. on input line 20081.
+LaTeX Info: Redefining \% on input line 20081.
+ [332]
+LaTeX Info: Redefining \. on input line 20137.
+LaTeX Info: Redefining \% on input line 20137.
+ [333]
+LaTeX Info: Redefining \. on input line 20204.
+LaTeX Info: Redefining \% on input line 20204.
+ [334]
+chapter 14.
+[335
+
+
+]
+LaTeX Info: Redefining \. on input line 20325.
+LaTeX Info: Redefining \% on input line 20325.
+ [336]
+<./fotos/calcasdos/Vitali.pdf, id=1345, 604.51549pt x 768.22911pt>
+File: ./fotos/calcasdos/Vitali.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Vitali.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Vitali.pdf  used on input line 20383
+.
+(pdftex.def)             Requested size: 86.62848pt x 110.08333pt.
+LaTeX Info: Redefining \. on input line 20386.
+LaTeX Info: Redefining \% on input line 20386.
+ [337] (./figuras-tikz/Cap14-lema-5.tikz
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+)
+LaTeX Info: Redefining \. on input line 20438.
+LaTeX Info: Redefining \% on input line 20438.
+ [338 <./fotos/calcasdos/Vitali.pdf>] (./figuras-tikz/Cap14-medible.tikz
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+)
+LaTeX Info: Redefining \. on input line 20504.
+LaTeX Info: Redefining \% on input line 20504.
+ [339]
+LaTeX Info: Redefining \. on input line 20543.
+LaTeX Info: Redefining \% on input line 20543.
+ [340]
+LaTeX Info: Redefining \. on input line 20639.
+LaTeX Info: Redefining \% on input line 20639.
+ [341] (./figuras-tikz/Cap14-medible-2.tikz
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no ; in font nullfont!
+)
+LaTeX Info: Redefining \. on input line 20681.
+LaTeX Info: Redefining \% on input line 20681.
+ [342]
+<./fotos/calcasdos/Tonelli.pdf, id=1368, 602.45775pt x 842.34401pt>
+File: ./fotos/calcasdos/Tonelli.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Tonelli.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Tonelli.pdf  used on input line 2076
+6.
+(pdftex.def)             Requested size: 86.62848pt x 121.11493pt.
+LaTeX Info: Redefining \. on input line 20768.
+LaTeX Info: Redefining \% on input line 20768.
+ [343]
+LaTeX Info: Redefining \. on input line 20803.
+LaTeX Info: Redefining \% on input line 20803.
+ [344 <./fotos/calcasdos/Tonelli.pdf>]
+LaTeX Info: Redefining \. on input line 20861.
+LaTeX Info: Redefining \% on input line 20861.
+ [345]
+LaTeX Info: Redefining \. on input line 20940.
+LaTeX Info: Redefining \% on input line 20940.
+ [346]
+LaTeX Info: Redefining \. on input line 21012.
+LaTeX Info: Redefining \% on input line 21012.
+ [347]
+Overfull \hbox (0.89676pt too wide) detected at line 21046
+[][]  \LMP2/mtt/m/n/10 ^^T \LMP1/mtt/m/it/10 .[] \LMP2/mtt/m/n/10 C []\LMP1/mtt
+/m/it/10 /[]  \LMP2/mtt/m/n/10 ^^T \LMP1/mtt/m/it/10 .2 [] []/[]  \LMP2/mtt/m/n
+/10 D  \LMP1/mtt/m/it/10 2[] [] [] \LMP2/mtt/m/n/10 ^^T \LMP1/mtt/m/it/10 2[].[
+][] \LMP2/mtt/m/n/10 C [][]\LMP1/mtt/m/it/10 /;
+ []
+
+LaTeX Info: Redefining \. on input line 21090.
+LaTeX Info: Redefining \% on input line 21090.
+[348]
+LaTeX Info: Redefining \. on input line 21168.
+LaTeX Info: Redefining \% on input line 21168.
+ [349]
+LaTeX Info: Redefining \. on input line 21245.
+LaTeX Info: Redefining \% on input line 21245.
+ [350]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 21299.
+LaTeX Info: Redefining \% on input line 21299.
+ [351]
+LaTeX Info: Redefining \. on input line 21368.
+LaTeX Info: Redefining \% on input line 21368.
+
+[352]
+LaTeX Info: Redefining \. on input line 21435.
+LaTeX Info: Redefining \% on input line 21435.
+ [353]
+LaTeX Info: Redefining \. on input line 21508.
+LaTeX Info: Redefining \% on input line 21508.
+ [354]
+LaTeX Info: Redefining \. on input line 21580.
+LaTeX Info: Redefining \% on input line 21580.
+ [355]
+LaTeX Info: Redefining \. on input line 21654.
+LaTeX Info: Redefining \% on input line 21654.
+ [356]
+Overfull \hbox (0.90651pt too wide) in paragraph at lines 21701--21704
+\T1/ptm/m/n/10 (-20) Dado que $\LMP1/mtt/m/it/10 g1[]$ \T1/ptm/m/n/10 (-20) es 
+in-te-gra-ble, el teo-re-ma de con-ver-gen-cia do-mi-na-da (Teo-re-ma 13.26[])
+ []
+
+LaTeX Info: Redefining \. on input line 21723.
+LaTeX Info: Redefining \% on input line 21723.
+[357]
+LaTeX Info: Redefining \. on input line 21773.
+LaTeX Info: Redefining \% on input line 21773.
+ [358]
+LaTeX Info: Redefining \. on input line 21849.
+LaTeX Info: Redefining \% on input line 21849.
+ [359]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 21908.
+LaTeX Info: Redefining \% on input line 21908.
+ [360]
+LaTeX Info: Redefining \. on input line 21972.
+LaTeX Info: Redefining \% on input line 21972.
+
+[361]
+Overfull \hbox (1.93321pt too wide) detected at line 22011
+[][] \LMP2/mtt/m/n/10 ^^T [][] \LMP1/mtt/m/it/10 ^^Z[].y/ [] dy < [][]\LMP2/mtt
+/m/n/10 8\LMP1/mtt/m/it/10 x \LMP2/mtt/m/n/10 2 \U/mt2hrb/m/n/10 R[]\LMP1/mtt/m
+/it/10 ;
+ []
+
+LaTeX Info: Redefining \. on input line 22029.
+LaTeX Info: Redefining \% on input line 22029.
+[362]
+<./fotos/calcasdos/Kolmogorov.pdf, id=1435, 602.42363pt x 803.20076pt>
+File: ./fotos/calcasdos/Kolmogorov.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Kolmogorov.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Kolmogorov.pdf  used on input line 2
+2106.
+(pdftex.def)             Requested size: 86.62848pt x 115.49904pt.
+LaTeX Info: Redefining \. on input line 22118.
+LaTeX Info: Redefining \% on input line 22118.
+ [363]
+Overfull \hbox (11.59125pt too wide) in paragraph at lines 22134--22139
+[]\T1/ptm/m/sc/10 (-20) AfirmaciÛn 1\T1/ptm/m/n/10 (-20) :  Sea $\LMP1/mtt/m/it
+/10 ^^Z \LMP2/mtt/m/n/10 2 \OMS/cmsy/m/n/10 C[]\LMP1/mtt/m/it/10 .\U/mt2hrb/m/n
+/10 R[]\LMP1/mtt/m/it/10 /$\T1/ptm/m/n/10 (-20) . En-ton-ces el con-jun-to $\OM
+S/cmsy/m/n/10 K[] \LMP2/mtt/m/n/10 WD []$
+ []
+
+LaTeX Info: Redefining \. on input line 22168.
+LaTeX Info: Redefining \% on input line 22168.
+[364 <./fotos/calcasdos/Kolmogorov.pdf>]
+Underfull \vbox (badness 4819) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 22215.
+LaTeX Info: Redefining \% on input line 22215.
+ [365]
+LaTeX Info: Redefining \. on input line 22293.
+LaTeX Info: Redefining \% on input line 22293.
+
+[366]
+LaTeX Info: Redefining \. on input line 22362.
+LaTeX Info: Redefining \% on input line 22362.
+ [367]
+Underfull \vbox (badness 1383) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 22426.
+LaTeX Info: Redefining \% on input line 22426.
+ [368]
+Overfull \hbox (7.12587pt too wide) in paragraph at lines 22458--22462
+[]\T1/ptm/m/it/10 (-20) Si $\LMP1/mtt/m/it/10 X$ \T1/ptm/m/it/10 (-20) es un su
+b-con-jun-to me-di-ble de $\U/mt2hrb/m/n/10 R[]$ \T1/ptm/m/it/10 (-20) y $\LMP1
+/mtt/m/it/10 ^^X \LMP2/mtt/m/n/10 2 \U/mt2hrb/m/n/10 R[]$ \T1/ptm/m/it/10 (-20)
+ en-ton-ces $\LMP1/mtt/m/it/10 X \LMP2/mtt/m/n/10 C \LMP1/mtt/m/it/10 ^^X \LMP2
+/mtt/m/n/10 WD []$
+ []
+
+LaTeX Info: Redefining \. on input line 22497.
+LaTeX Info: Redefining \% on input line 22497.
+[369]
+LaTeX Info: Redefining \. on input line 22578.
+LaTeX Info: Redefining \% on input line 22578.
+ [370]
+LaTeX Info: Redefining \. on input line 22650.
+LaTeX Info: Redefining \% on input line 22650.
+ [371]
+LaTeX Info: Redefining \. on input line 22717.
+LaTeX Info: Redefining \% on input line 22717.
+ [372]
+LaTeX Info: Redefining \. on input line 22794.
+LaTeX Info: Redefining \% on input line 22794.
+ [373]
+LaTeX Info: Redefining \. on input line 22860.
+LaTeX Info: Redefining \% on input line 22860.
+ [374]
+LaTeX Info: Redefining \. on input line 22916.
+LaTeX Info: Redefining \% on input line 22916.
+ [375]
+LaTeX Info: Redefining \. on input line 22959.
+LaTeX Info: Redefining \% on input line 22959.
+ [376]
+chapter 15.
+[377
+
+
+]
+<./fotos/calcasdos/Schwarz.pdf, id=1490, 602.45474pt x 828.29953pt>
+File: ./fotos/calcasdos/Schwarz.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Schwarz.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Schwarz.pdf  used on input line 2303
+5.
+(pdftex.def)             Requested size: 97.02348pt x 133.39006pt.
+LaTeX Info: Redefining \. on input line 23067.
+LaTeX Info: Redefining \% on input line 23067.
+ [378 <./fotos/calcasdos/Schwarz.pdf>]
+LaTeX Info: Redefining \. on input line 23138.
+LaTeX Info: Redefining \% on input line 23138.
+ [379]
+<./fotos/calcasdos/Hilbert.pdf, id=1500, 602.6495pt x 808.25867pt>
+File: ./fotos/calcasdos/Hilbert.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Hilbert.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Hilbert.pdf  used on input line 2315
+6.
+(pdftex.def)             Requested size: 93.56024pt x 125.47612pt.
+LaTeX Info: Redefining \. on input line 23200.
+LaTeX Info: Redefining \% on input line 23200.
+ [380 <./fotos/calcasdos/Hilbert.pdf>]
+LaTeX Info: Redefining \. on input line 23280.
+LaTeX Info: Redefining \% on input line 23280.
+ [381]
+LaTeX Info: Redefining \. on input line 23355.
+LaTeX Info: Redefining \% on input line 23355.
+ [382]
+Underfull \vbox (badness 2221) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 23412.
+LaTeX Info: Redefining \% on input line 23412.
+ [383]
+LaTeX Info: Redefining \. on input line 23479.
+LaTeX Info: Redefining \% on input line 23479.
+
+[384]
+LaTeX Info: Redefining \. on input line 23542.
+LaTeX Info: Redefining \% on input line 23542.
+ [385]
+<./fotos/calcasdos/Riesz.pdf, id=1523, 602.5682pt x 731.95154pt>
+File: ./fotos/calcasdos/Riesz.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Riesz.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Riesz.pdf  used on input line 23597.
+
+(pdftex.def)             Requested size: 86.62848pt x 105.22pt.
+
+Underfull \vbox (badness 1783) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 23600.
+LaTeX Info: Redefining \% on input line 23600.
+ [386]
+LaTeX Info: Redefining \. on input line 23661.
+LaTeX Info: Redefining \% on input line 23661.
+
+[387 <./fotos/calcasdos/Riesz.pdf>]
+<./fotos/calcasdos/Dirichlet.pdf, id=1534, 602.45076pt x 731.92746pt>
+File: ./fotos/calcasdos/Dirichlet.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Dirichlet.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Dirichlet.pdf  used on input line 23
+675.
+(pdftex.def)             Requested size: 86.62848pt x 105.23888pt.
+LaTeX Info: Redefining \. on input line 23711.
+LaTeX Info: Redefining \% on input line 23711.
+ [388 <./fotos/calcasdos/Dirichlet.pdf>]
+LaTeX Info: Redefining \. on input line 23776.
+LaTeX Info: Redefining \% on input line 23776.
+
+[389]
+LaTeX Info: Redefining \. on input line 23851.
+LaTeX Info: Redefining \% on input line 23851.
+ [390]
+LaTeX Info: Redefining \. on input line 23928.
+LaTeX Info: Redefining \% on input line 23928.
+ [391]
+LaTeX Info: Redefining \. on input line 23995.
+LaTeX Info: Redefining \% on input line 23995.
+ [392]
+LaTeX Info: Redefining \. on input line 24064.
+LaTeX Info: Redefining \% on input line 24064.
+ [393]
+<./fotos/calcasdos/Baire.pdf, id=1557, 603.25375pt x 746.88637pt>
+File: ./fotos/calcasdos/Baire.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Baire.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Baire.pdf  used on input line 24111.
+
+(pdftex.def)             Requested size: 97.02348pt x 120.11967pt.
+LaTeX Info: Redefining \. on input line 24123.
+LaTeX Info: Redefining \% on input line 24123.
+ [394 <./fotos/calcasdos/Baire.pdf>]
+LaTeX Info: Redefining \. on input line 24196.
+LaTeX Info: Redefining \% on input line 24196.
+ [395]
+LaTeX Info: Redefining \. on input line 24271.
+LaTeX Info: Redefining \% on input line 24271.
+
+[396]
+LaTeX Info: Redefining \. on input line 24349.
+LaTeX Info: Redefining \% on input line 24349.
+ [397]
+LaTeX Info: Redefining \. on input line 24407.
+LaTeX Info: Redefining \% on input line 24407.
+ [398]
+LaTeX Info: Redefining \. on input line 24479.
+LaTeX Info: Redefining \% on input line 24479.
+ [399]
+LaTeX Info: Redefining \. on input line 24558.
+LaTeX Info: Redefining \% on input line 24558.
+ [400]
+LaTeX Info: Redefining \. on input line 24634.
+LaTeX Info: Redefining \% on input line 24634.
+ [401]
+LaTeX Info: Redefining \. on input line 24646.
+LaTeX Info: Redefining \% on input line 24646.
+ [402]
+chapter 16.
+[403
+
+
+]
+Underfull \vbox (badness 1546) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 24750.
+LaTeX Info: Redefining \% on input line 24750.
+ [404]
+LaTeX Info: Redefining \. on input line 24815.
+LaTeX Info: Redefining \% on input line 24815.
+
+[405]
+LaTeX Info: Redefining \. on input line 24880.
+LaTeX Info: Redefining \% on input line 24880.
+ [406]
+LaTeX Info: Redefining \. on input line 24945.
+LaTeX Info: Redefining \% on input line 24945.
+ [407]
+LaTeX Info: Redefining \. on input line 24997.
+LaTeX Info: Redefining \% on input line 24997.
+ [408]
+<./fotos/calcasdos/Sobolev.pdf, id=1608, 602.42969pt x 703.81647pt>
+File: ./fotos/calcasdos/Sobolev.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Sobolev.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Sobolev.pdf  used on input line 2502
+8.
+(pdftex.def)             Requested size: 86.62848pt x 101.20773pt.
+LaTeX Info: Redefining \. on input line 25050.
+LaTeX Info: Redefining \% on input line 25050.
+ [409 <./fotos/calcasdos/Sobolev.pdf>]
+LaTeX Info: Redefining \. on input line 25117.
+LaTeX Info: Redefining \% on input line 25117.
+ [410]
+LaTeX Info: Redefining \. on input line 25183.
+LaTeX Info: Redefining \% on input line 25183.
+ [411]
+LaTeX Info: Redefining \. on input line 25262.
+LaTeX Info: Redefining \% on input line 25262.
+
+[412]
+LaTeX Info: Redefining \. on input line 25326.
+LaTeX Info: Redefining \% on input line 25326.
+ [413]
+Overfull \hbox (2.133pt too wide) detected at line 25331
+\LMP1/mtt/m/it/10 ^^Z[] \LMP2/mtt/m/n/10 ^^C \LMP1/mtt/m/it/10 u \LMP2/mtt/m/n/
+10 ! \LMP1/mtt/m/it/10 u[]L[].\U/mt2hrb/m/n/10 R[]\LMP1/mtt/m/it/10 /[][].^^Z[]
+ \LMP2/mtt/m/n/10 ^^C \LMP1/mtt/m/it/10 u/ \LMP2/mtt/m/n/10 ! \LMP1/mtt/m/it/10
+ D[]u[]L[].\U/mt2hrb/m/n/10 R[]\LMP1/mtt/m/it/10 /[]\LMP2/mtt/m/n/10 8\LMP1/mtt
+/m/it/10 i \LMP2/mtt/m/n/10 D \LMP1/mtt/m/it/10 1; [] ; n:
+ []
+
+LaTeX Info: Redefining \. on input line 25396.
+LaTeX Info: Redefining \% on input line 25396.
+[414]
+LaTeX Info: Redefining \. on input line 25476.
+LaTeX Info: Redefining \% on input line 25476.
+ [415]
+LaTeX Info: Redefining \. on input line 25538.
+LaTeX Info: Redefining \% on input line 25538.
+ [416]
+LaTeX Info: Redefining \. on input line 25594.
+LaTeX Info: Redefining \% on input line 25594.
+ [417]
+Overfull \hbox (1.79707pt too wide) in paragraph at lines 25654--25663
+\LMP1/mtt/m/it/10 .\LMP2/mtt/m/n/10 ^^@\LMP1/mtt/m/it/10 3=4; 3=4//$ \T1/ptm/m/
+n/10 (-20) y re-es-ca-lan-do, po-de-mos su-po-ner que $\LMP1/mtt/m/it/10 #$ \T1
+/ptm/m/n/10 (-20) y $[]$ son con-ti-nuas en $[]\LMP1/mtt/m/it/10 .0; 1/ \LMP2/m
+tt/m/n/10 ^^B
+ []
+
+LaTeX Info: Redefining \. on input line 25680.
+LaTeX Info: Redefining \% on input line 25680.
+[418]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 25738.
+LaTeX Info: Redefining \% on input line 25738.
+ [419]
+LaTeX Info: Redefining \. on input line 25795.
+LaTeX Info: Redefining \% on input line 25795.
+
+[420]
+LaTeX Info: Redefining \. on input line 25865.
+LaTeX Info: Redefining \% on input line 25865.
+ [421]
+LaTeX Info: Redefining \. on input line 25919.
+LaTeX Info: Redefining \% on input line 25919.
+ [422]
+LaTeX Info: Redefining \. on input line 25988.
+LaTeX Info: Redefining \% on input line 25988.
+ [423]
+LaTeX Info: Redefining \. on input line 26058.
+LaTeX Info: Redefining \% on input line 26058.
+ [424]
+LaTeX Info: Redefining \. on input line 26133.
+LaTeX Info: Redefining \% on input line 26133.
+ [425]
+LaTeX Info: Redefining \. on input line 26219.
+LaTeX Info: Redefining \% on input line 26219.
+ [426]
+LaTeX Info: Redefining \. on input line 26290.
+LaTeX Info: Redefining \% on input line 26290.
+ [427]
+LaTeX Info: Redefining \. on input line 26356.
+LaTeX Info: Redefining \% on input line 26356.
+ [428]
+chapter 17.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [429
+
+
+]
+LaTeX Info: Redefining \. on input line 26464.
+LaTeX Info: Redefining \% on input line 26464.
+
+[430]
+LaTeX Info: Redefining \. on input line 26526.
+LaTeX Info: Redefining \% on input line 26526.
+ [431]
+LaTeX Info: Redefining \. on input line 26567.
+LaTeX Info: Redefining \% on input line 26567.
+ [432]
+<./fotos/calcasdos/gagliardo.pdf, id=1689, 602.94357pt x 758.25581pt>
+File: ./fotos/calcasdos/gagliardo.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/gagliardo.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/gagliardo.pdf  used on input line 26
+571.
+(pdftex.def)             Requested size: 93.67609pt x 117.81348pt.
+<./fotos/calcasdos/Nirenberg.pdf, id=1690, 602.44972pt x 713.868pt>
+File: ./fotos/calcasdos/Nirenberg.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Nirenberg.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Nirenberg.pdf  used on input line 26
+577.
+(pdftex.def)             Requested size: 99.41829pt x 117.81348pt.
+LaTeX Info: Redefining \. on input line 26631.
+LaTeX Info: Redefining \% on input line 26631.
+ [433 <./fotos/calcasdos/gagliardo.pdf> <./fotos/calcasdos/Nirenberg.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 26673.
+LaTeX Info: Redefining \% on input line 26673.
+ [434]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 26737.
+LaTeX Info: Redefining \% on input line 26737.
+ [435]
+Overfull \hbox (3.91805pt too wide) in paragraph at lines 26791--26795
+[]\T1/ptm/b/n/10 (-20) Corolario 17.5. []\T1/ptm/m/it/10 (-20) Si $\LMP1/mtt/m/
+it/10 
+$ \T1/ptm/m/it/10 (-20) es un sub-con-jun-to abier-to de $\U/mt2hrb/m/n/10 R[]$
+ \T1/ptm/m/it/10 (-20) y $\LMP1/mtt/m/it/10 p \LMP2/mtt/m/n/10 2 \LMP1/mtt/m/it
+/10 å1; n/$\T1/ptm/m/it/10 (-20) , en-ton-ces $\LMP1/mtt/m/it/10 W[].
+/ \LMP2/mtt/m/n/10 ^^Z
+ []
+
+LaTeX Info: Redefining \. on input line 26811.
+LaTeX Info: Redefining \% on input line 26811.
+[436]
+LaTeX Info: Redefining \. on input line 26885.
+LaTeX Info: Redefining \% on input line 26885.
+ [437]
+<./fotos/calcasdos/Henri_Poincare.pdf, id=1724, 302.99098pt x 385.26436pt>
+File: ./fotos/calcasdos/Henri_Poincare.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Henri_Poincare.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Henri_Poincare.pdf  used on input li
+ne 26908.
+(pdftex.def)             Requested size: 86.62848pt x 110.14832pt.
+LaTeX Info: Redefining \. on input line 26933.
+LaTeX Info: Redefining \% on input line 26933.
+ [438 <./fotos/calcasdos/Henri_Poincare.pdf>]
+LaTeX Info: Redefining \. on input line 27014.
+LaTeX Info: Redefining \% on input line 27014.
+ [439]
+LaTeX Info: Redefining \. on input line 27080.
+LaTeX Info: Redefining \% on input line 27080.
+ [440]
+LaTeX Info: Redefining \. on input line 27139.
+LaTeX Info: Redefining \% on input line 27139.
+ [441]
+<./fotos/calcasdos/Rellich.pdf, id=1741, 603.7506pt x 856.68758pt>
+File: ./fotos/calcasdos/Rellich.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Rellich.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Rellich.pdf  used on input line 2716
+9.
+(pdftex.def)             Requested size: 97.67993pt x 138.60345pt.
+<./fotos/calcasdos/Kondrashov.pdf, id=1742, 602.45578pt x 891.52672pt>
+File: ./fotos/calcasdos/Kondrashov.pdf Graphic file (type pdf)
+<use ./fotos/calcasdos/Kondrashov.pdf>
+Package pdftex.def Info: ./fotos/calcasdos/Kondrashov.pdf  used on input line 2
+7175.
+(pdftex.def)             Requested size: 93.65546pt x 138.60345pt.
+LaTeX Info: Redefining \. on input line 27199.
+LaTeX Info: Redefining \% on input line 27199.
+
+[442 <./fotos/calcasdos/Rellich.pdf> <./fotos/calcasdos/Kondrashov.pdf>]
+LaTeX Info: Redefining \. on input line 27284.
+LaTeX Info: Redefining \% on input line 27284.
+
+[443]
+LaTeX Info: Redefining \. on input line 27354.
+LaTeX Info: Redefining \% on input line 27354.
+ [444]
+Overfull \hbox (0.19997pt too wide) in paragraph at lines 27356--27358
+[]\T1/ptm/m/n/10 (-20) A con-ti-nua-ciÛn da-re-mos una apli-ca-ciÛn im-por-tan-
+te del teo-re-ma de Rellich-Kondrashov. 
+ []
+
+LaTeX Info: Redefining \. on input line 27417.
+LaTeX Info: Redefining \% on input line 27417.
+[445]
+LaTeX Info: Redefining \. on input line 27485.
+LaTeX Info: Redefining \% on input line 27485.
+ [446]
+LaTeX Info: Redefining \. on input line 27560.
+LaTeX Info: Redefining \% on input line 27560.
+ [447]
+Underfull \vbox (badness 2726) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 27611.
+LaTeX Info: Redefining \% on input line 27611.
+ [448]
+LaTeX Info: Redefining \. on input line 27680.
+LaTeX Info: Redefining \% on input line 27680.
+
+[449]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 27742.
+LaTeX Info: Redefining \% on input line 27742.
+ [450]
+Overfull \hbox (2.66556pt too wide) detected at line 27812
+[][][][] [][][][] \LMP2/mtt/m/n/10 ^^T \LMP1/mtt/m/it/10 C [][] [] []\LMP2/mtt/
+m/n/10 8\LMP1/mtt/m/it/10 u \LMP2/mtt/m/n/10 2 \LMP1/mtt/m/it/10 W[].\U/mt2hrb/
+m/n/10 R[]\LMP1/mtt/m/it/10 /:
+ []
+
+LaTeX Info: Redefining \. on input line 27812.
+LaTeX Info: Redefining \% on input line 27812.
+[451]
+LaTeX Info: Redefining \. on input line 27879.
+LaTeX Info: Redefining \% on input line 27879.
+ [452]
+LaTeX Info: Redefining \. on input line 27943.
+LaTeX Info: Redefining \% on input line 27943.
+ [453]
+LaTeX Info: Redefining \. on input line 28018.
+LaTeX Info: Redefining \% on input line 28018.
+ [454]
+LaTeX Info: Redefining \. on input line 28035.
+LaTeX Info: Redefining \% on input line 28035.
+ [455] [456
+
+
+] [457
+
+
+]
+LaTeX Info: Redefining \. on input line 28042.
+LaTeX Info: Redefining \% on input line 28042.
+ [458]
+runsystem(makeindex mca.idx)...executed safely (allowed).
+
+ (./mca.ind [459
+
+
+
+
+]
+LaTeX Info: Redefining \. on input line 153.
+LaTeX Info: Redefining \% on input line 153.
+ [460]
+LaTeX Info: Redefining \. on input line 243.
+LaTeX Info: Redefining \% on input line 243.
+ [461]
+LaTeX Info: Redefining \. on input line 337.
+LaTeX Info: Redefining \% on input line 337.
+
+[462])
+LaTeX Info: Redefining \. on input line 28046.
+LaTeX Info: Redefining \% on input line 28046.
+ [463] (./mca.aux
+LaTeX Info: Redefining \sptext on input line 7.
+LaTeX Info: Redefining \. on input line 7.
+LaTeX Info: Redefining \% on input line 7.
+)
+ ***********
+LaTeX2e <2023-06-01> patch level 1
+L3 programming layer <2020/03/25>
+ ***********
+Package logreq Info: Writing requests to 'mca.run.xml'.
+\openout1 = `mca.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 48844 strings out of 474934
+ 1132804 string characters out of 5759811
+ 4251007 words of memory out of 5000000
+ 68770 multiletter control sequences out of 15000+600000
+ 794851 words of font info for 646 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 110i,22n,376p,10898b,2732s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.
+pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cme
+x9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.
+pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
+b></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></
+usr/local/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2exa.pfb></usr/local/t
+exlive/texmf-local/fonts/type1/pctex/mtpro2/mt2exe.pfb></usr/local/texlive/texm
+f-local/fonts/type1/pctex/mtpro2/mt2hrbs.pfb></usr/local/texlive/texmf-local/fo
+nts/type1/pctex/mtpro2/mt2hrbt.pfb></usr/local/texlive/texmf-local/fonts/type1/
+pctex/mtpro2/mt2mfs.pfb></usr/local/texlive/texmf-local/fonts/type1/pctex/mtpro
+2/mt2mft.pfb></usr/local/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2mif.pf
+b></usr/local/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2mis.pfb></usr/loc
+al/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2mit.pfb></usr/local/texlive/
+texmf-local/fonts/type1/pctex/mtpro2/mt2syat.pfb></usr/local/texlive/texmf-loca
+l/fonts/type1/pctex/mtpro2/mt2syf.pfb></usr/local/texlive/texmf-local/fonts/typ
+e1/pctex/mtpro2/mt2sys.pfb></usr/local/texlive/texmf-local/fonts/type1/pctex/mt
+pro2/mt2syt.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8
+a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></u
+sr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/t
+exlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/202
+3/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on mca.pdf (473 pages, 5761407 bytes).
+PDF statistics:
+ 1946 PDF objects out of 2073 (max. 8388607)
+ 1295 compressed objects within 13 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 133373 words of extra memory for PDF output out of 154059 (max. 10000000)
+

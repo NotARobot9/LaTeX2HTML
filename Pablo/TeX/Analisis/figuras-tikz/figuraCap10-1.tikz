@@ -1,0 +1,14 @@
+\begin{tikzpicture}[scale=.6]
+%  \draw[thin,fill=gray!25] plot[smooth cycle, tension=.85]
+  \draw[thick] plot[smooth cycle, tension=.85]
+  coordinates{(1.4,-2) (-1.4,-2) (-2.2,1.3) (2,2) (0,0) (2,-.5)};
+%  coordinates{(-1,-2) (1,-2) (1.7,1.3) (-1,2) (-1,0.5) (0,.3)};
+\draw[mark=*, mark size=1.2pt] plot coordinates{(-0.19,-2.44)};
+\draw[very thin] (-2.39,-2.44)--(2.01,-2.44);
+\draw[very thin] (-0.19,-4.64)--(-0.19,-0.24);
+\draw[very thick, -latex'] (-0.19,-2.44)--(-0.19,-1);
+\draw[dashed] (-2.19,-4.44) rectangle (1.81,-0.44);
+\node[right] at (-0.2,-1.2) {$\nabla\varphi(\xi)$};
+\node[below] at (0,-2.44) {$\xi$};
+\node[right] at (2,1.8) {$M$};
+\end{tikzpicture}

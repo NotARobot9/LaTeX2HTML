@@ -1,0 +1,23 @@
+\begin{tikzpicture}[scale=2]
+\pgfmathsetmacro{\STDOS}{0.1768}
+\pgfmathsetmacro{\TPTD}{1/64}
+\draw (0,-0.5)--(0,0.5);
+\draw (0,0)--(1.05,0);
+\draw[very thin] (0,0) sin (\TPTD,\STDOS) cos (2*\TPTD,0) sin (3*\TPTD,-\STDOS) cos (4*\TPTD,0)
+ sin (5*\TPTD,\STDOS) cos (6*\TPTD,0) sin (7*\TPTD,-\STDOS) cos (8*\TPTD,0)
+ sin (9*\TPTD,\STDOS) cos (10*\TPTD,0) sin (11*\TPTD,-\STDOS) cos (12*\TPTD,0)
+ sin (13*\TPTD,\STDOS) cos (14*\TPTD,0) sin (15*\TPTD,-\STDOS) cos (16*\TPTD,0)
+ sin (17*\TPTD,\STDOS) cos (18*\TPTD,0) sin (19*\TPTD,-\STDOS) cos (20*\TPTD,0)
+ sin (21*\TPTD,\STDOS) cos (22*\TPTD,0) sin (23*\TPTD,-\STDOS) cos (24*\TPTD,0)
+ sin (25*\TPTD,\STDOS) cos (26*\TPTD,0) sin (27*\TPTD,-\STDOS) cos (28*\TPTD,0)
+ sin (29*\TPTD,\STDOS) cos (30*\TPTD,0) sin (31*\TPTD,-\STDOS) cos (32*\TPTD,0)
+ sin (33*\TPTD,\STDOS) cos (34*\TPTD,0) sin (35*\TPTD,-\STDOS) cos (36*\TPTD,0)
+ sin (37*\TPTD,\STDOS) cos (38*\TPTD,0) sin (39*\TPTD,-\STDOS) cos (40*\TPTD,0)
+ sin (41*\TPTD,\STDOS) cos (42*\TPTD,0) sin (43*\TPTD,-\STDOS) cos (44*\TPTD,0)
+ sin (45*\TPTD,\STDOS) cos (46*\TPTD,0) sin (47*\TPTD,-\STDOS) cos (48*\TPTD,0)
+ sin (49*\TPTD,\STDOS) cos (50*\TPTD,0) sin (51*\TPTD,-\STDOS) cos (52*\TPTD,0)
+ sin (53*\TPTD,\STDOS) cos (54*\TPTD,0) sin (55*\TPTD,-\STDOS) cos (56*\TPTD,0)
+ sin (57*\TPTD,\STDOS) cos (58*\TPTD,0) sin (59*\TPTD,-\STDOS) cos (60*\TPTD,0)
+ sin (61*\TPTD,\STDOS) cos (62*\TPTD,0) sin (63*\TPTD,-\STDOS) cos (64*\TPTD,0);
+\node[below] at (0.5,-0.5) {$\sigma_{32}$};
+\end{tikzpicture}

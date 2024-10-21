@@ -1,0 +1,63 @@
+\begin{tikzpicture}[yscale=1.6, xscale=2]
+  \draw[-latex',very thin] (-2,0)--(2,0);
+  \draw[-latex',very thin] (0,-1.2)--(0,1.5);
+
+  \foreach \x in {-1, 1 } do 
+  {
+    \draw[very thin] (0.05,\x)--(-0.05, \x);
+  };
+
+  \draw (0.01,-1.15) node[right] {$-k$};
+  \draw (0.05,1) node[right] {$k$};
+  \draw[very thin, densely dashed] (0,1)--(-0.740951,1);
+
+\draw[domain=-1.8619:1.46209, samples=200] plot ({\x},{0.7*(-\x*\x*\x*\x -
+  0.5*\x*\x*\x + 2*\x*\x) + 0.3});
+\draw[densely dotted] (-1.8619,-1)--(1.46209,-1);
+\draw[densely dotted] (-1.83384,-0.75)--(1.42399,-0.75);
+\draw[densely dotted] (-1.80364,-0.5)--(1.38138,-0.5);
+\draw[densely dotted] (-1.77087,-0.25)--(1.33269,-0.25);
+\draw[densely dotted] (-1.59533,0.75)--(-0.572967,0.75);
+\draw[densely dotted] (-1.64908,0.5)--(-0.373579,0.5);
+\draw[densely dotted] (-1.69477,0.25)--(1.20322,0.25);
+
+\draw[very thick] (-1.83384,-1)--(-2.5,-1);
+\draw[very thick] (2.5,-1)--(1.42399,-1);
+\draw[very thick] (-1.83384,-0.75)--(-1.80364,-0.75);
+\draw[very thick] (1.38138,-0.75)--(1.42399,-0.75);
+\draw[very thick] (-1.80364,-0.5)--(-1.77087,-0.5);
+\draw[very thick] (1.33269,-0.5)--(1.38138,-0.5);
+\draw[very thick] (-1.77087,-0.25)--(-1.73489,-0.25);
+\draw[very thick] (1.27515,-0.25)--(1.33269,-0.25);
+\draw[very thick] (-1.69477,0)--(-1.73489,0);
+\draw[very thick] (1.27515,0)--(1.20322,0);
+\draw[very thick] (-1.69477,0.25)--(-1.64908,0.25);
+\draw[very thick] (1.1017,0.25)--(1.20322,0.25);
+\draw[very thick] (-0.373579,0.25)--(.420961,0.25);
+\draw[very thick] (-1.64908,0.5)--(-1.59533,0.5);
+\draw[very thick] (-0.572967,0.5)--(-0.373579,0.5);
+\draw[very thick] (0.420961,0.5)--(1.1017,0.5);
+\draw[very thick] (-1.59533,0.75)--(-1.52846,0.75);
+\draw[very thick] (-0.740951,0.75)--(-0.572967,0.75);
+\draw[very thick] (-1.52846,1)--(-0.740951,1);
+
+\draw[densely dotted] (-1.83384,-1)--(-1.83384,-.75);
+\draw[densely dotted] (1.42399,-1)--(1.42399,-.75);
+\draw[densely dotted] (-1.80364,-.75)--(-1.80364,-.5);
+\draw[densely dotted] (1.38138,-.75)--(1.38138,-.5);
+\draw[densely dotted] (-1.77087,-.5)--(-1.77087,-.25);
+\draw[densely dotted] (1.33269,-.5)--(1.33269,-.25);
+\draw[densely dotted] (-1.73489,-.25)--(-1.73489,0);
+\draw[densely dotted] (1.27515,-.25)--(1.27515,0);
+\draw[densely dotted] (-1.69477,0)--(-1.69477,0.25);
+\draw[densely dotted] (1.20322,0)--(1.20322,0.25);
+\draw[densely dotted] (-1.64908,0.25)--(-1.64908,0.5);
+\draw[densely dotted] (-0.373579,0.25)--(-0.373579,0.5);
+\draw[densely dotted] (0.420961,0.25)--(0.420961,0.5);
+\draw[densely dotted] (1.1017,0.25)--(1.1017,0.5);
+\draw[densely dotted] (-1.59533,0.5)--(-1.59533,0.75);
+\draw[densely dotted] (-0.572967,0.5)--(-0.572967,0.75);
+\draw[densely dotted] (-1.52846,0.75)--(-1.52846,1);
+\draw[densely dotted] (-0.740951,0.75)--(-0.740951,1);
+
+\end{tikzpicture}

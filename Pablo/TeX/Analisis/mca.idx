@@ -1,0 +1,322 @@
+\indexentry{metrica@métrica}{8}
+\indexentry{distancia}{8}
+\indexentry{desigualdad!del triángulo}{8}
+\indexentry{espacio!metrico@métrico}{8}
+\indexentry{norma}{11}
+\indexentry{espacio!normado}{12}
+\indexentry{metrica@métrica!inducida por una norma}{12}
+\indexentry{norma!norma p@$\left\Vert \cdot \right\Vert_{p}$}{12}
+\indexentry{desigualdad!de Young}{12}
+\indexentry{desigualdad!de Hölder!en $\mathbb{R}^{n}$}{14}
+\indexentry{espacio!Rn@$\mathbb{R}_{p}^{n}$}{15}
+\indexentry{espacio!Rn@$\mathbb{R}^{n}$}{15}
+\indexentry{espacio!l subp@$\ell_{p}$}{16}
+\indexentry{norma!norma p@$\left\Vert \cdot \right\Vert_{p}$}{16}
+\indexentry{desigualdad!de Minkowski!para series}{17}
+\indexentry{metrica@métrica!discreta@discreta $d_{\ensuremath  {\mathrm  {disc}}}$}{17}
+\indexentry{espacio!discreto@discreto $X_{\ensuremath  {\mathrm  {disc}}}$}{17}
+\indexentry{norma!norma p@$\left\Vert \cdot \right\Vert_{p}$}{17}
+\indexentry{desigualdad!de Hölder}{18}
+\indexentry{desigualdad!de Minkowski}{19}
+\indexentry{espacio!C subp0ab@$\mathcal{C}_{p}^{0}[a,b]\vspaceindex$}{20}
+\indexentry{espacio!C ala0ab@$\mathcal{C}^{0}[a,b]$}{20}
+\indexentry{función!acotada}{22}
+\indexentry{espacio!B SX@$\mathcal{B}(S,X)$}{22}
+\indexentry{metrica@métrica!uniforme @uniforme $d_{\infty }$}{22}
+\indexentry{norma!uniforme@uniforme $\left\Vert \cdot \right\Vert_{\infty }$}{23}
+\indexentry{metrica@métrica!inducida en un     subconjunto}{23}
+\indexentry{subespacio!métrico}{23}
+\indexentry{isometria@isometría}{24}
+\indexentry{desigualdad!de Hölder!para series}{26}
+\indexentry{función!continua}{32}
+\indexentry{homeomorfismo}{33}
+\indexentry{función!Lipschitz continua}{34}
+\indexentry{equivalencia}{34}
+\indexentry{metricas@métricas equivalentes}{35}
+\indexentry{normas equivalentes}{35}
+\indexentry{bola!abierta@abierta $B_{X}(x,\varepsilon )$}{36}
+\indexentry{imagen!de un   conjunto@de un conjunto $\phi (A)$}{36}
+\indexentry{punto!interior}{38}
+\indexentry{interior!interior@int$(A)$,     $\Int_{X}(A)$}{38}
+\indexentry{conjunto!abierto}{38}
+\indexentry{punto!de contacto}{39}
+\indexentry{cerradura!cerradura@$\overline{A}$, $\cerr_{X}(A)$}{39}
+\indexentry{conjunto!cerrado}{39}
+\indexentry{bola!cerrada@cerrada     $\bar{B}_{X}(x,\varepsilon )$}{40}
+\indexentry{complemento!de un conjunto@de un conjunto $X\smallsetminus   A$}{40}
+\indexentry{imagen! inversa@inversa de un conjunto   $\phi^{-1}(B)$}{42}
+\indexentry{convergencia!de una sucesión}{44}
+\indexentry{sucesión}{44}
+\indexentry{sucesión!convergente}{44}
+\indexentry{limite@límite!de una     sucesión}{44}
+\indexentry{subsucesión}{44}
+\indexentry{sucesión!acotada}{44}
+\indexentry{producto!de espacios métricos@de       espacios métricos $X\times Y$}{49}
+\indexentry{frontera}{53}
+\indexentry{cubierta}{55}
+\indexentry{cubierta!abierta}{55}
+\indexentry{subcubierta}{55}
+\indexentry{conjunto!compacto}{56}
+\indexentry{conjunto!acotado}{57}
+\indexentry{teorema!de Heine-Borel}{61}
+\indexentry{teorema!de Bolzano-Weierstrass}{62}
+\indexentry{minimo@mínimo!de una función}{62}
+\indexentry{maximo@máximo!de una     función}{62}
+\indexentry{espacio!C ala0KY@$\mathcal{C}^{0}(K,Y)$}{65}
+\indexentry{trayectoria}{65}
+\indexentry{longitud!de una trayectoria}{65}
+\indexentry{función!semicontinua inferiormente s.c.i.}{67}
+\indexentry{función!semicontinua superiormente s.c.s.}{67}
+\indexentry{limite@límite!inferior}{68}
+\indexentry{limite@límite!superior}{68}
+\indexentry{función!uniformemente continua}{70}
+\indexentry{sucesión!de Cauchy}{75}
+\indexentry{espacio!completo}{77}
+\indexentry{espacio!de Banach}{77}
+\indexentry{convergencia!puntual}{79}
+\indexentry{limite@límite!puntual}{79}
+\indexentry{convergencia!uniforme}{80}
+\indexentry{limite@límite!uniforme}{80}
+\indexentry{espacio!C subb0ZX@$\mathcal{C}_{b}^{0}(Z,X)\vspaceindex$}{82}
+\indexentry{sucesión!uniformemente de Cauchy}{84}
+\indexentry{criterio!de convergencia uniforme}{84}
+\indexentry{serie}{86}
+\indexentry{convergencia!de una serie}{86}
+\indexentry{criterio!de Cauchy para series}{87}
+\indexentry{criterio!de Weierstrass para series}{87}
+\indexentry{serie!de     funciones}{88}
+\indexentry{convergencia!uniforme de     una serie}{88}
+\indexentry{serie!de potencias}{88}
+\indexentry{radio de convergencia}{88}
+\indexentry{función!analítica}{90}
+\indexentry{criterio!de la raíz para series}{94}
+\indexentry{completación}{97}
+\indexentry{principio!de contracción}{101}
+\indexentry{contracción}{101}
+\indexentry{punto!fijo}{102}
+\indexentry{teorema!de punto fijo de Banach}{102}
+\indexentry{metodo@método!de aproximaciones sucesivas}{104}
+\indexentry{ecuación!integral de Fredholm}{106}
+\indexentry{valor!propio}{109}
+\indexentry{operador!de Fredholm}{109}
+\indexentry{ecuación!integral de Volterra}{110}
+\indexentry{valor!propio}{113}
+\indexentry{operador!de Volterra}{113}
+\indexentry{campo vectorial}{113}
+\indexentry{problema!de Cauchy}{114}
+\indexentry{condición!inicial}{114}
+\indexentry{condición!de Lipschitz}{115}
+\indexentry{teorema!de Picard-Lindelöf}{118}
+\indexentry{ecuación!no lineal de Fredholm}{121}
+\indexentry{conjunto!totalmente acotado}{126}
+\indexentry{totalmente acotado}{126}
+\indexentry{conjunto!relativamente compacto}{129}
+\indexentry{relativamente     compacto}{129}
+\indexentry{conjunto!equicontinuo}{129}
+\indexentry{equicontinuo}{129}
+\indexentry{teorema!de Arzelà-Ascoli}{131}
+\indexentry{operador!compacto}{133}
+\indexentry{problema!de Cauchy}{134}
+\indexentry{teorema!de existencia de Peano}{137}
+\indexentry{trayectoria}{139}
+\indexentry{reparametrización}{140}
+\indexentry{espacio!Tx,yX@$\mathcal{T}_{x,y}(X)$}{140}
+\indexentry{función!longitud}{140}
+\indexentry{parametrización!proporcional a la     longitud de arco}{141}
+\indexentry{teorema!de existencia de trayectorias     geodésicas}{144}
+\indexentry{cubo!de Hilbert}{146}
+\indexentry{polinomio!de Bernstein}{153}
+\indexentry{teorema!de aproximación de Bernstein}{154}
+\indexentry{teorema!de aproximación de     Weierstrass}{156}
+\indexentry{conjunto!denso}{158}
+\indexentry{espacio!C ala0K@$\mathcal{C}^{0}(K)$}{158}
+\indexentry{teorema!de Stone-Weierstrass}{159}
+\indexentry{conjunto!a lo más numerable}{163}
+\indexentry{espacio!separable}{163}
+\indexentry{espacio!L (VW)@$\mathcal{L}(V,W)$}{171}
+\indexentry{limite@límite}{172}
+\indexentry{función!Frechet@(Fréchet-)diferenciable}{173}
+\indexentry{derivada!de Fréchet}{173}
+\indexentry{función!Frechet@(Fréchet-)diferenciable}{174}
+\indexentry{derivada!de Fréchet}{174}
+\indexentry{linealidad!de la derivada}{175}
+\indexentry{regla de la cadena}{176}
+\indexentry{regla de la cadena!para funciones de variable real}{178}
+\indexentry{teorema!del valor medio}{178}
+\indexentry{función!de clase c1@de clase $\mathcal{C}^{1}$}{180}
+\indexentry{derivada!direccional}{182}
+\indexentry{función!Gâteaux-diferenciable }{183}
+\indexentry{derivada!de Gâteaux}{183}
+\indexentry{función!parcialmente diferenciable}{187}
+\indexentry{derivada!parcial}{187}
+\indexentry{gradiente}{188}
+\indexentry{matriz!jacobiana}{189}
+\indexentry{función!multilineal}{191}
+\indexentry{función!bilineal}{191}
+\indexentry{espacio!L (V1)@$\mathcal{L}(V_{1},\dots,V_{k};W)$}{191}
+\indexentry{espacio!L subk VW@$\mathcal{L}_{k}(V,W)$}{191}
+\indexentry{derivada!de orden k@de orden $k$}{193}
+\indexentry{función!de clase ck@de clase $\mathcal{C}^{k}$}{193}
+\indexentry{espacio!C alakOmega@$\mathcal{C}^{k}(\Omega ,W)$, $\mathcal{C}^{k}(\Omega )$}{195}
+\indexentry{espacio!C alakOmegaO@ $\mathcal{C}^{k}(\overline{\Omega },W)$, $\mathcal{C}^{k}(\overline{\Omega })$}{195}
+\indexentry{teorema!de Taylor}{196}
+\indexentry{fórmula!de Taylor}{198}
+\indexentry{expansión!de   Taylor}{198}
+\indexentry{conjunto!conexo}{200}
+\indexentry{valor!regular}{208}
+\indexentry{espacio!tangente}{208}
+\indexentry{isomorfismo!de Banach}{210}
+\indexentry{teorema!de la función implícita}{210}
+\indexentry{subvariedad!de un espacio de Banach}{212}
+\indexentry{minimo@mínimo!local}{213}
+\indexentry{maximo@máximo!local}{213}
+\indexentry{punto!crítico}{213}
+\indexentry{multiplicador de Lagrange}{213}
+\indexentry{conjunto!de isomorfismos de   Banach!$\mathcal{H}(V,W)$}{214}
+\indexentry{teorema!de la función inversa}{223}
+\indexentry{rectángulo}{230}
+\indexentry{soporte}{231}
+\indexentry{espacio!C subc0Rn@$\mathcal{C}_{c}^{0}(\mathbb{R}^{n}) \vspaceindex$}{231}
+\indexentry{integral!de una función continua}{232}
+\indexentry{traslación!de una función@$T_{\xi   }f$ }{232}
+\indexentry{medida!de Haar}{234}
+\indexentry{grupo!lineal general@lineal general   $GL(n,\mathbb{R})$}{241}
+\indexentry{matriz!ortogonal}{242}
+\indexentry{grupo!ortogonal@ortogonal $O(n)$}{242}
+\indexentry{soporte}{246}
+\indexentry{espacio!C subc0Omega@$\mathcal{C}_{c}^{0}(\Omega ) \vspaceindex$}{246}
+\indexentry{integral!de una función continua}{247}
+\indexentry{difeomorfismo!de clase C1@de clase     $\mathcal{C}^{1}$}{247}
+\indexentry{teorema!de Dini}{261}
+\indexentry{integral!de una función s.c.i.}{263}
+\indexentry{supremo puntual}{264}
+\indexentry{conjunto!S subestrella@$\mathcal{S}_{\ast   }(\mathbb{R}^{n})$}{266}
+\indexentry{infimo@ínfimo puntual}{266}
+\indexentry{conjunto!S superestrella@$\mathcal{S}^{\ast   }(\mathbb{R}^{n})$}{267}
+\indexentry{integral!de una función s.c.s.}{267}
+\indexentry{función!característica@característica     $1_{X}$}{273}
+\indexentry{volumen}{274}
+\indexentry{principio!de Cavalieri}{276}
+\indexentry{volumen!de una bola}{277}
+\indexentry{integral!superior}{278}
+\indexentry{integral!inferior}{279}
+\indexentry{función!integrable}{281}
+\indexentry{integral!de Lebesgue}{281}
+\indexentry{linealidad!de la integral}{286}
+\indexentry{monotonia!de la integral}{286}
+\indexentry{teorema!de cambio de variable}{287}
+\indexentry{conjunto!integrable}{290}
+\indexentry{volumen}{290}
+\indexentry{medida!de Lebesgue}{290}
+\indexentry{extensión!trivial de una función}{292}
+\indexentry{función!integrable}{292}
+\indexentry{integral!de Lebesgue}{292}
+\indexentry{espacio!L (X)@$\mathfrak{L}(X)$}{292}
+\indexentry{función!Riemann-integrable}{297}
+\indexentry{conjunto!nulo}{300}
+\indexentry{casi dondequiera (c.d.)}{303}
+\indexentry{para casi todo (p.c.t.)}{303}
+\indexentry{teorema!de Fubini}{307}
+\indexentry{teorema!de convergencia monótona}{310}
+\indexentry{lema!de Fatou}{313}
+\indexentry{teorema!de convergencia dominada}{315}
+\indexentry{función!radial}{319}
+\indexentry{integral!de una función radial}{319}
+\indexentry{integral!de potencia@de $\left\Vert x\right\Vert    ^{\gamma }$}{320}
+\indexentry{función!localmente integrable}{322}
+\indexentry{teorema!de cambio de variable}{323}
+\indexentry{conjunto!de Cantor}{328}
+\indexentry{lema!de Sard}{329}
+\indexentry{conjunto!medible}{336}
+\indexentry{medida!de Lebesgue}{336}
+\indexentry{teorema!de Vitali}{339}
+\indexentry{función!medible}{340}
+\indexentry{teorema!de Tonelli}{344}
+\indexentry{espacio!L alap@$L^{p}(\Omega )$}{345}
+\indexentry{norma!norma p@$\left\Vert \cdot \right\Vert_{p}$}{346}
+\indexentry{espacio!L alaz@$L^{\infty }(\Omega )$}{346}
+\indexentry{función!esencialmente acotada}{346}
+\indexentry{norma!uniforme@uniforme $\left\Vert \cdot \right\Vert_{\infty }$}{346}
+\indexentry{desigualdad!de Hölder}{347}
+\indexentry{desigualdad!de Minkowski}{348}
+\indexentry{teorema!de convergencia dominada en @de     convergencia dominada en $L^{p}$}{350}
+\indexentry{convergencia!en @en $L^{p}$     vs. convergencia puntual}{352}
+\indexentry{espacio!C subckOmega@$\mathcal{C}_{c}^{k}(\Omega ) \vspaceindex$}{355}
+\indexentry{espacio!L subloc1Omega@$L_{\loc}^{1}(\Omega ) \vspaceindex$}{356}
+\indexentry{compactamente contenido}{356}
+\indexentry{compactamente contenido!$\omega \subset \subset     \Omega $}{356}
+\indexentry{convolución}{357}
+\indexentry{convolución!$f\ast g$}{357}
+\indexentry{sucesión!regularizante}{361}
+\indexentry{sucesión!regularizante estándar}{361}
+\indexentry{teorema!de Fréchet-Kolmogorov}{364}
+\indexentry{teorema!de Egorov}{372}
+\indexentry{desigualdad!de interpolación}{373}
+\indexentry{desigualdad!de Hölder!generalizada}{373}
+\indexentry{convolución}{376}
+\indexentry{producto!escalar}{378}
+\indexentry{desigualdad!de Cauchy-Schwarz}{378}
+\indexentry{desigualdad!del triángulo}{378}
+\indexentry{identidad del       paralelogramo}{379}
+\indexentry{norma!inducida por el producto escalar}{379}
+\indexentry{espacio!de Hilbert}{380}
+\indexentry{suma directa!de espacios de     Hilbert}{381}
+\indexentry{espacio!ortogonal}{382}
+\indexentry{proyección ortogonal}{384}
+\indexentry{complemento!ortogonal}{384}
+\indexentry{teorema!del complemento ortogonal}{384}
+\indexentry{dual topológico}{386}
+\indexentry{teorema!de representación de     Fréchet-Riesz}{387}
+\indexentry{funcional}{388}
+\indexentry{principio!de Dirichlet}{388}
+\indexentry{subespacio!vectorial generado por un   conjunto@$\lin(\mathcal{X})$, generado por $\mathcal{X}$}{389}
+\indexentry{conjunto!ortogonal}{389}
+\indexentry{conjunto!ortonormal}{389}
+\indexentry{base de Hilbert}{389}
+\indexentry{convergencia!debil@débil}{390}
+\indexentry{limite@límite!debil@débil de una     sucesión}{390}
+\indexentry{convergencia!fuerte}{390}
+\indexentry{teorema!de convergencia débil de sucesiones     acotadas}{393}
+\indexentry{lema!de Baire}{394}
+\indexentry{teorema!de Pitágoras}{396}
+\indexentry{conjunto!convexo}{397}
+\indexentry{gradiente}{397}
+\indexentry{multiplicador de Lagrange}{398}
+\indexentry{ortonormalización!de Gram-Schmidt}{398}
+\indexentry{polinomio!de Legendre}{399}
+\indexentry{serie!de Fourier}{399}
+\indexentry{conjunto!secuencialmentedebilmentecerrado@secuencialmente débilmente cerrado}{401}
+\indexentry{cerradura!débil}{402}
+\indexentry{integración!por partes}{404}
+\indexentry{función!debilmente@débilmente diferenciable}{405}
+\indexentry{derivada!debil@débil}{405}
+\indexentry{gradiente!débil}{405}
+\indexentry{derivada!debil de @débil de $\left\Vert       x\right\Vert^{\gamma }$}{407}
+\indexentry{espacio!de Sobolev!$W^{1,p}(\Omega )$}{409}
+\indexentry{espacio!de Sobolev!$H^{1}(\Omega )$}{411}
+\indexentry{espacio!de Sobolev!$W_{0}^{1,p}(\Omega ) \vspaceindex$}{414}
+\indexentry{espacio!de Sobolev!$H_{0}^{1}(\Omega ) \vspaceindex$}{414}
+\indexentry{regla de la cadena!para derivadas débiles}{415}
+\indexentry{difeomorfismo!de clase C1@de clase $\mathcal{C}^{k}$}{416}
+\indexentry{teorema!de cambio de variable para derivadas     débiles}{416}
+\indexentry{laplaciano}{421}
+\indexentry{ecuación!de Laplace}{421}
+\indexentry{función!armónica}{421}
+\indexentry{condición!de Dirichlet!homogénea}{421}
+\indexentry{solución!clásica}{421}
+\indexentry{fórmula!de Green}{422}
+\indexentry{solución!débil}{422}
+\indexentry{principio!de Dirichlet}{423}
+\indexentry{condición!de Dirichlet}{425}
+\indexentry{solución!débil}{425}
+\indexentry{principio!de Dirichlet}{425}
+\indexentry{exponente crítico de Sobolev}{431}
+\indexentry{desigualdad!de Gagliardo-Nirenberg-Sobolev}{433}
+\indexentry{teorema!de encaje de Sobolev}{437}
+\indexentry{desigualdad!de Poincaré}{438}
+\indexentry{teorema!de Rellich-Kondrashov}{442}
+\indexentry{valor!propio}{445}
+\indexentry{función!propia}{445}
+\indexentry{espacio!de Sobolev!$W^{m,p}(\Omega )$}{452}
+\indexentry{espacio!de Sobolev!$W_{0}^{m,p}(\Omega ) \vspaceindex$}{453}
+\indexentry{ecuación!de Poisson}{455}

@@ -1,0 +1,8 @@
+\begin{tikzpicture}[scale=.4]
+  \draw[dashed,fill=gray!10] (0,0) circle (3cm);
+  \draw[dashed,fill=gray!25] (0,0) circle (2.8cm);
+  \draw[dashed,fill=gray!50] (0,0) circle (2.5cm);
+  \draw[dashed,fill=gray!75] (0,0) circle (2cm);
+  \draw[-latex'] (-3.5,0) -- (3.5,0);
+  \draw[-latex'] (0,-3.5) -- (0,3.5);
+\end{tikzpicture}

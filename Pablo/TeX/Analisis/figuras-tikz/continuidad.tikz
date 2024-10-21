@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale=1]
+  \pgfmathsetmacro{\hor}{0.45}
+  \pgfmathsetmacro{\ver}{-0.3}
+  \draw[dashed,fill=gray!25] (0,0) circle (1cm);
+  \draw[dashed,fill=gray!25] (6.8,0) circle (1.5cm);
+  \draw[very thin,dashed,fill=gray!50] plot[smooth cycle, tension=.9]
+  coordinates{(6.1+\hor,-0.2+\ver) (7.2+\hor,0.05+\ver) (7.2+\hor,1+\ver) (6.45+\hor,.85+\ver) (5.75+\hor,.7+\ver)};
+  \draw[-latex'] (0.9,.6) .. controls (2.2,1) and (4.3,1) .. 
+  node[above] {$\phi$} (5.7+\hor,.6+\ver);
+  \node[right] at (0,0) {$x_0$};
+  \node[right] at (6.35+\hor,0.3+\ver) {$\phi(x_0)$};
+  \node at (315:1.6cm) {$B_{X}(x_0,\delta)$};
+  \node at (8.5,-1.5) {$B_{Y}(\phi(x_0),\varepsilon)$};
+  \draw[only marks,mark=*, mark size=1.2pt] plot 
+  coordinates{(0,0) (6.35+\hor,.3+\ver)};
+\end{tikzpicture}

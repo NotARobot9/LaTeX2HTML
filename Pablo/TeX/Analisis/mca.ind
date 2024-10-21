@@ -1,0 +1,399 @@
+\begin{theindex}
+
+  \item base de Hilbert, 389
+  \item bola
+    \subitem abierta $B_{X}(x,\varepsilon )$, 36
+    \subitem cerrada     $\bar{B}_{X}(x,\varepsilon )$, 40
+
+  \indexspace
+
+  \item campo vectorial, 113
+  \item casi dondequiera (c.d.), 303
+  \item cerradura
+    \subitem $\overline{A}$, $\cerr_{X}(A)$, 39
+    \subitem débil, 402
+  \item compactamente contenido, 356
+    \subitem $\omega \subset \subset     \Omega $, 356
+  \item complemento
+    \subitem de un conjunto $X\smallsetminus   A$, 40
+    \subitem ortogonal, 384
+  \item completación, 97
+  \item condición
+    \subitem de Dirichlet, 425
+      \subsubitem homogénea, 421
+    \subitem de Lipschitz, 115
+    \subitem inicial, 114
+  \item conjunto
+    \subitem a lo más numerable, 163
+    \subitem abierto, 38
+    \subitem acotado, 57
+    \subitem cerrado, 39
+    \subitem compacto, 56
+    \subitem conexo, 200
+    \subitem convexo, 397
+    \subitem de Cantor, 328
+    \subitem de isomorfismos de   Banach
+      \subsubitem $\mathcal{H}(V,W)$, 214
+    \subitem denso, 158
+    \subitem equicontinuo, 129
+    \subitem integrable, 290
+    \subitem medible, 336
+    \subitem nulo, 300
+    \subitem ortogonal, 389
+    \subitem ortonormal, 389
+    \subitem relativamente compacto, 129
+    \subitem $\mathcal{S}_{\ast   }(\mathbb{R}^{n})$, 266
+    \subitem $\mathcal{S}^{\ast   }(\mathbb{R}^{n})$, 267
+    \subitem secuencialmente débilmente cerrado, 401
+    \subitem totalmente acotado, 126
+  \item contracción, 101
+  \item convergencia
+    \subitem de una serie, 86
+    \subitem de una sucesión, 44
+    \subitem débil, 390
+    \subitem en $L^{p}$     vs. convergencia puntual, 352
+    \subitem fuerte, 390
+    \subitem puntual, 79
+    \subitem uniforme, 80
+    \subitem uniforme de     una serie, 88
+  \item convolución, 357, 376
+    \subitem $f\ast g$, 357
+  \item criterio
+    \subitem de Cauchy para series, 87
+    \subitem de convergencia uniforme, 84
+    \subitem de la raíz para series, 94
+    \subitem de Weierstrass para series, 87
+  \item cubierta, 55
+    \subitem abierta, 55
+  \item cubo
+    \subitem de Hilbert, 146
+
+  \indexspace
+
+  \item derivada
+    \subitem de Fréchet, 173, 174
+    \subitem de Gâteaux, 183
+    \subitem de orden $k$, 193
+    \subitem débil, 405
+    \subitem débil de $\left\Vert       x\right\Vert^{\gamma }$, 407
+    \subitem direccional, 182
+    \subitem parcial, 187
+  \item desigualdad
+    \subitem de Cauchy-Schwarz, 378
+    \subitem de Gagliardo-Nirenberg-Sobolev, 433
+    \subitem de Hölder, 18, 347
+      \subsubitem en $\mathbb{R}^{n}$, 14
+      \subsubitem generalizada, 373
+      \subsubitem para series, 26
+    \subitem de interpolación, 373
+    \subitem de Minkowski, 19, 348
+      \subsubitem para series, 17
+    \subitem de Poincaré, 438
+    \subitem de Young, 12
+    \subitem del triángulo, 8, 378
+  \item difeomorfismo
+    \subitem de clase     $\mathcal{C}^{1}$, 247
+    \subitem de clase $\mathcal{C}^{k}$, 416
+  \item distancia, 8
+  \item dual topológico, 386
+
+  \indexspace
+
+  \item ecuación
+    \subitem de Laplace, 421
+    \subitem de Poisson, 455
+    \subitem integral de Fredholm, 106
+    \subitem integral de Volterra, 110
+    \subitem no lineal de Fredholm, 121
+  \item equicontinuo, 129
+  \item equivalencia, 34
+  \item espacio
+    \subitem $\mathcal{B}(S,X)$, 22
+    \subitem $\mathcal{C}^{0}[a,b]$, 20
+    \subitem $\mathcal{C}^{0}(K)$, 158
+    \subitem $\mathcal{C}^{0}(K,Y)$, 65
+    \subitem $\mathcal{C}^{k}(\Omega ,W)$, $\mathcal{C}^{k}(\Omega )$, 
+		195
+    \subitem  $\mathcal{C}^{k}(\overline{\Omega },W)$, $\mathcal{C}^{k}(\overline{\Omega })$, 
+		195
+    \subitem $\mathcal{C}_{b}^{0}(Z,X)\vspaceindex$, 82
+    \subitem $\mathcal{C}_{c}^{0}(\Omega ) \vspaceindex$, 246
+    \subitem $\mathcal{C}_{c}^{0}(\mathbb{R}^{n}) \vspaceindex$, 231
+    \subitem $\mathcal{C}_{c}^{k}(\Omega ) \vspaceindex$, 355
+    \subitem $\mathcal{C}_{p}^{0}[a,b]\vspaceindex$, 20
+    \subitem completo, 77
+    \subitem de Banach, 77
+    \subitem de Hilbert, 380
+    \subitem de Sobolev
+      \subsubitem $H^{1}(\Omega )$, 411
+      \subsubitem $H_{0}^{1}(\Omega ) \vspaceindex$, 414
+      \subsubitem $W^{1,p}(\Omega )$, 409
+      \subsubitem $W^{m,p}(\Omega )$, 452
+      \subsubitem $W_{0}^{1,p}(\Omega ) \vspaceindex$, 414
+      \subsubitem $W_{0}^{m,p}(\Omega ) \vspaceindex$, 453
+    \subitem discreto $X_{\ensuremath  {\mathrm  {disc}}}$, 17
+    \subitem $\mathcal{L}(V_{1},\dots,V_{k};W)$, 191
+    \subitem $\mathcal{L}(V,W)$, 171
+    \subitem $\mathfrak{L}(X)$, 292
+    \subitem $L^{p}(\Omega )$, 345
+    \subitem $L^{\infty }(\Omega )$, 346
+    \subitem $\mathcal{L}_{k}(V,W)$, 191
+    \subitem $L_{\loc}^{1}(\Omega ) \vspaceindex$, 356
+    \subitem $\ell_{p}$, 16
+    \subitem métrico, 8
+    \subitem normado, 12
+    \subitem ortogonal, 382
+    \subitem $\mathbb{R}^{n}$, 15
+    \subitem $\mathbb{R}_{p}^{n}$, 15
+    \subitem separable, 163
+    \subitem tangente, 208
+    \subitem $\mathcal{T}_{x,y}(X)$, 140
+  \item expansión
+    \subitem de   Taylor, 198
+  \item exponente crítico de Sobolev, 431
+  \item extensión
+    \subitem trivial de una función, 292
+
+  \indexspace
+
+  \item frontera, 53
+  \item funcional, 388
+  \item función
+    \subitem acotada, 22
+    \subitem analítica, 90
+    \subitem armónica, 421
+    \subitem bilineal, 191
+    \subitem característica     $1_{X}$, 273
+    \subitem continua, 32
+    \subitem de clase $\mathcal{C}^{1}$, 180
+    \subitem de clase $\mathcal{C}^{k}$, 193
+    \subitem débilmente diferenciable, 405
+    \subitem esencialmente acotada, 346
+    \subitem (Fréchet-)diferenciable, 173, 174
+    \subitem Gâteaux-diferenciable , 183
+    \subitem integrable, 281, 292
+    \subitem Lipschitz continua, 34
+    \subitem localmente integrable, 322
+    \subitem longitud, 140
+    \subitem medible, 340
+    \subitem multilineal, 191
+    \subitem parcialmente diferenciable, 187
+    \subitem propia, 445
+    \subitem radial, 319
+    \subitem Riemann-integrable, 297
+    \subitem semicontinua inferiormente s.c.i., 67
+    \subitem semicontinua superiormente s.c.s., 67
+    \subitem uniformemente continua, 70
+  \item fórmula
+    \subitem de Green, 422
+    \subitem de Taylor, 198
+
+  \indexspace
+
+  \item gradiente, 188, 397
+    \subitem débil, 405
+  \item grupo
+    \subitem lineal general   $GL(n,\mathbb{R})$, 241
+    \subitem ortogonal $O(n)$, 242
+
+  \indexspace
+
+  \item homeomorfismo, 33
+
+  \indexspace
+
+  \item identidad del       paralelogramo, 379
+  \item imagen
+    \subitem inversa de un conjunto   $\phi^{-1}(B)$, 42
+    \subitem de un conjunto $\phi (A)$, 36
+  \item ínfimo puntual, 266
+  \item integración
+    \subitem por partes, 404
+  \item integral
+    \subitem de Lebesgue, 281, 292
+    \subitem de $\left\Vert x\right\Vert    ^{\gamma }$, 320
+    \subitem de una función continua, 232, 247
+    \subitem de una función radial, 319
+    \subitem de una función s.c.i., 263
+    \subitem de una función s.c.s., 267
+    \subitem inferior, 279
+    \subitem superior, 278
+  \item interior
+    \subitem int$(A)$,     $\Int_{X}(A)$, 38
+  \item isometría, 24
+  \item isomorfismo
+    \subitem de Banach, 210
+
+  \indexspace
+
+  \item laplaciano, 421
+  \item lema
+    \subitem de Baire, 394
+    \subitem de Fatou, 313
+    \subitem de Sard, 329
+  \item límite, 172
+    \subitem de una     sucesión, 44
+    \subitem débil de una     sucesión, 390
+    \subitem inferior, 68
+    \subitem puntual, 79
+    \subitem superior, 68
+    \subitem uniforme, 80
+  \item linealidad
+    \subitem de la derivada, 175
+    \subitem de la integral, 286
+  \item longitud
+    \subitem de una trayectoria, 65
+
+  \indexspace
+
+  \item matriz
+    \subitem jacobiana, 189
+    \subitem ortogonal, 242
+  \item máximo
+    \subitem de una     función, 62
+    \subitem local, 213
+  \item medida
+    \subitem de Haar, 234
+    \subitem de Lebesgue, 290, 336
+  \item método
+    \subitem de aproximaciones sucesivas, 104
+  \item métrica, 8
+    \subitem discreta $d_{\ensuremath  {\mathrm  {disc}}}$, 17
+    \subitem inducida en un     subconjunto, 23
+    \subitem inducida por una norma, 12
+    \subitem uniforme $d_{\infty }$, 22
+  \item métricas equivalentes, 35
+  \item mínimo
+    \subitem de una función, 62
+    \subitem local, 213
+  \item monotonia
+    \subitem de la integral, 286
+  \item multiplicador de Lagrange, 213, 398
+
+  \indexspace
+
+  \item norma, 11
+    \subitem inducida por el producto escalar, 379
+    \subitem $\left\Vert \cdot \right\Vert_{p}$, 12, 16, 17, 346
+    \subitem uniforme $\left\Vert \cdot \right\Vert_{\infty }$, 23, 346
+  \item normas equivalentes, 35
+
+  \indexspace
+
+  \item operador
+    \subitem compacto, 133
+    \subitem de Fredholm, 109
+    \subitem de Volterra, 113
+  \item ortonormalización
+    \subitem de Gram-Schmidt, 398
+
+  \indexspace
+
+  \item para casi todo (p.c.t.), 303
+  \item parametrización
+    \subitem proporcional a la     longitud de arco, 141
+  \item polinomio
+    \subitem de Bernstein, 153
+    \subitem de Legendre, 399
+  \item principio
+    \subitem de Cavalieri, 276
+    \subitem de contracción, 101
+    \subitem de Dirichlet, 388, 423, 425
+  \item problema
+    \subitem de Cauchy, 114, 134
+  \item producto
+    \subitem de       espacios métricos $X\times Y$, 49
+    \subitem escalar, 378
+  \item proyección ortogonal, 384
+  \item punto
+    \subitem crítico, 213
+    \subitem de contacto, 39
+    \subitem fijo, 102
+    \subitem interior, 38
+
+  \indexspace
+
+  \item radio de convergencia, 88
+  \item rectángulo, 230
+  \item regla de la cadena, 176
+    \subitem para derivadas débiles, 415
+    \subitem para funciones de variable real, 178
+  \item relativamente     compacto, 129
+  \item reparametrización, 140
+
+  \indexspace
+
+  \item serie, 86
+    \subitem de     funciones, 88
+    \subitem de Fourier, 399
+    \subitem de potencias, 88
+  \item solución
+    \subitem clásica, 421
+    \subitem débil, 422, 425
+  \item soporte, 231, 246
+  \item subcubierta, 55
+  \item subespacio
+    \subitem métrico, 23
+    \subitem $\lin(\mathcal{X})$, generado por $\mathcal{X}$, 389
+  \item subsucesión, 44
+  \item subvariedad
+    \subitem de un espacio de Banach, 212
+  \item sucesión, 44
+    \subitem acotada, 44
+    \subitem convergente, 44
+    \subitem de Cauchy, 75
+    \subitem regularizante, 361
+    \subitem regularizante estándar, 361
+    \subitem uniformemente de Cauchy, 84
+  \item suma directa
+    \subitem de espacios de     Hilbert, 381
+  \item supremo puntual, 264
+
+  \indexspace
+
+  \item teorema
+    \subitem de aproximación de     Weierstrass, 156
+    \subitem de aproximación de Bernstein, 154
+    \subitem de Arzelà-Ascoli, 131
+    \subitem de Bolzano-Weierstrass, 62
+    \subitem de cambio de variable, 287, 323
+    \subitem de cambio de variable para derivadas     débiles, 416
+    \subitem de convergencia dominada, 315
+    \subitem de     convergencia dominada en $L^{p}$, 350
+    \subitem de convergencia débil de sucesiones     acotadas, 393
+    \subitem de convergencia monótona, 310
+    \subitem de Dini, 261
+    \subitem de Egorov, 372
+    \subitem de encaje de Sobolev, 437
+    \subitem de existencia de Peano, 137
+    \subitem de existencia de trayectorias     geodésicas, 144
+    \subitem de Fréchet-Kolmogorov, 364
+    \subitem de Fubini, 307
+    \subitem de Heine-Borel, 61
+    \subitem de la función implícita, 210
+    \subitem de la función inversa, 223
+    \subitem de Picard-Lindelöf, 118
+    \subitem de Pitágoras, 396
+    \subitem de punto fijo de Banach, 102
+    \subitem de Rellich-Kondrashov, 442
+    \subitem de representación de     Fréchet-Riesz, 387
+    \subitem de Stone-Weierstrass, 159
+    \subitem de Taylor, 196
+    \subitem de Tonelli, 344
+    \subitem de Vitali, 339
+    \subitem del complemento ortogonal, 384
+    \subitem del valor medio, 178
+  \item totalmente acotado, 126
+  \item traslación
+    \subitem $T_{\xi   }f$ , 232
+  \item trayectoria, 65, 139
+
+  \indexspace
+
+  \item valor
+    \subitem propio, 109, 113, 445
+    \subitem regular, 208
+  \item volumen, 274, 290
+    \subitem de una bola, 277
+
+\end{theindex}

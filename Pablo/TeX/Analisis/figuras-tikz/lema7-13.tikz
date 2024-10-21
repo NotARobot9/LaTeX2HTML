@@ -1,0 +1,28 @@
+\begin{tikzpicture}[scale=.2]
+  \coordinate(A) at (-17,-5);
+  \coordinate(B) at (-14,-2);
+  \coordinate(C) at (-7,-2);
+  \coordinate(D) at (-3,-4);
+  \coordinate(E) at (5,4);
+  \coordinate(F) at (10,4);
+  \coordinate(G) at (16,2);
+  \coordinate(H) at (20,4);
+  
+%  \draw[very thin, -latex'] (-18,0) -- (23,0);
+%  \draw[very thin, -latex'] (1,-6) -- (1,9);
+
+  \draw[-latex', shorten >= -.6cm] (A) -- (B);
+  \draw[-latex', shorten >= -.6cm] (B) -- (C);
+  \draw[-latex', shorten >= -.6cm] (C) -- (D);
+  \draw[-latex', shorten >= .5cm] (D) -- (E);
+  \draw[-latex', shorten >= .4cm] (E) -- (F);
+  \draw[-latex', shorten >= .5cm] (F) -- (G);
+  \draw[-latex', shorten >= .3cm] (G) -- (H);
+
+  \draw[thick] (A)--(B)--(C)--(D)--(E)--(F)--(G)--(H);
+
+  \draw[only marks, mark=*, mark size=1pt, ScalePlotMarksOff]
+  plot coordinates {(1,0)};
+  \draw (.8,.2) node[below right]{$x_0$};
+
+\end{tikzpicture}

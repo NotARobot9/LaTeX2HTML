@@ -1,0 +1,122 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\nonumberline Prefacio}{\es@scroman {xi}}{}%
+\contentsline {part}{\numberline {I}Continuidad, compacidad y completitud}{1}{}%
+\contentsline {chapter}{\numberline {1}Motivación}{3}{}%
+\contentsline {chapter}{\numberline {2}Espacios métricos}{7}{}%
+\contentsline {section}{\numberline {2.1}Definición y ejemplos}{8}{}%
+\contentsline {section}{\numberline {2.2}Espacios normados}{11}{}%
+\contentsline {section}{\numberline {2.3}Espacios de funciones}{17}{}%
+\contentsline {section}{\numberline {2.4}El espacio de funciones acotadas}{22}{}%
+\contentsline {section}{\numberline {2.5}Subespacios métricos e isometrías}{23}{}%
+\contentsline {section}{\numberline {2.6}Ejercicios}{24}{}%
+\contentsline {chapter}{\numberline {3}Continuidad}{31}{}%
+\contentsline {section}{\numberline {3.1}Definiciones y ejemplos}{32}{}%
+\contentsline {section}{\numberline {3.2}Conjuntos abiertos y conjuntos cerrados}{38}{}%
+\contentsline {section}{\numberline {3.3}Convergencia de sucesiones}{43}{}%
+\contentsline {section}{\numberline {3.4}Ejercicios}{46}{}%
+\contentsline {chapter}{\numberline {4}Compacidad}{55}{}%
+\contentsline {section}{\numberline {4.1}Conjuntos compactos}{55}{}%
+\contentsline {section}{\numberline {4.2}El teorema de Heine-Borel}{59}{}%
+\contentsline {section}{\numberline {4.3}Existencia de máximos y mínimos}{62}{}%
+\contentsline {section}{\numberline {4.4}Semicontinuidad}{65}{}%
+\contentsline {section}{\numberline {4.5}Continuidad uniforme}{69}{}%
+\contentsline {section}{\numberline {4.6}Ejercicios}{70}{}%
+\contentsline {chapter}{\numberline {5}Completitud}{75}{}%
+\contentsline {section}{\numberline {5.1}Espacios métricos completos}{75}{}%
+\contentsline {section}{\numberline {5.2}Convergencia uniforme}{79}{}%
+\contentsline {section}{\numberline {5.3}Espacios completos de funciones}{84}{}%
+\contentsline {section}{\numberline {5.4}Series en espacios de Banach}{86}{}%
+\contentsline {section}{\numberline {5.5}Ejercicios}{90}{}%
+\contentsline {section}{\numberline {5.6}Proyecto: Completación de un espacio métrico}{97}{}%
+\contentsline {subsection}{\numberline {5.6.1}Objetivo}{97}{}%
+\contentsline {subsection}{\numberline {5.6.2}Procedimiento}{98}{}%
+\contentsline {subsection}{\numberline {5.6.3}Observaciones}{98}{}%
+\contentsline {chapter}{\numberline {6}El teorema de punto fijo de Banach y aplicaciones}{101}{}%
+\contentsline {section}{\numberline {6.1}El teorema de punto fijo de Banach}{101}{}%
+\contentsline {section}{\numberline {6.2}Sistemas de ecuaciones lineales}{104}{}%
+\contentsline {section}{\numberline {6.3}Ecuaciones integrales}{106}{}%
+\contentsline {subsection}{\numberline {6.3.1}La ecuación integral de Fredholm del segundo tipo}{106}{}%
+\contentsline {subsection}{\numberline {6.3.2}La ecuación integral de Volterra del segundo tipo}{110}{}%
+\contentsline {section}{\numberline {6.4}El problema de Cauchy}{113}{}%
+\contentsline {section}{\numberline {6.5}Ejercicios}{119}{}%
+\contentsline {chapter}{\numberline {7}Compacidad en espacios de funciones}{125}{}%
+\contentsline {section}{\numberline {7.1}Conjuntos totalmente acotados}{125}{}%
+\contentsline {section}{\numberline {7.2}El teorema de Arzelà-Ascoli}{129}{}%
+\contentsline {section}{\numberline {7.3}El problema de Cauchy}{134}{}%
+\contentsline {section}{\numberline {7.4}Existencia de trayectorias de longitud mínima}{139}{}%
+\contentsline {section}{\numberline {7.5}Ejercicios}{145}{}%
+\contentsline {section}{\numberline {7.6}Proyecto: Un espacio completo sin trayectorias de longitud mínima}{149}{}%
+\contentsline {subsection}{\numberline {7.6.1}Objetivo}{149}{}%
+\contentsline {subsection}{\numberline {7.6.2}Procedimiento}{149}{}%
+\contentsline {chapter}{\numberline {8}Teoremas de aproximación}{151}{}%
+\contentsline {section}{\numberline {8.1}El teorema de aproximación de Weierstrass}{151}{}%
+\contentsline {section}{\numberline {8.2}El teorema de Stone-Weierstrass}{158}{}%
+\contentsline {section}{\numberline {8.3}Ejercicios}{162}{}%
+\contentsline {part}{\numberline {II}Diferenciabilidad}{167}{}%
+\contentsline {chapter}{\numberline {9}Diferenciabilidad}{169}{}%
+\contentsline {section}{\numberline {9.1}El espacio de funciones lineales y continuas}{170}{}%
+\contentsline {section}{\numberline {9.2}Diferenciabilidad}{172}{}%
+\contentsline {section}{\numberline {9.3}El teorema del valor medio}{177}{}%
+\contentsline {section}{\numberline {9.4}Un criterio de diferenciabilidad}{182}{}%
+\contentsline {section}{\numberline {9.5}Derivadas parciales}{186}{}%
+\contentsline {section}{\numberline {9.6}Derivadas de orden superior}{190}{}%
+\contentsline {section}{\numberline {9.7}La fórmula de Taylor}{196}{}%
+\contentsline {section}{\numberline {9.8}Ejercicios}{199}{}%
+\contentsline {chapter}{\numberline {10}El teorema de la función implícita}{205}{}%
+\contentsline {section}{\numberline {10.1}El teorema de la función implícita}{207}{}%
+\contentsline {section}{\numberline {10.2}Extremos locales de una función diferenciable sobre una variedad}{211}{}%
+\contentsline {section}{\numberline {10.3}Homeomorfismos lineales}{214}{}%
+\contentsline {section}{\numberline {10.4}Demostración del teorema de la función implícita}{218}{}%
+\contentsline {section}{\numberline {10.5}Ejercicios}{222}{}%
+\contentsline {part}{\numberline {III}La integral de Lebesgue}{227}{}%
+\contentsline {chapter}{\numberline {11}La integral de una función continua con soporte compacto}{229}{}%
+\contentsline {section}{\numberline {11.1}Definición y propiedades básicas}{230}{}%
+\contentsline {section}{\numberline {11.2}Unicidad de la integral}{234}{}%
+\contentsline {section}{\numberline {11.3}Invariancia bajo isometrías}{241}{}%
+\contentsline {section}{\numberline {11.4}El teorema de cambio de variable}{246}{}%
+\contentsline {section}{\numberline {11.5}Ejercicios}{253}{}%
+\contentsline {chapter}{\numberline {12}Funciones Lebesgue-integrables}{259}{}%
+\contentsline {section}{\numberline {12.1}La integral de una función semicontinua}{260}{}%
+\contentsline {section}{\numberline {12.2}Propiedades de la integral de funciones semicontinuas}{268}{}%
+\contentsline {section}{\numberline {12.3}El volumen de un conjunto}{273}{}%
+\contentsline {section}{\numberline {12.4}Funciones Lebesgue-integrables}{278}{}%
+\contentsline {section}{\numberline {12.5}Propiedades básicas de la integral de Lebesgue}{285}{}%
+\contentsline {section}{\numberline {12.6}Conjuntos integrables}{290}{}%
+\contentsline {section}{\numberline {12.7}La integral sobre un subconjunto de $\mathbb {R}^{n}$}{291}{}%
+\contentsline {section}{\numberline {12.8}Ejercicios}{293}{}%
+\contentsline {chapter}{\numberline {13}Teoremas fundamentales de la teoría de integración}{299}{}%
+\contentsline {section}{\numberline {13.1}Conjuntos nulos}{300}{}%
+\contentsline {section}{\numberline {13.2}El teorema de Fubini}{306}{}%
+\contentsline {section}{\numberline {13.3}Teoremas de convergencia}{309}{}%
+\contentsline {section}{\numberline {13.4}La integral de funciones radiales}{318}{}%
+\contentsline {section}{\numberline {13.5}El teorema de cambio de variable}{323}{}%
+\contentsline {section}{\numberline {13.6}Ejercicios}{328}{}%
+\contentsline {chapter}{\numberline {14}Los espacios de Lebesgue}{335}{}%
+\contentsline {section}{\numberline {14.1}Conjuntos y funciones medibles}{336}{}%
+\contentsline {section}{\numberline {14.2}Los espacios $L^{p}(\Omega )$}{345}{}%
+\contentsline {section}{\numberline {14.3}Aproximación mediante funciones suaves}{355}{}%
+\contentsline {section}{\numberline {14.4}Un criterio de compacidad en $L^{p}(\Omega )$}{363}{}%
+\contentsline {section}{\numberline {14.5}Un criterio de nulidad}{367}{}%
+\contentsline {section}{\numberline {14.6}Ejercicios}{369}{}%
+\contentsline {chapter}{\numberline {15}Espacios de Hilbert}{377}{}%
+\contentsline {section}{\numberline {15.1}Conceptos y propiedades básicas}{378}{}%
+\contentsline {section}{\numberline {15.2}Complemento ortogonal}{382}{}%
+\contentsline {section}{\numberline {15.3}El teorema de representación de Fréchet-Riesz}{386}{}%
+\contentsline {section}{\numberline {15.4}Bases de Hilbert}{389}{}%
+\contentsline {section}{\numberline {15.5}Convergencia débil}{390}{}%
+\contentsline {section}{\numberline {15.6}Ejercicios}{396}{}%
+\contentsline {chapter}{\numberline {16}Espacios de Sobolev}{403}{}%
+\contentsline {section}{\numberline {16.1}Derivadas débiles}{404}{}%
+\contentsline {section}{\numberline {16.2}Espacios de Sobolev}{409}{}%
+\contentsline {section}{\numberline {16.3}Problemas elípticos con condición de frontera}{420}{}%
+\contentsline {subsection}{\numberline {16.3.1}Un problema de Dirichlet homogéneo}{421}{}%
+\contentsline {subsection}{\numberline {16.3.2}Un problema de Dirichlet no homogéneo}{424}{}%
+\contentsline {section}{\numberline {16.4}Ejercicios}{426}{}%
+\contentsline {chapter}{\numberline {17}Encajes de Sobolev}{429}{}%
+\contentsline {section}{\numberline {17.1}Desigualdades de Sobolev}{430}{}%
+\contentsline {section}{\numberline {17.2}El teorema de Rellich-Kondrashov}{441}{}%
+\contentsline {section}{\numberline {17.3}Valores propios del laplaciano}{445}{}%
+\contentsline {section}{\numberline {17.4}Ejercicios}{451}{}%
+\contentsline {chapter}{Referencias}{457}{}%
+\contentsline {chapter}{Índice analítico}{459}{}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

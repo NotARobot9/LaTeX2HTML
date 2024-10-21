@@ -1,0 +1,12 @@
+\begin{tikzpicture}[domain=0:1,xscale=6,yscale=3]
+  \draw[-latex'] (0,0)--(1.1,0);
+  \draw[-latex'] (0,0)--(0,.6);
+  \foreach \y in {2,4, 8, 16}
+  \draw[thick] (0, 0) sin (0.5, {(1/\y)}) cos (1, 0);
+  \foreach \x in {0,1/2,1}
+  \draw[thin] (\x,-1pt)--(\x,0);
+  \draw (0,-1pt) node[below] {$(0,0)$};
+  \draw (1/2,-1pt) node[below] {$\bigl(\frac{1}{2},0\bigr)$};
+  \draw (1,-1pt) node[below] {$(1,0)$};
+  \path plot[mark=*, mark options={fill=white}, mark size=1pt, ScalePlotMarksOff] (.5,0);
+\end{tikzpicture}

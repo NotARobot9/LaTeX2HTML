@@ -1,0 +1,54 @@
+%% 3a. reimpresión 3a. edición (oct2023)
+%% 2a. reimpresión 2a. edición (jul2019)
+%% 1a. reimpresión 2a. edición (nov2018)
+%% 2a. edición
+%% 1a. edición
+\documentclass[10pt,pagesize]{scrbook}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start settings for papirhos design
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\KOMAoptions{twoside,paper=170mm:230mm,headinclude=true,footinclude=false}
+%\areaset[20mm]{120mm}{200mm}
+\typearea[15mm]{14}
+% \geometry ...
+\usepackage{setspace}
+\setstretch{1.05}
+
+%\usepackage{scrpage2}
+\usepackage{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+%\ohead{\pagemark}
+\ohead{\textbf{\pagemark}}
+\lohead{\headmark}
+\rehead{\headmark}
+%\lohead{\raisebox{0.15em}\headmark}
+%\rehead{\raisebox{0.15em}\headmark}
+
+\addtolength{\headheight}{1mm}
+
+
+% Extra definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\missing}{\ensuremath{\clubsuit\clubsuit\clubsuit}}
+
+\usepackage{fontspec}
+\usepackage{graphicx}
+\begin{document}
+\pagestyle{empty}
+\begin{center}
+  \vspace*{30mm}
+  {\Huge\sffamily\scshape Análisis matemático}\\[12mm]
+  {\LARGE\sffamily Mónica Clapp}\\
+    \vskip\fill
+  \mbox{\includegraphics[scale=.1]{unam.pdf}\hspace{14mm}
+  \includegraphics[scale=.235]{papirhos.png}\hspace{14mm}
+  \includegraphics[scale=.32]{imunam.png}}
+\end{center}
+\end{document}

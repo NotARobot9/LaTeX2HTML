@@ -1,0 +1,9 @@
+\begin{tikzpicture} 
+  \begin{axis}[ view/az=45,
+    view/el=15,
+    axis lines=none,
+    colormap={bw}{gray(0cm)=(0); gray(1cm)=(0.8)}]
+    \addplot3[surf,domain=-1:1,y domain=-1:1, shader=faceted interp] {-(x^2+y^2)};
+    \addplot3[surf,domain=-1:1,y domain=-1:1,opacity=.8] {0};    
+  \end{axis} 
+\end{tikzpicture}

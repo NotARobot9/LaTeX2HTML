@@ -1,0 +1,612 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global}
+    \entry{Ambrosetti}{book}{}
+      \name{author}{2}{}{%
+        {{hash=66f617e6fecfc0fe4fccba920e1c9f0a}{%
+           family={Ambrosetti},
+           familyi={A\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=009f1b1ec9237bd0307f5260573c366e}{%
+           family={Prodi},
+           familyi={P\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cambridge}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{b953bb39c6fb5285f2322ed673c66833}
+      \strng{fullhash}{b953bb39c6fb5285f2322ed673c66833}
+      \strng{bibnamehash}{b953bb39c6fb5285f2322ed673c66833}
+      \strng{authorbibnamehash}{b953bb39c6fb5285f2322ed673c66833}
+      \strng{authornamehash}{b953bb39c6fb5285f2322ed673c66833}
+      \strng{authorfullhash}{b953bb39c6fb5285f2322ed673c66833}
+      \field{labelalpha}{AP93}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A primer of nonlinear analysis}
+      \field{year}{1993}
+    \endentry
+    \entry{Bartle}{book}{}
+      \name{author}{1}{}{%
+        {{hash=421cdd5790e26e6ffad05f66854de4a5}{%
+           family={Bartle},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima G.},
+           giveni={R\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Mexico}%
+      }
+      \list{publisher}{1}{%
+        {Limusa}%
+      }
+      \strng{namehash}{421cdd5790e26e6ffad05f66854de4a5}
+      \strng{fullhash}{421cdd5790e26e6ffad05f66854de4a5}
+      \strng{bibnamehash}{421cdd5790e26e6ffad05f66854de4a5}
+      \strng{authorbibnamehash}{421cdd5790e26e6ffad05f66854de4a5}
+      \strng{authornamehash}{421cdd5790e26e6ffad05f66854de4a5}
+      \strng{authorfullhash}{421cdd5790e26e6ffad05f66854de4a5}
+      \field{labelalpha}{Bar82}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Introducci\'{o}n al an\'{a}lisis matem\'{a}tico}
+      \field{year}{1982}
+      \true{nocite}
+    \endentry
+    \entry{Bell}{book}{}
+      \name{author}{1}{}{%
+        {{hash=3587d14466d090e36ef0b8f01e1852cf}{%
+           family={Bell},
+           familyi={B\bibinitperiod},
+           given={E.T.},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{2}{%
+        {Simon}%
+        {Schuster}%
+      }
+      \strng{namehash}{3587d14466d090e36ef0b8f01e1852cf}
+      \strng{fullhash}{3587d14466d090e36ef0b8f01e1852cf}
+      \strng{bibnamehash}{3587d14466d090e36ef0b8f01e1852cf}
+      \strng{authorbibnamehash}{3587d14466d090e36ef0b8f01e1852cf}
+      \strng{authornamehash}{3587d14466d090e36ef0b8f01e1852cf}
+      \strng{authorfullhash}{3587d14466d090e36ef0b8f01e1852cf}
+      \field{labelalpha}{Bel37}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Men of mathematics}
+      \field{year}{1937}
+    \endentry
+    \entry{Bre}{book}{}
+      \name{author}{1}{}{%
+        {{hash=fe398927b157778c30c1324ce8928999}{%
+           family={Br\'{e}zis},
+           familyi={B\bibinitperiod},
+           given={Ha\"{\i}m},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Madrid}%
+      }
+      \list{publisher}{1}{%
+        {Alianza Editorial}%
+      }
+      \strng{namehash}{fe398927b157778c30c1324ce8928999}
+      \strng{fullhash}{fe398927b157778c30c1324ce8928999}
+      \strng{bibnamehash}{fe398927b157778c30c1324ce8928999}
+      \strng{authorbibnamehash}{fe398927b157778c30c1324ce8928999}
+      \strng{authornamehash}{fe398927b157778c30c1324ce8928999}
+      \strng{authorfullhash}{fe398927b157778c30c1324ce8928999}
+      \field{labelalpha}{Br\'{e}84}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{An\'{a}lisis funcional. Teor\'{\i}a y aplicaciones}
+      \field{year}{1984}
+    \endentry
+    \entry{Cou}{book}{}
+      \name{author}{2}{}{%
+        {{hash=f9d1c33cfe5873767fb913f40640ee7b}{%
+           family={Courant},
+           familyi={C\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=791e22851e17b3f4aee63c44de327f3e}{%
+           family={John},
+           familyi={J\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {M\'{e}xico}%
+      }
+      \list{publisher}{1}{%
+        {Limusa}%
+      }
+      \strng{namehash}{7f68e0f95ddd07c3c43e2e2945efd90f}
+      \strng{fullhash}{7f68e0f95ddd07c3c43e2e2945efd90f}
+      \strng{bibnamehash}{7f68e0f95ddd07c3c43e2e2945efd90f}
+      \strng{authorbibnamehash}{7f68e0f95ddd07c3c43e2e2945efd90f}
+      \strng{authornamehash}{7f68e0f95ddd07c3c43e2e2945efd90f}
+      \strng{authorfullhash}{7f68e0f95ddd07c3c43e2e2945efd90f}
+      \field{labelalpha}{CJ74}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Introducci\'{o}n al c\'{a}lculo y al an\'{a}lisis matem\'{a}tico}
+      \field{volume}{2}
+      \field{year}{1974}
+    \endentry
+    \entry{Costa}{book}{}
+      \name{author}{1}{}{%
+        {{hash=607206b3788da324102909a7b3da01aa}{%
+           family={Costa},
+           familyi={C\bibinitperiod},
+           given={D.G.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Boston}%
+      }
+      \list{publisher}{1}{%
+        {Birkh\"{a}user}%
+      }
+      \strng{namehash}{607206b3788da324102909a7b3da01aa}
+      \strng{fullhash}{607206b3788da324102909a7b3da01aa}
+      \strng{bibnamehash}{607206b3788da324102909a7b3da01aa}
+      \strng{authorbibnamehash}{607206b3788da324102909a7b3da01aa}
+      \strng{authornamehash}{607206b3788da324102909a7b3da01aa}
+      \strng{authorfullhash}{607206b3788da324102909a7b3da01aa}
+      \field{labelalpha}{Cos07}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{An invitation to variational methods in differential equations}
+      \field{year}{2007}
+    \endentry
+    \entry{Dieudonne}{book}{}
+      \name{author}{1}{}{%
+        {{hash=0a30598b0fb52d15a9ed0914eae20176}{%
+           family={Dieudonn\'{e}},
+           familyi={D\bibinitperiod},
+           given={Jean},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York-London}%
+      }
+      \list{publisher}{1}{%
+        {Academic Press}%
+      }
+      \strng{namehash}{0a30598b0fb52d15a9ed0914eae20176}
+      \strng{fullhash}{0a30598b0fb52d15a9ed0914eae20176}
+      \strng{bibnamehash}{0a30598b0fb52d15a9ed0914eae20176}
+      \strng{authorbibnamehash}{0a30598b0fb52d15a9ed0914eae20176}
+      \strng{authornamehash}{0a30598b0fb52d15a9ed0914eae20176}
+      \strng{authorfullhash}{0a30598b0fb52d15a9ed0914eae20176}
+      \field{labelalpha}{Die69}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{Pure and Applied Mathematics}
+      \field{title}{Foundations of modern analysis}
+      \field{volume}{10-I}
+      \field{year}{1969}
+      \true{nocite}
+    \endentry
+    \entry{Dugac}{article}{}
+      \name{author}{1}{}{%
+        {{hash=0cfa9befe22325801193dc9399e754d7}{%
+           family={Dugac},
+           familyi={D\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{0cfa9befe22325801193dc9399e754d7}
+      \strng{fullhash}{0cfa9befe22325801193dc9399e754d7}
+      \strng{bibnamehash}{0cfa9befe22325801193dc9399e754d7}
+      \strng{authorbibnamehash}{0cfa9befe22325801193dc9399e754d7}
+      \strng{authornamehash}{0cfa9befe22325801193dc9399e754d7}
+      \strng{authorfullhash}{0cfa9befe22325801193dc9399e754d7}
+      \field{labelalpha}{Dug89}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Arch. Internat. Hist. Sci.}
+      \field{note}{p\'{a}gs. 69--110}
+      \field{title}{Sur la correspondance de Borel et le th\'{e}or\`{e}me de Dirichlet-Heine-Weierstrass-Borel-Schoenflies-Lebesgue}
+      \field{volume}{39}
+      \field{year}{1989}
+      \true{nocite}
+    \endentry
+    \entry{Evans}{book}{}
+      \name{author}{1}{}{%
+        {{hash=4a9e255c2284d579594ce3ca31bb8812}{%
+           family={Evans},
+           familyi={E\bibinitperiod},
+           given={L.C.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Providence}%
+      }
+      \list{publisher}{1}{%
+        {Amer. Math. Soc.}%
+      }
+      \strng{namehash}{4a9e255c2284d579594ce3ca31bb8812}
+      \strng{fullhash}{4a9e255c2284d579594ce3ca31bb8812}
+      \strng{bibnamehash}{4a9e255c2284d579594ce3ca31bb8812}
+      \strng{authorbibnamehash}{4a9e255c2284d579594ce3ca31bb8812}
+      \strng{authornamehash}{4a9e255c2284d579594ce3ca31bb8812}
+      \strng{authorfullhash}{4a9e255c2284d579594ce3ca31bb8812}
+      \field{labelalpha}{Eva88}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{Graduate Studies in Math.}
+      \field{title}{Partial differential equations}
+      \field{volume}{19}
+      \field{year}{1988}
+    \endentry
+    \entry{Friedberg}{book}{}
+      \name{author}{3}{}{%
+        {{hash=049c8209090d7a1d7a69531a6fb698f7}{%
+           family={Friedberg},
+           familyi={F\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=fa4f52b2780516a1532b4dc1411f7e59}{%
+           family={Insel},
+           familyi={I\bibinitperiod},
+           given={A.J.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=f99d3f7d6a8f0dc84215c7e6a6aceb2c}{%
+           family={Spence},
+           familyi={S\bibinitperiod},
+           given={L.E.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New Jersey}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Education}%
+      }
+      \strng{namehash}{6adb5e7dcda1cd425a99f0234d5f787e}
+      \strng{fullhash}{6adb5e7dcda1cd425a99f0234d5f787e}
+      \strng{bibnamehash}{6adb5e7dcda1cd425a99f0234d5f787e}
+      \strng{authorbibnamehash}{6adb5e7dcda1cd425a99f0234d5f787e}
+      \strng{authornamehash}{6adb5e7dcda1cd425a99f0234d5f787e}
+      \strng{authorfullhash}{6adb5e7dcda1cd425a99f0234d5f787e}
+      \field{labelalpha}{FIS03}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Linear Algebra}
+      \field{year}{2003}
+    \endentry
+    \entry{Feynman}{book}{}
+      \name{author}{3}{}{%
+        {{hash=ad3ca5c97904f468047862e231f3aafc}{%
+           family={Feynman},
+           familyi={F\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=14dd31b2015647c51e606260c1f8b07e}{%
+           family={Leighton},
+           familyi={L\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=e460509ceb1a613ef51669db8232da8a}{%
+           family={Sands},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley}%
+      }
+      \strng{namehash}{2024ffcf183f0ad9cb1bf3e666575783}
+      \strng{fullhash}{2024ffcf183f0ad9cb1bf3e666575783}
+      \strng{bibnamehash}{2024ffcf183f0ad9cb1bf3e666575783}
+      \strng{authorbibnamehash}{2024ffcf183f0ad9cb1bf3e666575783}
+      \strng{authornamehash}{2024ffcf183f0ad9cb1bf3e666575783}
+      \strng{authorfullhash}{2024ffcf183f0ad9cb1bf3e666575783}
+      \field{labelalpha}{FLS66}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Feynman lectures on physics}
+      \field{volume}{2}
+      \field{year}{1966}
+    \endentry
+    \entry{Gilbarg}{book}{}
+      \name{author}{2}{}{%
+        {{hash=51aebcf22cfc7718691233a258595cbb}{%
+           family={Gilbarg},
+           familyi={G\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=ed157a19b44b492ad7084d28a063bb30}{%
+           family={Trudinger},
+           familyi={T\bibinitperiod},
+           given={N.S.},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin Heidelberg New York}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{7d4ea8529f071e2a567f9a0209bfc7ed}
+      \strng{fullhash}{7d4ea8529f071e2a567f9a0209bfc7ed}
+      \strng{bibnamehash}{7d4ea8529f071e2a567f9a0209bfc7ed}
+      \strng{authorbibnamehash}{7d4ea8529f071e2a567f9a0209bfc7ed}
+      \strng{authornamehash}{7d4ea8529f071e2a567f9a0209bfc7ed}
+      \strng{authorfullhash}{7d4ea8529f071e2a567f9a0209bfc7ed}
+      \field{labelalpha}{GT01}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Elliptic partial differential equations of second order}
+      \field{year}{2001}
+    \endentry
+    \entry{Jost}{book}{}
+      \name{author}{1}{}{%
+        {{hash=9dad1ae12f6d3956f7a954184d05d6b7}{%
+           family={Jost},
+           familyi={J\bibinitperiod},
+           given={J\"{u}rgen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{9dad1ae12f6d3956f7a954184d05d6b7}
+      \strng{fullhash}{9dad1ae12f6d3956f7a954184d05d6b7}
+      \strng{bibnamehash}{9dad1ae12f6d3956f7a954184d05d6b7}
+      \strng{authorbibnamehash}{9dad1ae12f6d3956f7a954184d05d6b7}
+      \strng{authornamehash}{9dad1ae12f6d3956f7a954184d05d6b7}
+      \strng{authorfullhash}{9dad1ae12f6d3956f7a954184d05d6b7}
+      \field{labelalpha}{Jos98}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{Universitext}
+      \field{title}{Postmodern analysis}
+      \field{year}{1998}
+      \true{nocite}
+    \endentry
+    \entry{Kol}{book}{}
+      \name{author}{2}{}{%
+        {{hash=aadf44e45ed3eaf797179742cb37adb1}{%
+           family={Kolmogorov},
+           familyi={K\bibinitperiod},
+           given={A.N.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a4d13bf79b7442dea1802d42a9703fab}{%
+           family={Fomin},
+           familyi={F\bibinitperiod},
+           given={S.V.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Mosc\'{u}}%
+      }
+      \list{publisher}{1}{%
+        {Editorial MIR}%
+      }
+      \strng{namehash}{3b1cfe04b9d7524890e818965cbb9fc7}
+      \strng{fullhash}{3b1cfe04b9d7524890e818965cbb9fc7}
+      \strng{bibnamehash}{3b1cfe04b9d7524890e818965cbb9fc7}
+      \strng{authorbibnamehash}{3b1cfe04b9d7524890e818965cbb9fc7}
+      \strng{authornamehash}{3b1cfe04b9d7524890e818965cbb9fc7}
+      \strng{authorfullhash}{3b1cfe04b9d7524890e818965cbb9fc7}
+      \field{labelalpha}{KF72}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Elementos de la teor\'{\i}a de funciones y del an\'{a}lisis funcional}
+      \field{year}{1972}
+      \true{nocite}
+    \endentry
+    \entry{Mar}{book}{}
+      \name{author}{2}{}{%
+        {{hash=a109e64d7dd72d3d3700a1a0216efd4b}{%
+           family={Marsden},
+           familyi={M\bibinitperiod},
+           given={J.E.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c9423a553c6132a0aee8d2b4f69e43fb}{%
+           family={Tromba},
+           familyi={T\bibinitperiod},
+           given={A.J.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {M\'{e}xico}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley, Pearson Educaci\'{o}n}%
+      }
+      \strng{namehash}{8960f96ed1de89ddbefcdcfcb103b82e}
+      \strng{fullhash}{8960f96ed1de89ddbefcdcfcb103b82e}
+      \strng{bibnamehash}{8960f96ed1de89ddbefcdcfcb103b82e}
+      \strng{authorbibnamehash}{8960f96ed1de89ddbefcdcfcb103b82e}
+      \strng{authornamehash}{8960f96ed1de89ddbefcdcfcb103b82e}
+      \strng{authorfullhash}{8960f96ed1de89ddbefcdcfcb103b82e}
+      \field{labelalpha}{MT98}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{C\'{a}lculo vectorial}
+      \field{year}{1998}
+    \endentry
+    \entry{Nachbin}{book}{}
+      \name{author}{1}{}{%
+        {{hash=dfe41ec86e318699226f8de79ac089d5}{%
+           family={Nachbin},
+           familyi={N\bibinitperiod},
+           given={Leopoldo},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Brasil}%
+      }
+      \list{publisher}{1}{%
+        {Instituto de F\'{\i}sica e Matem\'{a}tica, Universidade do Recife}%
+      }
+      \strng{namehash}{dfe41ec86e318699226f8de79ac089d5}
+      \strng{fullhash}{dfe41ec86e318699226f8de79ac089d5}
+      \strng{bibnamehash}{dfe41ec86e318699226f8de79ac089d5}
+      \strng{authorbibnamehash}{dfe41ec86e318699226f8de79ac089d5}
+      \strng{authornamehash}{dfe41ec86e318699226f8de79ac089d5}
+      \strng{authorfullhash}{dfe41ec86e318699226f8de79ac089d5}
+      \field{labelalpha}{Nac60}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{Textos de Matem\'{a}tica n\'{u}m. 7}
+      \field{title}{Integral de Haar}
+      \field{year}{1960}
+    \endentry
+    \entry{Prieto}{book}{}
+      \name{author}{1}{}{%
+        {{hash=6d1a69cadde79797a63db5c083da5ce6}{%
+           family={Prieto},
+           familyi={P\bibinitperiod},
+           given={Carlos},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {M\'{e}xico}%
+      }
+      \list{publisher}{1}{%
+        {Fondo de Cultura Econ\'{o}mica}%
+      }
+      \strng{namehash}{6d1a69cadde79797a63db5c083da5ce6}
+      \strng{fullhash}{6d1a69cadde79797a63db5c083da5ce6}
+      \strng{bibnamehash}{6d1a69cadde79797a63db5c083da5ce6}
+      \strng{authorbibnamehash}{6d1a69cadde79797a63db5c083da5ce6}
+      \strng{authornamehash}{6d1a69cadde79797a63db5c083da5ce6}
+      \strng{authorfullhash}{6d1a69cadde79797a63db5c083da5ce6}
+      \field{labelalpha}{Pri03}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Topolog\'{\i}a b\'{a}sica}
+      \field{year}{2003}
+    \endentry
+    \entry{Rudin}{book}{}
+      \name{author}{1}{}{%
+        {{hash=33be2fc2739d3493c6d6cc5d56a4c41e}{%
+           family={Rudin},
+           familyi={R\bibinitperiod},
+           given={Walter},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill Book Co.}%
+      }
+      \strng{namehash}{33be2fc2739d3493c6d6cc5d56a4c41e}
+      \strng{fullhash}{33be2fc2739d3493c6d6cc5d56a4c41e}
+      \strng{bibnamehash}{33be2fc2739d3493c6d6cc5d56a4c41e}
+      \strng{authorbibnamehash}{33be2fc2739d3493c6d6cc5d56a4c41e}
+      \strng{authornamehash}{33be2fc2739d3493c6d6cc5d56a4c41e}
+      \strng{authorfullhash}{33be2fc2739d3493c6d6cc5d56a4c41e}
+      \field{labelalpha}{Rud64}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Principles of mathematical analysis}
+      \field{year}{1964}
+      \true{nocite}
+    \endentry
+    \entry{Schwartz}{book}{}
+      \name{author}{1}{}{%
+        {{hash=a8295dae54368d8862b1e1701d5c25d9}{%
+           family={Schwartz},
+           familyi={S\bibinitperiod},
+           given={Laurent},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Paris}%
+      }
+      \list{publisher}{1}{%
+        {Hermann}%
+      }
+      \strng{namehash}{a8295dae54368d8862b1e1701d5c25d9}
+      \strng{fullhash}{a8295dae54368d8862b1e1701d5c25d9}
+      \strng{bibnamehash}{a8295dae54368d8862b1e1701d5c25d9}
+      \strng{authorbibnamehash}{a8295dae54368d8862b1e1701d5c25d9}
+      \strng{authornamehash}{a8295dae54368d8862b1e1701d5c25d9}
+      \strng{authorfullhash}{a8295dae54368d8862b1e1701d5c25d9}
+      \field{labelalpha}{Sch92}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Analyse I-IV}
+      \field{year}{1992}
+      \true{nocite}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

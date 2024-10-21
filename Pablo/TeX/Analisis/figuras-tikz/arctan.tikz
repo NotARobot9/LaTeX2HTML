@@ -1,0 +1,23 @@
+\begin{tikzpicture}[domain=-6:6,scale=.6]
+  \pgfmathsetmacro{\mypi}{3.14159}
+  \draw[-latex'] (-6,0) -- (6,0);
+  \draw[-latex'] (0,-2) -- (0,2);
+  \draw[very thick] plot[samples=100](\x, {rad(atan(\x))});
+  \draw[very thin,dashed] (-6,{\mypi/2}) -- (6,{\mypi/2});
+  \draw[very thin,dashed] (-6,{-\mypi/2}) -- (6,{-\mypi/2});
+
+
+  % \foreach \x in {-5,...,-1}
+  % {
+  %   \draw (\x,0) node[below] {$\x$};
+  % }
+  % \foreach \x in {1,...,5}
+  % {
+  %   \draw (\x,0) node[below] {$\x$};
+  % }
+  % \draw (0,0) node[anchor=north west] {$0$};
+  % \draw (0,{\mypi/4}) node[left] {$\pi/4$};
+  % \draw (0,{-\mypi/4}) node[right] {$-\pi/4$};
+  % \draw (0,{\mypi/2}) node[left] {$\pi/2$};
+  % \draw (0,{-\mypi/2}) node[right] {$-\pi/2$};
+\end{tikzpicture}

@@ -1,0 +1,8 @@
+\begin{tikzpicture}[scale=.8]
+\draw[dashed, fill=gray!25] (0,0) circle [radius=2cm];
+\draw[dashed, fill=gray!50, rotate=60] (.8,0) circle [radius=1.2cm];
+\draw[only marks, mark=*, mark size=1pt, ScalePlotMarksOff] plot (0,0);
+\draw[only marks, mark=*, mark size=1pt, ScalePlotMarksOff, rotate=60] plot (.8,0);
+\draw[only marks, mark=*, mark size=1pt, ScalePlotMarksOff, rotate=60] node[right] at (.8,0) {$x$};
+\node[right] at (0,0) {$x_0$};
+\end{tikzpicture}

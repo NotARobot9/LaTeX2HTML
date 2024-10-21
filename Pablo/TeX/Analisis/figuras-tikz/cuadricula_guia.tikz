@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale=0.4]
+\draw (-17,-5) -- (-14,-2);
+\draw[thick, -latex'] (-14,-2) -- (-11,1);
+\draw (-14,-2) -- (-7,-2);
+\draw[thick, -latex'] (-7,-2) -- (3,-2);
+\draw (-7,-2) -- (-4,-3.5);
+\draw[thick, -latex'] (-4,-3.5) -- (-1,-5);
+\draw  (-3,-4) -- (5,4);
+\draw[thick, -latex'] (5,4) -- (8,7);
+\draw (5,4) -- (10,4);
+\draw[thick, -latex'] (10,4) -- (14,4);
+\draw (10,4) -- (16,2);
+\draw[thick, -latex'] (16,2) -- (19,1);
+\draw (16,2) -- (20,4);
+\draw[thick, -latex'] (20,4) -- (22,5);
+\end{tikzpicture}

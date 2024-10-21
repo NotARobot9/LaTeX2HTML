@@ -1,0 +1,237 @@
+\begin{tikzpicture}
+\pgfmathsetmacro{\xO}{-4};
+\pgfmathsetmacro{\xF}{10};
+\begin{axis}
+% [
+%     xmin=-2,xmax=8,
+%     extra x ticks={0,6},
+%     extra x tick style={xticklabel=\empty,grid=major}
+% ]
+% \addplot3 table[x expr=4,y=a,z=b] {
+% a b
+% -3 9
+% -2 4
+% -1 1
+% 0 0
+% 1 1
+% 2 4
+% 3 9
+% };
+  [width=12cm, axis equal,
+colormap={whitered}{color(0pt)=(gray!75) color(1pt)=(gray!50)
+  color(2pt)=(gray!25) color(3pt)=(gray!50) color(4pt)=(gray!75) },
+view={25}{0}, axis lines=none]
+% \addplot3[domain=0:6]
+%   coordinates{({x}, 0, 0) ({x}, -1, 5) ({x}, 4, 4) ({x}, 5, 0) ({x}, 3, 0) ({x}, 2, 2.5)};
+% \addplot3[smooth cycle, tension=.95]
+% coordinates{(\xF, 0, 0) (\xF, -1, 5) (\xF, 4, 4) (\xF, 5, 0) (\xF, 3, 0) (\xF, 2, 2.5)};
+% \addplot3[smooth cycle, tension=.95]
+% coordinates{ (\xO, 0, 0) (\xO, -1, 5) (\xO, 4, 4) (\xO, 5, 0) (\xO, 3,
+%   0) (\xO, 2, 2.5)};
+%\addplot3[smooth,tension=.55, mark=*,mark size=.4pt] coordinates{ 
+\addplot3[smooth,tension=.55] coordinates{ 
+%%%%%(\xF,  0, 2.15 )
+(\xF,  0, 2.1 )  
+ (\xF, -0.5, 1.45 )
+(\xF,  0, 0.05 )
+(\xF, -0.5, -0.65 )
+(\xF, -1, -0.895 )
+(\xF, -1.5, -1 )
+%(\xF, -2, -0.965 )
+%%%%(\xF, -2.5, -0.895 )
+(\xF, -2.5, -0.95 )
+%(\xF, -3, -0.825 )
+(\xF, -3.5, -0.72 )
+%(\xF, -4, -0.58 )
+(\xF, -4.5, -0.265 )
+(\xF, -5.5, 0.75 )
+(\xF, -6, 1.8 )
+(\xF, -6, 3.2 )
+(\xF, -5.5, 4.425 )
+(\xF, -5, 5.02 )
+(\xF, -4.5, 5.405 )
+(\xF, -4, 5.685 )
+(\xF, -3.5, 5.93 )
+(\xF, -3, 6.105 )
+(\xF, -2.5, 6.21 )
+(\xF, -2, 6.28 )
+%%%%%(\xF, -1.5, 6.28 )
+(\xF, -1.5, 6.28 )
+%(\xF, -1, 6.245 )
+%%%%%(\xF, -0.5, 6.21 )
+(\xF, -0.5, 6.2 )
+(\xF,  0, 6.105 )
+(\xF,  1, 5.79 )
+%%%%%(\xF,  2, 5.3 )
+(\xF,  2, 5.25 )
+(\xF,  3, 4.25 )
+%%%%%(\xF,  3.5, 3.2 )
+(\xF,  3.5, 3.1 )
+(\xF,  3.5, 1.1 )
+%%%%%(\xF,  3, 0.4 )
+(\xF,  3, 0.3 )
+(\xF,  2.5, 0.05 )
+(\xF,  2, 0.05 )
+(\xF,  1.5, 0.225 )
+(\xF,  1, 0.75 )
+(\xF,  1.5, 1.8 )
+(\xF,  1, 2.22 )
+(\xF,  0.5, 2.29 )
+%%%%%
+(\xF,  0, 2.1 ) 
+} -- cycle;
+
+\addplot3[smooth,tension=.55] coordinates{ 
+%%%%%(\xO,  0, 2.15 )
+%(\xO, -2, -0.965 )
+%%%%(\xO, -2.5, -0.895 )
+(\xO, -1.5, -1 )  
+ (\xO, -2.5, -0.95 )
+%(\xO, -3, -0.825 )
+(\xO, -3.5, -0.72 )
+%(\xO, -4, -0.58 )
+(\xO, -4.5, -0.265 )
+(\xO, -5.5, 0.75 )
+(\xO, -6, 1.8 )
+(\xO, -6, 3.2 )
+(\xO, -5.5, 4.425 )
+(\xO, -5, 5.02 )
+(\xO, -4.5, 5.405 )
+(\xO, -4, 5.685 )
+(\xO, -3.5, 5.93 )
+(\xO, -3, 6.105 )
+(\xO, -2.5, 6.21 )
+(\xO, -2, 6.28 )
+};%%%%%(\xO,  2, 5.3 ) 
+\addplot3[smooth,tension=.55,dashed, very thin] coordinates{ 
+%%%%%(\xO, -1.5, 6.28 )
+(\xO, -2, 6.28 ) 
+(\xO, -1.5, 6.28 )
+%(\xO, -1, 6.245 )
+%%%%%(\xO, -0.5, 6.21 )
+(\xO, -0.5, 6.2 )
+(\xO,  0, 6.105 )
+(\xO,  1, 5.79 )
+ (\xO,  2, 5.25 )
+(\xO,  3, 4.25 )
+%%%%%(\xO,  3.5, 3.2 )
+(\xO,  3.5, 3.1 )
+(\xO,  3.5, 1.1 )
+%%%%%(\xO,  3, 0.4 )
+(\xO,  3, 0.3 )
+(\xO,  2.5, 0.05 )
+(\xO,  2, 0.05 )
+(\xO,  1.5, 0.225 )
+(\xO,  1, 0.75 )
+(\xO,  1.5, 1.8 )
+(\xO,  1, 2.22 )
+(\xO,  0.5, 2.29 )
+%%%%%
+(\xO,  0, 2.1 )  
+(\xO, -0.5, 1.45 )
+(\xO,  0, 0.05 )
+(\xO, -0.5, -0.65 )
+(\xO, -1, -0.895 )
+(\xO, -1.5, -1 ) 
+};% -- cycle;
+
+
+%%%%Prueba de llenado de Omega
+
+% \addplot3[surf] coordinates{ 
+% %%%%%(\xO,  0, 2.15 )
+% %(\xO, -2, -0.965 )
+% %%%%(\xO, -2.5, -0.895 )
+% (\xO, -1.5, -1 )  
+% (\xO, -2.5, -0.95 )
+% %(\xO, -3, -0.825 )
+% (\xO, -3.5, -0.72 )
+% %(\xO, -4, -0.58 )
+% (\xO, -4.5, -0.265 )
+% (\xO, -5.5, 0.75 )
+% (\xO, -6, 1.8 )
+% (\xO, -6, 3.2 )
+% (\xO, -5.5, 4.425 )
+% (\xO, -5, 5.02 )
+% (\xO, -4.5, 5.405 )
+% (\xO, -4, 5.685 )
+% (\xO, -3.5, 5.93 )
+% (\xO, -3, 6.105 )
+% (\xO, -2.5, 6.21 )
+% (\xO, -2, 6.28 )
+% (\xF, -2, 6.28 ) 
+% (\xF, -2.5, 6.21 ) 
+% (\xF, -3, 6.105 ) 
+% (\xF, -3.5, 5.93 ) 
+% (\xF, -4, 5.685 ) 
+% (\xF, -4.5, 5.405 ) 
+% (\xF, -5, 5.02 ) 
+% (\xF, -5.5, 4.425 )
+% (\xF, -6, 3.2 )  
+% (\xF, -6, 1.8 )  
+% (\xF, -5.5, 0.75 )  
+% (\xF, -4.5, -0.265 )  
+% (\xF, -3.5, -0.72 )  
+% (\xF, -2.5, -0.95 )  
+% (\xF, -1.5, -1 ) 
+% (\xO, -1.5, -1 ) 
+% };%%%%%(\xO,  2, 5.3 ) 
+
+% \addplot3[smooth,tension=.55,mark=*,mark size=.4pt, only marks, color=red] coordinates{ 
+% (\xO, -1.5, -1 )
+% (\xO, -2, 6.28 )
+% (\xO,  2.5, 0.05 )
+% (\xO,  2, 0.05 )
+% (\xO,  0.5, 2.29 )
+% } -- cycle;
+
+% Cilindrito
+\addplot3[domain=0:2*pi,smooth] (-0.01, {cos(deg(x))}, {3.5+sin(deg(x))});
+\addplot3[domain=0:2*pi, domain y=0:5, smooth,surf,shader=interp,opacity=0.9] ({y}, {cos(deg(x))}, {3.5+sin(deg(x))});
+\addplot3[domain=0:2*pi, smooth, fill=gray!50] (5, {cos(deg(x))}, {3.5+sin(deg(x))});
+\addplot3[mark=*,mark size=.6pt] coordinates{(2.5,0,3.5)};
+\addplot3[thin] coordinates{ (0,0,2.5) (5,0,2.5)};
+\addplot3[thin] coordinates{ (0,0,4.5) (5,0,4.5)};
+%Líneas
+\addplot3[%dashed
+dash pattern=on 1.5pt off 2pt on 1.5pt off 2pt
+] coordinates{(0,0,-3.1) (0,0,2.5)};
+\addplot3[%dashed
+dash pattern=on 1.5pt off 2pt on 1.5pt off 2pt
+] coordinates{(5,0,-3.1) (5,0,2.5)};
+\addplot3[%dashed
+dash pattern=on 1.5pt off 2pt on 1.5pt off 2pt
+] coordinates{(\xO,-1.5,-3.1) (\xO,-1.5,-1)};
+\addplot3[%dashed
+dash pattern=on 1.5pt off 2pt on 1.5pt off 2pt
+] coordinates{(\xF,-1.5,-3.1) (\xF,-1.5,-1)};
+\addplot3[thin] coordinates{(\xO, -1.5, -1 ) (\xF, -1.5, -1 )};
+\addplot3[thin] coordinates{({\xO + .01}, -2, 6.29 ) (\xF, -2, 6.29 )}; 
+\addplot3[very thin, dashed] coordinates{(\xO,  0.5, 2.29 ) (\xF,  0.5, 2.29 )};
+\addplot3[very thin, dashed] coordinates{((\xO,  2.5, 0.04 ) ({\xF-0.95},  2.5, 0.02 )};
+\addplot3[thin] coordinates{(({\xF-0.95},  2, 0.02 ) (\xF,  2.3, 0.02 )};
+%(\xF, 5, 0) (\xF, 3, 0) (\xF, 2, 2.5)};
+
+
+%Ejes
+\addplot3[-latex'] coordinates{(-8,0,-3) (13,0,-3)};
+\addplot3[-latex'] coordinates{(-8,0,-3) (-8,-7,-6)};
+\addplot3[-latex'] coordinates{(-8,0,-3) (-8,0,8)};
+%Etiquetas
+\addplot3 [nodes near coords={$t_0-\delta$}, every node near 
+coord/.style={anchor=90}] 
+coordinates {( 0,0, -3)};
+\addplot3 [nodes near coords={$t_0+\delta$}, every node near 
+coord/.style={anchor=90}] 
+coordinates {( 5, 0, -3)};
+\addplot3 [nodes near coords={$a$}, every node near 
+coord/.style={anchor=90}] 
+coordinates {( \xO, -1.5, -3)};
+\addplot3 [nodes near coords={$b$}, every node near 
+coord/.style={anchor=90}] 
+coordinates {( \xF, -1.5, -3)};
+\addplot3 [nodes near coords={$\Omega$}, every node near 
+coord/.style={anchor=90}] 
+coordinates {( \xF, -1, 5)};
+\end{axis}
+\end{tikzpicture}

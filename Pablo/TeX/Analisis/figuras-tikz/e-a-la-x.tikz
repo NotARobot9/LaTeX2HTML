@@ -1,0 +1,38 @@
+\begin{tikzpicture}[domain=-2:2.6, xscale=2,yscale=1.5]
+  \pgfmathsetmacro{\xo}{0.5}
+  \pgfmathsetmacro{\yo}{.2*exp(\xo)}
+  \pgfmathsetmacro{\xi}{2.2}
+  \pgfmathsetmacro{\yi}{.2*exp(\xi)}
+  \pgfmathsetmacro{\xt}{1.4}
+  \pgfmathsetmacro{\yt}{.2*exp(\xt)}
+  \pgfmathsetmacro{\yl}{(\yi-\yo)/(\xi-\xo)*(\xt-\xo)+\yo}
+
+  \coordinate (p0) at (\xo,\yo);
+  \coordinate (p1) at (\xi,\yi);
+  \coordinate (p2) at (\xt,\yt);
+
+  \draw[-latex'] (-2,0)--(2.85,0);
+  \draw[-latex'] (0,-.2)--(0,{.2*exp(2.7)});
+  \draw[very thick] plot(\x,{.2*exp(\x)});
+  \draw[thin] (p0)--(p1);
+  \draw[only marks,mark=*, mark size=1pt, ScalePlotMarksOff] plot
+  coordinates {(p0) (p1)};
+  \draw (2.65,{.2*exp(2.5)}) node[right] {$y=e^x$};
+
+  \draw[thin,densely dotted] (\xo,0)--(p0);
+  \draw[thin,densely dotted] (\xi,0)--(p1);
+%  \draw[thin,densely dotted] (p0)--(0,\yo);
+%  \draw[thin,densely dotted] (p1)--(0,\yi);
+
+  \draw[thin,densely dotted] (\xt,0)--(\xt,\yl)--(0,\yl);
+  \draw[thin,densely dotted] (0,\yt)--(\xt,\yt);
+  
+  \draw (\xo,0) node[below] {$x_0$};
+  \draw (\xt,0) node[below] {$(1-t)x_0+tx_1$};
+  \draw (\xi,0) node[below] {$x_1$};
+
+  \draw (0,\yl) node[left] {$(1-t)e^{x_0}+te^{x_1}$};
+  \draw (0,\yt) node[left] {$e^{(1-t)x_0+tx_1}$};
+
+
+\end{tikzpicture}

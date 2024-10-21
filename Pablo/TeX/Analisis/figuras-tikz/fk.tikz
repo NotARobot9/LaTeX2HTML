@@ -1,0 +1,24 @@
+\begin{tikzpicture}[scale=1.7]
+  \draw (-1,0)--(1,0);
+  \draw (0,-1)--(0,1);
+  \draw[very thick] (-1,-1)--(-.333,-1)--(.333,1)--(1,1);
+  \foreach \x in {-0.5, 0.5, -1, 1}{
+               \draw[thin] (-.025,\x)--(0.025,\x);
+};
+  \foreach \x in {-1, 1}{
+               \draw[thin] (\x,-0.025)--(\x,0.025);
+};
+
+\draw[dashed] (-.333,0) -- (-.333,-1);
+\draw[dashed] (.333,0) -- (.333,1);
+\draw (0,-1.2) node[below] {$y=f_k(x)$};
+
+\draw (.333,-.025) node[below] {$\frac{1}{k}$};
+\draw (1,-.025) node[below] {$1$};
+\draw (-.333,.025) node[above] {$-\frac{1}{k}$};
+\draw (-1,-.025) node[below] {$-1$};
+%\draw (-.025,.5) node[left] {$\frac{1}{2}$};
+\draw (-.025,1) node[left] {$1$};
+%\draw (.025,-.5) node[right] {$-\frac{1}{2}$};
+\draw (.025,-1) node[right] {$-1$};
+\end{tikzpicture}

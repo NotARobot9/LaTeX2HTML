@@ -1,0 +1,28 @@
+\begin{tikzpicture}[scale=.3]
+  \pgfmathsetmacro{\xO}{1}
+  \draw[very thin,-latex'] (-13,0)--(13,0);
+  \draw[very thin, -latex'] (-5.5,-5)--(-5.5,10.5);
+  \draw[thick] (-11,0)--(-8,0)--(-7,-4)--(-3,-4)--(-1.5,8)--(1.5,8)--(3,-4)--(7,-4)--(8,0)--(11,0);
+
+  \draw[smooth,tension=0.65] plot coordinates{
+    (-11,0.1) (-10.5,.15) (-10,.25) (-8.9,.6) (-8,.6) (-7,0) (-5,-2) (-3,3)};
+  \draw[smooth,tension=.9] plot coordinates{
+    (-3,8.7) (-1.5,9.1) (0,8.6)};
+  \draw[smooth,tension=.9] plot coordinates{
+    (0, 8.4) (1.6,8.6) (3,9)};
+  \draw[smooth,tension=0.6] plot coordinates{
+    (3,-1.5) (5,-3) (7,0) (8,.7) (9,0.5) (10,.2) (10.5,.1) (11,0.1)};
+
+\draw[dashed, very thin] (-7,-4)--(-7,0);
+\draw[dashed, very thin] (7,-4)--(7,0);
+\draw[dashed, very thin] (-3,-4)--(-3,8.7);
+\draw[dashed, very thin] (3,-4)--(3,9);
+\draw[dashed, very thin] (-5.5,8)--(1.5,8);
+
+
+  \draw plot[only marks, mark=*,mark size=3pt] coordinates{(-5.5,8) (-5.5,-4) (-8,0 )(-7,0) (-3,0) (0,0)
+    (3,0) (7,0) (8,0)};
+  \draw (-5.5,8) node[left] {$q$};
+  \draw (-5.3,-4) node[below] {$-M$};
+  \draw (0,0) node[below] {$\xi$};
+\end{tikzpicture}

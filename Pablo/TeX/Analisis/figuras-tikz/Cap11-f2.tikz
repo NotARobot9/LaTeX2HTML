@@ -1,0 +1,22 @@
+\begin{tikzpicture}[scale=1]
+  \draw (-1.2,0)--(3.2,0);
+  \draw (0,0)--(0,4.2);
+
+  \draw[very thick] (-1.2,0)--(0,0)--(.5,4)--(1,0)--(3.2,0);
+%%%%%% Falta el titulito (Modificar pre.tex para que jale la Times) 
+%%%%%%  \draw (1,-0.5) node[below] {gr\'afica de $f_2$};
+  
+  \foreach \x in {-1, 0, 1, 2, 3}{
+               \draw[thin] (\x,-0.05)--(\x,0.05);
+               \draw (\x,-.025) node[below] {$\x$};
+};
+  \foreach \x in {1, 2, 3, 4}{
+               \draw[thin] (-.05,\x)--(0.05,\x);
+               \draw (-.025,\x) node[left] {$\x$};             
+};
+%  \draw (0,-.025) node[below] {$0$};
+  % \draw (.5,-.025) node[below] {$\frac{1}{2}$};
+  % \draw (1,-.025) node[below] {$1$};
+  % \draw (-.025,.5) node[left] {$\frac{1}{2}$};
+  % \draw (-.025,1) node[left] {$1$};
+\end{tikzpicture}

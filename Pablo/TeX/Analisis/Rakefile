@@ -1,0 +1,313 @@
+# -*- mode: ruby; coding: utf-8; -*-
+
+require 'yaml'
+require 'erb'
+
+metafile = 'meta.yaml'
+metafd = File.new(metafile)
+meta = YAML::load(metafd)
+metafd.close
+
+basename = meta['nombre']
+meta['titulo_limpio'] = meta['titulo'].chomp.gsub(/ *\\\\ */,' ')
+meta['logo_serie'] = meta['serie'].downcase
+meta['serie'] = meta['serie'].capitalize
+meta['ediciones_latex'] = meta['ediciones'].join("\\\\[3ex]\n")
+
+texfile = basename + '.tex'
+textmpheader = 'header.inp'
+xelatextmpheader = 'xeheader.inp'
+biblatexcfg = 'biblatex.cfg'
+bibfile = 'plantilla.bib'
+latexmk = "latexmk -pdf"
+
+def symbolconcat(tasksymbol,typesymbol)
+  return (tasksymbol.to_s + '_' + typesymbol.to_s).to_sym
+end
+
+def normalize(input,default)
+  return (input ? input : default)
+end
+
+# in the following, mode is one of :pdf, :png
+def run_inkscape(mode,svgimage,output,output_tex)
+  case mode
+  when :png then
+    outputoption = ' --export-png=' + output
+    FileUtils.rm_rf(output)
+  when :pdf then
+    outputoption = ' --export-latex --export-pdf=' + output
+    FileUtils.rm_rf([output,output_tex])
+  else
+    error 'One of :pdf or :png must be given as mode to run_inkscape'
+  end
+
+  # the following code causes problems with race conditions.  It is
+  # difficult to wait for an inkscape job to finish.  Therefore we
+  # don't use the shell batch feature of inkscape for now, but leave
+  # it as a reminder that this feature exists.
+
+  # unless $inkscape then
+  #   $inkscape = open('| inkscape --without-gui --shell','w+')
+  #   $inkscape.readline
+  #   $inkscape.readchar
+  # end
+  # $inkscape.puts '--export-dpi=300 --export-area-drawing --file=' + svgimage + outputoption
+  # $inkscape.readchar
+  # while ! File.exists?(output) do
+  #   sleep(0.1)
+  # end
+  # if mode == :pdf then
+  #   while ! File.exists?(output_tex) do
+  #     sleep(0.1)
+  #   end
+  # end
+
+  sh "inkscape --without-gui --export-dpi=300 --export-area-drawing --file=" + svgimage + outputoption
+end
+
+def svgtopdf(svgimage,pdfimage,pdf_teximage,imagedir)
+    run_inkscape(:pdf,svgimage,pdfimage,pdf_teximage)
+    File.open(pdf_teximage,'r+') do |f|
+      text = f.read
+      f.rewind
+      f.puts text.gsub('\\includegraphics[width=\\unitlength]{','\\includegraphics[width=\\unitlength]{' + imagedir + '/')
+    end
+end
+
+def svgtopng(svgimage,pngimage,pdf_teximage,imagedir)
+    pdfimage = pngimage.sub(/\.png$/,'.pdf')
+    run_inkscape(:pdf,svgimage,pdfimage,pdf_teximage)
+    File.open(pdf_teximage,'r+') do |f|
+      text = f.read
+      f.rewind
+      f.puts text.gsub(/\\includegraphics\[width=\\unitlength\]{([^{}]+)\.pdf}/,'\\includegraphics[width=\\unitlength]{' + imagedir + '/\1.png}')
+    end
+    svgimage_tmp = svgimage.sub(/\.svg$/,'-tmp.svg')
+    File.open(svgimage,'r') do |s|
+      text = s.read
+      File.open(svgimage_tmp,'w') do |t|
+        t.puts text.gsub(/<text.*?<\/text>/m,'')
+      end
+    end
+    run_inkscape(:png,svgimage_tmp,pngimage,'')
+end
+
+pdfpages = {
+  editorial: '1',
+  colofon: '1',
+  legal: '1',
+  publicaciones: '?',
+  presentacion: '2',
+  blanca: '1',
+  anteportadilla: '1',
+  portadilla: '1'
+}
+
+def pdfpages(filename)
+  pages = nil
+  open("|pdfinfo #{filename}").each do |l|
+    pages = l.chomp.gsub(/^Pages: *([0-9]+)/,'\1')
+    break if $&
+  end
+  return pages
+end
+
+pdffile = Hash.new
+libropdf = Hash.new
+names_tikzs = Hash.new
+tikzs = Hash.new
+pdfs_from_tikzs = Hash.new
+names_for_svgtopdf = Hash.new
+svgs_for_svgtopdf = Hash.new
+pdfs_from_svgtopdf = Hash.new
+pdf_texs_from_svgtopdf = Hash.new
+names_for_svgtopng = Hash.new
+svgs_for_svgtopng = Hash.new
+pngs_from_svgtopng = Hash.new
+pdf_texs_from_svgtopng = Hash.new
+
+[:color, :bn].each do |type|
+  pdffile[type] = basename + '-' + type.to_s + '.pdf'
+  libropdf[type] = 'libro-' + basename + '-' + type.to_s + '.pdf'
+
+  names_tikzs[type] = normalize(meta['names_tikzs'],[]) .
+    collect{|n| File.join('figuras-' + type.to_s,n)}
+  tikzs[type] = names_tikzs[type].collect{|n| n + '.tikz'}
+  pdfs_from_tikzs[type] = names_tikzs[type] .
+    collect{|n| n + '.pdf'}
+
+  names_for_svgtopdf[type] = normalize(meta['names_for_svgtopdf'],[]) .
+    collect{|n| File.join('figuras-' + type.to_s,n)}
+  svgs_for_svgtopdf[type] = names_for_svgtopdf[type].collect{|n| n+ '.svg'}
+  pdfs_from_svgtopdf[type] = names_for_svgtopdf[type].collect{|n| n+ '.pdf'}
+  pdf_texs_from_svgtopdf[type] = names_for_svgtopdf[type].collect{|n| n+ '.pdf_tex'}
+
+  names_for_svgtopng[type] = normalize(meta['names_for_svgtopng'],[]) .
+    collect{|n| File.join('figuras-' + type.to_s,n)}
+  svgs_for_svgtopng[type] = names_for_svgtopng[type].collect{|n| n+ '.svg'}
+  pngs_from_svgtopng[type] = names_for_svgtopng[type].collect{|n| n+ '.png'}
+  pdf_texs_from_svgtopng[type] = names_for_svgtopng[type].collect{|n| n+ '.pdf_tex'}
+
+  task symbolconcat(:svg2pdf,type) => pdfs_from_svgtopdf[type]
+  task symbolconcat(:pdfimages,type) => pdfs_from_tikzs[type] + pdfs_from_svgtopdf[type]
+  task symbolconcat(:pdftexs,type) => pdf_texs_from_svgtopdf[type] + pdf_texs_from_svgtopng[type]
+  task symbolconcat(:pngimages,type) => pngs_from_svgtopng[type]
+
+  names_tikzs[type].length.times do |i|
+    imagename = names_tikzs[type][i]
+    pdfimage = pdfs_from_tikzs[type][i]
+    tikzimage = tikzs[type][i]
+    file pdfimage => tikzimage do
+      Rake::Task[:svg2pdf].invoke()
+      Rake::Task[:pdftexs].invoke()
+      sh "rm -rf #{basename}.aux"
+      sh "pdflatex -halt-on-error -interaction=batchmode " +
+        "-jobname '#{imagename}' '\\def\\tikzexternalrealjob" +
+        "{#{basename}}\\input{#{texfile}}' 1>/dev/null 2>&1"
+      puts pdfimage + ": generado."
+    end
+  end
+
+  names_for_svgtopdf[type].length.times do |i|
+    imagename = names_for_svgtopdf[type][i]
+    svgimage = svgs_for_svgtopdf[type][i]
+    pdfimage = pdfs_from_svgtopdf[type][i]
+    imagedir = 'figuras-' + type.to_s
+    pdf_teximage = pdf_texs_from_svgtopdf[type][i]
+    file pdfimage => svgimage do
+      svgtopdf(svgimage,pdfimage,pdf_teximage,imagedir)
+      puts pdfimage + ": generado."
+    end
+    file pdf_teximage => svgimage do
+      svgtopdf(svgimage,pdfimage,pdf_teximage,imagedir)
+      puts pdf_teximage + ": generado."
+    end
+  end
+
+  names_for_svgtopng[type].length.times do |i|
+    imagename = names_for_svgtopng[type][i]
+    svgimage = svgs_for_svgtopng[type][i]
+    pngimage = pngs_from_svgtopng[type][i]
+    imagedir = 'figuras-' + type.to_s
+    pdf_teximage = pdf_texs_from_svgtopng[type][i]
+    file pngimage => svgimage do
+      svgtopng(svgimage,pngimage,pdf_teximage,imagedir)
+      puts pngimage + ": generado."
+    end
+    file pdf_teximage => svgimage do
+      svgtopng(svgimage,pngimage,pdf_teximage,imagedir)
+      puts pdf_teximage + ": generado."
+    end
+  end
+
+  file libropdf[type] => ['anteportadilla.pdf','presentacion.pdf','editorial.pdf','portadilla.pdf',
+                    'legal.pdf',pdffile[type],'publicaciones.pdf','blanca.pdf','colofon.pdf'] do
+    textpages = %x{pdfinfo #{pdffile[type]}}.sub(/.*\nPages: *([0-9]+)\n.*/m,'\1').to_i
+    pubpages = %x{pdfinfo #{'publicaciones.pdf'}}.sub(/.*\nPages: *([0-9]+)\n.*/m,'\1').to_i
+    pubblankpages = pubpages % 2
+    if meta['multiples_de_ocho'] then
+      modulo = ( textpages + pubpages + pubblankpages + 12 ) % 8
+      midblankpages = modulo == 0 ? 0 : 8 - modulo
+    else
+      midblankpages = textpages %2
+    end
+    puts "textpages: #{textpages}\n"
+    puts "pubpages: #{pubpages}\n"
+    puts "pubblankpages: #{pubblankpages.to_s}\n"
+    puts "midblankpages: #{midblankpages.to_s}\n"
+    sh 'pdftk blanca.pdf blanca.pdf anteportadillaBuena.pdf editorial.pdf ' +
+      'portadillaBuena.pdf legal.pdf presentacion.pdf ' +
+      pdffile[type] +
+      ' blanca.pdf colofon.pdf blanca.pdf' + 
+      ' publicacionesBuena.pdf blanca.pdf blanca.pdf blanca.pdf blanca.pdf output ' + libropdf[type]
+  end
+
+  task symbolconcat(:libro,type) => libropdf[type]
+
+  file pdffile[type] => symbolconcat(:pdf,type)
+
+  task symbolconcat(:pdf,type) => [symbolconcat(:pdfimages,type), symbolconcat(:pdftexs,type), symbolconcat(:pngimages,type)] do
+    FileUtils.rm_rf([basename + '.aux', basename + '.bcf', 'figuras'])
+    FileUtils.ln_s('figuras-' + type.to_s,'figuras')
+    sh "#{latexmk} #{texfile}"
+    FileUtils.cp(basename + '.pdf', pdffile[type])
+    puts pdffile[type] + ": generado."
+  end
+end
+
+task :svg2pdf => [:svg2pdf_color, :svg2pdf_bn]
+
+task :pdfimages => [:pdfimages_color, :pdfimages_bn]
+
+task :pdftexs => [:pdftexs_color, :pdftexs_bn]
+
+task :header => textmpheader
+
+task :pdfs => [:pdf_bn, :pdf_color]
+
+task :default => :pdf_bn
+
+task :libros => [:libro_bn, :libro_color]
+
+file textmpheader => [texfile] do
+  File.open(texfile,'r') do |input|
+    File.open(textmpheader,'w') do |output|
+      while line = input.gets do
+        next if line =~ /(biblatex|bibliography|addbibresource)/
+        break if line =~ /^( |\t)*\\begin{document}/
+        output.puts line
+      end
+    end
+  end
+end
+
+file xelatextmpheader => [texfile] do
+  File.open(texfile,'r') do |input|
+    File.open(xelatextmpheader,'w') do |output|
+      while line = input.gets do
+        break if line =~ /end xelatex header/
+        output.puts line
+      end
+    end
+  end
+end
+
+pdfpages.each do |key, goalpages|
+  tmptex = key.to_s + '-tmp.tex'
+  keytex = key.to_s + '.tex'
+  keypdf = key.to_s + '.pdf'
+
+  file keypdf => key
+
+  task key =>  [tmptex] do
+    if key.to_s =~ /portadilla/ then
+      xelatex = '-xelatex'
+    else
+      xelatex = ''
+    end
+    sh "#{latexmk} #{xelatex} -jobname=#{key.to_s} #{tmptex}"
+    foundpages = pdfpages(key.to_s + '.pdf')
+    if goalpages =~ /^[0-9]+$/ and foundpages != goalpages then
+      puts "File #{key.to_s + '.pdf'} has wrong number of pages (#{foundpages}); should be #{goalpages}."
+      exit 1
+    end
+    puts key.to_s + '.pdf: generado.'
+  end
+
+  file tmptex => [keytex, textmpheader, xelatextmpheader, metafile] do
+    FileUtils.cp(key.to_s =~ /portadilla/ ? xelatextmpheader : textmpheader,tmptex)
+    File.open(tmptex,'a') do |f|
+      if key == :blanca then
+        f.puts '\\begin{document}','\\pagestyle{empty}','\mbox{}','\\end{document}'
+      else
+        f.puts ERB.new(File.read(key.to_s + '.tex')).result(binding)
+      end
+    end
+  end
+end
+
+task :clean do
+  sh 'git clean -f -d -x'
+  puts 'Carpeta: limpia.'
+end

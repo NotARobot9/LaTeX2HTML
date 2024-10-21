@@ -1,0 +1,298 @@
+%% 3a. reimpresión 3a. edición (oct2023)
+%% 2a. reimpresión 2a. edición (jul2019)
+%% 1a. reimpresión 2a. edición (nov2018)
+%% 2a. edición
+%% 1a. edición
+\documentclass[10pt,pagesize]{scrbook}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start settings for papirhos design
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\KOMAoptions{twoside,paper=170mm:230mm,headinclude=true,footinclude=false}
+%\areaset[20mm]{120mm}{200mm}
+\typearea[15mm]{14}
+% \geometry ...
+\usepackage{setspace}
+\setstretch{1.05}
+
+%\usepackage{scrpage2}
+\usepackage{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+%\ohead{\pagemark}
+\ohead{\textbf{\pagemark}}
+\lohead{\headmark}
+\rehead{\headmark}
+%\lohead{\raisebox{0.15em}\headmark}
+%\rehead{\raisebox{0.15em}\headmark}
+
+\addtolength{\headheight}{1mm}
+
+
+% Extra definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\missing}{\ensuremath{\clubsuit\clubsuit\clubsuit}}
+
+% end xelatex header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Font selection
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[T1]{fontenc}                % use this if European fonts (ec) package is installed
+\usepackage{textcomp}                   % adds some additional symbols
+\usepackage[scaled=0.92]{helvet}        % set Helvetica as the sans-serif font
+\renewcommand{\rmdefault}{ptm}          % set Times as the default text font
+
+% Uncomment the next line if you do not have the mathematics font
+% MTPro2 installed:
+\usepackage[mtphrb,mtpfrak,mtpscr,subscriptcorrection,slantedGreek,nofontinfo]{mtpro2}
+
+% Element formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\KOMAoptions{headings=big,open=right,chapterprefix=true}
+\addtokomafont{chapter}{\normalfont}
+\addtokomafont{chapterentry}{\normalfont\bfseries}
+\addtokomafont{chapterprefix}{\normalfont\bfseries}
+\addtokomafont{section}{\normalfont\bfseries}
+\addtokomafont{subsection}{\normalfont\bfseries}
+\addtokomafont{subsubsection}{\normalfont\bfseries}
+\addtokomafont{paragraph}{\normalfont\bfseries}
+\addtokomafont{subparagraph}{\normalfont\bfseries}
+\addtokomafont{part}{\normalfont}
+\addtokomafont{partnumber}{\normalfont\bfseries}
+\renewcommand*{\partformat}{Parte~\thepart}
+
+\renewcommand{\chapterheadstartvskip}{\vspace*{-1.85\baselineskip}}
+\renewcommand{\chapterheadendvskip}{\vspace*{9\baselineskip
+    plus .5\baselineskip minus .5\baselineskip}}
+
+\renewcommand*{\chapterformat}{%
+\mbox{\thechapter}}
+\renewcommand*{\chaptermarkformat}{%
+\thechapter\autodot\enskip}
+
+\newcommand{\mathimagefontsize}{\footnotesize}
+
+\makeatletter
+\let\originall@part\l@part
+\def\l@part#1#2{\originall@part{{\normalfont\bfseries%
+      #1}}{\normalfont\bfseries #2}}
+\makeatother
+
+% Language selection
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish,mexico,es-preindex,es-noindentfirst]{babel}
+\usepackage[spanish,mexico,es-noindentfirst]{babel}
+\usepackage[spanish=spanish]{csquotes}
+\usepackage[inline]{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{upref}
+\usepackage{exscale}
+\usepackage[leqno]{mathtools}
+\usepackage{multicol}
+
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\DeclareFieldFormat[article]{pages}{#1}
+
+% Processing options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Esto está porque pdftk (versión 1.44-1.45) tiene problemas con pdf
+% 1.5.  Despues de instalar pdftk con un parche
+% (http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=687669) podemos
+% quitar la restricción de sólo usar PDF 1.4.
+%\pdfminorversion=4
+
+\usepackage[all]{nowidow}
+\usepackage{microtype}
+\usepackage{scrhack}
+
+\usepackage{imakeidx}
+\makeindex[title=Índice analítico, columnsep=20pt, intoc]
+\indexsetup{headers={\indexname}{\indexname}, othercode={\small\setstretch{1.115}}}
+\makeatletter
+\newif\iffirst@subitem
+\def\@idxitem{%
+  \par\hangindent40\p@ % original
+  \first@subitemtrue   % added
+}
+\def\subitem{%
+  \par\hangindent40\p@
+  \iffirst@subitem
+    \nobreak
+    \first@subitemfalse
+  \fi
+  \hspace*{20\p@}}
+\makeatother
+%\addto\captionsspanish{\renewcommand\indexname{Índice alfabético}%
+\def\bibname{Referencias}
+
+\usepackage{float}
+% This puts floats top aligned on float pages:
+\makeatletter
+    \setlength\@fptop{0\p@}
+    \setlength\@fpsep{11\p@}
+\makeatother
+
+\allowdisplaybreaks
+
+% Formatting, numbering
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\numberwithin{equation}{chapter}
+\setcounter{tocdepth}{1} % TODO: esto todavía no está decidido
+
+% captions TODO: revisar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage[margin=\parindent,font=small,labelfont=bf,
+%labelsep=colon,labelformat=simple]{caption}
+%
+%\usepackage[labelformat=simple]{subcaption}
+%\renewcommand\thesubfigure{\textup{(\alph{subfigure})}}%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End settings for papirhos design
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start individual settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage{graphicx}
+
+\usepackage{tikz}
+% \tikzset{font=\small}
+% \tikzset{every node/.append style={transform shape=false}}
+% \makeatletter
+% \tikzset{ScalePlotMarksOff/.code={
+%         \def\pgfuseplotmark##1{\pgftransformresetnontranslations\csname pgf@plot@mark@##1\endcsname}
+% }}
+% \makeatother
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.10}
+\usetikzlibrary{arrows,positioning}
+\tikzset{font=\small}
+\tikzset{every node/.append style={transform shape=false}}
+\makeatletter
+\tikzset{ScalePlotMarksOff/.code={
+    \def\pgfuseplotmark##1{\pgftransformresetnontranslations\csname%
+      pgf@plot@mark@##1\endcsname}
+  }}
+\makeatother
+
+\makeatletter
+ \pgfplotsset{
+    xtick parsed/.code={
+        \c@pgf@counta 0\relax
+        \foreach \x in {#1} {
+            \pgfmathparse{\x}
+            \ifnum\c@pgf@counta=0
+                \xdef\pgfplots@xtick{\pgfmathresult}
+            \else
+                \xdef\pgfplots@xtick{\pgfplots@xtick,\pgfmathresult}
+            \fi
+            \global\advance\c@pgf@counta 1\relax
+        }
+    }
+ } 
+ \makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Extra Definitions %%%%%%%%%%%%%%%%%%%%%%%%%
+
+% this creates an \item* command for starred exercises
+
+\makeatletter
+\def\makestarredlabel#1{%
+\settowidth\@tempdima{#1}%
+\global\let\makelabel\oldmakelabel
+\makelabel{\hbox to\@tempdima{\llap{*\kern.2em}#1}}%
+}
+\let\olditem\item
+\def\item{\@ifstar\starreditem\olditem}
+\def\starreditem{%
+\let\oldmakelabel\makelabel
+\let\makelabel\makestarredlabel
+\olditem
+}
+\makeatother
+
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{corollary}[theorem]{Corolario}
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{example}[theorem]{Ejemplo}
+\newtheorem{exercise}[theorem]{Ejercicio}
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{notation}[theorem]{Notación}
+\newtheorem{problem}[theorem]{Problema}
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{remark}[theorem]{Observaciones}
+\newtheorem{obs}[theorem]{Observación}
+
+\newcommand{\vspaceindex}{\vphantom{\int_0^0}}
+\newcommand{\FRAME}{\hbox{\missing{} Aquí estuvo una imagen}}
+
+%%%%%%
+% Para las notas a pie de página
+%%%%%%
+
+\deffootnote[2em]{2em}{1em}{\textsuperscript{\thefootnotemark\ }}
+
+%%%%%%%%%%%%%%%%%%
+% Comandos para mca
+%%%%%%%%%%%%%%%%%%
+
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[
+placement=H,
+within=none,
+]{bio}
+
+\newcommand{\disc}{\ensuremath{\mathrm{disc}}}
+\newcommand{\loc}{\ensuremath{\text{\normalfont loc}}}
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\cerr}{cerr}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\sop}{sop}
+\DeclareMathOperator{\graf}{graf}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\lin}{lin}
+
+\makeatletter
+\newcommand{\opnorm}{\@ifstar\@opnorms\@opnorm}
+\newcommand{\@opnorms}[1]{%
+  \left|\mkern-1.5mu\left|\mkern-1.5mu\left|
+   #1
+  \right|\mkern-1.5mu\right|\mkern-1.5mu\right|
+}
+\newcommand{\@opnorm}[2][]{%
+  \mathopen{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+  #2
+  \mathclose{#1|\mkern-1.5mu#1|\mkern-1.5mu#1|}
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End personal settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}

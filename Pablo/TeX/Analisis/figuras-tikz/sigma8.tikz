@@ -1,0 +1,11 @@
+\begin{tikzpicture}[scale=2]
+\pgfmathsetmacro{\SOCHO}{0.3535534}
+\pgfmathsetmacro{\TPO}{1/16}
+\draw (0,-0.5)--(0,0.5);
+\draw (0,0)--(1.05,0);
+\draw (0,0) sin (\TPO,\SOCHO) cos (2*\TPO,0) sin (3*\TPO,-\SOCHO) cos (4*\TPO,0)
+ sin (5*\TPO,\SOCHO) cos (6*\TPO,0) sin (7*\TPO,-\SOCHO) cos (8*\TPO,0)
+ sin (9*\TPO,\SOCHO) cos (10*\TPO,0) sin (11*\TPO,-\SOCHO) cos (12*\TPO,0)
+ sin (13*\TPO,\SOCHO) cos (14*\TPO,0) sin (15*\TPO,-\SOCHO) cos (16*\TPO,0);
+\node[below] at (0.5,-0.5) {$\sigma_{8}$};
+\end{tikzpicture}
